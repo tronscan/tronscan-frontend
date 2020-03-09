@@ -45,7 +45,7 @@ export const lang20Q1 = {
   data_number: "数量",
   data_per: "占比",
   data_total: "总计",
-
+ 
   data_items: "笔数",
   data_unit_bi: "笔",
   data_piao: "票数",
@@ -137,7 +137,9 @@ export const lang20Q1 = {
   full_node_version_latest_block:'最新区块',
   full_node_version_confirmed:'已确认',
   full_node_version_unconfirmed:'待确认',
+  // full_node_version_confirmed_tips:'“已确认”是指被19个及以上区块确认，否则为“待确认”或“已回退”',
   full_node_version_confirmed_tips:'“已确认”是指被19个及以上区块确认，否则为“待确认”或“已回退”',
+
 
   // 2020-02-19
   chart_energy:'能量消耗',

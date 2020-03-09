@@ -205,7 +205,8 @@ export const lang20Q1 = {
   full_node_version_latest_block:'최신 블록',
   full_node_version_confirmed:'CONFIRMED',
   full_node_version_unconfirmed:'UNCONFIRMED',
-  full_node_version_confirmed_tips:'Transactions confirmed by 19 or more blocks will be marked "CONFIRMED"，otherwise is“UNCONFIRMED” or "ROLLED BACK"',
+  full_node_version_confirmed_tips:'Transactions confirmed by 19 or more SRs will be marked "confirmed"，or is“uncomfirmed”',
+
 
   // 2020-02-19
   chart_energy:'사용 된 에너지',
