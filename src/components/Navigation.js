@@ -157,16 +157,17 @@ class Navigation extends React.Component {
 
   async loadTrxPrices() {
       var dataEur = Lockr.get("dataEur");
-  
       let eurURL = encodeURI(
-        `https://api.coinmarketcap.com/v1/ticker/tronix/?convert=EUR`
+       `https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=TRX&convert=USD` 
       );
-      
-      var { data: dataEurObj } = await xhr.get(
-          `${API_URL}/api/system/proxy?url=${eurURL}`
+      var { data: {data: dataEurObj} } = await xhr.post(
+          `${API_URL}/api/system/proxy`,
+          {
+            url:eurURL
+          }
       );
-      if (dataEurObj.length > 0) {
-        let percent_change_24h = dataEurObj[0].percent_change_24h;
+      if (dataEurObj.TRX) {
+        let percent_change_24h = dataEurObj.TRX.quote.USD.percent_change_24h.toFixed(2) || 0;
         this.setState({
           percent_change_24h
         });
@@ -251,6 +252,13 @@ class Navigation extends React.Component {
         if (tronWeb && tronWeb.defaultAddress.base58) {
           this.props.loginWithTronLink(tronWeb.defaultAddress.base58, tronWeb, sunWeb).then(() => {
             toastr.info(intl.formatMessage({id: 'success'}), intl.formatMessage({id: 'login_success'}));
+            
+            window.gtag("event", "Tronlink", {
+              event_category: "Login",
+              event_label: tronWeb.defaultAddress.base58,
+              referrer: window.location.origin,
+              value: tronWeb.defaultAddress.base58
+            });
           });
           this.setState({address: tronWeb.defaultAddress.base58});
           clearInterval(timer)
