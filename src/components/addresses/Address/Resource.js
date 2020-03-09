@@ -34,8 +34,11 @@ class Resource extends React.Component {
       totalPower,
       powerPercentage,
       powerRemaining,
-      realTimeVotes,
+      isRepresentative
+    } = this.props;
+    let {
       realTimeRanking,
+      realTimeVotes,
       lastRanking,
       lastCycleVotes,
       changeVotes,
@@ -100,7 +103,7 @@ class Resource extends React.Component {
             </Tooltip>
           </div>
         </div>
-        <div className="d-flex representive">
+        {isRepresentative && <div className="d-flex representive">
           <section className="">
             <h6>
               {tu("account_resource_last")}{" "}
@@ -168,7 +171,7 @@ class Resource extends React.Component {
                 ))}
             </p>
           </section>
-        </div>
+        </div>}
       </Fragment>
     );
   }

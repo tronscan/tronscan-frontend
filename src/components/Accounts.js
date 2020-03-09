@@ -12,7 +12,9 @@ import {TronLoader} from "./common/loaders";
 import {QuestionMark} from "./common/QuestionMark";
 import xhr from "axios/index";
 import {Client} from "../services/api";
-import {Tooltip} from 'antd'
+import {Tooltip, Table} from 'antd'
+import { Link } from "react-router-dom";
+
 
 
 class Accounts extends Component {
@@ -30,7 +32,14 @@ class Accounts extends Component {
           Cold: ['TMuA6YqfCeX8EhbfYEg5y7S4DqzSJireY9', 'TWd4WrZ9wn84f5x1hZhL4DHvk738ns5jwb'],
           Hot: ['TAUN6FwrnwwmaEqYcckffC7wYmbaS6cBiX']}
         }
-      ]
+      ],
+      pagination: {
+        showQuickJumper: true,
+        position: "bottom",
+        showSizeChanger: true,
+        defaultPageSize: 20,
+        total: 0
+      },
     }
   }
 
@@ -72,12 +81,20 @@ class Accounts extends Component {
 
 
      // let {txOverviewStats} = await Client.getTxOverviewStats();
-
+     let count = 0;
+    accounts.map((item,index) => {
+      item.index = count + 1 + (page-1)*pageSize
+      count++
+    })
     this.setState({
       loading: false,
       accounts: accounts,
       total: total,
       rangeTotal:rangeTotal,
+      pagination: {
+        ...this.state.pagination,
+        total
+      }
     });
   };
 
@@ -162,35 +179,64 @@ class Accounts extends Component {
     let {intl} = this.props;
     let column = [
       {
-        title: upperFirst(intl.formatMessage({id: 'address'})),
+        title: upperFirst(intl.formatMessage({id: 'account_rank'})),
+        dataIndex: 'index',
+        key: 'index',
+        align: 'center',
+        render: (text, record, index) => {
+            return text
+        }
+      },
+      {
+        title: upperFirst(intl.formatMessage({id: 'account_title'})),
         dataIndex: 'address',
         key: 'address',
         align: 'left',
         className: 'ant_table',
         width: '40%',
         render: (text, record, index) => {
-          return record.accountType == 2 ?
-              <span className="d-flex">
-              <Tooltip placement="top" title={intl.formatMessage({id: 'contracts'})}>
-                <span><i className="far fa-file mr-1"></i></span>
-              </Tooltip>
-              
-              <AddressLink address={text} isContract={record.toAddressType == 2}/>
-            </span> :
-              <AddressLink address={text}/>
+          return (
+                <div  className="d-flex">
+                  <div>
+                    {
+                      record.accountType == 2 ?
+                      <span className="d-flex">
+                        <Tooltip placement="top" title={intl.formatMessage({id: 'contracts'})}>
+                          <span><i className="far fa-file mr-1"></i></span>
+                        </Tooltip>
+                        <AddressLink address={text} truncate={false} isContract={record.toAddressType == 2}/>
+                      </span> :
+                      <AddressLink address={text} truncate={false}/>
+                    }
+                  </div>
+                  <div style={{marginLeft: '10px'}}>
+                    <span style={{whiteSpace:'nowrap',marginLeft: '10px'}}> {record.addressTag?'#'+record.addressTag:''} </span>
+                  </div>
+                </div>
+                )
         }
       },
       {
-        title: 'Name Tag',
-        dataIndex: 'addressTag',
-        key: 'addressTag',
-        align: 'left',
+        title: upperFirst(intl.formatMessage({id: 'account_balance'})),
+        dataIndex: 'balance',
+        key: 'balance',
+        align: 'right',
+        className: 'ant_table',
+        // width: '15%',
         render: (text, record, index) => {
-            return <span style={{whiteSpace:'nowrap'}}> {record.addressTag?record.addressTag:''} </span>
+          return <TRXPrice amount={parseInt(text) / ONE_TRX}/>
         }
       },
       {
-        title: upperFirst(intl.formatMessage({id: 'supply'})),
+        // title: upperFirst(intl.formatMessage({id: 'account_percent'})),
+        title: (
+          <div>
+            {upperFirst(intl.formatMessage({ id: "account_percent" }))}
+            <span className="ml-2">
+              <QuestionMark placement="top" text="account_percent_tip" />
+            </span>
+          </div>
+        ),
         dataIndex: 'balance',
         key: 'supply',
         align: 'left',
@@ -205,7 +251,7 @@ class Accounts extends Component {
         }
       },
       {
-        title: upperFirst(intl.formatMessage({id: 'power'})),
+        title: upperFirst(intl.formatMessage({id: 'account_power'})),
         dataIndex: 'power',
         key: 'power',
         align: 'center',
@@ -215,32 +261,64 @@ class Accounts extends Component {
         }
       },
       {
-        title: upperFirst(intl.formatMessage({id: 'balance'})),
-        dataIndex: 'balance',
-        key: 'balance',
-        align: 'right',
-        className: 'ant_table',
-        // width: '15%',
+        title: (
+          <div>
+            {upperFirst(intl.formatMessage({ id: "account_trade_count" }))}
+            <span className="ml-2">
+              <QuestionMark placement="top" text="account_trade_count_tip" />
+            </span>
+          </div>
+        ),
+        dataIndex: 'addressTag',
+        key: 'addressTag',
+        align: 'left',
         render: (text, record, index) => {
-          return <TRXPrice amount={parseInt(text) / ONE_TRX}/>
+            return <span style={{whiteSpace:'nowrap'}}> {record.addressTag?record.addressTag:''} </span>
         }
       }
     ];
     return column;
   }
 
+  handleTableChange = (pagination, filters, sorter) => {
+    const pager = { ...this.state.pagination };
+    pager.current = pagination.current;
+    pager.pageSize = pagination.pageSize;
+    this.setState(
+      {
+        pagination: pager,
+        // sort: `${sorter.order === "descend" ? "-" : ""}${
+        //   sorter.order ? sorter.columnKey : ""
+        // }`
+      },
+      () => this.loadAccounts(pager.current, pager.pageSize)
+    );
+  };
+
   render() {
 
     let {match, intl} = this.props;
-    let {total, loading, rangeTotal = 0, accounts} = this.state;
+    let {total, loading, rangeTotal = 0, accounts, pagination} = this.state;
     let column = this.customizedColumn();
     let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + rangeTotal + ' ' + intl.formatMessage({id: 'account_unit'}) + '<br/>(' + intl.formatMessage({id: 'table_info_big'}) + ')';
     let tableInfoTip = intl.formatMessage({id: 'view_total'}) + ' ' + rangeTotal + ' ' + intl.formatMessage({id: 'table_info_account_tip2'});
       return (
         <main className="container header-overlap pb-3 token_black">
           <div className="row">
-            <div className="col-md-12">
-              <div className="card h-100 text-center widget-icon accout_unit">
+            <div className="d-flex col-md-12 justify-content-end my-2">
+              <Link to="">{tu('account_more')}></Link>
+            </div>
+            <div className="d-flex col-md-12">
+              <div className="card h-100 widget-icon accout_unit">
+                {/* <WidgetIcon className="fa fa-users text-secondary"/> */}
+                <div className="card-body">
+                  <h3 className="text-primary">
+                    <FormattedNumber value={rangeTotal}/>
+                  </h3>
+                  {tu("account_lastDay_count")}
+                </div>
+              </div>
+              <div className="card h-100 widget-icon accout_total">
                 {/* <WidgetIcon className="fa fa-users text-secondary"/> */}
                 <div className="card-body">
                   <h3 className="text-primary">
@@ -255,17 +333,32 @@ class Accounts extends Component {
           {loading && <div className="loading-style"><TronLoader/></div>}
           <div className="row mt-2">
             <div className="col-md-12 table_pos">
-              {total ?<div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>
-                      <div>{tu('view_total')} {rangeTotal} {tu('account_unit')} 
+              {total ?<div className="d-none d-md-block mt-2 mb-1">
+                      <div>
+                        {tu('account_total_tip')}
+                        {/* {tu('view_total')} {rangeTotal} {tu('account_unit')}  */}
                         {/* <QuestionMark placement="top" info={tableInfoTip} ></QuestionMark> */}
-                          <br/>
-                          {rangeTotal>10000? <span>({tu('table_info_big1')}10000{tu('table_info_big2')})</span>:''}
+                          {/* <br/> */}
+                          {/* {rangeTotal>10000? <span>({tu('table_info_big1')}10000{tu('table_info_big2')})</span>:''} */}
                       </div>
               </div> : ''}
-              <SmartTable bordered={true} loading={loading} column={column} data={accounts} total={total}
+              {/* <SmartTable bordered={true} loading={loading} column={column} data={accounts} total={total} position="bottom"
                           onPageChange={(page, pageSize) => {
                             this.loadAccounts(page, pageSize)
-                          }}/>
+                          }}/> */}
+
+              <Table
+                bordered={true}
+                columns={column}
+                rowKey={(record, index) => {
+                  return index;
+                }}
+                dataSource={accounts}
+                scroll={scroll}
+                pagination={pagination}
+                loading={loading}
+                onChange={this.handleTableChange}
+              />
             </div>
           </div>
         </main>

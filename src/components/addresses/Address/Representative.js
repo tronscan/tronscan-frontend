@@ -89,7 +89,7 @@ class Representative extends React.Component {
                               : "https://poloniex.org/"
                           }
                         >
-                          Poloni DEX
+                          POLONIDEX
                         </HrefLink>
                       </span>
                     </div>

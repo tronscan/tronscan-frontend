@@ -222,6 +222,20 @@ export const lang20Q1 = {
   getAllowTvmSolidity059_tips:
     "TVM（TRON虚拟机）的三个新功能将被打开：支持并行签名验证，多签名验证以及判断地址是否为合约地址。",
 
+  // 2020-03-03 leon
+  account_total_tip: "仅展示前10000条，默认按TRX余额降序排列",
+  account_rank: "序号",
+  account_title: "账户",
+  account_balance: "TRX余额",
+  account_percent: "占比",
+  account_percent_tip: "该账户持有TRX数量占全网流通量的比例",
+  account_power: "冻结TRX数量（投票权）",
+  account_trade_count: "交易数量",
+  account_trade_count_tip: "当前地址关联的交易数量",
+  account_more: "查看更多",
+  account_lastDay_count: "昨日新增账户数",
+
+
   // 2020-03-03
   account_resource_last: "上轮",
   account_resource_realTime: "本轮",
