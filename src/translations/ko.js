@@ -2271,6 +2271,7 @@ export const messages = {
   "sun_propose_6": "사이드 체인 인센티브 스위치는 닫힌 것으로 묵인합니다",
   "sun_propose_7": "사이드체인 인센티브 풀 분배 계수",
   "sun_propose_8": "사이드 체인 수익이 인센티브 풀로 누적되는 비율",
+  sun_propose_12: "Propose to allow DAppChain 1.0.2 upgrade",
   "day":"일",
 
   "developers_username": "username",
