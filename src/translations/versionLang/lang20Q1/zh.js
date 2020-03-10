@@ -261,6 +261,7 @@ export const lang20Q1 = {
   account_representative_unit:'当前共{number}名选民',
   votes_cannot_exceed_5_SRs:"投票对象不能超过5个SR",
   freeze_TRX_error: "冻结TRX时出现问题，请稍后重试",
+  account_piechart_title:'资产分布',
 
   // 0227 torn sr
   sr_vote_team_information: "团队详情",

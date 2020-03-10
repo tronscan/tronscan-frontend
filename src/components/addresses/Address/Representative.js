@@ -458,7 +458,7 @@ class Representative extends React.Component {
           <Piechart
             style={{ height: chartHeight }}
             data={data}
-            message={{ id: "accout_representative_piechart_title" }}
+            message={{ id: "account_piechart_title" }}
             intl={intl}
           />
         </SweetAlert>
