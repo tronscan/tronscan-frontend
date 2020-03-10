@@ -151,7 +151,7 @@ export class TRXPrice extends React.PureComponent {
   }
 
   componentWillUnmount() {
-    clearInterval(oTimer);
+    //clearInterval(oTimer);
   }
 
   renderPrice(value, priceValues) {
