@@ -1908,7 +1908,7 @@ export default class Account extends Component {
             return
         }
         let {account, currentWallet, walletType} = this.props;
-        if (this.state.isTronLink === 1) {
+        if (this.state.isTronLink === 1 || this.props.walletType.type === "ACCOUNT_LEDGER") {
             let tronWeb;
             if (this.props.walletType.type === "ACCOUNT_LEDGER") {
                 tronWeb = this.props.tronWeb();

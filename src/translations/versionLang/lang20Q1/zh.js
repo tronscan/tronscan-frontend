@@ -45,7 +45,7 @@ export const lang20Q1 = {
   data_number: "数量",
   data_per: "占比",
   data_total: "总计",
-
+ 
   data_items: "笔数",
   data_unit_bi: "笔",
   data_piao: "票数",
@@ -132,12 +132,12 @@ export const lang20Q1 = {
   chart_resource_contract_deployer: "合约部署者提供的能量",
 
   // full node
+  full_node_version_latest_block:'最新区块',
+  full_node_version_confirmed:'已确认',
+  full_node_version_unconfirmed:'待确认',
+  // full_node_version_confirmed_tips:'“已确认”是指被19个及以上区块确认，否则为“待确认”或“已回退”',
+  full_node_version_confirmed_tips:'“已确认”是指被19个及以上超级节点确认，否则为“待确认”',
 
-  full_node_version_latest_block: "最新区块",
-  full_node_version_confirmed: "已确认",
-  full_node_version_unconfirmed: "待确认",
-  full_node_version_confirmed_tips:
-    "“已确认”是指被19个及以上区块确认，否则为“待确认”或“已回退”",
 
   // 2020-02-19
   chart_energy: "能量消耗",
@@ -235,6 +235,7 @@ export const lang20Q1 = {
   account_more: "查看更多",
   account_lastDay_count: "昨日新增账户数",
 
+<<<<<<< HEAD
 
   // 2020-03-03
   account_resource_last: "上轮",
@@ -258,6 +259,10 @@ export const lang20Q1 = {
   account_representative_voters_per_tip: "该选民投票数量占总得票的比例",
   account_representative_transfer_tip: "关联当前账户的TRX/10通证/ 20通证转账数",
   account_representative_unit:'当前共{number}名选民',
+=======
+  freeze_TRX_error:"冻结TRX时出现问题，请稍后重试",
+  votes_cannot_exceed_5_SRs:"投票对象不能超过5个SR",
+>>>>>>> 6c9df77c94dbdbefb72abc2de71a4dc8adf2dbb2
 
 
   // 0227 torn sr
