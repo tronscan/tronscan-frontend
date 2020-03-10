@@ -1,5 +1,5 @@
 import React, {Fragment} from "react";
-import { injectIntl} from "react-intl";
+import { injectIntl,FormattedDate,FormattedTime } from "react-intl";
 import {Client} from "../../services/api";
 import {AddressLink, TransactionHashLink, BlockNumberLink, TokenLink, TokenTRC20Link} from "./Links";
 import {tu, tv} from "../../utils/i18n";
@@ -14,8 +14,9 @@ import {TronLoader} from "./loaders";
 import rebuildList from "../../utils/rebuildList";
 import rebuildToken20List from "../../utils/rebuildToken20List";
 // import {SwitchToken} from "./Switch";
-import TotalInfo from "./TableTotal";
-import DateRange from "./DateRange";
+// import DateRange from "./DateRange";
+import TotalInfo from "./../../components/addresses/components/TableTotal";
+import DateSelect from "./../../components/addresses/components/dateSelect";
 import moment from 'moment';
 import { toThousands } from '../../utils/number'
 import _ from "lodash";
@@ -23,7 +24,8 @@ import { Radio } from 'antd';
 import {isAddressValid} from "@tronscan/client/src/utils/crypto";
 import { CONTRACT_ADDRESS_USDT, CONTRACT_ADDRESS_WIN, CONTRACT_ADDRESS_GGC } from "../../constants";
 import qs from 'qs'
-import DateSelect from './dateSelect'
+import { Icon } from 'antd';
+
 import {API_URL} from "../../constants";
 import BlockTime from '../common/blockTime'
 
@@ -46,6 +48,7 @@ class TransfersAll extends React.Component {
             autoRefresh: props.autoRefresh || false,
             hideSmallCurrency:false,
             tokenName:"",
+            timeType:true
         };
     }
 
@@ -166,10 +169,20 @@ class TransfersAll extends React.Component {
         }
 
     }
+
+    changeType() {
+        let { timeType } = this.state;
+
+        this.setState({
+            timeType: !timeType
+        });
+    }
+
+
     customizedColumn = (activeLanguage) => {
         let { intl } = this.props;
             const defaultImg = require("../../images/logo_default.png");
-
+        const { timeType } = this.state;
         let column = [
             {
                 title: upperFirst(intl.formatMessage({id: 'hash'})),
@@ -186,6 +199,95 @@ class TransfersAll extends React.Component {
                     </Truncate>
                 }
             },
+            {
+                title: upperFirst(intl.formatMessage({id: 'block' })),
+                dataIndex: 'block',
+                key: 'block',
+                align: 'left',
+                className: 'ant_table',
+                width: '9%',
+                render: (text, record, index) => {
+                    return <BlockNumberLink number={record.block}/>
+                }
+            },
+            {
+                title: (
+                    <span
+                        className="token-change-type"
+                        onClick={this.changeType.bind(this)}
+                    >
+                        {upperFirst(
+                        intl.formatMessage({
+                            id: timeType ? "age" : "trc20_cur_order_header_order_time"
+                        })
+                        )}
+                        <Icon
+                        type="retweet"
+                        style={{
+                            verticalAlign: 0,
+                            marginLeft: 10
+                        }}
+                        />
+                    </span>
+                ),
+                dataIndex: 'date_created',
+                key: 'date_created',
+                align: 'left',
+                className: 'ant_table',
+                width: '14%',
+                render: (text, record, index) => {
+                    return(
+                        <div>
+                            {timeType ? (
+                            <BlockTime time={Number(record.date_created)}> </BlockTime>
+                            ) : (
+                            <span className="">
+                                <FormattedDate value={record.date_created} /> &nbsp;
+                                <FormattedTime
+                                value={record.date_created}
+                                hour="numeric"
+                                minute="numeric"
+                                second="numeric"
+                                hour12={false}
+                                />
+                            </span>
+                            )}
+                        </div>
+                    ) 
+                }
+            },
+            {
+                title: upperFirst(intl.formatMessage({id: 'initiate_address'})),
+                dataIndex: 'owner_address',
+                key: 'owner_address',
+                align: 'left',
+                className: 'ant_table address_max_width',
+                width: '12%',
+                render: (text, record, index) => {
+                    return <div>
+                        {
+                            record.fromtip ?
+                                <AddressLink address={record.type == 'trc10'?text:record.from_address}>{record.type == 'trc10'?text:record.from_address}</AddressLink>:
+                                <TruncateAddress>{record.type == 'trc10'?text:record.from_address}</TruncateAddress>
+                        }
+
+                    </div>
+
+                }
+            },
+            // {
+            //     title: upperFirst(intl.formatMessage({id: 'to'})),
+            //     dataIndex: 'to_address',
+            //     key: 'to_address',
+            //     align: 'left',
+            //     className: 'ant_table address_max_width',
+            //     width: '9%',
+            //     render: (text, record, index) => {
+            //         return record.totip?
+            //             <AddressLink address={text}>{text}</AddressLink>:
+            //             <TruncateAddress>{text}</TruncateAddress>
+            //     }
+            // },
             {
                 title: upperFirst(intl.formatMessage({id: 'status'})),
                 dataIndex: 'status',
@@ -215,69 +317,6 @@ class TransfersAll extends React.Component {
                 width: '11%',
                 render: (text, record, index) => {
                     return <span>{text}</span>
-                }
-            },
-            {
-                title: upperFirst(intl.formatMessage({id: 'block' })),
-                dataIndex: 'block',
-                key: 'block',
-                align: 'left',
-                className: 'ant_table',
-                width: '9%',
-                render: (text, record, index) => {
-                    return <BlockNumberLink number={record.block}/>
-                }
-            },
-            {
-                title: upperFirst(intl.formatMessage({id: 'age'})),
-                dataIndex: 'date_created',
-                key: 'date_created',
-                align: 'left',
-                className: 'ant_table',
-                width: '14%',
-                render: (text, record, index) => {
-                    return <BlockTime time={text}></BlockTime>
-                    // <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
-                }
-            },
-            {
-                title: upperFirst(intl.formatMessage({id: 'from'})),
-                dataIndex: 'owner_address',
-                key: 'owner_address',
-                align: 'left',
-                className: 'ant_table address_max_width',
-                width: '9%',
-                render: (text, record, index) => {
-                    return <div>
-                        {
-                            record.fromtip ?
-                                <AddressLink address={record.type == 'trc10'?text:record.from_address}>{record.type == 'trc10'?text:record.from_address}</AddressLink>:
-                                <TruncateAddress>{record.type == 'trc10'?text:record.from_address}</TruncateAddress>
-                        }
-
-                    </div>
-
-                }
-            },
-            {
-                title: '',
-                className: 'ant_table',
-                width: '5%',
-                render: (text, record, index) => {
-                    return record.fromtip?<img width={40} height={22} src={require("../../images/address/in.png")}/>:<img  width={40} height={22} src={require("../../images/address/out.png")}/>
-                }
-            },
-            {
-                title: upperFirst(intl.formatMessage({id: 'to'})),
-                dataIndex: 'to_address',
-                key: 'to_address',
-                align: 'left',
-                className: 'ant_table address_max_width',
-                width: '9%',
-                render: (text, record, index) => {
-                    return record.totip?
-                        <AddressLink address={text}>{text}</AddressLink>:
-                        <TruncateAddress>{text}</TruncateAddress>
                 }
             },
             {
@@ -463,17 +502,22 @@ class TransfersAll extends React.Component {
         // }
 
         return (
-            <div className="token_black table_pos">
+            <div className="token_black" style={{padding:'30px 0'}}>
                 {loading && <div className="loading-style"><TronLoader/></div>}
                 <div className="d-flex justify-content-between" style={{right: 'auto'}}>
-                    {!loading && <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" divClass="table_pos_info_addr" selected/> }
+                    
+                </div>
+                <div style={{marginBottom:'20px'}}>
                     {
                         address ?  <div>
                             <DateSelect onDateOk={(start,end) => this.onDateOk(start,end)}  />
                         </div> : ''
                     }
                 </div>
-                {
+                <div>
+                    {!loading && <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" divClass="table_pos_info_addr" selected/> }
+                </div>
+                {/* {
                     transfers.length > 0 &&  <div className="d-flex align-items-center">
                         <div className="address-transfers-radio">
                             <Radio.Group size="Small" value={filter.direction}  onChange={this.onRadioChange}>
@@ -483,12 +527,12 @@ class TransfersAll extends React.Component {
                             </Radio.Group>
                         </div>
                     </div>
-                }
+                } */}
                 {
                     (!loading && transfers.length === 0)?
                         <div className="p-3 text-center no-data">{tu("no_transfers")}</div>
                         :
-                        <SmartTable bordered={true} loading={loading} column={column} data={transfers} total={rangeTotal > 2000 ? 2000 : rangeTotal} locale={locale} addr="address" transfers="address"
+                        <SmartTable  position="bottom" bordered={true} loading={loading} column={column} data={transfers} total={rangeTotal > 2000 ? 2000 : rangeTotal} locale={locale} addr="address" 
                                     current={this.state.page}
                                     onPageChange={(page, pageSize) => {
                                         this.onChange(page, pageSize)

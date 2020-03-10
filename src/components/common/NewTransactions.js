@@ -530,14 +530,14 @@ class NewTransactions extends React.Component {
             </div>
             <div>
                 {!loading && (
-                <TotalInfo
-                    total={total}
-                    rangeTotal={rangeTotal}
-                    typeText="transactions_unit"
-                    common={!address}
-                    // top={address ? "-28px" : "26"}
-                    selected
-                />
+                    <TotalInfo
+                        total={total}
+                        rangeTotal={rangeTotal}
+                        typeText="transactions_unit"
+                        common={!address}
+                        // top={address ? "-28px" : "26"}
+                        selected
+                    />
                 )}
             </div>
          
