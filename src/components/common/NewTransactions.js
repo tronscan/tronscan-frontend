@@ -204,7 +204,6 @@ class NewTransactions extends React.Component {
     customizedColumn = (activeLanguage) => {
         let {intl,filter} = this.props;
         let { timeType } = this.state;
-        console.log(filter.address)
         let column = [
             {
                 title: upperFirst(intl.formatMessage({id: 'transaction_hash'})),

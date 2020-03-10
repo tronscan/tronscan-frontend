@@ -19,7 +19,8 @@ class TotalInfo extends React.Component {
       markName = "table-question-mark",
       top = "26px",
       isQuestionMark = true,
-      selected
+      selected,
+      isInternal
     } = this.props;
     let tableInfoSmall =
       intl.formatMessage({ id: "view_total" }) +
@@ -39,7 +40,7 @@ class TotalInfo extends React.Component {
     let tableInfo = rangeTotal > 10000 ? tableInfoBig : tableInfoSmall;
     //let tableInfoTipSmall = intl.formatMessage({id: 'table_info_big_tip1'}) + ' ' + rangeTotal + ' ' + intl.formatMessage({id: 'table_info_big_tip2'}) + intl.formatMessage({id: 'table_info_big_tip4'});
     let tableInfoTip = intl.formatMessage({ id: "table_info_new_tip" });
-
+    console.log(isInternal,'isInternal')
     return (
       <Fragment>
         {!selected ? (
@@ -64,7 +65,18 @@ class TotalInfo extends React.Component {
               {rangeTotal > 10000 ? (
                 <div>
                   {tu("view_total")} {rangeTotal} {tu(typeText)}
-                  <br /> <span>({tu("table_info_big1")}</span>
+                  {isInternal ? (
+                    <span className="ml-1">
+                      <QuestionMark
+                        placement="top"
+                        info={intl.formatMessage({ id: "interTrx_tip_contract" })}
+                      />
+                    </span>
+                  ) : (
+                    ""
+                  )}
+                  <br /> 
+                  <span>({tu("table_info_big1")}</span>
                   <span>{total}</span>
                   <span>{tu("table_info_big2")})</span>
                   {isQuestionMark ? (
@@ -79,6 +91,16 @@ class TotalInfo extends React.Component {
               ) : (
                 <span>
                   {tu("view_total")} {rangeTotal} {tu(typeText)}
+                  {isInternal ? (
+                    <span className="ml-1">
+                      <QuestionMark
+                        placement="top"
+                        info={intl.formatMessage({ id: "interTrx_tip_contract" })}
+                      />
+                    </span>
+                  ) : (
+                    ""
+                  )}
                 </span>
               )}
               <span
@@ -96,6 +118,16 @@ class TotalInfo extends React.Component {
             {total !== 0 ? (
               <div>
                 {tu("a_totle")} {total} {tu(typeText)}
+                {isInternal ? (
+                    <span className="ml-1">
+                      <QuestionMark
+                        placement="top"
+                        info={intl.formatMessage({ id: "interTrx_tip_contract" })}
+                      />
+                    </span>
+                  ) : (
+                    ""
+                )}
                 <br />
                 <span>
                   {tv("date_number_tip", { total: rangeTotal })}

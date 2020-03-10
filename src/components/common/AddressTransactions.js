@@ -461,12 +461,11 @@ class Transactions extends React.Component {
       isBlock = false,
       address = false,
       activeLanguage,
-      filter: { contract }
+      filter
     } = this.props;
-    console.log(isinternal,'isinternal')
     let column = !isinternal
       ? this.customizedColumn()
-      : this.trc20CustomizedColumn();
+      : this.trc20CustomizedColumn(activeLanguage);
     let tableInfo =
       intl.formatMessage({ id: "view_total" }) +
       " " +
@@ -491,11 +490,11 @@ class Transactions extends React.Component {
           </div>
         )}
 
-        <div
+        {/* <div
           className="d-flex justify-content-between w-100"
           style={{ position: "absolute", left: 0, top: "-28px" }}
         >
-          {total && contract && isinternal ? (
+          {total && filter.address && isinternal ? (
             <div className="d-flex align-items-center">
               <i
                 class="fas fa-exclamation-circle mr-2"
@@ -509,7 +508,7 @@ class Transactions extends React.Component {
             ""
           )}
          
-        </div>
+        </div> */}
         <div style={{marginBottom:'20px'}}>
             {!isBlock ? (
               <DateSelect
@@ -524,15 +523,16 @@ class Transactions extends React.Component {
           {!loading && (
             <TotalInfo
               total={total}
-              isQuestionMark={!isBlock}
+              isQuestionMark={false}
               rangeTotal={rangeTotal}
               typeText={
-                contract && isinternal
+                filter.address && isinternal
                   ? "inter_contract_unit"
                   : "transactions_unit"
               }
               common={!address}
-              top={!contract ? "-28px" : "10px"}
+              top={!filter.address ? "-28px" : "10px"}
+              isInternal={true}
               selected
             />
           )}
