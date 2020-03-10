@@ -391,18 +391,7 @@ class NewTransactions extends React.Component {
                     return <span> {record.map_token_name_abbr} </span>;
                 }
             }
-            // {
-            //     title: upperFirst(intl.formatMessage({id: 'status'})),
-            //     dataIndex: 'confirmed',
-            //     key: 'confirmed',
-            //     align: 'center',
-            //     className: 'ant_table',
-            //     render: (text, record, index) => {
-            //         return record.confirmed?
-            //             <span className="badge badge-success text-uppercase">{intl.formatMessage({id:'Confirmed'})}</span> :
-            //             <span className="badge badge-danger text-uppercase">{intl.formatMessage({id: 'Unconfirmed'})}</span>
-            //     },
-            // }
+       
         ];
         return column;
     }

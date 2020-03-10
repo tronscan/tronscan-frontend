@@ -3,6 +3,7 @@ import { injectIntl,FormattedDate,FormattedTime } from "react-intl";
 import { Client } from "../../services/api";
 import { TransactionHashLink, AddressLink, BlockNumberLink } from "./Links";
 import { Icon } from 'antd';
+import {connect} from "react-redux";
 import { tu } from "../../utils/i18n";
 // import TimeAgo from "react-timeago";
 import { TronLoader } from "./loaders";
@@ -255,7 +256,7 @@ class Transactions extends React.Component {
     });
 }
 
-  trc20CustomizedColumn = () => {
+  trc20CustomizedColumn = (activeLanguage) => {
     let { intl } = this.props;
     const {timeType} = this.state;
     let column = [
@@ -352,6 +353,30 @@ class Transactions extends React.Component {
         }
       },
       {
+        title: upperFirst(intl.formatMessage({id: 'status'})),
+        dataIndex: 'status',
+        key: 'status',
+        align: 'left',
+        width: activeLanguage ==='ru' ? '34%' :'16%',
+        filters: [
+            { text: 'Joe', value: 'Joe' },
+            { text: 'Jim', value: 'Jim' },
+        ],
+        className: 'ant_table',
+        render: (text, record, index) => {
+            return (
+                <span>
+                     {
+                        record.confirmed ?
+                            <span  className="d-flex"><img style={{ width: "20px", height: "20px" }} src={require("../../images/contract/Verified.png")}/> <span>{tu('full_node_version_confirmed')}</span></span>
+                              : 
+                            <span  className="d-flex"><img style={{ width: "20px", height: "20px" }} src={require("../../images/contract/Unverified.png")}/> <span>{tu('full_node_version_unconfirmed')}</span></span>
+                    }
+                </span>
+            )
+        }
+      },
+      {
         title: upperFirst(intl.formatMessage({ id: "result" })),
         dataIndex: "rejected",
         key: "rejected",
@@ -435,6 +460,7 @@ class Transactions extends React.Component {
       isinternal,
       isBlock = false,
       address = false,
+      activeLanguage,
       filter: { contract }
     } = this.props;
     console.log(isinternal,'isinternal')
@@ -532,4 +558,10 @@ class Transactions extends React.Component {
   }
 }
 
-export default injectIntl(Transactions);
+function mapStateToProps(state) {
+  return {
+    activeLanguage: state.app.activeLanguage,
+  };
+}
+
+export default connect(mapStateToProps)(injectIntl(Transactions));
