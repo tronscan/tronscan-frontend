@@ -235,7 +235,6 @@ export const lang20Q1 = {
   account_more: "查看更多",
   account_lastDay_count: "昨日新增账户数",
 
-<<<<<<< HEAD
 
   // 2020-03-03
   account_resource_last: "上轮",
@@ -259,11 +258,8 @@ export const lang20Q1 = {
   account_representative_voters_per_tip: "该选民投票数量占总得票的比例",
   account_representative_transfer_tip: "关联当前账户的TRX/10通证/ 20通证转账数",
   account_representative_unit:'当前共{number}名选民',
-=======
-  freeze_TRX_error:"冻结TRX时出现问题，请稍后重试",
   votes_cannot_exceed_5_SRs:"投票对象不能超过5个SR",
->>>>>>> 6c9df77c94dbdbefb72abc2de71a4dc8adf2dbb2
-
+  freeze_TRX_error: "冻结TRX时出现问题，请稍后重试",
 
   // 0227 torn sr
   sr_vote_team_information: "团队详情",
@@ -277,5 +273,4 @@ export const lang20Q1 = {
   block_detail_confirmed_over_show: "超过200个区块已确认",
   block_detail_rolled_back: "已回退",
 
-  freeze_TRX_error: "冻结TRX时出现问题，请稍后重试"
 };
