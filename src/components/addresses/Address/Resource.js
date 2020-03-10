@@ -186,6 +186,7 @@ class Resource extends React.Component {
       <div className="d-flex resource-item">
         {items.map(i => (
           <span
+           key={i}
             className={
               i < activeNum
                 ? "resource-item-i resource-item-i-active"

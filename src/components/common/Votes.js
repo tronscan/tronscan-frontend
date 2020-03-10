@@ -27,25 +27,28 @@ class Votes extends React.Component {
       pageSize: 25,
       totalVotes: 0,
       emptyState: props.emptyState,
+      sort: "-votes"
     };
   }
 
   componentDidMount() {
-    this.load();
+    this.load(1,20,{});
   }
 
-  onChange = (page, pageSize) => {
-    this.load(page, pageSize);
+  onChange = (page, pageSize,sorter) => {
+    this.load(page, pageSize,sorter);
   };
 
-  load = async (page = 1, pageSize = 20) => {
+  load = async (page = 1, pageSize = 20,sorter) => {
 
     let {filter, getCsvUrl} = this.props;
 
     this.setState({loading: true});
-
+    
     const params = {
-      sort: '-votes',
+      sort: `${sorter.order === "descend" ? "-" : ""}${
+        sorter.order ? sorter.columnKey : ""
+      }`,
       limit: pageSize,
       start: (page - 1) * pageSize,
       ...filter,
@@ -84,6 +87,9 @@ class Votes extends React.Component {
         align: 'left',
         width: '20%',
         className: 'ant_table',
+        sorter: true,
+        defaultSortOrder: "descend",
+        sortDirections: ["descend", "ascend"],
         render: (text, record, index) => {
           return <FormattedNumber value={text}/>
         }
@@ -130,6 +136,9 @@ class Votes extends React.Component {
         key: 'votes',
         align: 'left',
         width: '20%',
+        sorter: true,
+        defaultSortOrder: "descend",
+        sortDirections: ["descend", "ascend"],
         className: 'ant_table',
         render: (text, record, index) => {
           return <FormattedNumber value={text}/>
@@ -219,8 +228,8 @@ class Votes extends React.Component {
           dataSource={votes}
           columns={column}
           pagination={paginationStatus}
-          onChange={(page, pageSize) => {
-            this.load(page, pageSize);
+          onChange={(page, pageSize,sorter) => {
+            this.load(page, pageSize,sorter);
           }}
         />
         </div>

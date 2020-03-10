@@ -2,7 +2,7 @@ import React from "react";
 import { Client } from "../../services/api";
 import { BlockNumberLink } from "./Links";
 import { t, tu } from "../../utils/i18n";
-import { FormattedNumber, injectIntl } from "react-intl";
+import { FormattedNumber, injectIntl,FormattedDate,FormattedTime } from "react-intl";
 import { API_URL } from "../../constants";
 // import TimeAgo from "react-timeago";
 import moment from "moment";
@@ -25,7 +25,8 @@ class Blocks extends React.Component {
       total: 0,
       pageSize: 25,
       totalVotes: 0,
-      emptyState: props.emptyState
+      emptyState: props.emptyState,
+      timeType: true
     };
   }
 
@@ -61,8 +62,17 @@ class Blocks extends React.Component {
     });
   };
 
+  changeType() {
+    let { timeType } = this.state;
+
+    this.setState({
+      timeType: !timeType
+    });
+  }
+
   customizedColumn = () => {
     let { intl } = this.props;
+    let {timeType} = this.state
     let column = [
       {
         title: upperFirst(intl.formatMessage({ id: "height" })),
@@ -75,13 +85,48 @@ class Blocks extends React.Component {
         }
       },
       {
-        title: upperFirst(intl.formatMessage({ id: "age" })),
+        title: (
+          <span
+            className="token-change-type"
+            onClick={this.changeType.bind(this)}
+          >
+            {upperFirst(
+              intl.formatMessage({
+                id: timeType ? "age" : "trc20_cur_order_header_order_time"
+              })
+            )}
+            <Icon
+              type="retweet"
+              style={{
+                verticalAlign: 0,
+                marginLeft: 10
+              }}
+            />
+          </span>
+        ),
         dataIndex: "timestamp",
         key: "timestamp",
         align: "left",
         className: "ant_table",
         render: (text, record, index) => {
-          return <BlockTime time={text}></BlockTime>;
+          return (
+            <div>
+              {timeType ? (
+                <BlockTime time={Number(record.timestamp)}> </BlockTime>
+              ) : (
+                <span className="">
+                  <FormattedDate value={record.timestamp} /> &nbsp;
+                  <FormattedTime
+                    value={record.timestamp}
+                    hour="numeric"
+                    minute="numeric"
+                    second="numeric"
+                    hour12={false}
+                  />
+                </span>
+              )}
+            </div>
+          );
           // <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
         }
       },
