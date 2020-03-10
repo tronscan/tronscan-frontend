@@ -26,7 +26,7 @@ import {
   FormatNumberByDecimalsBalance,
   toThousands
 } from "../../../utils/number";
-import { Progress, Tooltip } from "antd";
+import { Tooltip, Icon } from "antd";
 import BigNumber from "bignumber.js";
 import { QuestionMark } from "../../common/QuestionMark";
 import { CsvExport } from "../../common/CsvExport";
@@ -35,6 +35,8 @@ import ApiClientAddress from "../../../services/addressApi";
 import { alpha } from "../../../utils/str";
 import Resource from "./Resource";
 import Representative from "./Representative";
+import { Piechart } from "../components/Piechart";
+import SweetAlert from "react-bootstrap-sweetalert";
 
 BigNumber.config({ EXPONENTIAL_AT: [-1e9, 1e9] });
 
@@ -51,7 +53,7 @@ class Address extends React.Component {
       votes: null,
       rank: 0,
       totalVotes: 0,
-      hasPage:false,
+      hasPage: false,
       address: {
         address: "",
         balance: 0,
@@ -89,8 +91,9 @@ class Address extends React.Component {
       lastRanking: 0,
       lastCycleVotes: 0,
       changeVotes: 0,
-      changeRank:0
-    
+      changeRank: 0,
+      sortTokenBalances: [],
+      popup:null
     };
   }
 
@@ -247,6 +250,14 @@ class Address extends React.Component {
       });
 
     let tokenBalances = balances.concat(trc20token_balances_new);
+
+    let sortTokenBalances = _(tokenBalances)
+      .sortBy(tb => -tb.TRXBalance)
+      .value();
+    this.setState({
+      sortTokenBalances: sortTokenBalances
+    });
+
     let TRXBalance = 0;
     tokenBalances.map((item, index) => {
       TRXBalance += Number(item.TRXBalance);
@@ -551,122 +562,15 @@ class Address extends React.Component {
     this.setState({
       totalVotes: data.realTimeVotes,
       rank: data.realTimeRanking,
-      hasPage:data.hasPage,
+      hasPage: data.hasPage,
       realTimeVotes: data.realTimeVotes,
       realTimeRanking: data.realTimeRanking,
       lastRanking: data.lastRanking,
       lastCycleVotes: data.lastCycleVotes,
       changeVotes: data.changeVotes,
       changeRank: data.realTimeRanking - data.lastRanking
-    
     });
   }
-
-  bandWidthCircle = () => {
-    let { netUsed, netLimit, netRemaining, bandWidthPercentage } = this.state;
-    let { intl } = this.props;
-    let address_percentage_remaining = new BigNumber(
-      100 - Number(bandWidthPercentage)
-    );
-    let addressPercentageRemaining = netRemaining
-      ? address_percentage_remaining.decimalPlaces(2) + "%"
-      : "0%";
-    let address_percentage_used = new BigNumber(bandWidthPercentage);
-    let addressPercentageUsed = netUsed
-      ? address_percentage_used.decimalPlaces(2) + "%"
-      : "0%";
-    return (
-      <div>
-        <div>
-          {intl.formatMessage({ id: "address_netLimit" }) + " : " + netLimit}
-        </div>
-        <div>
-          <span>
-            {intl.formatMessage({ id: "address_netRemaining" }) +
-              " : " +
-              netRemaining}
-          </span>
-          &nbsp;&nbsp;
-          <span>
-            {intl.formatMessage({ id: "address_percentage" }) +
-              " : " +
-              addressPercentageRemaining}
-          </span>
-        </div>
-        <div>
-          <span>
-            {intl.formatMessage({ id: "address_netUsed" }) + " : " + netUsed}
-          </span>
-          &nbsp;&nbsp;
-          <span>
-            {intl.formatMessage({ id: "address_percentage" }) +
-              " : " +
-              addressPercentageUsed}
-          </span>
-        </div>
-      </div>
-    );
-  };
-
-  energyCircle = () => {
-    let {
-      energyLimit,
-      energyRemaining,
-      energyUsed,
-      energyPercentage,
-      address
-    } = this.state;
-    let { intl } = this.props;
-    let address_percentage_remaining = new BigNumber(
-      100 - Number(energyPercentage)
-    );
-    let addressPercentageRemaining = energyRemaining
-      ? address_percentage_remaining.decimalPlaces(2) + "%"
-      : "0%";
-    let address_percentage_used = new BigNumber(energyPercentage);
-    let addressPercentageUsed = energyUsed
-      ? address_percentage_used.decimalPlaces(2) + "%"
-      : "0%";
-    return (
-      <div>
-        <div>
-          {intl.formatMessage({ id: "address_energyLimit" }) +
-            " : " +
-            energyLimit}
-        </div>
-        <div>
-          <span>
-            {intl.formatMessage({ id: "address_energyRemaining" }) +
-              " : " +
-              energyRemaining}
-          </span>
-          &nbsp;&nbsp;
-          {address.bandwidth.energyRemaining >= 0 && (
-            <span>
-              {intl.formatMessage({ id: "address_percentage" }) +
-                " : " +
-                addressPercentageRemaining}
-            </span>
-          )}
-        </div>
-        <div>
-          <span>
-            {intl.formatMessage({ id: "address_energyUsed" }) +
-              " : " +
-              energyUsed}
-          </span>
-          &nbsp;&nbsp;
-          {address.bandwidth.energyRemaining >= 0 && (
-            <span>
-              {intl.formatMessage({ id: "address_percentage" }) +
-                " : " +
-                addressPercentageUsed}
-            </span>
-          )}
-        </div>
-      </div>
-    );
-  };
 
   renderFrozenTokens() {
     let {
@@ -731,6 +635,50 @@ class Address extends React.Component {
       </div>
     );
   }
+  pieChart() {
+    let { intl } = this.props;
+    let chartHeight = "300px";
+    let { sortTokenBalances } = this.state;
+    let data = [];
+    sortTokenBalances.map(item => {
+      let balance = Number(item.TRXBalance);
+      if (balance > 0) {
+        let name = item.symbol ? item.symbol : item.map_token_name_abbr;
+        data.push({ name: name, value: balance });
+      }
+    });
+
+    this.setState({
+      popup: (
+        <SweetAlert
+          showConfirm={false}
+          showClose={true}
+          onConfirm={this.hideModal}
+        >
+          <Icon
+            type="close"
+            onClick={this.hideModal.bind(this)}
+            style={{
+              position: "absolute",
+              top: "10px",
+              right: "10px",
+              fontSize: "14px",
+              color: "#666666"
+            }}
+          />
+          <Piechart
+            style={{ height: chartHeight }}
+            data={data}
+            message={{ id: "accout_representative_piechart_title" }}
+            intl={intl}
+          />
+        </SweetAlert>
+      )
+    });
+  }
+  hideModal = () => {
+    this.setState({ popup: null });
+  };
   scrollToAnchor = () => {
     window.scrollTo(0, 800);
   };
@@ -763,7 +711,8 @@ class Address extends React.Component {
       lastRanking,
       lastCycleVotes,
       changeVotes,
-      changeRank
+      changeRank,
+      popup
     } = this.state;
     let { match, intl } = this.props;
     let addr = match.params.id;
@@ -782,6 +731,7 @@ class Address extends React.Component {
     });
     return (
       <main className="container header-overlap account-new">
+        {popup}
         <div className="row">
           <div className="col-md-12 ">
             {loading ? (
@@ -811,176 +761,197 @@ class Address extends React.Component {
                     />
                     <div>
                       {address.addressTag && (
-                        <span className="addressTag">
-                          {address.addressTag}
-                        </span>
+                        <span className="addressTag">{address.addressTag}</span>
                       )}
                     </div>
                   </div>
                   <div className="row info-wrap">
                     <div className="col-md-7 address-info">
                       {address.representative.enabled ? (
-                        <Representative
-                          data={this.state}
-                          url={match.url}
-                        />
+                        <Representative data={this.state} url={match.url} />
                       ) : (
                         <table className="table m-0">
                           <tbody>
                             <tr>
                               <th>{tu("name")}:</th>
                               <td>
-                                <span>
-                                  {address.name ? address.name : "-"}
-                                </span>
+                                <span>{address.name ? address.name : "-"}</span>
                               </td>
                             </tr>
                             <tr>
-                            <th>
-                              <span className="mr-1">{tu("total_balance")}</span>
-                              <QuestionMark
-                                placement="top"
-                                text="address_total_balance_tip"
-                                className="ml-1"
-                              />
-                              <span className="ml-1">:</span>
-                            </th>
-                            <td>
-                              <ul className="list-unstyled m-0 ">
-                                <li className="d-flex just-con mobile-no-flex flex-wrap">
-                                  <div>
-                                    <NavLink exact to={match.url}>
-                                      <span
-                                        className="colorYellow"
-                                        onClick={this.scrollToAnchor.bind(this)}
-                                      >
-                                        <TRXPrice amount={TRXBalanceTotal} />{" "}
-                                      </span>
-                                    </NavLink>
-
-                                    <span className="small">
-                                      (
-                                      <TRXPrice
-                                        amount={TRXBalanceTotal}
-                                        currency="USD"
-                                        showPopup={false}
-                                      />
-                                      )
-                                    </span>
-                                  </div>
-
-                                  <div>
-                                    <span className="small">
-                                      {tu("address_total_balance_info_sources")}：
-                                    </span>
-                                    <span className="small href-link">
-                                      <HrefLink
-                                        href={
-                                          intl.locale == "zh"
-                                            ? "https://poloniex.org/zh/"
-                                            : "https://poloniex.org/"
-                                        }
-                                      >
-                                        POLONIDEX
-                                      </HrefLink>
-                                    </span>
-                                  </div>
-                                </li>
-                              </ul>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th>
-                              <span className="mr-1">{tu("address_balance")}</span>
-                              <span className="ml-1">:</span>
-                            </th>
-                            <td>
-                              <ul className="list-unstyled m-0">
-                                <li className="d-flex flex-wrap">
-                                  <span>
-                                    <FormattedNumber
-                                      value={(balance + totalPower) / ONE_TRX}
-                                    />{" "}
-                                    TRX
-                                  </span>
-                                  <div>{this.renderFrozenTokens()}</div>
-                                </li>
-                              </ul>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th>
-                              <span className="mr-1">
-                                {tu("address_vote_reward_pending")}
-                              </span>
-                              <span className="ml-1">:</span>
-                            </th>
-                            <td>
-                              <ul className="list-unstyled m-0">
-                                <li className="d-flex">
-                                  <TRXPrice
-                                    amount={walletReward / ONE_TRX}
-                                    showPopup={false}
-                                  />
-                                </li>
-                              </ul>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th>
-                              <span className="mr-1">{tu("address_info_transactions")}</span>
-                              <QuestionMark placement="top" text="address_transactions_tip" />
-                              <span className="ml-1">:</span>
-                            </th>
-                            <td>
-                              <NavLink exact to={match.url + "/transactions"}>
-                                <span
-                                  className="colorYellow"
-                                  onClick={this.scrollToAnchor.bind(this)}
-                                >
-                                  {address.totalTransactionCount} &nbsp;
+                              <th>
+                                <span className="mr-1">
+                                  {tu("total_balance")}
                                 </span>
-                              </NavLink>
-                              Txns
-                            </td>
-                          </tr>
-                          <tr>
-                            <th>
-                              <span className="mr-1">{tu("address_info_transfers")}</span>
-                              <QuestionMark placement="top" text="account_representative_transfer_tip" />
-                              <span className="ml-1">:</span>
-                            </th>
-                            <td>
-                              <div className="d-flex">
-                                <NavLink exact to={match.url + "/transfers"}>
-                                  <div
+                                <QuestionMark
+                                  placement="top"
+                                  text="address_total_balance_tip"
+                                  className="ml-1"
+                                />
+                                <span className="ml-1">:</span>
+                              </th>
+                              <td>
+                                <ul className="list-unstyled m-0 ">
+                                  <li className="d-flex just-con mobile-no-flex flex-wrap">
+                                    <div>
+                                      <NavLink exact to={match.url}>
+                                        <span
+                                          className="colorYellow"
+                                          onClick={this.scrollToAnchor.bind(
+                                            this
+                                          )}
+                                        >
+                                          <TRXPrice amount={TRXBalanceTotal} />{" "}
+                                        </span>
+                                      </NavLink>
+
+                                      <span className="small">
+                                        (
+                                        <TRXPrice
+                                          amount={TRXBalanceTotal}
+                                          currency="USD"
+                                          showPopup={false}
+                                        />
+                                        )
+                                      </span>
+                                      <img
+                                        src={require("../../../images/address/chart.png")}
+                                        onClick={this.pieChart.bind(this)}
+                                        style={{ width: "17px", cursor: "pointer" }}
+                                        className="ml-2"
+                                      />
+                                    </div>
+
+                                    <div>
+                                      <span className="small">
+                                        {tu(
+                                          "address_total_balance_info_sources"
+                                        )}
+                                        ：
+                                      </span>
+                                      <span className="small href-link">
+                                        <HrefLink
+                                          href={
+                                            intl.locale == "zh"
+                                              ? "https://poloniex.org/zh/"
+                                              : "https://poloniex.org/"
+                                          }
+                                        >
+                                          POLONIDEX
+                                        </HrefLink>
+                                      </span>
+                                    </div>
+                                  </li>
+                                </ul>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th>
+                                <span className="mr-1">
+                                  {tu("address_balance")}
+                                </span>
+                                <span className="ml-1">:</span>
+                              </th>
+                              <td>
+                                <ul className="list-unstyled m-0">
+                                  <li className="d-flex flex-wrap">
+                                    <span>
+                                      <FormattedNumber
+                                        value={(balance + totalPower) / ONE_TRX}
+                                      />{" "}
+                                      TRX
+                                    </span>
+                                    <div>{this.renderFrozenTokens()}</div>
+                                  </li>
+                                </ul>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th>
+                                <span className="mr-1">
+                                  {tu("address_vote_reward_pending")}
+                                </span>
+                                <span className="ml-1">:</span>
+                              </th>
+                              <td>
+                                <ul className="list-unstyled m-0">
+                                  <li className="d-flex">
+                                    <TRXPrice
+                                      amount={walletReward / ONE_TRX}
+                                      showPopup={false}
+                                    />
+                                  </li>
+                                </ul>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th>
+                                <span className="mr-1">
+                                  {tu("address_info_transactions")}
+                                </span>
+                                <QuestionMark
+                                  placement="top"
+                                  text="address_transactions_tip"
+                                />
+                                <span className="ml-1">:</span>
+                              </th>
+                              <td>
+                                <NavLink exact to={match.url + "/transactions"}>
+                                  <span
                                     className="colorYellow"
                                     onClick={this.scrollToAnchor.bind(this)}
                                   >
-                                    {stats.transactions} &nbsp;
-                                  </div>
+                                    {address.totalTransactionCount} &nbsp;
+                                  </span>
                                 </NavLink>
                                 Txns
-                                <div>
-                                  <span className="ml-1">(</span>
-                                  <i className="fa fa-arrow-down text-success" />
-                                  &nbsp;
-                                  <span>{stats.transactions_in} Txns</span>
-                                  &nbsp;
-                                  <i className="fa fa-arrow-up  text-danger" />
-                                  &nbsp;
-                                  <span>{stats.transactions_out} Txns</span>
-                                  &nbsp;
-                                  <span>)</span>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th>
+                                <span className="mr-1">
+                                  {tu("address_info_transfers")}
+                                </span>
+                                <QuestionMark
+                                  placement="top"
+                                  text="account_representative_transfer_tip"
+                                />
+                                <span className="ml-1">:</span>
+                              </th>
+                              <td>
+                                <div className="d-flex">
+                                  <NavLink exact to={match.url + "/transfers"}>
+                                    <div
+                                      className="colorYellow"
+                                      onClick={this.scrollToAnchor.bind(this)}
+                                    >
+                                      {stats.transactions} &nbsp;
+                                    </div>
+                                  </NavLink>
+                                  Txns
+                                  <div>
+                                    <span className="ml-1">(</span>
+                                    <i className="fa fa-arrow-down text-success" />
+                                    &nbsp;
+                                    <span>{stats.transactions_in} Txns</span>
+                                    &nbsp;
+                                    <i className="fa fa-arrow-up  text-danger" />
+                                    &nbsp;
+                                    <span>{stats.transactions_out} Txns</span>
+                                    &nbsp;
+                                    <span>)</span>
+                                  </div>
                                 </div>
-                              </div>
-                            </td>
-                          </tr>
+                              </td>
+                            </tr>
                           </tbody>
                         </table>
                       )}
                     </div>
-                    <div className={`col-md-5 address-circle ${!address.representative.enabled && 'justify-content-center'}`}>
+                    <div
+                      className={`col-md-5 address-circle ${!address
+                        .representative.enabled && "justify-content-center"}`}
+                    >
                       <Resource
                         availableBandWidthPercentage={
                           availableBandWidthPercentage

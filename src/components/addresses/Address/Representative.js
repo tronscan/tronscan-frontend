@@ -7,15 +7,28 @@ import { TRXPrice } from "../../common/Price";
 import { HrefLink } from "../../common/Links";
 import { FormattedNumber } from "react-intl";
 import { ONE_TRX } from "../../../constants";
-import { Tooltip } from "antd";
+import { Tooltip, Icon } from "antd";
 import { ExternalLink } from "../../common/Links";
 import { NavLink, Route, Switch } from "react-router-dom";
-
+import SweetAlert from "react-bootstrap-sweetalert";
+import {
+  transactionResultManager,
+  transactionResultManagerSun
+} from "../../../utils/tron";
+import { connect } from "react-redux";
+import { Piechart } from "../components/Piechart";
+@connect(state => {
+  return {
+    account: state.app.account,
+    walletType: state.app.wallet,
+    popup: null
+  };
+}, {})
 class Representative extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        votingEnabled:false
+      votingEnabled: false
     };
   }
 
@@ -33,10 +46,10 @@ class Representative extends React.Component {
       hasPage
     } = this.props.data;
     let { intl, url } = this.props;
-    let {votingEnabled} = this.state;
-    console.log(this.props.data)
+    let { votingEnabled, popup } = this.state;
     return (
       <Fragment>
+        {popup}
         <table className="table m-0 table-style">
           <tbody>
             <tr>
@@ -75,6 +88,12 @@ class Representative extends React.Component {
                         />
                         )
                       </span>
+                      <img
+                        src={require("../../../images/address/chart.png")}
+                        onClick={this.pieChart.bind(this)}
+                        style={{ width: "17px", cursor: "pointer" }}
+                        className="ml-2"
+                      />
                     </div>
 
                     <div>
@@ -154,7 +173,10 @@ class Representative extends React.Component {
             <tr>
               <th>
                 <span className="mr-1">{tu("address_info_transfers")}</span>
-                <QuestionMark placement="top" text="account_representative_transfer_tip" />
+                <QuestionMark
+                  placement="top"
+                  text="account_representative_transfer_tip"
+                />
                 <span className="ml-1">:</span>
               </th>
               <td>
@@ -187,7 +209,10 @@ class Representative extends React.Component {
                 <span className="mr-1">
                   {tu("account_representative_split_ratio")}
                 </span>
-                <QuestionMark placement="top" text="account_representative_split_ratio_tip" />
+                <QuestionMark
+                  placement="top"
+                  text="account_representative_split_ratio_tip"
+                />
                 <span className="ml-1">:</span>
               </th>
               <td>
@@ -215,7 +240,10 @@ class Representative extends React.Component {
                 <span className="mr-1">
                   {tu("account_representative_block_ratio")}
                 </span>
-                <QuestionMark placement="top" text="account_representative_block_ratio_tip" />
+                <QuestionMark
+                  placement="top"
+                  text="account_representative_block_ratio_tip"
+                />
                 <span className="ml-1">:</span>
               </th>
               <td>
@@ -247,19 +275,21 @@ class Representative extends React.Component {
             <tr>
               <th className="line36">{tu("website")}:</th>
               <td>
-              <div className="d-flex">
-                  <span className="line36"><ExternalLink url={address.representative.url} /></span>
-                
-                {!votingEnabled && hasPage && (
+                <div className="d-flex">
+                  <span className="line36">
+                    <ExternalLink url={address.representative.url} />
+                  </span>
+
+                  {!votingEnabled && hasPage && (
                     <div className="_team ml-3">
-                    <Link
+                      <Link
                         className="btn btn-sm btn-block btn-default mt-1"
                         to={`/representative/${address.address}`}
-                    >
+                      >
                         {tu("sr_vote_team_information")}
-                    </Link>
+                      </Link>
                     </div>
-                )}
+                  )}
                 </div>
               </td>
             </tr>
@@ -334,6 +364,109 @@ class Representative extends React.Component {
 
   scrollToAnchor = () => {
     window.scrollTo(0, 800);
+  };
+
+  // account claim rewards
+  accountClaimRewards = async () => {
+    let res, hashid;
+    let { account, currentWallet, walletType } = this.props;
+    let { walletReward } = this.props.data;
+    if (!walletReward) {
+      return;
+    }
+
+    //let tronWeb = account.tronWeb;
+    let tronWeb;
+    if (this.props.walletType.type === "ACCOUNT_LEDGER") {
+      tronWeb = this.props.tronWeb();
+    } else {
+      tronWeb = account.tronWeb;
+    }
+    const unSignTransaction = await tronWeb.transactionBuilder
+      .withdrawBlockRewards(walletType.address)
+      .catch(e => false);
+    const { result } = await transactionResultManager(
+      unSignTransaction,
+      tronWeb
+    );
+    res = result;
+    //hashid = txid
+
+    if (res) {
+      this.setState({
+        modal: (
+          <SweetAlert
+            success
+            title={tu("rewards_claimed_submitted")}
+            onConfirm={this.hideModal}
+          >
+            {/*<div>*/}
+            {/*{tu("rewards_claimed_hash")}*/}
+            {/*<span className="SweetAlert_hashid">{hashid}</span>*/}
+            {/*</div>*/}
+            {/*<br/>*/}
+            {tu("rewards_claimed_hash_await")}
+          </SweetAlert>
+        )
+      });
+    } else {
+      this.setState({
+        modal: (
+          <SweetAlert
+            danger
+            title={tu("could_not_claim_rewards")}
+            onConfirm={this.hideModal}
+          >
+            {tu("claim_rewards_error_message")}
+          </SweetAlert>
+        )
+      });
+    }
+  };
+
+  pieChart() {
+    let { intl } = this.props;
+    let chartHeight = "300px";
+    let { sortTokenBalances } = this.props.data;
+    let data = [];
+    sortTokenBalances.map(item => {
+      let balance = Number(item.TRXBalance);
+      if (balance > 0) {
+        let name = item.symbol ? item.symbol : item.map_token_name_abbr;
+        data.push({ name: name, value: balance });
+      }
+    });
+
+    this.setState({
+      popup: (
+        <SweetAlert
+          showConfirm={false}
+          showClose={true}
+          onConfirm={this.hideModal}
+        >
+          <Icon
+            type="close"
+            onClick={this.hideModal.bind(this)}
+            style={{
+              position: "absolute",
+              top: "10px",
+              right: "10px",
+              fontSize: "14px",
+              color: "#666666"
+            }}
+          />
+          <Piechart
+            style={{ height: chartHeight }}
+            data={data}
+            message={{ id: "accout_representative_piechart_title" }}
+            intl={intl}
+          />
+        </SweetAlert>
+      )
+    });
+  }
+  hideModal = () => {
+    this.setState({ popup: null });
   };
 }
 
