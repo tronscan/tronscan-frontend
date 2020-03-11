@@ -1061,7 +1061,9 @@ class Token20Detail extends React.Component {
                       shelllod:time.domContentLoadedEventEnd - time.domContentLoadedEventStart,
                       measure5:parseInt(measure5),
                       blankTime:time.domLoading - time.fetchStart,
-                      v:'v1'
+                      v:'v1',
+                      entryList:getPerformanceTimingEntry(),
+                      udid:uuidv4
                       
                   };
                   window.performance.clearMarks();
