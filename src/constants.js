@@ -17,7 +17,7 @@ export const IS_NILE = true;
 
 
 export const NETURL = {
-    MAINNET: "http://testhttps.tronscan.org",
+    MAINNET: "http://nile.tronscan.org",
     SUNNET: "https://dappchain.tronscan.org",
     NEWMAINNET: "https://tronscan.io",
     NEWSUNNET: "https://dappchain.tronscan.io",
