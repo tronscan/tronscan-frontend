@@ -17,6 +17,8 @@ import {
   CONTRACT_ADDRESS_GGC,
   IS_MAINNET
 } from "../../../constants";
+import BigNumber from "bignumber.js";
+BigNumber.config({ EXPONENTIAL_AT: [-1e9, 1e9] });
 
 export function Information({ token: tokens, priceUSD }) {
   let token = cloneDeep(tokens);
@@ -43,11 +45,8 @@ export function Information({ token: tokens, priceUSD }) {
 
   token.git_hub &&
     token.social_media_list.unshift({ url: [token.git_hub], name: "GitHub" });
-
-  let totalSupply = parseFloat(
-    token.total_supply_with_decimals / Math.pow(10, token.decimals)
-  ).toFixed(token.decimals);
-
+  let total_supply_decimals  = new BigNumber(token.total_supply_with_decimals); 
+  let totalSupply = total_supply_decimals.div(Math.pow(10, token.decimals)).toFixed(token.decimals);
   let currentTotal = totalSupply;
 
   let totalSupplyUsd = token["market_info"]
