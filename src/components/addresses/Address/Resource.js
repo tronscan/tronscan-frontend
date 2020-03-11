@@ -103,20 +103,20 @@ class Resource extends React.Component {
             </Tooltip>
           </div>
         </div>
-        {isRepresentative && <div className="d-flex representive">
+        {isRepresentative && <div className="d-flex representive flex-wrap">
           <section className="">
             <h6>
               {tu("account_resource_last")}{" "}
               <QuestionMark placement="top" text="account_resource_last_tip" />
             </h6>
             <p>
-              {tu("account_resource_rank")}:{" "}
+              {tu("token_rank")}:{" "}
               <span className="color333">
                 <FormattedNumber value={lastRanking || 0} />
               </span>
             </p>
             <p>
-              {tu("account_resource_votes")} :
+              {tu("SR_votes")} :
               <span className="color333">
                 <FormattedNumber value={lastCycleVotes || 0} />
               </span>
@@ -132,7 +132,7 @@ class Resource extends React.Component {
             </h6>
             <p className="d-flex">
               <span>
-                {tu("account_resource_rank")}:{" "}
+                {tu("token_rank")}:{" "}
                 <span className="color333">
                   <FormattedNumber value={realTimeRanking || 0} />
                 </span>
@@ -152,7 +152,7 @@ class Resource extends React.Component {
             </p>
             <p className="d-flex">
               <span>
-                {tu("account_resource_votes")}:
+                {tu("SR_votes")}:
                 <span className="color333">
                   <FormattedNumber value={realTimeVotes || 0} />
                 </span>

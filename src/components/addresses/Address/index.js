@@ -93,7 +93,9 @@ class Address extends React.Component {
       changeVotes: 0,
       changeRank: 0,
       sortTokenBalances: [],
-      popup:null
+      popup:null,
+      brokerage:0,
+      producedEfficiency:0
     };
   }
 
@@ -341,7 +343,7 @@ class Address extends React.Component {
             id: "blocks-produced",
             // icon: "fa fa-cube",
             path: "/blocks",
-            label: <span>{tu("produced_blocks")}</span>,
+            label: <span>{tu("account_block")}</span>,
             cmp: () => (
               <Blocks
                 filter={{ producer: id }}
@@ -568,7 +570,10 @@ class Address extends React.Component {
       lastRanking: data.lastRanking,
       lastCycleVotes: data.lastCycleVotes,
       changeVotes: data.changeVotes,
-      changeRank: data.realTimeRanking - data.lastRanking
+      changeRank: data.realTimeRanking - data.lastRanking,
+      brokerage:data.brokerage || 0,
+      producedEfficiency:data.producedEfficiency || 0,
+      blockReward:data.blockReward || 0,
     });
   }
 

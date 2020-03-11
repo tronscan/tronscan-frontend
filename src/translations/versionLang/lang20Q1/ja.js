@@ -229,7 +229,29 @@ export const lang20Q1 = {
 
   freeze_TRX_error:"Something went wrong while trying to freeze TRX, please try again later.",
   votes_cannot_exceed_5_SRs:"Votes cannot exceed 5 SRs",
-
+// 2020-03-03
+account_resource_last: "最終回",
+account_resource_realTime: "現在のラウンド",
+account_resource_remain: "剩余",
+account_resource_last_tip: "投票数と最終ラウンドのランキング",
+account_resource_realTime_tip: "投票数と現在のラウンドのランキング",
+account_representative_block_ratio: "ブロック生産効率",
+account_representative_block_ratio_tip: "生産されたブロック/生産可能なブロック",
+account_representative_block_prize: "累積ブロック報酬",
+account_representative_vote_prize: "累積投票者の報酬",
+account_representative_split_ratio: "報酬分配率",
+account_representative_split_ratio_tip:
+  "総報酬は有権者報酬とスーパー代表報酬で構成されます",
+account_representative_voter: "投票者報酬",
+account_representative_owner: "スーパー代表報酬",
+account_representative_block_table_res: "资源消耗",
+account_representative_block_table_prize: "出块收益",
+account_representative_block_desc:
+  "生成された{block}ブロックから獲得した{trx} TRX",
+account_representative_voters_per_tip: "投票者による投票/総投票数",
+account_representative_transfer_tip: "このアカウントに関連するTRX / TRC10 / TRC20トークン転送の数",
+account_representative_unit:'{number}投票者による{votes}票',
+account_piechart_title:'資産配分',
 
 
   // 03-09 tron account  transfers transactions internal-transactions

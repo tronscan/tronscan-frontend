@@ -232,6 +232,29 @@ export const lang20Q1 = {
    freeze_TRX_error:"Something went wrong while trying to freeze TRX, please try again later.",
    votes_cannot_exceed_5_SRs:"Votes cannot exceed 5 SRs",
 
+  // 2020-03-03
+  account_resource_last: "دور آخر",
+  account_resource_realTime: "دور فعلی",
+  account_resource_remain: "剩余",
+  account_resource_last_tip: "شمارش آرا و رتبه بندی دور آخر",
+  account_resource_realTime_tip: "شمارش آرا و رتبه بندی دور فعلی",
+  account_representative_block_ratio: "بهره وری تولید بلوک",
+  account_representative_block_ratio_tip: "بلوک های تولید شده / بلوک های قابل تولید",
+  account_representative_block_prize: "پاداش های انباشته بلوک",
+  account_representative_vote_prize: "جوایز جمع رای دهنده",
+  account_representative_split_ratio: "نسبت توزیع پاداش",
+  account_representative_split_ratio_tip:
+    "کل جوایز شامل جوایز رأی دهنده و پاداش سوپر نماینده است",
+  account_representative_voter: "پاداش رای دهندگان",
+  account_representative_owner: "پاداش سوپرنماینده ها",
+  account_representative_block_table_res: "资源消耗",
+  account_representative_block_table_prize: "出块收益",
+  account_representative_block_desc:
+    "{trx} TRX به دست آمده از بلوک های {block} تولید شده",
+  account_representative_voters_per_tip: "رأی های داده شده توسط رای دهنده / مجموع کل آرا.",
+  account_representative_transfer_tip: "تعداد نقل و انتقالات توکن TRX / TRC10 / TRC20 مربوط به این حساب.",
+  account_representative_unit:'{number} آرا توسط رای دهندگان {votes}',
+  account_piechart_title:'توزیع دارایی',
    // 03-09 tron account  transfers transactions internal-transactions
 
     address_account_table_filter_all: "همه",
@@ -243,5 +266,6 @@ export const lang20Q1 = {
     address_account_table_filter_other: "other",
 
     address_account_table_filter_token_tips: "The token is not included in TRONSCAN",
+
 
 };

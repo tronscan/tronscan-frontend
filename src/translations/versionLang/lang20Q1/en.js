@@ -233,6 +233,29 @@ export const lang20Q1 = {
   freeze_TRX_error:"Something went wrong while trying to freeze TRX, please try again later.",
   votes_cannot_exceed_5_SRs:"Votes cannot exceed 5 SRs",
 
+   // 2020-03-03
+   account_resource_last: "Last round",
+   account_resource_realTime: "Current round",
+   account_resource_remain: "剩余",
+   account_resource_last_tip: "Vote count and ranking of last round",
+   account_resource_realTime_tip: "Vote count and ranking of current round",
+   account_representative_block_ratio: "Block production efficiency",
+   account_representative_block_ratio_tip: "Blocks produced/blocks producible",
+   account_representative_block_prize: "Cumulative block rewards",
+   account_representative_vote_prize: "Cumulative voter rewards",
+   account_representative_split_ratio: "Rewards distribution ratio",
+   account_representative_split_ratio_tip:
+     "Total rewards consist of voter rewards and SR rewards",
+   account_representative_voter: "Voter rewards",
+   account_representative_owner: "SR rewards",
+   account_representative_block_table_res: "资源消耗",
+   account_representative_block_table_prize: "出块收益",
+   account_representative_block_desc:
+     "{trx} TRX earned from {block} blocks produced",
+   account_representative_voters_per_tip: "Votes cast by the voter/total votes",
+   account_representative_transfer_tip: "Number of TRX/TRC10/TRC20 token transfers related to this account",
+   account_representative_unit:'{votes} votes by {number} voters',
+   account_piechart_title:'Asset distribution',
 
   // 03-09 tron account  transfers transactions internal-transactions
 
@@ -245,4 +268,5 @@ export const lang20Q1 = {
   address_account_table_filter_other: "other",
 
   address_account_table_filter_token_tips: "The token is not included in TRONSCAN",
+
 };

@@ -230,6 +230,30 @@ export const lang20Q1 = {
   freeze_TRX_error:"Something went wrong while trying to freeze TRX, please try again later.",
   votes_cannot_exceed_5_SRs:"Votes cannot exceed 5 SRs",
 
+  // 2020-03-03
+  account_resource_last: "Última ronda",
+  account_resource_realTime: "Ronda actual",
+  account_resource_remain: "剩余",
+  account_resource_last_tip: "Recuento de votos y clasificación de la última ronda.",
+  account_resource_realTime_tip: "Recuento de votos y clasificación de la ronda actual",
+  account_representative_block_ratio: "Bloque de eficiencia de producción",
+  account_representative_block_ratio_tip: "Bloques producidos / bloques producibles",
+  account_representative_block_prize: "Recompensas de bloque acumulativo",
+  account_representative_vote_prize: "Recompensas de votante acumuladas",
+  account_representative_split_ratio: "Proporción de distribución de recompensas",
+  account_representative_split_ratio_tip:
+    "Las recompensas totales consisten en recompensas de votantes y recompensas SR",
+  account_representative_voter: "Recompensas de votante",
+  account_representative_owner: "SR recompensas",
+  account_representative_block_table_res: "资源消耗",
+  account_representative_block_table_prize: "出块收益",
+  account_representative_block_desc:
+    "{trx} TRX obtenido de por producir {block} bloques",
+  account_representative_voters_per_tip: "Votos emitidos por el votante / votos totales",
+  account_representative_transfer_tip: "Número de transferencias de tokens TRX / TRC10 / TRC20 relacionadas con esta cuenta",
+  account_representative_unit:'{number} votos de {votes} votantes',
+  account_piechart_title:'Distribución de activos',
+
 
   // 03-09 tron account  transfers transactions internal-transactions
 
@@ -242,4 +266,5 @@ export const lang20Q1 = {
   address_account_table_filter_other: "other",
 
   address_account_table_filter_token_tips: "The token is not included in TRONSCAN",
+
 };

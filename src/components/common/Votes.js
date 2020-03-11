@@ -27,7 +27,14 @@ class Votes extends React.Component {
       pageSize: 25,
       totalVotes: 0,
       emptyState: props.emptyState,
-      sort: "-votes"
+      sort: "-votes",
+      pagination: {
+        showQuickJumper: true,
+        position: "bottom",
+        showSizeChanger: true,
+        defaultPageSize: 20,
+        total: 0
+      },
     };
   }
 
@@ -64,6 +71,10 @@ class Votes extends React.Component {
       total,
       totalVotes,
       loading: false,
+      pagination: {
+        ...this.state.pagination,
+        total
+      }
     });
   };
   customizedColumn = (filter) => {
@@ -192,7 +203,7 @@ class Votes extends React.Component {
     //   tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'table_info_big2'});
     // }
 
-    tableInfo = intl.formatMessage({id: 'account_representative_unit'},{number:total})
+    tableInfo = intl.formatMessage({id: 'account_representative_unit'},{number:total,votes:totalVotes})
 
     if (!loading && votes.length === 0) {
       if (!EmptyState) {
@@ -205,13 +216,7 @@ class Votes extends React.Component {
       return <EmptyState/>;
     }
 
-    let pagination = true;
-    const paginationStatus = pagination
-      ? {
-          total: total,
-          ...this.state.pagination
-        }
-      : pagination;
+    
 
     return (
 
@@ -227,9 +232,9 @@ class Votes extends React.Component {
           loading={loading}
           dataSource={votes}
           columns={column}
-          pagination={paginationStatus}
-          onChange={(page, pageSize,sorter) => {
-            this.load(page, pageSize,sorter);
+          pagination={this.state.pagination}
+          onChange={(page,sorter) => {
+            this.load(page.current, page.pageSize,sorter);
           }}
         />
         </div>
