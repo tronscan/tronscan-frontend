@@ -101,7 +101,8 @@ class BTTSupply extends React.Component {
         BTCData.data.data.BTT.quote && 
         BTCData.data.data.BTT.quote.BTC && 
         BTCData.data.data.BTT.quote.BTC.price;
-        let priceUSD = ((parseFloat(trxPriceDataUSD))*1000).toFixed(3);
+        console.log(trxPriceDataUSD,'')
+        let priceUSD = ((parseFloat(trxPriceDataUSD.toFixed(10)))*1000).toFixed(3);
         let  x = new BigNumber(trxPriceDataBTC);
         let priceBTC = x.multipliedBy(1000).decimalPlaces(5).toNumber();
 
