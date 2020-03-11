@@ -26,7 +26,8 @@ import {
   CONTRACT_ADDRESS_USDT,
   CONTRACT_ADDRESS_WIN,
   CONTRACT_ADDRESS_GGC,
-  IS_MAINNET
+  IS_MAINNET,
+  uuidv4
 } from "../../../constants";
 import { login } from "../../../actions/app";
 import { reloadWallet } from "../../../actions/wallet";
@@ -623,7 +624,7 @@ class Token20Detail extends React.Component {
     } = this.props.tokensInfo.tokenDetail;
     await xhr
       .get(
-        `${API_URL}/api/token_trc20/holders?holder_address=${serchInputVal}&contract_address=${contract_address}`
+        `${API_URL}/api/token_trc20/holders?uuid=${uuidv4}&holder_address=${serchInputVal}&contract_address=${contract_address}`
       )
       .then(res => {
         if (res.data) {

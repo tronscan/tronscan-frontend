@@ -280,7 +280,7 @@ class TokenDetail extends React.Component {
     } = this.props.tokensInfo.tokenDetail;
     await xhr
       .get(
-        `${API_URL}/api/tokenholders?address=${ownerAddress}&holder_address=${serchInputVal}&id=${tokenID}`
+        `${API_URL}/api/tokenholders?uuid=${uuidv4}&address=${ownerAddress}&holder_address=${serchInputVal}&id=${tokenID}`
       )
       .then(res => {
         if (res.data) {
