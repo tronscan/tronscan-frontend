@@ -9,7 +9,7 @@ import {tu} from "../../utils/i18n";
 import { Icon } from "antd";
 // import TimeAgo from "react-timeago";
 import {TronLoader} from "./loaders";
-import {Truncate} from "./text";
+import {Truncate,TruncateAddress} from "./text";
 import {ContractTypes} from "../../utils/protocol";
 import SmartTable from "./SmartTable.js"
 import {upperFirst} from "lodash";
@@ -202,7 +202,7 @@ class NewTransactions extends React.Component {
     }
 
     customizedColumn = (activeLanguage) => {
-        let {intl} = this.props;
+        let {intl,filter} = this.props;
         let { timeType } = this.state;
         let column = [
             {
@@ -281,6 +281,26 @@ class NewTransactions extends React.Component {
                 }
             },
             {
+                title: upperFirst(intl.formatMessage({id: 'initiate_address'})),
+                dataIndex: 'ownerAddress',
+                key: 'ownerAddress',
+                align: 'left',
+                width:'5%',
+                className: 'ant_table address_max_width',
+                render: (text, record, index) => {
+                    return (
+                       <span>
+                        {
+                            record.ownerAddress == filter.address ?   
+                            <TruncateAddress>{text}</TruncateAddress>
+                            :<AddressLink address={text}>{text}</AddressLink>
+                        }
+                       </span>
+                          
+                    )
+                }
+            },
+            {
                 title: upperFirst(intl.formatMessage({id: 'transaction_type'})),
                 dataIndex: 'contractType',
                 key: 'contractType',
@@ -339,7 +359,7 @@ class NewTransactions extends React.Component {
                 ),
                 dataIndex: "amount",
                 key: "amount",
-                align: "right",
+                align: "left",
                 className: "ant_table",
                 render: (text, record, index) => {
                   return <FormattedNumber value={record.contractData.amount / Math.pow(10,6)}></FormattedNumber>;
@@ -370,18 +390,7 @@ class NewTransactions extends React.Component {
                     return <span> {record.map_token_name_abbr} </span>;
                 }
             }
-            // {
-            //     title: upperFirst(intl.formatMessage({id: 'status'})),
-            //     dataIndex: 'confirmed',
-            //     key: 'confirmed',
-            //     align: 'center',
-            //     className: 'ant_table',
-            //     render: (text, record, index) => {
-            //         return record.confirmed?
-            //             <span className="badge badge-success text-uppercase">{intl.formatMessage({id:'Confirmed'})}</span> :
-            //             <span className="badge badge-danger text-uppercase">{intl.formatMessage({id: 'Unconfirmed'})}</span>
-            //     },
-            // }
+       
         ];
         return column;
     }
@@ -530,14 +539,14 @@ class NewTransactions extends React.Component {
             </div>
             <div>
                 {!loading && (
-                <TotalInfo
-                    total={total}
-                    rangeTotal={rangeTotal}
-                    typeText="transactions_unit"
-                    common={!address}
-                    // top={address ? "-28px" : "26"}
-                    selected
-                />
+                    <TotalInfo
+                        total={total}
+                        rangeTotal={rangeTotal}
+                        typeText="transactions_unit"
+                        common={!address}
+                        // top={address ? "-28px" : "26"}
+                        selected
+                    />
                 )}
             </div>
          

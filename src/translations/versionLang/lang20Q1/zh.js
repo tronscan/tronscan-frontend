@@ -45,7 +45,7 @@ export const lang20Q1 = {
   data_number: "数量",
   data_per: "占比",
   data_total: "总计",
-
+ 
   data_items: "笔数",
   data_unit_bi: "笔",
   data_piao: "票数",
@@ -132,12 +132,12 @@ export const lang20Q1 = {
   chart_resource_contract_deployer: "合约部署者提供的能量",
 
   // full node
+  full_node_version_latest_block:'最新区块',
+  full_node_version_confirmed:'已确认',
+  full_node_version_unconfirmed:'待确认',
+  // full_node_version_confirmed_tips:'“已确认”是指被19个及以上区块确认，否则为“待确认”或“已回退”',
+  full_node_version_confirmed_tips:'“已确认”是指被19个及以上超级节点确认，否则为“待确认”',
 
-  full_node_version_latest_block: "最新区块",
-  full_node_version_confirmed: "已确认",
-  full_node_version_unconfirmed: "待确认",
-  full_node_version_confirmed_tips:
-    "“已确认”是指被19个及以上区块确认，否则为“待确认”或“已回退”",
 
   // 2020-02-19
   chart_energy: "能量消耗",
@@ -241,6 +241,19 @@ export const lang20Q1 = {
   account_vote_self_percent_tip: "为该超级节点投票的数量占自身总票数的比例",
   account_vote_total_percent_tip: "该账户为此超级代表投票的数量占该超级代表总票数的比例",
   account_vote_reward_tip: "为该超级代表投票累计获得的收益",
+  account_get_reward: "领取",
+  account_freeze_detail: "冻结明细",
+  account_freeze_self: "为自己冻结",
+  account_freeze_to_other: "为他人冻结",
+  account_freeze_other_to: "他人为自己冻结",
+  account_freeze_time: "冻结时间",
+  account_freeze_address: "冻结账户",
+  account_freeze_received: "接收账户",
+  account_freeze_type: "获得资源类型",
+  account_freeze_amount: "冻结数量",
+  account_freeze_resource_amount: "获得资源数量",
+  account_freeze_resource_amount_tip: "实际获得的资源数量取决于当前冻结量与全网冻结量的比值，全网冻结量时刻变化，因此实际获得的资源数量也将不断变化",
+  account_freeze_no_data: "未查询到冻结信息",
 
 
   // 2020-03-03
@@ -256,16 +269,20 @@ export const lang20Q1 = {
   account_representative_block_prize: "累计获得出块收益",
   account_representative_vote_prize: "累计获得投票收益",
   account_representative_split_ratio: "分成比例",
-  account_representative_split_ratio_tip: "获得的总收益中分为选民的占比及自留占比",
+  account_representative_split_ratio_tip:
+    "获得的总收益中分为选民的占比及自留占比",
   account_representative_voter: "分给选民",
   account_representative_owner: "自留",
   account_representative_block_table_res: "资源消耗",
   account_representative_block_table_prize: "出块收益",
-  account_representative_block_desc: "累计出块{block}个，累计获得出块收益{trx}TRX",
+  account_representative_block_desc:
+    "累计出块{block}个，累计获得出块收益{trx}TRX",
   account_representative_voters_per_tip: "该选民投票数量占总得票的比例",
   account_representative_transfer_tip: "关联当前账户的TRX/10通证/ 20通证转账数",
   account_representative_unit:'当前共{number}名选民',
-
+  votes_cannot_exceed_5_SRs:"投票对象不能超过5个SR",
+  freeze_TRX_error: "冻结TRX时出现问题，请稍后重试",
+  account_piechart_title:'资产分布',
 
   // 0227 torn sr
   sr_vote_team_information: "团队详情",
@@ -279,5 +296,4 @@ export const lang20Q1 = {
   block_detail_confirmed_over_show: "超过200个区块已确认",
   block_detail_rolled_back: "已回退",
 
-  freeze_TRX_error: "冻结TRX时出现问题，请稍后重试"
 };

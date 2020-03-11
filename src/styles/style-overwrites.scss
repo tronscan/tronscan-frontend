@@ -335,7 +335,7 @@ body .token_black {
     margin-right: 20px;
     flex: 1;
     padding-left: 3.75rem;
-    @include bg-line(accounts, $main-red, 4);
+    @include bg-line(account, $main-red, 4);
     h3,
     h3 * {
       color: $bg-color !important;
@@ -350,7 +350,7 @@ body .token_black {
     background-color: $white;
     flex: 1;
     padding-left: 3.75rem;
-    @include bg-line(accounts, $main-red, 4);
+    @include bg-line(time, $main-red, 4);
     h3,
     h3 * {
       color: $bg-color !important;

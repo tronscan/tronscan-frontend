@@ -59,6 +59,8 @@ class TokenBalances extends React.Component {
             page,
             balances:tokens,
         });
+
+        
     };
 
     setTop = (balances,id) =>{

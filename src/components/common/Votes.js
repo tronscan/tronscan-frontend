@@ -29,25 +29,28 @@ class Votes extends React.Component {
       pageSize: 25,
       totalVotes: 0,
       emptyState: props.emptyState,
+      sort: "-votes"
     };
   }
 
   componentDidMount() {
-    this.load();
+    this.load(1,20,{});
   }
 
-  onChange = (page, pageSize) => {
-    this.load(page, pageSize);
+  onChange = (page, pageSize,sorter) => {
+    this.load(page, pageSize,sorter);
   };
 
-  load = async (page = 1, pageSize = 20) => {
+  load = async (page = 1, pageSize = 20,sorter) => {
 
     let {filter, getCsvUrl} = this.props;
 
     this.setState({loading: true});
-
+    
     const params = {
-      sort: '-votes',
+      sort: `${sorter.order === "descend" ? "-" : ""}${
+        sorter.order ? sorter.columnKey : ""
+      }`,
       limit: pageSize,
       start: (page - 1) * pageSize,
       ...filter,
@@ -86,14 +89,17 @@ class Votes extends React.Component {
         align: 'left',
         width: '20%',
         className: 'ant_table',
+        sorter: true,
+        defaultSortOrder: "descend",
+        sortDirections: ["descend", "ascend"],
         render: (text, record, index) => {
           return <FormattedNumber value={text}/>
         }
       },
       {
         title: upperFirst(intl.formatMessage({id: 'percentage'})),
-        dataIndex: 'percentage',
-        key: 'percentage',
+        dataIndex: 'candidateUrl',
+        key: 'candidateUrl',
         align: 'right',
         className: 'ant_table',
         render: (text, record, index) => {
@@ -134,6 +140,9 @@ class Votes extends React.Component {
         key: 'votes',
         align: 'left',
         width: '20%',
+        // sorter: true,
+        // defaultSortOrder: "descend",
+        // sortDirections: ["descend", "ascend"],
         className: 'ant_table',
         render: (text, record, index) => {
           return <FormattedNumber value={text}/>
@@ -147,8 +156,8 @@ class Votes extends React.Component {
               <QuestionMark placement="top" text="account_vote_self_percent_tip"/>
             </span>
           </span>),
-        dataIndex: 'voter_percentage',
-        key: 'voter_percentage',
+        dataIndex: 'candidateUrl',
+        key: 'candidateUrl',
         align: 'left',
         width: '20%',
         className: 'ant_table',
@@ -165,8 +174,8 @@ class Votes extends React.Component {
               <QuestionMark placement="top" text="account_vote_total_percent_tip"/>
             </span>
           </span>),
-        dataIndex: 'percentage',
-        key: 'percentage',
+        dataIndex: 'candidateName',
+        key: 'candidateName',
         align: 'right',
         className: 'ant_table',
         render: (text, record, index) => {
@@ -239,7 +248,7 @@ class Votes extends React.Component {
 
     return (
 
-        <div className="token_black table_pos">
+        <div className="token_black table_pos vote-wrap">
           {loading && <div className="loading-style"><TronLoader/></div>}
           {total ?<div className="table_pos_info d-none d-md-block table-no-absolute" style={{left: 'auto'}}>{tableInfo}</div> : ''}
           {/* <SmartTable bordered={true} loading={loading} column={column} data={votes} total={total}
@@ -249,11 +258,14 @@ class Votes extends React.Component {
           <Table
           bordered={true}
           loading={loading}
+          rowKey={(record, index) => {
+            return index; 
+          }}
           dataSource={votes}
           columns={column}
           pagination={paginationStatus}
-          onChange={(page, pageSize) => {
-            this.load(page, pageSize);
+          onChange={(page, pageSize,sorter) => {
+            this.load(page, pageSize,sorter);
           }}
         />
         </div>

@@ -2254,6 +2254,7 @@ export const messages = {
   "sun_propose_6": "إدارة إذا كان مفتاح الحوافز لـ witness على السلسلة الجانبية هو فعال / مغلق",
   "sun_propose_7": "مقاييس التوزيع لمجموعة حوافز السلسلة الجانبية",
   "sun_propose_8": "نسبة إيرادات witness على السلسلة الجانبية",
+  sun_propose_12: "Propose to allow DAppChain 1.0.2 upgrade",
   "day":"يوم",
 
 

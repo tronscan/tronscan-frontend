@@ -225,9 +225,11 @@ export function withTronWeb(InnerComponent) {
                   hex: rawDataHex,
                   info: tokenInfo,
                 })
-
-                transaction.signature = [Buffer.from(signedResponse).toString('hex')];
+                transaction.signature = [signedResponse];
                 return transaction;
+              } catch (e) {
+                console.log("Error signing ledger", e);
+
               } finally {
                 this.hideModal();
               }

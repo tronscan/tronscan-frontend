@@ -2301,6 +2301,8 @@ export const messages = {
     "sun_propose_6": "侧链 witness 激励开关",
     "sun_propose_7": "侧链激励池分发系数",
     "sun_propose_8": "侧链收益累积到激励池的比例",
+
+    "sun_propose_12": "提议允许DAppChain1.0.2升级",
     "day": "天",
 
 

@@ -11,7 +11,7 @@ import SmartTable from "./common/SmartTable.js"
 import {TronLoader} from "./common/loaders";
 import {QuestionMark} from "./common/QuestionMark";
 import xhr from "axios/index";
-import {Client} from "../services/api";
+import {Client, AccountApi} from "../services/api";
 import {Tooltip, Table} from 'antd'
 import { Link } from "react-router-dom";
 
@@ -40,6 +40,7 @@ class Accounts extends Component {
         defaultPageSize: 20,
         total: 0
       },
+      newAddressSeen: 0,
     }
   }
 
@@ -56,7 +57,12 @@ class Accounts extends Component {
       sort: '-balance',
       limit: pageSize,
       start: (page - 1) * pageSize
-    })
+    }).catch(e => console.log(e))
+
+    let { data } = await AccountApi.getAccountOverviewStats({
+      days: 1
+    }).catch(e => console.log(e))
+
     // let exchangeFlag = await Client.getTagNameList()
     //
     // accounts.map(item => {
@@ -91,6 +97,7 @@ class Accounts extends Component {
       accounts: accounts,
       total: total,
       rangeTotal:rangeTotal,
+      newAddressSeen: data && data[0] && data[0].newAddressSeen,
       pagination: {
         ...this.state.pagination,
         total
@@ -298,7 +305,7 @@ class Accounts extends Component {
   render() {
 
     let {match, intl} = this.props;
-    let {total, loading, rangeTotal = 0, accounts, pagination} = this.state;
+    let {total, loading, rangeTotal = 0, newAddressSeen, accounts, pagination} = this.state;
     let column = this.customizedColumn();
     let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + rangeTotal + ' ' + intl.formatMessage({id: 'account_unit'}) + '<br/>(' + intl.formatMessage({id: 'table_info_big'}) + ')';
     let tableInfoTip = intl.formatMessage({id: 'view_total'}) + ' ' + rangeTotal + ' ' + intl.formatMessage({id: 'table_info_account_tip2'});
@@ -306,14 +313,14 @@ class Accounts extends Component {
         <main className="container header-overlap pb-3 token_black">
           <div className="row">
             <div className="d-flex col-md-12 justify-content-end my-2">
-              <Link to="">{tu('account_more')}></Link>
+              <Link to="/data/stats#address">{tu('account_more')}></Link>
             </div>
             <div className="d-flex col-md-12">
               <div className="card h-100 widget-icon accout_unit">
                 {/* <WidgetIcon className="fa fa-users text-secondary"/> */}
                 <div className="card-body">
                   <h3 className="text-primary">
-                    <FormattedNumber value={rangeTotal}/>
+                    <FormattedNumber value={newAddressSeen}/>
                   </h3>
                   {tu("account_lastDay_count")}
                 </div>
@@ -333,7 +340,7 @@ class Accounts extends Component {
           {loading && <div className="loading-style"><TronLoader/></div>}
           <div className="row mt-2">
             <div className="col-md-12 table_pos">
-              {total ?<div className="d-none d-md-block mt-2 mb-1">
+              {total ?<div className="d-none d-md-block mt-2 mb-1"  style={{color: '#999',fontSize: '16px'}}>
                       <div>
                         {tu('account_total_tip')}
                         {/* {tu('view_total')} {rangeTotal} {tu('account_unit')}  */}
