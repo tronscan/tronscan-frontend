@@ -735,7 +735,7 @@ class Address extends React.Component {
       tabName = b;
     });
     return (
-      <main className="container header-overlap account-new">
+      <main className="container header-overlap account-new address-container">
         {popup}
         <div className="row">
           <div className="col-md-12 ">

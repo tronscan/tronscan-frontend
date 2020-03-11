@@ -44,7 +44,8 @@ class NewTransactions extends React.Component {
                     Loading Transactions
                 </TronLoader>
             ),
-            timeType: true
+            timeType: true,
+            filterTitleKey:''
         };
         
     }
@@ -201,6 +202,19 @@ class NewTransactions extends React.Component {
         });
     }
 
+    onVisibleChange = (key) => { //Tooltip 显示隐藏的回调,类似onmouseenter 进入离开事件，用来显示我们不同的信息提醒
+        let str = '';
+        switch (key) {
+            case 1:
+            str = '你的姓名';
+            default:
+            break;
+        }
+        this.setState({
+          filterTitleKey: str,
+        });
+    }
+
     customizedColumn = (activeLanguage) => {
         let {intl,filter} = this.props;
         let { timeType } = this.state;
@@ -310,6 +324,11 @@ class NewTransactions extends React.Component {
                     { text: 'Joe', value: 'Joe' },
                     { text: 'Jim', value: 'Jim' },
                 ],
+                filterIcon: () => {
+                    return (
+                        <Icon type="down" onVisibleChange={() => this.onVisibleChange()} style={{fontSize:12,color:'#666'}}  theme="outlined" />
+                    );
+                },
                 // onFilter: (value, record) => record.name.includes(value),
                 className: 'ant_table _text_nowrap',
                 render: (text, record, index) => {
@@ -326,6 +345,11 @@ class NewTransactions extends React.Component {
                     { text: 'Joe', value: 'Joe' },
                     { text: 'Jim', value: 'Jim' },
                 ],
+                filterIcon: () => {
+                    return (
+                        <Icon type="down" onVisibleChange={() => this.onVisibleChange()} style={{fontSize:12,color:'#666'}}  theme="outlined" />
+                    );
+                },
                 className: 'ant_table',
                 render: (text, record, index) => {
                     return (
@@ -504,7 +528,7 @@ class NewTransactions extends React.Component {
 
     render() {
 
-        let {transactions, total, rangeTotal, loading, EmptyState = null} = this.state;
+        let {transactions, total, rangeTotal, loading, EmptyState = null,filterTitleKey} = this.state;
         let {intl, isinternal, address = false,activeLanguage} = this.props;
        
         let column = !isinternal? this.customizedColumn(activeLanguage):
@@ -565,6 +589,9 @@ class NewTransactions extends React.Component {
                 current={this.state.page}
                 onPageChange={(page, pageSize) => {
                   this.loadTransactions(page, pageSize);
+                }}
+                locale={{
+                    filterTitle: filterTitleKey || 'default', // prevent console error ，remove result => filterTitle ''fail；
                 }}
               />
             )}
