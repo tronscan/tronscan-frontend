@@ -258,10 +258,11 @@ export const lang20Q1 = {
     "累计出块{block}个，累计获得出块收益{trx}TRX",
   account_representative_voters_per_tip: "该选民投票数量占总得票的比例",
   account_representative_transfer_tip: "关联当前账户的TRX/10通证/ 20通证转账数",
-  account_representative_unit:'当前共{number}名选民',
+  account_representative_unit:'当前共{number}名选民，获得{votes}票',
   votes_cannot_exceed_5_SRs:"投票对象不能超过5个SR",
   freeze_TRX_error: "冻结TRX时出现问题，请稍后重试",
   account_piechart_title:'资产分布',
+  account_block:'出块',
 
   // 0227 torn sr
   sr_vote_team_information: "团队详情",

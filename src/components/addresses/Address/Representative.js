@@ -43,7 +43,10 @@ class Representative extends React.Component {
       walletReward,
       stats,
       blocksProduced,
-      hasPage
+      hasPage,
+      brokerage,
+      producedEfficiency,
+      blockReward
     } = this.props.data;
     let { intl, url } = this.props;
     let { votingEnabled, popup } = this.state;
@@ -68,7 +71,7 @@ class Representative extends React.Component {
               </th>
               <td>
                 <ul className="list-unstyled m-0 ">
-                  <li className="d-flex just-con mobile-no-flex">
+                  <li className="d-flex just-con mobile-no-flex flex-wrap">
                     <div>
                       <NavLink exact to={url}>
                         <span
@@ -123,7 +126,7 @@ class Representative extends React.Component {
               </th>
               <td>
                 <ul className="list-unstyled m-0">
-                  <li className="d-flex">
+                  <li className="d-flex flex-wrap">
                     <span>
                       <FormattedNumber
                         value={(balance + totalPower) / ONE_TRX}
@@ -216,7 +219,7 @@ class Representative extends React.Component {
                 <span className="ml-1">:</span>
               </th>
               <td>
-                <span>xxx</span>
+                    <span>{tu('account_representative_voter')}:{100-brokerage}% {tu('account_representative_owner')}:{brokerage}%</span>
               </td>
             </tr>
             <tr>
@@ -247,7 +250,7 @@ class Representative extends React.Component {
                 <span className="ml-1">:</span>
               </th>
               <td>
-                <span>xxx</span>
+                    <span>{producedEfficiency} %</span>
               </td>
             </tr>
             <tr>
@@ -258,10 +261,10 @@ class Representative extends React.Component {
                 <span className="ml-1">:</span>
               </th>
               <td>
-                <span>xxx</span>
+                <span>{blockReward} TRX ({tu('account_representative_voter')}: {(100-brokerage)*blockReward}% {tu('account_representative_owner')}: {brokerage*blockReward} %)</span>
               </td>
             </tr>
-            <tr>
+            {/* <tr>
               <th>
                 <span className="mr-1">
                   {tu("account_representative_vote_prize")}
@@ -269,9 +272,9 @@ class Representative extends React.Component {
                 <span className="ml-1">:</span>
               </th>
               <td>
-                <span>xxx</span>
+                <span>{blockReward} TRX ({tu('account_representative_voter')}: {(100-brokerage)*blockReward} % {tu('account_representative_owner')}: {brokerage*blockReward} %)</span>
               </td>
-            </tr>
+            </tr> */}
             <tr>
               <th className="line36">{tu("website")}:</th>
               <td>
@@ -426,7 +429,7 @@ class Representative extends React.Component {
 
   pieChart() {
     let { intl } = this.props;
-    let chartHeight = "300px";
+    let chartHeight = "350px";
     let { sortTokenBalances } = this.props.data;
     let data = [];
     sortTokenBalances.map(item => {

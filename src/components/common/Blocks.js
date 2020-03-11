@@ -26,7 +26,14 @@ class Blocks extends React.Component {
       pageSize: 25,
       totalVotes: 0,
       emptyState: props.emptyState,
-      timeType: true
+      timeType: true,
+      pagination: {
+        showQuickJumper: true,
+        position: "bottom",
+        showSizeChanger: true,
+        defaultPageSize: 20,
+        total: 0
+      },
     };
   }
 
@@ -58,7 +65,11 @@ class Blocks extends React.Component {
       page,
       blocks,
       total,
-      loading: false
+      loading: false,
+      pagination: {
+        ...this.state.pagination,
+        total
+      }
     });
   };
 
@@ -198,13 +209,6 @@ class Blocks extends React.Component {
       return <EmptyState />;
     }
 
-    let pagination = true;
-    const paginationStatus = pagination
-      ? {
-          total: total,
-          ...this.state.pagination
-        }
-      : pagination;
 
     return (
       <div className="token_black table_pos">
@@ -228,10 +232,10 @@ class Blocks extends React.Component {
           loading={loading}
           dataSource={blocks}
           columns={column}
-          pagination={paginationStatus}
+          pagination={this.state.pagination}
           onChange={(page, pageSize) => {
             console.log('page',page, pageSize)
-            this.load(page, pageSize);
+            this.load(page.current, page.pageSize);
           }}
         />
       </div>
