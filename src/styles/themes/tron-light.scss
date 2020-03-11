@@ -916,6 +916,18 @@
       }
     }
   }
+  // address-container
+  .address-container{
+    .ant-table-content{
+      .ant-table-thead > tr > th .anticon-filter, .ant-table-thead > tr > th .ant-table-filter-icon{
+        right: auto;
+      }
+      .ant-table-column-has-filters span, .ant-table-column-has-filters i{
+        color:#666 !important;
+      }
+    }
+  
+  }
 }
 
 .confirm .borderBottom {
