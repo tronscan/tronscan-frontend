@@ -96,17 +96,17 @@ class PriceProviderCmp extends React.PureComponent {
       BTC_Price = 0
     }
     if(dataEur){
-      EUR_Price = dataEur.TRX.quote.EUR.price
+      EUR_Price = parseFloat(dataEur.TRX.quote.EUR.price)
     }else{
       EUR_Price = 0
     }
     if(dataUSD){
-      USD_Price = dataUSD.TRX.quote.USD.price
+      USD_Price = parseFloat(dataUSD.TRX.quote.USD.price)
     }else{
       USD_Price = 0
     }
     if(dataEth){
-      ETH_Price = dataEth.TRX.quote.ETH.price
+      ETH_Price = parseFloat(dataEth.TRX.quote.ETH.price)
     }else{
       ETH_Price = 0
     }
