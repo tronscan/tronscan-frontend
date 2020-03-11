@@ -10,7 +10,7 @@ import Transfers from "./Transfers.js";
 import TokenInfo from "./TokenInfo.js";
 import BTTSupply from "./BTTSupply.js";
 import { Information } from "./Information.js";
-import { ONE_TRX, API_URL, IS_MAINNET } from "../../../constants";
+import { ONE_TRX, API_URL, IS_MAINNET,uuidv4 } from "../../../constants";
 import { login } from "../../../actions/app";
 import { reloadWallet } from "../../../actions/wallet";
 import { updateTokenInfo } from "../../../actions/tokenInfo";
@@ -89,6 +89,8 @@ class TokenDetail extends React.Component {
       this.loadToken(decodeURI(match.params.id));
     }
     this.MonitoringParameters()
+    console.log('t1 uuidv4 :',uuidv4);
+
   }
 
   componentDidUpdate(prevProps) {

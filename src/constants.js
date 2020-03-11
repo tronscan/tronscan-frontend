@@ -1,4 +1,5 @@
 import Lockr from "lockr";
+import uuidv4w  from "uuid/v4";
 /**
  * 1000000 sun = 1 TRX
  */
@@ -235,3 +236,4 @@ export const CONTRACT_LICENSES = [
 ];
 
 export const WARNING_VERSIONS = [];
+export const uuidv4 = uuidv4w();
