@@ -8,12 +8,6 @@ import { loginWithLedger } from "../../actions/app";
 import { tu, t } from "../../utils/i18n";
 import { withTronWeb } from "../../utils/tronWeb";
 
-export default
-@connect(null, {
-  loginWithLedger
-})
-@withRouter
-@withTronWeb
 class LedgerAccess extends Component {
   constructor(props) {
     super(props);
@@ -66,11 +60,11 @@ class LedgerAccess extends Component {
     tronWebLedger.defaultAddress = defaultAddress;
     this.props.loginWithLedger(address, tronWebLedger);
     history.push("/account");
-    window.gtag("event", "login", {
-      event_category: "Ledger",
-      event_label: this.props.account.address,
+    window.gtag("event", "Ledger", {
+      event_category: "Login",
+      event_label: address,
       referrer: window.location.origin,
-      value: this.props.account.address
+      value: address
     });
     onClose && onClose();
   };
@@ -181,3 +175,7 @@ class LedgerAccess extends Component {
     );
   }
 }
+
+export default connect(null, { 
+    loginWithLedger
+  })(withRouter(withTronWeb(LedgerAccess)))

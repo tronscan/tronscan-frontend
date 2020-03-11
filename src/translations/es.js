@@ -1566,6 +1566,11 @@ export const messages = {
   "propose_31": "Proponer modificar la recompensa de votación en bloque otorgadas a los 27 mejores SR y los siguientes 100 socios",
   "propose_32": "Proponer permitir que TVM soporte solidez 0.5.9",
   "propose_33": "Proponer modificar la relación objetivo de límite de recursos adaptativos",
+  "propose_34": "proponer modificar la tarifa de transacción basado en la dirección público cuando una transfiere sus fondos desde direcciones anónimas a direcciones públicas en una transacción anónima",
+  "propose_35": "Proponer prohibir fondo de TRX o de TRC20 convertir en el contrato inteligente de manera TransferContract y TransferAssetContract",
+  "propose_prohibit":"Prohibición",
+  "propose_not_prohibit":"No prohibir",
+  "propose_unprohibit":"No prohibir",
   "propose_unactivate": "No abierto",
   "propose_minute": "min",
   "propose_not_allowed": "No permitido",
@@ -2268,6 +2273,7 @@ export const messages = {
   "sun_propose_6": "Administre si el interruptor de incentivo para testigo en la cadena lateral está activado / desactivado",
   "sun_propose_7": "Métricas de distribución del grupo de incentivos de la cadena lateral",
   "sun_propose_8": "Proporción de ingresos del testigo en la cadena lateral",
+  sun_propose_12: "Propose to allow DAppChain 1.0.2 upgrade",
   "day":"día",
 
   "developers_username": "username",
@@ -2331,7 +2337,7 @@ export const messages = {
   "SR_rank": "Clasificación",
   "SR_blocksMissed": "Bloques perdidos",
   "SR_votes": "Votos",
-  "SR_voteRatio": "Ratio de intercambio de votos",
+  "SR_voteRatio": "Voting sharing ratio",
   "SR_normal":"Normal",
   "SR_avnormal":"Anormal",
    /*

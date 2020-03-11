@@ -150,7 +150,9 @@ class Proposal extends React.Component {
             'getChangeDelegation',
             'getWitness127PayPerBlock',
             'getAllowTvmSolidity059',
-            'getAdaptiveResourceLimitTargetRatio'
+            'getAdaptiveResourceLimitTargetRatio',
+            'getShieldedTransactionCreateAccountFee',
+            'getForbidTransferToContract',
         ];
 
         let sunsideArr = [
@@ -186,6 +188,10 @@ class Proposal extends React.Component {
                 id:'1000010',
                 key:'getPercentToPayWitness',
             },
+            {
+                id:'1000012',
+                key:'getUpdateGateway_v1_0_2',
+            }
 
         ]
         if(IS_MAINNET){
@@ -610,6 +616,26 @@ class Proposal extends React.Component {
                                                 <span>{ item.proposalVal }</span>
                                             </div>
                                         }
+                                        {
+                                            item.proposalKey == 'getShieldedTransactionCreateAccountFee' &&
+                                            <div className="mt-1">
+                                                <span>{ intl.formatMessage({id: 'propose_34'})}</span>
+                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                <span>{ item.proposalVal / ONE_TRX}</span> &nbsp;
+                                                <span>TRX</span>
+                                            </div>
+                                        }
+                                        {
+                                            item.proposalKey == 'getForbidTransferToContract' &&
+                                            <div>
+                                                <span>{ intl.formatMessage({id: 'propose_35'})}</span>
+                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                {
+                                                    item.proposalVal? <span>{tu('propose_prohibit')}</span>:
+                                                        <span>{tu('propose_not_prohibit')}</span>
+                                                }
+                                            </div>
+                                        }
                                     </div>:<div>
                                         {
                                             item.proposalKey == 'getChargingSwitch' && <div>
@@ -686,6 +712,17 @@ class Proposal extends React.Component {
                                                 }
                                             </div>
                                         }
+                                        {
+                                            item.proposalKey == 'getUpdateGateway_v1_0_2' &&
+                                            <div>
+                                                <span>{ intl.formatMessage({id: 'sun_propose_12'})}</span>
+                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                {
+                                                    item.proposalVal? <span>{tu('propose_allowed')}</span>:
+                                                        <span>{tu('propose_not_allowed')}</span>
+                                                }
+                                            </div>
+                                        }
                                     </div>
                                 }
                             </div>
@@ -702,7 +739,7 @@ class Proposal extends React.Component {
             title: upperFirst(intl.formatMessage({id: 'proposer'})),
             dataIndex: 'name',
             key: 'name',
-            width:'15%',
+            width:'20%',
             render: (text, record, index) => {
                 return ( record.proposer.name?
                     <AddressLink address={record.proposer.address}>{record.proposer.name}</AddressLink>:

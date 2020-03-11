@@ -272,7 +272,7 @@ export default class panelGroup extends Component {
                   {isExpand ? tu("collapse") : tu("expand")}
                   <Icon type={isExpand ? "caret-up" : "caret-down"} />
                 </span>
-                <div className="text-center mr-0 ml-0 mt-2">
+                <div className={isMobile ? "text-center mr-0 ml-0 mt-2" : "text-center mr-0 ml-0"}>
                   <div
                     className="col-12  card  pt-1 pl-0 pr-0"
                     style={{ border: "none", borderRadius: 0 }}

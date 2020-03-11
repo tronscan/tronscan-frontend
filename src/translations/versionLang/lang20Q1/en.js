@@ -189,13 +189,14 @@ export const lang20Q1 = {
   proposal_validate_text_0:"Please enter a value between 81-86400",
   proposal_validate_text_1:"Please enter a value between 0-100000000000",
   proposal_validate_text_2:"Please enter a value between 0-1000",
-  proposal_validate_text_3:"Please select allow/disallow",
+  proposal_validate_text_3:"Please select allow / disallow",
   proposal_validate_text_4:"Please enter a value",
   proposal_validate_text_5:"Please enter a value between 0-100000",
   proposal_validate_text_6:"Please select on / off",
   proposal_validate_text_7:"Please enter a value between 1-10000",
   proposal_validate_text_8:"Please enter a value between 1-1000",
   proposal_validate_text_9:"Please enter a value between 0-100000000000000000",
+  proposal_validate_text_10:"Please select ban / not ban",
   propose_not_activate:"Not Activate",
   proposal_value_same:"The new value is identical to the current one",
   go_to_proposals_list:"Vote for the proposal",
@@ -206,11 +207,30 @@ export const lang20Q1 = {
   full_node_version_latest_block:'Latest block',
   full_node_version_confirmed:'CONFIRMED',
   full_node_version_unconfirmed:'UNCONFIRMED',
+  // full_node_version_confirmed_tips:'Transactions confirmed by 19 or more blocks will be marked "CONFIRMED"，otherwise is“UNCONFIRMED” or "ROLLED BACK"',
   full_node_version_confirmed_tips:'Transactions confirmed by 19 or more SRs will be marked "confirmed"，or is“uncomfirmed”',
+
 
   // 2020-02-19
   chart_energy:'energy used',
   
   getAllowTvmSolidity059_tips:"Three new features of TVM (TRON Virtual Machine) will be opened: support for parallel signature verification, multi signature verification, and judge whether the address is the contract address.",
+
+
+
+   // 0227 torn sr
+  sr_vote_team_information:'Team information',
+  sr_vote_last_ranking:'Last Ranking',
+  sr_vote_last_votes:'Last Votes',
+  sr_vote_current_ranking:'Current Ranking',
+  sr_vote_current_vote:'Current Votes',
+  sr_vote_percent_note:'SR votes in the last round/all votes',
+
+  block_detail_confirmed_show:'confirmed by {num} blocks',
+  block_detail_confirmed_over_show:'confirmed by over 200 blocks',
+  block_detail_rolled_back:'ROLLED BACK',
+
+  freeze_TRX_error:"Something went wrong while trying to freeze TRX, please try again later.",
+  votes_cannot_exceed_5_SRs:"Votes cannot exceed 5 SRs",
 
 };

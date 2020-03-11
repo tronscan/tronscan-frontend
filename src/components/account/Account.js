@@ -996,7 +996,7 @@ export default class Account extends Component {
                 this.setState({
                   modal: (
                       <SweetAlert warning title={tu("Error")} onConfirm={this.hideModal}>
-                        Something went wrong while trying to freeze TRX
+                          {tu('freeze_TRX_error')}
                       </SweetAlert>
                   )
                 });
@@ -1908,7 +1908,7 @@ export default class Account extends Component {
             return
         }
         let {account, currentWallet, walletType} = this.props;
-        if (this.state.isTronLink === 1) {
+        if (this.state.isTronLink === 1 || this.props.walletType.type === "ACCOUNT_LEDGER") {
             let tronWeb;
             if (this.props.walletType.type === "ACCOUNT_LEDGER") {
                 tronWeb = this.props.tronWeb();

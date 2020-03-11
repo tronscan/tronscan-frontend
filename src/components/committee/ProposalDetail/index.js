@@ -64,7 +64,9 @@ class ProposalDetail extends React.Component {
             'getChangeDelegation',
             'getWitness127PayPerBlock',
             'getAllowTvmSolidity059',
-            'getAdaptiveResourceLimitTargetRatio'
+            'getAdaptiveResourceLimitTargetRatio',
+            'getShieldedTransactionCreateAccountFee',
+            'getForbidTransferToContract',
         ];
 
         let sunsideArr = [
@@ -100,7 +102,10 @@ class ProposalDetail extends React.Component {
                 id:'1000010',
                 key:'getPercentToPayWitness',
             },
-
+            {
+                id:'1000012',
+                key:'getUpdateGateway_v1_0_2',
+            }
         ]
         if(IS_MAINNET){
             for(let item in obj.paramters){
@@ -525,8 +530,26 @@ class ProposalDetail extends React.Component {
                                                                                         <span>{ item.proposalVal }</span>
                                                                                     </div>
                                                                                 }
-
-
+                                                                                {
+                                                                                    item.proposalKey == 'getShieldedTransactionCreateAccountFee' &&
+                                                                                    <div className="mt-1">
+                                                                                        <span>{ intl.formatMessage({id: 'propose_34'})}</span>
+                                                                                        <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                                                        <span>{ item.proposalVal / ONE_TRX}</span> &nbsp;
+                                                                                        <span>TRX</span>
+                                                                                    </div>
+                                                                                }
+                                                                                {
+                                                                                    item.proposalKey == 'getForbidTransferToContract' &&
+                                                                                    <div>
+                                                                                        <span>{ intl.formatMessage({id: 'propose_35'})}</span>
+                                                                                        <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                                                        {
+                                                                                            item.proposalVal? <span>{tu('propose_prohibit')}</span>:
+                                                                                                <span>{tu('propose_not_prohibit')}</span>
+                                                                                        }
+                                                                                    </div>
+                                                                                }
                                                                             </div>:<div>
                                                                                 {
                                                                                     item.proposalKey == 'getChargingSwitch' && <div>
@@ -600,6 +623,17 @@ class ProposalDetail extends React.Component {
                                                                                         <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
                                                                                         {
                                                                                             <span>{item.proposalVal} %</span>
+                                                                                        }
+                                                                                    </div>
+                                                                                }
+                                                                                {
+                                                                                    item.proposalKey == 'getUpdateGateway_v1_0_2' &&
+                                                                                    <div>
+                                                                                        <span>{ intl.formatMessage({id: 'sun_propose_12'})}</span>
+                                                                                        <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                                                        {
+                                                                                            item.proposalVal? <span>{tu('propose_allowed')}</span>:
+                                                                                                <span>{tu('propose_not_allowed')}</span>
                                                                                         }
                                                                                     </div>
                                                                                 }

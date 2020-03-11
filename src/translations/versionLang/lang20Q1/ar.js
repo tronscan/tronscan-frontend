@@ -198,6 +198,7 @@ export const lang20Q1 = {
   proposal_validate_text_7:"الرجاء إدخال قيمة بين 1-10000",
   proposal_validate_text_8:"الرجاء إدخال قيمة بين 1-1000",
   proposal_validate_text_9:"0-100000000000000000 الرجاء إدخال قيمة بين",
+  proposal_validate_text_10:"يرجى اختيار الحظر / ليس الحظر",
   propose_not_activate:"غير مفتوح",
   proposal_value_same:"القيمة المقترحة مماثلة للقيمة الحالية",
   go_to_proposals_list:"التصويت على الاقتراح",
@@ -207,11 +208,27 @@ export const lang20Q1 = {
   full_node_version_latest_block:'أحدث كتلة',
   full_node_version_confirmed:'CONFIRMED',
   full_node_version_unconfirmed:'UNCONFIRMED',
-  full_node_version_confirmed_tips:'"مؤكد" يعني تأكيده بـ 19 عقدًا أو أكثر ، وإلا فسيتم "التأكيد"',
+  full_node_version_confirmed_tips:'Transactions confirmed by 19 or more SRs will be marked "confirmed"，or is“uncomfirmed”',
+
 
   // 2020-02-19
   chart_energy:'الطاقة المستخدمة',
 
   getAllowTvmSolidity059_tips:"Three new features of TVM (TRON Virtual Machine) will be opened: support for parallel signature verification, multi signature verification, and judge whether the address is the contract address.",
+
+
+  // 0227 torn sr
+  sr_vote_team_information:'الفريق',
+  sr_vote_last_ranking:'الترتيب الأخير',
+  sr_vote_last_votes:'الأصوات الأخيرة',
+  sr_vote_current_ranking:'الترتيب الحالي',
+  sr_vote_current_vote:'الأصوات الحالية',
+  sr_vote_percent_note:'نسبة الأصوات التي تلقاها الممثل الممتاز في الجولة الأخيرة من التصويت',
+  
+  block_detail_confirmed_show:'confirmed by {num} blocks',
+  block_detail_confirmed_over_show:'confirmed by over 200 blocks',
+
+  freeze_TRX_error:"Something went wrong while trying to freeze TRX, please try again later.",
+  votes_cannot_exceed_5_SRs:"Votes cannot exceed 5 SRs",
 
 };

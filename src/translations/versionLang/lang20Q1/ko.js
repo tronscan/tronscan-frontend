@@ -196,6 +196,7 @@ export const lang20Q1 = {
   proposal_validate_text_7:"1-10000 사이의 수치를 입력하세요",
   proposal_validate_text_8:"1-1000 사이의 수치를 입력하세요",
   proposal_validate_text_9:"0-100000000000000000 사이의 수치를 입력하세요",
+  proposal_validate_text_10:"금지를 선택하십시오 / 금지하지 마십시오",
   propose_not_activate:"열지 않음",
   proposal_value_same:"새로운 수치는 현재 수치와 동일합니다",
   go_to_proposals_list:"제안에 투표",
@@ -204,11 +205,30 @@ export const lang20Q1 = {
   full_node_version_latest_block:'최신 블록',
   full_node_version_confirmed:'CONFIRMED',
   full_node_version_unconfirmed:'UNCONFIRMED',
-  full_node_version_confirmed_tips:'SR에서 확인 된 19 개가 넘는 트랜잭션이 "확인 됨"으로 표시되고 그렇지 않은 경우 "확인되지 않음"',
+  full_node_version_confirmed_tips:'Transactions confirmed by 19 or more SRs will be marked "confirmed"，or is“uncomfirmed”',
+
 
   // 2020-02-19
   chart_energy:'사용 된 에너지',
   getAllowTvmSolidity059_tips:"Three new features of TVM (TRON Virtual Machine) will be opened: support for parallel signature verification, multi signature verification, and judge whether the address is the contract address",
+
+
+  // 0227 torn sr
+  sr_vote_team_information:'도급 주다',
+  sr_vote_last_ranking:'마지막 순위',
+  sr_vote_last_votes:'마지막 투표',
+  sr_vote_current_ranking:'현재 순위',
+  sr_vote_current_vote:'현재 투표',
+  sr_vote_percent_note:'SR 이 전 라운드에서의 득표수 / 총 득표수',
+
+  block_detail_confirmed_show:'confirmed by {num} blocks',
+  block_detail_confirmed_over_show:'confirmed by over 200 blocks',
+  block_detail_rolled_back:'ROLLED BACK',
+
+  freeze_TRX_error:"Something went wrong while trying to freeze TRX, please try again later.",
+  votes_cannot_exceed_5_SRs:"Votes cannot exceed 5 SRs",
+  
+
 
 
 };

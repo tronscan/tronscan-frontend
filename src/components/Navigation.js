@@ -33,7 +33,7 @@ import {doSearch, getSearchType} from "../services/search"
 import {readFileContentsFromEvent} from "../services/file"
 import {decryptString, validatePrivateKey} from "../services/secureKey";
 import SweetAlert from "react-bootstrap-sweetalert";
-import {pkToAddress} from "@tronscan/client/src/utils/crypto";
+import {passwordToAddress,pkToAddress} from "@tronscan/client/src/utils/crypto";
 import Notifications from "./account/Notifications";
 import SendModal from "./transfer/Send/SendModal";
 import SendMultiModal from "./transfer/SendMulti/SendModal";
@@ -157,16 +157,17 @@ class Navigation extends React.Component {
 
   async loadTrxPrices() {
       var dataEur = Lockr.get("dataEur");
-  
       let eurURL = encodeURI(
-        `https://api.coinmarketcap.com/v1/ticker/tronix/?convert=EUR`
+       `https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=TRX&convert=USD` 
       );
-      
-      var { data: dataEurObj } = await xhr.get(
-          `${API_URL}/api/system/proxy?url=${eurURL}`
+      var { data: {data: dataEurObj} } = await xhr.post(
+          `${API_URL}/api/system/proxy`,
+          {
+            url:eurURL
+          }
       );
-      if (dataEurObj.length > 0) {
-        let percent_change_24h = dataEurObj[0].percent_change_24h;
+      if (dataEurObj.TRX) {
+        let percent_change_24h = dataEurObj.TRX.quote.USD.percent_change_24h.toFixed(2) || 0;
         this.setState({
           percent_change_24h
         });
@@ -251,6 +252,13 @@ class Navigation extends React.Component {
         if (tronWeb && tronWeb.defaultAddress.base58) {
           this.props.loginWithTronLink(tronWeb.defaultAddress.base58, tronWeb, sunWeb).then(() => {
             toastr.info(intl.formatMessage({id: 'success'}), intl.formatMessage({id: 'login_success'}));
+            window.gtag("event", "Tronlink", {
+              event_category: "Login",
+              event_label: tronWeb.defaultAddress.base58,
+              referrer: window.location.origin,
+              value: tronWeb.defaultAddress.base58
+            });
+
           });
           this.setState({address: tronWeb.defaultAddress.base58});
           clearInterval(timer)
@@ -276,13 +284,20 @@ class Navigation extends React.Component {
 
   login(e) {
     e.stopPropagation();
-    let {intl} = this.props;
+    let {intl, account} = this.props;
     let {privateKey} = this.state;
+    let address = pkToAddress(privateKey)
     if (trim(privateKey) === "external") {
       this.props.enableFlag("mobileLogin");
     } else {
       this.props.login(privateKey).then(() => {
         toastr.info(intl.formatMessage({id: 'success'}), intl.formatMessage({id: 'login_success'}));
+        window.gtag("event", "PrivateKey", {
+          event_category: "Login",
+          event_label: address,
+          referrer: window.location.origin,
+          value: address
+        });
       });
     }
   };
@@ -370,6 +385,12 @@ class Navigation extends React.Component {
         )
       });
       this.props.login(privateKey);
+      window.gtag("event", "KeystoreFile", {
+        event_category: "Login",
+        event_label: address,
+        referrer: window.location.origin,
+        value: address
+      });
     } else {
       this.setState({
         popup: (
@@ -670,6 +691,13 @@ class Navigation extends React.Component {
             intl.formatMessage({ id: "login_success" })
           );
           this.setState({ isImportAccount: false });
+        });
+
+        window.gtag("event", "Tronlink", {
+          event_category: "Login",
+          event_label: address,
+          referrer: window.location.origin,
+          value: address
         });
     }
   };
@@ -1355,11 +1383,10 @@ class Navigation extends React.Component {
                 </div>
                
               </div>
-             
             </div>
           </div>
           <div style={{boxShadow:"0 2px 40px 0 rgba(4,4,64,0.05)",background:"#F3F3F3"}}>
-            <div className="container  p-0 p-md-3">
+            <div className={isMobile ? "container p-0 p-md-3" : "container p-0 index-page-search-sec" }>
               <div className="row justify-content-center text-center">
                 <div className="col-12">
                   {

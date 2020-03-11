@@ -1770,6 +1770,11 @@ export const messages = {
   propose_31:"Propose to modify the block voting rewards given to the top 27 SRs and the following 100 partners",
   propose_32:"Propose to allow  TVM to support solidity 0.5.9",
   propose_33: "Propose to modify the adaptive resource limit target ratio",
+  propose_34: "Propose to modify the transaction fee on creating public address when transferring funds from shielded addresses to public addresses in shielded transaction",
+  propose_35: "Propose to ban transferring TRX and TRC10 tokens to smart contracts via TransferContract or TransferAssetContract",
+  propose_prohibit:"Ban",
+  propose_not_prohibit:"Not ban",
+  propose_unprohibit:"Not ban",
   propose_minute: "minute",
   propose_unactivate: "Not activated",
   propose_not_allowed: "Not allowed",
@@ -2550,6 +2555,8 @@ export const messages = {
     "Manage if the incentive switch for witness on the side chain is on/off ",
   sun_propose_7: "Distribution metrics of the side chain incentive pool",
   sun_propose_8: "Revenue ratio of witness on the side chain",
+
+  sun_propose_12: "Propose to allow DAppChain 1.0.2 upgrade",
   day: "day",
 
   developers_username: "username",
