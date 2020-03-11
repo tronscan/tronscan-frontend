@@ -232,4 +232,16 @@ export const lang20Q1 = {
    freeze_TRX_error:"Something went wrong while trying to freeze TRX, please try again later.",
    votes_cannot_exceed_5_SRs:"Votes cannot exceed 5 SRs",
 
+   // 03-09 tron account  transfers transactions internal-transactions
+
+    address_account_table_filter_all: "همه",
+    address_account_table_filter_transfers: "انتقال ",
+    address_account_table_filter_freeze: "فریز TRX.",
+    address_account_table_filter_unfreeze: "باز کردن از حالت فریز TRX.",
+    address_account_table_filter_trigger_smartContracts: "قراردادهای هوشمند Trigger.",
+    address_account_table_filter_vote: "رای",
+    address_account_table_filter_other: "other",
+
+    address_account_table_filter_token_tips: "The token is not included in TRONSCAN",
+
 };

@@ -229,6 +229,16 @@ export const lang20Q1 = {
   votes_cannot_exceed_5_SRs:"Votes cannot exceed 5 SRs",
   
 
+  // 03-09 tron account  transfers transactions internal-transactions
 
+  address_account_table_filter_all: "모두",
+  address_account_table_filter_transfers: "전송",
+  address_account_table_filter_freeze: "자산 동결",
+  address_account_table_filter_unfreeze: "자산 동결 해제",
+  address_account_table_filter_trigger_smartContracts: "스마트 계약 트리거",
+  address_account_table_filter_vote: "투표",
+  address_account_table_filter_other: "other",
+
+  address_account_table_filter_token_tips: "The token is not included in TRONSCAN",
 
 };

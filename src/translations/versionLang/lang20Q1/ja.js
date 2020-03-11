@@ -231,4 +231,17 @@ export const lang20Q1 = {
   votes_cannot_exceed_5_SRs:"Votes cannot exceed 5 SRs",
 
 
+
+  // 03-09 tron account  transfers transactions internal-transactions
+
+  address_account_table_filter_all: "すべて",
+  address_account_table_filter_transfers: "転送",
+  address_account_table_filter_freeze: "TRXフリーズ",
+  address_account_table_filter_unfreeze: "TRX凍結解除",
+  address_account_table_filter_trigger_smartContracts: "スマートコントラクトトリガー",
+  address_account_table_filter_vote: "投票",
+  address_account_table_filter_other: "other",
+
+  address_account_table_filter_token_tips: "The token is not included in TRONSCAN",
+
 };
