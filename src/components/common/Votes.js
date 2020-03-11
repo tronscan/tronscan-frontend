@@ -13,6 +13,8 @@ import {withTimers} from "../../utils/timing";
 import qs from 'qs'
 import {API_URL} from "../../constants";
 import { Table, Input, Button, Icon } from "antd";
+import {QuestionMark} from "../common/QuestionMark";
+
 
 class Votes extends React.Component {
 
@@ -108,8 +110,10 @@ class Votes extends React.Component {
         align: 'left',
         className: 'ant_table',
         render: (text, record, index) => {
-          return <Fragment><ExternalLink url={record.candidateUrl}/>
-            <span className="small"><AddressLink address={record.candidateAddress}/></span></Fragment>
+          return <Fragment>
+              <span className="small"><AddressLink address={text} style={{fontSize: '12px'}}>{record.candidateName || text}</AddressLink></span>
+              <ExternalLink url={record.candidateUrl}  style={{fontSize: '12px'}}/>
+            </Fragment>
         }
       },
       // {
@@ -136,7 +140,13 @@ class Votes extends React.Component {
         }
       },
       {
-        title: upperFirst(intl.formatMessage({id: 'voter_percentage'})),
+        title: (
+          <span>
+            {upperFirst(intl.formatMessage({id: 'voter_percentage'}))}
+            <span className="ml-2">
+              <QuestionMark placement="top" text="account_vote_self_percent_tip"/>
+            </span>
+          </span>),
         dataIndex: 'voter_percentage',
         key: 'voter_percentage',
         align: 'left',
@@ -148,7 +158,13 @@ class Votes extends React.Component {
         }
       },
       {
-        title: upperFirst(intl.formatMessage({id: 'percentage'})),
+        title: (
+          <span>
+            {upperFirst(intl.formatMessage({id: 'percentage'}))}
+            <span className="ml-2">
+              <QuestionMark placement="top" text="account_vote_total_percent_tip"/>
+            </span>
+          </span>),
         dataIndex: 'percentage',
         key: 'percentage',
         align: 'right',
@@ -158,6 +174,23 @@ class Votes extends React.Component {
                                             minimumFractionDigits={2}/>%</Fragment>
         }
       },
+      // {
+      //   title: (
+      //     <span>
+      //       {upperFirst(intl.formatMessage({id: 'account_vote_reward'}))}
+      //       <span className="ml-2">
+      //         <QuestionMark placement="top" text="account_vote_reward_tip"/>
+      //       </span>
+      //     </span>),
+      //   dataIndex: 'percentage',
+      //   key: 'percentage',
+      //   align: 'right',
+      //   className: 'ant_table',
+      //   render: (text, record, index) => {
+      //     return <Fragment><FormattedNumber value={(record.votes / totalVotes) * 100}
+      //                                       minimumFractionDigits={2}/>%</Fragment>
+      //   }
+      // },
     ];
 
     if (filter.voter) {
@@ -176,14 +209,14 @@ class Votes extends React.Component {
     let column = this.customizedColumn(filter);
     let {intl} = this.props;
     let tableInfo;
-    // if(filter.candidate) {
-    //   tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'voter_unit'});
-    // }
-    // if(filter.voter){
-    //   tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'table_info_big2'});
-    // }
+    if(filter.candidate) {
+      tableInfo = intl.formatMessage({id: 'account_vote_candidate_total'},{num:total,votes:totalVotes})
+    }
+    if(filter.voter){
+      tableInfo = intl.formatMessage({id: 'account_vote_voter_total'},{num:total})
+    }
 
-    tableInfo = intl.formatMessage({id: 'account_representative_unit'},{number:total})
+    
 
     if (!loading && votes.length === 0) {
       if (!EmptyState) {

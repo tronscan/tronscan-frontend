@@ -55,7 +55,7 @@ class Representative extends React.Component {
               </th>
               <td>
                 <ul className="list-unstyled m-0 ">
-                  <li className="d-flex just-con mobile-no-flex">
+                  <li className="d-flex just-con mobile-no-flex flex-wrap">
                     <div>
                       <NavLink exact to={url}>
                         <span
@@ -104,7 +104,7 @@ class Representative extends React.Component {
               </th>
               <td>
                 <ul className="list-unstyled m-0">
-                  <li className="d-flex">
+                  <li className="d-flex flex-wrap">
                     <span>
                       <FormattedNumber
                         value={(balance + totalPower) / ONE_TRX}

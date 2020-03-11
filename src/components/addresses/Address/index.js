@@ -5,7 +5,7 @@ import { NavLink, Route, Switch } from "react-router-dom";
 import { Client } from "../../../services/api";
 import { tu } from "../../../utils/i18n";
 import { FormattedNumber } from "react-intl";
-import TokenBalances from "./TokenBalances";
+import TokenBalances from "../components/TokenBalances";
 import MyContracts from "./Contracts";
 import { ONE_TRX } from "../../../constants";
 import { AddressLink, ExternalLink, HrefLink } from "../../common/Links";
@@ -35,6 +35,7 @@ import ApiClientAddress from "../../../services/addressApi";
 import { alpha } from "../../../utils/str";
 import Resource from "./Resource";
 import Representative from "./Representative";
+import SweetAlert from "react-bootstrap-sweetalert";
 
 BigNumber.config({ EXPONENTIAL_AT: [-1e9, 1e9] });
 
@@ -89,8 +90,8 @@ class Address extends React.Component {
       lastRanking: 0,
       lastCycleVotes: 0,
       changeVotes: 0,
-      changeRank:0
-    
+      changeRank:0,
+      modal: null
     };
   }
 
@@ -184,6 +185,50 @@ class Address extends React.Component {
     this.setState({ loading: true, address: { address: id }, media: null });
 
     let address = await Client.getAddress(id);
+
+    let sentDelegateBandwidth = 0;
+    if (address.delegated && address.delegated.sentDelegatedBandwidth) {
+      for (
+        let i = 0;
+        i < address.delegated.sentDelegatedBandwidth.length;
+        i++
+      ) {
+        sentDelegateBandwidth =
+          sentDelegateBandwidth +
+          address.delegated.sentDelegatedBandwidth[i][
+            "frozen_balance_for_bandwidth"
+          ];
+      }
+    }
+
+    let frozenBandwidth = 0;
+    if (address.frozen.balances.length > 0) {
+      frozenBandwidth = address.frozen.balances[0].amount;
+    }
+
+    let sentDelegateResource = 0;
+    if (address.delegated && address.delegated.sentDelegatedResource) {
+      for (let i = 0; i < address.delegated.sentDelegatedResource.length; i++) {
+        sentDelegateResource =
+          sentDelegateResource +
+          address.delegated.sentDelegatedResource[i][
+            "frozen_balance_for_energy"
+          ];
+      }
+    }
+
+    let frozenEnergy = 0;
+    if (address.accountResource.frozen_balance_for_energy.frozen_balance > 0) {
+      frozenEnergy =
+        address.accountResource.frozen_balance_for_energy.frozen_balance;
+    }
+
+    let totalPower =
+      sentDelegateBandwidth +
+      frozenBandwidth +
+      sentDelegateResource +
+      frozenEnergy;
+
     if (address.representative.enabled) {
       this.loadMedia(id);
     }
@@ -196,6 +241,8 @@ class Address extends React.Component {
           "https://s2.coinmarketcap.com/static/img/coins/64x64/1958.png";
         item.tokenType = "-";
         item.priceInTrx = 1;
+        item.available_amount = item.map_amount
+        item.map_amount += totalPower / ONE_TRX
       } else {
         item.tokenType = "TRC10";
       }
@@ -261,6 +308,44 @@ class Address extends React.Component {
         .startOf("day")
         .valueOf()
     });
+
+    
+    
+    this.setState({
+      totalPower: totalPower,
+      TRXBalanceTotal: TRXBalance + totalPower / ONE_TRX,
+      netUsed: address.bandwidth.netUsed + address.bandwidth.freeNetUsed,
+      netLimit: address.bandwidth.netLimit + address.bandwidth.freeNetLimit,
+      netRemaining:
+        address.bandwidth.netRemaining + address.bandwidth.freeNetRemaining,
+      bandWidthPercentage:
+        ((address.bandwidth.netUsed + address.bandwidth.freeNetUsed) /
+          (address.bandwidth.netLimit + address.bandwidth.freeNetLimit)) *
+        100,
+      availableBandWidthPercentage:
+        (1 -
+          (address.bandwidth.netUsed + address.bandwidth.freeNetUsed) /
+            (address.bandwidth.netLimit + address.bandwidth.freeNetLimit)) *
+        100,
+      energyUsed: address.bandwidth.energyUsed,
+      energyLimit: address.bandwidth.energyLimit,
+      energyRemaining:
+        address.bandwidth.energyRemaining >= 0
+          ? address.bandwidth.energyRemaining
+          : 0,
+      energyPercentage: address.bandwidth.energyPercentage * 100,
+      availableEnergyPercentage:
+        address.bandwidth.energyRemaining > 0
+          ? (1 - address.bandwidth.energyPercentage) * 100
+          : 0,
+      sentDelegateBandwidth,
+      frozenBandwidth,
+      sentDelegateResource,
+      frozenEnergy,
+      TRXBalance,
+      balance: address.balance
+    });
+
     if (address.representative.enabled) {
       this.setState(prevProps => ({
         loading: false,
@@ -276,7 +361,7 @@ class Address extends React.Component {
             path: "",
             label: <span>{tu("token_balances")}</span>,
             cmp: () => (
-              <TokenBalances tokenBalances={tokenBalances} intl={intl} />
+              <TokenBalances tokenBalances={tokenBalances} frozen={totalPower} intl={intl} />
             )
           },
           transfers: {
@@ -390,7 +475,7 @@ class Address extends React.Component {
             path: "",
             label: <span>{tu("token_balances")}</span>,
             cmp: () => (
-              <TokenBalances tokenBalances={tokenBalances} intl={intl} />
+              <TokenBalances tokenBalances={tokenBalances} frozen={totalPower} intl={intl} />
             )
           },
           transfers: {
@@ -466,83 +551,7 @@ class Address extends React.Component {
       }));
     }
 
-    let sentDelegateBandwidth = 0;
-    if (address.delegated && address.delegated.sentDelegatedBandwidth) {
-      for (
-        let i = 0;
-        i < address.delegated.sentDelegatedBandwidth.length;
-        i++
-      ) {
-        sentDelegateBandwidth =
-          sentDelegateBandwidth +
-          address.delegated.sentDelegatedBandwidth[i][
-            "frozen_balance_for_bandwidth"
-          ];
-      }
-    }
 
-    let frozenBandwidth = 0;
-    if (address.frozen.balances.length > 0) {
-      frozenBandwidth = address.frozen.balances[0].amount;
-    }
-
-    let sentDelegateResource = 0;
-    if (address.delegated && address.delegated.sentDelegatedResource) {
-      for (let i = 0; i < address.delegated.sentDelegatedResource.length; i++) {
-        sentDelegateResource =
-          sentDelegateResource +
-          address.delegated.sentDelegatedResource[i][
-            "frozen_balance_for_energy"
-          ];
-      }
-    }
-
-    let frozenEnergy = 0;
-    if (address.accountResource.frozen_balance_for_energy.frozen_balance > 0) {
-      frozenEnergy =
-        address.accountResource.frozen_balance_for_energy.frozen_balance;
-    }
-
-    let totalPower =
-      sentDelegateBandwidth +
-      frozenBandwidth +
-      sentDelegateResource +
-      frozenEnergy;
-
-    this.setState({
-      totalPower: totalPower,
-      TRXBalanceTotal: TRXBalance + totalPower / ONE_TRX,
-      netUsed: address.bandwidth.netUsed + address.bandwidth.freeNetUsed,
-      netLimit: address.bandwidth.netLimit + address.bandwidth.freeNetLimit,
-      netRemaining:
-        address.bandwidth.netRemaining + address.bandwidth.freeNetRemaining,
-      bandWidthPercentage:
-        ((address.bandwidth.netUsed + address.bandwidth.freeNetUsed) /
-          (address.bandwidth.netLimit + address.bandwidth.freeNetLimit)) *
-        100,
-      availableBandWidthPercentage:
-        (1 -
-          (address.bandwidth.netUsed + address.bandwidth.freeNetUsed) /
-            (address.bandwidth.netLimit + address.bandwidth.freeNetLimit)) *
-        100,
-      energyUsed: address.bandwidth.energyUsed,
-      energyLimit: address.bandwidth.energyLimit,
-      energyRemaining:
-        address.bandwidth.energyRemaining >= 0
-          ? address.bandwidth.energyRemaining
-          : 0,
-      energyPercentage: address.bandwidth.energyPercentage * 100,
-      availableEnergyPercentage:
-        address.bandwidth.energyRemaining > 0
-          ? (1 - address.bandwidth.energyPercentage) * 100
-          : 0,
-      sentDelegateBandwidth,
-      frozenBandwidth,
-      sentDelegateResource,
-      frozenEnergy,
-      TRXBalance,
-      balance: address.balance
-    });
   }
 
   async loadWitness(id) {
@@ -734,6 +743,56 @@ class Address extends React.Component {
   scrollToAnchor = () => {
     window.scrollTo(0, 800);
   };
+  hideModal = () => {
+    this.setState({
+      modal: null,
+    });
+  };
+  // account claim rewards
+  accountClaimRewards = async () => {
+    let res,hashid;
+    let {account, currentWallet, walletType} = this.props;
+    let {reward} = this.state;
+    if(!reward){
+       return
+    }
+
+    //let tronWeb = account.tronWeb;
+    let tronWeb;
+    if (this.props.walletType.type === "ACCOUNT_LEDGER") {
+        tronWeb = this.props.tronWeb();
+    } else {
+        tronWeb = account.tronWeb;
+    }
+    const unSignTransaction = await tronWeb.transactionBuilder.withdrawBlockRewards(walletType.address).catch(e => false);
+    const {result} = await transactionResultManager(unSignTransaction, tronWeb)
+    res = result;
+    //hashid = txid
+
+    if (res) {
+        this.setState({
+            modal: (
+                <SweetAlert success title={tu("rewards_claimed_submitted")} onConfirm={this.hideModal}>
+                    {/*<div>*/}
+                        {/*{tu("rewards_claimed_hash")}*/}
+                        {/*<span className="SweetAlert_hashid">{hashid}</span>*/}
+                    {/*</div>*/}
+                    {/*<br/>*/}
+                    {tu("rewards_claimed_hash_await")}
+                </SweetAlert>
+            )
+        });
+    } else {
+        this.setState({
+            modal: (
+                <SweetAlert danger title={tu("could_not_claim_rewards")} onConfirm={this.hideModal}>
+                    {tu("claim_rewards_error_message")}
+                </SweetAlert>
+            )
+        });
+    }
+};
+
   render() {
     let {
       totalPower,

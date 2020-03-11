@@ -5311,3 +5311,30 @@ h5 {
   white-space: normal;
   // word-wrap: break-word;
 }
+.token-balance-wrap{
+  .ant-switch{
+    width: 35px;
+    margin-top: 3px;
+  }
+  .ant-table table{
+    tr{
+      td{
+        border-bottom: 0;
+      }
+    }
+  }
+}
+.list-filter{
+  &.ant-dropdown-menu{
+    padding: 0;
+    .ant-dropdown-menu-item{
+      width: 93px;
+      color: #999999;
+      line-height: 30px;
+      &.active,&:hover{
+        color: #666666;
+        background: #F3F3F3;
+      }
+    }
+  }
+}

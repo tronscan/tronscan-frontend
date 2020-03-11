@@ -234,6 +234,13 @@ export const lang20Q1 = {
   account_trade_count_tip: "当前地址关联的交易数量",
   account_more: "查看更多",
   account_lastDay_count: "昨日新增账户数",
+  account_all: "全部",
+  account_vote_reward: "累计获得奖励",
+  account_vote_voter_total: "当前为{num}位超级代表投过票",
+  account_vote_candidate_total: "共{num}个选民，累计获得{votes}票",
+  account_vote_self_percent_tip: "为该超级节点投票的数量占自身总票数的比例",
+  account_vote_total_percent_tip: "该账户为此超级代表投票的数量占该超级代表总票数的比例",
+  account_vote_reward_tip: "为该超级代表投票累计获得的收益",
 
 
   // 2020-03-03
