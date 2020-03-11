@@ -275,4 +275,29 @@ export const lang20Q1 = {
   block_detail_confirmed_over_show: "超过200个区块已确认",
   block_detail_rolled_back: "已回退",
 
+  // 03-09 tron account  transfers transactions internal-transactions
+
+  address_account_table_filter_all: "全选",
+  address_account_table_filter_transfers: "转账",
+  address_account_table_filter_freeze: "冻结资产",
+  address_account_table_filter_unfreeze: "解冻资产",
+  address_account_table_filter_trigger_smartContracts: "触发智能合约",
+  address_account_table_filter_vote: "投票",
+  address_account_table_filter_other: "其他",
+
+  address_account_table_filter_token_tips: "该通证未在TRONSCAN收录",
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 };

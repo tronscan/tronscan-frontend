@@ -257,7 +257,7 @@ class TransfersAll extends React.Component {
                 }
             },
             {
-                title: upperFirst(intl.formatMessage({id: 'initiate_address'})),
+                title: upperFirst(intl.formatMessage({id: 'from'})),
                 dataIndex: 'owner_address',
                 key: 'owner_address',
                 align: 'left',
@@ -275,25 +275,47 @@ class TransfersAll extends React.Component {
 
                 }
             },
-            // {
-            //     title: upperFirst(intl.formatMessage({id: 'to'})),
-            //     dataIndex: 'to_address',
-            //     key: 'to_address',
-            //     align: 'left',
-            //     className: 'ant_table address_max_width',
-            //     width: '9%',
-            //     render: (text, record, index) => {
-            //         return record.totip?
-            //             <AddressLink address={text}>{text}</AddressLink>:
-            //             <TruncateAddress>{text}</TruncateAddress>
-            //     }
-            // },
+            {
+                title: (
+                    <span>
+                       {upperFirst(intl.formatMessage({id: 'address_transfer_in'}))} |{' '} 
+                       {upperFirst(intl.formatMessage({id: 'address_transfer_out'}))}
+                    </span>
+                ),
+                dataIndex: 'to_address',
+                key: 'to_address',
+                align: 'center',
+                className: 'ant_table address_max_width',
+                width: '10%',
+                filters: [
+                    { text: 'Joe', value: 'Joe' },
+                    { text: 'Jim', value: 'Jim' },
+                ],
+                filterIcon: () => {
+                    return (
+                        <Icon type="down" onVisibleChange={() => this.onVisibleChange()} style={{fontSize:12,color:'#666'}}  theme="outlined" />
+                    );
+                },
+                render: (text, record, index) => {
+                    return record.fromtip?<img width={40} height={22} src={require("../../images/address/in.png")}/>:<img  width={40} height={22} src={require("../../images/address/out.png")}/>
+                }
+            },
+           
             {
                 title: upperFirst(intl.formatMessage({id: 'status'})),
                 dataIndex: 'status',
                 key: 'status',
                 width: activeLanguage === 'zh' ?'10%' :"17%",
                 align: 'left',
+                filters: [
+                    { text: 'Joe', value: 'Joe' },
+                    { text: 'Jim', value: 'Jim' },
+                ],
+                filterIcon: () => {
+                    return (
+                        <Icon type="down" onVisibleChange={() => this.onVisibleChange()} style={{fontSize:12,color:'#666'}}  theme="outlined" />
+                    );
+                },
                 className: 'ant_table',
                 render: (text, record, index) => {
                     return (
@@ -315,6 +337,15 @@ class TransfersAll extends React.Component {
                 align: 'left',
                 className: 'ant_table',
                 width: '11%',
+                filters: [
+                    { text: 'Joe', value: 'Joe' },
+                    { text: 'Jim', value: 'Jim' },
+                ],
+                filterIcon: () => {
+                    return (
+                        <Icon type="down" onVisibleChange={() => this.onVisibleChange()} style={{fontSize:12,color:'#666'}}  theme="outlined" />
+                    );
+                },
                 render: (text, record, index) => {
                     return <span>{text}</span>
                 }
@@ -335,6 +366,15 @@ class TransfersAll extends React.Component {
                 key: 'map_token_name',
                 width: '10%',
                 align: 'left',
+                filters: [
+                    { text: 'Joe', value: 'Joe' },
+                    { text: 'Jim', value: 'Jim' },
+                ],
+                filterIcon: () => {
+                    return (
+                        <Icon type="down" onVisibleChange={() => this.onVisibleChange()} style={{fontSize:12,color:'#666'}}  theme="outlined" />
+                    );
+                },
                 className: 'ant_table',
                 render: (text, record, index) => {
                     return (
