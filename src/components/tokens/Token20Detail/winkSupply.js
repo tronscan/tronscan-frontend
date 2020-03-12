@@ -92,14 +92,21 @@ class BTTSupply extends React.Component {
         let BTCData= await xhr.post(`${API_URL}/api/system/proxy`,{
             url:BTCWinkTronbetURL
         });
-        let trxPriceDataUSD = USDData.data.data.WINK.quote.USD;
-        let trxPriceDataBTC = BTCData.data.data.WINK.quote.BTC;
-    
-        let priceUSD = ((parseFloat(trxPriceDataUSD.price))*1000).toFixed(3);
-        let  x = new BigNumber(trxPriceDataBTC.price);
+        let trxPriceDataUSD = USDData.data && 
+        USDData.data.data.WINK && 
+        USDData.data.data.WINK.quote &&
+        USDData.data.data.WINK.quote.USD &&
+        USDData.data.data.WINK.quote.USD.price;
+        let trxPriceDataBTC = BTCData.data && 
+        BTCData.data.data.WINK && 
+        BTCData.data.data.WINK.quote &&
+        BTCData.data.data.WINK.quote.BTC &&
+        BTCData.data.data.WINK.quote.BTC.price
+        let priceUSD = ((parseFloat(trxPriceDataUSD))*1000).toFixed(3);
+        let  x = new BigNumber(trxPriceDataBTC);
         let priceBTC = x.multipliedBy(1000).decimalPlaces(5).toNumber();
     
-        let marketCapitalization = ((parseFloat(trxPriceDataUSD.price)*(funds.totalTurnOver))).toFixed(2);
+        let marketCapitalization = ((parseFloat(trxPriceDataUSD)*(funds.totalTurnOver))).toFixed(2);
 
         this.setState({
             supplyTypesChart: supplyTypesChartData,
