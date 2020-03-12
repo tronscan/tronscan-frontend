@@ -189,7 +189,7 @@ class TransfersAll extends React.Component {
                 dataIndex: 'hash',
                 key: 'hash',
                 align: 'left',
-                width: '9%',
+                width: '8%',
                 className: 'ant_table',
                 render: (text, record, index) => {
                     return <Truncate>
@@ -205,7 +205,7 @@ class TransfersAll extends React.Component {
                 key: 'block',
                 align: 'left',
                 className: 'ant_table',
-                width: '9%',
+                width: '10%',
                 render: (text, record, index) => {
                     return <BlockNumberLink number={record.block}/>
                 }
@@ -234,7 +234,7 @@ class TransfersAll extends React.Component {
                 key: 'date_created',
                 align: 'left',
                 className: 'ant_table',
-                width: '14%',
+                width: '16%',
                 render: (text, record, index) => {
                     return(
                         <div>
@@ -262,7 +262,7 @@ class TransfersAll extends React.Component {
                 key: 'owner_address',
                 align: 'left',
                 className: 'ant_table address_max_width',
-                width: '12%',
+                width: '9%',
                 render: (text, record, index) => {
                     return <div>
                         {
@@ -282,8 +282,8 @@ class TransfersAll extends React.Component {
                        {upperFirst(intl.formatMessage({id: 'address_transfer_out'}))}
                     </span>
                 ),
-                dataIndex: 'to_address',
-                key: 'to_address',
+                dataIndex: 'address_transfer_out',
+                key: 'address_transfer_out',
                 align: 'center',
                 className: 'ant_table address_max_width',
                 width: '10%',
@@ -293,14 +293,26 @@ class TransfersAll extends React.Component {
                 ],
                 filterIcon: () => {
                     return (
-                        <Icon type="down" onVisibleChange={() => this.onVisibleChange()} style={{fontSize:12,color:'#666'}}  theme="outlined" />
+                        <Icon type="down"  style={{fontSize:12,color:'#666'}}  theme="outlined" />
                     );
                 },
                 render: (text, record, index) => {
                     return record.fromtip?<img width={40} height={22} src={require("../../images/address/in.png")}/>:<img  width={40} height={22} src={require("../../images/address/out.png")}/>
                 }
             },
-           
+            {
+                title: upperFirst(intl.formatMessage({id: 'to'})),
+                dataIndex: 'to_address',
+                key: 'to_address',
+                align: 'left',
+                className: 'ant_table address_max_width',
+                width: '9%',
+                render: (text, record, index) => {
+                    return record.totip?
+                        <AddressLink address={text}>{text}</AddressLink>:
+                        <TruncateAddress>{text}</TruncateAddress>
+                }
+            },
             {
                 title: upperFirst(intl.formatMessage({id: 'status'})),
                 dataIndex: 'status',
@@ -313,7 +325,7 @@ class TransfersAll extends React.Component {
                 ],
                 filterIcon: () => {
                     return (
-                        <Icon type="down" onVisibleChange={() => this.onVisibleChange()} style={{fontSize:12,color:'#666'}}  theme="outlined" />
+                        <Icon type="down" style={{fontSize:12,color:'#666'}}  theme="outlined" />
                     );
                 },
                 className: 'ant_table',
@@ -343,7 +355,7 @@ class TransfersAll extends React.Component {
                 ],
                 filterIcon: () => {
                     return (
-                        <Icon type="down" onVisibleChange={() => this.onVisibleChange()} style={{fontSize:12,color:'#666'}}  theme="outlined" />
+                        <Icon type="down" style={{fontSize:12,color:'#666'}}  theme="outlined" />
                     );
                 },
                 render: (text, record, index) => {
@@ -372,7 +384,7 @@ class TransfersAll extends React.Component {
                 ],
                 filterIcon: () => {
                     return (
-                        <Icon type="down" onVisibleChange={() => this.onVisibleChange()} style={{fontSize:12,color:'#666'}}  theme="outlined" />
+                        <Icon type="down"  style={{fontSize:12,color:'#666'}}  theme="outlined" />
                     );
                 },
                 className: 'ant_table',

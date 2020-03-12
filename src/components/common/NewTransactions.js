@@ -202,19 +202,6 @@ class NewTransactions extends React.Component {
         });
     }
 
-    onVisibleChange = (key) => { //Tooltip 显示隐藏的回调,类似onmouseenter 进入离开事件，用来显示我们不同的信息提醒
-        let str = '';
-        switch (key) {
-            case 1:
-            str = '你的姓名';
-            default:
-            break;
-        }
-        this.setState({
-          filterTitleKey: str,
-        });
-    }
-
     customizedColumn = (activeLanguage) => {
         let {intl,filter} = this.props;
         let { timeType } = this.state;
@@ -332,7 +319,7 @@ class NewTransactions extends React.Component {
                 ],
                 filterIcon: () => {
                     return (
-                        <Icon type="down" onVisibleChange={() => this.onVisibleChange()} style={{fontSize:12,color:'#666'}}  theme="outlined" />
+                        <Icon type="down" style={{fontSize:12,color:'#666'}}  theme="outlined" />
                     );
                 },
                 // onFilter: (value, record) => record.name.includes(value),
@@ -353,7 +340,7 @@ class NewTransactions extends React.Component {
                 ],
                 filterIcon: () => {
                     return (
-                        <Icon type="down" onVisibleChange={() => this.onVisibleChange()} style={{fontSize:12,color:'#666'}}  theme="outlined" />
+                        <Icon type="down" style={{fontSize:12,color:'#666'}}  theme="outlined" />
                     );
                 },
                 className: 'ant_table',
@@ -383,7 +370,7 @@ class NewTransactions extends React.Component {
                 ],
                 filterIcon: () => {
                     return (
-                        <Icon type="down" onVisibleChange={() => this.onVisibleChange()} style={{fontSize:12,color:'#666'}}  theme="outlined" />
+                        <Icon type="down"  style={{fontSize:12,color:'#666'}}  theme="outlined" />
                     );
                 },
                 render: (text, record, index) => {
@@ -433,7 +420,7 @@ class NewTransactions extends React.Component {
                 ],
                 filterIcon: () => {
                     return (
-                        <Icon type="down" onVisibleChange={() => this.onVisibleChange()} style={{fontSize:12,color:'#666'}}  theme="outlined" />
+                        <Icon type="down" style={{fontSize:12,color:'#666'}}  theme="outlined" />
                     );
                 },
                 render: (text, record, index) => {
