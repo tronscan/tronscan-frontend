@@ -228,7 +228,41 @@ export const lang20Q1 = {
   freeze_TRX_error:"Something went wrong while trying to freeze TRX, please try again later.",
   votes_cannot_exceed_5_SRs:"Votes cannot exceed 5 SRs",
   
+  // 2020-03-03
+  account_resource_last: "이전 라운드",
+  account_resource_realTime: "본 라운드",
+  account_resource_remain: "剩余",
+  account_resource_last_tip: "이전 라운드의 득표수와 순위",
+  account_resource_realTime_tip: "본 라운드의 득표수와 순위",
+  account_representative_block_ratio: "블록 생성 효율",
+  account_representative_block_ratio_tip: "생성된 블록 / 생성가능 블록",
+  account_representative_block_prize: "누적 블록생성 리워드",
+  account_representative_vote_prize: "누적 투표 리워드",
+  account_representative_split_ratio: "분배 비율",
+  account_representative_split_ratio_tip:
+    "총 리워드는 투표자 인센티브와 슈퍼대표 리워드로 구성됩니다",
+  account_representative_voter: "투표자 리워드",
+  account_representative_owner: "슈퍼대표 리워드",
+  account_representative_block_table_res: "资源消耗",
+  account_representative_block_table_prize: "出块收益",
+  account_representative_block_desc:
+    "누적 {block}블록 생성으로 {trx} TRX 획득",
+  account_representative_voters_per_tip: "투표자의 투표수 / 총 투표 수",
+  account_representative_transfer_tip: "본 계정의 TRX/TRX10/TRX20 거래횟수 ",
+  account_representative_unit:'{number} 명에 의해 {votes} 표를 받음',
+  account_piechart_title:'자산 분배',
 
+  // 03-09 tron account  transfers transactions internal-transactions
+  address_account_tab_search_tips:"주소 / 거래 해시 / 토큰",
 
+  address_account_table_filter_all: "모두",
+  address_account_table_filter_transfers: "전송",
+  address_account_table_filter_freeze: "자산 동결",
+  address_account_table_filter_unfreeze: "자산 동결 해제",
+  address_account_table_filter_trigger_smartContracts: "스마트 계약 트리거",
+  address_account_table_filter_vote: "투표",
+  address_account_table_filter_other: "other",
+
+  address_account_table_filter_token_tips: "The token is not included in TRONSCAN",
 
 };

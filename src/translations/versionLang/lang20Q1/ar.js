@@ -231,4 +231,41 @@ export const lang20Q1 = {
   freeze_TRX_error:"Something went wrong while trying to freeze TRX, please try again later.",
   votes_cannot_exceed_5_SRs:"Votes cannot exceed 5 SRs",
 
+  // 2020-03-03
+  account_resource_last: "الجولة الأخيرة",
+  account_resource_realTime: "الجولة الحالية",
+  account_resource_remain: "剩余",
+  account_resource_last_tip: "عدد الأصوات المستلمة وترتيب التصنيف في جولة التصويت الأخيرة",
+  account_resource_realTime_tip: "عدد الأصوات المستلمة في الوقت الفعلي لجولة التصويت الحالية مع الترتيب في الوقت الحقيقي",
+  account_representative_block_ratio: "كفاءة الإنتاج للكتل",
+  account_representative_block_ratio_tip: "نسبة العدد الفعلي للكتل على عدد الكتل التي يجب إنتاجها",
+  account_representative_block_prize: "المكافآت التراكمية للكتلة ",
+  account_representative_vote_prize: "المكافآت التراكمية للناخب",
+  account_representative_split_ratio: "نسبة توزيع المكافآت",
+  account_representative_split_ratio_tip:
+    "تتكون المكافآت الإجمالية من مكافآت الناخبين ومكافآت الممثل الممتاز",
+  account_representative_voter: "مكافآت التصويت",
+  account_representative_owner: "مكافآت الممثل الممتاز",
+  account_representative_block_table_res: "资源消耗",
+  account_representative_block_table_prize: "出块收益",
+  account_representative_block_desc:
+    "العائد الكلي للكتل TRX {trx} ، من {block} للكتل المنتجة",
+  account_representative_voters_per_tip: "الأصوات التي أدلى بها الناخب / مجموع الأصوات",
+  account_representative_transfer_tip: "عدد عمليات التحويلات الرمزية لكل من TRX / TRC10 / TRC20 المتعلقة بهذا الحساب",
+  account_representative_unit:'يوجد حاليا {number} ناخب ، حصل على {votes} صوت',
+  account_piechart_title:'توزيع الأصول',
+  
+  // 03-09 tron account  transfers transactions internal-transactions
+  address_account_tab_search_tips:  "معاملة التجزئة / الرمز المميز / كتلة",
+
+  address_account_table_filter_all: "الكل",
+  address_account_table_filter_transfers: "تحويل ",
+  address_account_table_filter_freeze: "تجميد TRX",
+  address_account_table_filter_unfreeze: "إلغاء تجميد TRX",
+  address_account_table_filter_trigger_smartContracts: "مشغل  العقود الذكية",
+  address_account_table_filter_vote: "تصويت",
+  address_account_table_filter_other: "other",
+
+  address_account_table_filter_token_tips: "The token is not included in TRONSCAN",
+
 };

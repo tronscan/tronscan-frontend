@@ -26,7 +26,14 @@ class Blocks extends React.Component {
       pageSize: 25,
       totalVotes: 0,
       emptyState: props.emptyState,
-      timeType: true
+      timeType: true,
+      pagination: {
+        showQuickJumper: true,
+        position: "bottom",
+        showSizeChanger: true,
+        defaultPageSize: 20,
+        total: 0
+      },
     };
   }
 
@@ -58,7 +65,11 @@ class Blocks extends React.Component {
       page,
       blocks,
       total,
-      loading: false
+      loading: false,
+      pagination: {
+        ...this.state.pagination,
+        total
+      }
     });
   };
 
@@ -144,11 +155,11 @@ class Blocks extends React.Component {
         title: upperFirst(
           intl.formatMessage({ id: "account_representative_block_table_res" })
         ),
-        key: "nrOfTrx1",
+        key: "netUsage",
         align: "left",
         className: "ant_table",
         render: (text, record, index) => {
-          return <FormattedNumber value={text} />;
+        return (<span><FormattedNumber value={record.netUsage} /> {tu('bandwidth')} / <FormattedNumber value={record.energyUsage} /> {tu('energy')}</span> ) ;
         }
       },
       {
@@ -165,7 +176,7 @@ class Blocks extends React.Component {
         title: upperFirst(
           intl.formatMessage({ id: "account_representative_block_table_prize" })
         ),
-        key: "nrOfTrx2",
+        key: "blockReward",
         align: "left",
         className: "ant_table",
         render: (text, record, index) => {
@@ -187,7 +198,7 @@ class Blocks extends React.Component {
     let column = this.customizedColumn();
     let { intl } = this.props;
     let tableInfo = 
-      intl.formatMessage({ id: "account_representative_block_desc" },{block:total,trx:total});
+      intl.formatMessage({ id: "account_representative_block_desc" },{block:total,trx:this.props.blockReward});
 
     if (!loading && blocks.length === 0) {
       if (!EmptyState) {
@@ -198,13 +209,6 @@ class Blocks extends React.Component {
       return <EmptyState />;
     }
 
-    let pagination = true;
-    const paginationStatus = pagination
-      ? {
-          total: total,
-          ...this.state.pagination
-        }
-      : pagination;
 
     return (
       <div className="token_black table_pos">
@@ -228,10 +232,10 @@ class Blocks extends React.Component {
           loading={loading}
           dataSource={blocks}
           columns={column}
-          pagination={paginationStatus}
+          pagination={this.state.pagination}
           onChange={(page, pageSize) => {
             console.log('page',page, pageSize)
-            this.load(page, pageSize);
+            this.load(page.current, page.pageSize);
           }}
         />
       </div>

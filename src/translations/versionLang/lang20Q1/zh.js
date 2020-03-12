@@ -136,7 +136,7 @@ export const lang20Q1 = {
   full_node_version_confirmed:'已确认',
   full_node_version_unconfirmed:'待确认',
   // full_node_version_confirmed_tips:'“已确认”是指被19个及以上区块确认，否则为“待确认”或“已回退”',
-  full_node_version_confirmed_tips:'“已确认”是指被19个及以上超级节点确认，否则为“待确认”',
+  full_node_version_confirmed_tips:'“已确认”是指被19个及以上超级代表确认，否则为“待确认”',
 
 
   // 2020-02-19
@@ -295,5 +295,33 @@ export const lang20Q1 = {
   block_detail_confirmed_show: "{num}个区块已确认",
   block_detail_confirmed_over_show: "超过200个区块已确认",
   block_detail_rolled_back: "已回退",
+
+  // 03-09 tron account  transfers transactions internal-transactions
+  address_account_tab_search_tips:"请输入地址/哈希/通证",
+  
+  address_account_table_filter_all: "全选",
+  address_account_table_filter_transfers: "转账",
+  address_account_table_filter_freeze: "冻结资产",
+  address_account_table_filter_unfreeze: "解冻资产",
+  address_account_table_filter_trigger_smartContracts: "触发智能合约",
+  address_account_table_filter_vote: "投票",
+  address_account_table_filter_other: "其他",
+
+
+  address_account_table_filter_token_tips: "The token is not included in TRONSCAN",
+
+
+  account_block:'出块'
+
+
+
+
+
+
+
+
+
+
+
 
 };

@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { NavLink, Route, Switch } from "react-router-dom";
 import { Client } from "../../../services/api";
 import { tu } from "../../../utils/i18n";
+import { trim } from "lodash";
 import { FormattedNumber } from "react-intl";
 import TokenBalances from "../components/TokenBalances";
 import MyContracts from "./Contracts";
@@ -97,7 +98,11 @@ class Address extends React.Component {
       changeVotes: 0,
       changeRank:0,
       sortTokenBalances: [],
-      popup:null
+      popup:null,
+      brokerage:0,
+      producedEfficiency:0,
+      searchAddress:'',
+      searchAddressClose:false,
     };
   }
 
@@ -429,12 +434,13 @@ class Address extends React.Component {
             id: "blocks-produced",
             // icon: "fa fa-cube",
             path: "/blocks",
-            label: <span>{tu("produced_blocks")}</span>,
+            label: <span>{tu("account_block")}</span>,
             cmp: () => (
               <Blocks
                 filter={{ producer: id }}
                 intl={intl}
                 getCsvUrl={csvurl => this.setState({ csvurl })}
+                blockReward={this.state.blockReward}
               />
             )
           },
@@ -591,7 +597,10 @@ class Address extends React.Component {
       lastRanking: data.lastRanking,
       lastCycleVotes: data.lastCycleVotes,
       changeVotes: data.changeVotes,
-      changeRank: data.realTimeRanking - data.lastRanking
+      changeRank: data.realTimeRanking - data.lastRanking,
+      brokerage:data.brokerage || 0,
+      producedEfficiency:data.producedEfficiency || 0,
+      blockReward:data.blockReward || 0,
     });
   }
 
@@ -699,9 +708,11 @@ class Address extends React.Component {
       )
     });
   }
+
   hideModal = () => {
     this.setState({ popup: null });
   };
+
   scrollToAnchor = () => {
     window.scrollTo(0, 800);
   };
@@ -745,6 +756,59 @@ class Address extends React.Component {
     }
 };
 
+  resetSearch = async () => {
+    this.setState({
+      searchAddress: "",
+      searchAddressClose: false
+    });
+    this.props.updateTokenInfo({
+      searchAddress: ""
+    });
+    // let { match, tokensInfo } = this.props;
+    // const params = {
+    //   contract_address: decodeURI(match.params.address),
+    //   start_timestamp: tokensInfo.start_timestamp,
+    //   end_timestamp: tokensInfo.end_timestamp
+    // };
+
+    // const allData = await Promise.all([
+    //   Client.getTokenTRC20Transfers({
+    //     limit: 20,
+    //     ...params
+    //   }),
+    //   Client.getCountByType({
+    //     type: "trc20",
+    //     contract: decodeURI(match.params.address)
+    //   })
+    // ]).catch(e => {
+    //   this.props.updateTokenInfo({
+    //     transferSearchStatus: false
+    //   });
+    //   console.log("error:" + e);
+    // });
+
+    // const [{ list, rangeTotal }, { count }] = allData;
+    // let transfers = list || [];
+
+    // for (let index in transfers) {
+    //   transfers[index].index = parseInt(index) + 1;
+    // }
+    // this.props.updateTokenInfo({
+    //   transfers20ListObj: {
+    //     transfers,
+    //     total: count,
+    //     rangeTotal
+    //   },
+    //   transferSearchStatus: false
+    // });
+  };
+
+  onSearchKeyDown = ev => {
+    if (ev.keyCode === 13) {
+      // this.tokensTransferSearchFun();
+    }
+  };
+
   render() {
     let {
       totalPower,
@@ -775,7 +839,9 @@ class Address extends React.Component {
       lastCycleVotes,
       changeVotes,
       changeRank,
-      popup
+      popup,
+      searchAddress,
+      searchAddressClose
     } = this.state;
     let { match, intl, account, walletType } = this.props;
     let addr = match.params.id;
@@ -793,7 +859,7 @@ class Address extends React.Component {
       tabName = b;
     });
     return (
-      <main className="container header-overlap account-new">
+      <main className="container header-overlap account-new address-container">
         {popup}
         <div className="row">
           <div className="col-md-12 ">
@@ -1128,6 +1194,89 @@ class Address extends React.Component {
                         </li>
                       ))}
                     </ul>
+                           {pathname.slice(-9) === "transfers" ? (
+                      <div
+                        className="tokenTransferSearch"
+                        style={{
+                          position: "absolute",
+                          right: "1rem",
+                          top: 6,
+                          height: 26
+                        }}
+                      >
+                        <div
+                          className="input-group-append"
+                          style={{
+                            marginLeft: 7,
+                            position: "relative"
+                          }}
+                        >
+                          <input
+                            type="text"
+                            ref={ref => (this.searchAddress = ref)}
+                            value={searchAddress}
+                            placeholder={intl.formatMessage({
+                              id: "address_account_tab_search_tips"
+                            })}
+                            style={{
+                              border: "none",
+                              minWidth: 240,
+                              padding: "0 1.4rem 0 0.7rem"
+                            }}
+                            onChange={event => {
+                              if (event.target.value !== "") {
+                                this.setState({
+                                  searchAddress: trim(event.target.value),
+                                  searchAddressClose: true
+                                });
+                              } else {
+                                this.setState({
+                                  searchAddressClose: false
+                                });
+                              }
+                            }}
+                            onKeyDown={this.onSearchKeyDown}
+                            onBlur={() => {
+                              if (searchAddress !== "") {
+                                this.setState({
+                                  searchAddressClose: true
+                                });
+                              } else {
+                                this.setState({
+                                  searchAddressClose: false
+                                });
+                              }
+                            }}
+                          />{" "}
+                          {searchAddressClose ? (
+                            <Icon
+                              onClick={() => {
+                                this.resetSearch();
+                              }}
+                              type="close-circle"
+                              style={{
+                                position: "absolute",
+                                top: "0.6rem",
+                                right: 40
+                              }}
+                            />
+                          ) : null}{" "}
+                          <button
+                            className="btn box-shadow-none"
+                            style={{
+                              height: "35px",
+                              width: "35px",
+                              background: "#C23631",
+                              borderRadius: "0 2px 2px 0",
+                              color: "#fff"
+                            }}
+                            onClick={() => this.tokensTransferSearchFun()}
+                          >
+                            <i className="fa fa-search" />
+                          </button>{" "}
+                        </div>{" "}
+                      </div>
+                    ) : null}{" "}
                   </div>
                   <div className="card-body p-0 list-style-body__body">
                     <Switch>
