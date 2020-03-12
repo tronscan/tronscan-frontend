@@ -476,9 +476,7 @@ class Address extends React.Component {
             path: "/freeze",
             label: <span>{tu("account_freeze_detail")}</span>,
             cmp: () => (
-              <FreezeDetail
-
-              />
+              <FreezeDetail/>
             )
           },
           contracts: {
@@ -570,6 +568,15 @@ class Address extends React.Component {
               />
             )
           },
+          freeze_detail: {
+            id: "freeze_detail",
+            // icon: "fa fa-bullhorn",
+            path: "/freeze",
+            label: <span>{tu("account_freeze_detail")}</span>,
+            cmp: () => (
+              <FreezeDetail/>
+            )
+          },
           contracts: {
             id: "contracts",
             path: "/contracts",
@@ -613,6 +620,8 @@ class Address extends React.Component {
       frozenEnergy,
       balance
     } = this.state;
+
+    let {match} = this.props
 
     let GetEnergy = frozenEnergy + sentDelegateResource;
     let GetBandWidth = frozenBandwidth + sentDelegateBandwidth;
@@ -658,10 +667,13 @@ class Address extends React.Component {
         &nbsp;TRX &nbsp;
         {tu("freeze")}:{" "}
         <Tooltip placement="top" innerClassName="w-100" title={TooltipText}>
-          <span style={{ color: "rgb(255, 163, 11)" }}>
-            <FormattedNumber value={totalPower / ONE_TRX} />
-            &nbsp;TRX&nbsp;
-          </span>
+          <NavLink exact to={match.url + "/freeze"}>
+            <span style={{ color: "rgb(255, 163, 11)" }} 
+                  onClick={this.scrollToAnchor.bind(this)}>
+              <FormattedNumber value={totalPower / ONE_TRX} />
+              &nbsp;TRX&nbsp;
+            </span>
+          </NavLink>
         </Tooltip>
         <span>)</span>
       </div>

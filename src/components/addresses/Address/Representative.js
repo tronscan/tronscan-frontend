@@ -326,7 +326,7 @@ class Representative extends React.Component {
       frozenEnergy,
       balance
     } = this.props.data;
-
+    let {url} = this.props
     let GetEnergy = frozenEnergy + sentDelegateResource;
     let GetBandWidth = frozenBandwidth + sentDelegateBandwidth;
     let Owner = frozenBandwidth + frozenEnergy;
@@ -371,10 +371,13 @@ class Representative extends React.Component {
         &nbsp;TRX &nbsp;
         {tu("freeze")}:{" "}
         <Tooltip placement="top" innerClassName="w-100" title={TooltipText}>
-          <span style={{ color: "rgb(255, 163, 11)" }}>
-            <FormattedNumber value={totalPower / ONE_TRX} />
-            &nbsp;TRX&nbsp;
-          </span>
+          <NavLink exact to={url + "/freeze"}>
+            <span style={{ color: "rgb(255, 163, 11)" }}
+                  onClick={this.scrollToAnchor.bind(this)}>
+              <FormattedNumber value={totalPower / ONE_TRX} />
+              &nbsp;TRX&nbsp;
+            </span>
+          </NavLink>
         </Tooltip>
         <span>)</span>
       </div>
