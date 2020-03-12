@@ -136,7 +136,7 @@ export const lang20Q1 = {
   full_node_version_confirmed:'已确认',
   full_node_version_unconfirmed:'待确认',
   // full_node_version_confirmed_tips:'“已确认”是指被19个及以上区块确认，否则为“待确认”或“已回退”',
-  full_node_version_confirmed_tips:'“已确认”是指被19个及以上超级节点确认，否则为“待确认”',
+  full_node_version_confirmed_tips:'“已确认”是指被19个及以上超级代表确认，否则为“待确认”',
 
 
   // 2020-02-19
@@ -290,7 +290,7 @@ export const lang20Q1 = {
   address_account_table_filter_token_tips: "The token is not included in TRONSCAN",
 
 
-
+  account_block:'出块'
 
 
 

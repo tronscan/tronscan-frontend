@@ -156,7 +156,7 @@ class Navigation extends React.Component {
   }
 
   async loadTrxPrices() {
-      var dataEur = Lockr.get("dataEur");
+      // var dataEur = Lockr.get("dataEur");
       let eurURL = encodeURI(
        `https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=TRX&convert=USD` 
       );
@@ -166,10 +166,14 @@ class Navigation extends React.Component {
             url:eurURL
           }
       );
-      if (dataEurObj.TRX) {
+      if (dataEurObj) {
         let percent_change_24h = dataEurObj.TRX.quote.USD.percent_change_24h.toFixed(2) || 0;
         this.setState({
           percent_change_24h
+        });
+      } else{
+        this.setState({
+          percent_change_24h:0
         });
       }
      

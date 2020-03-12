@@ -352,6 +352,7 @@ class Address extends React.Component {
                 filter={{ producer: id }}
                 intl={intl}
                 getCsvUrl={csvurl => this.setState({ csvurl })}
+                blockReward={this.state.blockReward}
               />
             )
           },
