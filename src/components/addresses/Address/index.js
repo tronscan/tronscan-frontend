@@ -1,12 +1,13 @@
 /* eslint-disable no-undef */
 import React, { Fragment } from "react";
 import { injectIntl } from "react-intl";
+import { connect } from 'react-redux';
 import { NavLink, Route, Switch } from "react-router-dom";
 import { Client } from "../../../services/api";
 import { tu } from "../../../utils/i18n";
 import { trim } from "lodash";
 import { FormattedNumber } from "react-intl";
-import TokenBalances from "./TokenBalances";
+import TokenBalances from "../components/TokenBalances";
 import MyContracts from "./Contracts";
 import { ONE_TRX } from "../../../constants";
 import { AddressLink, ExternalLink, HrefLink } from "../../common/Links";
@@ -36,8 +37,11 @@ import ApiClientAddress from "../../../services/addressApi";
 import { alpha } from "../../../utils/str";
 import Resource from "./Resource";
 import Representative from "./Representative";
+import FreezeDetail from './FreezeDetail';
 import { Piechart } from "../components/Piechart";
 import SweetAlert from "react-bootstrap-sweetalert";
+import {transactionResultManager, transactionResultManagerSun} from "../../../utils/tron";
+
 
 BigNumber.config({ EXPONENTIAL_AT: [-1e9, 1e9] });
 
@@ -92,7 +96,7 @@ class Address extends React.Component {
       lastRanking: 0,
       lastCycleVotes: 0,
       changeVotes: 0,
-      changeRank: 0,
+      changeRank:0,
       sortTokenBalances: [],
       popup:null,
       brokerage:0,
@@ -192,6 +196,50 @@ class Address extends React.Component {
     this.setState({ loading: true, address: { address: id }, media: null });
 
     let address = await Client.getAddress(id);
+
+    let sentDelegateBandwidth = 0;
+    if (address.delegated && address.delegated.sentDelegatedBandwidth) {
+      for (
+        let i = 0;
+        i < address.delegated.sentDelegatedBandwidth.length;
+        i++
+      ) {
+        sentDelegateBandwidth =
+          sentDelegateBandwidth +
+          address.delegated.sentDelegatedBandwidth[i][
+            "frozen_balance_for_bandwidth"
+          ];
+      }
+    }
+
+    let frozenBandwidth = 0;
+    if (address.frozen.balances.length > 0) {
+      frozenBandwidth = address.frozen.balances[0].amount;
+    }
+
+    let sentDelegateResource = 0;
+    if (address.delegated && address.delegated.sentDelegatedResource) {
+      for (let i = 0; i < address.delegated.sentDelegatedResource.length; i++) {
+        sentDelegateResource =
+          sentDelegateResource +
+          address.delegated.sentDelegatedResource[i][
+            "frozen_balance_for_energy"
+          ];
+      }
+    }
+
+    let frozenEnergy = 0;
+    if (address.accountResource.frozen_balance_for_energy.frozen_balance > 0) {
+      frozenEnergy =
+        address.accountResource.frozen_balance_for_energy.frozen_balance;
+    }
+
+    let totalPower =
+      sentDelegateBandwidth +
+      frozenBandwidth +
+      sentDelegateResource +
+      frozenEnergy;
+
     if (address.representative.enabled) {
       this.loadMedia(id);
     }
@@ -204,6 +252,8 @@ class Address extends React.Component {
           "https://s2.coinmarketcap.com/static/img/coins/64x64/1958.png";
         item.tokenType = "-";
         item.priceInTrx = 1;
+        item.available_amount = item.map_amount
+        item.map_amount += totalPower / ONE_TRX
       } else {
         item.tokenType = "TRC10";
       }
@@ -277,6 +327,44 @@ class Address extends React.Component {
         .startOf("day")
         .valueOf()
     });
+
+    
+    
+    this.setState({
+      totalPower: totalPower,
+      TRXBalanceTotal: TRXBalance + totalPower / ONE_TRX,
+      netUsed: address.bandwidth.netUsed + address.bandwidth.freeNetUsed,
+      netLimit: address.bandwidth.netLimit + address.bandwidth.freeNetLimit,
+      netRemaining:
+        address.bandwidth.netRemaining + address.bandwidth.freeNetRemaining,
+      bandWidthPercentage:
+        ((address.bandwidth.netUsed + address.bandwidth.freeNetUsed) /
+          (address.bandwidth.netLimit + address.bandwidth.freeNetLimit)) *
+        100,
+      availableBandWidthPercentage:
+        (1 -
+          (address.bandwidth.netUsed + address.bandwidth.freeNetUsed) /
+            (address.bandwidth.netLimit + address.bandwidth.freeNetLimit)) *
+        100,
+      energyUsed: address.bandwidth.energyUsed,
+      energyLimit: address.bandwidth.energyLimit,
+      energyRemaining:
+        address.bandwidth.energyRemaining >= 0
+          ? address.bandwidth.energyRemaining
+          : 0,
+      energyPercentage: address.bandwidth.energyPercentage * 100,
+      availableEnergyPercentage:
+        address.bandwidth.energyRemaining > 0
+          ? (1 - address.bandwidth.energyPercentage) * 100
+          : 0,
+      sentDelegateBandwidth,
+      frozenBandwidth,
+      sentDelegateResource,
+      frozenEnergy,
+      TRXBalance,
+      balance: address.balance
+    });
+
     if (address.representative.enabled) {
       this.setState(prevProps => ({
         loading: false,
@@ -292,7 +380,7 @@ class Address extends React.Component {
             path: "",
             label: <span>{tu("token_balances")}</span>,
             cmp: () => (
-              <TokenBalances tokenBalances={tokenBalances} intl={intl} />
+              <TokenBalances tokenBalances={tokenBalances} frozen={totalPower} intl={intl} />
             )
           },
           transfers: {
@@ -382,6 +470,15 @@ class Address extends React.Component {
               />
             )
           },
+          freeze_detail: {
+            id: "freeze_detail",
+            // icon: "fa fa-bullhorn",
+            path: "/freeze",
+            label: <span>{tu("account_freeze_detail")}</span>,
+            cmp: () => (
+              <FreezeDetail/>
+            )
+          },
           contracts: {
             id: "contracts",
             path: "/contracts",
@@ -407,7 +504,7 @@ class Address extends React.Component {
             path: "",
             label: <span>{tu("token_balances")}</span>,
             cmp: () => (
-              <TokenBalances tokenBalances={tokenBalances} intl={intl} />
+              <TokenBalances tokenBalances={tokenBalances} frozen={totalPower} intl={intl} />
             )
           },
           transfers: {
@@ -471,6 +568,15 @@ class Address extends React.Component {
               />
             )
           },
+          freeze_detail: {
+            id: "freeze_detail",
+            // icon: "fa fa-bullhorn",
+            path: "/freeze",
+            label: <span>{tu("account_freeze_detail")}</span>,
+            cmp: () => (
+              <FreezeDetail/>
+            )
+          },
           contracts: {
             id: "contracts",
             path: "/contracts",
@@ -483,83 +589,7 @@ class Address extends React.Component {
       }));
     }
 
-    let sentDelegateBandwidth = 0;
-    if (address.delegated && address.delegated.sentDelegatedBandwidth) {
-      for (
-        let i = 0;
-        i < address.delegated.sentDelegatedBandwidth.length;
-        i++
-      ) {
-        sentDelegateBandwidth =
-          sentDelegateBandwidth +
-          address.delegated.sentDelegatedBandwidth[i][
-            "frozen_balance_for_bandwidth"
-          ];
-      }
-    }
 
-    let frozenBandwidth = 0;
-    if (address.frozen.balances.length > 0) {
-      frozenBandwidth = address.frozen.balances[0].amount;
-    }
-
-    let sentDelegateResource = 0;
-    if (address.delegated && address.delegated.sentDelegatedResource) {
-      for (let i = 0; i < address.delegated.sentDelegatedResource.length; i++) {
-        sentDelegateResource =
-          sentDelegateResource +
-          address.delegated.sentDelegatedResource[i][
-            "frozen_balance_for_energy"
-          ];
-      }
-    }
-
-    let frozenEnergy = 0;
-    if (address.accountResource.frozen_balance_for_energy.frozen_balance > 0) {
-      frozenEnergy =
-        address.accountResource.frozen_balance_for_energy.frozen_balance;
-    }
-
-    let totalPower =
-      sentDelegateBandwidth +
-      frozenBandwidth +
-      sentDelegateResource +
-      frozenEnergy;
-
-    this.setState({
-      totalPower: totalPower,
-      TRXBalanceTotal: TRXBalance + totalPower / ONE_TRX,
-      netUsed: address.bandwidth.netUsed + address.bandwidth.freeNetUsed,
-      netLimit: address.bandwidth.netLimit + address.bandwidth.freeNetLimit,
-      netRemaining:
-        address.bandwidth.netRemaining + address.bandwidth.freeNetRemaining,
-      bandWidthPercentage:
-        ((address.bandwidth.netUsed + address.bandwidth.freeNetUsed) /
-          (address.bandwidth.netLimit + address.bandwidth.freeNetLimit)) *
-        100,
-      availableBandWidthPercentage:
-        (1 -
-          (address.bandwidth.netUsed + address.bandwidth.freeNetUsed) /
-            (address.bandwidth.netLimit + address.bandwidth.freeNetLimit)) *
-        100,
-      energyUsed: address.bandwidth.energyUsed,
-      energyLimit: address.bandwidth.energyLimit,
-      energyRemaining:
-        address.bandwidth.energyRemaining >= 0
-          ? address.bandwidth.energyRemaining
-          : 0,
-      energyPercentage: address.bandwidth.energyPercentage * 100,
-      availableEnergyPercentage:
-        address.bandwidth.energyRemaining > 0
-          ? (1 - address.bandwidth.energyPercentage) * 100
-          : 0,
-      sentDelegateBandwidth,
-      frozenBandwidth,
-      sentDelegateResource,
-      frozenEnergy,
-      TRXBalance,
-      balance: address.balance
-    });
   }
 
   async loadWitness(id) {
@@ -590,6 +620,8 @@ class Address extends React.Component {
       frozenEnergy,
       balance
     } = this.state;
+
+    let {match} = this.props
 
     let GetEnergy = frozenEnergy + sentDelegateResource;
     let GetBandWidth = frozenBandwidth + sentDelegateBandwidth;
@@ -635,10 +667,13 @@ class Address extends React.Component {
         &nbsp;TRX &nbsp;
         {tu("freeze")}:{" "}
         <Tooltip placement="top" innerClassName="w-100" title={TooltipText}>
-          <span style={{ color: "rgb(255, 163, 11)" }}>
-            <FormattedNumber value={totalPower / ONE_TRX} />
-            &nbsp;TRX&nbsp;
-          </span>
+          <NavLink exact to={match.url + "/freeze"}>
+            <span style={{ color: "rgb(255, 163, 11)" }} 
+                  onClick={this.scrollToAnchor.bind(this)}>
+              <FormattedNumber value={totalPower / ONE_TRX} />
+              &nbsp;TRX&nbsp;
+            </span>
+          </NavLink>
         </Tooltip>
         <span>)</span>
       </div>
@@ -693,6 +728,45 @@ class Address extends React.Component {
   scrollToAnchor = () => {
     window.scrollTo(0, 800);
   };
+  // account claim rewards
+  accountClaimRewards = async () => {
+    let res,hashid;
+    let {account, walletType} = this.props;
+
+    let tronWeb;
+    if (walletType.type === "ACCOUNT_LEDGER") {
+        tronWeb = this.props.tronWeb();
+    } else {
+        tronWeb = account.tronWeb;
+    }
+    const unSignTransaction = await tronWeb.transactionBuilder.withdrawBlockRewards(walletType.address).catch(e => false);
+    const {result} = await transactionResultManager(unSignTransaction, tronWeb)
+    res = result;
+    //hashid = txid
+
+    if (res) {
+        this.setState({
+            popup: (
+                <SweetAlert success title={tu("rewards_claimed_submitted")} onConfirm={this.hideModal}>
+                    {/*<div>*/}
+                        {/*{tu("rewards_claimed_hash")}*/}
+                        {/*<span className="SweetAlert_hashid">{hashid}</span>*/}
+                    {/*</div>*/}
+                    {/*<br/>*/}
+                    {tu("rewards_claimed_hash_await")}
+                </SweetAlert>
+            )
+        });
+    } else {
+        this.setState({
+            popup: (
+                <SweetAlert danger title={tu("could_not_claim_rewards")} onConfirm={this.hideModal}>
+                    {tu("claim_rewards_error_message")}
+                </SweetAlert>
+            )
+        });
+    }
+};
 
   resetSearch = async () => {
     this.setState({
@@ -781,7 +855,7 @@ class Address extends React.Component {
       searchAddress,
       searchAddressClose
     } = this.state;
-    let { match, intl } = this.props;
+    let { match, intl, account, walletType } = this.props;
     let addr = match.params.id;
 
     if (!address) {
@@ -796,6 +870,7 @@ class Address extends React.Component {
     pathname.replace(rex, function(a, b) {
       tabName = b;
     });
+    console.log(pathname,'pathname')
     return (
       <main className="container header-overlap account-new address-container">
         {popup}
@@ -835,7 +910,7 @@ class Address extends React.Component {
                   <div className="row info-wrap">
                     <div className="col-md-7 address-info">
                       {address.representative.enabled ? (
-                        <Representative data={this.state} url={match.url} />
+                        <Representative data={this.state} url={match.url} account={account} walletType={walletType} />
                       ) : (
                         <table className="table m-0">
                           <tbody>
@@ -947,6 +1022,13 @@ class Address extends React.Component {
                                       amount={walletReward / ONE_TRX}
                                       showPopup={false}
                                     />
+                                    {account.isLoggedIn && walletReward > 0 && address.address === account.address && <a href="javascript:;"
+                                        className="text-primary btn btn-default btn-sm"
+                                        style={{padding: '0 13px',margin: '-2px 0 0 20px' }}
+                                        onClick={this.accountClaimRewards}
+                                    >
+                                        {tu("account_get_reward")}
+                                    </a>}
                                   </li>
                                 </ul>
                               </td>
@@ -1028,12 +1110,12 @@ class Address extends React.Component {
                         energyRemaining={energyRemaining}
                         netLimit={netLimit}
                         energyLimit={energyLimit}
-                        totalPower={totalPower}
+                        totalPower={totalPower / ONE_TRX}
                         powerPercentage={
-                          ((totalPower - address.voteTotal) / totalPower) *
+                          ((totalPower / ONE_TRX - address.voteTotal) / (totalPower / ONE_TRX)) *
                             100 || 0
                         }
-                        powerRemaining={totalPower - address.voteTotal}
+                        powerRemaining={totalPower / ONE_TRX - address.voteTotal}
                         address={this.props.match.params.id || ""}
                         isRepresentative={address.representative.enabled}
                         realTimeVotes={realTimeVotes}
@@ -1125,9 +1207,9 @@ class Address extends React.Component {
                         </li>
                       ))}
                     </ul>
-                           {pathname.slice(-9) === "transfers" ? (
+                    {pathname.slice(-9) === "transfers" || pathname.slice(-12) === "transactions" || pathname.slice(-21) === "internal-transactions" ? (
                       <div
-                        className="tokenTransferSearch"
+                        className="addressSearch"
                         style={{
                           position: "absolute",
                           right: "1rem",
@@ -1244,11 +1326,12 @@ class Address extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    tokens20: state.account.tokens20
+    account: state.app.account,
+    walletType: state.app.wallet,
   };
 }
 
-const mapDispatchToProps = {};
+// const mapDispatchToProps = {};
 
-export default injectIntl(Address);
-//export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(Address));
+// export default injectIntl(Address);
+export default connect(mapStateToProps, null)(injectIntl(Address));

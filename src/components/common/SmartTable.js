@@ -245,6 +245,7 @@ export default class SmartTable extends Component {
       locale,
       addr,
       transfers,
+      nopadding,
       contractAddress,
       isPaddingTop
     } = this.props;
@@ -264,7 +265,8 @@ export default class SmartTable extends Component {
             className={
               "card table_pos table_pos_addr " +
               (data.length == 0 ? "table_pos_addr_data" : "") +
-              (transfers == "address" ? " transfer-mt-100" : " transfer-pt-100")
+              (transfers == "address" ? " transfer-mt-100" : " transfer-pt-100") +
+              (nopadding ? " transfer-mp-0" :'')
             }
           >
             <Table

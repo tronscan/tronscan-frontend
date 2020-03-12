@@ -572,7 +572,7 @@ class TransfersAll extends React.Component {
                     (!loading && transfers.length === 0)?
                         <div className="p-3 text-center no-data">{tu("no_transfers")}</div>
                         :
-                        <SmartTable  position="bottom" bordered={true} loading={loading} column={column} data={transfers} total={rangeTotal > 2000 ? 2000 : rangeTotal} locale={locale} addr="address" 
+                        <SmartTable  position="bottom" bordered={true} loading={loading} column={column} data={transfers} total={rangeTotal > 2000 ? 2000 : rangeTotal} locale={locale} addr="address" nopadding={true}
                                     current={this.state.page}
                                     onPageChange={(page, pageSize) => {
                                         this.onChange(page, pageSize)

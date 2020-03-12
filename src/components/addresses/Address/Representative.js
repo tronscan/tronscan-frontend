@@ -48,7 +48,7 @@ class Representative extends React.Component {
       producedEfficiency,
       blockReward
     } = this.props.data;
-    let { intl, url } = this.props;
+    let { intl, url, account, walletType } = this.props;
     let { votingEnabled, popup } = this.state;
     return (
       <Fragment>
@@ -152,6 +152,13 @@ class Representative extends React.Component {
                       amount={walletReward / ONE_TRX}
                       showPopup={false}
                     />
+                    {account.isLoggedIn && walletReward > 0 && address.address === account.address && <a href="javascript:;"
+                        className="text-primary btn btn-default btn-sm"
+                        style={{padding: '0 13px',margin: '-2px 0 0 20px' }}
+                        onClick={this.accountClaimRewards}
+                    >
+                        {tu("account_get_reward")}
+                    </a>}
                   </li>
                 </ul>
               </td>
@@ -319,7 +326,7 @@ class Representative extends React.Component {
       frozenEnergy,
       balance
     } = this.props.data;
-
+    let {url} = this.props
     let GetEnergy = frozenEnergy + sentDelegateResource;
     let GetBandWidth = frozenBandwidth + sentDelegateBandwidth;
     let Owner = frozenBandwidth + frozenEnergy;
@@ -364,10 +371,13 @@ class Representative extends React.Component {
         &nbsp;TRX &nbsp;
         {tu("freeze")}:{" "}
         <Tooltip placement="top" innerClassName="w-100" title={TooltipText}>
-          <span style={{ color: "rgb(255, 163, 11)" }}>
-            <FormattedNumber value={totalPower / ONE_TRX} />
-            &nbsp;TRX&nbsp;
-          </span>
+          <NavLink exact to={url + "/freeze"}>
+            <span style={{ color: "rgb(255, 163, 11)" }}
+                  onClick={this.scrollToAnchor.bind(this)}>
+              <FormattedNumber value={totalPower / ONE_TRX} />
+              &nbsp;TRX&nbsp;
+            </span>
+          </NavLink>
         </Tooltip>
         <span>)</span>
       </div>
@@ -380,59 +390,35 @@ class Representative extends React.Component {
 
   // account claim rewards
   accountClaimRewards = async () => {
-    let res, hashid;
-    let { account, currentWallet, walletType } = this.props;
-    let { walletReward } = this.props.data;
-    if (!walletReward) {
-      return;
-    }
+    let res,hashid;
+    let {account, walletType} = this.props;
 
-    //let tronWeb = account.tronWeb;
     let tronWeb;
-    if (this.props.walletType.type === "ACCOUNT_LEDGER") {
-      tronWeb = this.props.tronWeb();
+    if (walletType.type === "ACCOUNT_LEDGER") {
+        tronWeb = this.props.tronWeb();
     } else {
-      tronWeb = account.tronWeb;
+        tronWeb = account.tronWeb;
     }
-    const unSignTransaction = await tronWeb.transactionBuilder
-      .withdrawBlockRewards(walletType.address)
-      .catch(e => false);
-    const { result } = await transactionResultManager(
-      unSignTransaction,
-      tronWeb
-    );
+    const unSignTransaction = await tronWeb.transactionBuilder.withdrawBlockRewards(walletType.address).catch(e => false);
+    const {result} = await transactionResultManager(unSignTransaction, tronWeb)
     res = result;
-    //hashid = txid
 
     if (res) {
-      this.setState({
-        modal: (
-          <SweetAlert
-            success
-            title={tu("rewards_claimed_submitted")}
-            onConfirm={this.hideModal}
-          >
-            {/*<div>*/}
-            {/*{tu("rewards_claimed_hash")}*/}
-            {/*<span className="SweetAlert_hashid">{hashid}</span>*/}
-            {/*</div>*/}
-            {/*<br/>*/}
-            {tu("rewards_claimed_hash_await")}
-          </SweetAlert>
-        )
-      });
+        this.setState({
+            popup: (
+                <SweetAlert success title={tu("rewards_claimed_submitted")} onConfirm={this.hideModal}>
+                    {tu("rewards_claimed_hash_await")}
+                </SweetAlert>
+            )
+        });
     } else {
-      this.setState({
-        modal: (
-          <SweetAlert
-            danger
-            title={tu("could_not_claim_rewards")}
-            onConfirm={this.hideModal}
-          >
-            {tu("claim_rewards_error_message")}
-          </SweetAlert>
-        )
-      });
+        this.setState({
+            popup: (
+                <SweetAlert danger title={tu("could_not_claim_rewards")} onConfirm={this.hideModal}>
+                    {tu("claim_rewards_error_message")}
+                </SweetAlert>
+            )
+        });
     }
   };
 
