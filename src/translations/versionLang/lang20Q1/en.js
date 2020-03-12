@@ -258,6 +258,7 @@ export const lang20Q1 = {
    account_piechart_title:'Asset distribution',
 
   // 03-09 tron account  transfers transactions internal-transactions
+  address_account_tab_search_tips:  "Search by Address/Hash/Token",
 
   address_account_table_filter_all: "all",
   address_account_table_filter_transfers: "Transfer",

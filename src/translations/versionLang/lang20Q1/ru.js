@@ -259,6 +259,7 @@ export const lang20Q1 = {
 
 
   // 03-09 tron account  transfers transactions internal-transactions
+  address_account_tab_search_tips:"Поиск по Адресу/Хэшу Транзакции/Токену",
 
   address_account_table_filter_all: "полный",
   address_account_table_filter_transfers: "Перевод ",

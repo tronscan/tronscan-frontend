@@ -253,6 +253,7 @@ export const lang20Q1 = {
   account_piechart_title:'자산 분배',
 
   // 03-09 tron account  transfers transactions internal-transactions
+  address_account_tab_search_tips:"주소 / 거래 해시 / 토큰",
 
   address_account_table_filter_all: "모두",
   address_account_table_filter_transfers: "전송",

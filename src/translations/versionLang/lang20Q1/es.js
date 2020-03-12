@@ -256,6 +256,7 @@ export const lang20Q1 = {
 
 
   // 03-09 tron account  transfers transactions internal-transactions
+  address_account_tab_search_tips:"Ingrese la dirección / hash de transacción / token",
 
   address_account_table_filter_all: "all",
   address_account_table_filter_transfers: "Transferir",

@@ -255,6 +255,7 @@ account_piechart_title:'資産配分',
 
 
   // 03-09 tron account  transfers transactions internal-transactions
+  address_account_tab_search_tips:"アドレス/ハッシュ/トークン",
 
   address_account_table_filter_all: "すべて",
   address_account_table_filter_transfers: "転送",

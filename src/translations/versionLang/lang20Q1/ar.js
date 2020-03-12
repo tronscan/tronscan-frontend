@@ -256,6 +256,7 @@ export const lang20Q1 = {
   account_piechart_title:'توزيع الأصول',
   
   // 03-09 tron account  transfers transactions internal-transactions
+  address_account_tab_search_tips:  "معاملة التجزئة / الرمز المميز / كتلة",
 
   address_account_table_filter_all: "الكل",
   address_account_table_filter_transfers: "تحويل ",
