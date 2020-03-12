@@ -259,6 +259,17 @@ class Transactions extends React.Component {
   trc20CustomizedColumn = (activeLanguage) => {
     let { intl } = this.props;
     const {timeType} = this.state;
+    const statusAry = [
+      { text:  upperFirst(intl.formatMessage({id: 'address_account_table_filter_all'})), value: '0' },
+      { text:  upperFirst(intl.formatMessage({id: 'full_node_version_unconfirmed'})), value: '1' },
+      { text:  upperFirst(intl.formatMessage({id: 'full_node_version_confirmed'})), value: '2' },
+      // { text:  upperFirst(intl.formatMessage({id: 'block_detail_rolled_back'})), value: '3' },
+    ]
+    const resultAry = [
+        { text:  upperFirst(intl.formatMessage({id: 'address_account_table_filter_all'})), value: '0' },
+        { text:  'SUCCESS', value: '1' },
+        { text:  'FAIL', value: '2' },
+    ]
     let column = [
       {
         title: upperFirst(intl.formatMessage({ id: "parenthash" })),
@@ -358,10 +369,7 @@ class Transactions extends React.Component {
         key: 'status',
         align: 'left',
         width: activeLanguage ==='ru' ? '34%' :'16%',
-        filters: [
-            { text: 'Joe', value: 'Joe' },
-            { text: 'Jim', value: 'Jim' },
-        ],
+        filters: statusAry,
         filterIcon: () => {
           return (
               <Icon type="down" style={{fontSize:12,color:'#666'}}  theme="outlined" />
@@ -386,10 +394,7 @@ class Transactions extends React.Component {
         dataIndex: "rejected",
         key: "rejected",
         align: "left",
-        filters: [
-          { text: 'Joe', value: 'Joe' },
-          { text: 'Jim', value: 'Jim' },
-        ],
+        filters: resultAry,
         filterIcon: () => {
           return (
               <Icon type="down" style={{fontSize:12,color:'#666'}}  theme="outlined" />

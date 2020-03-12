@@ -183,9 +183,25 @@ class TransfersAll extends React.Component {
         let { intl } = this.props;
             const defaultImg = require("../../images/logo_default.png");
         const { timeType } = this.state;
+        const inoutAry = [
+            { text:  upperFirst(intl.formatMessage({id: 'address_account_table_filter_all'})), value: '0' },
+            { text:  upperFirst(intl.formatMessage({id: 'address_transfer_in'})), value: '1' },
+            { text:  upperFirst(intl.formatMessage({id: 'address_transfer_out'})), value: '2' },
+        ]
+        const statusAry = [
+            { text:  upperFirst(intl.formatMessage({id: 'address_account_table_filter_all'})), value: '0' },
+            { text:  upperFirst(intl.formatMessage({id: 'full_node_version_unconfirmed'})), value: '1' },
+            { text:  upperFirst(intl.formatMessage({id: 'full_node_version_confirmed'})), value: '2' },
+            // { text:  upperFirst(intl.formatMessage({id: 'block_detail_rolled_back'})), value: '3' },
+        ]
+        const resultAry = [
+            { text:  upperFirst(intl.formatMessage({id: 'address_account_table_filter_all'})), value: '0' },
+            { text:  'SUCCESS', value: '1' },
+            { text:  'FAIL', value: '2' },
+        ]
         let column = [
             {
-                title: upperFirst(intl.formatMessage({id: 'hash'})),
+                title: upperFirst(intl.formatMessage({id: 'transaction_hash'})),
                 dataIndex: 'hash',
                 key: 'hash',
                 align: 'left',
@@ -287,10 +303,7 @@ class TransfersAll extends React.Component {
                 align: 'center',
                 className: 'ant_table address_max_width',
                 width: '10%',
-                filters: [
-                    { text: 'Joe', value: 'Joe' },
-                    { text: 'Jim', value: 'Jim' },
-                ],
+                filters: inoutAry,
                 filterIcon: () => {
                     return (
                         <Icon type="down"  style={{fontSize:12,color:'#666'}}  theme="outlined" />
@@ -319,10 +332,7 @@ class TransfersAll extends React.Component {
                 key: 'status',
                 width: activeLanguage === 'zh' ?'10%' :"17%",
                 align: 'left',
-                filters: [
-                    { text: 'Joe', value: 'Joe' },
-                    { text: 'Jim', value: 'Jim' },
-                ],
+                filters: statusAry,
                 filterIcon: () => {
                     return (
                         <Icon type="down" style={{fontSize:12,color:'#666'}}  theme="outlined" />
@@ -349,10 +359,7 @@ class TransfersAll extends React.Component {
                 align: 'left',
                 className: 'ant_table',
                 width: '11%',
-                filters: [
-                    { text: 'Joe', value: 'Joe' },
-                    { text: 'Jim', value: 'Jim' },
-                ],
+                filters: resultAry,
                 filterIcon: () => {
                     return (
                         <Icon type="down" style={{fontSize:12,color:'#666'}}  theme="outlined" />

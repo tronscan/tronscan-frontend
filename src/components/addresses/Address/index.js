@@ -870,7 +870,6 @@ class Address extends React.Component {
     pathname.replace(rex, function(a, b) {
       tabName = b;
     });
-    console.log(pathname,'pathname')
     return (
       <main className="container header-overlap account-new address-container">
         {popup}

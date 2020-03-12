@@ -45,7 +45,10 @@ class NewTransactions extends React.Component {
                 </TronLoader>
             ),
             timeType: true,
-            filterTitleKey:''
+            filterTitleKey:'',
+            tokenFilterAry:[
+             
+            ]
         };
         
     }
@@ -206,11 +209,26 @@ class NewTransactions extends React.Component {
         let {intl,filter} = this.props;
         let { timeType } = this.state;
         const typeFilterAry = [
-            { text: 'Joe', value: '0' },
-            { text: 'Joe', value: '1' },
-            { text: 'Joe', value: '2' },
-            
+            { text:  upperFirst(intl.formatMessage({id: 'address_account_table_filter_all'})), value: '0' },
+            { text: upperFirst(intl.formatMessage({id: 'address_account_table_filter_transfers'})), value: '1' },
+            { text: upperFirst(intl.formatMessage({id: 'address_account_table_filter_freeze'})), value: '2' },
+            { text: upperFirst(intl.formatMessage({id: 'address_account_table_filter_unfreeze'})), value: '3' },
+            { text: upperFirst(intl.formatMessage({id: 'address_account_table_filter_trigger_smartContracts'})), value: '4' },
+            { text: upperFirst(intl.formatMessage({id: 'address_account_table_filter_vote'})), value: '5' },
+            { text: upperFirst(intl.formatMessage({id: 'address_account_table_filter_other'})), value: '6' },
         ]
+        const statusAry = [
+            { text:  upperFirst(intl.formatMessage({id: 'address_account_table_filter_all'})), value: '0' },
+            { text:  upperFirst(intl.formatMessage({id: 'full_node_version_unconfirmed'})), value: '1' },
+            { text:  upperFirst(intl.formatMessage({id: 'full_node_version_confirmed'})), value: '2' },
+            // { text:  upperFirst(intl.formatMessage({id: 'block_detail_rolled_back'})), value: '3' },
+        ]
+        const resultAry = [
+            { text:  upperFirst(intl.formatMessage({id: 'address_account_table_filter_all'})), value: '0' },
+            { text:  'SUCCESS', value: '1' },
+            { text:  'FAIL', value: '2' },
+        ]
+
         let column = [
             {
                 title: upperFirst(intl.formatMessage({id: 'transaction_hash'})),
@@ -313,10 +331,7 @@ class NewTransactions extends React.Component {
                 key: 'contractType',
                 align: 'left',
                 width: '20%',
-                filters: [
-                    { text: 'Joe', value: 'Joe' },
-                    { text: 'Jim', value: 'Jim' },
-                ],
+                filters: typeFilterAry,
                 filterIcon: () => {
                     return (
                         <Icon type="down" style={{fontSize:12,color:'#666'}}  theme="outlined" />
@@ -334,10 +349,7 @@ class NewTransactions extends React.Component {
                 key: 'status',
                 align: 'left',
                 width: activeLanguage ==='ru' ? '34%' :'16%',
-                filters: [
-                    { text: 'Joe', value: 'Joe' },
-                    { text: 'Jim', value: 'Jim' },
-                ],
+                filters: statusAry,
                 filterIcon: () => {
                     return (
                         <Icon type="down" style={{fontSize:12,color:'#666'}}  theme="outlined" />
@@ -364,10 +376,7 @@ class NewTransactions extends React.Component {
                 align: 'left',
                 className: 'ant_table',
                 width: '14%',
-                filters: [
-                    { text: 'Joe', value: 'Joe' },
-                    { text: 'Jim', value: 'Jim' },
-                ],
+                filters: resultAry,
                 filterIcon: () => {
                     return (
                         <Icon type="down"  style={{fontSize:12,color:'#666'}}  theme="outlined" />
