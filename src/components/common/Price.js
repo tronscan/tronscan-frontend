@@ -89,17 +89,32 @@ class PriceProviderCmp extends React.PureComponent {
       }
     );
 
-    let BTC_Price;
+    let BTC_Price,EUR_Price,USD_Price,ETH_Price;
     if(dataBTC){
       BTC_Price = parseFloat(dataBTC.TRX.quote.BTC.price); 
     }else{
       BTC_Price = 0
     }
+    if(dataEur){
+      EUR_Price = parseFloat(dataEur.TRX.quote.EUR.price)
+    }else{
+      EUR_Price = 0
+    }
+    if(dataUSD){
+      USD_Price = parseFloat(dataUSD.TRX.quote.USD.price)
+    }else{
+      USD_Price = 0
+    }
+    if(dataEth){
+      ETH_Price = parseFloat(dataEth.TRX.quote.ETH.price)
+    }else{
+      ETH_Price = 0
+    }
     let newPrices = {
       BTC: BTC_Price,
-      EUR: parseFloat(dataEur.TRX.quote.EUR.price),
-      USD: parseFloat(dataUSD.TRX.quote.USD.price),
-      ETH: parseFloat(dataEth.TRX.quote.ETH.price),
+      EUR: EUR_Price,
+      USD: USD_Price,
+      ETH: ETH_Price,
       TRX: 1
     };
 
