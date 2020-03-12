@@ -10,7 +10,7 @@ import Transfers from "./Transfers.js";
 import TokenInfo from "./TokenInfo.js";
 import BTTSupply from "./BTTSupply.js";
 import { Information } from "./Information.js";
-import { ONE_TRX, API_URL, IS_MAINNET } from "../../../constants";
+import { ONE_TRX, API_URL, IS_MAINNET,uuidv4 } from "../../../constants";
 import { login } from "../../../actions/app";
 import { reloadWallet } from "../../../actions/wallet";
 import { updateTokenInfo } from "../../../actions/tokenInfo";
@@ -32,7 +32,8 @@ import ExchangeQuotes from "../ExchangeQuotes";
 import ApiClientToken from "../../../services/tokenApi";
 import rebuildList from "../../../utils/rebuildList";
 import {
-  getPerformanceTiming
+  getPerformanceTiming,
+  getPerformanceTimingEntry
 } from "../../../utils/DateTime";
 import isMobile from "../../../utils/isMobile";
 import ApiClientMonitor from '../../../services/monitor'
@@ -89,6 +90,8 @@ class TokenDetail extends React.Component {
       this.loadToken(decodeURI(match.params.id));
     }
     this.MonitoringParameters()
+    console.log('t1 uuidv4 :',uuidv4);
+
   }
 
   componentDidUpdate(prevProps) {
@@ -278,7 +281,7 @@ class TokenDetail extends React.Component {
     } = this.props.tokensInfo.tokenDetail;
     await xhr
       .get(
-        `${API_URL}/api/tokenholders?address=${ownerAddress}&holder_address=${serchInputVal}&id=${tokenID}`
+        `${API_URL}/api/tokenholders?uuid=${uuidv4}&address=${ownerAddress}&holder_address=${serchInputVal}&id=${tokenID}`
       )
       .then(res => {
         if (res.data) {
@@ -748,7 +751,9 @@ class TokenDetail extends React.Component {
                       shelllod:time.domContentLoadedEventEnd - time.domContentLoadedEventStart,
                       measure5:parseInt(measure5),
                       blankTime:time.domLoading - time.fetchStart,
-                      v:'v1'
+                      v:'v1',
+                      entryList:getPerformanceTimingEntry(),
+                      udid:uuidv4
                   };
                  
 
