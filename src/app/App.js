@@ -1,5 +1,5 @@
 import {
-  API_URL
+  API_URL,uuidv4
 } from "../constants";
 import xhr from "axios/index";
 import {
@@ -31,7 +31,7 @@ export default class App {
 
     let {
       data
-    } = await xhr.get(`${API_URL}/api/token?showAll=1&limit=5000&id_gt=1002828&fields=id,name,precision,abbr,imgUrl`);
+    } = await xhr.get(`${API_URL}/api/token?uuid=${uuidv4}&showAll=1&limit=5000&id_gt=1002828&fields=id,name,precision,abbr,imgUrl`);
 
     let imgUrl;
     for (var i = 0; i < data.data.length; i++) {
@@ -61,7 +61,7 @@ export default class App {
     let {
       data
     } = await xhr.get(
-      `${API_URL}/api/tokens/overview?start=0&limit=1000&filter=trc20&sort=priceInTrx`
+      `${API_URL}/api/tokens/overview?uuid=${uuidv4}&start=0&limit=1000&filter=trc20&sort=priceInTrx`
     );
     let imgUrl;
     if(data.tokens && data.tokens.length){
