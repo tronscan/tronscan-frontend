@@ -231,27 +231,43 @@ export const lang20Q1 = {
 
   freeze_TRX_error:"Something went wrong while trying to freeze TRX, please try again later.",
   votes_cannot_exceed_5_SRs:"Votes cannot exceed 5 SRs",
-// 2020-03-03
-account_resource_last: "Последний раунд",
-account_resource_realTime: "Текущий раунд",
-account_resource_remain: "剩余",
-account_resource_last_tip: "Подсчет голосов и рейтинг последнего раунда",
-account_resource_realTime_tip: "Подсчет голосов и рейтинг текущего раунда",
-account_representative_block_ratio: "Эффективность производства блоков",
-account_representative_block_ratio_tip: "Изготовленные блоки / Производимые блоки",
-account_representative_block_prize: "Накопительный блок вознаграждений",
-account_representative_vote_prize: "Накопительные вознаграждения избирателей",
-account_representative_split_ratio: "Коэффициент распределения вознаграждений",
-account_representative_split_ratio_tip:
-  "Всего наград состоит из наград избирателей и наград SR",
-account_representative_voter: "Награды избирателям",
-account_representative_owner: "SR награды",
-account_representative_block_table_res: "资源消耗",
-account_representative_block_table_prize: "出块收益",
-account_representative_block_desc:
-  "{trx} TRX заработано на {block} произведенных блоках",
-account_representative_voters_per_tip: "Голоса, поданные избирателем / всего голосов",
-account_representative_transfer_tip: "Количество переводов токенов TRX/TRC10/TRC20, связанных с этим аккаунтом",
-account_representative_unit:'{number} голосов от {votes} избирателей',
-account_piechart_title:'Распределение активов',
+
+
+  // 2020-03-03
+  account_resource_last: "Последний раунд",
+  account_resource_realTime: "Текущий раунд",
+  account_resource_remain: "剩余",
+  account_resource_last_tip: "Подсчет голосов и рейтинг последнего раунда",
+  account_resource_realTime_tip: "Подсчет голосов и рейтинг текущего раунда",
+  account_representative_block_ratio: "Эффективность производства блоков",
+  account_representative_block_ratio_tip: "Изготовленные блоки / Производимые блоки",
+  account_representative_block_prize: "Накопительный блок вознаграждений",
+  account_representative_vote_prize: "Накопительные вознаграждения избирателей",
+  account_representative_split_ratio: "Коэффициент распределения вознаграждений",
+  account_representative_split_ratio_tip:
+    "Всего наград состоит из наград избирателей и наград SR",
+  account_representative_voter: "Награды избирателям",
+  account_representative_owner: "SR награды",
+  account_representative_block_table_res: "资源消耗",
+  account_representative_block_table_prize: "出块收益",
+  account_representative_block_desc:
+    "{trx} TRX заработано на {block} произведенных блоках",
+  account_representative_voters_per_tip: "Голоса, поданные избирателем / всего голосов",
+  account_representative_transfer_tip: "Количество переводов токенов TRX/TRC10/TRC20, связанных с этим аккаунтом",
+  account_representative_unit:'{number} голосов от {votes} избирателей',
+  account_piechart_title:'Распределение активов',
+
+
+  // 03-09 tron account  transfers transactions internal-transactions
+
+  address_account_table_filter_all: "полный",
+  address_account_table_filter_transfers: "Перевод ",
+  address_account_table_filter_freeze: "Заморозить TRX",
+  address_account_table_filter_unfreeze: "Разморозить TRX",
+  address_account_table_filter_trigger_smartContracts: "Запустить Смарт Контракт",
+  address_account_table_filter_vote: "Голосовать",
+  address_account_table_filter_other: "other",
+
+  address_account_table_filter_token_tips: "The token is not included in TRONSCAN",
+
 };

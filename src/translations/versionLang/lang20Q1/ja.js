@@ -253,4 +253,17 @@ account_representative_transfer_tip: "このアカウントに関連するTRX / 
 account_representative_unit:'{number}投票者による{votes}票',
 account_piechart_title:'資産配分',
 
+
+  // 03-09 tron account  transfers transactions internal-transactions
+
+  address_account_table_filter_all: "すべて",
+  address_account_table_filter_transfers: "転送",
+  address_account_table_filter_freeze: "TRXフリーズ",
+  address_account_table_filter_unfreeze: "TRX凍結解除",
+  address_account_table_filter_trigger_smartContracts: "スマートコントラクトトリガー",
+  address_account_table_filter_vote: "投票",
+  address_account_table_filter_other: "other",
+
+  address_account_table_filter_token_tips: "The token is not included in TRONSCAN",
+
 };

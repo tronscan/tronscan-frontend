@@ -229,6 +229,7 @@ export const lang20Q1 = {
 
   freeze_TRX_error:"Something went wrong while trying to freeze TRX, please try again later.",
   votes_cannot_exceed_5_SRs:"Votes cannot exceed 5 SRs",
+
   // 2020-03-03
   account_resource_last: "Última ronda",
   account_resource_realTime: "Ronda actual",
@@ -252,4 +253,18 @@ export const lang20Q1 = {
   account_representative_transfer_tip: "Número de transferencias de tokens TRX / TRC10 / TRC20 relacionadas con esta cuenta",
   account_representative_unit:'{number} votos de {votes} votantes',
   account_piechart_title:'Distribución de activos',
+
+
+  // 03-09 tron account  transfers transactions internal-transactions
+
+  address_account_table_filter_all: "all",
+  address_account_table_filter_transfers: "Transferir",
+  address_account_table_filter_freeze: "Congelar TRX",
+  address_account_table_filter_unfreeze: "Descongelar TRX",
+  address_account_table_filter_trigger_smartContracts: "Activar contratos inteligentes",
+  address_account_table_filter_vote: "Votar",
+  address_account_table_filter_other: "other",
+
+  address_account_table_filter_token_tips: "The token is not included in TRONSCAN",
+
 };

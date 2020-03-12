@@ -218,6 +218,12 @@ class NewTransactions extends React.Component {
     customizedColumn = (activeLanguage) => {
         let {intl,filter} = this.props;
         let { timeType } = this.state;
+        const typeFilterAry = [
+            { text: 'Joe', value: '0' },
+            { text: 'Joe', value: '1' },
+            { text: 'Joe', value: '2' },
+            
+        ]
         let column = [
             {
                 title: upperFirst(intl.formatMessage({id: 'transaction_hash'})),
@@ -371,6 +377,15 @@ class NewTransactions extends React.Component {
                 align: 'left',
                 className: 'ant_table',
                 width: '14%',
+                filters: [
+                    { text: 'Joe', value: 'Joe' },
+                    { text: 'Jim', value: 'Jim' },
+                ],
+                filterIcon: () => {
+                    return (
+                        <Icon type="down" onVisibleChange={() => this.onVisibleChange()} style={{fontSize:12,color:'#666'}}  theme="outlined" />
+                    );
+                },
                 render: (text, record, index) => {
                     return <span>{text}</span>
                 }
@@ -399,17 +414,28 @@ class NewTransactions extends React.Component {
                                 })
                             )
                         }
-                        {' '}
-                        <QuestionMark
-                            placement="top"
-                            text="account_tab_transactions_token_info"
-                        />
+                        <span style={{position:'absolute',right:0,left:'92%'}}>
+                            <QuestionMark
+                                placement="top"
+                                text="account_tab_transactions_token_info"
+                            />
+                        </span>
+                       
                     </span>
                 ),
                 dataIndex: "tokens",
                 align: "left",
                 key: "tokens",
                 className: "ant_table",
+                filters: [
+                    { text: 'Joe', value: 'Joe' },
+                    { text: 'Jim', value: 'Jim' },
+                ],
+                filterIcon: () => {
+                    return (
+                        <Icon type="down" onVisibleChange={() => this.onVisibleChange()} style={{fontSize:12,color:'#666'}}  theme="outlined" />
+                    );
+                },
                 render: (text, record, index) => {
                     return <span> {record.map_token_name_abbr} </span>;
                 }

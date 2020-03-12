@@ -580,7 +580,7 @@ class Address extends React.Component {
   renderFrozenTokens() {
     let {
       totalPower,
-      sentDelegateBandwidthz,
+      sentDelegateBandwidth,
       frozenBandwidth,
       sentDelegateResource,
       frozenEnergy,

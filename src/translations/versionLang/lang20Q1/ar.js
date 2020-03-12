@@ -254,5 +254,17 @@ export const lang20Q1 = {
   account_representative_transfer_tip: "عدد عمليات التحويلات الرمزية لكل من TRX / TRC10 / TRC20 المتعلقة بهذا الحساب",
   account_representative_unit:'يوجد حاليا {number} ناخب ، حصل على {votes} صوت',
   account_piechart_title:'توزيع الأصول',
+  
+  // 03-09 tron account  transfers transactions internal-transactions
+
+  address_account_table_filter_all: "الكل",
+  address_account_table_filter_transfers: "تحويل ",
+  address_account_table_filter_freeze: "تجميد TRX",
+  address_account_table_filter_unfreeze: "إلغاء تجميد TRX",
+  address_account_table_filter_trigger_smartContracts: "مشغل  العقود الذكية",
+  address_account_table_filter_vote: "تصويت",
+  address_account_table_filter_other: "other",
+
+  address_account_table_filter_token_tips: "The token is not included in TRONSCAN",
 
 };

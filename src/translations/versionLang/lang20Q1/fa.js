@@ -255,5 +255,17 @@ export const lang20Q1 = {
   account_representative_transfer_tip: "تعداد نقل و انتقالات توکن TRX / TRC10 / TRC20 مربوط به این حساب.",
   account_representative_unit:'{number} آرا توسط رای دهندگان {votes}',
   account_piechart_title:'توزیع دارایی',
+   // 03-09 tron account  transfers transactions internal-transactions
+
+    address_account_table_filter_all: "همه",
+    address_account_table_filter_transfers: "انتقال ",
+    address_account_table_filter_freeze: "فریز TRX.",
+    address_account_table_filter_unfreeze: "باز کردن از حالت فریز TRX.",
+    address_account_table_filter_trigger_smartContracts: "قراردادهای هوشمند Trigger.",
+    address_account_table_filter_vote: "رای",
+    address_account_table_filter_other: "other",
+
+    address_account_table_filter_token_tips: "The token is not included in TRONSCAN",
+
 
 };
