@@ -1,7 +1,7 @@
 import {upperCase} from 'lodash'
 import {tokens20Map} from "./tokensMap.js";
 import xhr from "axios/index";
-import {API_URL} from '../constants.js';
+import {API_URL,uuidv4} from '../constants.js';
 import { store } from './../store';
 
 export default (list = [], tokenId, amount, infolist=false) => {
@@ -101,7 +101,7 @@ function setItem(item,name,id,pre,amount,abbr,logo,index=''){
 }
 
 async function  getTokensMap() {
-    let {data} = await xhr.get(`${API_URL}/api/tokens/overview?start=0&limit=1000&filter=trc20`);
+    let {data} = await xhr.get(`${API_URL}/api/tokens/overview?uuid=${uuidv4}&start=0&limit=1000&filter=trc20`);
     let imgUrl;
     for (var i = 0; i < data.tokens.length; i++) {
         if (!tokens20Map[data.tokens[i].contractAddress]) {

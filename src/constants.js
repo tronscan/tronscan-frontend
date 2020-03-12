@@ -1,4 +1,5 @@
 import Lockr from "lockr";
+import uuidv4w  from "uuid/v4";
 /**
  * 1000000 sun = 1 TRX
  */
@@ -14,7 +15,7 @@ export const NETURL = {
   SUNNET: "https://dappchain.tronscan.org",
   // MAINNET: "http://18.217.215.94:67",
   // SUNNET: "http://18.217.215.94:68",
-  // MAINNET: "https://debug.tronscan.org",
+  //MAINNET: "https://testhttps.tronscan.org",
   // SUNNET: "https://debugdappchain.tronscan.org",
 };
 
@@ -233,3 +234,4 @@ export const CONTRACT_LICENSES = [
 ];
 
 export const WARNING_VERSIONS = [];
+export const uuidv4 = uuidv4w();
