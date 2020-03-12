@@ -375,6 +375,9 @@ class Transactions extends React.Component {
               <Icon type="down" style={{fontSize:12,color:'#666'}}  theme="outlined" />
           );
         },
+        onFilter: (value, record) =>{
+          console.log(value,record)
+        },
         className: 'ant_table',
         render: (text, record, index) => {
             return (
@@ -399,6 +402,9 @@ class Transactions extends React.Component {
           return (
               <Icon type="down" style={{fontSize:12,color:'#666'}}  theme="outlined" />
           );
+        },
+        onFilter: (value, record) =>{
+          console.log(value,record)
         },
         className: "ant_table _text_nowrap",
         render: (text, record, index) => {
@@ -448,6 +454,9 @@ class Transactions extends React.Component {
           return (
               <Icon type="down" style={{fontSize:12,color:'#666'}}  theme="outlined" />
           );
+        },
+        onFilter: (value, record) =>{
+          console.log(value,record)
         },
         className: "ant_table",
         render: (text, record, index) => {

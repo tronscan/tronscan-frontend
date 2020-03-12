@@ -309,6 +309,9 @@ class TransfersAll extends React.Component {
                         <Icon type="down"  style={{fontSize:12,color:'#666'}}  theme="outlined" />
                     );
                 },
+                onFilter: (value, record) =>{
+                    console.log(value,record)
+                },
                 render: (text, record, index) => {
                     return record.fromtip?<img width={40} height={22} src={require("../../images/address/in.png")}/>:<img  width={40} height={22} src={require("../../images/address/out.png")}/>
                 }
@@ -338,6 +341,9 @@ class TransfersAll extends React.Component {
                         <Icon type="down" style={{fontSize:12,color:'#666'}}  theme="outlined" />
                     );
                 },
+                onFilter: (value, record) =>{
+                    console.log(value,record)
+                },
                 className: 'ant_table',
                 render: (text, record, index) => {
                     return (
@@ -364,6 +370,9 @@ class TransfersAll extends React.Component {
                     return (
                         <Icon type="down" style={{fontSize:12,color:'#666'}}  theme="outlined" />
                     );
+                },
+                onFilter: (value, record) =>{
+                    console.log(value,record)
                 },
                 render: (text, record, index) => {
                     return <span>{text}</span>
@@ -393,6 +402,9 @@ class TransfersAll extends React.Component {
                     return (
                         <Icon type="down"  style={{fontSize:12,color:'#666'}}  theme="outlined" />
                     );
+                },
+                onFilter: (value, record) =>{
+                    console.log(value,record)
                 },
                 className: 'ant_table',
                 render: (text, record, index) => {
