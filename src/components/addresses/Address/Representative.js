@@ -219,7 +219,10 @@ class Representative extends React.Component {
                 <span className="ml-1">:</span>
               </th>
               <td>
-                    <span>{tu('account_representative_voter')}:{100-brokerage}% {tu('account_representative_owner')}:{brokerage}%</span>
+                <span>
+                  {tu("account_representative_voter")}:{100 - brokerage}%{" "}
+                  {tu("account_representative_owner")}:{brokerage}%
+                </span>
               </td>
             </tr>
             <tr>
@@ -250,7 +253,7 @@ class Representative extends React.Component {
                 <span className="ml-1">:</span>
               </th>
               <td>
-                    <span>{producedEfficiency} %</span>
+                <span>{producedEfficiency} %</span>
               </td>
             </tr>
             <tr>
@@ -261,7 +264,13 @@ class Representative extends React.Component {
                 <span className="ml-1">:</span>
               </th>
               <td>
-                <span>{blockReward} TRX ({tu('account_representative_voter')}: {(100-brokerage)*blockReward}% {tu('account_representative_owner')}: {brokerage*blockReward} %)</span>
+                <span>
+                  <FormattedNumber value={blockReward} /> TRX (
+                  {tu("account_representative_voter")}:{" "}
+                  {((100 - brokerage) * blockReward) / 100}TRX{" "}
+                  {tu("account_representative_owner")}:
+                  {(brokerage * blockReward) / 100}TRX)
+                </span>
               </td>
             </tr>
             {/* <tr>
