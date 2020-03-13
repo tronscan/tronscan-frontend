@@ -41,7 +41,6 @@ import FreezeDetail from './FreezeDetail';
 import { Piechart } from "../components/Piechart";
 import SweetAlert from "react-bootstrap-sweetalert";
 import {transactionResultManager, transactionResultManagerSun} from "../../../utils/tron";
-import { loadUsdPrice } from "../../../actions/blockchain";
 
 
 BigNumber.config({ EXPONENTIAL_AT: [-1e9, 1e9] });
@@ -107,13 +106,11 @@ class Address extends React.Component {
     };
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     let { match } = this.props;
     this.loadAddress(match.params.id);
     this.loadWitness(match.params.id);
     this.loadWalletReward(match.params.id);
-    let { priceUSD } = this.props;
-    !priceUSD && (await this.props.loadUsdPrice());
   }
 
   componentDidUpdate(prevProps) {
@@ -611,8 +608,6 @@ class Address extends React.Component {
       brokerage:data.brokerage || 0,
       producedEfficiency:data.producedEfficiency || 0,
       blockReward:data.blockReward || 0,
-      version:data.version || '-'
-
     });
   }
 
@@ -685,23 +680,17 @@ class Address extends React.Component {
     );
   }
   pieChart() {
-    let { intl,priceUSD } = this.props;
+    let { intl } = this.props;
     let chartHeight = "300px";
-    let { sortTokenBalances,totalPower } = this.state;
+    let { sortTokenBalances } = this.state;
     let data = [];
     sortTokenBalances.map(item => {
       let balance = Number(item.TRXBalance);
       if (balance > 0) {
         let name = item.symbol ? item.symbol : item.map_token_name_abbr;
-        data.push({ name: name, value: balance,usdBalance:balance*priceUSD });
+        data.push({ name: name, value: balance });
       }
     });
-
-    // if(totalPower > 0){
-      data.push({name:intl.formatMessage({id:'tron_power'}),value:totalPower/ONE_TRX,usdBalance:totalPower*priceUSD/ONE_TRX})
-    // }
-
-    
 
     this.setState({
       popup: (
@@ -920,7 +909,7 @@ class Address extends React.Component {
                   <div className="row info-wrap">
                     <div className="col-md-7 address-info">
                       {address.representative.enabled ? (
-                        <Representative data={this.state} url={match.url} account={account} walletType={walletType} priceUSD={this.props.priceUSD}/>
+                        <Representative data={this.state} url={match.url} account={account} walletType={walletType} />
                       ) : (
                         <table className="table m-0">
                           <tbody>
@@ -1338,13 +1327,10 @@ function mapStateToProps(state) {
   return {
     account: state.app.account,
     walletType: state.app.wallet,
-    priceUSD: state.blockchain.usdPrice
   };
 }
 
-const mapDispatchToProps = {
-  loadUsdPrice
-};
+// const mapDispatchToProps = {};
 
 // export default injectIntl(Address);
-export default connect(mapStateToProps,mapDispatchToProps)(injectIntl(Address));
+export default connect(mapStateToProps, null)(injectIntl(Address));

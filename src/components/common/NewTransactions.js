@@ -6,7 +6,7 @@ import {connect} from "react-redux";
 import {Client} from "../../services/api";
 import {TransactionHashLink, AddressLink, BlockNumberLink} from "./Links";
 import {tu} from "../../utils/i18n";
-import { Icon } from "antd";
+import { Icon,Checkbox } from "antd";
 // import TimeAgo from "react-timeago";
 import {TronLoader} from "./loaders";
 import {Truncate,TruncateAddress} from "./text";
@@ -16,7 +16,6 @@ import {upperFirst} from "lodash";
 import {QuestionMark} from "./QuestionMark";
 import TotalInfo from "./../../components/addresses/components/TableTotal";
 import DateSelect from './../../components/addresses/components/dateSelect'
-import {DatePicker} from 'antd';
 import moment from 'moment';
 import {NameWithId} from "./names";
 import isMobile from "../../utils/isMobile";
@@ -27,13 +26,13 @@ import qs from 'qs'
 import BlockTime from '../common/blockTime'
 
 
-const RangePicker = DatePicker.RangePicker;
+const CheckboxGroup = Checkbox.Group;
 
 class NewTransactions extends React.Component {
 
     constructor(props) {
         super(props);
-
+        let intl = props.intl;
         this.start = moment([2018,5,25]).startOf('day').valueOf();
         this.end = moment().valueOf();
         this.state = {
@@ -47,7 +46,38 @@ class NewTransactions extends React.Component {
             ),
             timeType: true,
             filterTitleKey:'',
-          
+            typeFilter:{
+                checkedList:[],
+                indeterminate:'',
+                checkAll:false,
+            },
+            statusFilter:{
+                checkedList:[],
+                indeterminate:'',
+                checkAll:false,
+            },
+            resultFilter:{
+                checkedList:[],
+                indeterminate:'',
+                checkAll:false,
+            },
+            typeOptionsAry:[
+                { label: upperFirst(intl.formatMessage({id: 'address_account_table_filter_transfers'})), value: 1 },
+                { label: upperFirst(intl.formatMessage({id: 'address_account_table_filter_freeze'})), value: 2 },
+                { label: upperFirst(intl.formatMessage({id: 'address_account_table_filter_unfreeze'})), value: 3 },
+                { label: upperFirst(intl.formatMessage({id: 'address_account_table_filter_trigger_smartContracts'})), value: 4 },
+                { label: upperFirst(intl.formatMessage({id: 'address_account_table_filter_vote'})), value: 5 },
+                { label: upperFirst(intl.formatMessage({id: 'address_account_table_filter_other'})), value: 6 },
+            ],
+            statusOptionsAry: [
+                { label:  upperFirst(intl.formatMessage({id: 'full_node_version_unconfirmed'})), value: 1 },
+                { label:  upperFirst(intl.formatMessage({id: 'full_node_version_confirmed'})), value: 2 },
+                // { text:  upperFirst(intl.formatMessage({id: 'block_detail_rolled_back'})), value: '3' },
+            ],
+            resultOptionsAry: [
+                { label:  'SUCCESS', value: 1 },
+                { label:  'FAIL', value: 2 },
+            ]
         };
         
     }
@@ -206,28 +236,134 @@ class NewTransactions extends React.Component {
 
     customizedColumn = (activeLanguage) => {
         let {intl,filter} = this.props;
-        let { timeType } = this.state;
-        const typeFilterAry = [
-            { text:  upperFirst(intl.formatMessage({id: 'address_account_table_filter_all'})), value: '0' },
-            { text: upperFirst(intl.formatMessage({id: 'address_account_table_filter_transfers'})), value: '1' },
-            { text: upperFirst(intl.formatMessage({id: 'address_account_table_filter_freeze'})), value: '2' },
-            { text: upperFirst(intl.formatMessage({id: 'address_account_table_filter_unfreeze'})), value: '3' },
-            { text: upperFirst(intl.formatMessage({id: 'address_account_table_filter_trigger_smartContracts'})), value: '4' },
-            { text: upperFirst(intl.formatMessage({id: 'address_account_table_filter_vote'})), value: '5' },
-            { text: upperFirst(intl.formatMessage({id: 'address_account_table_filter_other'})), value: '6' },
-        ]
-        const statusAry = [
-            { text:  upperFirst(intl.formatMessage({id: 'address_account_table_filter_all'})), value: '0' },
-            { text:  upperFirst(intl.formatMessage({id: 'full_node_version_unconfirmed'})), value: '1' },
-            { text:  upperFirst(intl.formatMessage({id: 'full_node_version_confirmed'})), value: '2' },
-            // { text:  upperFirst(intl.formatMessage({id: 'block_detail_rolled_back'})), value: '3' },
-        ]
-        const resultAry = [
-            { text:  upperFirst(intl.formatMessage({id: 'address_account_table_filter_all'})), value: '0' },
-            { text:  'SUCCESS', value: '1' },
-            { text:  'FAIL', value: '2' },
-        ]
+        const { 
+            timeType,
+            typeOptionsAry,typeFilter,
+            statusFilter,statusOptionsAry,
+            resultFilter,resultOptionsAry,
+        } = this.state;
+        const typeFilterDropdown = ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
+            <div>
+                <div style={{padding: "5px 12px"}}>
+                    <Checkbox
+                        indeterminate={typeFilter.indeterminate}
+                        onChange={
+                            e => {
+                                let obj = {
+                                  checkedList: e.target.checked ? [1,2,3,4,5,6] : [],
+                                  indeterminate: false,
+                                  checkAll: e.target.checked,
+                                }
+                              this.setState({
+                                typeFilter:obj
+                              });
+                            }
+                        }
+                        checked={typeFilter.checkAll}
+                    >
+                        {upperFirst(intl.formatMessage({id: 'address_account_table_filter_all'}))}
+                    </Checkbox>
+                </div>
+                <div>
+                    <CheckboxGroup
+                        options={typeOptionsAry}
+                        value={typeFilter.checkedList}
+                        onChange={(checkedList)=> {
+                            let obj = {
+                                checkedList,
+                                indeterminate: !!checkedList.length && checkedList.length < typeOptionsAry.length,
+                                checkAll: checkedList.length === typeOptionsAry.length,
+                            }
+                            this.setState({
+                                typeFilter:obj
+                            })
+                        }}  
+                    />
+                </div>
+            </div>
+        )
+        const statusFilterDropdown =  ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
+            <div>
+                <div style={{padding: "5px 12px"}}>
+                    <Checkbox
+                        indeterminate={statusFilter.indeterminate}
+                        onChange={
+                            e => {
+                                let obj = {
+                                  checkedList: e.target.checked ? [1,2] : [],
+                                  indeterminate: false,
+                                  checkAll: e.target.checked,
+                                }
+                              this.setState({
+                                  statusFilter:obj
+                              })
+                            }
+                        }
+                        checked={statusFilter.checkAll}
+                    >
+                        {upperFirst(intl.formatMessage({id: 'address_account_table_filter_all'}))}
+                    </Checkbox>
+                </div>
+                <div>
+                    <CheckboxGroup
+                        options={statusOptionsAry}
+                        value={statusFilter.checkedList}
+                        onChange={(checkedList)=> {
+                            let obj = {
+                                checkedList,
+                                indeterminate: !!checkedList.length && checkedList.length < statusOptionsAry.length,
+                                checkAll: checkedList.length === statusOptionsAry.length,
+                            }
+                            this.setState({
+                                statusFilter:obj
+                            })
+                        }}
+                        />
+                </div>
+            </div>
+        )
+        const resultFilterDropdown =  ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
+            <div>
+                <div style={{padding: "5px 12px"}}>
+                    <Checkbox
+                        indeterminate={resultFilter.indeterminate}
+                        onChange={
+                            e => {
+                                let obj = {
+                                  checkedList: e.target.checked ? [1,2] : [],
+                                  indeterminate: false,
+                                  checkAll: e.target.checked,
+                                }
+                              this.setState({
+                                resultFilter:obj
+                              })
+                            }
+                        }
+                        checked={resultFilter.checkAll}
+                    >
+                        {upperFirst(intl.formatMessage({id: 'address_account_table_filter_all'}))}
+                    </Checkbox>
+                </div>
+                <div>
+                    <CheckboxGroup
+                        options={resultOptionsAry}
+                        value={resultFilter.checkedList}
+                        onChange={(checkedList)=> {
+                            let obj = {
+                                checkedList,
+                                indeterminate: !!checkedList.length && checkedList.length < resultOptionsAry.length,
+                                checkAll: checkedList.length === resultOptionsAry.length,
+                            }
+                            this.setState({
+                                resultFilter:obj
+                            })
+                        }}
+                        />
+                </div>
+            </div>
+        )
 
+       
         let column = [
             {
                 title: upperFirst(intl.formatMessage({id: 'transaction_hash'})),
@@ -330,16 +466,19 @@ class NewTransactions extends React.Component {
                 key: 'contractType',
                 align: 'left',
                 width: '20%',
-                filters: typeFilterAry,
                 filterIcon: () => {
                     return (
                         <Icon type="caret-down" style={{fontSize:12,color:'#999'}}  theme="outlined" />
                     );
                 },
-                onFilter: (value, record) =>{
-                    console.log(value,record)
+                filterDropdown: typeFilterDropdown,
+                onFilterDropdownVisibleChange: (visible) => {
+                    if (visible) {
+                        console.log('visible')
+                    }else{
+                        console.log('dispair')
+                    }
                 },
-                // onFilter: (value, record) => record.name.includes(value),
                 className: 'ant_table _text_nowrap',
                 render: (text, record, index) => {
                     return <span>{ContractTypes[text]}</span>
@@ -351,14 +490,18 @@ class NewTransactions extends React.Component {
                 key: 'status',
                 align: 'left',
                 width: activeLanguage ==='ru' ? '34%' :'16%',
-                filters: statusAry,
                 filterIcon: () => {
                     return (
                         <Icon type="caret-down" style={{fontSize:12,color:'#999'}}  theme="outlined" />
                     );
                 },
-                onFilter: (value, record) =>{
-                    console.log(value,record)
+                filterDropdown: statusFilterDropdown,
+                onFilterDropdownVisibleChange: (visible) => {
+                    if (visible) {
+                        console.log('visible')
+                    }else{
+                        console.log('dispair')
+                    }
                 },
                 className: 'ant_table',
                 render: (text, record, index) => {
@@ -381,14 +524,18 @@ class NewTransactions extends React.Component {
                 align: 'left',
                 className: 'ant_table',
                 width: '14%',
-                filters: resultAry,
                 filterIcon: () => {
                     return (
-                        <Icon type="caret-down"  style={{fontSize:12,color:'#999'}}  theme="outlined" />
+                        <Icon type="caret-down" style={{fontSize:12,color:'#999'}}  theme="outlined" />
                     );
                 },
-                onFilter: (value, record) =>{
-                    console.log(value,record)
+                filterDropdown: resultFilterDropdown,
+                onFilterDropdownVisibleChange: (visible) => {
+                    if (visible) {
+                        console.log('visible')
+                    }else{
+                        console.log('dispair')
+                    }
                 },
                 render: (text, record, index) => {
                     return <span>{text}</span>

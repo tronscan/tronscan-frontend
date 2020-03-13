@@ -31,6 +31,8 @@ import { Icon,Checkbox,Table } from 'antd';
 import {API_URL} from "../../constants";
 import BlockTime from '../common/blockTime'
 const CheckboxGroup = Checkbox.Group;
+
+
 class TransfersAll extends React.Component {
     constructor(props) {
         super(props);
@@ -51,16 +53,33 @@ class TransfersAll extends React.Component {
             hideSmallCurrency:false,
             tokenName:"",
             timeType:true,
-            statusFilter:{
-                checkedList:[1,2],
+            inoutFilter:{
+                checkedList:[],
                 indeterminate:'',
                 checkAll:false,
-                
             },
-            statusArr: [
+            statusFilter:{
+                checkedList:[],
+                indeterminate:'',
+                checkAll:false,
+            },
+            resultFilter:{
+                checkedList:[],
+                indeterminate:'',
+                checkAll:false,
+            },
+            inoutOptionsAry:[
+                { label:  upperFirst(intl.formatMessage({id: 'address_transfer_in'})), value: 1 },
+                { label:  upperFirst(intl.formatMessage({id: 'address_transfer_out'})), value: 2 },
+            ],
+            statusOptionsAry: [
                 { label:  upperFirst(intl.formatMessage({id: 'full_node_version_unconfirmed'})), value: 1 },
                 { label:  upperFirst(intl.formatMessage({id: 'full_node_version_confirmed'})), value: 2 },
                 // { text:  upperFirst(intl.formatMessage({id: 'block_detail_rolled_back'})), value: '3' },
+            ],
+            resultOptionsAry: [
+                { label:  'SUCCESS', value: 1 },
+                { label:  'FAIL', value: 2 },
             ]
         };
     }
@@ -73,8 +92,6 @@ class TransfersAll extends React.Component {
             this.props.setInterval(() => this.load(page,pageSize), this.state.autoRefresh);
         }
 
-        // this.onChangeFilterStatus = this.onChangeFilterStatus.bind(this)
-        // this.onCheckAllChange = this.onCheckAllChange.bind(this)
     }
 
     onChange = (page, pageSize) => {
@@ -194,17 +211,6 @@ class TransfersAll extends React.Component {
         });
     }
 
-    onChangeFilterStatus = checkedList => {
-        let obj = {
-            checkedList,
-            indeterminate: !!checkedList.length && checkedList.length < this.state.statusArr.length,
-            checkAll: checkedList.length === this.state.statusArr.length,
-            
-        }
-        this.setState({
-            statusFilter:obj
-        });
-      };
 
       onCheckAllChange = e => {
 
@@ -220,25 +226,134 @@ class TransfersAll extends React.Component {
 
     customizedColumn = (activeLanguage) => {
         let { intl } = this.props;
-            const defaultImg = require("../../images/logo_default.png");
-        const { timeType } = this.state;
-        const inoutAry = [
-            { text:  upperFirst(intl.formatMessage({id: 'address_account_table_filter_all'})), value: '0' },
-            { text:  upperFirst(intl.formatMessage({id: 'address_transfer_in'})), value: '1' },
-            { text:  upperFirst(intl.formatMessage({id: 'address_transfer_out'})), value: '2' },
-        ]
-        const statusAry = [
-            { text:  upperFirst(intl.formatMessage({id: 'address_account_table_filter_all'})), value: '0' },
-            { text:  upperFirst(intl.formatMessage({id: 'full_node_version_unconfirmed'})), value: '1' },
-            { text:  upperFirst(intl.formatMessage({id: 'full_node_version_confirmed'})), value: '2' },
-            // { text:  upperFirst(intl.formatMessage({id: 'block_detail_rolled_back'})), value: '3' },
-        ]
-        const resultAry = [
-            { text:  upperFirst(intl.formatMessage({id: 'address_account_table_filter_all'})), value: '0' },
-            { text:  'SUCCESS', value: '1' },
-            { text:  'FAIL', value: '2' },
-        ]
-        const plainOptions = this.state.statusArr;
+        const defaultImg = require("../../images/logo_default.png");
+        const { 
+            timeType,
+            inoutOptionsAry,inoutFilter,
+            statusFilter,statusOptionsAry,
+            resultFilter,resultOptionsAry,
+        } = this.state;
+        const inoutFilterDropdown = ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
+            <div>
+                <div style={{padding: "5px 12px"}}>
+                    <Checkbox
+                        indeterminate={inoutFilter.indeterminate}
+                        onChange={
+                            e => {
+                                let obj = {
+                                  checkedList: e.target.checked ? [1,2] : [],
+                                  indeterminate: false,
+                                  checkAll: e.target.checked,
+                                }
+                              this.setState({
+                                inoutFilter:obj
+                              });
+                            }
+                        }
+                        checked={inoutFilter.checkAll}
+                    >
+                        {upperFirst(intl.formatMessage({id: 'address_account_table_filter_all'}))}
+                    </Checkbox>
+                </div>
+                <div>
+                    <CheckboxGroup
+                        options={inoutOptionsAry}
+                        value={inoutFilter.checkedList}
+                        onChange={(checkedList)=> {
+                            let obj = {
+                                checkedList,
+                                indeterminate: !!checkedList.length && checkedList.length < inoutOptionsAry.length,
+                                checkAll: checkedList.length === inoutOptionsAry.length,
+                            }
+                            this.setState({
+                                inoutFilter:obj
+                            })
+                        }}  
+                    />
+                </div>
+            </div>
+        )
+        const statusFilterDropdown =  ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
+            <div>
+                <div style={{padding: "5px 12px"}}>
+                    <Checkbox
+                        indeterminate={statusFilter.indeterminate}
+                        onChange={
+                            e => {
+                                let obj = {
+                                  checkedList: e.target.checked ? [1,2] : [],
+                                  indeterminate: false,
+                                  checkAll: e.target.checked,
+                                }
+                              this.setState({
+                                  statusFilter:obj
+                              })
+                            }
+                        }
+                        checked={statusFilter.checkAll}
+                    >
+                        {upperFirst(intl.formatMessage({id: 'address_account_table_filter_all'}))}
+                    </Checkbox>
+                </div>
+                <div>
+                    <CheckboxGroup
+                        options={statusOptionsAry}
+                        value={statusFilter.checkedList}
+                        onChange={(checkedList)=> {
+                            let obj = {
+                                checkedList,
+                                indeterminate: !!checkedList.length && checkedList.length < statusOptionsAry.length,
+                                checkAll: checkedList.length === statusOptionsAry.length,
+                            }
+                            this.setState({
+                                statusFilter:obj
+                            })
+                        }}
+                        />
+                </div>
+            </div>
+        )
+        const resultFilterDropdown =  ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
+            <div>
+                <div style={{padding: "5px 12px"}}>
+                    <Checkbox
+                        indeterminate={resultFilter.indeterminate}
+                        onChange={
+                            e => {
+                                let obj = {
+                                  checkedList: e.target.checked ? [1,2] : [],
+                                  indeterminate: false,
+                                  checkAll: e.target.checked,
+                                }
+                              this.setState({
+                                resultFilter:obj
+                              })
+                            }
+                        }
+                        checked={resultFilter.checkAll}
+                    >
+                        {upperFirst(intl.formatMessage({id: 'address_account_table_filter_all'}))}
+                    </Checkbox>
+                </div>
+                <div>
+                    <CheckboxGroup
+                        options={resultOptionsAry}
+                        value={resultFilter.checkedList}
+                        onChange={(checkedList)=> {
+                            let obj = {
+                                checkedList,
+                                indeterminate: !!checkedList.length && checkedList.length < resultOptionsAry.length,
+                                checkAll: checkedList.length === resultOptionsAry.length,
+                            }
+                            this.setState({
+                                resultFilter:obj
+                            })
+                        }}
+                        />
+                </div>
+            </div>
+        )
+
         let column = [
             {
                 title: upperFirst(intl.formatMessage({id: 'transaction_hash'})),
@@ -333,7 +448,7 @@ class TransfersAll extends React.Component {
             },
             {
                 title: (
-                    <span style={{position: 'relative'}}>
+                    <span>
                        {upperFirst(intl.formatMessage({id: 'address_transfer_in'}))}{' '}|{' '} 
                        {upperFirst(intl.formatMessage({id: 'address_transfer_out'}))}
                     </span>
@@ -343,12 +458,12 @@ class TransfersAll extends React.Component {
                 align: 'center',
                 className: 'ant_table address_max_width',
                 width: '10%',
-                filters: inoutAry,
                 filterIcon: () => {
                     return (
                         <Icon type="caret-down"  style={{fontSize:12,color:'#999'}}  theme="outlined" />
                     );
                 },
+                filterDropdown: inoutFilterDropdown,
                 onFilterDropdownVisibleChange: (visible) => {
                     if (visible) {
                         console.log('visible')
@@ -379,15 +494,6 @@ class TransfersAll extends React.Component {
                 key: 'status',
                 width: activeLanguage === 'zh' ?'10%' :"17%",
                 align: 'left',
-                filters: statusAry,
-                filterIcon: () => {
-                    return (
-                        <Icon type="caret-down" style={{fontSize:12,color:'#999'}}  theme="outlined" />
-                    );
-                },
-                onFilter: (value, record) =>{
-                    console.log(value,record)
-                },
                 className: 'ant_table',
                 render: (text, record, index) => {
                     return (
@@ -401,22 +507,19 @@ class TransfersAll extends React.Component {
                         </div>
                     )
                 },
-                filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
-                    <div style={{ padding: 8 }}>
-                        <Checkbox
-                            indeterminate={this.state.statusFilter.indeterminate}
-                            onChange={this.onCheckAllChange.bind(this)}
-                            checked={this.state.statusFilter.checkAll}
-                        >
-                            {upperFirst(intl.formatMessage({id: 'address_account_table_filter_all'}))}
-                        </Checkbox>
-                      <CheckboxGroup
-                        options={plainOptions}
-                        value={this.state.statusFilter.checkedList}
-                        onChange={this.onChangeFilterStatus.bind(this)}
-                        />
-                    </div>
-                  ),
+                filterIcon: () => {
+                    return (
+                        <Icon type="caret-down" style={{fontSize:12,color:'#999'}}  theme="outlined" />
+                    );
+                },
+                filterDropdown: statusFilterDropdown,
+                onFilterDropdownVisibleChange: (visible) => {
+                    if (visible) {
+                        console.log('visible')
+                    }else{
+                        console.log('dispair')
+                    }
+                },
             },
             {
                 title: upperFirst(intl.formatMessage({id: 'result' })),
@@ -425,14 +528,18 @@ class TransfersAll extends React.Component {
                 align: 'left',
                 className: 'ant_table',
                 width: '11%',
-                filters: resultAry,
                 filterIcon: () => {
                     return (
                         <Icon type="caret-down" style={{fontSize:12,color:'#999'}}  theme="outlined" />
                     );
                 },
-                onFilter: (value, record) =>{
-                    console.log(value,record)
+                filterDropdown: resultFilterDropdown,
+                onFilterDropdownVisibleChange: (visible) => {
+                    if (visible) {
+                        console.log('visible')
+                    }else{
+                        console.log('dispair')
+                    }
                 },
                 render: (text, record, index) => {
                     return <span>{text}</span>
@@ -665,24 +772,20 @@ class TransfersAll extends React.Component {
                         <div className="p-3 text-center no-data">{tu("no_transfers")}</div>
                         :
                         <div className={isMobile ? "pt-5":null}>
-                            {/* <SmartTable  position="bottom" bordered={true} loading={loading} column={column} data={transfers} total={rangeTotal > 2000 ? 2000 : rangeTotal} locale={locale} addr="address" nopadding={true}
-                                    current={this.state.page}
-                                    onPageChange={(page, pageSize) => {
-                                        this.onChange(page, pageSize)
-                                    }}/> */}
-                                    <Table
-                                    bordered={true}
-                                    loading={loading}
-                                    rowKey={(record, index) => {
-                                        return index; 
-                                    }}
-                                    dataSource={transfers}
-                                    columns={column}
-                                    pagination={this.state.pagination}
-                                    onChange={(page,pageSize) => {
-                                        this.load(page, pageSize);
-                                    }}
-                                    />
+                            <SmartTable  
+                                position="bottom" 
+                                bordered={true} 
+                                loading={loading} 
+                                column={column} 
+                                data={transfers} 
+                                total={rangeTotal > 2000 ? 2000 : rangeTotal} 
+                                locale={locale} 
+                                addr="address" 
+                                nopadding={true}
+                                current={this.state.page}
+                                onPageChange={(page, pageSize) => {
+                                    this.onChange(page, pageSize)
+                                }}/>
                         </div>
                        
                 }
