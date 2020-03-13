@@ -78,6 +78,9 @@
   }
   .representive {
     justify-content: space-between;
+    section{
+      min-width: 45%;
+    }
     h6 {
       font-size: 15px;
       color: #c23631;
@@ -112,6 +115,8 @@
       font-weight: normal;
       border: 0;
       border-bottom: 1px solid #eee;
+      // white-space: normal;
+      // max-width:50%;
     }
     td {
       font-family: PingFangSC-Regular;

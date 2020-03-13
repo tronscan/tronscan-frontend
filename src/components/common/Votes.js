@@ -269,7 +269,7 @@ class Votes extends React.Component {
           dataSource={votes}
           columns={column}
           pagination={this.state.pagination}
-          onChange={(page,sorter) => {
+          onChange={(page,pageSize,sorter) => {
             this.load(page.current, page.pageSize,sorter);
           }}
         />
