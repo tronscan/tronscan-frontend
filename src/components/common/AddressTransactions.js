@@ -19,6 +19,7 @@ import { NameWithId } from "./names";
 import rebuildList from "../../utils/rebuildList";
 import { API_URL } from "../../constants";
 import qs from "qs";
+import isMobile from "../../utils/isMobile";
 import BlockTime from "../common/blockTime";
 
 const RangePicker = DatePicker.RangePicker;
@@ -578,17 +579,19 @@ class Transactions extends React.Component {
         {!loading && transactions.length === 0 ? (
           <div className="p-3 text-center no-data">{tu("no_transactions")}</div>
         ) : (
-          <SmartTable
-            bordered={true}
-            position="bottom"
-            loading={loading}
-            column={column}
-            data={transactions}
-            total={rangeTotal > 2000 ? 2000 : rangeTotal}
-            onPageChange={(page, pageSize) => {
-              this.loadTransactions(page, pageSize);
-            }}
-          />
+          <div className={isMobile ? "pt-5":null}>
+            <SmartTable
+              bordered={true}
+              position="bottom"
+              loading={loading}
+              column={column}
+              data={transactions}
+              total={rangeTotal > 2000 ? 2000 : rangeTotal}
+              onPageChange={(page, pageSize) => {
+                this.loadTransactions(page, pageSize);
+              }}
+            />
+          </div>
         )}
       </div>
     );

@@ -267,7 +267,7 @@ export default class SmartTable extends Component {
               "card table_pos table_pos_addr " +
               (data.length == 0 ? "table_pos_addr_data" : "") +
               (transfers == "address" ? " transfer-mt-100" : " transfer-pt-100") +
-              (nopadding && !isMobile ? " transfer-mp-0" :'')
+              (nopadding ? " transfer-mp-0" :'')
 
             }
           >

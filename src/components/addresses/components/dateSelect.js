@@ -4,6 +4,7 @@ import moment from "moment";
 import { cloneDeep } from "lodash";
 import {toastr} from 'react-redux-toastr'
 import { Button, Radio, DatePicker } from "antd";
+import isMobile from '../../../utils/isMobile'
 import { tu } from "../../../utils/i18n";
 import { connect } from "react-redux";
 import { updateTokenInfo } from "../../../actions/tokenInfo";
@@ -154,7 +155,7 @@ class DateSelect extends React.Component {
             </Radio.Group>
           </div>
           <div className="col-xs-4 col-sm-6 singleTimeRange">
-            <div className={`position-absolute`}  style={{right: "1rem", width: "auto"}}>
+            <div className={`position-absolute`}  style={isMobile? { width: "auto" }:{right:"1rem",width: "auto"}}>
               <DatePicker
                     disabledDate={this.disabledStartDate}
                     showTime

@@ -19,6 +19,7 @@ import DateSelect from './../../components/addresses/components/dateSelect'
 import {DatePicker} from 'antd';
 import moment from 'moment';
 import {NameWithId} from "./names";
+import isMobile from "../../utils/isMobile";
 import rebuildList from "../../utils/rebuildList";
 import xhr from "axios/index";
 import {API_URL} from '../../constants.js'
@@ -611,21 +612,23 @@ class NewTransactions extends React.Component {
                 {tu("no_transactions")}
               </div>
             ) : (
-              <SmartTable
-                bordered={true}
-                loading={loading}
-                position="bottom"
-                column={column}
-                data={transactions}
-                total={rangeTotal > 2000 ? 2000 : rangeTotal}
-                current={this.state.page}
-                onPageChange={(page, pageSize) => {
-                  this.loadTransactions(page, pageSize);
-                }}
-                locale={{
-                    filterTitle: filterTitleKey || 'default', // prevent console error ，remove result => filterTitle ''fail；
-                }}
-              />
+                <div className={isMobile ? "pt-5":null}>
+                    <SmartTable
+                        bordered={true}
+                        loading={loading}
+                        position="bottom"
+                        column={column}
+                        data={transactions}
+                        total={rangeTotal > 2000 ? 2000 : rangeTotal}
+                        current={this.state.page}
+                        onPageChange={(page, pageSize) => {
+                        this.loadTransactions(page, pageSize);
+                        }}
+                        locale={{
+                            filterTitle: filterTitleKey || 'default', // prevent console error ，remove result => filterTitle ''fail；
+                        }}
+                    />
+                </div>
             )}
           </div>
         );

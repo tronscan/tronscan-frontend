@@ -24,6 +24,8 @@ import { Radio } from 'antd';
 import {isAddressValid} from "@tronscan/client/src/utils/crypto";
 import { CONTRACT_ADDRESS_USDT, CONTRACT_ADDRESS_WIN, CONTRACT_ADDRESS_GGC } from "../../constants";
 import qs from 'qs'
+import isMobile from "../../utils/isMobile";
+
 import { Icon } from 'antd';
 
 import {API_URL} from "../../constants";
@@ -603,11 +605,14 @@ class TransfersAll extends React.Component {
                     (!loading && transfers.length === 0)?
                         <div className="p-3 text-center no-data">{tu("no_transfers")}</div>
                         :
-                        <SmartTable  position="bottom" bordered={true} loading={loading} column={column} data={transfers} total={rangeTotal > 2000 ? 2000 : rangeTotal} locale={locale} addr="address" nopadding={true}
+                        <div className={isMobile ? "pt-5":null}>
+                            <SmartTable  position="bottom" bordered={true} loading={loading} column={column} data={transfers} total={rangeTotal > 2000 ? 2000 : rangeTotal} locale={locale} addr="address" nopadding={true}
                                     current={this.state.page}
                                     onPageChange={(page, pageSize) => {
                                         this.onChange(page, pageSize)
                                     }}/>
+                        </div>
+                       
                 }
             </div>
         )
