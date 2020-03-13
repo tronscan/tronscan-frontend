@@ -1191,7 +1191,7 @@ class Address extends React.Component {
                   </div>
                 </div>
                 <div className="card mt-3 list-style-body">
-                  <div className="card-header list-style-body__header">
+                  <div className="card-header list-style-body__header" style={{position:"relative"}}>
                     <ul className="nav nav-tabs card-header-tabs">
                       {Object.values(tabs).map(tab => (
                         <li key={tab.id} className="nav-item">
@@ -1212,8 +1212,8 @@ class Address extends React.Component {
                         style={{
                           position: "absolute",
                           right: "1rem",
-                          top: 6,
-                          height: 26
+                          bottom: "6px",
+                          height: 35
                         }}
                       >
                         <div
