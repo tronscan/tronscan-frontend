@@ -6,7 +6,7 @@ import {tu} from "../../../utils/i18n";
 import {Client} from "../../../services/api";
 import {isAddressValid} from "@tronscan/client/src/utils/crypto";
 import _, {find, round} from "lodash";
-import { ACCOUNT_TRONLINK, API_URL, ONE_TRX, IS_MAINNET } from "../../../constants";
+import { ACCOUNT_TRONLINK, API_URL, ONE_TRX, IS_MAINNET ,uuidv4} from "../../../constants";
 import {Alert} from "reactstrap";
 import {reloadWallet} from "../../../actions/wallet";
 import SweetAlert from "react-bootstrap-sweetalert";
@@ -547,7 +547,7 @@ class SendForm extends React.Component {
 
   async getTRC20Tokens(){
       let {account} = this.props;
-      let result = await xhr.get(API_URL+"/api/token_trc20?sort=issue_time&start=0&limit=50");
+      let result = await xhr.get(API_URL+"/api/token_trc20?sort=issue_time&start=0&limit=50"+"&uuid="+uuidv4);
       let tokens20 = result.data.trc20_tokens;
       const tronWebLedger = this.props.tronWeb();
       const { tronWeb } = this.props.account;

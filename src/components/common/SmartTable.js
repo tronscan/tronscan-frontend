@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { tu } from "./../../utils/i18n";
 import { Client } from "./../../services/api";
 import { Table, Input, Button, Icon } from "antd";
+import isMobile from "../../utils/isMobile";
 
 export default class SmartTable extends Component {
   constructor(props) {
@@ -245,6 +246,7 @@ export default class SmartTable extends Component {
       locale,
       addr,
       transfers,
+      nopadding,
       contractAddress,
       isPaddingTop
     } = this.props;
@@ -264,7 +266,9 @@ export default class SmartTable extends Component {
             className={
               "card table_pos table_pos_addr " +
               (data.length == 0 ? "table_pos_addr_data" : "") +
-              (transfers == "address" ? " transfer-mt-100" : " transfer-pt-100")
+              (transfers == "address" ? " transfer-mt-100" : " transfer-pt-100") +
+              (nopadding ? " transfer-mp-0" :'')
+
             }
           >
             <Table

@@ -926,9 +926,18 @@
         color:#666 !important;
       }
     }
-  
+    
   }
 }
+// ant-table-filter-dropdown-btns 
+.ant-dropdown{
+  .ant-table-filter-dropdown{
+    .ant-table-filter-dropdown-btns{
+      display: none;
+    }
+  }
+}
+
 
 .confirm .borderBottom {
   borderbottom: "1px solid #DFD7CA" !important;

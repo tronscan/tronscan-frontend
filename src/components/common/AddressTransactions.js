@@ -19,6 +19,7 @@ import { NameWithId } from "./names";
 import rebuildList from "../../utils/rebuildList";
 import { API_URL } from "../../constants";
 import qs from "qs";
+import isMobile from "../../utils/isMobile";
 import BlockTime from "../common/blockTime";
 
 const RangePicker = DatePicker.RangePicker;
@@ -259,6 +260,17 @@ class Transactions extends React.Component {
   trc20CustomizedColumn = (activeLanguage) => {
     let { intl } = this.props;
     const {timeType} = this.state;
+    const statusAry = [
+      { text:  upperFirst(intl.formatMessage({id: 'address_account_table_filter_all'})), value: '0' },
+      { text:  upperFirst(intl.formatMessage({id: 'full_node_version_unconfirmed'})), value: '1' },
+      { text:  upperFirst(intl.formatMessage({id: 'full_node_version_confirmed'})), value: '2' },
+      // { text:  upperFirst(intl.formatMessage({id: 'block_detail_rolled_back'})), value: '3' },
+    ]
+    const resultAry = [
+        { text:  upperFirst(intl.formatMessage({id: 'address_account_table_filter_all'})), value: '0' },
+        { text:  'SUCCESS', value: '1' },
+        { text:  'FAIL', value: '2' },
+    ]
     let column = [
       {
         title: upperFirst(intl.formatMessage({ id: "parenthash" })),
@@ -358,14 +370,14 @@ class Transactions extends React.Component {
         key: 'status',
         align: 'left',
         width: activeLanguage ==='ru' ? '34%' :'16%',
-        filters: [
-            { text: 'Joe', value: 'Joe' },
-            { text: 'Jim', value: 'Jim' },
-        ],
+        filters: statusAry,
         filterIcon: () => {
           return (
-              <Icon type="down" style={{fontSize:12,color:'#666'}}  theme="outlined" />
+              <Icon type="caret-down" style={{fontSize:12,color:'#999'}}  theme="outlined" />
           );
+        },
+        onFilter: (value, record) =>{
+          console.log(value,record)
         },
         className: 'ant_table',
         render: (text, record, index) => {
@@ -386,14 +398,14 @@ class Transactions extends React.Component {
         dataIndex: "rejected",
         key: "rejected",
         align: "left",
-        filters: [
-          { text: 'Joe', value: 'Joe' },
-          { text: 'Jim', value: 'Jim' },
-        ],
+        filters: resultAry,
         filterIcon: () => {
           return (
-              <Icon type="down" style={{fontSize:12,color:'#666'}}  theme="outlined" />
+              <Icon type="caret-down" style={{fontSize:12,color:'#999'}}  theme="outlined" />
           );
+        },
+        onFilter: (value, record) =>{
+          console.log(value,record)
         },
         className: "ant_table _text_nowrap",
         render: (text, record, index) => {
@@ -441,8 +453,11 @@ class Transactions extends React.Component {
         ],
         filterIcon: () => {
           return (
-              <Icon type="down" style={{fontSize:12,color:'#666'}}  theme="outlined" />
+              <Icon type="caret-down" style={{fontSize:12,color:'#999'}}  theme="outlined" />
           );
+        },
+        onFilter: (value, record) =>{
+          console.log(value,record)
         },
         className: "ant_table",
         render: (text, record, index) => {
@@ -564,17 +579,19 @@ class Transactions extends React.Component {
         {!loading && transactions.length === 0 ? (
           <div className="p-3 text-center no-data">{tu("no_transactions")}</div>
         ) : (
-          <SmartTable
-            bordered={true}
-            position="bottom"
-            loading={loading}
-            column={column}
-            data={transactions}
-            total={rangeTotal > 2000 ? 2000 : rangeTotal}
-            onPageChange={(page, pageSize) => {
-              this.loadTransactions(page, pageSize);
-            }}
-          />
+          <div className={isMobile ? "pt-5":null}>
+            <SmartTable
+              bordered={true}
+              position="bottom"
+              loading={loading}
+              column={column}
+              data={transactions}
+              total={rangeTotal > 2000 ? 2000 : rangeTotal}
+              onPageChange={(page, pageSize) => {
+                this.loadTransactions(page, pageSize);
+              }}
+            />
+          </div>
         )}
       </div>
     );
