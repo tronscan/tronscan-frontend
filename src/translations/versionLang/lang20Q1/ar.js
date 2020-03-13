@@ -208,7 +208,8 @@ export const lang20Q1 = {
   full_node_version_latest_block:'أحدث كتلة',
   full_node_version_confirmed:'CONFIRMED',
   full_node_version_unconfirmed:'UNCONFIRMED',
-  full_node_version_confirmed_tips:'Transactions confirmed by 19 or more SRs will be marked "confirmed"，or is“uncomfirmed”',
+  // full_node_version_confirmed_tips:'Transactions confirmed by 19 or more SRs will be marked "confirmed"，or is“uncomfirmed”',
+  full_node_version_confirmed_tips:'Transactions confirmed by 19 or more SRs will be marked "CONFIRMED"，or is“UNCONFIRMED” or "ROLLED BACK"',
 
 
   // 2020-02-19
