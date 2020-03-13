@@ -250,10 +250,11 @@ class Code extends React.Component {
                 //sign transaction
                 let SignTransaction = await transactionMultiResultManager(unSignTransaction, tron, permissionId,permissionTime,HexStr);
 
-                let { data } = await xhr.post("https://list.tronlink.org/api/wallet/multi/transaction", {
+                // let { data } = await xhr.post("https://list.tronlink.org/api/wallet/multi/transaction", {
+                let { data } = await xhr.post("https://testlist.tronlink.org/api/wallet/multi/transaction", {
                     "address": account.address,
                     "transaction": SignTransaction,
-                    "netType":"main_net",
+                    "netType":"shasta",
                     "functionSelector":function_selector,
                 });
                 let code = data.code;

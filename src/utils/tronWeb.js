@@ -109,6 +109,7 @@ export function withTronWeb(InnerComponent) {
     //   return transaction;
     // }
 
+
     buildTransactionSigner(tronWeb, isMulti) {
       const { account, wallet } = this.props;
 
@@ -229,7 +230,10 @@ export function withTronWeb(InnerComponent) {
                   hex: rawDataHex,
                   info: tokenInfo,
                 })
-                transaction.signature = [Buffer.from(signedResponse).toString('hex')];
+                console.log('Buffer.from(signedResponse)',[Buffer.from(signedResponse).toString('hex')])
+                console.log('signedResponse',[signedResponse])
+                //transaction.signature = [Buffer.from(signedResponse).toString('hex')];
+                transaction.signature = [signedResponse];
                 return transaction;
               } catch (e) {
                 console.log("Error signing ledger", e);

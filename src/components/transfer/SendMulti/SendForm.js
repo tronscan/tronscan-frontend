@@ -5,7 +5,7 @@ import {FormattedNumber, injectIntl} from "react-intl";
 import {tu} from "../../../utils/i18n";
 import {Client} from "../../../services/api";
 import {isAddressValid} from "@tronscan/client/src/utils/crypto";
-import _, {find, round} from "lodash";
+import _, {find, round, isUndefined} from "lodash";
 import { ACCOUNT_TRONLINK, API_URL, ONE_TRX, IS_MAINNET } from "../../../constants";
 import {Alert} from "reactstrap";
 import {reloadWallet} from "../../../actions/wallet";
@@ -25,7 +25,6 @@ import rebuildList from "../../../utils/rebuildList";
 import rebuildToken20List from "../../../utils/rebuildToken20List";
 import BigNumber from "bignumber.js"
 BigNumber.config({ EXPONENTIAL_AT: [-1e9, 1e9] });
-
 const { Option, OptGroup } = Select;
 
 @withTronWeb
@@ -126,26 +125,26 @@ class SendForm extends React.Component {
                     console.log(e)
                 });
 
+                console.log('unSignTransaction',unSignTransaction)
+
                 //get transaction parameter value to Hex
                 let HexStr = Client.getSendHexStr(TokenName, from, to, amount);
 
                 //sign transaction
-                if(this.props.wallet.type==="ACCOUNT_LEDGER"){
-                     SignTransaction = await transactionMultiResultManager(unSignTransaction, tronWeb, permissionId, permissionTime);
-                }else{
-                     SignTransaction = await transactionMultiResultManager(unSignTransaction, tronWeb, permissionId, permissionTime,HexStr);
-                }
+                SignTransaction = await transactionMultiResultManager(unSignTransaction, tronWeb, permissionId, permissionTime, HexStr);
 
+                console.log('SignTransaction',SignTransaction)
 
                 // xhr.defaults.headers.common["MainChain"] = 'MainChain';
                 if(!SignTransaction){
                     result = 40001
                 }else {
                     //xhr multi-sign transaction api
-                    let {data} = await xhr.post("https://list.tronlink.org/api/wallet/multi/transaction", {
+                    // let {data} = await xhr.post("https://list.tronlink.org/api/wallet/multi/transaction", {
+                    let { data } = await xhr.post("https://testlist.tronlink.org/api/wallet/multi/transaction", {
                         "address": wallet.address,
                         "transaction": SignTransaction,
-                        "netType": "main_net"
+                        "netType": "shasta"
                     });
                     result = data.code;
                     sendErrorMessage = data.message;
@@ -166,15 +165,19 @@ class SendForm extends React.Component {
             *   MainChain send TRC10
             */
             amount = this.Mul(amount,Math.pow(10, decimals));
-            if(this.props.wallet.type==="ACCOUNT_LEDGER") {
-                result = await this.props.tronWeb().trx.sendToken(to, amount, TokenName, {address:wallet.address}, false).catch(function (e) {
-                    console.log(e)
-                });
-            }
+            // if(this.props.wallet.type==="ACCOUNT_LEDGER") {
+            //     result = await this.props.tronWeb().trx.sendToken(to, amount, TokenName, {address:wallet.address}, false).catch(function (e) {
+            //         console.log(e)
+            //     });
+            // }
 
-            if(this.props.wallet.type==="ACCOUNT_TRONLINK" || this.props.wallet.type==="ACCOUNT_PRIVATE_KEY" ){
+            if(this.props.wallet.type==="ACCOUNT_TRONLINK" || this.props.wallet.type==="ACCOUNT_PRIVATE_KEY" || this.props.wallet.type==="ACCOUNT_LEDGER" ){
                 //create transaction
-                tronWeb = this.props.account.tronWeb;
+                if(this.props.wallet.type==="ACCOUNT_LEDGER"){
+                  tronWeb = this.props.tronWeb()
+                }else{
+                  tronWeb = this.props.account.tronWeb;
+                }
                 const unSignTransaction = await tronWeb.transactionBuilder.sendToken(to, amount, TokenName, from, {'permissionId':permissionId}).catch(function (e) {
                     console.log(e)
                 });
@@ -189,10 +192,11 @@ class SendForm extends React.Component {
                     result = 40001
                 }else{
                     //xhr multi-sign transaction api
-                    let { data } = await xhr.post("https://list.tronlink.org/api/wallet/multi/transaction", {
+                    // let { data } = await xhr.post("https://list.tronlink.org/api/wallet/multi/transaction", {
+                      let { data } = await xhr.post("https://testlist.tronlink.org/api/wallet/multi/transaction", {
                         "address": wallet.address,
                         "transaction": SignTransaction,
-                        "netType":"main_net"
+                        "netType":"shasta"
                     });
                     result = data.code;
                     sendErrorMessage = data.message;
@@ -291,20 +295,17 @@ class SendForm extends React.Component {
            // get transaction parameter value to Hex
            let HexStr = Client.getTriggerSmartContractHexStr(unSignTransaction.raw_data.contract[0].parameter.value);
 
-            if(this.props.wallet.type==="ACCOUNT_LEDGER"){
-                //sign transaction
-                 SignTransaction = await transactionMultiResultManager(unSignTransaction, tronWeb, permissionId,permissionTime,HexStr);
-            }else{
-                 SignTransaction = await transactionMultiResultManager(unSignTransaction, tronWeb, permissionId,permissionTime,HexStr);
-            }
-
+           //sign transaction
+           SignTransaction = await transactionMultiResultManager(unSignTransaction, tronWeb, permissionId,permissionTime,HexStr);
+           
            if(!SignTransaction){
             result = 40001
            }else{
-              let { data } = await xhr.post("https://list.tronlink.org/api/wallet/multi/transaction", {
+              // let { data } = await xhr.post("https://list.tronlink.org/api/wallet/multi/transaction", {
+                let { data } = await xhr.post("https://testlist.tronlink.org/api/wallet/multi/transaction", {
                   "address": wallet.address,
                   "transaction": SignTransaction,
-                  "netType":"main_net",
+                  "netType":"shasta",
                   "functionSelector":"transfer(address,uint256)"
               });
               result = data.code;
@@ -345,10 +346,11 @@ class SendForm extends React.Component {
             if(!SignTransaction){
                 result = 40001
             }else{
-                let { data } = await xhr.post("https://list.tronlink.org/api/wallet/multi/transaction", {
+                // let { data } = await xhr.post("https://list.tronlink.org/api/wallet/multi/transaction", {
+                let { data } = await xhr.post("https://testlist.tronlink.org/api/wallet/multi/transaction", {
                     "address": wallet.address,
                     "transaction": SignTransaction,
-                    "netType":"main_net",
+                    "netType":"shasta",
                     "functionSelector":"transfer(address,uint256)"
                 });
                 result = data.code;
@@ -468,7 +470,9 @@ class SendForm extends React.Component {
       let { errmessage }  = this.state;
       let { wallet }  = this.props;
       let walletAddress = await Client.getAccountByAddressNew(address);
-      if (walletAddress.activePermissions.length == 0) {
+      console.log('walletAddress',walletAddress)
+      console.log('walletAddress.activePermissions',!isUndefined(walletAddress.activePermissions))
+      if ( Object.keys(walletAddress).length !== 0 && !isUndefined(walletAddress.activePermissions) && walletAddress.activePermissions.length == 0) {
           let activePermissionsData = {
               "operations": "7fff1fc0033e0300000000000000000000000000000000000000000000000000",
               "keys": [
