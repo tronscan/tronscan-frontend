@@ -295,9 +295,12 @@ class TransfersAll extends React.Component {
             },
             {
                 title: (
-                    <span>
-                       {upperFirst(intl.formatMessage({id: 'address_transfer_in'}))} |{' '} 
+                    <span style={{position: 'relative'}}>
+                       {upperFirst(intl.formatMessage({id: 'address_transfer_in'}))}{' '}|{' '} 
                        {upperFirst(intl.formatMessage({id: 'address_transfer_out'}))}
+                        <span>
+                            <i className="arrow-down"></i>
+                        </span>
                     </span>
                 ),
                 dataIndex: 'address_transfer_out',
@@ -305,15 +308,19 @@ class TransfersAll extends React.Component {
                 align: 'center',
                 className: 'ant_table address_max_width',
                 width: '10%',
-                filters: inoutAry,
-                filterIcon: () => {
-                    return (
-                        <Icon type="caret-down"  style={{fontSize:12,color:'#999'}}  theme="outlined" />
-                    );
-                },
-                onFilter: (value, record) =>{
-                    console.log(value,record)
-                },
+                // filters: inoutAry,
+                // filterIcon: () => {
+                //     return (
+                //         <Icon type="caret-down"  style={{fontSize:12,color:'#999'}}  theme="outlined" />
+                //     );
+                // },
+                // onFilterDropdownVisibleChange: (visible) => {
+                //     if (visible) {
+                //         console.log('visible')
+                //     }else{
+                //         console.log('dispair')
+                //     }
+                // },
                 render: (text, record, index) => {
                     return record.fromtip?<img width={40} height={22} src={require("../../images/address/in.png")}/>:<img  width={40} height={22} src={require("../../images/address/out.png")}/>
                 }
@@ -575,7 +582,7 @@ class TransfersAll extends React.Component {
         // }
 
         return (
-            <div className="token_black" style={{padding:'30px 0'}}>
+            <div className="token_black transfersAll-container" style={{padding:'30px 0'}}>
                 {loading && <div className="loading-style"><TronLoader/></div>}
                 <div className="d-flex justify-content-between" style={{right: 'auto'}}>
                     
