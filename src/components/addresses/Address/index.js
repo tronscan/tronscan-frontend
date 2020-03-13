@@ -476,7 +476,7 @@ class Address extends React.Component {
             path: "/freeze",
             label: <span>{tu("account_freeze_detail")}</span>,
             cmp: () => (
-              <FreezeDetail/>
+              <FreezeDetail address={id}/>
             )
           },
           contracts: {
@@ -574,7 +574,7 @@ class Address extends React.Component {
             path: "/freeze",
             label: <span>{tu("account_freeze_detail")}</span>,
             cmp: () => (
-              <FreezeDetail/>
+              <FreezeDetail address={id}/>
             )
           },
           contracts: {
@@ -895,7 +895,7 @@ class Address extends React.Component {
                   <div className="address-title">
                     <AddressLink
                       address={address.address}
-                      isContract={true}
+                      // isContract={true}
                       includeCopy={true}
                       includeTransfer={true}
                       includeErcode={true}

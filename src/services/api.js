@@ -301,6 +301,17 @@ class ApiAccount{
     );
     return data;
   }
+
+  async getAccountFreezeResource(options = {},type) {
+    let url = this.apiUrl[type || "mainnet"];
+    let { data } = await xhr.get(
+      `${url}/api/account/resource`,
+      {
+        params: options
+      }
+    );
+    return data;
+  }
 }
 
 export const proposalApi = new ApiProposal();
