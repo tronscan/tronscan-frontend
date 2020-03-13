@@ -26,15 +26,15 @@ import { CONTRACT_ADDRESS_USDT, CONTRACT_ADDRESS_WIN, CONTRACT_ADDRESS_GGC } fro
 import qs from 'qs'
 import isMobile from "../../utils/isMobile";
 
-import { Icon } from 'antd';
+import { Icon,Checkbox,Table } from 'antd';
 
 import {API_URL} from "../../constants";
 import BlockTime from '../common/blockTime'
-
+const CheckboxGroup = Checkbox.Group;
 class TransfersAll extends React.Component {
     constructor(props) {
         super(props);
-
+        let intl = props.intl;
         this.start = moment([2018,5,25]).startOf('day').valueOf();
         this.end = moment().valueOf();
         this.state = {
@@ -50,7 +50,18 @@ class TransfersAll extends React.Component {
             autoRefresh: props.autoRefresh || false,
             hideSmallCurrency:false,
             tokenName:"",
-            timeType:true
+            timeType:true,
+            statusFilter:{
+                checkedList:[1,2],
+                indeterminate:'',
+                checkAll:false,
+                
+            },
+            statusArr: [
+                { label:  upperFirst(intl.formatMessage({id: 'full_node_version_unconfirmed'})), value: 1 },
+                { label:  upperFirst(intl.formatMessage({id: 'full_node_version_confirmed'})), value: 2 },
+                // { text:  upperFirst(intl.formatMessage({id: 'block_detail_rolled_back'})), value: '3' },
+            ]
         };
     }
 
@@ -61,6 +72,9 @@ class TransfersAll extends React.Component {
         if (this.state.autoRefresh !== false) {
             this.props.setInterval(() => this.load(page,pageSize), this.state.autoRefresh);
         }
+
+        // this.onChangeFilterStatus = this.onChangeFilterStatus.bind(this)
+        // this.onCheckAllChange = this.onCheckAllChange.bind(this)
     }
 
     onChange = (page, pageSize) => {
@@ -180,6 +194,29 @@ class TransfersAll extends React.Component {
         });
     }
 
+    onChangeFilterStatus = checkedList => {
+        let obj = {
+            checkedList,
+            indeterminate: !!checkedList.length && checkedList.length < this.state.statusArr.length,
+            checkAll: checkedList.length === this.state.statusArr.length,
+            
+        }
+        this.setState({
+            statusFilter:obj
+        });
+      };
+
+      onCheckAllChange = e => {
+
+          let obj = {
+            checkedList: e.target.checked ? [1,2] : [],
+            indeterminate: false,
+            checkAll: e.target.checked,
+          }
+        this.setState({
+            statusFilter:obj
+        });
+      };
 
     customizedColumn = (activeLanguage) => {
         let { intl } = this.props;
@@ -201,6 +238,7 @@ class TransfersAll extends React.Component {
             { text:  'SUCCESS', value: '1' },
             { text:  'FAIL', value: '2' },
         ]
+        const plainOptions = this.state.statusArr;
         let column = [
             {
                 title: upperFirst(intl.formatMessage({id: 'transaction_hash'})),
@@ -365,7 +403,23 @@ class TransfersAll extends React.Component {
                             }
                         </div>
                     )
-                }
+                },
+                filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
+                    <div style={{ padding: 8 }}>
+                        <Checkbox
+                            indeterminate={this.state.statusFilter.indeterminate}
+                            onChange={this.onCheckAllChange.bind(this)}
+                            checked={this.state.statusFilter.checkAll}
+                        >
+                            Check all
+                        </Checkbox>
+                      <CheckboxGroup
+                        options={plainOptions}
+                        value={this.state.statusFilter.checkedList}
+                        onChange={this.onChangeFilterStatus.bind(this)}
+                        />
+                    </div>
+                  ),
             },
             {
                 title: upperFirst(intl.formatMessage({id: 'result' })),
@@ -385,7 +439,8 @@ class TransfersAll extends React.Component {
                 },
                 render: (text, record, index) => {
                     return <span>{text}</span>
-                }
+                },
+                
             },
             {
                 title: upperFirst(intl.formatMessage({id: 'amount'})),
@@ -613,11 +668,24 @@ class TransfersAll extends React.Component {
                         <div className="p-3 text-center no-data">{tu("no_transfers")}</div>
                         :
                         <div className={isMobile ? "pt-5":null}>
-                            <SmartTable  position="bottom" bordered={true} loading={loading} column={column} data={transfers} total={rangeTotal > 2000 ? 2000 : rangeTotal} locale={locale} addr="address" nopadding={true}
+                            {/* <SmartTable  position="bottom" bordered={true} loading={loading} column={column} data={transfers} total={rangeTotal > 2000 ? 2000 : rangeTotal} locale={locale} addr="address" nopadding={true}
                                     current={this.state.page}
                                     onPageChange={(page, pageSize) => {
                                         this.onChange(page, pageSize)
-                                    }}/>
+                                    }}/> */}
+                                    <Table
+                                    bordered={true}
+                                    loading={loading}
+                                    rowKey={(record, index) => {
+                                        return index; 
+                                    }}
+                                    dataSource={transfers}
+                                    columns={column}
+                                    pagination={this.state.pagination}
+                                    onChange={(page,pageSize) => {
+                                        this.load(page, pageSize);
+                                    }}
+                                    />
                         </div>
                        
                 }
