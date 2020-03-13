@@ -19,6 +19,7 @@ import DateSelect from './../../components/addresses/components/dateSelect'
 import {DatePicker} from 'antd';
 import moment from 'moment';
 import {NameWithId} from "./names";
+import isMobile from "../../utils/isMobile";
 import rebuildList from "../../utils/rebuildList";
 import xhr from "axios/index";
 import {API_URL} from '../../constants.js'
@@ -45,7 +46,8 @@ class NewTransactions extends React.Component {
                 </TronLoader>
             ),
             timeType: true,
-            filterTitleKey:''
+            filterTitleKey:'',
+          
         };
         
     }
@@ -202,28 +204,30 @@ class NewTransactions extends React.Component {
         });
     }
 
-    onVisibleChange = (key) => { //Tooltip 显示隐藏的回调,类似onmouseenter 进入离开事件，用来显示我们不同的信息提醒
-        let str = '';
-        switch (key) {
-            case 1:
-            str = '你的姓名';
-            default:
-            break;
-        }
-        this.setState({
-          filterTitleKey: str,
-        });
-    }
-
     customizedColumn = (activeLanguage) => {
         let {intl,filter} = this.props;
         let { timeType } = this.state;
         const typeFilterAry = [
-            { text: 'Joe', value: '0' },
-            { text: 'Joe', value: '1' },
-            { text: 'Joe', value: '2' },
-            
+            { text:  upperFirst(intl.formatMessage({id: 'address_account_table_filter_all'})), value: '0' },
+            { text: upperFirst(intl.formatMessage({id: 'address_account_table_filter_transfers'})), value: '1' },
+            { text: upperFirst(intl.formatMessage({id: 'address_account_table_filter_freeze'})), value: '2' },
+            { text: upperFirst(intl.formatMessage({id: 'address_account_table_filter_unfreeze'})), value: '3' },
+            { text: upperFirst(intl.formatMessage({id: 'address_account_table_filter_trigger_smartContracts'})), value: '4' },
+            { text: upperFirst(intl.formatMessage({id: 'address_account_table_filter_vote'})), value: '5' },
+            { text: upperFirst(intl.formatMessage({id: 'address_account_table_filter_other'})), value: '6' },
         ]
+        const statusAry = [
+            { text:  upperFirst(intl.formatMessage({id: 'address_account_table_filter_all'})), value: '0' },
+            { text:  upperFirst(intl.formatMessage({id: 'full_node_version_unconfirmed'})), value: '1' },
+            { text:  upperFirst(intl.formatMessage({id: 'full_node_version_confirmed'})), value: '2' },
+            // { text:  upperFirst(intl.formatMessage({id: 'block_detail_rolled_back'})), value: '3' },
+        ]
+        const resultAry = [
+            { text:  upperFirst(intl.formatMessage({id: 'address_account_table_filter_all'})), value: '0' },
+            { text:  'SUCCESS', value: '1' },
+            { text:  'FAIL', value: '2' },
+        ]
+
         let column = [
             {
                 title: upperFirst(intl.formatMessage({id: 'transaction_hash'})),
@@ -326,14 +330,14 @@ class NewTransactions extends React.Component {
                 key: 'contractType',
                 align: 'left',
                 width: '20%',
-                filters: [
-                    { text: 'Joe', value: 'Joe' },
-                    { text: 'Jim', value: 'Jim' },
-                ],
+                filters: typeFilterAry,
                 filterIcon: () => {
                     return (
-                        <Icon type="down" onVisibleChange={() => this.onVisibleChange()} style={{fontSize:12,color:'#666'}}  theme="outlined" />
+                        <Icon type="caret-down" style={{fontSize:12,color:'#999'}}  theme="outlined" />
                     );
+                },
+                onFilter: (value, record) =>{
+                    console.log(value,record)
                 },
                 // onFilter: (value, record) => record.name.includes(value),
                 className: 'ant_table _text_nowrap',
@@ -347,14 +351,14 @@ class NewTransactions extends React.Component {
                 key: 'status',
                 align: 'left',
                 width: activeLanguage ==='ru' ? '34%' :'16%',
-                filters: [
-                    { text: 'Joe', value: 'Joe' },
-                    { text: 'Jim', value: 'Jim' },
-                ],
+                filters: statusAry,
                 filterIcon: () => {
                     return (
-                        <Icon type="down" onVisibleChange={() => this.onVisibleChange()} style={{fontSize:12,color:'#666'}}  theme="outlined" />
+                        <Icon type="caret-down" style={{fontSize:12,color:'#999'}}  theme="outlined" />
                     );
+                },
+                onFilter: (value, record) =>{
+                    console.log(value,record)
                 },
                 className: 'ant_table',
                 render: (text, record, index) => {
@@ -377,14 +381,14 @@ class NewTransactions extends React.Component {
                 align: 'left',
                 className: 'ant_table',
                 width: '14%',
-                filters: [
-                    { text: 'Joe', value: 'Joe' },
-                    { text: 'Jim', value: 'Jim' },
-                ],
+                filters: resultAry,
                 filterIcon: () => {
                     return (
-                        <Icon type="down" onVisibleChange={() => this.onVisibleChange()} style={{fontSize:12,color:'#666'}}  theme="outlined" />
+                        <Icon type="caret-down"  style={{fontSize:12,color:'#999'}}  theme="outlined" />
                     );
+                },
+                onFilter: (value, record) =>{
+                    console.log(value,record)
                 },
                 render: (text, record, index) => {
                     return <span>{text}</span>
@@ -433,8 +437,11 @@ class NewTransactions extends React.Component {
                 ],
                 filterIcon: () => {
                     return (
-                        <Icon type="down" onVisibleChange={() => this.onVisibleChange()} style={{fontSize:12,color:'#666'}}  theme="outlined" />
+                        <Icon type="caret-down"  theme="outlined" />
                     );
+                },
+                onFilter: (value, record) =>{
+                    console.log(value,record)
                 },
                 render: (text, record, index) => {
                     return <span> {record.map_token_name_abbr} </span>;
@@ -605,21 +612,23 @@ class NewTransactions extends React.Component {
                 {tu("no_transactions")}
               </div>
             ) : (
-              <SmartTable
-                bordered={true}
-                loading={loading}
-                position="bottom"
-                column={column}
-                data={transactions}
-                total={rangeTotal > 2000 ? 2000 : rangeTotal}
-                current={this.state.page}
-                onPageChange={(page, pageSize) => {
-                  this.loadTransactions(page, pageSize);
-                }}
-                locale={{
-                    filterTitle: filterTitleKey || 'default', // prevent console error ，remove result => filterTitle ''fail；
-                }}
-              />
+                <div className={isMobile ? "pt-5":null}>
+                    <SmartTable
+                        bordered={true}
+                        loading={loading}
+                        position="bottom"
+                        column={column}
+                        data={transactions}
+                        total={rangeTotal > 2000 ? 2000 : rangeTotal}
+                        current={this.state.page}
+                        onPageChange={(page, pageSize) => {
+                        this.loadTransactions(page, pageSize);
+                        }}
+                        locale={{
+                            filterTitle: filterTitleKey || 'default', // prevent console error ，remove result => filterTitle ''fail；
+                        }}
+                    />
+                </div>
             )}
           </div>
         );

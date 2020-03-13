@@ -1,6 +1,6 @@
 import React from "react";
 import xhr from "axios";
-import {API_URL} from "../../../constants";
+import {API_URL,uuidv4} from "../../../constants";
 import { injectIntl } from "react-intl";
 import { TronLoader } from "../../common/loaders";
 import { EnergyConsumeChart } from "../../common/LineCharts";
@@ -22,7 +22,7 @@ class Energy extends React.Component {
 
   async loadEnergyConsumeData() {
     let {filter: {address}} = this.props
-    let {data: {data}} = await xhr.get(API_URL + "/api/onecontractenergystatistic?address="+ address);
+    let {data: {data}} = await xhr.get(API_URL + "/api/onecontractenergystatistic?&address="+ address+"&uuid="+uuidv4);
     data.pop()
     this.setState({
         energyConsumeData: data,

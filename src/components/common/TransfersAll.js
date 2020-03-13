@@ -24,6 +24,8 @@ import { Radio } from 'antd';
 import {isAddressValid} from "@tronscan/client/src/utils/crypto";
 import { CONTRACT_ADDRESS_USDT, CONTRACT_ADDRESS_WIN, CONTRACT_ADDRESS_GGC } from "../../constants";
 import qs from 'qs'
+import isMobile from "../../utils/isMobile";
+
 import { Icon } from 'antd';
 
 import {API_URL} from "../../constants";
@@ -183,13 +185,29 @@ class TransfersAll extends React.Component {
         let { intl } = this.props;
             const defaultImg = require("../../images/logo_default.png");
         const { timeType } = this.state;
+        const inoutAry = [
+            { text:  upperFirst(intl.formatMessage({id: 'address_account_table_filter_all'})), value: '0' },
+            { text:  upperFirst(intl.formatMessage({id: 'address_transfer_in'})), value: '1' },
+            { text:  upperFirst(intl.formatMessage({id: 'address_transfer_out'})), value: '2' },
+        ]
+        const statusAry = [
+            { text:  upperFirst(intl.formatMessage({id: 'address_account_table_filter_all'})), value: '0' },
+            { text:  upperFirst(intl.formatMessage({id: 'full_node_version_unconfirmed'})), value: '1' },
+            { text:  upperFirst(intl.formatMessage({id: 'full_node_version_confirmed'})), value: '2' },
+            // { text:  upperFirst(intl.formatMessage({id: 'block_detail_rolled_back'})), value: '3' },
+        ]
+        const resultAry = [
+            { text:  upperFirst(intl.formatMessage({id: 'address_account_table_filter_all'})), value: '0' },
+            { text:  'SUCCESS', value: '1' },
+            { text:  'FAIL', value: '2' },
+        ]
         let column = [
             {
-                title: upperFirst(intl.formatMessage({id: 'hash'})),
+                title: upperFirst(intl.formatMessage({id: 'transaction_hash'})),
                 dataIndex: 'hash',
                 key: 'hash',
                 align: 'left',
-                width: '9%',
+                width: '8%',
                 className: 'ant_table',
                 render: (text, record, index) => {
                     return <Truncate>
@@ -205,7 +223,7 @@ class TransfersAll extends React.Component {
                 key: 'block',
                 align: 'left',
                 className: 'ant_table',
-                width: '9%',
+                width: '10%',
                 render: (text, record, index) => {
                     return <BlockNumberLink number={record.block}/>
                 }
@@ -234,7 +252,7 @@ class TransfersAll extends React.Component {
                 key: 'date_created',
                 align: 'left',
                 className: 'ant_table',
-                width: '14%',
+                width: '16%',
                 render: (text, record, index) => {
                     return(
                         <div>
@@ -262,7 +280,7 @@ class TransfersAll extends React.Component {
                 key: 'owner_address',
                 align: 'left',
                 className: 'ant_table address_max_width',
-                width: '12%',
+                width: '9%',
                 render: (text, record, index) => {
                     return <div>
                         {
@@ -282,39 +300,51 @@ class TransfersAll extends React.Component {
                        {upperFirst(intl.formatMessage({id: 'address_transfer_out'}))}
                     </span>
                 ),
-                dataIndex: 'to_address',
-                key: 'to_address',
+                dataIndex: 'address_transfer_out',
+                key: 'address_transfer_out',
                 align: 'center',
                 className: 'ant_table address_max_width',
                 width: '10%',
-                filters: [
-                    { text: 'Joe', value: 'Joe' },
-                    { text: 'Jim', value: 'Jim' },
-                ],
+                filters: inoutAry,
                 filterIcon: () => {
                     return (
-                        <Icon type="down" onVisibleChange={() => this.onVisibleChange()} style={{fontSize:12,color:'#666'}}  theme="outlined" />
+                        <Icon type="caret-down"  style={{fontSize:12,color:'#999'}}  theme="outlined" />
                     );
+                },
+                onFilter: (value, record) =>{
+                    console.log(value,record)
                 },
                 render: (text, record, index) => {
                     return record.fromtip?<img width={40} height={22} src={require("../../images/address/in.png")}/>:<img  width={40} height={22} src={require("../../images/address/out.png")}/>
                 }
             },
-           
+            {
+                title: upperFirst(intl.formatMessage({id: 'to'})),
+                dataIndex: 'to_address',
+                key: 'to_address',
+                align: 'left',
+                className: 'ant_table address_max_width',
+                width: '9%',
+                render: (text, record, index) => {
+                    return record.totip?
+                        <AddressLink address={text}>{text}</AddressLink>:
+                        <TruncateAddress>{text}</TruncateAddress>
+                }
+            },
             {
                 title: upperFirst(intl.formatMessage({id: 'status'})),
                 dataIndex: 'status',
                 key: 'status',
                 width: activeLanguage === 'zh' ?'10%' :"17%",
                 align: 'left',
-                filters: [
-                    { text: 'Joe', value: 'Joe' },
-                    { text: 'Jim', value: 'Jim' },
-                ],
+                filters: statusAry,
                 filterIcon: () => {
                     return (
-                        <Icon type="down" onVisibleChange={() => this.onVisibleChange()} style={{fontSize:12,color:'#666'}}  theme="outlined" />
+                        <Icon type="caret-down" style={{fontSize:12,color:'#999'}}  theme="outlined" />
                     );
+                },
+                onFilter: (value, record) =>{
+                    console.log(value,record)
                 },
                 className: 'ant_table',
                 render: (text, record, index) => {
@@ -337,14 +367,14 @@ class TransfersAll extends React.Component {
                 align: 'left',
                 className: 'ant_table',
                 width: '11%',
-                filters: [
-                    { text: 'Joe', value: 'Joe' },
-                    { text: 'Jim', value: 'Jim' },
-                ],
+                filters: resultAry,
                 filterIcon: () => {
                     return (
-                        <Icon type="down" onVisibleChange={() => this.onVisibleChange()} style={{fontSize:12,color:'#666'}}  theme="outlined" />
+                        <Icon type="caret-down" style={{fontSize:12,color:'#999'}}  theme="outlined" />
                     );
+                },
+                onFilter: (value, record) =>{
+                    console.log(value,record)
                 },
                 render: (text, record, index) => {
                     return <span>{text}</span>
@@ -372,8 +402,11 @@ class TransfersAll extends React.Component {
                 ],
                 filterIcon: () => {
                     return (
-                        <Icon type="down" onVisibleChange={() => this.onVisibleChange()} style={{fontSize:12,color:'#666'}}  theme="outlined" />
+                        <Icon type="caret-down"  style={{fontSize:12,color:'#999'}}  theme="outlined" />
                     );
+                },
+                onFilter: (value, record) =>{
+                    console.log(value,record)
                 },
                 className: 'ant_table',
                 render: (text, record, index) => {
@@ -572,11 +605,14 @@ class TransfersAll extends React.Component {
                     (!loading && transfers.length === 0)?
                         <div className="p-3 text-center no-data">{tu("no_transfers")}</div>
                         :
-                        <SmartTable  position="bottom" bordered={true} loading={loading} column={column} data={transfers} total={rangeTotal > 2000 ? 2000 : rangeTotal} locale={locale} addr="address" 
+                        <div className={isMobile ? "pt-5":null}>
+                            <SmartTable  position="bottom" bordered={true} loading={loading} column={column} data={transfers} total={rangeTotal > 2000 ? 2000 : rangeTotal} locale={locale} addr="address" nopadding={true}
                                     current={this.state.page}
                                     onPageChange={(page, pageSize) => {
                                         this.onChange(page, pageSize)
                                     }}/>
+                        </div>
+                       
                 }
             </div>
         )
