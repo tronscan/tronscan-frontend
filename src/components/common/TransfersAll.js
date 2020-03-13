@@ -336,9 +336,6 @@ class TransfersAll extends React.Component {
                     <span style={{position: 'relative'}}>
                        {upperFirst(intl.formatMessage({id: 'address_transfer_in'}))}{' '}|{' '} 
                        {upperFirst(intl.formatMessage({id: 'address_transfer_out'}))}
-                        <span>
-                            <i className="arrow-down"></i>
-                        </span>
                     </span>
                 ),
                 dataIndex: 'address_transfer_out',
@@ -346,19 +343,19 @@ class TransfersAll extends React.Component {
                 align: 'center',
                 className: 'ant_table address_max_width',
                 width: '10%',
-                // filters: inoutAry,
-                // filterIcon: () => {
-                //     return (
-                //         <Icon type="caret-down"  style={{fontSize:12,color:'#999'}}  theme="outlined" />
-                //     );
-                // },
-                // onFilterDropdownVisibleChange: (visible) => {
-                //     if (visible) {
-                //         console.log('visible')
-                //     }else{
-                //         console.log('dispair')
-                //     }
-                // },
+                filters: inoutAry,
+                filterIcon: () => {
+                    return (
+                        <Icon type="caret-down"  style={{fontSize:12,color:'#999'}}  theme="outlined" />
+                    );
+                },
+                onFilterDropdownVisibleChange: (visible) => {
+                    if (visible) {
+                        console.log('visible')
+                    }else{
+                        console.log('dispair')
+                    }
+                },
                 render: (text, record, index) => {
                     return record.fromtip?<img width={40} height={22} src={require("../../images/address/in.png")}/>:<img  width={40} height={22} src={require("../../images/address/out.png")}/>
                 }
@@ -411,7 +408,7 @@ class TransfersAll extends React.Component {
                             onChange={this.onCheckAllChange.bind(this)}
                             checked={this.state.statusFilter.checkAll}
                         >
-                            Check all
+                            {upperFirst(intl.formatMessage({id: 'address_account_table_filter_all'}))}
                         </Checkbox>
                       <CheckboxGroup
                         options={plainOptions}
