@@ -308,7 +308,7 @@ class TransfersAll extends React.Component {
                 filters: inoutAry,
                 filterIcon: () => {
                     return (
-                        <Icon type="down"  style={{fontSize:12,color:'#666'}}  theme="outlined" />
+                        <Icon type="caret-down"  style={{fontSize:12,color:'#666'}}  theme="outlined" />
                     );
                 },
                 onFilter: (value, record) =>{
@@ -340,7 +340,7 @@ class TransfersAll extends React.Component {
                 filters: statusAry,
                 filterIcon: () => {
                     return (
-                        <Icon type="down" style={{fontSize:12,color:'#666'}}  theme="outlined" />
+                        <Icon type="caret-down" style={{fontSize:12,color:'#666'}}  theme="outlined" />
                     );
                 },
                 onFilter: (value, record) =>{
@@ -370,7 +370,7 @@ class TransfersAll extends React.Component {
                 filters: resultAry,
                 filterIcon: () => {
                     return (
-                        <Icon type="down" style={{fontSize:12,color:'#666'}}  theme="outlined" />
+                        <Icon type="caret-down" style={{fontSize:12,color:'#666'}}  theme="outlined" />
                     );
                 },
                 onFilter: (value, record) =>{
@@ -402,7 +402,7 @@ class TransfersAll extends React.Component {
                 ],
                 filterIcon: () => {
                     return (
-                        <Icon type="down"  style={{fontSize:12,color:'#666'}}  theme="outlined" />
+                        <Icon type="caret-down"  style={{fontSize:12,color:'#666'}}  theme="outlined" />
                     );
                 },
                 onFilter: (value, record) =>{
