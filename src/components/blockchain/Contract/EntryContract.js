@@ -195,10 +195,17 @@ class Code extends React.Component {
       return typeof d !== "number" ? Number(resultVal) : Number(resultVal.toFixed(parseInt(d)));
   }
    MultiSend =  async(permissionId, permissionTime, from) => {
+        console.log('permissionId=====123',permissionId)
         const { tokenId, totalValue, contract ,sendTokenDecimals } = this.state;
         let { contractItem, address, account, intl } = this.props;
         const { tronWeb, sunWeb } = this.props.account;
-        const tron = IS_MAINNET ? tronWeb : sunWeb.sidechain
+        let tron;
+        if(this.props.wallet.type === "ACCOUNT_LEDGER") {
+           tron = IS_MAINNET ? this.props.tronWeb() : sunWeb.sidechain
+        }else{
+           tron = IS_MAINNET ?  tronWeb : sunWeb.sidechain
+        }
+        
         let selectorTypeArr = [];
         let selectorValueArr = this.submitValueFormat();
         let selectorArr = [];
@@ -237,7 +244,8 @@ class Code extends React.Component {
                 let unSignTransaction = await tron.transactionBuilder.triggerSmartContract(
                     tron.address.toHex(address),
                     function_selector,
-                    {'permissionId':permissionId,...options},
+                   // {'Permission_id':permissionId,...options},
+                    {'permissionId': permissionId,...options},
                     selectorArr,
                     tron.address.toHex(from),
                 );
@@ -246,15 +254,16 @@ class Code extends React.Component {
 
                 //get transaction parameter value to Hex
                 let HexStr = Client.getTriggerSmartContractHexStr(unSignTransaction.raw_data.contract[0].parameter.value);
-
+                console.log('permissionId======',permissionId)    
                 //sign transaction
                 let SignTransaction = await transactionMultiResultManager(unSignTransaction, tron, permissionId,permissionTime,HexStr);
 
-                // let { data } = await xhr.post("https://list.tronlink.org/api/wallet/multi/transaction", {
-                let { data } = await xhr.post("https://testlist.tronlink.org/api/wallet/multi/transaction", {
+                let { data } = await xhr.post("https://list.tronlink.org/api/wallet/multi/transaction", {
+                // let { data } = await xhr.post("https://testlist.tronlink.org/api/wallet/multi/transaction", {
                     "address": account.address,
                     "transaction": SignTransaction,
-                    "netType":"shasta",
+                    // "netType":"shasta",
+                    "netType":"main_net",
                     "functionSelector":function_selector,
                 });
                 let code = data.code;

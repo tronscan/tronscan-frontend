@@ -112,10 +112,11 @@ export function withTronWeb(InnerComponent) {
 
     buildTransactionSigner(tronWeb, isMulti) {
       const { account, wallet } = this.props;
-
+     
       return async (transaction, privateKey = false, permissionId = false, callback = false) => {
-
+        console.log('wallet===111',wallet.isOpen)
         if (!wallet.isOpen) {
+          console.log('wallet===222',wallet.isOpen)
           throw new Error("wallet is not open");
         }
         try {
@@ -129,6 +130,7 @@ export function withTronWeb(InnerComponent) {
                 console.log('rawDataHex',rawDataHex)
                 let raw = transactionObj.getRawData();
                 let contractObj = raw.getContractList()[0];
+                console.log('contractObj',contractObj)
                 // if (isMulti) {
                 //   transaction = await this.mutiSign(tronWeb, transaction, privateKey, permissionId).catch(e=>{
                 //     console.log(e.toString())

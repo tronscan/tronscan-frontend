@@ -275,7 +275,7 @@ class SendForm extends React.Component {
             let unSignTransaction = await tronWeb.transactionBuilder.triggerSmartContract(
                 tronWeb.address.toHex(contractAddress),
                 'transfer(address,uint256)',
-                {'feeLimit':20000000},
+                {'permissionId': permissionId,'feeLimit':20000000},
                 [
                     {type: 'address', value: tronWeb.address.toHex(to)},
                     {type: 'uint256', value: new BigNumber(amount).shiftedBy(decimals).toString()}
@@ -284,7 +284,8 @@ class SendForm extends React.Component {
             );
             if (unSignTransaction.transaction !== undefined)
                 unSignTransaction = unSignTransaction.transaction;
-            unSignTransaction.extra = {
+           
+              unSignTransaction.extra = {
                 to: to,
                 decimals: decimals,
                 token_name: TokenName,
@@ -294,18 +295,17 @@ class SendForm extends React.Component {
            // transactionId = await transactionResultHexManager(unSignTransaction, tronWeb)
            // get transaction parameter value to Hex
            let HexStr = Client.getTriggerSmartContractHexStr(unSignTransaction.raw_data.contract[0].parameter.value);
-
            //sign transaction
            SignTransaction = await transactionMultiResultManager(unSignTransaction, tronWeb, permissionId,permissionTime,HexStr);
            
            if(!SignTransaction){
             result = 40001
            }else{
-              // let { data } = await xhr.post("https://list.tronlink.org/api/wallet/multi/transaction", {
-                let { data } = await xhr.post("https://testlist.tronlink.org/api/wallet/multi/transaction", {
+               let { data } = await xhr.post("https://list.tronlink.org/api/wallet/multi/transaction", {
+              // let { data } = await xhr.post("https://testlist.tronlink.org/api/wallet/multi/transaction", {
                   "address": wallet.address,
                   "transaction": SignTransaction,
-                  "netType":"shasta",
+                  "netType":"main_net",
                   "functionSelector":"transfer(address,uint256)"
               });
               result = data.code;

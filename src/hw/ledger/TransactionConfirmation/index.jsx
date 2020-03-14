@@ -332,10 +332,11 @@ export default function Contract({ contract, extra }) {
                     <Field label="From">
                         {TronWeb.address.fromHex(contractParams.owner_address)}
                     </Field>
-
-                    <Field label="To">
+                    {
+                      extra.to?<Field label="To">
                         {extra.to}
-                    </Field>
+                      </Field>:''
+                    }
                     {(extra && extra.to_name &&
                         <Field label="To Name">
                             {extra.to_name}
@@ -349,11 +350,14 @@ export default function Contract({ contract, extra }) {
                             {extra.to_name}
                         </Field>
                     )}
-                    <Field label="Amount">
-                        <FormattedNumber maximumFractionDigits={extra.decimals} minimunFractionDigits={extra.decimals}
-                                         value={extra.amount}/>&nbsp;
-                        {extra.token_name}
-                    </Field>
+                    {
+                      extra.to?<Field label="Amount">
+                      <FormattedNumber maximumFractionDigits={extra.decimals} minimunFractionDigits={extra.decimals}
+                                       value={extra.amount}/>&nbsp;
+                      {extra.token_name}
+                      </Field>:''
+                    }
+                    
                     {(extra && extra.hash &&
                         <Field label="Hash">
                             <Truncate>

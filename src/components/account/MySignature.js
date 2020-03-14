@@ -91,8 +91,8 @@ class MySignature extends React.Component {
     let {
       data: { data }
     } = await xhr.get(
-      // "https://list.tronlink.org/api/wallet/multi/trx_record",
-      "https://testlist.tronlink.org/api/wallet/multi/trx_record",
+       "https://list.tronlink.org/api/wallet/multi/trx_record",
+      // "https://testlist.tronlink.org/api/wallet/multi/trx_record",
       {
         params: {
           address: wallet.address,
