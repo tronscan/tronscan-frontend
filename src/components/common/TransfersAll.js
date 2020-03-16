@@ -68,6 +68,11 @@ class TransfersAll extends React.Component {
                 indeterminate:'',
                 checkAll:false,
             },
+            tokenFilter:{
+                checkedList:[],
+                indeterminate:'',
+                checkAll:false,
+            },
             inoutOptionsAry:[
                 { label:  upperFirst(intl.formatMessage({id: 'address_transfer_in'})), value: 1 },
                 { label:  upperFirst(intl.formatMessage({id: 'address_transfer_out'})), value: 2 },
@@ -80,6 +85,10 @@ class TransfersAll extends React.Component {
             resultOptionsAry: [
                 { label:  'SUCCESS', value: 1 },
                 { label:  'FAIL', value: 2 },
+            ],
+            tokenOptionsAry: [
+                { label:  '后端获取', value: 1 },
+                { label:  '后端获取', value: 2 },
             ]
         };
     }
@@ -232,6 +241,7 @@ class TransfersAll extends React.Component {
             inoutOptionsAry,inoutFilter,
             statusFilter,statusOptionsAry,
             resultFilter,resultOptionsAry,
+            tokenFilter,tokenOptionsAry,
         } = this.state;
         const inoutFilterDropdown = ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
             <div>
@@ -354,6 +364,48 @@ class TransfersAll extends React.Component {
             </div>
         )
 
+        const tokenFilterDropdown =  ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
+            <div>
+                <div style={{padding: "5px 12px"}}>
+                    <Checkbox
+                        indeterminate={tokenFilter.indeterminate}
+                        onChange={
+                            e => {
+                                let obj = {
+                                  checkedList: e.target.checked ? [1,2] : [],
+                                  indeterminate: false,
+                                  checkAll: e.target.checked,
+                                }
+                              this.setState({
+                                tokenFilter:obj
+                              })
+                            }
+                        }
+                        checked={tokenFilter.checkAll}
+                    >
+                        {upperFirst(intl.formatMessage({id: 'address_account_table_filter_all'}))}
+                    </Checkbox>
+                </div>
+                <div>
+                    <CheckboxGroup
+                        options={tokenOptionsAry}
+                        value={tokenFilter.checkedList}
+                        onChange={(checkedList)=> {
+                            let obj = {
+                                checkedList,
+                                indeterminate: !!checkedList.length && checkedList.length < tokenOptionsAry.length,
+                                checkAll: checkedList.length === tokenOptionsAry.length,
+                            }
+                            this.setState({
+                                tokenFilter:obj
+                            })
+                        }}
+                        />
+                </div>
+            </div>
+        )
+
+
         let column = [
             {
                 title: upperFirst(intl.formatMessage({id: 'transaction_hash'})),
@@ -468,7 +520,7 @@ class TransfersAll extends React.Component {
                     if (visible) {
                         console.log('visible')
                     }else{
-                        console.log('dispair')
+                        // this.load(1);
                     }
                 },
                 render: (text, record, index) => {
@@ -517,7 +569,7 @@ class TransfersAll extends React.Component {
                     if (visible) {
                         console.log('visible')
                     }else{
-                        console.log('dispair')
+                        // this.load(1);
                     }
                 },
             },
@@ -538,7 +590,7 @@ class TransfersAll extends React.Component {
                     if (visible) {
                         console.log('visible')
                     }else{
-                        console.log('dispair')
+                        // this.load(1);
                     }
                 },
                 render: (text, record, index) => {
@@ -562,19 +614,20 @@ class TransfersAll extends React.Component {
                 key: 'map_token_name',
                 width: '10%',
                 align: 'left',
-                filters: [
-                    { text: 'Joe', value: 'Joe' },
-                    { text: 'Jim', value: 'Jim' },
-                ],
+                className: 'ant_table',
                 filterIcon: () => {
                     return (
-                        <Icon type="caret-down"  style={{fontSize:12,color:'#999'}}  theme="outlined" />
+                        <Icon type="caret-down" style={{fontSize:12,color:'#999'}}  theme="outlined" />
                     );
                 },
-                onFilter: (value, record) =>{
-                    console.log(value,record)
+                filterDropdown: tokenFilterDropdown,
+                onFilterDropdownVisibleChange: (visible) => {
+                    if (visible) {
+                        // console.log('visible')
+                    }else{
+                        // this.load(1);
+                    }
                 },
-                className: 'ant_table',
                 render: (text, record, index) => {
                     return (
                       <div>

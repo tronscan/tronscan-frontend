@@ -4,7 +4,7 @@ import {Sticky, StickyContainer} from "react-sticky";
 import Paging from "./Paging";
 import {connect} from "react-redux";
 import {Client} from "../../services/api";
-import {TransactionHashLink, AddressLink, BlockNumberLink} from "./Links";
+import {TransactionHashLink, AddressLink, BlockNumberLink,TokenLink, TokenTRC20Link} from "./Links";
 import {tu} from "../../utils/i18n";
 import { Icon,Checkbox } from "antd";
 // import TimeAgo from "react-timeago";
@@ -14,6 +14,7 @@ import {ContractTypes} from "../../utils/protocol";
 import SmartTable from "./SmartTable.js"
 import {upperFirst} from "lodash";
 import {QuestionMark} from "./QuestionMark";
+import {isAddressValid} from "@tronscan/client/src/utils/crypto";
 import TotalInfo from "./../../components/addresses/components/TableTotal";
 import DateSelect from './../../components/addresses/components/dateSelect'
 import moment from 'moment';
@@ -61,22 +62,31 @@ class NewTransactions extends React.Component {
                 indeterminate:'',
                 checkAll:false,
             },
+            tokenFilter:{
+                checkedList:[],
+                indeterminate:'',
+                checkAll:false,
+            },
             typeOptionsAry:[
                 { label: upperFirst(intl.formatMessage({id: 'address_account_table_filter_transfers'})), value: 1 },
                 { label: upperFirst(intl.formatMessage({id: 'address_account_table_filter_freeze'})), value: 2 },
                 { label: upperFirst(intl.formatMessage({id: 'address_account_table_filter_unfreeze'})), value: 3 },
-                { label: upperFirst(intl.formatMessage({id: 'address_account_table_filter_trigger_smartContracts'})), value: 4 },
-                { label: upperFirst(intl.formatMessage({id: 'address_account_table_filter_vote'})), value: 5 },
-                { label: upperFirst(intl.formatMessage({id: 'address_account_table_filter_other'})), value: 6 },
+                { label: upperFirst(intl.formatMessage({id: 'address_account_table_filter_trigger_smartContracts'})), value: 5 },
+                { label: upperFirst(intl.formatMessage({id: 'address_account_table_filter_vote'})), value: 4 },
+                { label: upperFirst(intl.formatMessage({id: 'address_account_table_filter_other'})), value: 999 },
             ],
             statusOptionsAry: [
                 { label:  upperFirst(intl.formatMessage({id: 'full_node_version_unconfirmed'})), value: 1 },
-                { label:  upperFirst(intl.formatMessage({id: 'full_node_version_confirmed'})), value: 2 },
-                // { text:  upperFirst(intl.formatMessage({id: 'block_detail_rolled_back'})), value: '3' },
+                { label:  upperFirst(intl.formatMessage({id: 'full_node_version_confirmed'})), value: 0 },
+                { label:  upperFirst(intl.formatMessage({id: 'block_detail_rolled_back'})), value: 2 },
             ],
             resultOptionsAry: [
-                { label:  'SUCCESS', value: 1 },
-                { label:  'FAIL', value: 2 },
+                { label:  'SUCCESS', value: 'SUCCESS' },
+                { label:  'FAIL', value: 'FAIL' },
+            ],
+            tokenOptionsAry: [
+                { label:  '后端获取', value: 1 },
+                { label:  '后端获取', value: 2 },
             ]
         };
         
@@ -100,7 +110,7 @@ class NewTransactions extends React.Component {
     loadTransactions = async (page = 1, pageSize = 20) => {
 
         let {filter, isinternal=false, address=false, isContract=false,  getCsvUrl} = this.props;
-
+        let { typeFilter,statusFilter,resultFilter } = this.state;
         this.setState(
             {
                 loading: true,
@@ -108,6 +118,37 @@ class NewTransactions extends React.Component {
                 pageSize: pageSize,
             }
         );
+        let typeFilterObj = {};
+        if(typeFilter.checkedList.join(',')!==''){
+            if(typeFilter.checkedList.length == 6){
+                typeFilterObj = {
+                    type:0,
+                }
+            }else{
+                typeFilterObj = {
+                    type:typeFilter.checkedList.join(','),
+                }
+            }
+          
+        }
+        let statusFilterObj = {};
+        if(statusFilter.checkedList.join(',')!==''){
+            statusFilterObj = {
+                confirmed:statusFilter.checkedList.join(','),
+            }
+        }
+        let resultFilterObj = {};
+        if(resultFilter.checkedList.join(',')!==''){
+            if(typeFilter.checkedList.length == 2){
+                resultFilterObj = {
+                    ret:'all',
+                }
+            }else{
+                resultFilterObj = {
+                    ret:resultFilter.checkedList.join(','),
+                }
+            }
+        }
 
         let transactions, total,rangeTotal = 0;
 
@@ -119,6 +160,9 @@ class NewTransactions extends React.Component {
                     start_timestamp:this.start,
                     end_timestamp:this.end,
                     ...filter,
+                    ...typeFilterObj,
+                    ...statusFilterObj,
+                    ...resultFilterObj
                 }
                 let data = {}
                 let countData = {}
@@ -241,6 +285,7 @@ class NewTransactions extends React.Component {
             typeOptionsAry,typeFilter,
             statusFilter,statusOptionsAry,
             resultFilter,resultOptionsAry,
+            tokenFilter,tokenOptionsAry,
         } = this.state;
         const typeFilterDropdown = ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
             <div>
@@ -250,7 +295,7 @@ class NewTransactions extends React.Component {
                         onChange={
                             e => {
                                 let obj = {
-                                  checkedList: e.target.checked ? [1,2,3,4,5,6] : [],
+                                  checkedList: e.target.checked ? [1,2,3,4,5,999] : [],
                                   indeterminate: false,
                                   checkAll: e.target.checked,
                                 }
@@ -290,7 +335,7 @@ class NewTransactions extends React.Component {
                         onChange={
                             e => {
                                 let obj = {
-                                  checkedList: e.target.checked ? [1,2] : [],
+                                  checkedList: e.target.checked ? [0,1,2] : [],
                                   indeterminate: false,
                                   checkAll: e.target.checked,
                                 }
@@ -330,7 +375,7 @@ class NewTransactions extends React.Component {
                         onChange={
                             e => {
                                 let obj = {
-                                  checkedList: e.target.checked ? [1,2] : [],
+                                  checkedList: e.target.checked ? ['SUCCESS','FAIL'] : [],
                                   indeterminate: false,
                                   checkAll: e.target.checked,
                                 }
@@ -356,6 +401,46 @@ class NewTransactions extends React.Component {
                             }
                             this.setState({
                                 resultFilter:obj
+                            })
+                        }}
+                        />
+                </div>
+            </div>
+        )
+        const tokenFilterDropdown =  ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
+            <div>
+                <div style={{padding: "5px 12px"}}>
+                    <Checkbox
+                        indeterminate={tokenFilter.indeterminate}
+                        onChange={
+                            e => {
+                                let obj = {
+                                  checkedList: e.target.checked ? [1,2] : [],
+                                  indeterminate: false,
+                                  checkAll: e.target.checked,
+                                }
+                              this.setState({
+                                tokenFilter:obj
+                              })
+                            }
+                        }
+                        checked={tokenFilter.checkAll}
+                    >
+                        {upperFirst(intl.formatMessage({id: 'address_account_table_filter_all'}))}
+                    </Checkbox>
+                </div>
+                <div>
+                    <CheckboxGroup
+                        options={tokenOptionsAry}
+                        value={tokenFilter.checkedList}
+                        onChange={(checkedList)=> {
+                            let obj = {
+                                checkedList,
+                                indeterminate: !!checkedList.length && checkedList.length < tokenOptionsAry.length,
+                                checkAll: checkedList.length === tokenOptionsAry.length,
+                            }
+                            this.setState({
+                                tokenFilter:obj
                             })
                         }}
                         />
@@ -474,9 +559,9 @@ class NewTransactions extends React.Component {
                 filterDropdown: typeFilterDropdown,
                 onFilterDropdownVisibleChange: (visible) => {
                     if (visible) {
-                        console.log('visible')
+                        // console.log('visible')
                     }else{
-                        console.log('dispair')
+                       this.loadTransactions(1);
                     }
                 },
                 className: 'ant_table _text_nowrap',
@@ -498,9 +583,9 @@ class NewTransactions extends React.Component {
                 filterDropdown: statusFilterDropdown,
                 onFilterDropdownVisibleChange: (visible) => {
                     if (visible) {
-                        console.log('visible')
+                        // console.log('visible')
                     }else{
-                        console.log('dispair')
+                        this.loadTransactions(1);
                     }
                 },
                 className: 'ant_table',
@@ -534,7 +619,7 @@ class NewTransactions extends React.Component {
                     if (visible) {
                         console.log('visible')
                     }else{
-                        console.log('dispair')
+                        this.loadTransactions(1);
                     }
                 },
                 render: (text, record, index) => {
@@ -552,7 +637,7 @@ class NewTransactions extends React.Component {
                 align: "left",
                 className: "ant_table",
                 render: (text, record, index) => {
-                  return <FormattedNumber value={record.contractData.amount / Math.pow(10,6)}></FormattedNumber>;
+                  return <FormattedNumber value={text / Math.pow(10,6)}></FormattedNumber>;
                 }
             },
             {
@@ -578,20 +663,75 @@ class NewTransactions extends React.Component {
                 align: "left",
                 key: "tokens",
                 className: "ant_table",
-                filters: [
-                    { text: 'Joe', value: 'Joe' },
-                    { text: 'Jim', value: 'Jim' },
-                ],
                 filterIcon: () => {
                     return (
-                        <Icon type="caret-down"  theme="outlined" />
+                        <Icon type="caret-down" style={{fontSize:12,color:'#999'}}  theme="outlined" />
                     );
                 },
-                onFilter: (value, record) =>{
-                    console.log(value,record)
+                filterDropdown: tokenFilterDropdown,
+                onFilterDropdownVisibleChange: (visible) => {
+                    if (visible) {
+                        // console.log('visible')
+                    }else{
+                        this.loadTransactions(1);
+                    }
                 },
                 render: (text, record, index) => {
-                    return <span> {record.map_token_name_abbr} </span>;
+                    console.log(record)
+                    return (
+                        <div>
+                            12312312
+                        {/* {record.tokenId == 1002000 ? (
+                          <div>
+                            <b
+                              className="token-img-top"
+                              style={{ marginRight: 5 }}
+                            >
+                              <i
+                                style={{ width: 10, height: 10, bottom: -5 }}
+                              ></i>
+                            </b>
+                            {record.type == "trc20" ? (
+                              <TokenTRC20Link
+                                name={record.map_token_id}
+                                address={record.contract_address}
+                                namePlus={record.map_token_name_abbr}
+                              />
+                            ) : (
+                              <TokenLink
+                                id={record.map_token_id}
+                                name={record.tokenAbbr}
+                              />
+                            )}
+                          </div>
+                        ) : (
+                          <div>
+                            {isAddressValid(record.tokenAbbr) ? (
+                              <span>
+                                {tu("address_transfer_unrecorded_token")}
+                              </span>
+                            ) : (
+                              <div>
+                                {record.type == "trc20" ? (
+                                  <TokenTRC20Link
+                                    name={record.map_token_id}
+                                    address={record.contract_address}
+                                    // namePlus={record.map_token_name_abbr}
+                                  />
+                                ) : (
+                                  <TokenLink
+                                    id={record.map_token_id}
+                                    name={
+                                      record.tokenAbbr
+                                    }
+                                  />
+                                )}
+                              </div>
+                            )}
+                          </div>
+                        )} */}
+                      </div>
+                    )
                 }
             }
        
@@ -769,7 +909,7 @@ class NewTransactions extends React.Component {
                         total={rangeTotal > 2000 ? 2000 : rangeTotal}
                         current={this.state.page}
                         onPageChange={(page, pageSize) => {
-                        this.loadTransactions(page, pageSize);
+                            this.loadTransactions(page, pageSize);
                         }}
                         locale={{
                             filterTitle: filterTitleKey || 'default', // prevent console error ，remove result => filterTitle ''fail；

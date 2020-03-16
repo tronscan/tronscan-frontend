@@ -618,6 +618,7 @@ class Address extends React.Component {
       brokerage:data.brokerage || 0,
       producedEfficiency:data.producedEfficiency || 0,
       blockReward:data.blockReward || 0,
+      version:data.version || 0
     });
   }
 
@@ -865,7 +866,7 @@ class Address extends React.Component {
       searchAddress,
       searchAddressClose
     } = this.state;
-    let { match, intl, account, walletType } = this.props;
+    let { match, intl, account, walletType,activeLanguage } = this.props;
     let addr = match.params.id;
 
     if (!address) {
@@ -1221,12 +1222,18 @@ class Address extends React.Component {
                     {pathname.slice(-9) === "transfers" || pathname.slice(-12) === "transactions" || pathname.slice(-21) === "internal-transactions" ? (
                       <div
                         className="addressSearch"
-                        style={{
-                          position: "absolute",
-                          right: "1rem",
-                          bottom: "6px",
-                          height: 35
-                        }}
+                        style={
+                          activeLanguage == "zh" ||   activeLanguage == "ko" ||  activeLanguage == "ar" || activeLanguage == "fa" ?
+                          {
+                            position: "absolute",
+                            right: "1rem",
+                            bottom: "6px",
+                            height: 35
+                          }:{
+                            float:"right",
+                            padding: "0 1rem 6px 0",
+                          }
+                        }
                       >
                         <div
                           className="input-group-append"
@@ -1339,6 +1346,7 @@ function mapStateToProps(state) {
   return {
     account: state.app.account,
     walletType: state.app.wallet,
+    activeLanguage: state.app.activeLanguage,
   };
 }
 
