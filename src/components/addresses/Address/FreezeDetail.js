@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from "react";
 import {tu} from "../../../utils/i18n";
-import {FormattedNumber, injectIntl} from "react-intl";
+import {FormattedDate, FormattedTime, FormattedNumber, injectIntl} from "react-intl";
 import {toUpper} from "lodash";
 import {TokenLink, TokenTRC20Link, AddressLink} from "../../common/Links";
 import {SwitchToken} from "../../common/Switch";
@@ -15,7 +15,7 @@ import { ONE_TRX } from "../../../constants";
 import { recoverAddress } from "ethers/utils";
 import {QuestionMark} from "../../common/QuestionMark";
 import {TronLoader} from "../../common/loaders";
-import {Client} from "../../../services/api";
+import {Client, AccountApi} from "../../../services/api";
 import {API_URL} from "../../../constants";
 
 
@@ -23,7 +23,7 @@ class FreezeDetail extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      filterType: "self",
+      filterType: 1,
       pagination: {
         showQuickJumper: true,
         position: "bottom",
@@ -31,7 +31,7 @@ class FreezeDetail extends Component {
         defaultPageSize: 20,
         total: 0
       },
-      resourceType: "all",
+      resourceType: 0,
     }
   }
 
@@ -40,28 +40,44 @@ class FreezeDetail extends Component {
   }
 
   load = async (page = 1, pageSize = 20,sorter) => {
-
-    let votes = [{votes:10}]
+    const {address} = this.props
+    const {resourceType, filterType} =this.state
+    this.setState({loading: true});
+    const { data } = await AccountApi.getAccountFreezeResource({
+      address,
+      type: filterType,
+      resourceType
+    }).catch(e=>console.log(e))
+    let votes = data
     this.setState({
-      votes
+      votes,
+      loading: false,
     })
   };
   onChange = (e) => {
-    console.log(e)
+    this.setState({
+      filterType: e.target.value,
+      resourceType: 0
+    },()=>{ this.load() })
+  }
+  handleMenuClick = (e) => {
+    this.setState({
+      resourceType: e.key
+    },()=>{ this.load() })
   }
 
   customizedColumn = () => {
     let {intl} = this.props;
     let { resourceType } = this.state
     const menu =   (<Menu onClick={this.handleMenuClick} className="list-filter">
-          <Menu.Item  key="all" className={`${resourceType == 'all' && 'active'}`}>
+          <Menu.Item  key="0" className={`${resourceType == '0' && 'active'}`}>
               <div>{tu('account_all')}</div>
           </Menu.Item>
-          <Menu.Item key="energy" className={`${resourceType == 'energy' && 'active'}`}>
-            <div>{tu('energy')}</div>
-          </Menu.Item>
-          <Menu.Item key="bandwidth" className={`${resourceType == 'bandwidth' && 'active'}`}>
+          <Menu.Item key="1" className={`${resourceType == '1' && 'active'}`}>
             <div>{tu('bandwidth')}</div>
+          </Menu.Item>
+          <Menu.Item key="2" className={`${resourceType == '2' && 'active'}`}>
+            <div>{tu('energy')}</div>
           </Menu.Item>
       </Menu>
     )
@@ -76,52 +92,57 @@ class FreezeDetail extends Component {
     let column = [
       {
         title: upperFirst(intl.formatMessage({id: 'account_freeze_time'})),
-        dataIndex: 'votes',
-        key: 'votes',
+        dataIndex: 'timestamp',
+        key: 'timestamp',
         align: 'left',
         className: 'ant_table',
         render: (text, record, index) => {
-            return <span>{text}</span>
+            return <Fragment>
+                    <FormattedDate value={Number(text)}/>&nbsp;
+                    <FormattedTime value={Number(text)}  hour='numeric' minute="numeric" second='numeric' hour12={false}/>
+                  </Fragment>
         }
       },
       {
         title: upperFirst(intl.formatMessage({id: 'account_freeze_address'})),
-        dataIndex: 'votes',
-        key: 'votes',
+        dataIndex: 'ownerAddress',
+        key: 'ownerAddress',
+        width: '20%',
         align: 'left',
         className: 'ant_table',
         render: (text, record, index) => {
-            return <span>{text}</span>
+            return <AddressLink address={text}>{text}</AddressLink>
         }
       },
       {
         title: upperFirst(intl.formatMessage({id: 'account_freeze_received'})),
-        dataIndex: 'votes',
-        key: 'votes',
+        dataIndex: 'receiverAddress',
+        key: 'receiverAddress',
+        width: '20%',
         align: 'left',
         className: 'ant_table',
         render: (text, record, index) => {
-            return <span>{text}</span>
+            return <AddressLink address={text}>{text}</AddressLink>
         }
       },
       {
         title: droplist,
-        dataIndex: 'votes',
-        key: 'votes',
+        dataIndex: 'resource',
+        key: 'resource',
         align: 'left',
         className: 'ant_table',
         render: (text, record, index) => {
-            return <span>{text}</span>
+            return upperFirst(intl.formatMessage({id: text.toLowerCase()}))//<span>{text}</span>
         }
       },
       {
         title: upperFirst(intl.formatMessage({id: 'account_freeze_amount'})) + '(TRX)',
-        dataIndex: 'votes',
-        key: 'votes',
+        dataIndex: 'frozenBalance',
+        key: 'frozenBalance',
         align: 'left',
         className: 'ant_table',
         render: (text, record, index) => {
-            return <span>{text}</span>
+            return <span>{text / ONE_TRX}</span>
         }
       },
       {
@@ -132,8 +153,8 @@ class FreezeDetail extends Component {
               <QuestionMark placement="top" text="account_freeze_resource_amount_tip"/>
             </span>
           </span>),
-        dataIndex: 'votes',
-        key: 'votes',
+        dataIndex: 'resourceValue',
+        key: 'resourceValue',
         align: 'left',
         className: 'ant_table',
         render: (text, record, index) => {
@@ -151,37 +172,37 @@ class FreezeDetail extends Component {
 
   render() {
     const column = this.customizedColumn()
-    const { pagination, loading, data, votes } = this.state
+    const { pagination, loading, votes } = this.state
     const { intl } = this.props
     return (
       <Fragment>
         <div className="mt-4 mb-2" >
-          <Radio.Group defaultValue="self" style={{fontSize: '12px'}} onChange={this.onChange}>
-            <Radio.Button value="self">{tu('account_freeze_self')}</Radio.Button>
-            <Radio.Button value="b">{tu('account_freeze_to_other')}</Radio.Button>
-            <Radio.Button value="c">{tu('account_freeze_other_to')}</Radio.Button>
+          <Radio.Group defaultValue="1" style={{fontSize: '12px'}} onChange={this.onChange}>
+            <Radio.Button value="1">{tu('account_freeze_self')}</Radio.Button>
+            <Radio.Button value="2">{tu('account_freeze_to_other')}</Radio.Button>
+            <Radio.Button value="3">{tu('account_freeze_other_to')}</Radio.Button>
           </Radio.Group>
         </div>
         <div className="token_black table_pos">
           {loading && <div className="loading-style"><TronLoader/></div>}
-          {data ? 
-          <div className="text-center p-3 no-data">
+          {votes && votes.length > 0 ? 
+            <div className="mt-1">
+              <Table
+                  bordered={true}
+                  columns={column}
+                  rowKey={(record, index) => {
+                    return index;
+                  }}
+                  dataSource={votes}
+                  scroll={scroll}
+                  pagination={pagination}
+                  loading={loading}
+                  onChange={this.handleTableChange}
+              />
+            </div>:
+            <div className="text-center p-3 no-data">
               {tu("account_freeze_no_data")}
-          </div>:
-          <div className="mt-1">
-            <Table
-                bordered={true}
-                columns={column}
-                rowKey={(record, index) => {
-                  return index;
-                }}
-                dataSource={votes}
-                scroll={scroll}
-                pagination={pagination}
-                loading={loading}
-                onChange={this.handleTableChange}
-            />
-          </div>}
+            </div>}
         </div>
       </Fragment>
     )

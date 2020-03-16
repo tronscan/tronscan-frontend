@@ -235,3 +235,5 @@ export const CONTRACT_LICENSES = [
 
 export const WARNING_VERSIONS = [];
 export const uuidv4 = uuidv4w();
+
+export const ADDRESS_TAG_ICON = ['Binance','Bittrex','Gate','Huobi','Kucoin','Okex','Poloniex']

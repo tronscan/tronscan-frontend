@@ -190,8 +190,8 @@ class Votes extends React.Component {
         align: 'right',
         className: 'ant_table',
         render: (text, record, index) => {
-          return <Fragment><FormattedNumber value={(record.votes / totalVotes) * 100}
-                                            minimumFractionDigits={2}/>%</Fragment>
+          return <Fragment><FormattedNumber value={(record.votes / record.candidateTotalVotes) * 100}
+                                            minimumFractionDigits={6}/>%</Fragment>
         }
       },
       // {

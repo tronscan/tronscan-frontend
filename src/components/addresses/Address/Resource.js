@@ -166,7 +166,7 @@ class Resource extends React.Component {
                   </span>
                 ) : (
                   <span className="text-success">
-                    <i class="fa fa-arrow-up"></i>
+                    <i className="fa fa-arrow-up"></i>
                     <FormattedNumber value={Math.abs(changeVotes)} />
                   </span>
                 ))}

@@ -41,6 +41,11 @@ class Accounts extends Component {
         total: 0
       },
       newAddressSeen: 0,
+      sort: '-balance',
+      sortColumn: {
+        order: 'descend',
+        columnKey: 'balance'
+      }
     }
   }
 
@@ -49,12 +54,12 @@ class Accounts extends Component {
   }
 
   loadAccounts = async (page = 1, pageSize = 20) => {
-    // const { exchangeFlag } = this.state
+    const { sort } = this.state
 
     this.setState({loading: true});
 
     let {accounts, total, rangeTotal} = await Client.getAccounts({
-      sort: '-balance',
+      sort: sort,
       limit: pageSize,
       start: (page - 1) * pageSize
     }).catch(e => console.log(e))
@@ -184,6 +189,7 @@ class Accounts extends Component {
 
   customizedColumn = () => {
     let {intl} = this.props;
+    let {sortColumn} = this.state;
     let column = [
       {
         title: upperFirst(intl.formatMessage({id: 'account_rank'})),
@@ -217,7 +223,7 @@ class Accounts extends Component {
                     }
                   </div>
                   <div style={{marginLeft: '10px'}}>
-                    <span style={{whiteSpace:'nowrap',marginLeft: '10px'}}> {record.addressTag?'#'+record.addressTag:''} </span>
+                    <span style={{whiteSpace:'nowrap',marginLeft: '10px'}}> {record.addressTag?record.addressTag:''} </span>
                   </div>
                 </div>
                 )
@@ -227,7 +233,11 @@ class Accounts extends Component {
         title: upperFirst(intl.formatMessage({id: 'account_balance'})),
         dataIndex: 'balance',
         key: 'balance',
-        align: 'right',
+        sorter: true,
+        defaultSortOrder: "descend",
+        sortOrder: sortColumn.columnKey == 'balance' && sortColumn.order,
+        sortDirections: ["descend", "ascend"],
+        align: 'left',
         className: 'ant_table',
         // width: '15%',
         render: (text, record, index) => {
@@ -246,9 +256,12 @@ class Accounts extends Component {
         ),
         dataIndex: 'balance',
         key: 'supply',
+        sorter: true,
+        sortOrder: sortColumn.columnKey == 'supply' && sortColumn.order,
+        sortDirections: ["descend", "ascend"],
         align: 'left',
         className: 'ant_table',
-        // width: '12%',
+        width: '15%',
         render: (text, record, index) => {
           return <div><FormattedNumber
               value={(((parseInt(text) / ONE_TRX) / CIRCULATING_SUPPLY) * 100)}
@@ -261,7 +274,10 @@ class Accounts extends Component {
         title: upperFirst(intl.formatMessage({id: 'account_power'})),
         dataIndex: 'power',
         key: 'power',
-        align: 'center',
+        sorter: true,
+        sortOrder: sortColumn.columnKey == 'power' && sortColumn.order,
+        sortDirections: ["descend", "ascend"],
+        align: 'left',
         // width: '15%',
         render: (text, record, index) => {
           return <FormattedNumber value={parseInt(text) / ONE_TRX}/>
@@ -276,11 +292,14 @@ class Accounts extends Component {
             </span>
           </div>
         ),
-        dataIndex: 'addressTag',
-        key: 'addressTag',
+        dataIndex: 'totalTransactionCount',
+        key: 'totalTransactionCount',
+        sorter: true,
+        sortOrder: sortColumn.columnKey == 'totalTransactionCount' && sortColumn.order,
+        sortDirections: ["descend", "ascend"],
         align: 'left',
         render: (text, record, index) => {
-            return <span style={{whiteSpace:'nowrap'}}> {record.addressTag?record.addressTag:''} </span>
+            return <span> {record.totalTransactionCount} </span>
         }
       }
     ];
@@ -291,12 +310,19 @@ class Accounts extends Component {
     const pager = { ...this.state.pagination };
     pager.current = pagination.current;
     pager.pageSize = pagination.pageSize;
+    if(sorter.order === undefined){
+      sorter['order']= 'descend'
+    }
     this.setState(
       {
         pagination: pager,
-        // sort: `${sorter.order === "descend" ? "-" : ""}${
-        //   sorter.order ? sorter.columnKey : ""
-        // }`
+        sort: `${sorter.order === "descend" ? "-" : ""}${
+          sorter.order ? sorter.field : ""
+        }`,
+        sortColumn: {
+          order: sorter.order,
+          columnKey: sorter.columnKey
+        }
       },
       () => this.loadAccounts(pager.current, pager.pageSize)
     );
