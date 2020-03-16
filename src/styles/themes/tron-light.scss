@@ -927,8 +927,14 @@
       }
     }
     // .transfersAll-container{
+
     // }
-    
+ 
+  }
+}
+.ant-checkbox-indeterminate{
+  .ant-checkbox-inner::after{
+    background-color:#C23631;
   }
 }
 // ant-table-filter-dropdown-btns 
