@@ -112,15 +112,11 @@ export function withTronWeb(InnerComponent) {
 
     buildTransactionSigner(tronWeb, isMulti) {
       const { account, wallet } = this.props;
-     
       return async (transaction, privateKey = false, permissionId = false, callback = false) => {
-        console.log('wallet===111',wallet.isOpen)
         if (!wallet.isOpen) {
-          console.log('wallet===222',wallet.isOpen)
           throw new Error("wallet is not open");
         }
         try {
-
           switch (wallet.type) {
             case ACCOUNT_LEDGER:
 
@@ -232,10 +228,17 @@ export function withTronWeb(InnerComponent) {
                   hex: rawDataHex,
                   info: tokenInfo,
                 })
-                console.log('Buffer.from(signedResponse)',[Buffer.from(signedResponse).toString('hex')])
-                console.log('signedResponse',[signedResponse])
-                //transaction.signature = [Buffer.from(signedResponse).toString('hex')];
-                transaction.signature = [signedResponse];
+                console.log('transaction.signature====1',transaction.signature)
+                console.log('signedResponse==2', console.log('signedResponse',[signedResponse]))
+               
+                if (Array.isArray(transaction.signature)) {
+                  if (!transaction.signature.includes(signedResponse))
+                      transaction.signature.push(signedResponse);
+                } else{
+                  transaction.signature = [signedResponse];
+                }
+                 
+               // transaction.signature = [signedResponse];
                 return transaction;
               } catch (e) {
                 console.log("Error signing ledger", e);

@@ -126,10 +126,11 @@ class SignDetailsModal extends Component {
         return trx20MappingAddress;
     }
 
-    getParameterValue = async() =>{
+    getParameterValue = async () =>{
         const { details, account } = this.props;
         let hexstr = details.currentTransaction.raw_data.contract[0].parameter.value;
-        let parameterValue = Client.getParameterValue(hexstr);
+        let parameterValue = Client.getParameterValue(hexstr,'TriggerSmartContract');
+        console.log('parameterValue========',parameterValue)
         //details.contractData.data = parameterValue;
         let parameter = details.contractData;
         let function_selector = details.functionSelector;
@@ -146,6 +147,7 @@ class SignDetailsModal extends Component {
     render() {
         const { getFieldDecorator } = this.props.form;
         const { details } = this.props;
+        console.log('details.contractData',details.contractData)
         const {  isShowModal, modal, args } = this.state;
         const defaultImg = require("../../images/logo_default.png");
         let TokenIDList = [];
