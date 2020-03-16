@@ -22,7 +22,7 @@ import _ from "lodash";
 import Blocks from "../../common/Blocks";
 import rebuildList from "../../../utils/rebuildList";
 import rebuildToken20List from "../../../utils/rebuildToken20List";
-import { API_URL } from "../../../constants.js";
+import { API_URL, ADDRESS_TAG_ICON } from "../../../constants.js";
 import {
   FormatNumberByDecimals,
   FormatNumberByDecimalsBalance,
