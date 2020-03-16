@@ -61,6 +61,11 @@ class NewTransactions extends React.Component {
                 indeterminate:'',
                 checkAll:false,
             },
+            tokenFilter:{
+                checkedList:[],
+                indeterminate:'',
+                checkAll:false,
+            },
             typeOptionsAry:[
                 { label: upperFirst(intl.formatMessage({id: 'address_account_table_filter_transfers'})), value: 1 },
                 { label: upperFirst(intl.formatMessage({id: 'address_account_table_filter_freeze'})), value: 2 },
@@ -77,6 +82,10 @@ class NewTransactions extends React.Component {
             resultOptionsAry: [
                 { label:  'SUCCESS', value: 1 },
                 { label:  'FAIL', value: 2 },
+            ],
+            tokenOptionsAry: [
+                { label:  '后端获取', value: 1 },
+                { label:  '后端获取', value: 2 },
             ]
         };
         
@@ -241,6 +250,7 @@ class NewTransactions extends React.Component {
             typeOptionsAry,typeFilter,
             statusFilter,statusOptionsAry,
             resultFilter,resultOptionsAry,
+            tokenFilter,tokenOptionsAry,
         } = this.state;
         const typeFilterDropdown = ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
             <div>
@@ -356,6 +366,46 @@ class NewTransactions extends React.Component {
                             }
                             this.setState({
                                 resultFilter:obj
+                            })
+                        }}
+                        />
+                </div>
+            </div>
+        )
+        const tokenFilterDropdown =  ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
+            <div>
+                <div style={{padding: "5px 12px"}}>
+                    <Checkbox
+                        indeterminate={tokenFilter.indeterminate}
+                        onChange={
+                            e => {
+                                let obj = {
+                                  checkedList: e.target.checked ? [1,2] : [],
+                                  indeterminate: false,
+                                  checkAll: e.target.checked,
+                                }
+                              this.setState({
+                                tokenFilter:obj
+                              })
+                            }
+                        }
+                        checked={tokenFilter.checkAll}
+                    >
+                        {upperFirst(intl.formatMessage({id: 'address_account_table_filter_all'}))}
+                    </Checkbox>
+                </div>
+                <div>
+                    <CheckboxGroup
+                        options={tokenOptionsAry}
+                        value={tokenFilter.checkedList}
+                        onChange={(checkedList)=> {
+                            let obj = {
+                                checkedList,
+                                indeterminate: !!checkedList.length && checkedList.length < tokenOptionsAry.length,
+                                checkAll: checkedList.length === tokenOptionsAry.length,
+                            }
+                            this.setState({
+                                tokenFilter:obj
                             })
                         }}
                         />
@@ -578,17 +628,18 @@ class NewTransactions extends React.Component {
                 align: "left",
                 key: "tokens",
                 className: "ant_table",
-                filters: [
-                    { text: 'Joe', value: 'Joe' },
-                    { text: 'Jim', value: 'Jim' },
-                ],
                 filterIcon: () => {
                     return (
-                        <Icon type="caret-down"  theme="outlined" />
+                        <Icon type="caret-down" style={{fontSize:12,color:'#999'}}  theme="outlined" />
                     );
                 },
-                onFilter: (value, record) =>{
-                    console.log(value,record)
+                filterDropdown: tokenFilterDropdown,
+                onFilterDropdownVisibleChange: (visible) => {
+                    if (visible) {
+                        console.log('visible')
+                    }else{
+                        console.log('dispair')
+                    }
                 },
                 render: (text, record, index) => {
                     return <span> {record.map_token_name_abbr} </span>;
