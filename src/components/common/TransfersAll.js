@@ -520,7 +520,7 @@ class TransfersAll extends React.Component {
                     if (visible) {
                         console.log('visible')
                     }else{
-                        console.log('dispair')
+                        // this.load(1);
                     }
                 },
                 render: (text, record, index) => {
@@ -569,7 +569,7 @@ class TransfersAll extends React.Component {
                     if (visible) {
                         console.log('visible')
                     }else{
-                        console.log('dispair')
+                        // this.load(1);
                     }
                 },
             },
@@ -590,7 +590,7 @@ class TransfersAll extends React.Component {
                     if (visible) {
                         console.log('visible')
                     }else{
-                        console.log('dispair')
+                        // this.load(1);
                     }
                 },
                 render: (text, record, index) => {
@@ -623,9 +623,9 @@ class TransfersAll extends React.Component {
                 filterDropdown: tokenFilterDropdown,
                 onFilterDropdownVisibleChange: (visible) => {
                     if (visible) {
-                        console.log('visible')
+                        // console.log('visible')
                     }else{
-                        console.log('dispair')
+                        // this.load(1);
                     }
                 },
                 render: (text, record, index) => {
