@@ -43,12 +43,12 @@ class FreezeDetail extends Component {
     const {address} = this.props
     const {resourceType, filterType} =this.state
     this.setState({loading: true});
-    const { data } = await AccountApi.getAccountFreezeResource({
+    const res = await AccountApi.getAccountFreezeResource({
       address,
       type: filterType,
       resourceType
     }).catch(e=>console.log(e))
-    let votes = data
+    let votes = (res && res.data) || []
     this.setState({
       votes,
       loading: false,
@@ -71,7 +71,7 @@ class FreezeDetail extends Component {
     let { resourceType } = this.state
     const menu =   (<Menu onClick={this.handleMenuClick} className="list-filter">
           <Menu.Item  key="0" className={`${resourceType == '0' && 'active'}`}>
-              <div>{tu('account_all')}</div>
+              <div>{tu('all')}</div>
           </Menu.Item>
           <Menu.Item key="1" className={`${resourceType == '1' && 'active'}`}>
             <div>{tu('bandwidth')}</div>
@@ -172,10 +172,10 @@ class FreezeDetail extends Component {
 
   render() {
     const column = this.customizedColumn()
-    const { pagination, loading, votes } = this.state
+    const { pagination, loading, votes, resourceType } = this.state
     const { intl } = this.props
     return (
-      <Fragment>
+      <div className="freeze-detail-wrap">
         <div className="mt-4 mb-2" >
           <Radio.Group defaultValue="1" style={{fontSize: '12px'}} onChange={this.onChange}>
             <Radio.Button value="1">{tu('account_freeze_self')}</Radio.Button>
@@ -185,7 +185,10 @@ class FreezeDetail extends Component {
         </div>
         <div className="token_black table_pos">
           {loading && <div className="loading-style"><TronLoader/></div>}
-          {votes && votes.length > 0 ? 
+          {votes && votes.length == 0 && resourceType == '0' ? 
+            <div className="text-center p-3 no-data">
+              {tu("account_freeze_no_data")}
+            </div>:
             <div className="mt-1">
               <Table
                   bordered={true}
@@ -199,12 +202,10 @@ class FreezeDetail extends Component {
                   loading={loading}
                   onChange={this.handleTableChange}
               />
-            </div>:
-            <div className="text-center p-3 no-data">
-              {tu("account_freeze_no_data")}
-            </div>}
+            </div>
+          }
         </div>
-      </Fragment>
+      </div>
     )
   }
 }

@@ -9,7 +9,6 @@ import { trim } from "lodash";
 import { FormattedNumber } from "react-intl";
 import TokenBalances from "../components/TokenBalances";
 import MyContracts from "./Contracts";
-import { ONE_TRX } from "../../../constants";
 import { AddressLink, ExternalLink, HrefLink } from "../../common/Links";
 import { TRXPrice } from "../../common/Price";
 import { TronLoader } from "../../common/loaders";
@@ -22,7 +21,7 @@ import _ from "lodash";
 import Blocks from "../../common/Blocks";
 import rebuildList from "../../../utils/rebuildList";
 import rebuildToken20List from "../../../utils/rebuildToken20List";
-import { API_URL, ADDRESS_TAG_ICON } from "../../../constants.js";
+import { ONE_TRX, API_URL, ADDRESS_TAG_ICON } from "../../../constants.js";
 import {
   FormatNumberByDecimals,
   FormatNumberByDecimalsBalance,
@@ -44,6 +43,17 @@ import {transactionResultManager, transactionResultManagerSun} from "../../../ut
 
 
 BigNumber.config({ EXPONENTIAL_AT: [-1e9, 1e9] });
+
+function setTagIcon(tag){
+  if(!tag) return
+  let name = ''
+  ADDRESS_TAG_ICON.map(v => {
+    if(tag.indexOf(v) > -1){
+      name = v
+    }
+  })
+  return name && <img src={require(`../../../images/address/tag/${name}.svg`)}/>
+}
 
 class Address extends React.Component {
   constructor({ match }) {
@@ -900,11 +910,13 @@ class Address extends React.Component {
                       includeTransfer={true}
                       includeErcode={true}
                     />
-                    <div>
-                      {address.addressTag && (
-                        <span className="addressTag">{address.addressTag}</span>
-                      )}
-                    </div>
+                    {address.addressTag &&
+                      <div style={{marginTop: '10px'}}>
+                          <span className="address-tag" >
+                            {setTagIcon(address.addressTag)}
+                            <span className="tag-name">{address.addressTag}</span>
+                          </span>
+                      </div>}
                   </div>
                   <div className="row info-wrap">
                     <div className="col-md-7 address-info">

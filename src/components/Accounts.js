@@ -5,7 +5,7 @@ import {tu} from "../utils/i18n";
 import {FormattedNumber, injectIntl} from "react-intl";
 import {filter, upperFirst} from "lodash";
 import {AddressLink} from "./common/Links";
-import {CIRCULATING_SUPPLY, ONE_TRX} from "../constants";
+import {CIRCULATING_SUPPLY, ONE_TRX, ADDRESS_TAG_ICON} from "../constants";
 import {TRXPrice} from "./common/Price";
 import SmartTable from "./common/SmartTable.js"
 import {TronLoader} from "./common/loaders";
@@ -15,7 +15,16 @@ import {Client, AccountApi} from "../services/api";
 import {Tooltip, Table} from 'antd'
 import { Link } from "react-router-dom";
 
-
+function setTagIcon(tag){
+  if(!tag) return
+  let name = ''
+  ADDRESS_TAG_ICON.map(v => {
+    if(tag.indexOf(v) > -1){
+      name = v
+    }
+  })
+  return name && <img src={require(`../images/address/tag/${name}.svg`)}/>
+}
 
 class Accounts extends Component {
 
@@ -201,7 +210,7 @@ class Accounts extends Component {
         }
       },
       {
-        title: upperFirst(intl.formatMessage({id: 'account_title'})),
+        title: upperFirst(intl.formatMessage({id: 'accounts'})),
         dataIndex: 'address',
         key: 'address',
         align: 'left',
@@ -210,20 +219,27 @@ class Accounts extends Component {
         render: (text, record, index) => {
           return (
                 <div  className="d-flex">
-                  <div>
+                  <div style={{width: record.addressTag ? "200px" : 'auto'}}>
                     {
                       record.accountType == 2 ?
                       <span className="d-flex">
                         <Tooltip placement="top" title={intl.formatMessage({id: 'contracts'})}>
                           <span><i className="far fa-file mr-1"></i></span>
                         </Tooltip>
-                        <AddressLink address={text} truncate={false} isContract={record.toAddressType == 2}/>
+                        <AddressLink address={text} truncate={false} isContract={record.toAddressType == 2}>{text}</AddressLink>
                       </span> :
-                      <AddressLink address={text} truncate={false}/>
+                      <AddressLink address={text} truncate={false}>{text}</AddressLink>
                     }
                   </div>
                   <div style={{marginLeft: '10px'}}>
-                    <span style={{whiteSpace:'nowrap',marginLeft: '10px'}}> {record.addressTag?record.addressTag:''} </span>
+                    <span style={{whiteSpace:'nowrap'}}> 
+                    {record.addressTag?(
+                      <span className="address-tag">
+                        {setTagIcon(record.addressTag)}
+                        <span>{record.addressTag}</span>
+                      </span>
+                      ):''
+                    } </span>
                   </div>
                 </div>
                 )
@@ -357,7 +373,7 @@ class Accounts extends Component {
                   <h3 className="text-primary">
                     <FormattedNumber value={rangeTotal}/>
                   </h3>
-                  {tu("total_accounts")}
+                  {tu("account_realTime_count")}
                 </div>
               </div>
             </div>
