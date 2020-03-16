@@ -104,7 +104,7 @@ export default class SmartTable extends Component {
     );
   };
   onSearch = () => {
-    let { tableData } = this.props;
+    let { tableData,filterDropdownVisible } = this.props;
     const { searchText } = this.state;
     const reg = new RegExp(searchText, "gi");
     this.setState({
@@ -155,46 +155,8 @@ export default class SmartTable extends Component {
         }
       };
     }
-
     let filter = {
-      filterDropdown: (
-        <div className="custom-filter-dropdown">
-          <Input
-            ref={ele => (this.searchInput = ele)}
-            placeholder="Search name"
-            value={this.state.searchText}
-            onChange={this.onInputChange}
-            onPressEnter={this.onSearch}
-          />{" "}
-          <Button type="primary" onClick={this.onSearch}>
-            {" "}
-            {tu("search")}{" "}
-          </Button>{" "}
-          <Button className="btn-secondary ml-1" onClick={this.onReset}>
-            {" "}
-            {tu("reset")}{" "}
-          </Button>{" "}
-        </div>
-      ),
-      filterIcon: (
-        <Icon
-          type="filter"
-          style={{
-            color: this.state.filtered ? "#108ee9" : "#aaa"
-          }}
-        />
-      ),
-      filterDropdownVisible: this.state.filterDropdownVisible,
-      onFilterDropdownVisibleChange: visible => {
-        this.setState(
-          {
-            filterDropdownVisible: visible
-          },
-          () => {
-            this.searchInput && this.searchInput.focus();
-          }
-        );
-      }
+     
     };
 
     let columns = [];
@@ -248,7 +210,7 @@ export default class SmartTable extends Component {
       transfers,
       nopadding,
       contractAddress,
-      isPaddingTop
+      isPaddingTop,
     } = this.props;
     let columns = this.setColumn(column);
     const paginationStatus = pagination

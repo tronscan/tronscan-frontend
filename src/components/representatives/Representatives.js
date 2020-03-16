@@ -90,6 +90,7 @@ class Representatives extends Component {
             <tr>
               <th className="text-center">{tu("SR_rank")}</th>
               <th>{tu("name")}</th>
+              <th>{tu("current_version")}</th>
               <th className="text-center text-nowrap">{tu("status")}</th>
               <th className="text-center text-nowrap d-none d-lg-table-cell">
                 {tu("last_block")}
@@ -120,7 +121,7 @@ class Representatives extends Component {
           </thead>
           <tbody>
             <tr style={{ height: "72px" }}>
-              <td colSpan="9" className="font-weight-bold">
+              <td colSpan="10" className="font-weight-bold">
                 <i
                   className="fa fa-trophy mr-2 ml-2"
                   style={{ color: "#666" }}
@@ -351,6 +352,7 @@ function Row({ account, showSync = true, index, state, props }) {
           </div>
         )}
       </td>
+      <td className="text-center">{account.version || '-'}</td>
       {showSync ? (
         <td className="text-center">
           {account.representerStatus ? (

@@ -44,7 +44,8 @@ export class Piechart extends React.Component {
         if (temp.indexOf(data[index].name) < 0) {
           _config.series[0].data.push({
             name: data[index].name,
-            y: data[index].value
+            y: data[index].value,
+            usdBalance:data[index].usdBalance
           });
         }
       }
@@ -52,7 +53,7 @@ export class Piechart extends React.Component {
     _config.title.text = intl.formatMessage({ id: message.id });
     _config.exporting.filename = intl.formatMessage({ id: message.id });
     _config.tooltip.formatter = function() {
-      return `${this.point.name}: ${this.point.percentage.toFixed(2)}%`;
+      return `${this.point.name}: ${this.point.percentage.toFixed(2)}%（${Highcharts.numberFormat(this.point.usdBalance, 3, '.', ',')} USD)`;
     };
 
     Highcharts.chart(document.getElementById(id), _config);

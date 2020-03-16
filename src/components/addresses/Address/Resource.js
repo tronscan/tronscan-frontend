@@ -47,6 +47,25 @@ class Resource extends React.Component {
     return (
       <Fragment>
         <div className="">
+        <div className="address-circle-bandwidth address-res">
+            <div className="d-flex just-con">
+              <span className="title">{tu("tron_power")}</span>
+              <span>
+                {tu("account_resource_remain")}:{" "}
+                <span className="remain">
+                  <FormattedNumber value={powerRemaining || 0} />
+                </span>
+                /<FormattedNumber value={totalPower || 0} />
+              </span>
+            </div>
+            <Tooltip
+              title={this.powerCircle}
+              overlayStyle={{ maxWidth: "500px" }}
+            >
+              {this.newProgress(powerPercentage)}
+            </Tooltip>
+          </div>
+       
           <div className="address-circle-energy address-res">
             <div className="d-flex just-con">
               <span className="title">{tu("energy")}</span>
@@ -82,24 +101,6 @@ class Resource extends React.Component {
               overlayStyle={{ maxWidth: "500px" }}
             >
               {this.newProgress(availableBandWidthPercentage)}
-            </Tooltip>
-          </div>
-          <div className="address-circle-bandwidth address-res">
-            <div className="d-flex just-con">
-              <span className="title">{tu("tron_power")}</span>
-              <span>
-                {tu("account_resource_remain")}:{" "}
-                <span className="remain">
-                  <FormattedNumber value={powerRemaining || 0} />
-                </span>
-                /<FormattedNumber value={totalPower || 0} />
-              </span>
-            </div>
-            <Tooltip
-              title={this.powerCircle}
-              overlayStyle={{ maxWidth: "500px" }}
-            >
-              {this.newProgress(powerPercentage)}
             </Tooltip>
           </div>
         </div>

@@ -46,7 +46,8 @@ class Representative extends React.Component {
       hasPage,
       brokerage,
       producedEfficiency,
-      blockReward
+      blockReward,
+      version
     } = this.props.data;
     let { intl, url, account, walletType } = this.props;
     let { votingEnabled, popup } = this.state;
@@ -57,7 +58,7 @@ class Representative extends React.Component {
           <tbody>
             <tr>
               <th>{tu("name")}:</th>
-              <td>{address.name}</td>
+              <td>{address.name || '-'}</td>
             </tr>
             <tr>
               <th>
@@ -212,6 +213,19 @@ class Representative extends React.Component {
                     <span>)</span>
                   </div>
                 </div>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <span className="mr-1">
+                  {tu("current_version")}
+                </span>
+                <span className="ml-1">:</span>
+              </th>
+              <td>
+                <span>
+                  {version}
+                </span>
               </td>
             </tr>
             <tr>
@@ -423,15 +437,16 @@ class Representative extends React.Component {
   };
 
   pieChart() {
-    let { intl } = this.props;
+    let { intl,priceUSD } = this.props;
     let chartHeight = "350px";
     let { sortTokenBalances } = this.props.data;
     let data = [];
     sortTokenBalances.map(item => {
       let balance = Number(item.TRXBalance);
+      
       if (balance > 0) {
         let name = item.symbol ? item.symbol : item.map_token_name_abbr;
-        data.push({ name: name, value: balance });
+        data.push({ name: name, value: balance,usdBalance:balance*priceUSD });
       }
     });
 

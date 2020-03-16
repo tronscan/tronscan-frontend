@@ -926,9 +926,36 @@
         color:#666 !important;
       }
     }
-  
+    // .transfersAll-container{
+    // }
+    
   }
 }
+// ant-table-filter-dropdown-btns 
+.ant-dropdown{
+  .ant-table-filter-dropdown{
+    .ant-checkbox-group-item{
+      margin: 0;
+      display: block;
+      clear: both;
+      margin: 0;
+      padding: 5px 12px;
+      color: rgba(0, 0, 0, 0.65);
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 22px;
+      white-space: nowrap;
+      cursor: pointer;
+      -webkit-transition: all 0.3s;
+      transition: all 0.3s;
+      &:hover{
+        background-color: #e6f7ff;
+      }
+    }
+   
+  }
+}
+
 
 .confirm .borderBottom {
   borderbottom: "1px solid #DFD7CA" !important;

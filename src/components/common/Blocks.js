@@ -118,6 +118,7 @@ class Blocks extends React.Component {
         dataIndex: "timestamp",
         key: "timestamp",
         align: "left",
+
         className: "ant_table",
         render: (text, record, index) => {
           return (
@@ -146,6 +147,7 @@ class Blocks extends React.Component {
         dataIndex: "nrOfTrx",
         key: "nrOfTrx",
         align: "left",
+        width:'150px',
         className: "ant_table",
         render: (text, record, index) => {
           return <FormattedNumber value={text} />;
@@ -156,6 +158,7 @@ class Blocks extends React.Component {
           intl.formatMessage({ id: "account_representative_block_table_res" })
         ),
         key: "netUsage",
+        dataIndex: "netUsage",
         align: "left",
         className: "ant_table",
         render: (text, record, index) => {
@@ -166,17 +169,19 @@ class Blocks extends React.Component {
         title: upperFirst(intl.formatMessage({ id: "bytes" })),
         dataIndex: "size",
         key: "size",
-        align: "right",
+        align: "left",
         className: "ant_table",
         render: (text, record, index) => {
           return <FormattedNumber value={text} />;
-        }
+        },
+        width:'150px'
       },
       {
         title: upperFirst(
           intl.formatMessage({ id: "account_representative_block_table_prize" })
         ),
         key: "blockReward",
+        dataIndex: "blockReward",
         align: "left",
         className: "ant_table",
         render: (text, record, index) => {
@@ -234,10 +239,12 @@ class Blocks extends React.Component {
           columns={column}
           pagination={this.state.pagination}
           onChange={(page, pageSize) => {
-            console.log('page',page, pageSize)
             this.load(page.current, page.pageSize);
           }}
-        />
+          rowKey={(record, index) => {
+            return index; 
+          }}       
+          />
       </div>
     );
   }
