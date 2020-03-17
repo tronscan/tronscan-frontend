@@ -493,7 +493,7 @@ class Transactions extends React.Component {
         key: "timestamp",
         align: "left",
         className: "ant_table",
-        width: "14%",
+        width: "15%",
         render: (text, record, index) => {
           return(
               <div>
@@ -624,7 +624,7 @@ class Transactions extends React.Component {
         title: upperFirst(intl.formatMessage({ id: "amount" })),
         dataIndex: "valueInfoList",
         key: "valueInfoList",
-        align: "right",
+        align: "left",
         className: "ant_table _text_nowrap",
         render: (text, record, index) => {
           return record.valueInfoList.length
