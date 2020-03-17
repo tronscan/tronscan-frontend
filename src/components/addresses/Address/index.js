@@ -1229,11 +1229,21 @@ class Address extends React.Component {
                             right: "1rem",
                             bottom: "6px",
                             height: 35
-                          }:{
-                            float:"right",
-                            padding: "0 1rem 6px 0",
+                          }:
+                            activeLanguage == "ru" ||   activeLanguage == "es"?{
+                              float:"right",
+                              padding: "0 1rem 6px 0",
+                              position:"absolute",
+                              right:"1rem",
+                              bottom:"6px"
+                            }:{
+                              float:"right",
+                              padding: "0 1rem 6px 0",
+                            }
+                          
+                             
                           }
-                        }
+                        
                       >
                         <div
                           className="input-group-append"

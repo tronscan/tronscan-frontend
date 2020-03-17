@@ -698,7 +698,7 @@ class NewTransactions extends React.Component {
                     }
                 },
                 render: (text, record, index) => {
-                    console.log(record)
+                    // console.log(record)
                     return (
                         <div>
                             12312312

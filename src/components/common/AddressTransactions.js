@@ -673,7 +673,7 @@ class Transactions extends React.Component {
             }
         },
         render: (text, record, index) => {
-            console.log(record)
+            // console.log(record)
             return record.valueInfoList.length
             ? record.valueInfoList.map((item, index) => {
                 return (
