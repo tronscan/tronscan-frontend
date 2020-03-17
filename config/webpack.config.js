@@ -283,6 +283,36 @@ module.exports = function(webpackEnv) {
       automaticNameDelimiter: '~',
       //name: false,
       cacheGroups: {
+        sunweb:{ // 新增拆包规则
+          name:'sunweb', // 规则名字
+          chunks:'all', // 同步引入和异步引入都可以使用该规则
+          priority:10, 
+          // 该规则的优先级，比如 webpack中进行拆包的时候，
+          // echarts包会有先匹配priority高的规则，如果满足这个规则，
+          // 则将代码导入到该规则里面，不会将代码导入到后面的规则里面了。
+          test:/(sunweb)/, // 正则匹配规则
+          minChunks:1 // 代码里面最少被引入1次就可以使用该规则。
+        },
+        tronweb:{ // 新增拆包规则
+          name:'tronweb', // 规则名字
+          chunks:'all', // 同步引入和异步引入都可以使用该规则
+          priority:10, 
+          // 该规则的优先级，比如 webpack中进行拆包的时候，
+          // echarts包会有先匹配priority高的规则，如果满足这个规则，
+          // 则将代码导入到该规则里面，不会将代码导入到后面的规则里面了。
+          test:/(tronweb)/, // 正则匹配规则
+          minChunks:1 // 代码里面最少被引入1次就可以使用该规则。
+        },
+        monaco:{ // 新增拆包规则
+          name:'monaco', // 规则名字
+          chunks:'all', // 同步引入和异步引入都可以使用该规则
+          priority:10, 
+          // 该规则的优先级，比如 webpack中进行拆包的时候，
+          // echarts包会有先匹配priority高的规则，如果满足这个规则，
+          // 则将代码导入到该规则里面，不会将代码导入到后面的规则里面了。
+          test:/(monaco-editor)/, // 正则匹配规则
+          minChunks:1 // 代码里面最少被引入1次就可以使用该规则。
+        },
         vendors: {
           test: /[\\/]node_modules[\\/]/,
           priority: -10
@@ -692,7 +722,7 @@ module.exports = function(webpackEnv) {
         }),
       
       // isEnvProduction &&
-      //    new BundleAnalyzerPlugin({ analyzerPort: 8919 })
+      //   new BundleAnalyzerPlugin({ analyzerPort: 8919 })
     ].filter(Boolean),
     // Some libraries import Node modules but don't use them in the browser.
     // Tell Webpack to provide empty mocks for them so importing them works.
