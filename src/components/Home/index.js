@@ -3,10 +3,10 @@ import { connect } from "react-redux";
 import xhr from "axios/index";
 import { injectIntl } from "react-intl";
 import { doSearch, getSearchType } from "../../services/search";
-import CountUp from "react-countup";
+//import CountUp from "react-countup";
 import { Client, Client20 } from "../../services/api";
-import { Link } from "react-router-dom";
-import { TRXPrice } from "../common/Price";
+//import { Link } from "react-router-dom";
+//import { TRXPrice } from "../common/Price";
 import RecentBlocks from "./RecentBlocks";
 import { KEY_ENTER } from "../../utils/constants";
 import { withTimers } from "../../utils/timing";
@@ -14,7 +14,7 @@ import isMobile from "../../utils/isMobile";
 import RecentTransfers from "./RecentTransfers";
 import { tu } from "../../utils/i18n";
 import { toastr } from "react-redux-toastr";
-import { HrefLink } from "../common/Links";
+//import { HrefLink } from "../common/Links";
 import { TronLoader } from "../common/loaders";
 import {
   LineReactHighChartAdd,

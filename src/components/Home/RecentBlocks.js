@@ -3,10 +3,10 @@ import {tu} from "../../utils/i18n";
 import {FormattedNumber, injectIntl} from "react-intl";
 import {loadBlocks} from "../../actions/blockchain";
 import {connect} from "react-redux";
-import {TronLoader} from "../common/loaders";
+//import {TronLoader} from "../common/loaders";
 import {AddressLink} from "../common/Links";
 // import TimeAgo from "react-timeago";
-import moment from 'moment';
+//import moment from 'moment';
 import {Link} from "react-router-dom";
 import {TRXPrice} from "../common/Price";
 import {withTimers} from "../../utils/timing";
@@ -17,8 +17,8 @@ import BlockTime from '../common/blockTime'
 
 
 import isMobile from "../../utils/isMobile";
-import {timeDiffFormat,setTimeString} from '../../utils/DateTime'
-import { clear } from "sisteransi";
+//import {timeDiffFormat,setTimeString} from '../../utils/DateTime'
+//import { clear } from "sisteransi";
 
 
 

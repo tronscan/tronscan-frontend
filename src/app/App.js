@@ -6,9 +6,9 @@ import {
   tokensMap,
   tokens20Map
 } from "../utils/tokensMap.js";
-import {
-  store
-} from "./../store";
+// import {
+//   store
+// } from "./../store";
 import ApiClientMonitor from './../services/monitor'
 import isMobile from "./../utils/isMobile";
 import {
