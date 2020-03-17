@@ -139,7 +139,7 @@ class NewTransactions extends React.Component {
         }
         let resultFilterObj = {};
         if(resultFilter.checkedList.join(',')!==''){
-            if(typeFilter.checkedList.length == 2){
+            if(resultFilter.checkedList.length == 2){
                 resultFilterObj = {
                     ret:'all',
                 }
@@ -229,6 +229,9 @@ class NewTransactions extends React.Component {
                         start: (page - 1) * pageSize,
                         total: this.state.total,
                         ...filter,
+                        ...typeFilterObj,
+                        ...statusFilterObj,
+                        ...resultFilterObj
                     }),
                     Client.getTransactions({
                         limit: 0,
@@ -561,7 +564,9 @@ class NewTransactions extends React.Component {
                     if (visible) {
                         // console.log('visible')
                     }else{
-                       this.loadTransactions(1);
+                        // if(typeFilter.checkedList.length !== 0){
+                            this.loadTransactions(1);
+                        // }
                     }
                 },
                 className: 'ant_table _text_nowrap',
@@ -585,7 +590,9 @@ class NewTransactions extends React.Component {
                     if (visible) {
                         // console.log('visible')
                     }else{
-                        this.loadTransactions(1);
+                        // if(statusFilter.checkedList.length !== 0){
+                            this.loadTransactions(1);
+                        // }
                     }
                 },
                 className: 'ant_table',
@@ -619,7 +626,9 @@ class NewTransactions extends React.Component {
                     if (visible) {
                         console.log('visible')
                     }else{
-                        this.loadTransactions(1);
+                        // if(resultFilter.checkedList.length !== 0){
+                            this.loadTransactions(1);
+                        // }
                     }
                 },
                 render: (text, record, index) => {
@@ -681,56 +690,8 @@ class NewTransactions extends React.Component {
                     return (
                         <div>
                             12312312
-                        {/* {record.tokenId == 1002000 ? (
-                          <div>
-                            <b
-                              className="token-img-top"
-                              style={{ marginRight: 5 }}
-                            >
-                              <i
-                                style={{ width: 10, height: 10, bottom: -5 }}
-                              ></i>
-                            </b>
-                            {record.type == "trc20" ? (
-                              <TokenTRC20Link
-                                name={record.map_token_id}
-                                address={record.contract_address}
-                                namePlus={record.map_token_name_abbr}
-                              />
-                            ) : (
-                              <TokenLink
-                                id={record.map_token_id}
-                                name={record.tokenAbbr}
-                              />
-                            )}
-                          </div>
-                        ) : (
-                          <div>
-                            {isAddressValid(record.tokenAbbr) ? (
-                              <span>
-                                {tu("address_transfer_unrecorded_token")}
-                              </span>
-                            ) : (
-                              <div>
-                                {record.type == "trc20" ? (
-                                  <TokenTRC20Link
-                                    name={record.map_token_id}
-                                    address={record.contract_address}
-                                    // namePlus={record.map_token_name_abbr}
-                                  />
-                                ) : (
-                                  <TokenLink
-                                    id={record.map_token_id}
-                                    name={
-                                      record.tokenAbbr
-                                    }
-                                  />
-                                )}
-                              </div>
-                            )}
-                          </div>
-                        )} */}
-                      </div>
+                       
+                        </div>
                     )
                 }
             }

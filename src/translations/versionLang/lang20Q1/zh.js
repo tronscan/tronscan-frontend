@@ -308,7 +308,7 @@ export const lang20Q1 = {
   address_account_table_filter_vote: "投票",
   address_account_table_filter_other: "其他",
 
-  address_account_table_filter_token_tips: "The token is not included in TRONSCAN",
+  address_account_table_filter_token_tips: "该通证未在TRONSCAN收录",
   account_block:'出块',
 
   current_version:'当前版本'

@@ -1,5 +1,5 @@
 import React from "react";
-import { injectIntl,FormattedDate,FormattedTime } from "react-intl";
+import { injectIntl,FormattedDate,FormattedTime,FormattedNumber} from "react-intl";
 import { Client } from "../../services/api";
 import { TransactionHashLink, AddressLink, BlockNumberLink } from "./Links";
 import { Icon,Checkbox } from 'antd';
@@ -7,17 +7,19 @@ import {connect} from "react-redux";
 import { tu } from "../../utils/i18n";
 // import TimeAgo from "react-timeago";
 import { TronLoader } from "./loaders";
-import { Truncate } from "./text";
+import { Truncate,TruncateAddress } from "./text";
 import { ContractTypes } from "../../utils/protocol";
 import SmartTable from "./SmartTable.js";
 import { upperFirst } from "lodash";
 import TotalInfo from "./../../components/addresses/components/TableTotal";
 import DateSelect from "./../../components/addresses/components/dateSelect";
 import moment from "moment";
-import { NameWithId } from "./names";
+// import { NameWithId } from "./names";
+import {TRXPrice} from "./Price";
 import rebuildList from "../../utils/rebuildList";
 import { API_URL } from "../../constants";
 import qs from "qs";
+import {Tooltip} from 'antd';
 import isMobile from "../../utils/isMobile";
 import BlockTime from "../common/blockTime";
 
@@ -56,12 +58,12 @@ class Transactions extends React.Component {
       },
       statusOptionsAry: [
           { label:  upperFirst(intl.formatMessage({id: 'full_node_version_unconfirmed'})), value: 1 },
-          { label:  upperFirst(intl.formatMessage({id: 'full_node_version_confirmed'})), value: 2 },
-          // { text:  upperFirst(intl.formatMessage({id: 'block_detail_rolled_back'})), value: '3' },
+          { label:  upperFirst(intl.formatMessage({id: 'full_node_version_confirmed'})), value: 0 },
+          { label:  upperFirst(intl.formatMessage({id: 'block_detail_rolled_back'})), value: 2 },
       ],
       resultOptionsAry: [
-          { label:  'SUCCESS', value: 1 },
-          { label:  'FAIL', value: 2 },
+          { label:  'SUCCESS', value: 'SUCCESS' },
+          { label:  'FAIL', value: 'FAIL' },
       ],
       tokenOptionsAry: [
         { label:  '后端获取', value: 1 },
@@ -71,7 +73,6 @@ class Transactions extends React.Component {
   }
 
   componentDidMount() {
-    // this.loadTransactions();
     let { isBlock } = this.props;
     if (isBlock) {
       this.loadTransactions();
@@ -104,6 +105,28 @@ class Transactions extends React.Component {
     let transactions,
       total,
       rangeTotal = 0;
+    
+    let { statusFilter,resultFilter } = this.state;
+
+    let statusFilterObj = {};
+    if(statusFilter.checkedList.join(',')!==''){
+        statusFilterObj = {
+            confirmed:statusFilter.checkedList.join(','),
+        }
+    }
+    let resultFilterObj = {};
+    if(resultFilter.checkedList.join(',')!==''){
+        if(resultFilter.checkedList.length == 2){
+            resultFilterObj = {
+                ret:'all',
+            }
+        }else{
+            resultFilterObj = {
+                ret:resultFilter.checkedList.join(','),
+            }
+        }
+    }
+
 
     if (!isinternal) {
       if (address) {
@@ -115,17 +138,23 @@ class Transactions extends React.Component {
             // total: this.state.total,
             start_timestamp: this.start,
             end_timestamp: this.end,
-            ...filter
+            ...filter,
+            ...statusFilterObj,
+            ...resultFilterObj
           }),
           Client.getTransactions({
             limit: 0,
-            ...filter
+            ...filter,
+            ...statusFilterObj,
+            ...resultFilterObj
           }),
           Client.getTransactions({
             limit: 0,
             start_timestamp: this.start,
             end_timestamp: this.end,
-            ...filter
+            ...filter,
+            ...statusFilterObj,
+            ...resultFilterObj
           })
         ]).catch(e => {
           console.log("error:" + e);
@@ -138,7 +167,9 @@ class Transactions extends React.Component {
             start: (page - 1) * pageSize,
             sort: "-timestamp",
             total: this.state.total,
-            ...filter
+            ...filter,
+            ...statusFilterObj,
+            ...resultFilterObj
           }),
           Client.getTransactions({
             limit: 0,
@@ -285,54 +316,13 @@ class Transactions extends React.Component {
 }
 
   trc20CustomizedColumn = (activeLanguage) => {
-    let { intl } = this.props;
+    let { intl,filter } = this.props;
     const { 
       timeType,
-      typeOptionsAry,typeFilter,
       statusFilter,statusOptionsAry,
       resultFilter,resultOptionsAry,
       tokenFilter,tokenOptionsAry,
     } = this.state;
-    const typeFilterDropdown = ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
-      <div>
-          <div style={{padding: "5px 12px"}}>
-              <Checkbox
-                  indeterminate={typeFilter.indeterminate}
-                  onChange={
-                      e => {
-                          let obj = {
-                            checkedList: e.target.checked ? [1,2,3,4,5,6] : [],
-                            indeterminate: false,
-                            checkAll: e.target.checked,
-                          }
-                        this.setState({
-                          typeFilter:obj
-                        });
-                      }
-                  }
-                  checked={typeFilter.checkAll}
-              >
-                  {upperFirst(intl.formatMessage({id: 'address_account_table_filter_all'}))}
-              </Checkbox>
-          </div>
-          <div>
-              <CheckboxGroup
-                  options={typeOptionsAry}
-                  value={typeFilter.checkedList}
-                  onChange={(checkedList)=> {
-                      let obj = {
-                          checkedList,
-                          indeterminate: !!checkedList.length && checkedList.length < typeOptionsAry.length,
-                          checkAll: checkedList.length === typeOptionsAry.length,
-                      }
-                      this.setState({
-                          typeFilter:obj
-                      })
-                  }}  
-              />
-          </div>
-      </div>
-    )
     const statusFilterDropdown =  ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
         <div>
             <div style={{padding: "5px 12px"}}>
@@ -341,7 +331,7 @@ class Transactions extends React.Component {
                     onChange={
                         e => {
                             let obj = {
-                              checkedList: e.target.checked ? [1,2] : [],
+                              checkedList: e.target.checked ? [0,1,2] : [],
                               indeterminate: false,
                               checkAll: e.target.checked,
                             }
@@ -381,7 +371,7 @@ class Transactions extends React.Component {
                     onChange={
                         e => {
                             let obj = {
-                              checkedList: e.target.checked ? [1,2] : [],
+                              checkedList: e.target.checked ? ['SUCCESS','FAIL'] : [],
                               indeterminate: false,
                               checkAll: e.target.checked,
                             }
@@ -531,9 +521,18 @@ class Transactions extends React.Component {
         dataIndex: "from",
         key: "from",
         align: "left",
-        className: "ant_table",
+        width:"15%",
+        className: 'ant_table address_max_width',
         render: (text, record, index) => {
-          return <AddressLink address={text}>{text}</AddressLink>;
+          return (
+            <span>
+              {
+                record.from == filter.address ?   
+                <TruncateAddress>{text}</TruncateAddress>
+                :<AddressLink address={text}>{text}</AddressLink>
+              }
+            </span>
+          )
         }
       },
       {
@@ -541,9 +540,17 @@ class Transactions extends React.Component {
         dataIndex: "to",
         key: "to",
         align: "left",
-        className: "ant_table",
+        className: 'ant_table address_max_width',
         render: (text, record, index) => {
-          return <AddressLink address={text}>{text}</AddressLink>;
+          return (
+            <span>
+              {
+                record.to == filter.address ?   
+                <TruncateAddress>{text}</TruncateAddress>
+                :<AddressLink address={text}>{text}</AddressLink>
+              }
+            </span>
+          )
         }
       },
       {
@@ -563,7 +570,7 @@ class Transactions extends React.Component {
             if (visible) {
                 console.log('visible')
             }else{
-                console.log('dispair')
+              this.loadTransactions();
             }
         },
         render: (text, record, index) => {
@@ -595,7 +602,7 @@ class Transactions extends React.Component {
             if (visible) {
                 console.log('visible')
             }else{
-                console.log('dispair')
+              this.loadTransactions();
             }
         },
         render: (text, record, index) => {
@@ -612,15 +619,18 @@ class Transactions extends React.Component {
           return record.valueInfoList.length
             ? record.valueInfoList.map((item, index) => {
                 return (
-                  <span key={index}>
-                    <NameWithId value={item} />
-                    <span
-                      className={
-                        index == record.valueInfoList.length - 1 ? "d-none" : ""
-                      }
-                    >
-                      ,{" "}
-                    </span>
+                  item.map_token_name === "TRX" ?
+                  <TRXPrice key="index" amount={item.map_amount}/> :
+                  <span key="index" >
+                    {
+                      <span className="mr-1">
+                        <FormattedNumber 
+                          value={item.map_amount}
+                          minimumFractionDigits={0}
+                          maximumFractionDigits={Number(item.map_token_precision)}
+                        />
+                      </span>
+                    }
                   </span>
                 );
               })
@@ -648,11 +658,25 @@ class Transactions extends React.Component {
             if (visible) {
                 console.log('visible')
             }else{
-                console.log('dispair')
+              this.loadTransactions();
             }
         },
         render: (text, record, index) => {
-            return <span> {record.map_token_name_abbr} </span>;
+            console.log(record)
+            return record.valueInfoList.length
+            ? record.valueInfoList.map((item, index) => {
+                return (
+                  item.tokenCanShow?
+                  <Tooltip placement="top" title={ intl.formatMessage({ id: "address_account_table_filter_token_tips" })}>
+                    {item.map_token_name_abbr}
+                  </Tooltip>
+                  : 
+                  <span>
+                    {item.map_token_name_abbr}
+                  </span> 
+                )
+              })
+            : "-";
         }
       }
       // {
