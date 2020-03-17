@@ -275,6 +275,24 @@ module.exports = function(webpackEnv) {
       splitChunks: {
         chunks: 'all',
         name: false,
+        minSize: 30000,
+      maxSize: 0,
+      minChunks: 1,
+      maxAsyncRequests: 8,
+      maxInitialRequests: 4,
+      automaticNameDelimiter: '~',
+      //name: false,
+      cacheGroups: {
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          priority: -10
+        },
+        default: {
+          minChunks: 2,
+          priority: -20,
+          reuseExistingChunk: true
+        }
+      }
       },
       // Keep the runtime chunk separated to enable long term caching
       // https://twitter.com/wSokra/status/969679223278505985
