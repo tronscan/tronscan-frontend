@@ -23,7 +23,7 @@ const getClientEnvironment = require('./env');
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const ForkTsCheckerWebpackPlugin = require('react-dev-utils/ForkTsCheckerWebpackPlugin');
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
- //const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const postcssNormalize = require('postcss-normalize');
 const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
@@ -314,7 +314,7 @@ module.exports = function(webpackEnv) {
         gpeth: {
           name: 'gpeth',
           chunks: 'all',
-          test: /(google-protobuf|ethers)/,
+          test: /(google-protobuf)/,
           priority: 10,
           minChunks:1
         },
@@ -734,7 +734,7 @@ module.exports = function(webpackEnv) {
         }),
       
       // isEnvProduction &&
-     //  new BundleAnalyzerPlugin({ analyzerPort: 8919 })
+      // new BundleAnalyzerPlugin({ analyzerPort: 8919 })
     ].filter(Boolean),
     // Some libraries import Node modules but don't use them in the browser.
     // Tell Webpack to provide empty mocks for them so importing them works.
