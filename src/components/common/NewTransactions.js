@@ -632,7 +632,19 @@ class NewTransactions extends React.Component {
                     }
                 },
                 render: (text, record, index) => {
-                    return <span>{text}</span>
+                    return (
+                        <span>
+                            {
+                                record.confirmed && record.contractRet == 'SUCCESS' ?
+                                <span>SUCCESS</span>:
+                                <div className="d-flex">
+                                    <img style={{ width: "20px", height: "20px" }} src={require("../../images/prompt.png")}/> 
+                                    <span>{' '}FAIL</span>
+                                </div>    
+                            }
+                        </span>
+                    )
+                    
                 }
             },
             {
