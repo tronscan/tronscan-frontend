@@ -118,17 +118,17 @@ export class LineReactHighChartHomeAddress extends React.Component {
             _config.title.text = "No data";
         }
         if (source == 'home'){
-            // if (total && total.length > 0) {
-            //     //_config.xAxis.categories = [];
-            //     total.map((val) => {
-            //         let tempTotal;
-            //         tempTotal = {...val, y: val.total};
-            //         //_config.xAxis.categories.push(moment(val.date).format('M/D'));
-            //         _config.series[0].data.push(tempTotal);
+            if (total && total.length > 0) {
+                //_config.xAxis.categories = [];
+                total.map((val) => {
+                    let tempTotal;
+                    tempTotal = {...val, y: val.total};
+                    //_config.xAxis.categories.push(moment(val.date).format('M/D'));
+                    _config.series[0].data.push(tempTotal);
 
-            //     })
-            //     _config.series[0].name =  intl.formatMessage({id: 'TRON'});
-            // }
+                })
+                _config.series[0].name =  intl.formatMessage({id: 'TRON'});
+            }
             if (data && data.length > 0) {
                 _config.xAxis.categories = [];
 
@@ -140,16 +140,16 @@ export class LineReactHighChartHomeAddress extends React.Component {
                 })
                 _config.series[0].name =  intl.formatMessage({id: 'main_chain'});
             }
-            // if (sun && sun.length > 0) {
-            //     //_config.xAxis.categories = [];
-            //     sun.map((val) => {
-            //         let tempSun;
-            //         tempSun = {...val, y: val.total};
-            //        //_config.xAxis.categories.push(moment(val.date).format('M/D'));
-            //         _config.series[2].data.push(tempSun);
-            //     })
-            //     _config.series[2].name =  intl.formatMessage({id: 'sun_network'});
-            // }
+            if (sun && sun.length > 0) {
+                //_config.xAxis.categories = [];
+                sun.map((val) => {
+                    let tempSun;
+                    tempSun = {...val, y: val.total};
+                   //_config.xAxis.categories.push(moment(val.date).format('M/D'));
+                    _config.series[2].data.push(tempSun);
+                })
+                _config.series[2].name =  intl.formatMessage({id: 'sun_network'});
+            }
 
             _config.chart.spacingTop = 20;
             _config.yAxis[0].tickAmount = 4;

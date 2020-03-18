@@ -17,10 +17,12 @@ export const IS_NILE = true;
 
 
 export const NETURL = {
-    MAINNET: "http://nile.tronscan.org",
-    SUNNET: "https://dappchain.tronscan.org",
+    //MAINNET: "http://nile.tronscan.org",
+    //SUNNET: "https://dappchain.tronscan.org",
     NEWMAINNET: "https://tronscan.io",
     NEWSUNNET: "https://dappchain.tronscan.io",
+    MAINNET: "http://18.217.215.94:71",
+    SUNNET: "https://18.217.215.94:72",
 };
 
 export const TOKENINFO_UPDATE = 'TOKENINFO_UPDATE'
@@ -70,7 +72,7 @@ export const PUBLIC_URL = process.env.PUBLIC_URL || window.location.origin;
 //test pro
 //export const API_URL_SUNNET = "http://52.15.68.74:10001";
 
-export const API_URL_SUNNET = "https://dappchainapi.tronscan.org";
+export const API_URL_SUNNET = "https://niledappapi.tronscan.org ";
 // export const API_URL_MAINNET = 'https://apilist.tronscan.org';
 export const API_URL = IS_SUNNET ? API_URL_SUNNET : process.env.API_URL;
 export const CONTRACT_MAINNET_API_URL = process.env.API_URL;
