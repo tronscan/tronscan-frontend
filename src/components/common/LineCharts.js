@@ -74,7 +74,7 @@ export class SupplyAreaHighChart extends React.Component {
         //_config.series[0].marker.enabled = false;
 
         //_config.series[0].pointInterval = 24 * 3600 * 1000;
-        //_config.series[0].pointStart = Date.UTC(2018, 5, 25);
+        //_config.series[0].pointStart = Date.UTC(2019, 9, 21 );
 
 
         Highcharts.chart(document.getElementById(id),_config);
@@ -136,9 +136,9 @@ export class LineReactHighChartHomeAddress extends React.Component {
                     let temp;
                     temp = {...val, y: val.total};
                     _config.xAxis.categories.push(moment(val.date).format('M/D'));
-                    _config.series[0].data.push(temp);
+                    _config.series[1].data.push(temp);
                 })
-                _config.series[0].name =  intl.formatMessage({id: 'main_chain'});
+                _config.series[1].name =  intl.formatMessage({id: 'main_chain'});
             }
             if (sun && sun.length > 0) {
                 //_config.xAxis.categories = [];
@@ -153,9 +153,9 @@ export class LineReactHighChartHomeAddress extends React.Component {
 
             _config.chart.spacingTop = 20;
             _config.yAxis[0].tickAmount = 4;
-            // _config.yAxis[1].tickAmount = 4;
+            _config.yAxis[1].tickAmount = 4;
             _config.yAxis[0].allowDecimals = true;
-            // _config.yAxis[1].allowDecimals = true;
+            _config.yAxis[1].allowDecimals = true;
             _config.exporting.enabled = false;
             //_config.yAxis.min = (data[0].total - 100000)< 0  ? 0 : data[0].total - 100000 ;
             // if(IS_MAINNET){
@@ -297,7 +297,7 @@ export class LineReactHighChartAdd extends React.Component {
             }
             _config.series[0].marker.enabled = false;
             _config.series[0].pointInterval = 24 * 3600 * 1000;
-            _config.series[0].pointStart = Date.UTC(2019, 9, 21);
+            _config.series[0].pointStart = Date.UTC(2019, 9, 21 );
             _config.tooltip.formatter = function () {
                 let date = intl.formatDate(this.point.x);
                 return (
@@ -347,44 +347,44 @@ export class LineReactHighChartHomeTx extends React.Component {
         let {intl, data, sun, total, source} = this.props;
 
         if (source == 'home'){
-            // if (total && total.length > 0) {
-            //     _config.xAxis.categories = [];
-            //     total.map((val) => {
-            //         let tempTotal;
-            //         tempTotal = {...val, y: val.totalTransaction};
-            //         _config.xAxis.categories.push(moment(val.date).format('M/D'));
-            //         _config.series[0].data.push(tempTotal);
-            //     })
-            //     _config.series[0].name =  intl.formatMessage({id: 'TRON'});
-            // }
-            if (data && data.length > 0) {
+            if (total && total.length > 0) {
                 _config.xAxis.categories = [];
+                total.map((val) => {
+                    let tempTotal;
+                    tempTotal = {...val, y: val.totalTransaction};
+                    _config.xAxis.categories.push(moment(val.date).format('M/D'));
+                    _config.series[0].data.push(tempTotal);
+                })
+                _config.series[0].name =  intl.formatMessage({id: 'TRON'});
+            }
+            if (data && data.length > 0) {
+                //_config.xAxis.categories = [];
                 data.map((val) => {
                     let temp;
                     temp = {...val, y: val.totalTransaction};
-                    _config.xAxis.categories.push(moment(val.date).format('M/D'));
-                    _config.series[0].data.push(temp);
+                    //_config.xAxis.categories.push(moment(val.date).format('M/D'));
+                    _config.series[1].data.push(temp);
                 })
-                _config.series[0].name = intl.formatMessage({id: 'main_chain'});
+                _config.series[1].name = intl.formatMessage({id: 'main_chain'});
             }
-            // if (sun && sun.length > 0) {
-            //    // _config.xAxis.categories = [];
-            //     sun.map((val) => {
-            //         let tempSun;
-            //         tempSun = {...val, y: val.totalTransaction};
-            //         //_config.xAxis.categories.push(moment(val.date).format('M/D'));
-            //         _config.series[2].data.push(tempSun);
-            //     })
-            //     _config.series[2].name =  intl.formatMessage({id: 'sun_network'});
-            // }
+            if (sun && sun.length > 0) {
+               // _config.xAxis.categories = [];
+                sun.map((val) => {
+                    let tempSun;
+                    tempSun = {...val, y: val.totalTransaction};
+                    //_config.xAxis.categories.push(moment(val.date).format('M/D'));
+                    _config.series[2].data.push(tempSun);
+                })
+                _config.series[2].name =  intl.formatMessage({id: 'sun_network'});
+            }
 
             _config.chart.spacingTop = 20;
             _config.yAxis[0].tickAmount = 4;
-            //_config.yAxis[1].tickAmount = 4;
+            _config.yAxis[1].tickAmount = 4;
             _config.yAxis[0].allowDecimals = true;
-            //_config.yAxis[1].allowDecimals = true;
+            _config.yAxis[1].allowDecimals = true;
             _config.exporting.enabled = false;
-             _config.yAxis[0].min = 0;
+            // _config.yAxis[0].min = 0;
             // _config.yAxis[1].min = 0;
             if(IS_MAINNET) {
                 _config.yAxis[0].labels.formatter = function () {
@@ -511,7 +511,7 @@ export class LineReactHighChartTx extends React.Component {
             }
             _config.series[0].marker.enabled = false;
             _config.series[0].pointInterval = 24 * 3600 * 1000;
-            _config.series[0].pointStart = Date.UTC(2019, 9, 21);
+            _config.series[0].pointStart = Date.UTC(2019, 9, 21 );
             _config.tooltip.formatter = function () {
                 let date = intl.formatDate(this.point.x);
                 return (
@@ -621,7 +621,7 @@ export class LineReactHighChartTotalTxns extends React.Component {
             }
             _config.series[0].marker.enabled = false;
             _config.series[0].pointInterval = 24 * 3600 * 1000;
-            _config.series[0].pointStart = Date.UTC(2019, 9, 21);
+            _config.series[0].pointStart = Date.UTC(2019, 9, 21 );
 
             _config.tooltip.formatter = function () {
                 let date = intl.formatDate(this.point.x);
@@ -696,7 +696,7 @@ export class LineReactHighChartBlockchainSize extends React.Component {
         _config.yAxis.min = 0;
         _config.series[0].marker.enabled = false;
         _config.series[0].pointInterval = 24 * 3600 * 1000;
-        _config.series[0].pointStart = Date.UTC(2019, 9, 21);
+        _config.series[0].pointStart = Date.UTC(2019, 9, 21 );
         _config.tooltip.formatter = function () {
             let date = intl.formatDate(this.point.x);
             return (
@@ -773,7 +773,7 @@ export class BarReactHighChartBlockSize extends React.Component {
         _config.series[0].type = 'column';
         _config.series[0].marker.enabled = false;
         _config.series[0].pointInterval = 24 * 3600 * 1000;
-        _config.series[0].pointStart = Date.UTC(2019, 9, 21);
+        _config.series[0].pointStart = Date.UTC(2019, 9, 21 );
         _config.tooltip.formatter = function () {
             let date = intl.formatDate(this.point.x);
             return (
@@ -965,7 +965,7 @@ export class LineReactHighChartVolumeUsd extends React.Component {
             _config.yAxis.min = 0;
             _config.series[0].marker.enabled = false;
             //_config.series[0].pointInterval = 24 * 3600 * 1000;
-            // _config.series[0].pointStart = Date.UTC(2018, 5, 25);
+            // _config.series[0].pointStart = Date.UTC(2019, 9, 21 );
             _config.tooltip.formatter = function () {
                 let date = intl.formatDate((parseInt(this.point.x)));
                 return (
@@ -1060,7 +1060,7 @@ export class LineReactHighChartTRXVolumeContract extends React.Component {
             _config.yAxis.min = 0;
             _config.series[0].marker.enabled = false;
             _config.series[0].pointInterval = 24 * 3600 * 1000;
-            // _config.series[0].pointStart = Date.UTC(2018, 5, 25);
+            // _config.series[0].pointStart = Date.UTC(2019, 9, 21 );
             _config.tooltip.formatter = function () {
                 let date = intl.formatDate((parseInt(this.point.x)));
                 return (
@@ -2286,7 +2286,7 @@ export class OverallFreezingRateChart extends React.Component {
                     yAxis: 1,
                     color: "#DA8885",
                     data:turnoverTotal,
-                    pointStart: Date.UTC(2019, 11, 20),
+                    pointStart: Date.UTC(2019, 11, 20 ),
 			        pointInterval: 24 * 3600 * 1000 , // one day
                     tooltip: {
                         valueSuffix: ' '
