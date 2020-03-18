@@ -95,7 +95,6 @@ class TransfersAll extends React.Component {
     componentDidMount() {
         let {page, pageSize} = this.state;
         // this.load(page,pageSize);
-        this.props.triggerRef(this)
         this.props.routerResetSearchFun()
         if (this.state.autoRefresh !== false) {
             this.props.setInterval(() => this.load(page,pageSize), this.state.autoRefresh);
