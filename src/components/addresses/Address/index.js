@@ -409,7 +409,6 @@ class Address extends React.Component {
             label: <span>{tu("transfers")}</span>,
             cmp: () => (
               <TransfersAll
-                triggerRef={ref => {this.transfersRef = ref}}
                 id={{ address: id,keyword:passAddress }}
                 getCsvUrl={csvurl => this.setState({ csvurl })}
                 address
@@ -431,7 +430,6 @@ class Address extends React.Component {
             label: <span>{tu("transactions")}</span>,
             cmp: () => (
               <NewTransactions
-                triggerRef={ref => {this.transactionsRef = ref}}
                 getCsvUrl={csvurl => this.setState({ csvurl })}
                 filter={{ address: id,keyword:passAddress }}
                 routerResetSearchFun={()=>this.routerResetSearch()}
@@ -446,7 +444,6 @@ class Address extends React.Component {
             label: <span>{tu("Internal_txns")}</span>,
             cmp: () => (
               <Transactions
-                triggerRef={ref => {this.intransactionsRef = ref}}
                 getCsvUrl={csvurl => this.setState({ csvurl })}
                 filter={{ address: id,keyword:passAddress }}
                 routerResetSearchFun={()=>this.routerResetSearch()}
@@ -539,7 +536,6 @@ class Address extends React.Component {
             label: <span>{tu("transfers")}</span>,
             cmp: () => (
               <TransfersAll
-                triggerRef={ref => {this.transfersRef = ref}}
                 getCsvUrl={csvurl => this.setState({ csvurl })}
                 id={{ address: id }}
                 routerResetSearchFun={()=>this.routerResetSearch()}
@@ -552,7 +548,7 @@ class Address extends React.Component {
           //   // icon: "fa fa-exchange-alt",
           //   path: "/20transfers",
           //   label: <span>{tu("20_transfers")}</span>,
-          //   cmp: () => <TransfersTrc20 filter={{address: id}}/>
+          //   cmp: () => <TransfersTrc20 filter={{address: id}}/>:
           // },
           transactions: {
             id: "transactions",
@@ -562,7 +558,6 @@ class Address extends React.Component {
             isHidden: true,
             cmp: () => (
               <NewTransactions
-                triggerRef={ref => {this.transactionsRef = ref}}
                 getCsvUrl={csvurl => this.setState({ csvurl })}
                 filter={{ address: id }}
                 routerResetSearchFun={()=>this.routerResetSearch()}
@@ -577,7 +572,6 @@ class Address extends React.Component {
             label: <span>{tu("Internal_txns")}</span>,
             cmp: () => (
               <Transactions
-                triggerRef={ref => {this.intransactionsRef = ref}}
                 getCsvUrl={csvurl => this.setState({ csvurl })}
                 filter={{ address: id }}
                 routerResetSearchFun={()=>this.routerResetSearch()}
@@ -639,8 +633,7 @@ class Address extends React.Component {
       brokerage:data.brokerage || 0,
       producedEfficiency:data.producedEfficiency || 0,
       blockReward:data.blockReward || 0,
-      version:data.version || 0,
-      witnessType:data.witnessType || ''
+      version:data.version || 0
     });
   }
 
@@ -886,7 +879,7 @@ class Address extends React.Component {
         passAddress:serchInputVal
       })
       let { match } = this.props;
-      this.loadAddress(match.params.id);
+      // this.loadAddress(match.params.id);
     }else if(pathname.slice(-12) === "transactions"){
 
     }else if(pathname.slice(-21) === "internal-transactions"){
