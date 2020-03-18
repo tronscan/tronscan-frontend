@@ -27,6 +27,8 @@ import {
   FormatNumberByDecimalsBalance,
   toThousands
 } from "../../../utils/number";
+import { isAddressValid } from "@tronscan/client/src/utils/crypto";
+import { toastr } from "react-redux-toastr";
 import { Tooltip, Icon } from "antd";
 import BigNumber from "bignumber.js";
 import { QuestionMark } from "../../common/QuestionMark";
@@ -784,9 +786,7 @@ class Address extends React.Component {
       searchAddress: "",
       searchAddressClose: false
     });
-    this.props.updateTokenInfo({
-      searchAddress: ""
-    });
+    
     // let { match, tokensInfo } = this.props;
     // const params = {
     //   contract_address: decodeURI(match.params.address),
@@ -826,9 +826,37 @@ class Address extends React.Component {
     // });
   };
 
+
+  addressSearchFun = async () => {
+    let serchInputVal = this.searchAddress.value;
+    let { intl } = this.props;
+    if (serchInputVal === "") {
+      return false;
+    }
+    if (!isAddressValid(serchInputVal)) {
+      toastr.warning(
+        intl.formatMessage({
+          id: "warning"
+        }),
+        intl.formatMessage({
+          id: "search_TRC20_error"
+        })
+      );
+      this.setState({
+        searchAddress: ""
+      });
+      return;
+    }
+
+    this.setState({
+      searchAddress: serchInputVal
+    });
+
+  };
+
   onSearchKeyDown = ev => {
     if (ev.keyCode === 13) {
-      // this.tokensTransferSearchFun();
+      this.addressSearchFun();
     }
   };
 
@@ -1311,7 +1339,7 @@ class Address extends React.Component {
                               borderRadius: "0 2px 2px 0",
                               color: "#fff"
                             }}
-                            onClick={() => this.tokensTransferSearchFun()}
+                            onClick={() => this.addressSearchFun()}
                           >
                             <i className="fa fa-search" />
                           </button>{" "}
