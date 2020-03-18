@@ -47,18 +47,36 @@ class Representative extends React.Component {
       brokerage,
       producedEfficiency,
       blockReward,
-      version
+      version,
+      witnessType
     } = this.props.data;
     let { intl, url, account, walletType } = this.props;
     let { votingEnabled, popup } = this.state;
+    let type = "-";
+    switch (witnessType) {
+      case 1:
+        type = tu("Super Representatives");
+        break;
+      case 2:
+        type = tu("Super Representative Partners");
+        break;
+      case 3:
+        type = tu("Super Representative Candidates");
+        break;
+    }
+
     return (
       <Fragment>
         {popup}
         <table className="table m-0 table-style">
           <tbody>
             <tr>
+              <th>{tu("type")}:</th>
+              <td>{type}</td>
+            </tr>
+            <tr>
               <th>{tu("name")}:</th>
-              <td>{address.name || '-'}</td>
+              <td>{address.name || "-"}</td>
             </tr>
             <tr>
               <th>
@@ -92,12 +110,14 @@ class Representative extends React.Component {
                         />
                         )
                       </span>
-                      {TRXBalanceTotal>0 && <img
-                        src={require("../../../images/address/chart.png")}
-                        onClick={this.pieChart.bind(this)}
-                        style={{ width: "17px", cursor: "pointer" }}
-                        className="ml-2"
-                      />}
+                      {TRXBalanceTotal > 0 && (
+                        <img
+                          src={require("../../../images/address/chart.png")}
+                          onClick={this.pieChart.bind(this)}
+                          style={{ width: "17px", cursor: "pointer" }}
+                          className="ml-2"
+                        />
+                      )}
                     </div>
 
                     <div>
@@ -122,8 +142,7 @@ class Representative extends React.Component {
             </tr>
             <tr>
               <th>
-                <span className="mr-1">{tu("address_balance")}</span>
-                <span className="ml-1">:</span>
+                <span className="mr-1">{tu("address_balance")}:</span>
               </th>
               <td>
                 <ul className="list-unstyled m-0">
@@ -142,9 +161,8 @@ class Representative extends React.Component {
             <tr>
               <th>
                 <span className="mr-1">
-                  {tu("address_vote_reward_pending")}
+                  {tu("address_vote_reward_pending")}:
                 </span>
-                <span className="ml-1">:</span>
               </th>
               <td>
                 <ul className="list-unstyled m-0">
@@ -153,13 +171,18 @@ class Representative extends React.Component {
                       amount={walletReward / ONE_TRX}
                       showPopup={false}
                     />
-                    {account.isLoggedIn && walletReward > 0 && address.address === account.address && <a href="javascript:;"
-                        className="text-primary btn btn-default btn-sm"
-                        style={{padding: '0 13px',margin: '-2px 0 0 20px' }}
-                        onClick={this.accountClaimRewards}
-                    >
-                        {tu("account_get_reward")}
-                    </a>}
+                    {account.isLoggedIn &&
+                      walletReward > 0 &&
+                      address.address === account.address && (
+                        <a
+                          href="javascript:;"
+                          className="text-primary btn btn-default btn-sm"
+                          style={{ padding: "0 13px", margin: "-2px 0 0 20px" }}
+                          onClick={this.accountClaimRewards}
+                        >
+                          {tu("account_get_reward")}
+                        </a>
+                      )}
                   </li>
                 </ul>
               </td>
@@ -217,15 +240,10 @@ class Representative extends React.Component {
             </tr>
             <tr>
               <th>
-                <span className="mr-1">
-                  {tu("current_version")}
-                </span>
-                <span className="ml-1">:</span>
+                <span className="mr-1">{tu("current_version")}:</span>
               </th>
               <td>
-                <span>
-                  {version}
-                </span>
+                <span>{version}</span>
               </td>
             </tr>
             <tr>
@@ -248,8 +266,7 @@ class Representative extends React.Component {
             </tr>
             <tr>
               <th>
-                <span className="mr-1">{tu("blocks_produced")}</span>
-                <span className="ml-1">:</span>
+                <span className="mr-1">{tu("blocks_produced")}:</span>
               </th>
               <td>
                 <NavLink exact to={url + "/blocks"}>
@@ -280,17 +297,25 @@ class Representative extends React.Component {
             <tr>
               <th>
                 <span className="mr-1">
-                  {tu("account_representative_block_prize")}
+                  {tu("account_representative_block_prize")}:
                 </span>
-                <span className="ml-1">:</span>
               </th>
               <td>
-                <span>
-                  <FormattedNumber value={blockReward} /> TRX (
-                  {tu("account_representative_voter")}:{" "}
-                  {((100 - brokerage) * blockReward) / 100}TRX{" "}
-                  {tu("account_representative_owner")}:
-                  {(brokerage * blockReward) / 100}TRX)
+                <span className="d-flex flex-wrap">
+                  <span>
+                    <FormattedNumber value={blockReward} /> TRX
+                  </span>
+                  <span>
+                    ({tu("account_representative_voter")}:{" "}
+                    <FormattedNumber
+                      value={((100 - brokerage) * blockReward) / 100}
+                    />{" "}
+                    TRX {tu("account_representative_owner")}:
+                    <FormattedNumber
+                      value={(brokerage * blockReward) / 100}
+                    />{" "}
+                    TRX)
+                  </span>
                 </span>
               </td>
             </tr>
@@ -310,7 +335,11 @@ class Representative extends React.Component {
               <td>
                 <div className="d-flex">
                   <span className="line36">
-                    {address.representative.url ? <ExternalLink url={address.representative.url} /> : '-'}
+                    {address.representative.url ? (
+                      <ExternalLink url={address.representative.url} />
+                    ) : (
+                      "-"
+                    )}
                   </span>
 
                   {!votingEnabled && hasPage && (
@@ -340,7 +369,7 @@ class Representative extends React.Component {
       frozenEnergy,
       balance
     } = this.props.data;
-    let {url} = this.props
+    let { url } = this.props;
     let GetEnergy = frozenEnergy + sentDelegateResource;
     let GetBandWidth = frozenBandwidth + sentDelegateBandwidth;
     let Owner = frozenBandwidth + frozenEnergy;
@@ -386,8 +415,10 @@ class Representative extends React.Component {
         {tu("freeze")}:{" "}
         <Tooltip placement="top" innerClassName="w-100" title={TooltipText}>
           <NavLink exact to={url + "/freeze"}>
-            <span style={{ color: "rgb(255, 163, 11)" }}
-                  onClick={this.scrollToAnchor.bind(this)}>
+            <span
+              style={{ color: "rgb(255, 163, 11)" }}
+              onClick={this.scrollToAnchor.bind(this)}
+            >
               <FormattedNumber value={totalPower / ONE_TRX} />
               &nbsp;TRX&nbsp;
             </span>
@@ -404,49 +435,66 @@ class Representative extends React.Component {
 
   // account claim rewards
   accountClaimRewards = async () => {
-    let res,hashid;
-    let {account, walletType} = this.props;
+    let res, hashid;
+    let { account, walletType } = this.props;
 
     let tronWeb;
     if (walletType.type === "ACCOUNT_LEDGER") {
-        tronWeb = this.props.tronWeb();
+      tronWeb = this.props.tronWeb();
     } else {
-        tronWeb = account.tronWeb;
+      tronWeb = account.tronWeb;
     }
-    const unSignTransaction = await tronWeb.transactionBuilder.withdrawBlockRewards(walletType.address).catch(e => false);
-    const {result} = await transactionResultManager(unSignTransaction, tronWeb)
+    const unSignTransaction = await tronWeb.transactionBuilder
+      .withdrawBlockRewards(walletType.address)
+      .catch(e => false);
+    const { result } = await transactionResultManager(
+      unSignTransaction,
+      tronWeb
+    );
     res = result;
 
     if (res) {
-        this.setState({
-            popup: (
-                <SweetAlert success title={tu("rewards_claimed_submitted")} onConfirm={this.hideModal}>
-                    {tu("rewards_claimed_hash_await")}
-                </SweetAlert>
-            )
-        });
+      this.setState({
+        popup: (
+          <SweetAlert
+            success
+            title={tu("rewards_claimed_submitted")}
+            onConfirm={this.hideModal}
+          >
+            {tu("rewards_claimed_hash_await")}
+          </SweetAlert>
+        )
+      });
     } else {
-        this.setState({
-            popup: (
-                <SweetAlert danger title={tu("could_not_claim_rewards")} onConfirm={this.hideModal}>
-                    {tu("claim_rewards_error_message")}
-                </SweetAlert>
-            )
-        });
+      this.setState({
+        popup: (
+          <SweetAlert
+            danger
+            title={tu("could_not_claim_rewards")}
+            onConfirm={this.hideModal}
+          >
+            {tu("claim_rewards_error_message")}
+          </SweetAlert>
+        )
+      });
     }
   };
 
   pieChart() {
-    let { intl,priceToUSd } = this.props;
+    let { intl, priceToUSd } = this.props;
     let chartHeight = "350px";
     let { sortTokenBalances } = this.props.data;
     let data = [];
     sortTokenBalances.map(item => {
       let balance = Number(item.TRXBalance);
-      
+
       if (balance > 0) {
         let name = item.symbol ? item.symbol : item.map_token_name_abbr;
-        data.push({ name: name, value: balance,usdBalance:balance*priceToUSd });
+        data.push({
+          name: name,
+          value: balance,
+          usdBalance: balance * priceToUSd
+        });
       }
     });
 
