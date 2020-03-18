@@ -74,6 +74,7 @@ class Transactions extends React.Component {
 
   componentDidMount() {
     let { isBlock } = this.props;
+    this.props.routerResetSearchFun()
     if (isBlock) {
       this.loadTransactions();
     }

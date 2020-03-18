@@ -116,6 +116,10 @@ class Address extends React.Component {
       producedEfficiency:0,
       searchAddress:'',
       searchAddressClose:false,
+      transfersSearchAddress:'',
+      transactionsSearchAddress:'',
+      internalSearchAddress:'',
+      passAddress:''
     };
   }
 
@@ -209,7 +213,7 @@ class Address extends React.Component {
   async loadAddress(id) {
     let { intl } = this.props;
     this.setState({ loading: true, address: { address: id }, media: null });
-
+    let {passAddress} = this.state;
     let address = await Client.getAddress(id);
 
     let sentDelegateBandwidth = 0;
@@ -377,7 +381,7 @@ class Address extends React.Component {
       sentDelegateResource,
       frozenEnergy,
       TRXBalance,
-      balance: address.balance
+      balance: address.balance,
     });
 
     if (address.representative.enabled) {
@@ -405,9 +409,11 @@ class Address extends React.Component {
             label: <span>{tu("transfers")}</span>,
             cmp: () => (
               <TransfersAll
-                id={{ address: id }}
+                triggerRef={ref => {this.transfersRef = ref}}
+                id={{ address: id,keyword:passAddress }}
                 getCsvUrl={csvurl => this.setState({ csvurl })}
                 address
+                routerResetSearchFun={()=>this.routerResetSearch()}
               />
             )
           },
@@ -425,8 +431,10 @@ class Address extends React.Component {
             label: <span>{tu("transactions")}</span>,
             cmp: () => (
               <NewTransactions
+                triggerRef={ref => {this.transactionsRef = ref}}
                 getCsvUrl={csvurl => this.setState({ csvurl })}
-                filter={{ address: id }}
+                filter={{ address: id,keyword:passAddress }}
+                routerResetSearchFun={()=>this.routerResetSearch()}
                 address
               />
             )
@@ -438,8 +446,10 @@ class Address extends React.Component {
             label: <span>{tu("Internal_txns")}</span>,
             cmp: () => (
               <Transactions
+                triggerRef={ref => {this.intransactionsRef = ref}}
                 getCsvUrl={csvurl => this.setState({ csvurl })}
-                filter={{ address: id }}
+                filter={{ address: id,keyword:passAddress }}
+                routerResetSearchFun={()=>this.routerResetSearch()}
                 isinternal
               />
             )
@@ -529,8 +539,10 @@ class Address extends React.Component {
             label: <span>{tu("transfers")}</span>,
             cmp: () => (
               <TransfersAll
+                triggerRef={ref => {this.transfersRef = ref}}
                 getCsvUrl={csvurl => this.setState({ csvurl })}
                 id={{ address: id }}
+                routerResetSearchFun={()=>this.routerResetSearch()}
                 address
               />
             )
@@ -550,8 +562,10 @@ class Address extends React.Component {
             isHidden: true,
             cmp: () => (
               <NewTransactions
+                triggerRef={ref => {this.transactionsRef = ref}}
                 getCsvUrl={csvurl => this.setState({ csvurl })}
                 filter={{ address: id }}
+                routerResetSearchFun={()=>this.routerResetSearch()}
                 address
               />
             )
@@ -563,8 +577,10 @@ class Address extends React.Component {
             label: <span>{tu("Internal_txns")}</span>,
             cmp: () => (
               <Transactions
+                triggerRef={ref => {this.intransactionsRef = ref}}
                 getCsvUrl={csvurl => this.setState({ csvurl })}
                 filter={{ address: id }}
+                routerResetSearchFun={()=>this.routerResetSearch()}
                 isinternal
                 address
               />
@@ -830,6 +846,13 @@ class Address extends React.Component {
     // });
   };
 
+  routerResetSearch = async () =>{
+    this.setState({
+      searchAddress: "",
+      searchAddressClose: false
+    });
+  }
+
 
   addressSearchFun = async () => {
     let serchInputVal = this.searchAddress.value;
@@ -855,6 +878,19 @@ class Address extends React.Component {
     this.setState({
       searchAddress: serchInputVal
     });
+    let pathname = this.props.location.pathname;
+    
+    if(pathname.slice(-9) === "transfers" ){
+      this.setState({
+        passAddress:serchInputVal
+      })
+      let { match } = this.props;
+      this.loadAddress(match.params.id);
+    }else if(pathname.slice(-12) === "transactions"){
+
+    }else if(pathname.slice(-21) === "internal-transactions"){
+
+    }
 
   };
 

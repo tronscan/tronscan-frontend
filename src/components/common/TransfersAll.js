@@ -20,13 +20,12 @@ import DateSelect from "./../../components/addresses/components/dateSelect";
 import moment from 'moment';
 import { toThousands } from '../../utils/number'
 import _ from "lodash";
-import { Radio } from 'antd';
 import {isAddressValid} from "@tronscan/client/src/utils/crypto";
 import { CONTRACT_ADDRESS_USDT, CONTRACT_ADDRESS_WIN, CONTRACT_ADDRESS_GGC } from "../../constants";
 import qs from 'qs'
 import isMobile from "../../utils/isMobile";
 
-import { Icon,Checkbox,Table } from 'antd';
+import { Icon,Checkbox,Radio } from 'antd';
 
 import {API_URL} from "../../constants";
 import BlockTime from '../common/blockTime'
@@ -96,7 +95,8 @@ class TransfersAll extends React.Component {
     componentDidMount() {
         let {page, pageSize} = this.state;
         // this.load(page,pageSize);
-
+        this.props.triggerRef(this)
+        this.props.routerResetSearchFun()
         if (this.state.autoRefresh !== false) {
             this.props.setInterval(() => this.load(page,pageSize), this.state.autoRefresh);
         }

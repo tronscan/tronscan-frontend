@@ -97,6 +97,7 @@ class NewTransactions extends React.Component {
 
     componentDidMount() {
         // this.loadTransactions();
+        this.props.routerResetSearchFun()
     }
 
     componentDidUpdate(prevProps) {
@@ -234,7 +235,6 @@ class NewTransactions extends React.Component {
                     let rebuildRransfersTRC20  = rebuildToken20List(transfersTRC20, 'contractAddress', 'amount');
                     let rebuildRransfers = rebuildRransfersTRC10.concat(rebuildRransfersTRC20).concat(transfersOther);
                     rebuildRransfers =  _(rebuildRransfers).sortBy(tb => -tb.date_created).value();
-                    console.log(transfersTRC10,transfersTRC20,transfersOther,rebuildRransfers,'rebuildRransfers')
                     rebuildRransfers.map( item => {
                         if(item.map_token_id === '_'){
                             item.map_amount_logo = 'https://s2.coinmarketcap.com/static/img/coins/64x64/1958.png';
