@@ -92,12 +92,12 @@ class Representative extends React.Component {
                         />
                         )
                       </span>
-                      <img
+                      {TRXBalanceTotal>0 && <img
                         src={require("../../../images/address/chart.png")}
                         onClick={this.pieChart.bind(this)}
                         style={{ width: "17px", cursor: "pointer" }}
                         className="ml-2"
-                      />
+                      />}
                     </div>
 
                     <div>
@@ -310,7 +310,7 @@ class Representative extends React.Component {
               <td>
                 <div className="d-flex">
                   <span className="line36">
-                    <ExternalLink url={address.representative.url} />
+                    {address.representative.url ? <ExternalLink url={address.representative.url} /> : '-'}
                   </span>
 
                   {!votingEnabled && hasPage && (
