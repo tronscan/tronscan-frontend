@@ -42,6 +42,7 @@ import FreezeDetail from './FreezeDetail';
 import { Piechart } from "../components/Piechart";
 import SweetAlert from "react-bootstrap-sweetalert";
 import {transactionResultManager, transactionResultManagerSun} from "../../../utils/tron";
+import { loadUsdPrice } from "../../../actions/blockchain";
 
 
 BigNumber.config({ EXPONENTIAL_AT: [-1e9, 1e9] });
@@ -118,11 +119,13 @@ class Address extends React.Component {
     };
   }
 
-  componentDidMount() {
-    let { match } = this.props;
+  async componentDidMount() {
+    let { match ,priceUSD} = this.props;
     this.loadAddress(match.params.id);
     this.loadWitness(match.params.id);
     this.loadWalletReward(match.params.id);
+    !priceUSD && (await this.props.loadUsdPrice());
+
   }
 
   componentDidUpdate(prevProps) {
@@ -693,7 +696,7 @@ class Address extends React.Component {
     );
   }
   pieChart() {
-    let { intl } = this.props;
+    let { intl,priceUSD } = this.props;
     let chartHeight = "300px";
     let { sortTokenBalances } = this.state;
     let data = [];
@@ -701,7 +704,7 @@ class Address extends React.Component {
       let balance = Number(item.TRXBalance);
       if (balance > 0) {
         let name = item.symbol ? item.symbol : item.map_token_name_abbr;
-        data.push({ name: name, value: balance });
+        data.push({ name: name, value: balance,usdBalance:balance*priceUSD });
       }
     });
 
@@ -711,6 +714,7 @@ class Address extends React.Component {
           showConfirm={false}
           showClose={true}
           onConfirm={this.hideModal}
+          title=""
         >
           <Icon
             type="close"
@@ -894,12 +898,13 @@ class Address extends React.Component {
       searchAddress,
       searchAddressClose
     } = this.state;
-    let { match, intl, account, walletType,activeLanguage } = this.props;
+    let { match, intl, account, walletType,activeLanguage,priceUSD } = this.props;
     let addr = match.params.id;
 
     if (!address) {
       return null;
     }
+
 
     let uploadURL =
       API_URL + "/api/v2/node/info_upload?address=" + match.params.id;
@@ -950,7 +955,7 @@ class Address extends React.Component {
                   <div className="row info-wrap">
                     <div className="col-md-7 address-info">
                       {address.representative.enabled ? (
-                        <Representative data={this.state} url={match.url} account={account} walletType={walletType} />
+                        <Representative data={this.state} url={match.url} account={account} walletType={walletType} priceToUSd={priceUSD}/>
                       ) : (
                         <table className="table m-0">
                           <tbody>
@@ -1385,10 +1390,13 @@ function mapStateToProps(state) {
     account: state.app.account,
     walletType: state.app.wallet,
     activeLanguage: state.app.activeLanguage,
+    priceUSD: state.blockchain.usdPrice
   };
 }
 
-// const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  loadUsdPrice
+};
 
 // export default injectIntl(Address);
-export default connect(mapStateToProps, null)(injectIntl(Address));
+export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(Address));

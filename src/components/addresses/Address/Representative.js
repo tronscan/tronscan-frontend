@@ -437,7 +437,7 @@ class Representative extends React.Component {
   };
 
   pieChart() {
-    let { intl,priceUSD } = this.props;
+    let { intl,priceToUSd } = this.props;
     let chartHeight = "350px";
     let { sortTokenBalances } = this.props.data;
     let data = [];
@@ -446,7 +446,7 @@ class Representative extends React.Component {
       
       if (balance > 0) {
         let name = item.symbol ? item.symbol : item.map_token_name_abbr;
-        data.push({ name: name, value: balance,usdBalance:balance*priceUSD });
+        data.push({ name: name, value: balance,usdBalance:balance*priceToUSd });
       }
     });
 
@@ -456,6 +456,7 @@ class Representative extends React.Component {
           showConfirm={false}
           showClose={true}
           onConfirm={this.hideModal}
+          title=""
         >
           <Icon
             type="close"
