@@ -132,7 +132,7 @@ class TransfersAll extends React.Component {
         let statusFilterObj = {};
         if(statusFilter.checkedList.join(',')!==''){
             statusFilterObj = {
-                confirmed:statusFilter.checkedList.join(','),
+                confirm:statusFilter.checkedList.join(','),
             }
         }
         let resultFilterObj = {};
@@ -673,7 +673,7 @@ class TransfersAll extends React.Component {
                     }
                 },
                 render: (text, record, index) => {
-                    // console.log(record)
+                    console.log(record)
                     return (
                       <div>
                         {record.map_token_id == 1002000 ||

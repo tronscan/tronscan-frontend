@@ -435,7 +435,7 @@ class Address extends React.Component {
             id: "intransactions",
             // icon: "fas fa-handshake",
             path: "/internal-transactions",
-            label: <span>{tu("internal_transactions")}</span>,
+            label: <span>{tu("Internal_txns")}</span>,
             cmp: () => (
               <Transactions
                 getCsvUrl={csvurl => this.setState({ csvurl })}
@@ -560,7 +560,7 @@ class Address extends React.Component {
             id: "intransactions",
             // icon: "fas fa-handshake",
             path: "/internal-transactions",
-            label: <span>{tu("internal_transactions")}</span>,
+            label: <span>{tu("Internal_txns")}</span>,
             cmp: () => (
               <Transactions
                 getCsvUrl={csvurl => this.setState({ csvurl })}
@@ -1263,7 +1263,7 @@ class Address extends React.Component {
                             bottom: "6px",
                             height: 35
                           }:
-                            activeLanguage == "ru" ||   activeLanguage == "es"?{
+                            activeLanguage == "ru"?{
                               float:"right",
                               padding: "0 1rem 6px 0",
                               position:"absolute",
@@ -1273,10 +1273,7 @@ class Address extends React.Component {
                               float:"right",
                               padding: "0 1rem 6px 0",
                             }
-                          
-                             
                           }
-                        
                       >
                         <div
                           className="input-group-append"

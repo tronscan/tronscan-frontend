@@ -111,7 +111,7 @@ class Transactions extends React.Component {
     let statusFilterObj = {};
     if(statusFilter.checkedList.join(',')!==''){
         statusFilterObj = {
-            confirmed:statusFilter.checkedList.join(','),
+            confirm:statusFilter.checkedList.join(','),
         }
     }
     let resultFilterObj = {};
@@ -184,7 +184,9 @@ class Transactions extends React.Component {
       const params = {
         start_timestamp: this.start,
         end_timestamp: this.end,
-        ...filter
+        ...filter,
+        ...statusFilterObj,
+        ...resultFilterObj
       };
       const query = qs.stringify({ format: "csv", ...params });
       getCsvUrl(`${API_URL}/api/internal-transaction?${query}`);
@@ -193,7 +195,9 @@ class Transactions extends React.Component {
         Client.getInternalTransaction({
           limit: pageSize,
           start: (page - 1) * pageSize,
-          ...params
+          ...params,
+          ...statusFilterObj,
+          ...resultFilterObj
         }),
         Client.getCountByType({
           type: "internal",
@@ -205,6 +209,38 @@ class Transactions extends React.Component {
 
       const [data, { count }] = allData;
 
+      // data.forEach(item=>{
+      //   if(item.valueInfoList){
+
+      //   }
+      // })
+
+      // let transfersTRC10 = _(transfers).filter(tb => tb.type === "trc10" ).value();
+      // let transfersTRC20 = _(transfers).filter(tb => tb.type === "trc20" ).value();
+
+      // let rebuildRransfersTRC10 = rebuildList(transfersTRC10, 'token_id', 'amount_str');
+      // let rebuildRransfersTRC20  = rebuildToken20List(transfersTRC20, 'contract_address', 'amount_str');
+      // let rebuildRransfers = rebuildRransfersTRC10.concat(rebuildRransfersTRC20);
+      // rebuildRransfers =  _(rebuildRransfers).sortBy(tb => -tb.date_created).value();
+      // rebuildRransfers.map( item => {
+      //     if(item.map_token_id === '_'){
+      //         item.map_amount_logo = 'https://s2.coinmarketcap.com/static/img/coins/64x64/1958.png';
+      //         //item.type = '-';
+      //     }
+      //     if(id.address){
+      //         if(item.type == 'trc10'){
+      //             item.fromtip = !(item.owner_address == id.address)
+      //             item.totip = !(item.to_address == id.address)
+      //         }else{
+      //             item.fromtip = !(item.from_address == id.address)
+      //             item.totip = !(item.to_address == id.address)
+      //         }
+
+      //     }else{
+      //         item.fromtip = true
+      //         item.totip = true
+      //     }
+      // })
       let newdata = rebuildList(
         data.list,
         "tokenId",
@@ -521,7 +557,7 @@ class Transactions extends React.Component {
         dataIndex: "from",
         key: "from",
         align: "left",
-        width:"15%",
+        width:"12%",
         className: 'ant_table address_max_width',
         render: (text, record, index) => {
           return (
@@ -540,6 +576,7 @@ class Transactions extends React.Component {
         dataIndex: "to",
         key: "to",
         align: "left",
+        width:"12%",
         className: 'ant_table address_max_width',
         render: (text, record, index) => {
           return (
@@ -609,7 +646,8 @@ class Transactions extends React.Component {
           return (
             <span>
               {
-                record.confirmed && record.contractRet == 'SUCCESS' ?
+                // && record.confirmed 
+                !record.rejected ?
                 <span>SUCCESS</span>:
                 <div className="d-flex">
                     <img style={{ width: "20px", height: "20px" }} src={require("../../images/prompt.png")}/> 
@@ -673,16 +711,16 @@ class Transactions extends React.Component {
             }
         },
         render: (text, record, index) => {
-            // console.log(record)
+            console.log(record)
             return record.valueInfoList.length
             ? record.valueInfoList.map((item, index) => {
                 return (
-                  item.tokenCanShow?
-                  <Tooltip placement="top" title={ intl.formatMessage({ id: "address_account_table_filter_token_tips" })}>
+                  item.tokenCanShow ?
+                  <Tooltip  key="index" placement="top" title={ intl.formatMessage({ id: "address_account_table_filter_token_tips" })}>
                     {item.map_token_name_abbr}
                   </Tooltip>
                   : 
-                  <span>
+                  <span key="index">
                     {item.map_token_name_abbr}
                   </span> 
                 )
