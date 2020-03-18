@@ -956,12 +956,12 @@ class Address extends React.Component {
                                         />
                                         )
                                       </span>
-                                      <img
+                                      {TRXBalanceTotal > 0 && <img
                                         src={require("../../../images/address/chart.png")}
                                         onClick={this.pieChart.bind(this)}
                                         style={{ width: "17px", cursor: "pointer" }}
                                         className="ml-2"
-                                      />
+                                      />}
                                     </div>
 
                                     <div>
