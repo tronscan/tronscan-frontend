@@ -5318,16 +5318,22 @@ h5 {
   white-space: normal;
   // word-wrap: break-word;
 }
-.token-balance-wrap,.vote-wrap{
+.token-balance-wrap,.vote-wrap, .freeze-detail-wrap{
   .ant-switch{
     width: 35px;
     margin-top: 3px;
   }
-  .ant-table table{
-    tr{
-      td{
-        border-bottom: 0;
+  .ant-table {
+      table{
+      tr{
+        td{
+          border-bottom: 0;
+        }
       }
+    }
+    &.ant-table-bordered.ant-table-empty .ant-table-placeholder{
+      border-right: 0;
+      border-left:0 ;
     }
   }
 }
@@ -5343,5 +5349,20 @@ h5 {
         background: #F3F3F3;
       }
     }
+  }
+}
+
+.address-tag{
+  display: flex;
+  // margin-top: 10px;
+  line-height: 18px;
+  img{
+    width: 18px;
+    height: 18px;
+    margin-right: 3px;
+  }
+  span{
+    font-size: 14px;
+    color: #666666;
   }
 }

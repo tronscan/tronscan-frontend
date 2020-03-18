@@ -41,7 +41,7 @@ class TransfersAll extends React.Component {
         this.end = moment().valueOf();
         this.state = {
             filter: {
-                direction:'all'
+                // direction:'all'
             },
             transfers: [],
             page: 1,
@@ -74,8 +74,8 @@ class TransfersAll extends React.Component {
                 checkAll:false,
             },
             inoutOptionsAry:[
-                { label:  upperFirst(intl.formatMessage({id: 'address_transfer_in'})), value: 1 },
-                { label:  upperFirst(intl.formatMessage({id: 'address_transfer_out'})), value: 2 },
+                { label:  upperFirst(intl.formatMessage({id: 'address_transfer_in'})), value: 'in' },
+                { label:  upperFirst(intl.formatMessage({id: 'address_transfer_out'})), value: 'out' },
             ],
             statusOptionsAry: [
                 { label:  upperFirst(intl.formatMessage({id: 'full_node_version_unconfirmed'})), value: 1 },
@@ -115,7 +115,38 @@ class TransfersAll extends React.Component {
     load = async (page = 1, pageSize = 20) => {
         let transfersTRX;
         let {id,istrc20=false, getCsvUrl} = this.props;
-        let {showTotal,hideSmallCurrency,tokenNam,filter} = this.state;
+        let {showTotal,hideSmallCurrency,tokenNam,filter,inoutFilter,statusFilter,resultFilter} = this.state;
+        let inoutFilterObj = {};
+        if(inoutFilter.checkedList.join(',')!==''){
+            if(inoutFilter.checkedList.length == 2){
+                inoutFilterObj = {
+                    direction:'all',
+                }
+            }else{
+                inoutFilterObj = {
+                    direction:inoutFilter.checkedList.join(','),
+                }
+            }
+          
+        }
+        let statusFilterObj = {};
+        if(statusFilter.checkedList.join(',')!==''){
+            statusFilterObj = {
+                confirmed:statusFilter.checkedList.join(','),
+            }
+        }
+        let resultFilterObj = {};
+        if(resultFilter.checkedList.join(',')!==''){
+            if(resultFilter.checkedList.length == 2){
+                resultFilterObj = {
+                    ret:'all',
+                }
+            }else{
+                resultFilterObj = {
+                    ret:resultFilter.checkedList.join(','),
+                }
+            }
+        }
         const params = {
             sort: '-timestamp',
             count: showTotal ? true : null,
@@ -124,6 +155,9 @@ class TransfersAll extends React.Component {
             end_timestamp:this.end,
             ...filter,
             ...id,
+            ...inoutFilterObj,
+            ...statusFilterObj,
+            ...resultFilterObj
         }
         this.setState({
             loading: true,
@@ -251,7 +285,7 @@ class TransfersAll extends React.Component {
                         onChange={
                             e => {
                                 let obj = {
-                                  checkedList: e.target.checked ? [1,2] : [],
+                                  checkedList: e.target.checked ? ['in','out'] : [],
                                   indeterminate: false,
                                   checkAll: e.target.checked,
                                 }
@@ -518,9 +552,8 @@ class TransfersAll extends React.Component {
                 filterDropdown: inoutFilterDropdown,
                 onFilterDropdownVisibleChange: (visible) => {
                     if (visible) {
-                        console.log('visible')
                     }else{
-                        console.log('dispair')
+                        this.load(1);
                     }
                 },
                 render: (text, record, index) => {
@@ -567,9 +600,9 @@ class TransfersAll extends React.Component {
                 filterDropdown: statusFilterDropdown,
                 onFilterDropdownVisibleChange: (visible) => {
                     if (visible) {
-                        console.log('visible')
+                        // console.log('visible')
                     }else{
-                        console.log('dispair')
+                        this.load(1);
                     }
                 },
             },
@@ -588,13 +621,24 @@ class TransfersAll extends React.Component {
                 filterDropdown: resultFilterDropdown,
                 onFilterDropdownVisibleChange: (visible) => {
                     if (visible) {
-                        console.log('visible')
+                        // console.log('visible')
                     }else{
-                        console.log('dispair')
+                        this.load(1);
                     }
                 },
                 render: (text, record, index) => {
-                    return <span>{text}</span>
+                    return (
+                        <span>
+                            {
+                                record.confirmed && record.contractRet == 'SUCCESS' ?
+                                <span>SUCCESS</span>:
+                                <div className="d-flex">
+                                    <img style={{ width: "20px", height: "20px" }} src={require("../../images/prompt.png")}/> 
+                                    <span>{' '}FAIL</span>
+                                </div>    
+                            }
+                        </span>
+                    )
                 },
                 
             },
@@ -623,12 +667,13 @@ class TransfersAll extends React.Component {
                 filterDropdown: tokenFilterDropdown,
                 onFilterDropdownVisibleChange: (visible) => {
                     if (visible) {
-                        console.log('visible')
+                        // console.log('visible')
                     }else{
-                        console.log('dispair')
+                        this.load(1);
                     }
                 },
                 render: (text, record, index) => {
+                    // console.log(record)
                     return (
                       <div>
                         {record.map_token_id == 1002000 ||
@@ -768,13 +813,7 @@ class TransfersAll extends React.Component {
         
     }
 
-    onRadioChange = (e) => {
-        this.setState({
-            filter: {
-                direction: e.target.value,
-            }
-        }, () =>  this.load())
-    };
+
 
     render() {
 
@@ -809,17 +848,6 @@ class TransfersAll extends React.Component {
                 <div>
                     {!loading && <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" divClass="table_pos_info_addr" selected/> }
                 </div>
-                {/* {
-                    transfers.length > 0 &&  <div className="d-flex align-items-center">
-                        <div className="address-transfers-radio">
-                            <Radio.Group size="Small" value={filter.direction}  onChange={this.onRadioChange}>
-                                <Radio.Button value="all">{tu('address_transfer_all')}</Radio.Button>
-                                <Radio.Button value="in">{tu('address_transfer_in')}</Radio.Button>
-                                <Radio.Button value="out">{tu('address_transfer_out')}</Radio.Button>
-                            </Radio.Group>
-                        </div>
-                    </div>
-                } */}
                 {
                     (!loading && transfers.length === 0)?
                         <div className="p-3 text-center no-data">{tu("no_transfers")}</div>

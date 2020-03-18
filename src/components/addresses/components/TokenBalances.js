@@ -110,7 +110,7 @@ class TokenBalances extends React.Component {
         const defaultImg = require("../../../images/logo_default.png");
         const menu =   (<Menu onClick={this.handleMenuClick} className="list-filter">
                             <Menu.Item  key="ALL" className={`${filterType == 'ALL' && 'active'}`}>
-                                <div>{tu('account_all')}</div>
+                                <div>{tu('all')}</div>
                             </Menu.Item>
                             <Menu.Item key="TRC10" className={`${filterType == 'TRC10' && 'active'}`}>
                                 <div>TRC10</div>
@@ -342,7 +342,7 @@ class TokenBalances extends React.Component {
 
     render() {
 
-        let {page, total, pageSize, loading, balances, TRC20balances, emptyState: EmptyState = null, tokenTRC10, pagination} = this.state;
+        let {page, total, pageSize, loading, balances, TRC20balances, emptyState: EmptyState = null, tokenTRC10, pagination, filterType} = this.state;
         let column = this.customizedColumn();
         let columnTRC20 = this.customizedColumnTRC20();
         let {intl} = this.props;
@@ -383,8 +383,8 @@ class TokenBalances extends React.Component {
                 <div>
                     {
                        // Object.keys(balances).length === 0 || (Object.keys(balances).length === 1 && balances[0].map_token_name === "TRX")?
-                        Object.keys(balances).length === 0?
-                        <div className="text-center p-3 no-data">
+                        Object.keys(balances).length === 0 && filterType == 'ALL'?
+                            <div className="text-center p-3 no-data">
                                 {tu("no_tokens_found")}
                             </div>
                             :
