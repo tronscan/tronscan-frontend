@@ -311,20 +311,27 @@ module.exports = function(webpackEnv) {
           priority: 10,
           minChunks:1
         },
-        gpeth: {
-          name: 'gpeth',
+        // gpeth: {
+        //   name: 'gpeth',
+        //   chunks: 'all',
+        //   test: /(google-protobuf)/,
+        //   priority: 10,
+        //   minChunks:1
+        // },
+        domloadsh: {
+          name: 'domloadsh',
           chunks: 'all',
-          test: /(google-protobuf)/,
+          test: /[\\/]node_modules[\\/](react-dom|lodash|google-protobuf|ethers|@tronscan)[\\/]/,
           priority: 10,
           minChunks:1
         },
-        token:{ 
-          name:'token', 
-          chunks:'all', 
-          priority:10, 
-          test:/(token)/, 
-          minChunks:1 
-        },
+        // token:{ 
+        //   name:'token', 
+        //   chunks:'all', 
+        //   priority:10, 
+        //   test:/(token)/, 
+        //   minChunks:1 
+        // },
         vendors: {
           test: /[\\/]node_modules[\\/]/,
           priority: -10
