@@ -78,24 +78,23 @@ class TransfersAll extends React.Component {
             ],
             statusOptionsAry: [
                 { label:  upperFirst(intl.formatMessage({id: 'full_node_version_unconfirmed'})), value: 1 },
-                { label:  upperFirst(intl.formatMessage({id: 'full_node_version_confirmed'})), value: 2 },
-                // { text:  upperFirst(intl.formatMessage({id: 'block_detail_rolled_back'})), value: '3' },
+                { label:  upperFirst(intl.formatMessage({id: 'full_node_version_confirmed'})), value: 0 },
+                { text:  upperFirst(intl.formatMessage({id: 'block_detail_rolled_back'})), value: 2 },
             ],
             resultOptionsAry: [
                 { label:  'SUCCESS', value: 1 },
                 { label:  'FAIL', value: 2 },
             ],
-            tokenOptionsAry: [
-                { label:  '后端获取', value: 1 },
-                { label:  '后端获取', value: 2 },
-            ]
+            tokenOptionsAry: this.props.tokenList
         };
     }
 
     componentDidMount() {
         let {page, pageSize} = this.state;
         // this.load(page,pageSize);
-        this.props.routerResetSearchFun()
+        this.props.routerResetSearchFun();
+        const { tokenList } = this.props;
+        console.log(tokenList,'tokenAry')
         if (this.state.autoRefresh !== false) {
             this.props.setInterval(() => this.load(page,pageSize), this.state.autoRefresh);
         }
@@ -121,7 +120,7 @@ class TransfersAll extends React.Component {
         let transfersTRX;
         let {id,istrc20=false, getCsvUrl} = this.props;
        
-        let {showTotal,hideSmallCurrency,tokenNam,filter,inoutFilter,statusFilter,resultFilter} = this.state;
+        let {showTotal,hideSmallCurrency,tokenNam,filter,inoutFilter,statusFilter,resultFilter,tokenFilter} = this.state;
         let inoutFilterObj = {};
         if(inoutFilter.checkedList.join(',')!==''){
             if(inoutFilter.checkedList.length == 2){
@@ -153,6 +152,12 @@ class TransfersAll extends React.Component {
                 }
             }
         }
+        let tokenFilterObj = {};
+        if(tokenFilter.checkedList.join(',')!==''){
+            tokenFilterObj = {
+                tokens:tokenFilter.checkedList.join(','),
+            }
+        }
         const { accountSearchAddress } = this.props.blockchain;
         let params
         if (accountSearchAddress === "") {
@@ -167,6 +172,7 @@ class TransfersAll extends React.Component {
                 ...inoutFilterObj,
                 ...statusFilterObj,
                 ...resultFilterObj,
+                ...tokenFilterObj
             };
             } else {
             params = {
@@ -180,6 +186,7 @@ class TransfersAll extends React.Component {
                 ...inoutFilterObj,
                 ...statusFilterObj,
                 ...resultFilterObj,
+                ...tokenFilterObj,
                 keyword: accountSearchAddress
             };
         }
@@ -251,6 +258,7 @@ class TransfersAll extends React.Component {
             loading: false,
         });
     };
+
     handleSwitch = (val) => {
         let {page, pageSize} = this.state;
         if(val){
@@ -350,7 +358,7 @@ class TransfersAll extends React.Component {
                         onChange={
                             e => {
                                 let obj = {
-                                  checkedList: e.target.checked ? [1,2] : [],
+                                  checkedList: e.target.checked ? [0,1,2] : [],
                                   indeterminate: false,
                                   checkAll: e.target.checked,
                                 }
@@ -699,7 +707,7 @@ class TransfersAll extends React.Component {
                 },
                 render: (text, record, index) => {
                     return (
-                      <div>
+                      <div key="index">
                         {record.map_token_id == 1002000 ||
                         record.map_token_id == CONTRACT_ADDRESS_USDT ||
                         record.map_token_id == CONTRACT_ADDRESS_WIN ||

@@ -346,6 +346,26 @@ class Address extends React.Component {
         .valueOf()
     });
 
+    // getAssetWithPriceList
+    let tokenAry = []
+    await xhr.get(
+      `${API_URL}/api/getAssetWithPriceList`
+    )
+    .then(res => {
+      if (res.data && res.status == 200) {
+        if(res.data.data){
+          let newData = res.data.data;
+          newData.forEach(item=>{
+            tokenAry.push({label:item.abbr,value:item.id})
+          })
+        }
+      }else{
+        tokenAry = []
+      }
+    })
+    .catch(err => {
+      console.log(err);
+    });
     
     
     this.setState({
@@ -409,6 +429,7 @@ class Address extends React.Component {
             cmp: () => (
               <TransfersAll
                 id={{ address: id}}
+                tokenList={tokenAry}
                 getCsvUrl={csvurl => this.setState({ csvurl })}
                 address
                 routerResetSearchFun={()=>this.routerResetSearch()}
@@ -431,6 +452,7 @@ class Address extends React.Component {
               <NewTransactions
                 getCsvUrl={csvurl => this.setState({ csvurl })}
                 filter={{ address: id}}
+                tokenList={tokenAry}
                 routerResetSearchFun={()=>this.routerResetSearch()}
                 address
               />
@@ -445,6 +467,7 @@ class Address extends React.Component {
               <Transactions
                 getCsvUrl={csvurl => this.setState({ csvurl })}
                 filter={{ address: id }}
+                tokenList={tokenAry}
                 routerResetSearchFun={()=>this.routerResetSearch()}
                 isinternal
               />
@@ -537,6 +560,7 @@ class Address extends React.Component {
               <TransfersAll
                 getCsvUrl={csvurl => this.setState({ csvurl })}
                 id={{ address: id }}
+                tokenList={tokenAry}
                 routerResetSearchFun={()=>this.routerResetSearch()}
                 address
               />
@@ -559,6 +583,7 @@ class Address extends React.Component {
               <NewTransactions
                 getCsvUrl={csvurl => this.setState({ csvurl })}
                 filter={{ address: id }}
+                tokenList={tokenAry}
                 routerResetSearchFun={()=>this.routerResetSearch()}
                 address
               />
@@ -573,6 +598,7 @@ class Address extends React.Component {
               <Transactions
                 getCsvUrl={csvurl => this.setState({ csvurl })}
                 filter={{ address: id }}
+                tokenList={tokenAry}
                 routerResetSearchFun={()=>this.routerResetSearch()}
                 isinternal
                 address
@@ -806,68 +832,6 @@ class Address extends React.Component {
     });
   };
 
-  transfersFun = async () =>{
-    let list,total,range = 0;
-    // const allData = await Promise.all([
-    //     Client.getTransfersAll({
-    //         limit: pageSize,
-    //         start: (page - 1) * pageSize,
-    //         ...params,
-    //     }),
-    //     Client.getCountByType({
-    //         type: 'trc10trc20', 
-    //         ...filter,
-    //         {id:123}
-    //     })
-    // ]).catch(e => {
-    //     console.log('error:' + e);
-    // });
-
-    // const [{ transfers, total:totaldata, rangeTotal }, { count } ] = allData;
-
-    // list = transfers;
-    // total = count || totaldata;
-    // range = rangeTotal;
-    // transfers.map(item => {
-    //     if (!item.amount_str) {
-    //         item.amount_str = item.amount;
-    //     }
-    // })
-    // let transfersTRC10 = _(transfers).filter(tb => tb.type === "trc10" ).value();
-    // let transfersTRC20 = _(transfers).filter(tb => tb.type === "trc20" ).value();
-
-    // let rebuildRransfersTRC10 = rebuildList(transfersTRC10, 'token_id', 'amount_str');
-    // let rebuildRransfersTRC20  = rebuildToken20List(transfersTRC20, 'contract_address', 'amount_str');
-    // let rebuildRransfers = rebuildRransfersTRC10.concat(rebuildRransfersTRC20);
-    // rebuildRransfers =  _(rebuildRransfers).sortBy(tb => -tb.date_created).value();
-    // rebuildRransfers.map( item => {
-    //     if(item.map_token_id === '_'){
-    //         item.map_amount_logo = 'https://s2.coinmarketcap.com/static/img/coins/64x64/1958.png';
-    //         //item.type = '-';
-    //     }
-    //     if(id.address){
-    //         if(item.type == 'trc10'){
-    //             item.fromtip = !(item.owner_address == id.address)
-    //             item.totip = !(item.to_address == id.address)
-    //         }else{
-    //             item.fromtip = !(item.from_address == id.address)
-    //             item.totip = !(item.to_address == id.address)
-    //         }
-
-    //     }else{
-    //         item.fromtip = true
-    //         item.totip = true
-    //     }
-    // })
-    // this.setState({
-    //     page,
-    //     transfers:rebuildRransfers,
-    //     total:total,
-    //     rangeTotal:range,
-    //     loading: false,
-    // });
-}
-
 
   routerResetSearch = async () =>{
     this.setState({
@@ -979,6 +943,7 @@ class Address extends React.Component {
     pathname.replace(rex, function(a, b) {
       tabName = b;
     });
+    console.log(tabs,'tabs')
     return (
       <main className="container header-overlap account-new address-container">
         {popup}
@@ -1321,24 +1286,40 @@ class Address extends React.Component {
                       <div
                         className="addressSearch"
                         style={
-                          activeLanguage == "zh" ||   activeLanguage == "ko" ||  activeLanguage == "ar" || activeLanguage == "fa" ?
+                          Object.keys(tabs).length > 7 ? 
+                          activeLanguage == "en" ||   activeLanguage == "ru" ||  activeLanguage == "es" ?
                           {
                             position: "absolute",
                             right: "1rem",
                             bottom: "6px",
                             height: 35
-                          }:
-                            activeLanguage == "ru"?{
-                              float:"right",
-                              padding: "0 1rem 6px 0",
-                              position:"absolute",
-                              right:"1rem",
-                              bottom:"6px"
-                            }:{
-                              float:"right",
-                              padding: "0 1rem 6px 0",
-                            }
                           }
+                          :
+                          {
+                            float:"right",
+                            padding: "0 1rem 6px 0",
+                          }
+                          :
+                            activeLanguage == "zh" || activeLanguage == "ja" || activeLanguage == "ko" ||  activeLanguage == "ar" || activeLanguage == "fa" ?
+                            {
+                              position: "absolute",
+                              right: "1rem",
+                              bottom: "6px",
+                              height: 35
+                            }:
+                              // activeLanguage == "ru"?{
+                              //   float:"right",
+                              //   padding: "0 1rem 6px 0",
+                              //   position:"absolute",
+                              //   right:"1rem",
+                              //   bottom:"6px"
+                              // }:
+                              {
+                                float:"right",
+                                padding: "0 1rem 6px 0",
+                              }
+                            }
+                          
                       >
                         <div
                           className="input-group-append"
@@ -1354,11 +1335,19 @@ class Address extends React.Component {
                             placeholder={intl.formatMessage({
                               id: "address_account_tab_search_tips"
                             })}
-                            style={{
-                              border: "none",
-                              minWidth: 240,
-                              padding: "0 1.4rem 0 0.7rem"
-                            }}
+                            style={
+                              activeLanguage == "es"?
+                              {
+                                border: "none",
+                                minWidth: 350,
+                                padding: "0 1.4rem 0 0.7rem"
+                              }
+                              :{
+                                border: "none",
+                                minWidth: 240,
+                                padding: "0 1.4rem 0 0.7rem"
+                              }
+                            }
                             onChange={event => {
                               if (event.target.value !== "") {
                                 this.setState({

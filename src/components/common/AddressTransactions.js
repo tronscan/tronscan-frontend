@@ -67,10 +67,7 @@ class Transactions extends React.Component {
           { label:  'SUCCESS', value: 'SUCCESS' },
           { label:  'FAIL', value: 'FAIL' },
       ],
-      tokenOptionsAry: [
-        { label:  '后端获取', value: 1 },
-        { label:  '后端获取', value: 2 },
-      ]
+      tokenOptionsAry: this.props.tokenList
     };
   }
 
@@ -112,7 +109,7 @@ class Transactions extends React.Component {
       total,
       rangeTotal = 0;
     
-    let { statusFilter,resultFilter } = this.state;
+    let { statusFilter,resultFilter,tokenFilter } = this.state;
 
     let statusFilterObj = {};
     if(statusFilter.checkedList.join(',')!==''){
@@ -132,6 +129,12 @@ class Transactions extends React.Component {
             }
         }
     }
+    let tokenFilterObj = {};
+    if(tokenFilter.checkedList.join(',')!==''){
+        tokenFilterObj = {
+            tokens:tokenFilter.checkedList.join(','),
+        }
+    }
 
 
 
@@ -147,13 +150,15 @@ class Transactions extends React.Component {
             end_timestamp: this.end,
             ...filter,
             ...statusFilterObj,
-            ...resultFilterObj
+            ...resultFilterObj,
+            ...tokenFilterObj
           }),
           Client.getTransactions({
             limit: 0,
             ...filter,
             ...statusFilterObj,
-            ...resultFilterObj
+            ...resultFilterObj,
+            ...tokenFilterObj
           }),
           Client.getTransactions({
             limit: 0,
@@ -161,7 +166,8 @@ class Transactions extends React.Component {
             end_timestamp: this.end,
             ...filter,
             ...statusFilterObj,
-            ...resultFilterObj
+            ...resultFilterObj,
+            ...tokenFilterObj
           })
         ]).catch(e => {
           console.log("error:" + e);
@@ -176,7 +182,8 @@ class Transactions extends React.Component {
             total: this.state.total,
             ...filter,
             ...statusFilterObj,
-            ...resultFilterObj
+            ...resultFilterObj,
+            ...tokenFilterObj
           }),
           Client.getTransactions({
             limit: 0,
@@ -196,7 +203,8 @@ class Transactions extends React.Component {
             end_timestamp: this.end,
             ...filter,
             ...statusFilterObj,
-            ...resultFilterObj
+            ...resultFilterObj,
+            ...tokenFilterObj
           };
           } else {
           params = {
@@ -205,6 +213,7 @@ class Transactions extends React.Component {
             ...filter,
             ...statusFilterObj,
             ...resultFilterObj,
+            ...tokenFilterObj,
             keyword: accountSearchAddress
           };
       }
@@ -718,7 +727,7 @@ class Transactions extends React.Component {
                     item.map_token_id == CONTRACT_ADDRESS_USDT ||
                     item.map_token_id == CONTRACT_ADDRESS_WIN ||
                     item.map_token_id == CONTRACT_ADDRESS_GGC ? (
-                    <div>
+                    <div key="index">
                         <b
                             className="token-img-top"
                             style={{ marginRight: 5 }}
@@ -756,7 +765,7 @@ class Transactions extends React.Component {
                         
                     </div>
                     ) : (
-                    <div>
+                    <div key="index">
                         {isAddressValid(item.map_token_name_abbr) ? (
                         <span>
                             {tu("address_transfer_unrecorded_token")}

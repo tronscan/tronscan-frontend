@@ -87,16 +87,12 @@ class NewTransactions extends React.Component {
                 { label:  'SUCCESS', value: 'SUCCESS' },
                 { label:  'FAIL', value: 'FAIL' },
             ],
-            tokenOptionsAry: [
-                { label:  '后端获取', value: 1 },
-                { label:  '后端获取', value: 2 },
-            ]
+            tokenOptionsAry: this.props.tokenList
         };
         
     }
 
     componentDidMount() {
-        // this.loadTransactions();
         this.props.routerResetSearchFun()
     }
 
@@ -120,7 +116,7 @@ class NewTransactions extends React.Component {
     loadTransactions = async (page = 1, pageSize = 20) => {
 
         let {filter, isinternal=false, address=false, isContract=false,  getCsvUrl} = this.props;
-        let { typeFilter,statusFilter,resultFilter } = this.state;
+        let { typeFilter,statusFilter,resultFilter,tokenFilter } = this.state;
         this.setState(
             {
                 loading: true,
@@ -159,8 +155,12 @@ class NewTransactions extends React.Component {
                 }
             }
         }
-
-       
+        let tokenFilterObj = {};
+        if(tokenFilter.checkedList.join(',')!==''){
+            tokenFilterObj = {
+                tokens:tokenFilter.checkedList.join(','),
+            }
+        }
         
 
         let transactions, total,rangeTotal = 0;
@@ -178,7 +178,8 @@ class NewTransactions extends React.Component {
                         ...filter,
                         ...typeFilterObj,
                         ...statusFilterObj,
-                        ...resultFilterObj
+                        ...resultFilterObj,
+                        ...tokenFilterObj
                     };
                     } else {
                     params = {
@@ -190,6 +191,7 @@ class NewTransactions extends React.Component {
                         ...typeFilterObj,
                         ...statusFilterObj,
                         ...resultFilterObj,
+                        ...tokenFilterObj,
                         keyword: accountSearchAddress
                     };
                 }
@@ -473,7 +475,7 @@ class NewTransactions extends React.Component {
                         onChange={
                             e => {
                                 let obj = {
-                                  checkedList: e.target.checked ? [1,2] : [],
+                                  checkedList: e.target.checked ? [] : [],
                                   indeterminate: false,
                                   checkAll: e.target.checked,
                                 }
