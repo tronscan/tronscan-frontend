@@ -242,7 +242,7 @@ export const lang20Q1 = {
   account_power: "TRX 동결량(투표권)",
   account_trade_count: "거래 수량",
   account_trade_count_tip: "본 주소의 거래수량",
-  account_more: "查看更多",
+  account_more: "더보기",
   account_lastDay_count: "전일 증가된 계정 수",
   account_realTime_count: "실시간 계정 수",
   // account_all: "全部",
@@ -254,7 +254,7 @@ export const lang20Q1 = {
   account_vote_total_percent_tip:
     "본 계정의 SR에 대한 투표 수 / SR의 총 득표수",
   account_vote_reward_tip: "SR의 누적 투표자 보상",
-  account_get_reward: "领取",
+  account_get_reward: "받기",
   account_freeze_detail: "동결 명세",
   account_freeze_self: "개인용",
   account_freeze_to_other: "타 사용자용",
@@ -267,12 +267,12 @@ export const lang20Q1 = {
   account_freeze_resource_amount: "받은 자원 수량",
   account_freeze_resource_amount_tip:
     "실제 수령한 자원의 양은 전체 동결 금액에 대한 현재 동결 금액의 비율에 따라 달라집니다. 실시간 전체 동결 금액이 달라짐에 따라 실제 수령한 자원은 지속적으로 변경됩니다.",
-  account_freeze_no_data: "未查询到冻结信息",
+  account_freeze_no_data: "동결 정보 찾을수 없음",
 
   // 2020-03-03
   account_resource_last: "이전 라운드",
   account_resource_realTime: "본 라운드",
-  account_resource_remain: "剩余",
+  account_resource_remain: "잔여",
   account_resource_last_tip: "이전 라운드의 득표수와 순위",
   account_resource_realTime_tip: "본 라운드의 득표수와 순위",
   account_representative_block_ratio: "블록 생성 효율",
@@ -284,8 +284,8 @@ export const lang20Q1 = {
     "총 리워드는 투표자 인센티브와 슈퍼대표 리워드로 구성됩니다",
   account_representative_voter: "투표자 리워드",
   account_representative_owner: "슈퍼대표 리워드",
-  account_representative_block_table_res: "资源消耗",
-  account_representative_block_table_prize: "出块收益",
+  account_representative_block_table_res: "자원소비",
+  account_representative_block_table_prize: "블록보상",
   account_representative_block_desc: "누적 {block}블록 생성으로 {trx} TRX 획득",
   account_representative_voters_per_tip: "투표자의 투표수 / 총 투표 수",
   account_representative_transfer_tip: "본 계정의 TRX/TRX10/TRX20 거래횟수 ",
@@ -306,5 +306,5 @@ export const lang20Q1 = {
   address_account_table_filter_token_tips:
     "The token is not included in TRONSCAN",
   current_version: "최신 버전",
-  account_block: "出块"
+  account_block: "블록"
 };

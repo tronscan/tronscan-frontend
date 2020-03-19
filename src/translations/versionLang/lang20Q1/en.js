@@ -243,7 +243,7 @@ export const lang20Q1 = {
   account_power: "TRX frozen (voting rights)",
   account_trade_count: "Transaction count",
   account_trade_count_tip: "Transaction count related to this address",
-  account_more: "查看更多",
+  account_more: "More",
   account_lastDay_count: "New accounts from the previous day",
   account_realTime_count: "Real-time number of accounts",
   // account_all: "全部",
@@ -253,7 +253,7 @@ export const lang20Q1 = {
   account_vote_self_percent_tip: "Votes for the SR from this account / total votes cast by this account",
   account_vote_total_percent_tip: "Votes for the SR from this account / total votes received by the SR",
   account_vote_reward_tip: "Accumulative voter rewards from the SR",
-  account_get_reward: "领取",
+  account_get_reward: "Accept",
   account_freeze_detail: "Token-freeze details",
   account_freeze_self: "For personal use",
   account_freeze_to_other: "For other user(s)",
@@ -265,12 +265,12 @@ export const lang20Q1 = {
   account_freeze_amount: "Amount frozen",
   account_freeze_resource_amount: "Amount of resources received",
   account_freeze_resource_amount_tip: "The actual amount of resources received depends on the ratio of current freezing amount to overall freezing amount. As the real-time overall freezing amount varies, the actual resources received will change constantly.",
-  account_freeze_no_data: "未查询到冻结信息",
+  account_freeze_no_data: "No information found. ",
 
    // 2020-03-03
    account_resource_last: "Last round",
    account_resource_realTime: "Current round",
-   account_resource_remain: "剩余",
+   account_resource_remain: "Remaining",
    account_resource_last_tip: "Vote count and ranking of last round",
    account_resource_realTime_tip: "Vote count and ranking of current round",
    account_representative_block_ratio: "Block production efficiency",
@@ -282,8 +282,8 @@ export const lang20Q1 = {
      "Total rewards consist of voter rewards and SR rewards",
    account_representative_voter: "Voter rewards",
    account_representative_owner: "SR rewards",
-   account_representative_block_table_res: "资源消耗",
-   account_representative_block_table_prize: "出块收益",
+   account_representative_block_table_res: "Resources consumed",
+   account_representative_block_table_prize: "Block rewards",
    account_representative_block_desc:
      "{trx} TRX earned from {block} blocks produced",
    account_representative_voters_per_tip: "Votes cast by the voter/total votes",
@@ -304,6 +304,6 @@ export const lang20Q1 = {
 
   address_account_table_filter_token_tips: "The token is not included in TRONSCAN",
   current_version:'Current Version',
-  account_block:'出块',
+  account_block:'Blocks',
 
 };

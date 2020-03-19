@@ -251,7 +251,7 @@ export const lang20Q1 = {
   account_power: "Заморожено TRX (право голоса)",
   account_trade_count: "Количество транзакций",
   account_trade_count_tip: "Количество транзакций, связанных с этим адресом",
-  account_more: "查看更多",
+  account_more: "Больше",
   account_lastDay_count: "Новые аккаунты за предыдущий день",
   account_realTime_count: "Количество аккаунтов в режиме реального времени",
   // account_all: "全部",
@@ -263,7 +263,7 @@ export const lang20Q1 = {
   account_vote_total_percent_tip:
     "Голоса за SR с этого аккаунтом/общее количество голосов, полученных SR",
   account_vote_reward_tip: "Накопительные вознаграждения избирателей от SR",
-  account_get_reward: "领取",
+  account_get_reward: "Принято",
   account_freeze_detail: "Детали для замораживания токенов",
   account_freeze_self: "Для личного использования",
   account_freeze_to_other: "Для других пользователей",
@@ -276,12 +276,12 @@ export const lang20Q1 = {
   account_freeze_resource_amount: "Количество полученных ресурсов",
   account_freeze_resource_amount_tip:
     "Фактический объем полученных ресурсов зависит от отношения текущей замороженной суммы к общей замороженной сумме. Поскольку общая замораженная сумма в реальном времени изменяется, фактические полученные ресурсы будут постоянно меняться.",
-  account_freeze_no_data: "未查询到冻结信息",
+  account_freeze_no_data: "Информация не найдена",
 
   // 2020-03-03
   account_resource_last: "Последний раунд",
   account_resource_realTime: "Текущий раунд",
-  account_resource_remain: "剩余",
+  account_resource_remain: "Остаток",
   account_resource_last_tip: "Подсчет голосов и рейтинг последнего раунда",
   account_resource_realTime_tip: "Подсчет голосов и рейтинг текущего раунда",
   account_representative_block_ratio: "Эффективность производства блоков",
@@ -295,8 +295,8 @@ export const lang20Q1 = {
     "Всего наград состоит из наград избирателей и наград SR",
   account_representative_voter: "Награды избирателям",
   account_representative_owner: "SR награды",
-  account_representative_block_table_res: "资源消耗",
-  account_representative_block_table_prize: "出块收益",
+  account_representative_block_table_res: "Использованные ресурсы",
+  account_representative_block_table_prize: "Блок вознаграждения",
   account_representative_block_desc:
     "{trx} TRX заработано на {block} произведенных блоках",
   account_representative_voters_per_tip:
@@ -321,5 +321,5 @@ export const lang20Q1 = {
   address_account_table_filter_token_tips:
     "The token is not included in TRONSCAN",
   current_version: "издание",
-  account_block: "出块"
+  account_block: "Блоки"
 };

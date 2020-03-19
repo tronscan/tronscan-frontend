@@ -240,7 +240,7 @@ export const lang20Q1 = {
   account_power: "TRX凍結量（投票権）",
   account_trade_count: "取引量",
   account_trade_count_tip: "このアドレスに関連するトランザクション数",
-  account_more: "查看更多",
+  account_more: "詳しく",
   account_lastDay_count: "前日からの新しいアカウント",
   account_realTime_count: "リアルタイムのアカウント数",
   // account_all: "全部",
@@ -250,7 +250,7 @@ export const lang20Q1 = {
   account_vote_self_percent_tip: "このアカウントからのスーパー代表への投票/このアカウントによって投じられた総投票数",
   account_vote_total_percent_tip: "このアカウントからのスーパー代表への投票/ スーパー代表が受け取った総投票数",
   account_vote_reward_tip: "スーパー代表からの累積投票者報酬",
-  account_get_reward: "领取",
+  account_get_reward: "受け取る",
   account_freeze_detail: "トークン凍結の詳細",
   account_freeze_self: "個人用",
   account_freeze_to_other: "他のユーザー用",
@@ -262,12 +262,12 @@ export const lang20Q1 = {
   account_freeze_amount: "凍結量",
   account_freeze_resource_amount: "受信したリソースの量",
   account_freeze_resource_amount_tip: "実際に受信するリソースの量は、現在の凍結量と全体の凍結量の比率によって異なります。リアルタイムの全体的な凍結量は変化するため、実際に受信するリソースは常に変化します。",
-  account_freeze_no_data: "未查询到冻结信息",
+  account_freeze_no_data: "情報が見つかりません",
 
 // 2020-03-03
 account_resource_last: "最終回",
 account_resource_realTime: "現在のラウンド",
-account_resource_remain: "剩余",
+account_resource_remain: "残り",
 account_resource_last_tip: "投票数と最終ラウンドのランキング",
 account_resource_realTime_tip: "投票数と現在のラウンドのランキング",
 account_representative_block_ratio: "ブロック生産効率",
@@ -279,8 +279,8 @@ account_representative_split_ratio_tip:
   "総報酬は有権者報酬とスーパー代表報酬で構成されます",
 account_representative_voter: "投票者報酬",
 account_representative_owner: "スーパー代表報酬",
-account_representative_block_table_res: "资源消耗",
-account_representative_block_table_prize: "出块收益",
+account_representative_block_table_res: "消費資源",
+account_representative_block_table_prize: "ブロック報酬",
 account_representative_block_desc:
   "生成された{block}ブロックから獲得した{trx} TRX",
 account_representative_voters_per_tip: "投票者による投票/総投票数",
@@ -302,6 +302,6 @@ account_piechart_title:'資産配分',
 
   address_account_table_filter_token_tips: "The token is not included in TRONSCAN",
   current_version:'最新バージョン',
-  account_block:'出块',
+  account_block:'ブロック',
 
 };
