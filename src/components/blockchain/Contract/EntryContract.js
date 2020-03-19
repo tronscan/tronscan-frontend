@@ -195,7 +195,6 @@ class Code extends React.Component {
       return typeof d !== "number" ? Number(resultVal) : Number(resultVal.toFixed(parseInt(d)));
   }
    MultiSend =  async(permissionId, permissionTime, from) => {
-        console.log('permissionId=====123',permissionId)
         const { tokenId, totalValue, contract ,sendTokenDecimals } = this.state;
         let { contractItem, address, account, intl } = this.props;
         const { tronWeb, sunWeb } = this.props.account;
@@ -254,16 +253,14 @@ class Code extends React.Component {
 
                 //get transaction parameter value to Hex
                 let HexStr = Client.getTriggerSmartContractHexStr(unSignTransaction.raw_data.contract[0].parameter.value);
-                console.log('permissionId======',permissionId)    
                 //sign transaction
                 let SignTransaction = await transactionMultiResultManager(unSignTransaction, tron, permissionId,permissionTime,HexStr);
 
-                let { data } = await xhr.post("https://list.tronlink.org/api/wallet/multi/transaction", {
-                // let { data } = await xhr.post("https://testlist.tronlink.org/api/wallet/multi/transaction", {
+               // let { data } = await xhr.post("https://list.tronlink.org/api/wallet/multi/transaction", {
+                 let { data } = await xhr.post("https://testlist.tronlink.org/api/wallet/multi/transaction", {
                     "address": account.address,
                     "transaction": SignTransaction,
-                    // "netType":"shasta",
-                    "netType":"main_net",
+                    "netType":"shasta",
                     "functionSelector":function_selector,
                 });
                 let code = data.code;
@@ -510,7 +507,6 @@ class Code extends React.Component {
     return new Promise((reslove, reject) => {
       let checkResult = async function(txID) {
         const output = await tron.trx.getUnconfirmedTransactionInfo(txID);
-        //console.log('output',output)
         if (Object.keys(output).length <= 1 && !output.id) {
           return setTimeout(() => {
             checkResult(txID);
@@ -533,7 +529,6 @@ class Code extends React.Component {
         }
 
 
-        //console.log('contractItem',contractItem)
         if (contractItem.outputs == undefined) {
           return reslove(0);
         }
@@ -541,8 +536,6 @@ class Code extends React.Component {
           .map(({ name }) => name)
           .filter(name => !!name);
         const types = contractItem.outputs.map(({ type }) => type);
-        //console.log('names',names)
-         // console.log('types',types)
         let decoded = tron.utils.abi.decodeParams(
           names,
           types,

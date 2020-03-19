@@ -4,7 +4,7 @@ import React, { Fragment } from "react";
 import { tu, t, option_t } from "../../utils/i18n";
 import { alpha } from "../../utils/str";
 import { Client } from "../../services/api";
-import { upperFirst } from "lodash";
+import { upperFirst, cloneDeep } from "lodash";
 import { Tag, Radio } from "antd";
 import {
   TokenLink,
@@ -93,15 +93,15 @@ class MySignature extends React.Component {
     let {
       data: { data }
     } = await xhr.get(
-       "https://list.tronlink.org/api/wallet/multi/trx_record",
-      // "https://testlist.tronlink.org/api/wallet/multi/trx_record",
+       //"https://list.tronlink.org/api/wallet/multi/trx_record",
+       "https://testlist.tronlink.org/api/wallet/multi/trx_record",
       {
         params: {
           address: wallet.address,
           start: (page - 1) * pageSize,
           state: filter.direction,
           limit: 5000,
-          netType: "main_net"
+          netType: "shasta"
         }
       }
     );
@@ -225,18 +225,13 @@ class MySignature extends React.Component {
       return;
     }
     //create transaction
-   // tronWeb = this.props.account.tronWeb;
-    console.log('details.currentTransaction======',details.currentTransaction)
-    const currentTransaction = details.currentTransaction;
-    const HexStr = details.currentTransaction.raw_data.contract[0].parameter.value;
-    console.log('currentTransaction.HexStr1111',currentTransaction)
-    console.log('currentTransaction.HexStr2222',HexStr)
+    let currentTransaction = cloneDeep(details.currentTransaction);
+    let HexStr = cloneDeep(details.currentTransaction.raw_data.contract[0].parameter.value);
+    
     if(this.props.wallet.type==="ACCOUNT_LEDGER"){
       let parameterValue = Client.getParameterValue(HexStr, details.contractType);
-      console.log('parameterValue=========999999',parameterValue)
       currentTransaction.raw_data.contract[0].parameter.value = parameterValue
     }
-    console.log('currentTransaction=======999999',currentTransaction)
     //set transaction txID
     currentTransaction.txID = details.hash;
     //sign transaction
@@ -254,15 +249,14 @@ class MySignature extends React.Component {
       if(this.props.wallet.type==="ACCOUNT_LEDGER" ){
         SignTransaction.raw_data.contract[0].parameter.value = HexStr
       }  
-      console.log('ACCOUNT_LEDGER_SignTransaction',SignTransaction)
       //xhr multi-sign transaction api
       let { data } = await xhr.post(
-        "https://list.tronlink.org/api/wallet/multi/transaction",
-        //"https://testlist.tronlink.org/api/wallet/multi/transaction",
+        //"https://list.tronlink.org/api/wallet/multi/transaction",
+        "https://testlist.tronlink.org/api/wallet/multi/transaction",
         {
           address: wallet.address,
           transaction: SignTransaction,
-          netType: "main_net"
+          netType: "shasta"
         }
       );
       result = data.code;
@@ -275,7 +269,7 @@ class MySignature extends React.Component {
       if (transactionId) {
         this.onSignedTransactionSuccess(filter.multiState);
       } else {
-        this.onSignedTransactionFailed(filter.multiState);
+        this.onSignedTransactionFailed(filter.multiState,false);
       }
     }else{
       if (result == 0) {
@@ -286,7 +280,7 @@ class MySignature extends React.Component {
       if (transactionId) {
         this.onSignedTransactionSuccess(filter.multiState);
       } else {
-        this.onSignedTransactionFailed(filter.multiState);
+        this.onSignedTransactionFailed(filter.multiState,SignTransaction);
       }
     }
     
@@ -350,12 +344,12 @@ class MySignature extends React.Component {
   /**
    * open SignedTransaction Failed
    */
-  onSignedTransactionFailed = multiState => {
+  onSignedTransactionFailed = (multiState,SignTransaction) => {
     this.setState({
       modal: (
         <SweetAlert
           error
-          title={tu("transaction_signature_muti_failed")}
+          title={(SignTransaction === 0 && this.props.wallet.type==="ACCOUNT_LEDGER")? tu("too_many_bytes_to_encode"):tu("transaction_signature_muti_failed")}
           onConfirm={() => this.hideSignedModal(multiState)}
         />
       )

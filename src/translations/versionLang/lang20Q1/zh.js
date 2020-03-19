@@ -235,6 +235,9 @@ export const lang20Q1 = {
   freeze_TRX_error:"冻结TRX时出现问题，请稍后重试",
   votes_cannot_exceed_5_SRs:"投票对象不能超过5个SR",
 
+  too_many_bytes_to_encode:"数据量过大，无法编译",
+  use_TRONlink_or_private_key :"请通过TRONlink或私钥登录使用此功能",
+
 
 
 };

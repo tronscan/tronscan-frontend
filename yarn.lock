@@ -1085,7 +1085,6 @@
 "@ledgerhq/devices@^5.9.0":
   version "5.9.0"
   resolved "https://registry.yarnpkg.com/@ledgerhq/devices/-/devices-5.9.0.tgz#f0fc230f0f9ad9eb39bbedf9b0a40900bdd6fe6b"
-  integrity sha512-32XLjfzikim/a1GeSjhi1yazV4vLPzDQ08p6IjRE/XIJN1wNMVp8oDaKdLZJG2PrQucBu2zoPJwdHu3flrHyow==
   dependencies:
     "@ledgerhq/errors" "^5.9.0"
     "@ledgerhq/logs" "^5.9.0"
@@ -1094,12 +1093,10 @@
 "@ledgerhq/errors@^5.9.0":
   version "5.9.0"
   resolved "https://registry.yarnpkg.com/@ledgerhq/errors/-/errors-5.9.0.tgz#ff6c7a5f733b5857dc93145e9cca3916e62d9e9c"
-  integrity sha512-KqPcEezSeuLtc+T0gKKx9l+DndsIHp9qt9GtDDfGMkSNRE2z3vt8MzoWcA7QXGJYfYDzPICeMzk/CB+Lv0LgCA==
 
 "@ledgerhq/hw-app-trx@^5.10.0":
   version "5.10.0"
   resolved "https://registry.yarnpkg.com/@ledgerhq/hw-app-trx/-/hw-app-trx-5.10.0.tgz#819d742ce7f1ebf21ad33ab4c18ca59b9ed16b2f"
-  integrity sha512-bsiZQYAro/DJwnq1MjmsI+wjyrEbC6vodXBa8UwTGZQsBuV1HDPPLA7i4XG79hQJxkp+EpfGb9K+42OTobaFaA==
   dependencies:
     "@ledgerhq/errors" "^5.9.0"
     "@ledgerhq/hw-transport" "^5.9.0"
@@ -1107,7 +1104,6 @@
 "@ledgerhq/hw-transport-u2f@^5.9.0":
   version "5.9.0"
   resolved "https://registry.yarnpkg.com/@ledgerhq/hw-transport-u2f/-/hw-transport-u2f-5.9.0.tgz#7cfc26fb98e199886b0fe053d949379cdb804e12"
-  integrity sha512-0UFx33mHRPhR8mVpZ8w6xV8RhO13TH92/crOR7lJMYiiGn8+pJVYVac9Ih19oYtK43jLE/2HC1HeOtNH5y1bQg==
   dependencies:
     "@ledgerhq/errors" "^5.9.0"
     "@ledgerhq/hw-transport" "^5.9.0"
@@ -1117,7 +1113,6 @@
 "@ledgerhq/hw-transport@^5.9.0":
   version "5.9.0"
   resolved "https://registry.yarnpkg.com/@ledgerhq/hw-transport/-/hw-transport-5.9.0.tgz#580ab765774e10e40a1bb2c3402117b45da34011"
-  integrity sha512-zeUVV5TNQGsL6df+h7Bk1orjBmlPP4V/rSlQ2DDdHtK3UFiHrzuah8g4B7ldQh17iqzbN992rdbgXO386N5j2w==
   dependencies:
     "@ledgerhq/devices" "^5.9.0"
     "@ledgerhq/errors" "^5.9.0"
@@ -1126,7 +1121,6 @@
 "@ledgerhq/logs@^5.9.0":
   version "5.9.0"
   resolved "https://registry.yarnpkg.com/@ledgerhq/logs/-/logs-5.9.0.tgz#63ecc770748f198a1e9f5d6e227545510721cfa2"
-  integrity sha512-ZOselB67bTgdUpqKpXjAEO1ioaYXm+/ST81W3YvmZDLaGrhboQSs7kth/wpv3cAgV+pcA3bdebZUN9i6YRMp0w==
 
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
@@ -1228,9 +1222,9 @@
     "@svgr/plugin-svgo" "^4.0.3"
     loader-utils "^1.1.0"
 
-"@tronscan/client@^0.2.62":
-  version "0.2.62"
-  resolved "https://registry.yarnpkg.com/@tronscan/client/-/client-0.2.62.tgz#eadc6580c1f32895e959926a5a8d78f0d793d242"
+"@tronscan/client@^0.2.63":
+  version "0.2.63"
+  resolved "https://registry.yarnpkg.com/@tronscan/client/-/client-0.2.63.tgz#44e03cffd96adb2fb66e8222373dbe9e641f8d67"
   dependencies:
     axios "^0.18.0"
     babel-plugin-transform-class-properties "^6.24.1"
@@ -4877,7 +4871,6 @@ events@^3.0.0:
 events@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/events/-/events-3.1.0.tgz#84279af1b34cb75aa88bf5ff291f6d0bd9b31a59"
-  integrity sha512-Rv+u8MLHNOdMjTAFeT3nCjHn2aGlx435FP/sDHNaRhDEMwyI/aB22Kj2qIN8R0cw3z28psEQLYwxVKLsKrMgWg==
 
 eventsource@^1.0.7:
   version "1.0.7"
@@ -11085,7 +11078,6 @@ rxjs@^6.4.0:
 rxjs@^6.5.4:
   version "6.5.4"
   resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-6.5.4.tgz#e0777fe0d184cec7872df147f303572d414e211c"
-  integrity sha512-naMQXcgEo3csAEGvw/NydRA0fuS2nDZJiw1YUWFKU7aPPAPGZEsD4Iimit96qwCieH6y614MCLYwdkrWx7z/7Q==
   dependencies:
     tslib "^1.9.0"
 

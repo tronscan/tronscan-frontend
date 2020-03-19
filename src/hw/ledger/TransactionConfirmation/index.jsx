@@ -11,6 +11,8 @@ import {Truncate} from "../../../components/common/text";
 import TronWeb from "tronweb";
 
 export default function Contract({ contract, extra }) {
+  console.log('contract======',contract)
+  console.log('contract.type======',contract.type.toUpperCase())
   const contractParams = contract.parameter.value;
   let tokenInfo = '';
   let tokenList = [{"token_id":"","amount":""}];
@@ -489,7 +491,7 @@ export default function Contract({ contract, extra }) {
           return (
             <Fragment>
               <div className="card-body">
-                <h5 className="card-title text-center">Claim Rewards</h5>
+                <h5 className="card-title text-center">Update Account Permission</h5>
               </div>
               <table className="table">
                 <tbody>

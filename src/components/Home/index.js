@@ -87,7 +87,6 @@ export default class Home extends Component {
   async componentWillMount() {
     window.performance.mark("start2");
 
-    //console.log('Component WILL MOUNT!')
     var measure5  =-1;
     if (performance.navigation.type == 1) {
       performance.measure(
@@ -99,7 +98,7 @@ export default class Home extends Component {
       measure5 = measures5[0].duration;
       this.MonitoringParameters3(measure5);
       //window.performance.getEntries();
-      //console.log('getEntries1:',window.performance.getEntries());
+    
 
       
     } 
@@ -387,7 +386,6 @@ export default class Home extends Component {
     this.setState({ notice: data.articles });
 
     this.MonitoringParameters();
-    //console.log('home uuidv4 :',uuidv4);
 
   }
 
@@ -925,7 +923,6 @@ export default class Home extends Component {
           var measure = measures[0];
 
 
-        //console.log('getEntriesend:',window.performance.getEntries());
 
           var timer = setInterval(function() {
               if (0 !== timing.loadEventEnd) {
@@ -963,7 +960,6 @@ export default class Home extends Component {
                       udid:uuidv4
 
                   };
-                //  console.log('data1:',data);
                 window.performance.clearMarks();
                 window.performance.clearMeasures();
 
@@ -1027,7 +1023,6 @@ export default class Home extends Component {
     
                     // window.performance.clearMarks();
                     // window.performance.clearMeasures();
-                    //console.log('data3:',data);
                     ApiClientMonitor.setMonitor(data)
                       return data;
                     }

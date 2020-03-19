@@ -123,10 +123,8 @@ export function withTronWeb(InnerComponent) {
               try {
                 const transactionObj = transactionJsonToProtoBuf(transaction);
                 const rawDataHex = byteArray2hexStr(transactionObj.getRawData().serializeBinary());
-                console.log('rawDataHex',rawDataHex)
                 let raw = transactionObj.getRawData();
                 let contractObj = raw.getContractList()[0];
-                console.log('contractObj',contractObj)
                 // if (isMulti) {
                 //   transaction = await this.mutiSign(tronWeb, transaction, privateKey, permissionId).catch(e=>{
                 //     console.log(e.toString())
@@ -136,9 +134,7 @@ export function withTronWeb(InnerComponent) {
                 //   }
                 // }
                 let contractType = contractObj.getType();
-                console.log('contractType',contractType);
                 let PermissionId = contractObj.getPermissionId();
-                console.log('PermissionId',PermissionId);
                 let tokenInfo = [];
                 let extra = {};
                 switch (contractType) {
@@ -211,8 +207,8 @@ export function withTronWeb(InnerComponent) {
                     extra = transaction.extra || {};
                     break;
                   case 46:
-                    extra = {};
-                    tokenInfo = undefined;
+                    extra = transaction.extra || {};
+                    // tokenInfo = undefined;
                     break;
                 }
 
@@ -228,8 +224,7 @@ export function withTronWeb(InnerComponent) {
                   hex: rawDataHex,
                   info: tokenInfo,
                 })
-                console.log('transaction.signature====1',transaction.signature)
-                console.log('signedResponse==2', console.log('signedResponse',[signedResponse]))
+               
                
                 if (Array.isArray(transaction.signature)) {
                   if (!transaction.signature.includes(signedResponse))
@@ -238,11 +233,16 @@ export function withTronWeb(InnerComponent) {
                   transaction.signature = [signedResponse];
                 }
                  
-               // transaction.signature = [signedResponse];
                 return transaction;
               } catch (e) {
                 console.log("Error signing ledger", e);
-
+               
+                if(e == "Error: Too many bytes to encode."){
+                  return 0
+                }else{
+                  return false;
+                }
+                
               } finally {
                 this.hideModal();
               }

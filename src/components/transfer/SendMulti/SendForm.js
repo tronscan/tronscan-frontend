@@ -140,11 +140,11 @@ class SendForm extends React.Component {
                     result = 40001
                 }else {
                     //xhr multi-sign transaction api
-                     let {data} = await xhr.post("https://list.tronlink.org/api/wallet/multi/transaction", {
-                    //let { data } = await xhr.post("https://testlist.tronlink.org/api/wallet/multi/transaction", {
+                    // let {data} = await xhr.post("https://list.tronlink.org/api/wallet/multi/transaction", {
+                    let { data } = await xhr.post("https://testlist.tronlink.org/api/wallet/multi/transaction", {
                         "address": wallet.address,
                         "transaction": SignTransaction,
-                        "netType": "main_net"
+                        "netType": "shasta"
                     });
                     result = data.code;
                     sendErrorMessage = data.message;
@@ -192,11 +192,11 @@ class SendForm extends React.Component {
                     result = 40001
                 }else{
                     //xhr multi-sign transaction api
-                    let { data } = await xhr.post("https://list.tronlink.org/api/wallet/multi/transaction", {
-                      // let { data } = await xhr.post("https://testlist.tronlink.org/api/wallet/multi/transaction", {
+                    //let { data } = await xhr.post("https://list.tronlink.org/api/wallet/multi/transaction", {
+                       let { data } = await xhr.post("https://testlist.tronlink.org/api/wallet/multi/transaction", {
                         "address": wallet.address,
                         "transaction": SignTransaction,
-                        "netType":"main_net"
+                        "netType":"shasta"
                     });
                     result = data.code;
                     sendErrorMessage = data.message;
@@ -301,11 +301,11 @@ class SendForm extends React.Component {
            if(!SignTransaction){
             result = 40001
            }else{
-               let { data } = await xhr.post("https://list.tronlink.org/api/wallet/multi/transaction", {
-              // let { data } = await xhr.post("https://testlist.tronlink.org/api/wallet/multi/transaction", {
+               //let { data } = await xhr.post("https://list.tronlink.org/api/wallet/multi/transaction", {
+               let { data } = await xhr.post("https://testlist.tronlink.org/api/wallet/multi/transaction", {
                   "address": wallet.address,
                   "transaction": SignTransaction,
-                  "netType":"main_net",
+                  "netType":"shasta",
                   "functionSelector":"transfer(address,uint256)"
               });
               result = data.code;
@@ -346,11 +346,11 @@ class SendForm extends React.Component {
             if(!SignTransaction){
                 result = 40001
             }else{
-                 let { data } = await xhr.post("https://list.tronlink.org/api/wallet/multi/transaction", {
-                //let { data } = await xhr.post("https://testlist.tronlink.org/api/wallet/multi/transaction", {
+                // let { data } = await xhr.post("https://list.tronlink.org/api/wallet/multi/transaction", {
+                let { data } = await xhr.post("https://testlist.tronlink.org/api/wallet/multi/transaction", {
                     "address": wallet.address,
                     "transaction": SignTransaction,
-                    "netType":"main_net",
+                    "netType":"shasta",
                     "functionSelector":"transfer(address,uint256)"
                 });
                 result = data.code;

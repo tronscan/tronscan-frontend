@@ -287,7 +287,6 @@ const Utils = {
 
     decodeParams(message, abiCode, function_selector) {
         const cutArr = function_selector.match(/(.+)\((.*)\)/);
-        console.log('abiCode', abiCode)
         if (cutArr[2] !== '') {
             const byteArray = TronWeb.utils.code.hexStr2byteArray(message);
             const abi = abiCode.filter(({
