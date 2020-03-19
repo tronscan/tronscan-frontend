@@ -77,6 +77,7 @@ class TokenBalances extends React.Component {
     }
 
     handleSwitch = (val) => {
+        
         this.setState({
             hideSmallCurrency: val
         },() => {

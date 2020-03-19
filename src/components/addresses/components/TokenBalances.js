@@ -50,10 +50,9 @@ class TokenBalances extends React.Component {
         let tokenHasTRXValue =  _(tokenBalances).filter(tb => tb.TRXBalance > 0).sortBy(tb => -tb.TRXBalance).value();
         let tokenNotTRXValue =  _(tokenBalances).filter(tb => tb.TRXBalance <= 0).sortBy(tb => toUpper(tb.map_token_name)).value();
         let tokens = tokenHasTRXValue.concat(tokenNotTRXValue);
-
         if(hideSmallCurrency){
             tokens = _(tokens)
-                .filter(tb => tb.TRXBalance_toThousands >= 10)
+                .filter(tb => tb.map_amount >= 10)
                 .value();
 
         }
