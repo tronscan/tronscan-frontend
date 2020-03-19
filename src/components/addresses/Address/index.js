@@ -215,7 +215,7 @@ class Address extends React.Component {
     this.setState({ loading: true, address: { address: id }, media: null });
     let {passAddress} = this.state;
     let address = await Client.getAddress(id);
-
+    console.log(address,'address')
     let sentDelegateBandwidth = 0;
     if (address.delegated && address.delegated.sentDelegatedBandwidth) {
       for (
@@ -755,6 +755,7 @@ class Address extends React.Component {
   scrollToAnchor = () => {
     window.scrollTo(0, 800);
   };
+
   // account claim rewards
   accountClaimRewards = async () => {
     let res,hashid;
@@ -878,7 +879,7 @@ class Address extends React.Component {
       this.setState({
         passAddress:serchInputVal
       })
-      let { match } = this.props;
+      
       // this.loadAddress(match.params.id);
     }else if(pathname.slice(-12) === "transactions"){
 

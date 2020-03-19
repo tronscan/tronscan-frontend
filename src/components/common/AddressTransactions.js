@@ -1,7 +1,7 @@
 import React from "react";
 import { injectIntl,FormattedDate,FormattedTime,FormattedNumber} from "react-intl";
 import { Client } from "../../services/api";
-import { TransactionHashLink, AddressLink, BlockNumberLink } from "./Links";
+import { TransactionHashLink, AddressLink, BlockNumberLink,TokenLink, TokenTRC20Link } from "./Links";
 import { Icon,Checkbox } from 'antd';
 import {connect} from "react-redux";
 import { tu } from "../../utils/i18n";
@@ -13,6 +13,8 @@ import SmartTable from "./SmartTable.js";
 import { upperFirst } from "lodash";
 import TotalInfo from "./../../components/addresses/components/TableTotal";
 import DateSelect from "./../../components/addresses/components/dateSelect";
+import {isAddressValid} from "@tronscan/client/src/utils/crypto";
+import { CONTRACT_ADDRESS_USDT, CONTRACT_ADDRESS_WIN, CONTRACT_ADDRESS_GGC } from "../../constants";
 import moment from "moment";
 // import { NameWithId } from "./names";
 import {TRXPrice} from "./Price";
@@ -210,38 +212,7 @@ class Transactions extends React.Component {
 
       const [data, { count }] = allData;
 
-      // data.forEach(item=>{
-      //   if(item.valueInfoList){
 
-      //   }
-      // })
-
-      // let transfersTRC10 = _(transfers).filter(tb => tb.type === "trc10" ).value();
-      // let transfersTRC20 = _(transfers).filter(tb => tb.type === "trc20" ).value();
-
-      // let rebuildRransfersTRC10 = rebuildList(transfersTRC10, 'token_id', 'amount_str');
-      // let rebuildRransfersTRC20  = rebuildToken20List(transfersTRC20, 'contract_address', 'amount_str');
-      // let rebuildRransfers = rebuildRransfersTRC10.concat(rebuildRransfersTRC20);
-      // rebuildRransfers =  _(rebuildRransfers).sortBy(tb => -tb.date_created).value();
-      // rebuildRransfers.map( item => {
-      //     if(item.map_token_id === '_'){
-      //         item.map_amount_logo = 'https://s2.coinmarketcap.com/static/img/coins/64x64/1958.png';
-      //         //item.type = '-';
-      //     }
-      //     if(id.address){
-      //         if(item.type == 'trc10'){
-      //             item.fromtip = !(item.owner_address == id.address)
-      //             item.totip = !(item.to_address == id.address)
-      //         }else{
-      //             item.fromtip = !(item.from_address == id.address)
-      //             item.totip = !(item.to_address == id.address)
-      //         }
-
-      //     }else{
-      //         item.fromtip = true
-      //         item.totip = true
-      //     }
-      // })
       let newdata = rebuildList(
         data.list,
         "tokenId",
@@ -480,6 +451,7 @@ class Transactions extends React.Component {
           </div>
       </div>
     )
+  
     let column = [
       {
         title: upperFirst(intl.formatMessage({ id: "parenthash" })),
@@ -712,18 +684,122 @@ class Transactions extends React.Component {
             }
         },
         render: (text, record, index) => {
-            console.log(record)
+            const defaultImg = require("../../images/logo_default.png");
             return record.valueInfoList.length
             ? record.valueInfoList.map((item, index) => {
                 return (
-                  item.tokenCanShow ?
-                  <Tooltip  key="index" placement="top" title={ intl.formatMessage({ id: "address_account_table_filter_token_tips" })}>
-                    {item.map_token_name_abbr}
-                  </Tooltip>
-                  : 
-                  <span key="index">
-                    {item.map_token_name_abbr}
-                  </span> 
+                  // item.tokenCanShow ?
+                  // <Tooltip  key="index" placement="top" title={ intl.formatMessage({ id: "address_account_table_filter_token_tips" })}>
+                  //   {item.map_token_name_abbr}
+                  // </Tooltip>
+                  // : 
+                  // <span key="index">
+                  //   {item.map_token_name_abbr}
+                  // </span> 
+                    item.map_token_id == 1002000 ||
+                    item.map_token_id == CONTRACT_ADDRESS_USDT ||
+                    item.map_token_id == CONTRACT_ADDRESS_WIN ||
+                    item.map_token_id == CONTRACT_ADDRESS_GGC ? (
+                    <div>
+                        <b
+                            className="token-img-top"
+                            style={{ marginRight: 5 }}
+                        >
+                        <img
+                            width={20}
+                            height={20}
+                            src={record.map_amount_logo}
+                            onError={e => {
+                                e.target.onerror = null;
+                                e.target.src = defaultImg;
+                            }}
+                        />
+                        <i
+                            style={{ width: 10, height: 10, bottom: -5 }}
+                        ></i>
+                        </b>
+                        {item.tokenType?
+                            <span>
+                                {item.tokenType == "trc20" ? (
+                                    <TokenTRC20Link
+                                        name={item.map_token_id}
+                                        address={item.contract_address}
+                                        namePlus={item.map_token_name_abbr}
+                                    />
+                                    ) : (
+                                    <TokenLink
+                                        id={item.map_token_id}
+                                        name={item.map_token_name_abbr}
+                                    />
+                                )}
+                            </span>
+                            :null
+                        }
+                        
+                    </div>
+                    ) : (
+                    <div>
+                        {isAddressValid(item.map_token_name_abbr) ? (
+                        <span>
+                            {tu("address_transfer_unrecorded_token")}
+                        </span>
+                        ) : (
+                           
+                        <div>
+                            {
+                                item.map_amount_logo?
+                                <img
+                                    width={20}
+                                    height={20}
+                                    src={item.map_amount_logo}
+                                    style={{ marginRight: 5 }}
+                                    onError={e => {
+                                        e.target.onerror = null;
+                                        e.target.src = defaultImg;
+                                    }}
+                                />
+                                :
+                                <img
+                                    width={20}
+                                    height={20}
+                                    src={defaultImg}
+                                    style={{ marginRight: 5 }}
+                                    onError={e => {
+                                        e.target.onerror = null;
+                                        e.target.src = defaultImg;
+                                    }}
+                                />
+
+                            }
+                           
+                            {
+                                item.tokenType?
+                                <span>
+                                    {item.tokenType == "trc20" ? (
+                                        <TokenTRC20Link
+                                            name={item.map_token_id}
+                                            address={item.contract_address}
+                                            namePlus={item.map_token_name_abbr}
+                                        />
+                                    ) : (
+                                        <TokenLink
+                                            id={item.map_token_id}
+                                            name={
+                                              item.map_token_name_abbr
+                                                ? item.map_token_name_abbr
+                                                : item.token_name
+                                            }
+                                        />
+                                    )} 
+                                </span>:
+                                <Tooltip placement="top" title={ intl.formatMessage({ id: "address_account_table_filter_token_tips" })}>
+                                    空
+                                </Tooltip>
+                            }
+                        </div>
+                        )}
+                    </div>
+                    )
                 )
               })
             : "-";
