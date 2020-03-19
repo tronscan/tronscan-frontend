@@ -241,7 +241,7 @@ export const lang20Q1 = {
   account_power: "تجميد TRX (حقوق التصويت)",
   account_trade_count: "عدد المعاملات",
   account_trade_count_tip: "عدد المعاملات المرتبطة بالعنوان الحالي",
-  account_more: "查看更多",
+  account_more: "عرض المزيد",
   account_lastDay_count: "حسابات جديدة من اليوم السابق",
   account_realTime_count: "عدد الحسابات في الوقت الحقيقي",
   // account_all: "全部",
@@ -251,7 +251,7 @@ export const lang20Q1 = {
   account_vote_self_percent_tip: "نسبة عدد الأصوات للممثل الممتاز على مجموع الأصوات",
   account_vote_total_percent_tip: "عدد الأصوات التي يمثلها هذا الحساب للممثل الممتاز كنسبة مئوية على إجمالي عدد الأصوات التي تلقاها الممثل الممتاز",
   account_vote_reward_tip: "الأرباح التراكمية من التصويت للممثل الممتاز",
-  account_get_reward: "领取",
+  account_get_reward: "قبول",
   account_freeze_detail: "تجميد التفاصيل",
   account_freeze_self: "للاستخدام الشخصي",
   account_freeze_to_other: "للمستخدمين الآخرين",
@@ -263,12 +263,12 @@ export const lang20Q1 = {
   account_freeze_amount: "المبلغ المجمد",
   account_freeze_resource_amount: "مقدار الموارد المستلمة",
   account_freeze_resource_amount_tip: "يعتمد المبلغ الفعلي للموارد المستلمة على نسبة مقدار التجمد الحالي إلى إجمالي مقدار التجمد ، وهذا مع تباين مقدار التجميد الكلي في الوقت الفعلي ، وبذلك ستتغير الموارد الفعلية المستلمة باستمرار.",
-  account_freeze_no_data: "未查询到冻结信息",
+  account_freeze_no_data: "لم يتم العثور على المعلومات",
 
   // 2020-03-03
   account_resource_last: "الجولة الأخيرة",
   account_resource_realTime: "الجولة الحالية",
-  account_resource_remain: "剩余",
+  account_resource_remain: "المتبقي",
   account_resource_last_tip: "عدد الأصوات المستلمة وترتيب التصنيف في جولة التصويت الأخيرة",
   account_resource_realTime_tip: "عدد الأصوات المستلمة في الوقت الفعلي لجولة التصويت الحالية مع الترتيب في الوقت الحقيقي",
   account_representative_block_ratio: "كفاءة الإنتاج للكتل",
@@ -280,8 +280,8 @@ export const lang20Q1 = {
     "تتكون المكافآت الإجمالية من مكافآت الناخبين ومكافآت الممثل الممتاز",
   account_representative_voter: "مكافآت التصويت",
   account_representative_owner: "مكافآت الممثل الممتاز",
-  account_representative_block_table_res: "资源消耗",
-  account_representative_block_table_prize: "出块收益",
+  account_representative_block_table_res: "الموارد المستهلكة",
+  account_representative_block_table_prize: "مكافآت الكتل",
   account_representative_block_desc:
     "العائد الكلي للكتل TRX {trx} ، من {block} للكتل المنتجة",
   account_representative_voters_per_tip: "الأصوات التي أدلى بها الناخب / مجموع الأصوات",
@@ -301,6 +301,7 @@ export const lang20Q1 = {
   address_account_table_filter_other: "other",
 
   address_account_table_filter_token_tips: "The token is not included in TRONSCAN",
-  current_version:'أحدث إصدار'
+  current_version:'أحدث إصدار',
+  account_block:'الكتل',
 
 };

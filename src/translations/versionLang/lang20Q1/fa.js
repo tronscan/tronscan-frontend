@@ -242,7 +242,7 @@ export const lang20Q1 = {
   account_power: "TRX فریز شده (حق رأی).",
   account_trade_count: "تعداد معاملات",
   account_trade_count_tip: "تعداد معاملات مربوط به این آدرس.",
-  account_more: "查看更多",
+  account_more: "مشاهده بیشتر",
   account_lastDay_count: "حسابهای جدید از روز قبل",
   account_realTime_count: "تعداد حساب های زمان واقعی",
   // account_all: "全部",
@@ -252,7 +252,7 @@ export const lang20Q1 = {
   account_vote_self_percent_tip: "رأی سوپرنماینده از این حساب / کل آراء این حساب.",
   account_vote_total_percent_tip: "رأی سوپرنماینده از این حساب / کل آراء دریافت شده توسط سوپرنماینده.",
   account_vote_reward_tip: "پاداش جمع کننده رای دهنده از سوپرنماینده ها",
-  account_get_reward: "领取",
+  account_get_reward: "دریافت",
   account_freeze_detail: "جزئیات فریز",
   account_freeze_self: "برای استفاده شخصی",
   account_freeze_to_other: "برای دیگر کاربران (بازدید کنندگان)",
@@ -264,12 +264,12 @@ export const lang20Q1 = {
   account_freeze_amount: "مقدار فریز",
   account_freeze_resource_amount: "مقدار منابع دریافت شده",
   account_freeze_resource_amount_tip: "میزان واقعی منابع دریافتی به میزان مقدار انجماد فعلی به مقدار انجماد کلی بستگی دارد. از آنجا که میزان انجماد کلی در زمان واقعی متفاوت است ، منابع واقعی دریافت شده به طور مداوم تغییر می کنند.",
-  account_freeze_no_data: "未查询到冻结信息",
+  account_freeze_no_data: "هیچ اطلاعات پرس و جو یافت نشد",
 
   // 2020-03-03
   account_resource_last: "دور آخر",
   account_resource_realTime: "دور فعلی",
-  account_resource_remain: "剩余",
+  account_resource_remain: "باقی مانده",
   account_resource_last_tip: "شمارش آرا و رتبه بندی دور آخر",
   account_resource_realTime_tip: "شمارش آرا و رتبه بندی دور فعلی",
   account_representative_block_ratio: "بهره وری تولید بلوک",
@@ -281,8 +281,8 @@ export const lang20Q1 = {
     "کل جوایز شامل جوایز رأی دهنده و پاداش سوپر نماینده است",
   account_representative_voter: "پاداش رای دهندگان",
   account_representative_owner: "پاداش سوپرنماینده ها",
-  account_representative_block_table_res: "资源消耗",
-  account_representative_block_table_prize: "出块收益",
+  account_representative_block_table_res: "مصرف منابع",
+  account_representative_block_table_prize: "بازده بلوک",
   account_representative_block_desc:
     "{trx} TRX به دست آمده از بلوک های {block} تولید شده",
   account_representative_voters_per_tip: "رأی های داده شده توسط رای دهنده / مجموع کل آرا.",
@@ -302,7 +302,8 @@ export const lang20Q1 = {
   address_account_table_filter_other: "other",
 
   address_account_table_filter_token_tips: "The token is not included in TRONSCAN",
-  current_version:'آخرین نسخه'
+  current_version:'آخرین نسخه',
+  account_block:'بلوک',
 
 
 };

@@ -123,20 +123,20 @@ export const TRADINGMAP = {
 
 // SunWeb config
 export const SUNWEBCONFIG = {
-  MAINFULLNODE: "https://api.trongrid.io",
-  MAINSOLIDITYNODE: "https://api.trongrid.io",
-  MAINEVENTSERVER: "https://api.trongrid.io",
+  // MAINFULLNODE: "https://api.trongrid.io",
+  // MAINSOLIDITYNODE: "https://api.trongrid.io",
+  // MAINEVENTSERVER: "https://api.trongrid.io",
 
-  // MAINFULLNODE: "https://api.nileex.io",
-  // MAINSOLIDITYNODE: "https://api.nileex.io",
-  // MAINEVENTSERVER: "https://event.nileex.io",
+  // // MAINFULLNODE: "https://api.nileex.io",
+  // // MAINSOLIDITYNODE: "https://api.nileex.io",
+  // // MAINEVENTSERVER: "https://event.nileex.io",
 
-  SUNFULLNODE: "https://sun.tronex.io",
-  SUNSOLIDITYNODE: "https://sun.tronex.io",
-  SUNEVENTSERVER: "https://sun.tronex.io",
-  MAINNET: "TWaPZru6PR5VjgT4sJrrZ481Zgp3iJ8Rfo",
-  SIDECHAIN: "TGKotco6YoULzbYisTBuP6DWXDjEgJSpYz",
-  SIDEID: "41E209E4DE650F0150788E8EC5CAFA240A23EB8EB7"
+  // SUNFULLNODE: "https://sun.tronex.io",
+  // SUNSOLIDITYNODE: "https://sun.tronex.io",
+  // SUNEVENTSERVER: "https://sun.tronex.io",
+  // MAINNET: "TWaPZru6PR5VjgT4sJrrZ481Zgp3iJ8Rfo",
+  // SIDECHAIN: "TGKotco6YoULzbYisTBuP6DWXDjEgJSpYz",
+  // SIDEID: "41E209E4DE650F0150788E8EC5CAFA240A23EB8EB7"
 
   // for shasta
   // MAINFULLNODE: 'http://47.252.84.158:8070',
@@ -160,6 +160,19 @@ export const SUNWEBCONFIG = {
   // MAINNET: "TWaPZru6PR5VjgT4sJrrZ481Zgp3iJ8Rfo",
   // SIDECHAIN: "TGKotco6YoULzbYisTBuP6DWXDjEgJSpYz",
   // SIDEID: "41E209E4DE650F0150788E8EC5CAFA240A23EB8EB7"
+
+  // for tronex 
+  MAINFULLNODE: "https://testhttpapi.tronex.io",
+  MAINSOLIDITYNODE: "https://testhttpapi.tronex.io",
+  MAINEVENTSERVER: "https://testapi.tronex.io",
+
+  SUNFULLNODE: "https://suntest.tronex.io",
+  SUNSOLIDITYNODE: "https://suntest.tronex.io",
+  SUNEVENTSERVER: "https://suntest.tronex.io",
+  
+  MAINNET: "TWaPZru6PR5VjgT4sJrrZ481Zgp3iJ8Rfo",
+  SIDECHAIN: "TGKotco6YoULzbYisTBuP6DWXDjEgJSpYz",
+  SIDEID: "41E209E4DE650F0150788E8EC5CAFA240A23EB8EB7"
 };
 
 //Socket config

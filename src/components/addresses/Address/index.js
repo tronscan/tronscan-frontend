@@ -632,7 +632,8 @@ class Address extends React.Component {
       brokerage:data.brokerage || 0,
       producedEfficiency:data.producedEfficiency || 0,
       blockReward:data.blockReward || 0,
-      version:data.version || 0
+      version:data.version || 0,
+      witnessType:data.witnessType || '-'
     });
   }
 
