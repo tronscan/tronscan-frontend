@@ -102,6 +102,12 @@ class TransfersAll extends React.Component {
 
     }
 
+    componentDidUpdate(prevProps) {
+        if (this.props.blockchain.accountSearchAddress !== prevProps.blockchain.accountSearchAddress) {
+            this.load(1);
+        }
+    }
+
     onChange = (page, pageSize) => {
         this.setState({
             page:page,
@@ -114,6 +120,7 @@ class TransfersAll extends React.Component {
     load = async (page = 1, pageSize = 20) => {
         let transfersTRX;
         let {id,istrc20=false, getCsvUrl} = this.props;
+       
         let {showTotal,hideSmallCurrency,tokenNam,filter,inoutFilter,statusFilter,resultFilter} = this.state;
         let inoutFilterObj = {};
         if(inoutFilter.checkedList.join(',')!==''){
@@ -146,18 +153,37 @@ class TransfersAll extends React.Component {
                 }
             }
         }
-        const params = {
-            sort: '-timestamp',
-            count: showTotal ? true : null,
-            total: this.state.total,
-            start_timestamp:this.start,
-            end_timestamp:this.end,
-            ...filter,
-            ...id,
-            ...inoutFilterObj,
-            ...statusFilterObj,
-            ...resultFilterObj
+        const { accountSearchAddress } = this.props.blockchain;
+        let params
+        if (accountSearchAddress === "") {
+            params = {
+                sort: '-timestamp',
+                count: showTotal ? true : null,
+                total: this.state.total,
+                start_timestamp:this.start,
+                end_timestamp:this.end,
+                ...filter,
+                ...id,
+                ...inoutFilterObj,
+                ...statusFilterObj,
+                ...resultFilterObj,
+            };
+            } else {
+            params = {
+                sort: '-timestamp',
+                count: showTotal ? true : null,
+                total: this.state.total,
+                start_timestamp:this.start,
+                end_timestamp:this.end,
+                ...filter,
+                ...id,
+                ...inoutFilterObj,
+                ...statusFilterObj,
+                ...resultFilterObj,
+                keyword: accountSearchAddress
+            };
         }
+        
         this.setState({
             loading: true,
             page: page,
@@ -672,7 +698,6 @@ class TransfersAll extends React.Component {
                     }
                 },
                 render: (text, record, index) => {
-                    console.log(record)
                     return (
                       <div>
                         {record.map_token_id == 1002000 ||
@@ -877,6 +902,7 @@ class TransfersAll extends React.Component {
 function mapStateToProps(state) {
     return {
       activeLanguage: state.app.activeLanguage,
+      blockchain: state.blockchain
     };
 }
 

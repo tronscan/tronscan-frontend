@@ -90,6 +90,9 @@ class Transactions extends React.Component {
     ) {
       this.loadTransactions();
     }
+    if (this.props.blockchain.accountSearchAddress !== prevProps.blockchain.accountSearchAddress) {
+      this.loadTransactions();
+    }
   }
 
   onChange = (page, pageSize) => {
@@ -129,6 +132,7 @@ class Transactions extends React.Component {
             }
         }
     }
+
 
 
     if (!isinternal) {
@@ -184,13 +188,27 @@ class Transactions extends React.Component {
         [{ transactions }, { total, rangeTotal }] = allData;
       }
     } else {
-      const params = {
-        start_timestamp: this.start,
-        end_timestamp: this.end,
-        ...filter,
-        ...statusFilterObj,
-        ...resultFilterObj
-      };
+      const { accountSearchAddress } = this.props.blockchain;
+      let params
+      if (accountSearchAddress === "") {
+          params = {
+            start_timestamp: this.start,
+            end_timestamp: this.end,
+            ...filter,
+            ...statusFilterObj,
+            ...resultFilterObj
+          };
+          } else {
+          params = {
+            start_timestamp: this.start,
+            end_timestamp: this.end,
+            ...filter,
+            ...statusFilterObj,
+            ...resultFilterObj,
+            keyword: accountSearchAddress
+          };
+      }
+      
       const query = qs.stringify({ format: "csv", ...params });
       getCsvUrl(`${API_URL}/api/internal-transaction?${query}`);
 
@@ -942,6 +960,7 @@ class Transactions extends React.Component {
 function mapStateToProps(state) {
   return {
     activeLanguage: state.app.activeLanguage,
+    blockchain: state.blockchain
   };
 }
 

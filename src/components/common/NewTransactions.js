@@ -105,6 +105,12 @@ class NewTransactions extends React.Component {
         if (prevProps.filter.address !== filter.address && page.router == 'account') {
             this.loadTransactions();
         }
+      
+        if (this.props.blockchain.accountSearchAddress !== prevProps.blockchain.accountSearchAddress) {
+            console.log(this.props.blockchain.accountSearchAddress);
+            console.log(prevProps.blockchain.accountSearchAddress);
+            this.loadTransactions();
+        }
     }
 
     onChange = (page, pageSize) => {
@@ -154,20 +160,40 @@ class NewTransactions extends React.Component {
             }
         }
 
+       
+        
+
         let transactions, total,rangeTotal = 0;
 
         if(!isinternal ){
             if(address){
-                const params = {
-                    sort: '-timestamp',
-                    total: this.state.total,
-                    start_timestamp:this.start,
-                    end_timestamp:this.end,
-                    ...filter,
-                    ...typeFilterObj,
-                    ...statusFilterObj,
-                    ...resultFilterObj
+                const { accountSearchAddress } = this.props.blockchain;
+                let params
+                if (accountSearchAddress === "") {
+                    params = {
+                        sort: '-timestamp',
+                        total: this.state.total,
+                        start_timestamp:this.start,
+                        end_timestamp:this.end,
+                        ...filter,
+                        ...typeFilterObj,
+                        ...statusFilterObj,
+                        ...resultFilterObj
+                    };
+                    } else {
+                    params = {
+                        sort: '-timestamp',
+                        total: this.state.total,
+                        start_timestamp:this.start,
+                        end_timestamp:this.end,
+                        ...filter,
+                        ...typeFilterObj,
+                        ...statusFilterObj,
+                        ...resultFilterObj,
+                        keyword: accountSearchAddress
+                    };
                 }
+               
                 let data = {}
                 let countData = {}
                 let totalData = {}
@@ -653,7 +679,7 @@ class NewTransactions extends React.Component {
                 filterDropdown: resultFilterDropdown,
                 onFilterDropdownVisibleChange: (visible) => {
                     if (visible) {
-                        console.log('visible')
+                        // console.log('visible')
                     }else{
                         // if(resultFilter.checkedList.length !== 0){
                             this.loadTransactions(1);
@@ -728,7 +754,6 @@ class NewTransactions extends React.Component {
                     }
                 },
                 render: (text, record, index) => {
-                    console.log(record)
                     return (
                         <div>
                             {   record.map_token_id == 1002000 ||
@@ -1030,6 +1055,7 @@ class NewTransactions extends React.Component {
 function mapStateToProps(state) {
     return {
       activeLanguage: state.app.activeLanguage,
+      blockchain: state.blockchain
     };
   }
 

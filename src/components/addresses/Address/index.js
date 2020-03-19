@@ -22,6 +22,7 @@ import Blocks from "../../common/Blocks";
 import rebuildList from "../../../utils/rebuildList";
 import rebuildToken20List from "../../../utils/rebuildToken20List";
 import { ONE_TRX, API_URL, ADDRESS_TAG_ICON } from "../../../constants.js";
+import { updateAccountTabInfo } from "../../../actions/blockchain";
 import {
   FormatNumberByDecimals,
   FormatNumberByDecimalsBalance,
@@ -119,12 +120,12 @@ class Address extends React.Component {
       transfersSearchAddress:'',
       transactionsSearchAddress:'',
       internalSearchAddress:'',
-      passAddress:''
     };
   }
 
   async componentDidMount() {
     let { match ,priceUSD} = this.props;
+   
     this.loadAddress(match.params.id);
     this.loadWitness(match.params.id);
     this.loadWalletReward(match.params.id);
@@ -134,7 +135,7 @@ class Address extends React.Component {
 
   componentDidUpdate(prevProps) {
     let { match } = this.props;
-
+    
     if (match.params.id !== prevProps.match.params.id) {
       this.loadAddress(match.params.id);
       this.loadWitness(match.params.id);
@@ -213,9 +214,7 @@ class Address extends React.Component {
   async loadAddress(id) {
     let { intl } = this.props;
     this.setState({ loading: true, address: { address: id }, media: null });
-    let {passAddress} = this.state;
     let address = await Client.getAddress(id);
-    console.log(address,'address')
     let sentDelegateBandwidth = 0;
     if (address.delegated && address.delegated.sentDelegatedBandwidth) {
       for (
@@ -409,7 +408,7 @@ class Address extends React.Component {
             label: <span>{tu("transfers")}</span>,
             cmp: () => (
               <TransfersAll
-                id={{ address: id,keyword:passAddress }}
+                id={{ address: id}}
                 getCsvUrl={csvurl => this.setState({ csvurl })}
                 address
                 routerResetSearchFun={()=>this.routerResetSearch()}
@@ -431,7 +430,7 @@ class Address extends React.Component {
             cmp: () => (
               <NewTransactions
                 getCsvUrl={csvurl => this.setState({ csvurl })}
-                filter={{ address: id,keyword:passAddress }}
+                filter={{ address: id}}
                 routerResetSearchFun={()=>this.routerResetSearch()}
                 address
               />
@@ -445,7 +444,7 @@ class Address extends React.Component {
             cmp: () => (
               <Transactions
                 getCsvUrl={csvurl => this.setState({ csvurl })}
-                filter={{ address: id,keyword:passAddress }}
+                filter={{ address: id }}
                 routerResetSearchFun={()=>this.routerResetSearch()}
                 isinternal
               />
@@ -794,57 +793,88 @@ class Address extends React.Component {
             )
         });
     }
-};
+  };
 
   resetSearch = async () => {
     this.setState({
       searchAddress: "",
       searchAddressClose: false
     });
-    
-    // let { match, tokensInfo } = this.props;
-    // const params = {
-    //   contract_address: decodeURI(match.params.address),
-    //   start_timestamp: tokensInfo.start_timestamp,
-    //   end_timestamp: tokensInfo.end_timestamp
-    // };
-
-    // const allData = await Promise.all([
-    //   Client.getTokenTRC20Transfers({
-    //     limit: 20,
-    //     ...params
-    //   }),
-    //   Client.getCountByType({
-    //     type: "trc20",
-    //     contract: decodeURI(match.params.address)
-    //   })
-    // ]).catch(e => {
-    //   this.props.updateTokenInfo({
-    //     transferSearchStatus: false
-    //   });
-    //   console.log("error:" + e);
-    // });
-
-    // const [{ list, rangeTotal }, { count }] = allData;
-    // let transfers = list || [];
-
-    // for (let index in transfers) {
-    //   transfers[index].index = parseInt(index) + 1;
-    // }
-    // this.props.updateTokenInfo({
-    //   transfers20ListObj: {
-    //     transfers,
-    //     total: count,
-    //     rangeTotal
-    //   },
-    //   transferSearchStatus: false
-    // });
+    this.props.updateAccountTabInfo({
+      accountSearchAddress: ""
+    });
   };
+
+  transfersFun = async () =>{
+    let list,total,range = 0;
+    // const allData = await Promise.all([
+    //     Client.getTransfersAll({
+    //         limit: pageSize,
+    //         start: (page - 1) * pageSize,
+    //         ...params,
+    //     }),
+    //     Client.getCountByType({
+    //         type: 'trc10trc20', 
+    //         ...filter,
+    //         {id:123}
+    //     })
+    // ]).catch(e => {
+    //     console.log('error:' + e);
+    // });
+
+    // const [{ transfers, total:totaldata, rangeTotal }, { count } ] = allData;
+
+    // list = transfers;
+    // total = count || totaldata;
+    // range = rangeTotal;
+    // transfers.map(item => {
+    //     if (!item.amount_str) {
+    //         item.amount_str = item.amount;
+    //     }
+    // })
+    // let transfersTRC10 = _(transfers).filter(tb => tb.type === "trc10" ).value();
+    // let transfersTRC20 = _(transfers).filter(tb => tb.type === "trc20" ).value();
+
+    // let rebuildRransfersTRC10 = rebuildList(transfersTRC10, 'token_id', 'amount_str');
+    // let rebuildRransfersTRC20  = rebuildToken20List(transfersTRC20, 'contract_address', 'amount_str');
+    // let rebuildRransfers = rebuildRransfersTRC10.concat(rebuildRransfersTRC20);
+    // rebuildRransfers =  _(rebuildRransfers).sortBy(tb => -tb.date_created).value();
+    // rebuildRransfers.map( item => {
+    //     if(item.map_token_id === '_'){
+    //         item.map_amount_logo = 'https://s2.coinmarketcap.com/static/img/coins/64x64/1958.png';
+    //         //item.type = '-';
+    //     }
+    //     if(id.address){
+    //         if(item.type == 'trc10'){
+    //             item.fromtip = !(item.owner_address == id.address)
+    //             item.totip = !(item.to_address == id.address)
+    //         }else{
+    //             item.fromtip = !(item.from_address == id.address)
+    //             item.totip = !(item.to_address == id.address)
+    //         }
+
+    //     }else{
+    //         item.fromtip = true
+    //         item.totip = true
+    //     }
+    // })
+    // this.setState({
+    //     page,
+    //     transfers:rebuildRransfers,
+    //     total:total,
+    //     rangeTotal:range,
+    //     loading: false,
+    // });
+}
+
 
   routerResetSearch = async () =>{
     this.setState({
       searchAddress: "",
       searchAddressClose: false
+    });
+    this.props.updateAccountTabInfo({
+      accountSearchAddress: ""
     });
   }
 
@@ -873,22 +903,25 @@ class Address extends React.Component {
     this.setState({
       searchAddress: serchInputVal
     });
-    let pathname = this.props.location.pathname;
-    
-    if(pathname.slice(-9) === "transfers" ){
-      this.setState({
-        passAddress:serchInputVal
-      })
+    this.props.updateAccountTabInfo({
+      accountSearchAddress: serchInputVal
+    });
+    console.log(this.state.searchAddress,'searchAddress');
+    // let pathname = this.props.location.pathname;
+    // if(pathname.slice(-9) === "transfers" ){
+     
       
-      // this.loadAddress(match.params.id);
-    }else if(pathname.slice(-12) === "transactions"){
+    //   // this.loadAddress(match.params.id);
+    // }else if(pathname.slice(-12) === "transactions"){
 
-    }else if(pathname.slice(-21) === "internal-transactions"){
+    // }else if(pathname.slice(-21) === "internal-transactions"){
 
-    }
+    // }
 
   };
 
+
+  // key down
   onSearchKeyDown = ev => {
     if (ev.keyCode === 13) {
       this.addressSearchFun();
@@ -1423,8 +1456,10 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-  loadUsdPrice
+  loadUsdPrice,
+  updateAccountTabInfo
 };
+
 
 // export default injectIntl(Address);
 export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(Address));
