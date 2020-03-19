@@ -139,7 +139,7 @@ class Representatives extends Component {
               />
             ))}
             <tr style={{ height: "72px" }}>
-              <td colSpan="9" className="font-weight-bold">
+              <td colSpan="10" className="font-weight-bold">
                 <i
                   className="far fa-handshake mr-2 ml-2"
                   style={{ color: "#666" }}

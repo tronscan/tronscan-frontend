@@ -53,6 +53,7 @@ class Representative extends React.Component {
     let { intl, url, account, walletType } = this.props;
     let { votingEnabled, popup } = this.state;
     let type = "-";
+    console.log(123,witnessType)
     switch (witnessType) {
       case 1:
         type = tu("Super Representatives");
