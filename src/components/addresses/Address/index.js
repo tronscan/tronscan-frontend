@@ -116,6 +116,10 @@ class Address extends React.Component {
       producedEfficiency:0,
       searchAddress:'',
       searchAddressClose:false,
+      transfersSearchAddress:'',
+      transactionsSearchAddress:'',
+      internalSearchAddress:'',
+      passAddress:''
     };
   }
 
@@ -209,7 +213,7 @@ class Address extends React.Component {
   async loadAddress(id) {
     let { intl } = this.props;
     this.setState({ loading: true, address: { address: id }, media: null });
-
+    let {passAddress} = this.state;
     let address = await Client.getAddress(id);
 
     let sentDelegateBandwidth = 0;
@@ -377,7 +381,7 @@ class Address extends React.Component {
       sentDelegateResource,
       frozenEnergy,
       TRXBalance,
-      balance: address.balance
+      balance: address.balance,
     });
 
     if (address.representative.enabled) {
@@ -405,9 +409,10 @@ class Address extends React.Component {
             label: <span>{tu("transfers")}</span>,
             cmp: () => (
               <TransfersAll
-                id={{ address: id }}
+                id={{ address: id,keyword:passAddress }}
                 getCsvUrl={csvurl => this.setState({ csvurl })}
                 address
+                routerResetSearchFun={()=>this.routerResetSearch()}
               />
             )
           },
@@ -426,7 +431,8 @@ class Address extends React.Component {
             cmp: () => (
               <NewTransactions
                 getCsvUrl={csvurl => this.setState({ csvurl })}
-                filter={{ address: id }}
+                filter={{ address: id,keyword:passAddress }}
+                routerResetSearchFun={()=>this.routerResetSearch()}
                 address
               />
             )
@@ -435,11 +441,12 @@ class Address extends React.Component {
             id: "intransactions",
             // icon: "fas fa-handshake",
             path: "/internal-transactions",
-            label: <span>{tu("internal_transactions")}</span>,
+            label: <span>{tu("Internal_txns")}</span>,
             cmp: () => (
               <Transactions
                 getCsvUrl={csvurl => this.setState({ csvurl })}
-                filter={{ address: id }}
+                filter={{ address: id,keyword:passAddress }}
+                routerResetSearchFun={()=>this.routerResetSearch()}
                 isinternal
               />
             )
@@ -531,6 +538,7 @@ class Address extends React.Component {
               <TransfersAll
                 getCsvUrl={csvurl => this.setState({ csvurl })}
                 id={{ address: id }}
+                routerResetSearchFun={()=>this.routerResetSearch()}
                 address
               />
             )
@@ -540,7 +548,7 @@ class Address extends React.Component {
           //   // icon: "fa fa-exchange-alt",
           //   path: "/20transfers",
           //   label: <span>{tu("20_transfers")}</span>,
-          //   cmp: () => <TransfersTrc20 filter={{address: id}}/>
+          //   cmp: () => <TransfersTrc20 filter={{address: id}}/>:
           // },
           transactions: {
             id: "transactions",
@@ -552,6 +560,7 @@ class Address extends React.Component {
               <NewTransactions
                 getCsvUrl={csvurl => this.setState({ csvurl })}
                 filter={{ address: id }}
+                routerResetSearchFun={()=>this.routerResetSearch()}
                 address
               />
             )
@@ -560,11 +569,12 @@ class Address extends React.Component {
             id: "intransactions",
             // icon: "fas fa-handshake",
             path: "/internal-transactions",
-            label: <span>{tu("internal_transactions")}</span>,
+            label: <span>{tu("Internal_txns")}</span>,
             cmp: () => (
               <Transactions
                 getCsvUrl={csvurl => this.setState({ csvurl })}
                 filter={{ address: id }}
+                routerResetSearchFun={()=>this.routerResetSearch()}
                 isinternal
                 address
               />
@@ -623,8 +633,7 @@ class Address extends React.Component {
       brokerage:data.brokerage || 0,
       producedEfficiency:data.producedEfficiency || 0,
       blockReward:data.blockReward || 0,
-      version:data.version || 0,
-      witnessType:data.witnessType || ''
+      version:data.version || 0
     });
   }
 
@@ -831,6 +840,13 @@ class Address extends React.Component {
     // });
   };
 
+  routerResetSearch = async () =>{
+    this.setState({
+      searchAddress: "",
+      searchAddressClose: false
+    });
+  }
+
 
   addressSearchFun = async () => {
     let serchInputVal = this.searchAddress.value;
@@ -856,6 +872,19 @@ class Address extends React.Component {
     this.setState({
       searchAddress: serchInputVal
     });
+    let pathname = this.props.location.pathname;
+    
+    if(pathname.slice(-9) === "transfers" ){
+      this.setState({
+        passAddress:serchInputVal
+      })
+      let { match } = this.props;
+      // this.loadAddress(match.params.id);
+    }else if(pathname.slice(-12) === "transactions"){
+
+    }else if(pathname.slice(-21) === "internal-transactions"){
+
+    }
 
   };
 
@@ -1264,7 +1293,7 @@ class Address extends React.Component {
                             bottom: "6px",
                             height: 35
                           }:
-                            activeLanguage == "ru" ||   activeLanguage == "es"?{
+                            activeLanguage == "ru"?{
                               float:"right",
                               padding: "0 1rem 6px 0",
                               position:"absolute",
@@ -1274,10 +1303,7 @@ class Address extends React.Component {
                               float:"right",
                               padding: "0 1rem 6px 0",
                             }
-                          
-                             
                           }
-                        
                       >
                         <div
                           className="input-group-append"

@@ -6,21 +6,24 @@ import {connect} from "react-redux";
 import {Client} from "../../services/api";
 import {TransactionHashLink, AddressLink, BlockNumberLink,TokenLink, TokenTRC20Link} from "./Links";
 import {tu} from "../../utils/i18n";
-import { Icon,Checkbox } from "antd";
+import { Icon,Checkbox,Tooltip } from "antd";
 // import TimeAgo from "react-timeago";
 import {TronLoader} from "./loaders";
 import {Truncate,TruncateAddress} from "./text";
 import {ContractTypes} from "../../utils/protocol";
 import SmartTable from "./SmartTable.js"
 import {upperFirst} from "lodash";
+import _ from "lodash";
 import {QuestionMark} from "./QuestionMark";
 import {isAddressValid} from "@tronscan/client/src/utils/crypto";
 import TotalInfo from "./../../components/addresses/components/TableTotal";
-import DateSelect from './../../components/addresses/components/dateSelect'
+import DateSelect from './../../components/addresses/components/dateSelect';
+import { CONTRACT_ADDRESS_USDT, CONTRACT_ADDRESS_WIN, CONTRACT_ADDRESS_GGC } from "../../constants";
 import moment from 'moment';
 import {NameWithId} from "./names";
 import isMobile from "../../utils/isMobile";
 import rebuildList from "../../utils/rebuildList";
+import rebuildToken20List from "../../utils/rebuildToken20List";
 import xhr from "axios/index";
 import {API_URL} from '../../constants.js'
 import qs from 'qs'
@@ -94,6 +97,7 @@ class NewTransactions extends React.Component {
 
     componentDidMount() {
         // this.loadTransactions();
+        this.props.routerResetSearchFun()
     }
 
     componentDidUpdate(prevProps) {
@@ -134,7 +138,7 @@ class NewTransactions extends React.Component {
         let statusFilterObj = {};
         if(statusFilter.checkedList.join(',')!==''){
             statusFilterObj = {
-                confirmed:statusFilter.checkedList.join(','),
+                confirm:statusFilter.checkedList.join(','),
             }
         }
         let resultFilterObj = {};
@@ -212,9 +216,33 @@ class NewTransactions extends React.Component {
                         console.log('error:' + e);
                     });
                     [data, totalData, countData] = allData;
+
                     transactions = data.transactions;
                     total = countData.rangeTotal;
                     rangeTotal = totalData.rangeTotal;
+
+                    transactions.map(item => {
+                        if (!item.amount_str) {
+                            item.amount_str = item.amount;
+                        }
+                    })
+                    let transfersTRC10 = _(transactions).filter(tb => tb.tokenType === "trc10" ).value();
+                    let transfersTRC20 = _(transactions).filter(tb => tb.tokenType === "trc20" ).value();
+                    let transfersOther = _(transactions).filter(tb => !tb.tokenType ).value();
+
+                    
+                    let rebuildRransfersTRC10 = rebuildList(transfersTRC10, 'tokenId', 'amount');
+                    let rebuildRransfersTRC20  = rebuildToken20List(transfersTRC20, 'contractAddress', 'amount');
+                    let rebuildRransfers = rebuildRransfersTRC10.concat(rebuildRransfersTRC20).concat(transfersOther);
+                    rebuildRransfers =  _(rebuildRransfers).sortBy(tb => -tb.date_created).value();
+                    rebuildRransfers.map( item => {
+                        if(item.map_token_id === '_'){
+                            item.map_amount_logo = 'https://s2.coinmarketcap.com/static/img/coins/64x64/1958.png';
+                        }
+                    })
+                   
+                     
+                    transactions = rebuildRransfers;
                 }
 
             }else{
@@ -290,6 +318,7 @@ class NewTransactions extends React.Component {
             resultFilter,resultOptionsAry,
             tokenFilter,tokenOptionsAry,
         } = this.state;
+        const defaultImg = require("../../images/logo_default.png");
         const typeFilterDropdown = ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
             <div>
                 <div style={{padding: "5px 12px"}}>
@@ -458,7 +487,7 @@ class NewTransactions extends React.Component {
                 dataIndex: 'hash',
                 key: 'hash',
                 align: 'left',
-                width:'8%',
+                width: activeLanguage ==='ja' ? '7%' :'8%',
                 className: 'ant_table',
                 render: (text, record, index) => {
                     return <Truncate>
@@ -474,7 +503,7 @@ class NewTransactions extends React.Component {
                 key: 'block',
                 align: 'left',
                 className: 'ant_table',
-                width: '10%',
+                width: '9%',
                 render: (text, record, index) => {
                     return <BlockNumberLink number={record.block}/>
                 }
@@ -490,12 +519,12 @@ class NewTransactions extends React.Component {
                             id: timeType ? "age" : "trc20_cur_order_header_order_time"
                         })
                         )}
-                        <Icon
-                        type="retweet"
-                        style={{
-                            verticalAlign: 0,
-                            marginLeft: 10
-                        }}
+                            <Icon
+                            type="retweet"
+                            style={{
+                                verticalAlign: 0,
+                                marginLeft: 10
+                            }}
                         />
                     </span>
                 ),
@@ -503,7 +532,7 @@ class NewTransactions extends React.Component {
                 key: 'timestamp',
                 align: 'left',
                 className: 'ant_table',
-                width: activeLanguage ==='ru' ? '12%' : '15%',
+                width: activeLanguage ==='ru' ? '12%' : '19%',
                 render: (text, record, index) => {
                     return(
                         <div>
@@ -579,7 +608,7 @@ class NewTransactions extends React.Component {
                 dataIndex: 'status',
                 key: 'status',
                 align: 'left',
-                width: activeLanguage ==='ru' ? '34%' :'16%',
+                width: activeLanguage ==='ru' ? '24%' :'20%',
                 filterIcon: () => {
                     return (
                         <Icon type="caret-down" style={{fontSize:12,color:'#999'}}  theme="outlined" />
@@ -615,7 +644,7 @@ class NewTransactions extends React.Component {
                 key: 'contractRet',
                 align: 'left',
                 className: 'ant_table',
-                width: '14%',
+                width: '11%',
                 filterIcon: () => {
                     return (
                         <Icon type="caret-down" style={{fontSize:12,color:'#999'}}  theme="outlined" />
@@ -684,6 +713,7 @@ class NewTransactions extends React.Component {
                 align: "left",
                 key: "tokens",
                 className: "ant_table",
+                width: '8%',
                 filterIcon: () => {
                     return (
                         <Icon type="caret-down" style={{fontSize:12,color:'#999'}}  theme="outlined" />
@@ -698,11 +728,114 @@ class NewTransactions extends React.Component {
                     }
                 },
                 render: (text, record, index) => {
-                    // console.log(record)
+                    console.log(record)
                     return (
                         <div>
-                            12312312
-                       
+                            {   record.map_token_id == 1002000 ||
+                                record.map_token_id == CONTRACT_ADDRESS_USDT ||
+                                record.map_token_id == CONTRACT_ADDRESS_WIN ||
+                                record.map_token_id == CONTRACT_ADDRESS_GGC ? (
+                                <div>
+                                    <b
+                                        className="token-img-top"
+                                        style={{ marginRight: 5 }}
+                                    >
+                                    <img
+                                        width={20}
+                                        height={20}
+                                        src={record.map_amount_logo}
+                                        onError={e => {
+                                            e.target.onerror = null;
+                                            e.target.src = defaultImg;
+                                        }}
+                                    />
+                                    <i
+                                        style={{ width: 10, height: 10, bottom: -5 }}
+                                    ></i>
+                                    </b>
+                                    {record.tokenType?
+                                        <span>
+                                            {record.tokenType == "trc20" ? (
+                                                <TokenTRC20Link
+                                                    name={record.map_token_id}
+                                                    address={record.contract_address}
+                                                    namePlus={record.map_token_name_abbr}
+                                                />
+                                                ) : (
+                                                <TokenLink
+                                                    id={record.map_token_id}
+                                                    name={record.map_token_name_abbr}
+                                                />
+                                            )}
+                                        </span>
+                                        :null
+                                    }
+                                    
+                                </div>
+                                ) : (
+                                <div>
+                                    {isAddressValid(record.map_token_name_abbr) ? (
+                                    <span>
+                                        {tu("address_transfer_unrecorded_token")}
+                                    </span>
+                                    ) : (
+                                       
+                                    <div>
+                                        {
+                                            record.map_amount_logo?
+                                            <img
+                                                width={20}
+                                                height={20}
+                                                src={record.map_amount_logo}
+                                                style={{ marginRight: 5 }}
+                                                onError={e => {
+                                                    e.target.onerror = null;
+                                                    e.target.src = defaultImg;
+                                                }}
+                                            />
+                                            :
+                                            <img
+                                                width={20}
+                                                height={20}
+                                                src={defaultImg}
+                                                style={{ marginRight: 5 }}
+                                                onError={e => {
+                                                    e.target.onerror = null;
+                                                    e.target.src = defaultImg;
+                                                }}
+                                            />
+
+                                        }
+                                       
+                                        {
+                                            record.tokenType?
+                                            <span>
+                                                {record.tokenType == "trc20" ? (
+                                                    <TokenTRC20Link
+                                                        name={record.map_token_id}
+                                                        address={record.contract_address}
+                                                        namePlus={record.map_token_name_abbr}
+                                                    />
+                                                ) : (
+                                                    <TokenLink
+                                                        id={record.map_token_id}
+                                                        name={
+                                                        record.map_token_name_abbr
+                                                            ? record.map_token_name_abbr
+                                                            : record.token_name
+                                                        }
+                                                    />
+                                                )} 
+                                            </span>:
+                                            <Tooltip placement="top" title={ intl.formatMessage({ id: "address_account_table_filter_token_tips" })}>
+                                                空
+                                            </Tooltip>
+                                        }
+                                    </div>
+                                    )}
+                                </div>
+                                )
+                            }
                         </div>
                     )
                 }
@@ -714,7 +847,7 @@ class NewTransactions extends React.Component {
 
     trc20CustomizedColumn = () => {
         let {intl} = this.props;
-       
+        
         let column = [
 
             {
