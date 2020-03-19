@@ -14,6 +14,7 @@ import isMobile from "./../utils/isMobile";
 import {
   getPerformanceTiming
 } from "../utils/DateTime";
+import System from "../components/tools/System";
 
 // import { setToken20Map, setTokenMap } from './../actions/account';
 
@@ -28,10 +29,30 @@ export default class App {
   }
 
   async getTokensMap() {
-
     let {
       data
     } = await xhr.get(`${API_URL}/api/token?uuid=${uuidv4}&showAll=1&limit=5000&id_gt=1002828&fields=id,name,precision,abbr,imgUrl`);
+    //var beginTime = +new Date();
+   // console.log("333:",tokensMap)
+
+      for (let k of Object.keys(tokensMap))  {
+        //k,obj[k]
+        //https://coin.top/production/js/20190509074813.png   _-_
+        //https://coin.top/production/logo/  |_|
+        //https://coin.top/tokenLogo/tokenLogo  !_!
+        //https://coin.top/production/upload/logo/ #_#
+        var value=tokensMap[k];
+        if (value.indexOf("_-_") >-1) {
+          value=value.replace("_-_","https://coin.top/production/js/20190509074813.png");
+        } else if (value.indexOf("|_|") >-1) {
+          value=value.replace("|_|","https://coin.top/production/logo/");
+        } else if (value.indexOf("!_!") >-1) {
+          value=value.replace("!_!","https://coin.top/tokenLogo/tokenLogo");
+        } else if (value.indexOf("#_#")>-1) {
+          value=value.replace("#_#","https://coin.top/production/upload/logo/");
+        }
+        tokensMap[k]=value;
+      }
 
     let imgUrl;
     for (var i = 0; i < data.data.length; i++) {
@@ -53,6 +74,8 @@ export default class App {
           imgUrl;
       }
     }
+    //console.log('default :getTokensMap2',tokensMap);
+
     localStorage.setItem("tokensMap", JSON.stringify(tokensMap));
     // store.dispatch(setTokenMap(tokensMap));
   }
