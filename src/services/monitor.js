@@ -9,9 +9,9 @@ class ApiClientMonitor {
   }
 
   async setMonitor(data) {
-    if (true) {
-        return;
-    }
+    // if (true) {
+    //     return;
+    // }
     let url = this.apiUrl["mainnet"];
     return  await xhr({
         method: "post",
