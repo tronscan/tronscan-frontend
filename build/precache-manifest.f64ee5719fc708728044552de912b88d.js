@@ -16,11 +16,11 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/editor.worker.js.gz"
   },
   {
-    "revision": "eb2511f159c246697da07b3a1685a0d8",
+    "revision": "320e7c152e8b41b8d766a1bec3b6a044",
     "url": "/index.html"
   },
   {
-    "revision": "a3e9f578e6447bcf5bc2226bc59599ad",
+    "revision": "f37eb0773c9744cc8a196e88fe147ee0",
     "url": "/index.html.gz"
   },
   {
@@ -320,12 +320,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/AddSignatureModal.1533af0c.chunk.js.gz"
   },
   {
-    "revision": "ae79381d961fc14c8fc2",
-    "url": "/static/js/Address.0730fb49.chunk.js"
+    "revision": "6f087e7ef54c4f6ac5d2",
+    "url": "/static/js/Address.a98f7a25.chunk.js"
   },
   {
-    "revision": "0546c8164e6dd5ff468810591322b0af",
-    "url": "/static/js/Address.0730fb49.chunk.js.gz"
+    "revision": "e6195d5c3bebc117ed3b4ab3fb7182d3",
+    "url": "/static/js/Address.a98f7a25.chunk.js.gz"
   },
   {
     "revision": "bfc725eb2620a2e326ee",
@@ -504,12 +504,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/MyProposals.21270d22.chunk.js.gz"
   },
   {
-    "revision": "8a04ec7d47fe1dce8b2c",
-    "url": "/static/js/MyToken.224f46bc.chunk.js"
+    "revision": "186048f7652f3a7ea63a",
+    "url": "/static/js/MyToken.055e65f5.chunk.js"
   },
   {
-    "revision": "7f21dae0d8c46fce3bc6ac78d778555c",
-    "url": "/static/js/MyToken.224f46bc.chunk.js.gz"
+    "revision": "68eeb50267defd6f481e06db11be2bdb",
+    "url": "/static/js/MyToken.055e65f5.chunk.js.gz"
   },
   {
     "revision": "e87b8e0da5eea2ca0b94",
@@ -776,12 +776,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/main.6ef28a14.chunk.js.gz"
   },
   {
-    "revision": "225b990d9cb8b45def36",
-    "url": "/static/js/runtime~main.9dd4082d.js"
+    "revision": "0970bc241b76a53c90f7",
+    "url": "/static/js/runtime~main.16647b42.js"
   },
   {
-    "revision": "b15bfd40fbd808e53bb8c66888e78fc0",
-    "url": "/static/js/runtime~main.9dd4082d.js.gz"
+    "revision": "eded499613a415fd5efed08beed28b94",
+    "url": "/static/js/runtime~main.16647b42.js.gz"
   },
   {
     "revision": "7b00f7c4e78ed9cfc676c64c040965e8",
