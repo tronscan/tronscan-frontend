@@ -301,6 +301,7 @@ export const lang20Q1 = {
   address_account_table_filter_other: "other",
 
   address_account_table_filter_token_tips: "The token is not included in TRONSCAN",
-  current_version:'أحدث إصدار'
+  current_version:'أحدث إصدار',
+  account_block:'出块',
 
 };
