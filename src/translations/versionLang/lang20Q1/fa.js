@@ -304,7 +304,7 @@ export const lang20Q1 = {
   address_account_table_filter_token_tips: "The token is not included in TRONSCAN",
   current_version:'آخرین نسخه',
   account_block:'بلوک',
-  account_address_total_balance_tip:""
+  account_address_total_balance_tip:"مبلغ ارزش تمام نشانه های موجود در حساب"
 
 
 };

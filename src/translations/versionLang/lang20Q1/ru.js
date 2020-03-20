@@ -322,6 +322,6 @@ export const lang20Q1 = {
     "The token is not included in TRONSCAN",
   current_version: "издание",
   account_block: "Блоки",
-  account_address_total_balance_tip:""
+  account_address_total_balance_tip:"Сумма стоимости всех токенов на счете"
 
 };
