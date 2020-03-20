@@ -301,7 +301,7 @@ class TransfersAll extends React.Component {
       };
 
     customizedColumn = (activeLanguage) => {
-        let { intl } = this.props;
+        let { intl, allSelectedTokenAry } = this.props;
         const defaultImg = require("../../images/logo_default.png");
         const { 
             timeType,
@@ -432,14 +432,14 @@ class TransfersAll extends React.Component {
         )
 
         const tokenFilterDropdown =  ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
-            <div>
+            <div style={{maxHeight:'320px',overflow:'scroll'}}>
                 <div style={{padding: "5px 12px"}}>
                     <Checkbox
                         indeterminate={tokenFilter.indeterminate}
                         onChange={
                             e => {
                                 let obj = {
-                                  checkedList: e.target.checked ? [1,2] : [],
+                                  checkedList: e.target.checked ? allSelectedTokenAry : [],
                                   indeterminate: false,
                                   checkAll: e.target.checked,
                                 }

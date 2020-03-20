@@ -338,7 +338,7 @@ class NewTransactions extends React.Component {
     }
 
     customizedColumn = (activeLanguage) => {
-        let {intl,filter} = this.props;
+        let {intl,filter,allSelectedTokenAry} = this.props;
         const { 
             timeType,
             typeOptionsAry,typeFilter,
@@ -468,14 +468,14 @@ class NewTransactions extends React.Component {
             </div>
         )
         const tokenFilterDropdown =  ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
-            <div>
+            <div style={{maxHeight:'320px',overflow:'scroll'}}>
                 <div style={{padding: "5px 12px"}}>
                     <Checkbox
                         indeterminate={tokenFilter.indeterminate}
                         onChange={
                             e => {
                                 let obj = {
-                                  checkedList: e.target.checked ? [] : [],
+                                  checkedList: e.target.checked ? allSelectedTokenAry : [],
                                   indeterminate: false,
                                   checkAll: e.target.checked,
                                 }
@@ -757,7 +757,7 @@ class NewTransactions extends React.Component {
                 },
                 render: (text, record, index) => {
                     return (
-                        <div>
+                        <div >
                             {   record.map_token_id == 1002000 ||
                                 record.map_token_id == CONTRACT_ADDRESS_USDT ||
                                 record.map_token_id == CONTRACT_ADDRESS_WIN ||

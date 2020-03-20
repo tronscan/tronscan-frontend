@@ -347,7 +347,7 @@ class Address extends React.Component {
     });
 
     // getAssetWithPriceList
-    let tokenAry = []
+    let tokenAry = [],selectIdAry = [];
     await xhr.get(
       `${API_URL}/api/getAssetWithPriceList`
     )
@@ -356,7 +356,8 @@ class Address extends React.Component {
         if(res.data.data){
           let newData = res.data.data;
           newData.forEach(item=>{
-            tokenAry.push({label:item.abbr,value:item.id})
+            tokenAry.push({label:item.abbr,value:item.id});
+            selectIdAry.push(item.id)
           })
         }
       }else{
@@ -430,6 +431,7 @@ class Address extends React.Component {
               <TransfersAll
                 id={{ address: id}}
                 tokenList={tokenAry}
+                allSelectedTokenAry={selectIdAry}
                 getCsvUrl={csvurl => this.setState({ csvurl })}
                 address
                 routerResetSearchFun={()=>this.routerResetSearch()}
@@ -452,7 +454,8 @@ class Address extends React.Component {
               <NewTransactions
                 getCsvUrl={csvurl => this.setState({ csvurl })}
                 filter={{ address: id}}
-                tokenList={tokenAry}
+                allSelectedTokenAry={selectIdAry}
+                allSelected={selectIdAry}
                 routerResetSearchFun={()=>this.routerResetSearch()}
                 address
               />
@@ -467,7 +470,8 @@ class Address extends React.Component {
               <Transactions
                 getCsvUrl={csvurl => this.setState({ csvurl })}
                 filter={{ address: id }}
-                tokenList={tokenAry}
+                allSelectedTokenAry={selectIdAry}
+                allSelected={selectIdAry}
                 routerResetSearchFun={()=>this.routerResetSearch()}
                 isinternal
               />
@@ -561,6 +565,7 @@ class Address extends React.Component {
                 getCsvUrl={csvurl => this.setState({ csvurl })}
                 id={{ address: id }}
                 tokenList={tokenAry}
+                allSelectedTokenAry={selectIdAry}
                 routerResetSearchFun={()=>this.routerResetSearch()}
                 address
               />
@@ -584,6 +589,7 @@ class Address extends React.Component {
                 getCsvUrl={csvurl => this.setState({ csvurl })}
                 filter={{ address: id }}
                 tokenList={tokenAry}
+                allSelectedTokenAry={selectIdAry}
                 routerResetSearchFun={()=>this.routerResetSearch()}
                 address
               />
@@ -599,6 +605,7 @@ class Address extends React.Component {
                 getCsvUrl={csvurl => this.setState({ csvurl })}
                 filter={{ address: id }}
                 tokenList={tokenAry}
+                allSelectedTokenAry={selectIdAry}
                 routerResetSearchFun={()=>this.routerResetSearch()}
                 isinternal
                 address

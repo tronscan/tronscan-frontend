@@ -351,7 +351,7 @@ class Transactions extends React.Component {
 }
 
   trc20CustomizedColumn = (activeLanguage) => {
-    let { intl,filter } = this.props;
+    let { intl,filter,allSelectedTokenAry } = this.props;
     const { 
       timeType,
       statusFilter,statusOptionsAry,
@@ -439,14 +439,14 @@ class Transactions extends React.Component {
         </div>
     )
     const tokenFilterDropdown =  ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
-      <div>
+      <div style={{maxHeight:'320px',overflow:'scroll'}}>
           <div style={{padding: "5px 12px"}}>
               <Checkbox
                   indeterminate={tokenFilter.indeterminate}
                   onChange={
                       e => {
                           let obj = {
-                            checkedList: e.target.checked ? [1,2] : [],
+                            checkedList: e.target.checked ? allSelectedTokenAry : [],
                             indeterminate: false,
                             checkAll: e.target.checked,
                           }
