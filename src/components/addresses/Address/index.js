@@ -878,17 +878,6 @@ class Address extends React.Component {
     this.props.updateAccountTabInfo({
       accountSearchAddress: serchInputVal
     });
-    console.log(this.state.searchAddress,'searchAddress');
-    // let pathname = this.props.location.pathname;
-    // if(pathname.slice(-9) === "transfers" ){
-     
-      
-    //   // this.loadAddress(match.params.id);
-    // }else if(pathname.slice(-12) === "transactions"){
-
-    // }else if(pathname.slice(-21) === "internal-transactions"){
-
-    // }
 
   };
 
@@ -950,7 +939,6 @@ class Address extends React.Component {
     pathname.replace(rex, function(a, b) {
       tabName = b;
     });
-    console.log(tabs,'tabs')
     return (
       <main className="container header-overlap account-new address-container">
         {popup}

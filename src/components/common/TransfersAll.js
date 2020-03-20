@@ -79,11 +79,11 @@ class TransfersAll extends React.Component {
             statusOptionsAry: [
                 { label:  upperFirst(intl.formatMessage({id: 'full_node_version_unconfirmed'})), value: 1 },
                 { label:  upperFirst(intl.formatMessage({id: 'full_node_version_confirmed'})), value: 0 },
-                { text:  upperFirst(intl.formatMessage({id: 'block_detail_rolled_back'})), value: 2 },
+                { label:  upperFirst(intl.formatMessage({id: 'block_detail_rolled_back'})), value: 2 },
             ],
             resultOptionsAry: [
-                { label:  'SUCCESS', value: 1 },
-                { label:  'FAIL', value: 2 },
+                { label:  'SUCCESS', value: 'SUCCESS' },
+                { label:  'FAIL', value: 'FAIL' },
             ],
             tokenOptionsAry: this.props.tokenList
         };
