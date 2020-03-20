@@ -756,6 +756,7 @@ class NewTransactions extends React.Component {
                     }
                 },
                 render: (text, record, index) => {
+                    console.log(record)
                     return (
                         <div >
                             {   record.map_token_id == 1002000 ||
@@ -802,63 +803,65 @@ class NewTransactions extends React.Component {
                                 ) : (
                                 <div>
                                     {isAddressValid(record.map_token_name_abbr) ? (
-                                    <span>
-                                        {tu("address_transfer_unrecorded_token")}
-                                    </span>
-                                    ) : (
+                                        <span>
+                                            {tu("address_transfer_unrecorded_token")}
+                                        </span>
+                                        ) : (
                                        
-                                    <div>
-                                        {
-                                            record.map_amount_logo?
-                                            <img
-                                                width={20}
-                                                height={20}
-                                                src={record.map_amount_logo}
-                                                style={{ marginRight: 5 }}
-                                                onError={e => {
-                                                    e.target.onerror = null;
-                                                    e.target.src = defaultImg;
-                                                }}
-                                            />
-                                            :
-                                            <img
-                                                width={20}
-                                                height={20}
-                                                src={defaultImg}
-                                                style={{ marginRight: 5 }}
-                                                onError={e => {
-                                                    e.target.onerror = null;
-                                                    e.target.src = defaultImg;
-                                                }}
-                                            />
-
-                                        }
-                                       
-                                        {
-                                            record.tokenType?
-                                            <span>
-                                                {record.tokenType == "trc20" ? (
-                                                    <TokenTRC20Link
-                                                        name={record.map_token_id}
-                                                        address={record.contract_address}
-                                                        namePlus={record.map_token_name_abbr}
-                                                    />
-                                                ) : (
-                                                    <TokenLink
-                                                        id={record.map_token_id}
-                                                        name={
-                                                        record.map_token_name_abbr
-                                                            ? record.map_token_name_abbr
-                                                            : record.token_name
-                                                        }
-                                                    />
-                                                )} 
-                                            </span>:
-                                            <Tooltip placement="top" title={ intl.formatMessage({ id: "address_account_table_filter_token_tips" })}>
-                                                空
-                                            </Tooltip>
-                                        }
-                                    </div>
+                                        <div>
+                                            {
+                                                record.map_amount_logo?
+                                                <img
+                                                    width={20}
+                                                    height={20}
+                                                    src={record.map_amount_logo}
+                                                    style={{ marginRight: 5 }}
+                                                    onError={e => {
+                                                        e.target.onerror = null;
+                                                        e.target.src = defaultImg;
+                                                    }}
+                                                />
+                                                :
+                                                (
+                                                    record.map_token_name_abbr ? 
+                                                    <img
+                                                        width={20}
+                                                        height={20}
+                                                        src={defaultImg}
+                                                        style={{ marginRight: 5 }}
+                                                        onError={e => {
+                                                            e.target.onerror = null;
+                                                            e.target.src = defaultImg;
+                                                        }}
+                                                    />:null
+                                                )
+                                            }
+                                            {
+                                                record.tokenType?
+                                                <span>
+                                                    {record.tokenType == "trc20" ? (
+                                                        <TokenTRC20Link
+                                                            name={record.map_token_id}
+                                                            address={record.contract_address}
+                                                            namePlus={record.map_token_name_abbr}
+                                                        />
+                                                    ) : (
+                                                        <TokenLink
+                                                            id={record.map_token_id}
+                                                            name={
+                                                            record.map_token_name_abbr
+                                                                ? record.map_token_name_abbr
+                                                                : record.token_name
+                                                            }
+                                                        />
+                                                    )} 
+                                                </span>:
+                                                <span>
+                                                    —
+                                                </span>
+                                                
+                                            }
+                                        </div>
                                     )}
                                 </div>
                                 )
