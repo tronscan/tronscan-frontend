@@ -5318,6 +5318,11 @@ h5 {
   white-space: normal;
   // word-wrap: break-word;
 }
+.freeze-detail-wrap{
+  th{
+    white-space: normal;
+  }
+}
 .token-balance-wrap,.vote-wrap, .freeze-detail-wrap{
   .ant-switch{
     width: 35px;
