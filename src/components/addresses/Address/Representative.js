@@ -83,7 +83,7 @@ class Representative extends React.Component {
                 <span className="mr-1">{tu("total_balance")}</span>
                 <QuestionMark
                   placement="top"
-                  text="address_total_balance_tip"
+                  text="account_address_total_balance_tip"
                   className="ml-1"
                 />
                 <span className="ml-1">:</span>

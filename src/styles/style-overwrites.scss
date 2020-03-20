@@ -398,6 +398,15 @@ body .token_black {
       }
     }
   }
+  .represent__table-ru{
+    th {
+      background: #f3f3f3;
+      color: #333;
+      border: none;
+      white-space: normal!important;
+      word-break:break-all!important;
+    }
+  }
   .represent__table {
     table {
       border: 1px solid #d8d8d8;
@@ -406,6 +415,7 @@ body .token_black {
       background: #f3f3f3;
       color: #333;
       border: none;
+      white-space: normal!important;
     }
     td {
       background: #fff;

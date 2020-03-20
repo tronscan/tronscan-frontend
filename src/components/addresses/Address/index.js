@@ -1009,7 +1009,7 @@ class Address extends React.Component {
                                 </span>
                                 <QuestionMark
                                   placement="top"
-                                  text="address_total_balance_tip"
+                                  text="account_address_total_balance_tip"
                                   className="ml-1"
                                 />
                                 <span className="ml-1">:</span>

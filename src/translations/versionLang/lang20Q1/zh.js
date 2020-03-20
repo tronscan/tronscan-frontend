@@ -311,7 +311,8 @@ export const lang20Q1 = {
   address_account_table_filter_token_tips: "该通证未在TRONSCAN收录",
   account_block:'出块',
 
-  current_version:'当前版本'
+  current_version:'当前版本',
+  account_address_total_balance_tip: "账户中所有token的价值之和",
 
 
 

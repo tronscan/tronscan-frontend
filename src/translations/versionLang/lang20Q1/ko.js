@@ -306,5 +306,7 @@ export const lang20Q1 = {
   address_account_table_filter_token_tips:
     "The token is not included in TRONSCAN",
   current_version: "최신 버전",
-  account_block: "블록"
+  account_block: "블록",
+  account_address_total_balance_tip:""
+
 };
