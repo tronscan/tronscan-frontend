@@ -57,6 +57,7 @@ class Representatives extends Component {
   };
   renderWitnesses(witnesses) {
     let { latestBlock } = this.state;
+    let {intl} = this.props;
     if (witnesses.length === 0) {
       return (
         <div className="card">
@@ -80,8 +81,9 @@ class Representatives extends Component {
         ? (account.representerStatus = true)
         : (account.representerStatus = false);
     });
+    let locale = intl.locale;
     return (
-      <div className="card border-0 represent__table w-1000">
+      <div className={locale == 'ru' ? "card border-0 represent__table w-1000 represent__table-ru" : "card border-0 represent__table w-1000"} >
         <table
           className="table table-hover table-striped bg-white m-0 sr"
           style={{ border: "1px solid #DFD7CA" }}
@@ -338,7 +340,7 @@ function Row({ account, showSync = true, index, state, props }) {
         {account.name ? (
           <div
             className="_context_right_click font-weight-bold"
-            style={{ width: "200px" }}
+            style={{ width: "150px" }}
           >
             <AddressLink address={account.address}>
               {account.name}
