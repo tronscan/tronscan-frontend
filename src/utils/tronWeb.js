@@ -14,8 +14,9 @@ import { deepCopy } from "ethers/utils";
 import { Client } from "../services/api";
 import injectpromise from 'injectpromise';
 import config from '../config/main.config'
-const ledgerTokenList = require('./tokens');
-const ledgerExchangeList = require('./exchanges');
+import Lockr from "lockr";
+const ledgerTokenList = Lockr.get("ledgerTokenList");
+const ledgerExchangeList = Lockr.get("ledgerExchangeList");
 
 export function withTronWeb(InnerComponent) {
  
@@ -275,7 +276,7 @@ export function withTronWeb(InnerComponent) {
         else
           tokenID = parseInt(tokenID);
       }
-      return ledgerTokenList.tokenList.find(o => o.id === tokenID);
+      return ledgerTokenList.find(o => o.id === tokenID);
     }
 
     getLedgerExchangeInfo(ID) {
@@ -283,7 +284,7 @@ export function withTronWeb(InnerComponent) {
       if (typeof exchangeID !== "number") {
         exchangeID = parseInt(exchangeID);
       }
-      return ledgerExchangeList.exchangeList.find(o => o.id === exchangeID);
+      return ledgerExchangeList.find(o => o.id === exchangeID);
     }
 
     hideModal = () => {

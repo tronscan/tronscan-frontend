@@ -7,8 +7,11 @@ import { PulseLoader } from "react-spinners";
 import { loginWithLedger } from "../../actions/app";
 import { tu, t } from "../../utils/i18n";
 import { withTronWeb } from "../../utils/tronWeb";
+import xhr from "axios/index";
+import {API_URL} from "../../constants";
+import Lockr from "lockr";
 
-class LedgerAccess extends Component {
+ class LedgerAccess extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -49,16 +52,17 @@ class LedgerAccess extends Component {
     this.setState({ loading: false });
   };
 
-  openWallet = () => {
+  openWallet = async () => {
     let { address } = this.state;
     let { history, onClose } = this.props;
+    
     const tronWebLedger = this.props.tronWeb();
     const defaultAddress = {
       hex: tronWebLedger.address.toHex(address),
       base58: address
     };
     tronWebLedger.defaultAddress = defaultAddress;
-    this.props.loginWithLedger(address, tronWebLedger);
+    this.props.loginWithLedger(address, tronWebLedger);    
     history.push("/account");
     window.gtag("event", "Ledger", {
       event_category: "Login",
@@ -67,6 +71,14 @@ class LedgerAccess extends Component {
       value: address
     });
     onClose && onClose();
+    if(!Lockr.get("ledgerTokenList")){
+      let { data } = await xhr.get(`https://tronexapi.tronscan.org/api/ledger?type=token10&start=0&limit=5000`);
+      Lockr.set("ledgerTokenList", data.data);
+    }
+    if(!Lockr.get("ledgerExchangeList")){
+      let { data }  = await xhr.get(`https://tronexapi.tronscan.org/api/ledger?type=exchange&start=0&limit=1000`);
+      Lockr.set("ledgerExchangeList", data.data);
+    }
   };
   render() {
     let { loading, connected, address, type } = this.state;
