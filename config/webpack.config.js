@@ -293,13 +293,13 @@ module.exports = function(webpackEnv) {
         //   test:/(tronweb|sunweb)/, //  
         //   minChunks:1 //  
         // },
-        vendors1: {
-          name: 'vendors1',
-          chunks: 'all',
-          test: /\.css$/,
-          minChunks: 1,
-          minSize: 0,
-        },
+        // vendors1: {
+        //   name: 'vendors1',
+        //   chunks: 'all',
+        //   test: /\.css$/,
+        //   minChunks: 1,
+        //   minSize: 0,
+        // },
         monaco:{ 
           name:'monaco', 
           chunks:'all', 
@@ -322,10 +322,10 @@ module.exports = function(webpackEnv) {
           minChunks:1
         },
 
-        vendors: {
-          test: /[\\/]node_modules[\\/]/,
-          priority: -10
-        },
+        // vendors: {
+        //   test: /[\\/]node_modules[\\/]/,
+        //   priority: -10
+        // },
         default: {
           minChunks: 2,
           priority: -20,
