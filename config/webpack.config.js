@@ -23,7 +23,7 @@ const getClientEnvironment = require('./env');
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const ForkTsCheckerWebpackPlugin = require('react-dev-utils/ForkTsCheckerWebpackPlugin');
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
- //const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const postcssNormalize = require('postcss-normalize');
 const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
@@ -280,8 +280,8 @@ module.exports = function(webpackEnv) {
         minSize: 30000,
       maxSize: 0,
       minChunks: 1,
-      maxAsyncRequests: 8,
-      maxInitialRequests: 4,
+      maxAsyncRequests: 4,
+      maxInitialRequests: 2,
       automaticNameDelimiter: '~',
       //name: false,
       cacheGroups: {
@@ -293,18 +293,18 @@ module.exports = function(webpackEnv) {
         //   test:/(tronweb|sunweb)/, //  
         //   minChunks:1 //  
         // },
-        vendors1: {
-          name: 'vendors1',
-          chunks: 'all',
-          test: /\.css$/,
-          minChunks: 1,
-          minSize: 0,
-        },
+        // vendors1: {
+        //   name: 'vendors1',
+        //   chunks: 'all',
+        //   test: /\.css$/,
+        //   minChunks: 1,
+        //   minSize: 0,
+        // },
         // monaco:{ 
         //   name:'monaco', 
         //   chunks:'all', 
         //   priority:10, 
-        //   test:/(monaco-editor|tronweb|sunweb)/, //  
+        //   test:/(monaco-editor)/, //  
         //   minChunks:1 //  
         // },
         // antdesigns: {
