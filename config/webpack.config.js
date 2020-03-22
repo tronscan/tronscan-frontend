@@ -300,13 +300,13 @@ module.exports = function(webpackEnv) {
         //   minChunks: 1,
         //   minSize: 0,
         // },
-        monaco:{ 
-          name:'monaco', 
-          chunks:'all', 
-          priority:10, 
-          test:/(monaco-editor|tronweb|sunweb)/, //  
-          minChunks:1 //  
-        },
+        // monaco:{ 
+        //   name:'monaco', 
+        //   chunks:'all', 
+        //   priority:10, 
+        //   test:/(monaco-editor|tronweb|sunweb)/, //  
+        //   minChunks:1 //  
+        // },
         // antdesigns: {
         //   name: 'antdesigns',
         //   chunks: 'all',
