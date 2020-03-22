@@ -275,54 +275,54 @@ module.exports = function(webpackEnv) {
       splitChunks: {
         chunks: 'all',
         name: true,
-      //   minSize: 30000,
-      // maxSize: 0,
-      // minChunks: 1,
-      // maxAsyncRequests: 8,
-      // maxInitialRequests: 4,
-      // automaticNameDelimiter: '~',
-      // //name: false,
-      // cacheGroups: {
+        minSize: 30000,
+      maxSize: 0,
+      minChunks: 1,
+      maxAsyncRequests: 8,
+      maxInitialRequests: 4,
+      automaticNameDelimiter: '~',
+      //name: false,
+      cacheGroups: {
 
-      //   tronweb:{ 
-      //     name:'tronweb', 
-      //     chunks:'all', 
-      //     priority:11, 
-      //     test:/(tronweb|sunweb)/, //  
-      //     minChunks:1 //  
-      //   },
-      //   monaco:{ 
-      //     name:'monaco', 
-      //     chunks:'all', 
-      //     priority:10, 
-      //     test:/(monaco-editor)/, //  
-      //     minChunks:1 //  
-      //   },
-      //   antdesigns: {
-      //     name: 'antdesigns',
-      //     chunks: 'all',
-      //     test: /[\\/]node_modules[\\/](@ant-design|antd)[\\/]/,
-      //     priority: 10,
-      //     minChunks:1
-      //   },
-      //   domloadsh: {
-      //     name: 'domloadsh',
-      //     chunks: 'all',
-      //     test: /[\\/]node_modules[\\/](react-dom|lodash|google-protobuf|ethers|@tronscan)[\\/]/,
-      //     priority: 10,
-      //     minChunks:1
-      //   },
+        tronweb:{ 
+          name:'tronweb', 
+          chunks:'all', 
+          priority:11, 
+          test:/(tronweb|sunweb)/, //  
+          minChunks:1 //  
+        },
+        monaco:{ 
+          name:'monaco', 
+          chunks:'all', 
+          priority:10, 
+          test:/(monaco-editor)/, //  
+          minChunks:1 //  
+        },
+        antdesigns: {
+          name: 'antdesigns',
+          chunks: 'all',
+          test: /[\\/]node_modules[\\/](@ant-design|antd)[\\/]/,
+          priority: 10,
+          minChunks:1
+        },
+        domloadsh: {
+          name: 'domloadsh',
+          chunks: 'all',
+          test: /[\\/]node_modules[\\/](react-dom|lodash|google-protobuf|ethers|@tronscan)[\\/]/,
+          priority: 10,
+          minChunks:1
+        },
 
-      //   vendors: {
-      //     test: /[\\/]node_modules[\\/]/,
-      //     priority: -10
-      //   },
-      //   default: {
-      //     minChunks: 2,
-      //     priority: -20,
-      //     reuseExistingChunk: true
-      //   }
-      // }
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          priority: -10
+        },
+        default: {
+          minChunks: 2,
+          priority: -20,
+          reuseExistingChunk: true
+        }
+      }
        },
       // Keep the runtime chunk separated to enable long term caching
       // https://twitter.com/wSokra/status/969679223278505985
