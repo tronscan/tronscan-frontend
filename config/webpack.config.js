@@ -128,11 +128,12 @@ module.exports = function(webpackEnv) {
     mode: isEnvProduction ? 'production' : isEnvDevelopment && 'development',
     // Stop compilation early in production
     bail: isEnvProduction,
-    devtool: isEnvProduction
-      ? shouldUseSourceMap
-        ? 'source-map'
-        : false
-      : isEnvDevelopment && 'cheap-module-source-map',
+    // devtool: isEnvProduction
+    //   ? shouldUseSourceMap
+    //     ? 'source-map'
+    //     : false
+    //   : isEnvDevelopment && 'cheap-module-source-map',
+      devtool:false,
     // These are the "entry points" to our application.
     // This means they will be the "root" imports that are included in JS bundle.
     entry: [
@@ -186,6 +187,7 @@ module.exports = function(webpackEnv) {
     },
     optimization: {
       minimize: isEnvProduction,
+      usedExports: true,
       minimizer: [
         new UglifyJsPlugin({
           test: /\.js(\?.*)?$/i,
@@ -274,55 +276,55 @@ module.exports = function(webpackEnv) {
       // https://medium.com/webpack/webpack-4-code-splitting-chunk-graph-and-the-splitchunks-optimization-be739a861366
       splitChunks: {
         chunks: 'all',
-        name: true,
-        minSize: 30000,
-      maxSize: 0,
-      minChunks: 1,
-      maxAsyncRequests: 8,
-      maxInitialRequests: 4,
-      automaticNameDelimiter: '~',
-      //name: false,
-      cacheGroups: {
+        name: false,
+      //   minSize: 30000,
+      // maxSize: 0,
+      // minChunks: 1,
+      // maxAsyncRequests: 8,
+      // maxInitialRequests: 4,
+      // automaticNameDelimiter: '~',
+      // //name: false,
+      // cacheGroups: {
 
-        // tronweb:{ 
-        //   name:'tronweb', 
-        //   chunks:'all', 
-        //   priority:11, 
-        //   test:/(tronweb|sunweb)/, //  
-        //   minChunks:1 //  
-        // },
-        monaco:{ 
-          name:'monaco', 
-          chunks:'all', 
-          priority:10, 
-          test:/(monaco-editor|tronweb|sunweb)/, //  
-          minChunks:1 //  
-        },
-        // antdesigns: {
-        //   name: 'antdesigns',
-        //   chunks: 'all',
-        //   test: /[\\/]node_modules[\\/](@ant-design|antd)[\\/]/,
-        //   priority: 10,
-        //   minChunks:1
-        // },
-        domloadsh: {
-          name: 'domloadsh',
-          chunks: 'all',
-          test: /[\\/]node_modules[\\/](react-dom|lodash|google-protobuf|ethers|@tronscan|@ant-design|antd)[\\/]/,
-          priority: 10,
-          minChunks:1
-        },
+      //   // tronweb:{ 
+      //   //   name:'tronweb', 
+      //   //   chunks:'all', 
+      //   //   priority:11, 
+      //   //   test:/(tronweb|sunweb)/, //  
+      //   //   minChunks:1 //  
+      //   // },
+      //   monaco:{ 
+      //     name:'monaco', 
+      //     chunks:'all', 
+      //     priority:10, 
+      //     test:/(monaco-editor|tronweb|sunweb)/, //  
+      //     minChunks:1 //  
+      //   },
+      //   // antdesigns: {
+      //   //   name: 'antdesigns',
+      //   //   chunks: 'all',
+      //   //   test: /[\\/]node_modules[\\/](@ant-design|antd)[\\/]/,
+      //   //   priority: 10,
+      //   //   minChunks:1
+      //   // },
+      //   domloadsh: {
+      //     name: 'domloadsh',
+      //     chunks: 'all',
+      //     test: /[\\/]node_modules[\\/](react-dom|lodash|google-protobuf|ethers|@tronscan|@ant-design|antd)[\\/]/,
+      //     priority: 10,
+      //     minChunks:1
+      //   },
 
-        vendors: {
-          test: /[\\/]node_modules[\\/]/,
-          priority: -10
-        },
-        default: {
-          minChunks: 2,
-          priority: -20,
-          reuseExistingChunk: true
-        }
-      }
+      //   vendors: {
+      //     test: /[\\/]node_modules[\\/]/,
+      //     priority: -10
+      //   },
+      //   default: {
+      //     minChunks: 2,
+      //     priority: -20,
+      //     reuseExistingChunk: true
+      //   }
+      // }
        },
       // Keep the runtime chunk separated to enable long term caching
       // https://twitter.com/wSokra/status/969679223278505985
@@ -414,41 +416,41 @@ module.exports = function(webpackEnv) {
             // The preset includes JSX, Flow, TypeScript, and some ESnext features.
             {
               test: /\.(js|mjs|jsx|ts|tsx)$/,
-              include: [
-                paths.appSrc,
-                path.resolve(paths.appNodeModules, "@tronscan/client/src"),
-                path.resolve(paths.appNodeModules, "query-string"),
-                path.resolve(paths.appNodeModules, "strict-uri-encode"),
-                path.resolve(paths.appNodeModules, "instascan/src/camera.js"),
-                path.resolve(paths.appNodeModules, "instascan/src/scanner.js"),
-                path.resolve(paths.appNodeModules, "instascan/index.js"),
-              ],
+              include: paths.appSrc,
               loader: require.resolve('babel-loader'),
               options: {
-                customize: require.resolve(
-                  'babel-preset-react-app/webpack-overrides'
-                ),
-                
-                plugins: [
-                  [
-                    require.resolve('babel-plugin-named-asset-import'),
-                    {
-                      loaderMap: {
-                        svg: {
-                          ReactComponent: '@svgr/webpack?-svgo,+ref![path]',
-                        },
-                      },
-                    },
+                  customize: require.resolve(
+                      'babel-preset-react-app/webpack-overrides'
+                  ),
+
+                  plugins: [
+
+                      [
+                          require.resolve('babel-plugin-named-asset-import'),
+                          {
+                              loaderMap: {
+                                  svg: {
+                                      ReactComponent: '@svgr/webpack?-svgo,+ref![path]',
+                                  },
+                              },
+                          },
+                      ],
+                      [
+                          require.resolve('babel-plugin-import'),// 导入 import 插件
+                          {
+                              libraryName: 'antd',   //暴露antd
+                              style: 'css'
+                          }
+                      ]
                   ],
-                ],
-                // This is a feature of `babel-loader` for webpack (not Babel itself).
-                // It enables caching results in ./node_modules/.cache/babel-loader/
-                // directory for faster rebuilds.
-                cacheDirectory: true,
-                cacheCompression: isEnvProduction,
-                compact: isEnvProduction,
+                  // This is a feature of `babel-loader` for webpack (not Babel itself).
+                  // It enables caching results in ./node_modules/.cache/babel-loader/
+                  // directory for faster rebuilds.
+                  cacheDirectory: true,
+                  cacheCompression: isEnvProduction,
+                  compact: isEnvProduction,
               },
-            },
+          },
             // Process any JS outside of the app with Babel.
             // Unlike the application JS, we only compile the standard ES features.
             {
