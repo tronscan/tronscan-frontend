@@ -23,7 +23,7 @@ const getClientEnvironment = require('./env');
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const ForkTsCheckerWebpackPlugin = require('react-dev-utils/ForkTsCheckerWebpackPlugin');
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
-// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+ //const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const postcssNormalize = require('postcss-normalize');
 const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
@@ -275,54 +275,54 @@ module.exports = function(webpackEnv) {
       splitChunks: {
         chunks: 'all',
         name: true,
-      //   minSize: 30000,
-      // maxSize: 0,
-      // minChunks: 1,
-      // maxAsyncRequests: 8,
-      // maxInitialRequests: 4,
-      // automaticNameDelimiter: '~',
-      // //name: false,
-      // cacheGroups: {
+        minSize: 30000,
+      maxSize: 0,
+      minChunks: 1,
+      maxAsyncRequests: 8,
+      maxInitialRequests: 4,
+      automaticNameDelimiter: '~',
+      //name: false,
+      cacheGroups: {
 
-      //   tronweb:{ 
-      //     name:'tronweb', 
-      //     chunks:'all', 
-      //     priority:11, 
-      //     test:/(tronweb|sunweb)/, //  
-      //     minChunks:1 //  
-      //   },
-      //   monaco:{ 
-      //     name:'monaco', 
-      //     chunks:'all', 
-      //     priority:10, 
-      //     test:/(monaco-editor)/, //  
-      //     minChunks:1 //  
-      //   },
-      //   antdesigns: {
-      //     name: 'antdesigns',
-      //     chunks: 'all',
-      //     test: /[\\/]node_modules[\\/](@ant-design|antd)[\\/]/,
-      //     priority: 10,
-      //     minChunks:1
-      //   },
-      //   domloadsh: {
-      //     name: 'domloadsh',
-      //     chunks: 'all',
-      //     test: /[\\/]node_modules[\\/](react-dom|lodash|google-protobuf|ethers|@tronscan)[\\/]/,
-      //     priority: 10,
-      //     minChunks:1
-      //   },
+        // tronweb:{ 
+        //   name:'tronweb', 
+        //   chunks:'all', 
+        //   priority:11, 
+        //   test:/(tronweb|sunweb)/, //  
+        //   minChunks:1 //  
+        // },
+        monaco:{ 
+          name:'monaco', 
+          chunks:'all', 
+          priority:10, 
+          test:/(monaco-editor|tronweb|sunweb)/, //  
+          minChunks:1 //  
+        },
+        // antdesigns: {
+        //   name: 'antdesigns',
+        //   chunks: 'all',
+        //   test: /[\\/]node_modules[\\/](@ant-design|antd)[\\/]/,
+        //   priority: 10,
+        //   minChunks:1
+        // },
+        domloadsh: {
+          name: 'domloadsh',
+          chunks: 'all',
+          test: /[\\/]node_modules[\\/](react-dom|lodash|google-protobuf|ethers|@tronscan|@ant-design|antd)[\\/]/,
+          priority: 10,
+          minChunks:1
+        },
 
-      //   vendors: {
-      //     test: /[\\/]node_modules[\\/]/,
-      //     priority: -10
-      //   },
-      //   default: {
-      //     minChunks: 2,
-      //     priority: -20,
-      //     reuseExistingChunk: true
-      //   }
-      // }
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          priority: -10
+        },
+        default: {
+          minChunks: 2,
+          priority: -20,
+          reuseExistingChunk: true
+        }
+      }
        },
       // Keep the runtime chunk separated to enable long term caching
       // https://twitter.com/wSokra/status/969679223278505985
@@ -722,7 +722,7 @@ module.exports = function(webpackEnv) {
         }),
       
       // isEnvProduction &&
-      // new BundleAnalyzerPlugin({ analyzerPort: 8919 })
+       //new BundleAnalyzerPlugin({ analyzerPort: 8919 })
     ].filter(Boolean),
     // Some libraries import Node modules but don't use them in the browser.
     // Tell Webpack to provide empty mocks for them so importing them works.
