@@ -276,13 +276,13 @@ module.exports = function(webpackEnv) {
       // https://medium.com/webpack/webpack-4-code-splitting-chunk-graph-and-the-splitchunks-optimization-be739a861366
       splitChunks: {
         chunks: 'all',
-        name: false,
-        minSize: 30000,
-      maxSize: 0,
-      minChunks: 1,
-      maxAsyncRequests: 4,
-      maxInitialRequests: 2,
-      automaticNameDelimiter: '~',
+        name: true,
+      //   minSize: 30000,
+      // maxSize: 0,
+      // minChunks: 1,
+      // maxAsyncRequests: 4,
+      // maxInitialRequests: 2,
+      // automaticNameDelimiter: '~',
       //name: false,
       cacheGroups: {
 
@@ -326,10 +326,16 @@ module.exports = function(webpackEnv) {
         //   test: /[\\/]node_modules[\\/]/,
         //   priority: -10
         // },
-        default: {
-          minChunks: 2,
-          priority: -20,
-          reuseExistingChunk: true
+        // default: {
+        //   minChunks: 2,
+        //   priority: -20,
+        //   reuseExistingChunk: true
+        // }
+        styles: {
+          name: 'styles',
+          test: /\.less$/,
+          chunks: 'all',
+          enforce: true,
         }
       }
        },
@@ -731,7 +737,7 @@ module.exports = function(webpackEnv) {
         }),
       
       // isEnvProduction &&
-       //new BundleAnalyzerPlugin({ analyzerPort: 8919 })
+     //  new BundleAnalyzerPlugin({ analyzerPort: 8919 })
     ].filter(Boolean),
     // Some libraries import Node modules but don't use them in the browser.
     // Tell Webpack to provide empty mocks for them so importing them works.
