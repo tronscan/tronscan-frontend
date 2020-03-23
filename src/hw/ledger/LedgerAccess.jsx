@@ -72,11 +72,11 @@ import Lockr from "lockr";
     });
     onClose && onClose();
     if(!Lockr.get("ledgerTokenList")){
-      let { data } = await xhr.get(`https://tronexapi.tronscan.org/api/ledger?type=token10&start=0&limit=5000`);
+      let { data } = await xhr.get(`https://debugapilist.tronscan.org/api/ledger?type=token10&start=0&limit=5000`);
       Lockr.set("ledgerTokenList", data.data);
     }
     if(!Lockr.get("ledgerExchangeList")){
-      let { data }  = await xhr.get(`https://tronexapi.tronscan.org/api/ledger?type=exchange&start=0&limit=1000`);
+      let { data }  = await xhr.get(`https://debugapilist.tronscan.org/api/ledger?type=exchange&start=0&limit=1000`);
       Lockr.set("ledgerExchangeList", data.data);
     }
   };
