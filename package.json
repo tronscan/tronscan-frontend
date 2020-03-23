@@ -2,7 +2,10 @@
     "name": "tronscan-frontend",
     "version": "0.1.0",
     "private": true,
-    "sideEffects": false,
+    "sideEffects": [
+        "./src/some-side-effectful-file.js",
+        "*.css"
+      ],
     "dependencies": {
         "@babel/core": "7.4.3",
         "@fortawesome/fontawesome": "^1.1.7",
