@@ -1,5 +1,5 @@
 import React, {Fragment} from "react";
-import { injectIntl,FormattedDate,FormattedTime } from "react-intl";
+import { injectIntl} from "react-intl";
 import {Client} from "../../services/api";
 import {AddressLink, TransactionHashLink, BlockNumberLink, TokenLink, TokenTRC20Link} from "./Links";
 import {tu, tv} from "../../utils/i18n";
@@ -14,33 +14,28 @@ import {TronLoader} from "./loaders";
 import rebuildList from "../../utils/rebuildList";
 import rebuildToken20List from "../../utils/rebuildToken20List";
 // import {SwitchToken} from "./Switch";
-// import DateRange from "./DateRange";
-import TotalInfo from "./../../components/addresses/components/TableTotal";
-import DateSelect from "./../../components/addresses/components/dateSelect";
+import TotalInfo from "./TableTotal";
+import DateRange from "./DateRange";
 import moment from 'moment';
 import { toThousands } from '../../utils/number'
 import _ from "lodash";
+import { Radio } from 'antd';
 import {isAddressValid} from "@tronscan/client/src/utils/crypto";
 import { CONTRACT_ADDRESS_USDT, CONTRACT_ADDRESS_WIN, CONTRACT_ADDRESS_GGC } from "../../constants";
 import qs from 'qs'
-import isMobile from "../../utils/isMobile";
-
-import { Icon,Checkbox,Radio } from 'antd';
-
+import DateSelect from './dateSelect'
 import {API_URL} from "../../constants";
-import BlockTime from '../common/blockTime'
-const CheckboxGroup = Checkbox.Group;
-
+import BlockTime from '../common/blockTime'
 
 class TransfersAll extends React.Component {
     constructor(props) {
         super(props);
-        let intl = props.intl;
+
         this.start = moment([2018,5,25]).startOf('day').valueOf();
         this.end = moment().valueOf();
         this.state = {
             filter: {
-                // direction:'all'
+                direction:'all'
             },
             transfers: [],
             page: 1,
@@ -51,59 +46,15 @@ class TransfersAll extends React.Component {
             autoRefresh: props.autoRefresh || false,
             hideSmallCurrency:false,
             tokenName:"",
-            timeType:true,
-            inoutFilter:{
-                checkedList:[],
-                indeterminate:'',
-                checkAll:false,
-            },
-            statusFilter:{
-                checkedList:[],
-                indeterminate:'',
-                checkAll:false,
-            },
-            resultFilter:{
-                checkedList:[],
-                indeterminate:'',
-                checkAll:false,
-            },
-            tokenFilter:{
-                checkedList:[],
-                indeterminate:'',
-                checkAll:false,
-            },
-            inoutOptionsAry:[
-                { label:  upperFirst(intl.formatMessage({id: 'address_transfer_in'})), value: 'in' },
-                { label:  upperFirst(intl.formatMessage({id: 'address_transfer_out'})), value: 'out' },
-            ],
-            statusOptionsAry: [
-                { label:  upperFirst(intl.formatMessage({id: 'full_node_version_unconfirmed'})), value: 1 },
-                { label:  upperFirst(intl.formatMessage({id: 'full_node_version_confirmed'})), value: 0 },
-                { label:  upperFirst(intl.formatMessage({id: 'block_detail_rolled_back'})), value: 2 },
-            ],
-            resultOptionsAry: [
-                { label:  'SUCCESS', value: 'SUCCESS' },
-                { label:  'FAIL', value: 'FAIL' },
-            ],
-            tokenOptionsAry: this.props.tokenList
         };
     }
 
     componentDidMount() {
         let {page, pageSize} = this.state;
         // this.load(page,pageSize);
-        this.props.routerResetSearchFun();
-        const { tokenList } = this.props;
-        console.log(tokenList,'tokenAry')
+
         if (this.state.autoRefresh !== false) {
             this.props.setInterval(() => this.load(page,pageSize), this.state.autoRefresh);
-        }
-
-    }
-
-    componentDidUpdate(prevProps) {
-        if (this.props.blockchain.accountSearchAddress !== prevProps.blockchain.accountSearchAddress) {
-            this.load(1);
         }
     }
 
@@ -119,78 +70,16 @@ class TransfersAll extends React.Component {
     load = async (page = 1, pageSize = 20) => {
         let transfersTRX;
         let {id,istrc20=false, getCsvUrl} = this.props;
-       
-        let {showTotal,hideSmallCurrency,tokenNam,filter,inoutFilter,statusFilter,resultFilter,tokenFilter} = this.state;
-        let inoutFilterObj = {};
-        if(inoutFilter.checkedList.join(',')!==''){
-            if(inoutFilter.checkedList.length == 2){
-                inoutFilterObj = {
-                    direction:'all',
-                }
-            }else{
-                inoutFilterObj = {
-                    direction:inoutFilter.checkedList.join(','),
-                }
-            }
-          
+        let {showTotal,hideSmallCurrency,tokenNam,filter} = this.state;
+        const params = {
+            sort: '-timestamp',
+            count: showTotal ? true : null,
+            total: this.state.total,
+            start_timestamp:this.start,
+            end_timestamp:this.end,
+            ...filter,
+            ...id,
         }
-        let statusFilterObj = {};
-        if(statusFilter.checkedList.join(',')!==''){
-            statusFilterObj = {
-                confirm:statusFilter.checkedList.join(','),
-            }
-        }
-        let resultFilterObj = {};
-        if(resultFilter.checkedList.join(',')!==''){
-            if(resultFilter.checkedList.length == 2){
-                resultFilterObj = {
-                    ret:'all',
-                }
-            }else{
-                resultFilterObj = {
-                    ret:resultFilter.checkedList.join(','),
-                }
-            }
-        }
-        let tokenFilterObj = {};
-        if(tokenFilter.checkedList.join(',')!==''){
-            tokenFilterObj = {
-                tokens:tokenFilter.checkedList.join(','),
-            }
-        }
-        const { accountSearchAddress } = this.props.blockchain;
-        let params
-        if (accountSearchAddress === "") {
-            params = {
-                sort: '-timestamp',
-                count: showTotal ? true : null,
-                total: this.state.total,
-                start_timestamp:this.start,
-                end_timestamp:this.end,
-                ...filter,
-                ...id,
-                ...inoutFilterObj,
-                ...statusFilterObj,
-                ...resultFilterObj,
-                ...tokenFilterObj
-            };
-            } else {
-            params = {
-                sort: '-timestamp',
-                count: showTotal ? true : null,
-                total: this.state.total,
-                start_timestamp:this.start,
-                end_timestamp:this.end,
-                ...filter,
-                ...id,
-                ...inoutFilterObj,
-                ...statusFilterObj,
-                ...resultFilterObj,
-                ...tokenFilterObj,
-                keyword: accountSearchAddress
-            };
-        }
-        
         this.setState({
             loading: true,
             page: page,
@@ -258,7 +147,6 @@ class TransfersAll extends React.Component {
             loading: false,
         });
     };
-
     handleSwitch = (val) => {
         let {page, pageSize} = this.state;
         if(val){
@@ -278,208 +166,17 @@ class TransfersAll extends React.Component {
         }
 
     }
-
-    changeType() {
-        let { timeType } = this.state;
-
-        this.setState({
-            timeType: !timeType
-        });
-    }
-
-
-      onCheckAllChange = e => {
-
-          let obj = {
-            checkedList: e.target.checked ? [1,2] : [],
-            indeterminate: false,
-            checkAll: e.target.checked,
-          }
-        this.setState({
-            statusFilter:obj
-        });
-      };
-
     customizedColumn = (activeLanguage) => {
-        let { intl, allSelectedTokenAry } = this.props;
-        const defaultImg = require("../../images/logo_default.png");
-        const { 
-            timeType,
-            inoutOptionsAry,inoutFilter,
-            statusFilter,statusOptionsAry,
-            resultFilter,resultOptionsAry,
-            tokenFilter,tokenOptionsAry,
-        } = this.state;
-        const inoutFilterDropdown = ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
-            <div>
-                <div style={{padding: "5px 12px"}}>
-                    <Checkbox
-                        indeterminate={inoutFilter.indeterminate}
-                        onChange={
-                            e => {
-                                let obj = {
-                                  checkedList: e.target.checked ? ['in','out'] : [],
-                                  indeterminate: false,
-                                  checkAll: e.target.checked,
-                                }
-                              this.setState({
-                                inoutFilter:obj
-                              });
-                            }
-                        }
-                        checked={inoutFilter.checkAll}
-                    >
-                        {upperFirst(intl.formatMessage({id: 'address_account_table_filter_all'}))}
-                    </Checkbox>
-                </div>
-                <div>
-                    <CheckboxGroup
-                        options={inoutOptionsAry}
-                        value={inoutFilter.checkedList}
-                        onChange={(checkedList)=> {
-                            let obj = {
-                                checkedList,
-                                indeterminate: !!checkedList.length && checkedList.length < inoutOptionsAry.length,
-                                checkAll: checkedList.length === inoutOptionsAry.length,
-                            }
-                            this.setState({
-                                inoutFilter:obj
-                            })
-                        }}  
-                    />
-                </div>
-            </div>
-        )
-        const statusFilterDropdown =  ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
-            <div>
-                <div style={{padding: "5px 12px"}}>
-                    <Checkbox
-                        indeterminate={statusFilter.indeterminate}
-                        onChange={
-                            e => {
-                                let obj = {
-                                  checkedList: e.target.checked ? [0,1,2] : [],
-                                  indeterminate: false,
-                                  checkAll: e.target.checked,
-                                }
-                              this.setState({
-                                  statusFilter:obj
-                              })
-                            }
-                        }
-                        checked={statusFilter.checkAll}
-                    >
-                        {upperFirst(intl.formatMessage({id: 'address_account_table_filter_all'}))}
-                    </Checkbox>
-                </div>
-                <div>
-                    <CheckboxGroup
-                        options={statusOptionsAry}
-                        value={statusFilter.checkedList}
-                        onChange={(checkedList)=> {
-                            let obj = {
-                                checkedList,
-                                indeterminate: !!checkedList.length && checkedList.length < statusOptionsAry.length,
-                                checkAll: checkedList.length === statusOptionsAry.length,
-                            }
-                            this.setState({
-                                statusFilter:obj
-                            })
-                        }}
-                        />
-                </div>
-            </div>
-        )
-        const resultFilterDropdown =  ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
-            <div>
-                <div style={{padding: "5px 12px"}}>
-                    <Checkbox
-                        indeterminate={resultFilter.indeterminate}
-                        onChange={
-                            e => {
-                                let obj = {
-                                  checkedList: e.target.checked ? [1,2] : [],
-                                  indeterminate: false,
-                                  checkAll: e.target.checked,
-                                }
-                              this.setState({
-                                resultFilter:obj
-                              })
-                            }
-                        }
-                        checked={resultFilter.checkAll}
-                    >
-                        {upperFirst(intl.formatMessage({id: 'address_account_table_filter_all'}))}
-                    </Checkbox>
-                </div>
-                <div>
-                    <CheckboxGroup
-                        options={resultOptionsAry}
-                        value={resultFilter.checkedList}
-                        onChange={(checkedList)=> {
-                            let obj = {
-                                checkedList,
-                                indeterminate: !!checkedList.length && checkedList.length < resultOptionsAry.length,
-                                checkAll: checkedList.length === resultOptionsAry.length,
-                            }
-                            this.setState({
-                                resultFilter:obj
-                            })
-                        }}
-                        />
-                </div>
-            </div>
-        )
-
-        const tokenFilterDropdown =  ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
-            <div style={{maxHeight:'320px',overflow:'scroll'}}>
-                <div style={{padding: "5px 12px"}}>
-                    <Checkbox
-                        indeterminate={tokenFilter.indeterminate}
-                        onChange={
-                            e => {
-                                let obj = {
-                                  checkedList: e.target.checked ? allSelectedTokenAry : [],
-                                  indeterminate: false,
-                                  checkAll: e.target.checked,
-                                }
-                              this.setState({
-                                tokenFilter:obj
-                              })
-                            }
-                        }
-                        checked={tokenFilter.checkAll}
-                    >
-                        {upperFirst(intl.formatMessage({id: 'address_account_table_filter_all'}))}
-                    </Checkbox>
-                </div>
-                <div>
-                    <CheckboxGroup
-                        options={tokenOptionsAry}
-                        value={tokenFilter.checkedList}
-                        onChange={(checkedList)=> {
-                            let obj = {
-                                checkedList,
-                                indeterminate: !!checkedList.length && checkedList.length < tokenOptionsAry.length,
-                                checkAll: checkedList.length === tokenOptionsAry.length,
-                            }
-                            this.setState({
-                                tokenFilter:obj
-                            })
-                        }}
-                        />
-                </div>
-            </div>
-        )
-
+        let { intl } = this.props;
+            const defaultImg = require("../../images/logo_default.png");
 
         let column = [
             {
-                title: upperFirst(intl.formatMessage({id: 'transaction_hash'})),
+                title: upperFirst(intl.formatMessage({id: 'hash'})),
                 dataIndex: 'hash',
                 key: 'hash',
                 align: 'left',
-                width: '8%',
+                width: '9%',
                 className: 'ant_table',
                 render: (text, record, index) => {
                     return <Truncate>
@@ -490,60 +187,57 @@ class TransfersAll extends React.Component {
                 }
             },
             {
+                title: upperFirst(intl.formatMessage({id: 'status'})),
+                dataIndex: 'status',
+                key: 'status',
+                width: activeLanguage === 'zh' ?'10%' :"17%",
+                align: 'left',
+                className: 'ant_table',
+                render: (text, record, index) => {
+                    return (
+                        <div>
+                            {
+                                record.confirmed ?
+                                    <span className="d-flex"><img style={{ width: "20px", height: "20px" }} src={require("../../images/contract/Verified.png")}/> {tu('full_node_version_confirmed')}</span>
+                                      : 
+                                    <span className="d-flex"><img style={{ width: "20px", height: "20px" }} src={require("../../images/contract/Unverified.png")}/> {tu('full_node_version_unconfirmed')}</span>
+                            }
+                        </div>
+                    )
+                }
+            },
+            {
+                title: upperFirst(intl.formatMessage({id: 'result' })),
+                dataIndex: 'contractRet',
+                key: 'contractRet',
+                align: 'left',
+                className: 'ant_table',
+                width: '11%',
+                render: (text, record, index) => {
+                    return <span>{text}</span>
+                }
+            },
+            {
                 title: upperFirst(intl.formatMessage({id: 'block' })),
                 dataIndex: 'block',
                 key: 'block',
                 align: 'left',
                 className: 'ant_table',
-                width: '10%',
+                width: '9%',
                 render: (text, record, index) => {
                     return <BlockNumberLink number={record.block}/>
                 }
             },
             {
-                title: (
-                    <span
-                        className="token-change-type"
-                        onClick={this.changeType.bind(this)}
-                    >
-                        {upperFirst(
-                        intl.formatMessage({
-                            id: timeType ? "age" : "trc20_cur_order_header_order_time"
-                        })
-                        )}
-                        <Icon
-                        type="retweet"
-                        style={{
-                            verticalAlign: 0,
-                            marginLeft: 10
-                        }}
-                        />
-                    </span>
-                ),
+                title: upperFirst(intl.formatMessage({id: 'age'})),
                 dataIndex: 'date_created',
                 key: 'date_created',
                 align: 'left',
                 className: 'ant_table',
-                width: '16%',
+                width: '14%',
                 render: (text, record, index) => {
-                    return(
-                        <div>
-                            {timeType ? (
-                            <BlockTime time={Number(record.date_created)}> </BlockTime>
-                            ) : (
-                            <span className="">
-                                <FormattedDate value={record.date_created} /> &nbsp;
-                                <FormattedTime
-                                value={record.date_created}
-                                hour="numeric"
-                                minute="numeric"
-                                second="numeric"
-                                hour12={false}
-                                />
-                            </span>
-                            )}
-                        </div>
-                    ) 
+                    return <BlockTime time={text}></BlockTime>
+                    // <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
                 }
             },
             {
@@ -566,29 +260,9 @@ class TransfersAll extends React.Component {
                 }
             },
             {
-                title: (
-                    <span>
-                       {upperFirst(intl.formatMessage({id: 'address_transfer_in'}))}{' '}|{' '} 
-                       {upperFirst(intl.formatMessage({id: 'address_transfer_out'}))}
-                    </span>
-                ),
-                dataIndex: 'address_transfer_out',
-                key: 'address_transfer_out',
-                align: 'center',
-                className: 'ant_table address_max_width',
-                width: '10%',
-                filterIcon: () => {
-                    return (
-                        <Icon type="caret-down"  style={{fontSize:12,color:'#999'}}  theme="outlined" />
-                    );
-                },
-                filterDropdown: inoutFilterDropdown,
-                onFilterDropdownVisibleChange: (visible) => {
-                    if (visible) {
-                    }else{
-                        this.load(1);
-                    }
-                },
+                title: '',
+                className: 'ant_table',
+                width: '5%',
                 render: (text, record, index) => {
                     return record.fromtip?<img width={40} height={22} src={require("../../images/address/in.png")}/>:<img  width={40} height={22} src={require("../../images/address/out.png")}/>
                 }
@@ -607,75 +281,6 @@ class TransfersAll extends React.Component {
                 }
             },
             {
-                title: upperFirst(intl.formatMessage({id: 'status'})),
-                dataIndex: 'status',
-                key: 'status',
-                width: activeLanguage === 'zh' ?'10%' :"17%",
-                align: 'left',
-                className: 'ant_table',
-                render: (text, record, index) => {
-                    return (
-                        <div>
-                            {
-                                record.confirmed ?
-                                    <span className="d-flex"><img style={{ width: "20px", height: "20px" }} src={require("../../images/contract/Verified.png")}/> {tu('full_node_version_confirmed')}</span>
-                                      : 
-                                    <span className="d-flex"><img style={{ width: "20px", height: "20px" }} src={require("../../images/contract/Unverified.png")}/> {tu('full_node_version_unconfirmed')}</span>
-                            }
-                        </div>
-                    )
-                },
-                filterIcon: () => {
-                    return (
-                        <Icon type="caret-down" style={{fontSize:12,color:'#999'}}  theme="outlined" />
-                    );
-                },
-                filterDropdown: statusFilterDropdown,
-                onFilterDropdownVisibleChange: (visible) => {
-                    if (visible) {
-                        // console.log('visible')
-                    }else{
-                        this.load(1);
-                    }
-                },
-            },
-            {
-                title: upperFirst(intl.formatMessage({id: 'result' })),
-                dataIndex: 'contractRet',
-                key: 'contractRet',
-                align: 'left',
-                className: 'ant_table',
-                width: '11%',
-                filterIcon: () => {
-                    return (
-                        <Icon type="caret-down" style={{fontSize:12,color:'#999'}}  theme="outlined" />
-                    );
-                },
-                filterDropdown: resultFilterDropdown,
-                onFilterDropdownVisibleChange: (visible) => {
-                    if (visible) {
-                        // console.log('visible')
-                    }else{
-                        this.load(1);
-                    }
-                },
-                render: (text, record, index) => {
-                    return (
-                        <span>
-                            {
-                                record.confirmed && record.contractRet == 'SUCCESS' ?
-                                <span>SUCCESS</span>:
-                                <div className="d-flex">
-                                    <img style={{ width: "20px", height: "20px" }} src={require("../../images/prompt.png")}/> 
-                                    <span>{' '}FAIL</span>
-                                </div>    
-                            }
-                        </span>
-                    )
-                },
-                
-            },
-            {
                 title: upperFirst(intl.formatMessage({id: 'amount'})),
                 dataIndex: 'amount',
                 key: 'amount',
@@ -692,22 +297,9 @@ class TransfersAll extends React.Component {
                 width: '10%',
                 align: 'left',
                 className: 'ant_table',
-                filterIcon: () => {
-                    return (
-                        <Icon type="caret-down" style={{fontSize:12,color:'#999'}}  theme="outlined" />
-                    );
-                },
-                filterDropdown: tokenFilterDropdown,
-                onFilterDropdownVisibleChange: (visible) => {
-                    if (visible) {
-                        // console.log('visible')
-                    }else{
-                        this.load(1);
-                    }
-                },
                 render: (text, record, index) => {
                     return (
-                      <div key="index">
+                      <div>
                         {record.map_token_id == 1002000 ||
                         record.map_token_id == CONTRACT_ADDRESS_USDT ||
                         record.map_token_id == CONTRACT_ADDRESS_WIN ||
@@ -845,7 +437,13 @@ class TransfersAll extends React.Component {
         
     }
 
-
+    onRadioChange = (e) => {
+        this.setState({
+            filter: {
+                direction: e.target.value,
+            }
+        }, () =>  this.load())
+    };
 
     render() {
 
@@ -865,42 +463,36 @@ class TransfersAll extends React.Component {
         // }
 
         return (
-            <div className="token_black transfersAll-container" style={{padding:'30px 0'}}>
+            <div className="token_black table_pos">
                 {loading && <div className="loading-style"><TronLoader/></div>}
                 <div className="d-flex justify-content-between" style={{right: 'auto'}}>
-                    
-                </div>
-                <div style={{marginBottom:'20px'}}>
+                    {!loading && <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" divClass="table_pos_info_addr" selected/> }
                     {
                         address ?  <div>
                             <DateSelect onDateOk={(start,end) => this.onDateOk(start,end)}  />
                         </div> : ''
                     }
                 </div>
-                <div>
-                    {!loading && <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" divClass="table_pos_info_addr" selected/> }
-                </div>
+                {
+                    transfers.length > 0 &&  <div className="d-flex align-items-center">
+                        <div className="address-transfers-radio">
+                            <Radio.Group size="Small" value={filter.direction}  onChange={this.onRadioChange}>
+                                <Radio.Button value="all">{tu('address_transfer_all')}</Radio.Button>
+                                <Radio.Button value="in">{tu('address_transfer_in')}</Radio.Button>
+                                <Radio.Button value="out">{tu('address_transfer_out')}</Radio.Button>
+                            </Radio.Group>
+                        </div>
+                    </div>
+                }
                 {
                     (!loading && transfers.length === 0)?
                         <div className="p-3 text-center no-data">{tu("no_transfers")}</div>
                         :
-                        <div className={isMobile ? "pt-5":null}>
-                            <SmartTable  
-                                position="bottom" 
-                                bordered={true} 
-                                loading={loading} 
-                                column={column} 
-                                data={transfers} 
-                                total={rangeTotal > 2000 ? 2000 : rangeTotal} 
-                                locale={locale} 
-                                addr="address" 
-                                nopadding={true}
-                                current={this.state.page}
-                                onPageChange={(page, pageSize) => {
-                                    this.onChange(page, pageSize)
-                                }}/>
-                        </div>
-                       
+                        <SmartTable bordered={true} loading={loading} column={column} data={transfers} total={rangeTotal > 2000 ? 2000 : rangeTotal} locale={locale} addr="address" transfers="address"
+                                    current={this.state.page}
+                                    onPageChange={(page, pageSize) => {
+                                        this.onChange(page, pageSize)
+                                    }}/>
                 }
             </div>
         )
@@ -910,7 +502,6 @@ class TransfersAll extends React.Component {
 function mapStateToProps(state) {
     return {
       activeLanguage: state.app.activeLanguage,
-      blockchain: state.blockchain
     };
 }
 

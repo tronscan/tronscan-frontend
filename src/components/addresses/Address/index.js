@@ -12,7 +12,7 @@ import MyContracts from "./Contracts";
 import { AddressLink, ExternalLink, HrefLink } from "../../common/Links";
 import { TRXPrice } from "../../common/Price";
 import { TronLoader } from "../../common/loaders";
-import Transactions from "../../common/AddressTransactions";
+import Transactions from "../../common/Transactions";
 import NewTransactions from "../../common/NewTransactions";
 import Votes from "../../common/Votes";
 import TransfersAll from "../../common/TransfersAll";
@@ -1277,7 +1277,7 @@ class Address extends React.Component {
                         </li>
                       ))}
                     </ul>
-                    {pathname.slice(-9) === "transfers" || pathname.slice(-12) === "transactions" || pathname.slice(-21) === "internal-transactions" ? (
+                    {/* {pathname.slice(-9) === "transfers" || pathname.slice(-12) === "transactions" || pathname.slice(-21) === "internal-transactions" ? (
                       <div
                         className="addressSearch"
                         style={
@@ -1302,13 +1302,6 @@ class Address extends React.Component {
                               bottom: "6px",
                               height: 35
                             }:
-                              // activeLanguage == "ru"?{
-                              //   float:"right",
-                              //   padding: "0 1rem 6px 0",
-                              //   position:"absolute",
-                              //   right:"1rem",
-                              //   bottom:"6px"
-                              // }:
                               {
                                 float:"right",
                                 padding: "0 1rem 6px 0",
@@ -1396,7 +1389,7 @@ class Address extends React.Component {
                           </button>{" "}
                         </div>{" "}
                       </div>
-                    ) : null}{" "}
+                    ) : null}{" "} */}
                   </div>
                   <div className="card-body p-0 list-style-body__body">
                     <Switch>
