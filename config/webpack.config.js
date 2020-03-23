@@ -32,6 +32,8 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const PurgecssPlugin = require('purgecss-webpack-plugin');
 const glob = require('glob');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+
 
 
 
@@ -211,13 +213,30 @@ module.exports = function(webpackEnv) {
           },
         }),
 
-        new PurgecssPlugin({
-          paths: glob.sync(`${path.join(__dirname, 'src')}/**/*`,
-          { 
-            // 不匹配目录，只匹配文件
-            nodir: true,
-          }),
-        }),
+        // new MiniCssExtractPlugin({
+        //   filename: "css/[name].css?[hash:8]"
+        // }),
+    // new PurgecssPlugin({
+    //   paths: glob.sync([
+    //     path.join(__dirname, '../index.html'),
+    //     path.join(__dirname, '../src/*/*.jsx')
+    //   ])
+    // }),
+        //    new MiniCssExtractPlugin({
+        //   filename: "css/[name].css?[hash:8]"
+        //  }),
+        // new PurgecssPlugin({
+        //   paths: glob.sync([
+        //     path.join(__dirname, '../index.html'),
+        //     path.join(__dirname, '../src/*/*.jsx')
+        //   ])
+          
+          // paths: glob.sync(`${path.join(__dirname, 'src')}/**/*`,
+          // { 
+          //   // 不匹配目录，只匹配文件
+          //   nodir: true,
+          // }),
+        // }),
         // This is only used in production mode
         new TerserPlugin({
           terserOptions: {
@@ -617,6 +636,11 @@ module.exports = function(webpackEnv) {
             : undefined
         )
       ),
+      new MiniCssExtractPlugin(),
+      // 去除无用的样式
+      new PurgecssPlugin({
+          paths: glob.sync('./src/**/*', {nodir: true})
+      }),
       // Inlines the webpack runtime script. This script is too small to warrant
       // a network request.
       isEnvProduction &&

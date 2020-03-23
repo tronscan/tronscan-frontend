@@ -1,11 +1,67 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
+    "revision": "bb7e83c13cd498ce8f72",
+    "url": "/Exchange20.css"
+  },
+  {
+    "revision": "2e2d8ca36046e4a4ae585e1992977435",
+    "url": "/Exchange20.css.gz"
+  },
+  {
+    "revision": "d709345e6ed527aaa869",
+    "url": "/Exchangetrc.css"
+  },
+  {
+    "revision": "2e2d8ca36046e4a4ae585e1992977435",
+    "url": "/Exchangetrc.css.gz"
+  },
+  {
+    "revision": "d628f9ce0d26a3c8775a",
+    "url": "/Home.css"
+  },
+  {
+    "revision": "2e2d8ca36046e4a4ae585e1992977435",
+    "url": "/Home.css.gz"
+  },
+  {
+    "revision": "cb9e656d54bfdce6c4a3",
+    "url": "/NodeMap.css"
+  },
+  {
+    "revision": "15b5894e428633c9d2a280bca75b3b46",
+    "url": "/NodeMap.css.gz"
+  },
+  {
+    "revision": "344f2d1f92588a6a1879",
+    "url": "/SmartContract.css"
+  },
+  {
+    "revision": "691e3b2287f3cdc2319f71df8247e7bf",
+    "url": "/SmartContract.css.gz"
+  },
+  {
+    "revision": "3cd04dd49774aae2dd52",
+    "url": "/Token20Detail.css"
+  },
+  {
+    "revision": "691e3b2287f3cdc2319f71df8247e7bf",
+    "url": "/Token20Detail.css.gz"
+  },
+  {
     "revision": "3ac67932641151964cebb700c77cfe62",
     "url": "/bd551f56ce2be3eba2812e605ab4f5b2.css"
   },
   {
     "revision": "32f479e7825132eb95b2e51bd38bdc2b",
     "url": "/bd551f56ce2be3eba2812e605ab4f5b2.css.gz"
+  },
+  {
+    "revision": "a8d4731fe874320e0803",
+    "url": "/domloadsh.css"
+  },
+  {
+    "revision": "9ac8b681e15f7210fd3212757193bf4e",
+    "url": "/domloadsh.css.gz"
   },
   {
     "revision": "b54df40b6322c5f45c2b3acdb6a4cf6c",
@@ -16,35 +72,66 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/editor.worker.js.gz"
   },
   {
-    "revision": "aa3f5d4240327136dcaf00f94905b2c8",
+    "revision": "3dd345882cbf22977c7692178c4a9ced",
     "url": "/index.html"
   },
   {
-    "revision": "b6b3d509791ff6e0dbe3e98144d4fe6a",
+    "revision": "182ba26fdce5633ab4623723c4bfd61f",
     "url": "/index.html.gz"
+  },
+  {
+    "revision": "7788f4b77b52fa7df70d",
+    "url": "/main.css"
+  },
+  {
+    "revision": "d47f7e84b2d3f3ccace9040780b93784",
+    "url": "/main.css.gz"
+  },
+  {
+    "url": "/precache-manifest.8cc813a630c2c8646dba7c8c9a61ab1d.js"
+  },
+  {
+    "revision": "134cb979d1f253835485f6b0a7f1eda0",
+    "url": "/service-worker.js"
   },
   {
     "revision": "bb7e83c13cd498ce8f72",
     "url": "/static/css/Exchange20.849a7a81.chunk.css"
   },
   {
+    "revision": "2e2d8ca36046e4a4ae585e1992977435",
+    "url": "/static/css/Exchange20.849a7a81.chunk.css.gz"
+  },
+  {
     "revision": "d709345e6ed527aaa869",
     "url": "/static/css/Exchangetrc.849a7a81.chunk.css"
+  },
+  {
+    "revision": "2e2d8ca36046e4a4ae585e1992977435",
+    "url": "/static/css/Exchangetrc.849a7a81.chunk.css.gz"
   },
   {
     "revision": "d628f9ce0d26a3c8775a",
     "url": "/static/css/Home.849a7a81.chunk.css"
   },
   {
+    "revision": "2e2d8ca36046e4a4ae585e1992977435",
+    "url": "/static/css/Home.849a7a81.chunk.css.gz"
+  },
+  {
     "revision": "cb9e656d54bfdce6c4a3",
     "url": "/static/css/NodeMap.aab5afec.chunk.css"
+  },
+  {
+    "revision": "15b5894e428633c9d2a280bca75b3b46",
+    "url": "/static/css/NodeMap.aab5afec.chunk.css.gz"
   },
   {
     "revision": "344f2d1f92588a6a1879",
     "url": "/static/css/SmartContract.e41670ec.chunk.css"
   },
   {
-    "revision": "ef2952fdb28bd0ddf653bc320a14274f",
+    "revision": "691e3b2287f3cdc2319f71df8247e7bf",
     "url": "/static/css/SmartContract.e41670ec.chunk.css.gz"
   },
   {
@@ -52,7 +139,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/css/Token20Detail.e41670ec.chunk.css"
   },
   {
-    "revision": "ef2952fdb28bd0ddf653bc320a14274f",
+    "revision": "691e3b2287f3cdc2319f71df8247e7bf",
     "url": "/static/css/Token20Detail.e41670ec.chunk.css.gz"
   },
   {
@@ -60,7 +147,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/css/domloadsh.f5efca8d.chunk.css"
   },
   {
-    "revision": "c78957e8ac22286074a2ac1bd2dd4d35",
+    "revision": "9ac8b681e15f7210fd3212757193bf4e",
     "url": "/static/css/domloadsh.f5efca8d.chunk.css.gz"
   },
   {
@@ -68,7 +155,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/css/main.22209c74.chunk.css"
   },
   {
-    "revision": "5ce2826926562f9e26a3f53db0c022c1",
+    "revision": "d47f7e84b2d3f3ccace9040780b93784",
     "url": "/static/css/main.22209c74.chunk.css.gz"
   },
   {
@@ -76,7 +163,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/css/vendors~ContractCompiler.e41670ec.chunk.css"
   },
   {
-    "revision": "ef2952fdb28bd0ddf653bc320a14274f",
+    "revision": "691e3b2287f3cdc2319f71df8247e7bf",
     "url": "/static/css/vendors~ContractCompiler.e41670ec.chunk.css.gz"
   },
   {
@@ -88,7 +175,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/css/vendors~main.925528a7.chunk.css"
   },
   {
-    "revision": "b3371bf4ab9a44c0615ec4a460fe97a9",
+    "revision": "2c5328beae0ada0769ea357d6d41ba1a",
     "url": "/static/css/vendors~main.925528a7.chunk.css.gz"
   },
   {
@@ -620,12 +707,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/main.465f8682.chunk.js.gz"
   },
   {
-    "revision": "725aceff433b9615aaa5",
-    "url": "/static/js/runtime~main.89508f51.js"
+    "revision": "96ef1ddff5a1b5442ef5",
+    "url": "/static/js/runtime~main.36fae6ec.js"
   },
   {
-    "revision": "8ee5c13616075cc1b5fc22205f40c623",
-    "url": "/static/js/runtime~main.89508f51.js.gz"
+    "revision": "94281ebb921f2738b5b2528bc9b45065",
+    "url": "/static/js/runtime~main.36fae6ec.js.gz"
   },
   {
     "revision": "13dac0471ba1aaf73ce5",
@@ -966,5 +1053,25 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "7fe38ebce95afd4a42135e109e3102fb",
     "url": "/static/media/zh.7fe38ebc.svg"
+  },
+  {
+    "revision": "6cbdbb891aeee8ce60ff",
+    "url": "/vendors~ContractCompiler.css"
+  },
+  {
+    "revision": "691e3b2287f3cdc2319f71df8247e7bf",
+    "url": "/vendors~ContractCompiler.css.gz"
+  },
+  {
+    "revision": "c351174c537a39ac908c",
+    "url": "/vendors~NodeMap.css"
+  },
+  {
+    "revision": "58e94540a2bc73c14b73",
+    "url": "/vendors~main.css"
+  },
+  {
+    "revision": "2c5328beae0ada0769ea357d6d41ba1a",
+    "url": "/vendors~main.css.gz"
   }
 ]);
