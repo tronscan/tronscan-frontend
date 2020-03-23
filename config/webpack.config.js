@@ -344,13 +344,13 @@ module.exports = function(webpackEnv) {
         //   priority: 10,
         //   minChunks:1
         // },
-        domloadsh: {
-          name: 'domloadsh',
-          chunks: 'all',
-          test: /[\\/]node_modules[\\/](react-dom|lodash|google-protobuf|@tronscan|@ant-design|antd)[\\/]/,
-          priority: 10,
-          minChunks:1
-        },
+        // domloadsh: {
+        //   name: 'domloadsh',
+        //   chunks: 'all',
+        //   test: /[\\/]node_modules[\\/](react-dom|lodash|google-protobuf|@tronscan|@ant-design|antd)[\\/]/,
+        //   priority: 10,
+        //   minChunks:1
+        // },
 
         // vendors: {
         //   test: /[\\/]node_modules[\\/]/,
@@ -361,12 +361,12 @@ module.exports = function(webpackEnv) {
         //   priority: -20,
         //   reuseExistingChunk: true
         // }
-        styles: {
-          name: 'styles',
-          test: /\.less$/,
-          chunks: 'all',
-          //enforce: true,
-        }
+        // styles: {
+        //   name: 'styles',
+        //   test: /\.less$/,
+        //   chunks: 'all',
+        //   //enforce: true,
+        // }
       }
        },
       // Keep the runtime chunk separated to enable long term caching
@@ -636,36 +636,37 @@ module.exports = function(webpackEnv) {
             : undefined
         )
       ),
-      // new MiniCssExtractPlugin({
-      //   filename: '[name].[hash].css',
-      // }),
-      // new PurgecssPlugin({
-      //   paths: glob.sync("./src/**/*.{html}"),
-      //   // html body 标签相关样式不会被去除
-      //   // content: [
-      //   //   ".src/**/*.*",
-      //   // ],
-      //  // whitelist: ['html', 'body'],
-      //   // 命名带有 btn 的 class 不会被去除
-      //   whitelist: [
-      //     "./src/styles/*.{css}",
-      //     "./src/styles/themes/*.{css}",
-      //     "./src/styles/utilities/*.{css}",
-      // ],
-      // whitelistPatterns: [],
-      // extensions: [
-      //     "html",
-      //     "js",
-      //     "twig",
-      //     "vue"
-      // ]
-     //   whitelistPatterns: [/btn/],
+    //   new MiniCssExtractPlugin({
+    //     filename: '[name].[hash].css',
+    //   }),
+    //   new PurgecssPlugin({
+    //     paths: glob.sync("./src/**/*.{html}"),
+    //     // html body 标签相关样式不会被去除
+    //     // content: [
+    //     //   ".src/**/*.*",
+    //     // ],
+    //    // whitelist: ['html', 'body'],
+    //     // 命名带有 btn 的 class 不会被去除
+    //     whitelist: [
+    //       "./src/styles/*.{css}",
+    //       "./src/styles/themes/*.{css}",
+    //       "./src/styles/utilities/*.{css}",
+    //   ],
+    //   whitelistPatterns: [],
+    //   extensions: [
+    //       "html",
+    //       "js",
+    //       "twig",
+    //       "vue"
+    //   ]
+    // }),
+      // whitelistPatterns: [/btn/],
       //   extensions: [
       //     "html",
       //     "js",
       // ]
         // whitelistPatternsChildren: [/btn/]
-      //}),
+   
       // Inlines the webpack runtime script. This script is too small to warrant
       // a network request.
       isEnvProduction &&
