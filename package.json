@@ -256,7 +256,9 @@
     },
     "devDependencies": {
         "@babel/plugin-proposal-decorators": "^7.4.4",
-        "babel-plugin-add-module-exports": "^1.0.2"
+        "babel-plugin-add-module-exports": "^1.0.2",
+        "glob": "^7.1.6",
+        "purgecss-webpack-plugin": "^2.1.0"
     },
     "description": "<h1 align=\"center\">tronscan<br></h1>",
     "main": "desktop/main.js",

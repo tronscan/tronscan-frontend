@@ -30,6 +30,8 @@ const WorkboxPlugin = require('workbox-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const CompressionPlugin = require('compression-webpack-plugin');
+const PurgecssPlugin = require('purgecss-webpack-plugin');
+const glob = require('glob');
 
 
 
@@ -87,6 +89,7 @@ module.exports = function(webpackEnv) {
         loader: require.resolve('css-loader'),
         options: cssOptions,
       },
+
       {
         // Options for PostCSS as we reference these options twice
         // Adds vendor prefixing based on your specified browser support in
@@ -206,6 +209,14 @@ module.exports = function(webpackEnv) {
           uglifyOptions: {
             compress: false
           },
+        }),
+
+        new PurgecssPlugin({
+          paths: glob.sync(`${path.join(__dirname, 'src')}/**/*`,
+          { 
+            // 不匹配目录，只匹配文件
+            nodir: true,
+          }),
         }),
         // This is only used in production mode
         new TerserPlugin({
@@ -335,7 +346,7 @@ module.exports = function(webpackEnv) {
           name: 'styles',
           test: /\.less$/,
           chunks: 'all',
-          enforce: true,
+          //enforce: true,
         }
       }
        },
@@ -377,6 +388,8 @@ module.exports = function(webpackEnv) {
         // please link the files into your node_modules/ and let module-resolution kick in.
         // Make sure your source files are compiled, as they will not be processed in any way.
         new ModuleScopePlugin(paths.appSrc, [paths.appPackageJson]),
+
+
       ],
     },
     resolveLoader: {
@@ -578,6 +591,7 @@ module.exports = function(webpackEnv) {
     },
     plugins: [
       // Generates an `index.html` file with the <script> injected.
+
       new HtmlWebpackPlugin(
         Object.assign(
           {},
