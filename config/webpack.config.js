@@ -344,13 +344,13 @@ module.exports = function(webpackEnv) {
         //   priority: 10,
         //   minChunks:1
         // },
-        // domloadsh: {
-        //   name: 'domloadsh',
-        //   chunks: 'all',
-        //   test: /[\\/]node_modules[\\/](react-dom|lodash|google-protobuf|ethers|@tronscan|@ant-design|antd)[\\/]/,
-        //   priority: 10,
-        //   minChunks:1
-        // },
+        domloadsh: {
+          name: 'domloadsh',
+          chunks: 'all',
+          test: /[\\/]node_modules[\\/](react-dom|lodash|google-protobuf|@tronscan|@ant-design|antd)[\\/]/,
+          priority: 10,
+          minChunks:1
+        },
 
         // vendors: {
         //   test: /[\\/]node_modules[\\/]/,
@@ -361,12 +361,12 @@ module.exports = function(webpackEnv) {
         //   priority: -20,
         //   reuseExistingChunk: true
         // }
-        // styles: {
-        //   name: 'styles',
-        //   test: /\.less$/,
-        //   chunks: 'all',
-        //   //enforce: true,
-        // }
+        styles: {
+          name: 'styles',
+          test: /\.less$/,
+          chunks: 'all',
+          //enforce: true,
+        }
       }
        },
       // Keep the runtime chunk separated to enable long term caching
