@@ -636,18 +636,18 @@ module.exports = function(webpackEnv) {
             : undefined
         )
       ),
-      new MiniCssExtractPlugin({
-        filename: '[name].[hash].css',
-      }),
-      new PurgecssPlugin({
-        paths: glob.sync(`${path.join(__dirname, 'src')}/**/*.jsx`,
-        { nodir: true }),
-        // html body 标签相关样式不会被去除
-        whitelist: ['html', 'body'],
-        // 命名带有 btn 的 class 不会被去除
-        whitelistPatterns: [/btn/],
-        // whitelistPatternsChildren: [/btn/]
-      }),
+      // new MiniCssExtractPlugin({
+      //   filename: '[name].[hash].css',
+      // }),
+      // new PurgecssPlugin({
+      //   paths: glob.sync(`${path.join(__dirname, 'src')}/**/*.jsx`,
+      //   { nodir: true }),
+      //   // html body 标签相关样式不会被去除
+      //   whitelist: ['html', 'body'],
+      //   // 命名带有 btn 的 class 不会被去除
+      //   whitelistPatterns: [/btn/],
+      //   // whitelistPatternsChildren: [/btn/]
+      // }),
       // Inlines the webpack runtime script. This script is too small to warrant
       // a network request.
       isEnvProduction &&
