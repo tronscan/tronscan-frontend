@@ -60,6 +60,13 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/main.b12f5c219321d2ebafdd.css.gz"
   },
   {
+    "url": "/precache-manifest.251e69e446cf9e50ede844a674e5786f.js"
+  },
+  {
+    "revision": "22f879a5d92e88fab5ec45fef78a05be",
+    "url": "/service-worker.js"
+  },
+  {
     "revision": "bb7e83c13cd498ce8f72",
     "url": "/static/css/Exchange20.849a7a81.chunk.css"
   },
@@ -96,7 +103,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/css/domloadsh.f5efca8d.chunk.css"
   },
   {
-    "revision": "7e3ebab73672c6a7256fbed883d28e19",
+    "revision": "c78957e8ac22286074a2ac1bd2dd4d35",
     "url": "/static/css/domloadsh.f5efca8d.chunk.css.gz"
   },
   {
@@ -104,7 +111,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/css/main.22209c74.chunk.css"
   },
   {
-    "revision": "8db59de8f6ae75647778ed757fcbb7a1",
+    "revision": "5ce2826926562f9e26a3f53db0c022c1",
     "url": "/static/css/main.22209c74.chunk.css.gz"
   },
   {

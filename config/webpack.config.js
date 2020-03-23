@@ -646,13 +646,16 @@ module.exports = function(webpackEnv) {
         content: [
           ".src/**/*.*",
         ],
-        whitelist: ['html', 'body'],
+       // whitelist: ['html', 'body'],
         // 命名带有 btn 的 class 不会被去除
-        whitelistPatterns: [/btn/],
-        extensions: [
-          "html",
-          "js",
-      ]
+        whitelist: [
+          "./src/styles/**/*.{css}"
+      ],
+     //   whitelistPatterns: [/btn/],
+      //   extensions: [
+      //     "html",
+      //     "js",
+      // ]
         // whitelistPatternsChildren: [/btn/]
       }),
       // Inlines the webpack runtime script. This script is too small to warrant
