@@ -32,7 +32,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const PurgecssPlugin = require('purgecss-webpack-plugin');
 const glob = require('glob');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+//const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 
 
@@ -636,10 +636,18 @@ module.exports = function(webpackEnv) {
             : undefined
         )
       ),
-      new MiniCssExtractPlugin(),
-      // 去除无用的样式
+      new MiniCssExtractPlugin({
+        filename: '[name].[hash].css',
+      }),
       new PurgecssPlugin({
-          paths: glob.sync('./src/**/*', {nodir: true})
+        paths: glob.sync(`${path.join(__dirname, 'src')}/**/*.jsx`,
+        { nodir: true }),
+        // 白名单 具体描述：https://www.purgecss.com/whitelisting#patterns
+        // html body 标签相关样式不会被去除
+        whitelist: ['html', 'body'],
+        // 命名带有 btn 的 class 不会被去除
+        whitelistPatterns: [/btn/],
+        // whitelistPatternsChildren: [/btn/]
       }),
       // Inlines the webpack runtime script. This script is too small to warrant
       // a network request.
