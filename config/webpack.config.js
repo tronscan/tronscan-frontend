@@ -344,13 +344,13 @@ module.exports = function(webpackEnv) {
         //   priority: 10,
         //   minChunks:1
         // },
-        domloadsh: {
-          name: 'domloadsh',
-          chunks: 'all',
-          test: /[\\/]node_modules[\\/](react-dom|lodash|google-protobuf|ethers|@tronscan|@ant-design|antd)[\\/]/,
-          priority: 10,
-          minChunks:1
-        },
+        // domloadsh: {
+        //   name: 'domloadsh',
+        //   chunks: 'all',
+        //   test: /[\\/]node_modules[\\/](react-dom|lodash|google-protobuf|ethers|@tronscan|@ant-design|antd)[\\/]/,
+        //   priority: 10,
+        //   minChunks:1
+        // },
 
         // vendors: {
         //   test: /[\\/]node_modules[\\/]/,
@@ -361,12 +361,12 @@ module.exports = function(webpackEnv) {
         //   priority: -20,
         //   reuseExistingChunk: true
         // }
-        styles: {
-          name: 'styles',
-          test: /\.less$/,
-          chunks: 'all',
-          //enforce: true,
-        }
+        // styles: {
+        //   name: 'styles',
+        //   test: /\.less$/,
+        //   chunks: 'all',
+        //   //enforce: true,
+        // }
       }
        },
       // Keep the runtime chunk separated to enable long term caching
@@ -642,7 +642,6 @@ module.exports = function(webpackEnv) {
       new PurgecssPlugin({
         paths: glob.sync(`${path.join(__dirname, 'src')}/**/*.jsx`,
         { nodir: true }),
-        // 白名单 具体描述：https://www.purgecss.com/whitelisting#patterns
         // html body 标签相关样式不会被去除
         whitelist: ['html', 'body'],
         // 命名带有 btn 的 class 不会被去除
