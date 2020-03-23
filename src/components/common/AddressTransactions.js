@@ -701,6 +701,7 @@ class Transactions extends React.Component {
                 <Icon type="caret-down" style={{fontSize:12,color:'#999'}}  theme="outlined" />
             );
         },
+        width:'10%',
         className: "ant_table",
         filterDropdown: tokenFilterDropdown,
         onFilterDropdownVisibleChange: (visible) => {
