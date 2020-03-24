@@ -352,12 +352,12 @@ class Accounts extends Component {
     let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + rangeTotal + ' ' + intl.formatMessage({id: 'account_unit'}) + '<br/>(' + intl.formatMessage({id: 'table_info_big'}) + ')';
     let tableInfoTip = intl.formatMessage({id: 'view_total'}) + ' ' + rangeTotal + ' ' + intl.formatMessage({id: 'table_info_account_tip2'});
       return (
-        <main className="container header-overlap pb-3 token_black">
+        <main className="container header-overlap pb-3 token_black account_main">
           <div className="row">
             <div className="d-flex col-md-12 justify-content-end my-2">
               <Link to="/data/stats#address">{tu('account_more')}></Link>
             </div>
-            <div className="d-flex col-md-12">
+            <div className="d-flex col-md-12 panel">
               <div className="card h-100 widget-icon accout_unit">
                 {/* <WidgetIcon className="fa fa-users text-secondary"/> */}
                 <div className="card-body">

@@ -166,7 +166,7 @@ class Representative extends React.Component {
               </th>
               <td>
                 <ul className="list-unstyled m-0">
-                  <li className="d-flex">
+                  <li className="d-flex flex-wrap">
                     <TRXPrice
                       amount={walletReward / ONE_TRX}
                       showPopup={false}

@@ -118,6 +118,9 @@
       border-bottom: 1px solid #eee;
       // white-space: normal;
       // max-width:50%;
+      @media screen and (max-width: 768px) {
+        white-space: normal;
+      }
     }
     td {
       font-family: PingFangSC-Regular;

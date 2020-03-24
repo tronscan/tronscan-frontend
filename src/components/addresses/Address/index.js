@@ -1139,7 +1139,7 @@ class Address extends React.Component {
                                 <span className="ml-1">:</span>
                               </th>
                               <td>
-                                <div className="d-flex">
+                                <div className="d-flex flex-wrap">
                                   <NavLink exact to={match.url + "/transfers"}>
                                     <div
                                       className="colorYellow"

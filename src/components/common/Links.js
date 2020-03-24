@@ -278,17 +278,6 @@ class addressLinkClass extends React.PureComponent {
             </CopyToClipboard>
           </Tooltip>
         )}
-        {includeErcode && (
-          <Tooltip placement="top" title={t("show_qr_code")}>
-            <span
-              className="ml-3"
-              onClick={this.renderModal}
-              style={{ cursor: "pointer" }}
-            >
-              <i className="fas fa-qrcode" />
-            </span>
-          </Tooltip>
-        )}
         {includeTransfer && (
           <Tooltip placement="top" title={t("send_tokens")}>
             <span
@@ -297,6 +286,18 @@ class addressLinkClass extends React.PureComponent {
               style={{ cursor: "pointer" }}
             >
               <i className="fas fa-exchange-alt" />
+            </span>
+          </Tooltip>
+        )}
+        {includeErcode && (
+          <Tooltip placement="top" title={t("show_qr_code")}>
+            <span
+              className="ml-3"
+              onClick={this.renderModal}
+              style={{ cursor: "pointer" }}
+            >
+              {/* <i className="fas fa-qrcode" /> */}
+              <img src={require('../../images/address/qrcode.svg')} style={{verticalAlign:'0px'}}/>
             </span>
           </Tooltip>
         )}

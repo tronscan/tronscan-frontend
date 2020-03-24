@@ -344,7 +344,11 @@ body .token_black {
       color: $text-block-dark;
       position: relative;
     }
+    @media screen and (max-width: 768px) {
+      height:auto!important;
+    }
   }
+
   .accout_total {
     position: relative;
     background-color: $white;

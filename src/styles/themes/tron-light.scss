@@ -335,6 +335,22 @@
       width: 44px;
     }
   }
+  .account_main{
+    @media screen and (max-width: 768px) {
+      .panel{
+        display: block!important;
+        &>div{
+          &:first-child{
+            margin-right:0;
+          }
+          &:last-child{
+            margin: 10px 0;
+          }
+          height:auto!important; 
+        }
+      }
+    }
+  }
   // default background style ====================================================
   .token_black {
     // 背景色样式
@@ -356,6 +372,7 @@
       }
       thead th {
         background: $bg-color-lighter;
+        white-space: normal;
       }
       .ant-table-thead > tr.ant-table-row-hover > td,
       .ant-table-tbody > tr.ant-table-row-hover > td,
