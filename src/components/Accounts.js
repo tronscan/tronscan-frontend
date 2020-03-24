@@ -383,7 +383,7 @@ class Accounts extends Component {
           {loading && <div className="loading-style"><TronLoader/></div>}
           <div className="row mt-2">
             <div className="col-md-12 table_pos">
-              {total ?<div className="d-none d-md-block mt-2 mb-1"  style={{color: '#999',fontSize: '16px'}}>
+              {total ?<div className="d-none d-md-block mt-2 mb-2"  style={{color: '#999',fontSize: '16px'}}>
                       <div>
                         {tu('account_total_tip')}
                         {/* {tu('view_total')} {rangeTotal} {tu('account_unit')}  */}

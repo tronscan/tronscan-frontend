@@ -274,7 +274,7 @@ class addressLinkClass extends React.PureComponent {
             >
               <span style={{ cursor: "pointer" }}>
                 {/* <i className="fa fa-paste" /> */}
-                <img src={require('../../images/address/copy.svg')} style={{verticalAlign:'0px',width:'15px'}}/>
+                <img src={require('../../images/address/copy.svg')} style={{width:'15px'}}/>
 
               </span>
             </CopyToClipboard>
@@ -288,7 +288,7 @@ class addressLinkClass extends React.PureComponent {
               style={{ cursor: "pointer" }}
             >
               {/* <i className="fas fa-exchange-alt" /> */}
-              <img src={require('../../images/address/transfer.svg')} style={{verticalAlign:'0px',width:'15px'}}/>
+              <img src={require('../../images/address/transfer.svg')} style={{width:'15px'}}/>
 
             </span>
           </Tooltip>
@@ -301,7 +301,7 @@ class addressLinkClass extends React.PureComponent {
               style={{ cursor: "pointer" }}
             >
               {/* <i className="fas fa-qrcode" /> */}
-              <img src={require('../../images/address/qrcode.svg')} style={{verticalAlign:'0px',width:'15px'}}/>
+              <img src={require('../../images/address/qrcode.svg')} style={{width:'15px'}}/>
             </span>
           </Tooltip>
         )}
