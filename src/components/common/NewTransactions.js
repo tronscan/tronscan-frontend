@@ -636,7 +636,7 @@ class NewTransactions extends React.Component {
                 dataIndex: 'status',
                 key: 'status',
                 align: 'left',
-                width: activeLanguage ==='ru' ? '24%' :'20%',
+                width: activeLanguage ==='ru' ? '24%' :(activeLanguage === 'zh' ? "10%" : (activeLanguage === 'ar' || activeLanguage === 'ko'? "18%" :'20%') ),
                 filterIcon: () => {
                     return (
                         <Icon type="caret-down" style={{fontSize:12,color:'#999'}}  theme="outlined" />
@@ -741,7 +741,7 @@ class NewTransactions extends React.Component {
                 align: "left",
                 key: "tokens",
                 className: "ant_table",
-                width: '8%',
+                width: activeLanguage ==='ar' || activeLanguage ==='ko'  ? '12%': "10%",
                 filterIcon: () => {
                     return (
                         <Icon type="caret-down" style={{fontSize:12,color:'#999'}}  theme="outlined" />
@@ -756,7 +756,6 @@ class NewTransactions extends React.Component {
                     }
                 },
                 render: (text, record, index) => {
-                    console.log(record)
                     return (
                         <div >
                             {   record.map_token_id == 1002000 ||

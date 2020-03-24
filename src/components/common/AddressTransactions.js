@@ -246,6 +246,16 @@ class Transactions extends React.Component {
         "callValue",
         "valueInfoList"
       );
+      console.log(newdata);
+      newdata.map(item => {
+        if(item.valueInfoList){
+          item.valueInfoList.forEach(val=>{
+            if(val.map_token_id === '_'){
+              val.map_amount_logo = 'https://s2.coinmarketcap.com/static/img/coins/64x64/1958.png';
+            }
+          })
+        }
+      })
       transactions = newdata;
       total = count || data.total;
       rangeTotal = data.rangeTotal;
@@ -713,6 +723,7 @@ class Transactions extends React.Component {
         },
         render: (text, record, index) => {
             const defaultImg = require("../../images/logo_default.png");
+            console.log(record)
             return record.valueInfoList.length
             ? record.valueInfoList.map((item, index) => {
                 return (
