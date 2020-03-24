@@ -16,19 +16,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/editor.worker.js.gz"
   },
   {
-    "revision": "46ce91d70d685658cd8e8e24a0664a1f",
+    "revision": "74214d07ff572f0e74e5266d49b9aa81",
     "url": "/index.html"
   },
   {
-    "revision": "04d92f9c2f8f6a0bbbde488b4293074d",
+    "revision": "c170dc04b951b520776048375a4303e5",
     "url": "/index.html.gz"
-  },
-  {
-    "url": "/precache-manifest.abe0abccf120b6f3a8267b6c150806fb.js"
-  },
-  {
-    "revision": "14a9bcf9aca36327a5739185fd3505ec",
-    "url": "/service-worker.js"
   },
   {
     "revision": "4d8942266e35691b291e",
@@ -103,7 +96,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/css/vendors~NodeMap.bd022918.chunk.css.gz"
   },
   {
-    "revision": "92133b7742be24966f1e",
+    "revision": "1961f2a0e4c2f75e9bb9",
     "url": "/static/css/vendors~main.b903dd66.chunk.css"
   },
   {
@@ -623,12 +616,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/WalletWizard.96c4b48b.chunk.js.gz"
   },
   {
-    "revision": "6cbdcd96b842bcbfba01",
-    "url": "/static/js/domloadsh.2fc6bd04.chunk.js"
+    "revision": "de281fa679e59100f387",
+    "url": "/static/js/domloadsh.3a92761e.chunk.js"
   },
   {
-    "revision": "b95c9db175380b51921180d1086c5027",
-    "url": "/static/js/domloadsh.2fc6bd04.chunk.js.gz"
+    "revision": "46bf5a1e6b3a7a6d291cb1efa90f85a5",
+    "url": "/static/js/domloadsh.3a92761e.chunk.js.gz"
   },
   {
     "revision": "f9721e117f26108092e3",
@@ -783,12 +776,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/vendors~WalletWizard.cc1b8725.chunk.js.gz"
   },
   {
-    "revision": "92133b7742be24966f1e",
-    "url": "/static/js/vendors~main.e0b1b48b.chunk.js"
+    "revision": "1961f2a0e4c2f75e9bb9",
+    "url": "/static/js/vendors~main.803bf898.chunk.js"
   },
   {
-    "revision": "d872c913af987927c272c74f42a5683b",
-    "url": "/static/js/vendors~main.e0b1b48b.chunk.js.gz"
+    "revision": "64334c872a18c626d7c1506bc8690c84",
+    "url": "/static/js/vendors~main.803bf898.chunk.js.gz"
   },
   {
     "revision": "ab35a1fbf04c8848526c5e3e8db0baf5",
