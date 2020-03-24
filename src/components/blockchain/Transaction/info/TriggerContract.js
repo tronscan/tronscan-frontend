@@ -27,6 +27,26 @@ function TriggerContract({contract,intl}){
               </div>
               <div className="flex1">
                 <div className="d-flex border-bottom content_item">
+                  {/*  Distinguish between contract and ordinary address */}
+                  {contract.contract_map[contract["owner_address"]]? (
+                    <Tooltip
+                      placement="top"
+                      title={upperFirst(
+                        intl.formatMessage({
+                          id: "transfersDetailContractAddress"
+                        })
+                      )}
+                    >
+                      <Icon
+                        type="file-text"
+                        style={{
+                          verticalAlign: 0,
+                          color: "#77838f",
+                          lineHeight: 1.4
+                        }}
+                      />
+                    </Tooltip>
+                  ) :null}
                   <AddressLink
                     address={contract["owner_address"]}
                   >
@@ -41,11 +61,9 @@ function TriggerContract({contract,intl}){
               </div>
               <div className="flex1">
                 <div className="d-flex content_item">
-                  <AddressLink
-                    address={contract["contract_address"]}
-                    isContract={true}
-                  >
-                    {/* <Tooltip
+                   {/*  Distinguish between contract and ordinary address */}
+                   {contract.contract_map[contract["contract_address"]]? (
+                    <Tooltip
                       placement="top"
                       title={upperFirst(
                         intl.formatMessage({
@@ -56,13 +74,17 @@ function TriggerContract({contract,intl}){
                       <Icon
                         type="file-text"
                         style={{
-                          fontSize: 12,
-                          verticalAlign: 2,
-                          marginRight: 4,
-                          color: "#333"
+                          verticalAlign: 0,
+                          color: "#77838f",
+                          lineHeight: 1.4
                         }}
                       />
-                    </Tooltip> */}
+                    </Tooltip>
+                  ) :null}
+                  <AddressLink
+                    address={contract["contract_address"]}
+                    isContract={true}
+                  >
                     {contract["contract_address"]}
                   </AddressLink>
                 </div>
@@ -104,6 +126,26 @@ function TriggerContract({contract,intl}){
                                     <div className="mr-2">
                                       {tu("from")}
                                     </div>
+                                    {/*  Distinguish between contract and ordinary address */}
+                                    {contract.contract_map[item["caller_address"]]? (
+                                      <Tooltip
+                                        placement="top"
+                                        title={upperFirst(
+                                          intl.formatMessage({
+                                            id: "transfersDetailContractAddress"
+                                          })
+                                        )}
+                                      >
+                                        <Icon
+                                          type="file-text"
+                                          style={{
+                                            verticalAlign: 0,
+                                            color: "#77838f",
+                                            lineHeight: 1.4
+                                          }}
+                                        />
+                                      </Tooltip>
+                                    ) :null}
                                     <div
                                       className="mr-2"
                                       style={{ width: "169px" }}
@@ -120,6 +162,26 @@ function TriggerContract({contract,intl}){
                                     <div className="mr-2">
                                       {tu("to")}
                                     </div>
+                                    {/*  Distinguish between contract and ordinary address */}
+                                    {contract.contract_map[item["transfer_to_address"]]? (
+                                        <Tooltip
+                                          placement="top"
+                                          title={upperFirst(
+                                            intl.formatMessage({
+                                              id: "transfersDetailContractAddress"
+                                            })
+                                          )}
+                                        >
+                                          <Icon
+                                            type="file-text"
+                                            style={{
+                                              verticalAlign: 0,
+                                              color: "#77838f",
+                                              lineHeight: 1.4
+                                            }}
+                                          />
+                                        </Tooltip>
+                                      ) :null}
                                     <div
                                       className="mr-2"
                                       style={{ width: "169px" }}

@@ -18,7 +18,7 @@ function setUnit(count){
   return count > 1 ? t('trans_tickets') : t('trans_ticket')
 }
 
-export default function VoteWitnessContract({contract}){
+function VoteWitnessContract({contract,intl}){
   
   let count = 0
   if(contract.votes){
@@ -27,14 +27,37 @@ export default function VoteWitnessContract({contract}){
     })
   }
 
-
   return(
     <Fragment>
         <TransationTitle contractType={contract.contractType}></TransationTitle>
         <div className="table-responsive">
         <table className="table">
             <tbody>
-            <Field label="initiate_address"><AddressLink address={contract['owner_address']}/></Field>
+            <Field label="initiate_address">
+              <span className="d-flex">
+               {/*  Distinguish between contract and ordinary address */}
+               {contract.contract_map[contract["owner_address"]]? (
+                    <Tooltip
+                      placement="top"
+                      title={upperFirst(
+                        intl.formatMessage({
+                          id: "transfersDetailContractAddress"
+                        })
+                      )}
+                    >
+                      <Icon
+                        type="file-text"
+                        style={{
+                          verticalAlign: 0,
+                          color: "#77838f",
+                          lineHeight: 1.4
+                        }}
+                      />
+                    </Tooltip>
+                  ) :null}
+                  <AddressLink address={contract['owner_address']}/>
+                </span>
+            </Field>
             <Field label="votes_count">
               <div className="flex1">
                 <div className="d-flex band-item">{toThousands(count)}&nbsp;{setUnit(count)}</div>
@@ -42,7 +65,29 @@ export default function VoteWitnessContract({contract}){
                   contract.votes.map((vote,index) => (
                     <div className="d-flex band-item item-belong" key={index}>
                       <span style={{marginRight: '10px'}}>{tu('candidate_address')}:</span>
-                      <div style={{minWidth: '340px'}} className="d-flex"><AddressLink address={vote['vote_address']} truncate={false}/> &nbsp;{vote.tag && `(${vote.tag})`}</div>
+                      <div style={{minWidth: '340px'}} className="d-flex">
+                        {/*  Distinguish between contract and ordinary address */}
+                        {contract.contract_map[contract["owner_address"]]? (
+                              <Tooltip
+                                placement="top"
+                                title={upperFirst(
+                                  intl.formatMessage({
+                                    id: "transfersDetailContractAddress"
+                                  })
+                                )}
+                              >
+                                <Icon
+                                  type="file-text"
+                                  style={{
+                                    verticalAlign: 0,
+                                    color: "#77838f",
+                                    lineHeight: 1.4
+                                  }}
+                                />
+                              </Tooltip>
+                          ) :null}
+                          <AddressLink address={vote['vote_address']} truncate={false}/> &nbsp;{vote.tag && `(${vote.tag})`}
+                      </div>
                       <span style={{margin: '0 10px'}}>{tu("counts") }:</span> { toThousands(vote['vote_count'])} &nbsp;{setUnit(vote['vote_count'])}
                     </div>
                   ))
@@ -65,3 +110,5 @@ export default function VoteWitnessContract({contract}){
     </Fragment>
   )
 }
+
+export default injectIntl(VoteWitnessContract)
