@@ -336,6 +336,9 @@
     }
   }
   .account_main{
+    th{
+      white-space: normal!important;
+    }
     @media screen and (max-width: 768px) {
       .panel{
         display: block!important;
@@ -372,7 +375,6 @@
       }
       thead th {
         background: $bg-color-lighter;
-        white-space: normal;
       }
       .ant-table-thead > tr.ant-table-row-hover > td,
       .ant-table-tbody > tr.ant-table-row-hover > td,

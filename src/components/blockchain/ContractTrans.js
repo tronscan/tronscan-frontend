@@ -8,19 +8,19 @@ import {Client} from "../../services/api";
 import {AddressLink, BlockNumberLink, TransactionHashLink} from "../common/Links";
 import {getQueryParams} from "../../utils/url";
 import {Truncate} from "../common/text";
-import {ContractTypes} from "../../utils/protocol";
+//import {ContractTypes} from "../../utils/protocol";
 import {upperFirst} from "lodash";
 import SmartTable from "../common/SmartTable.js"
 import {TronLoader} from "../common/loaders";
 import {TRXPrice} from "../common/Price";
 import {ONE_TRX} from "../../constants";
 import TotalInfo from "../common/TableTotal";
-import DateRange from "../common/DateRange";
+//import DateRange from "../common/DateRange";
 import moment from 'moment';
-import {DatePicker} from "antd/lib/index";
+//import {DatePicker} from "antd/lib/index";
 import BlockTime from '../common/blockTime'
 
-const RangePicker = DatePicker.RangePicker;
+//const RangePicker = DatePicker.RangePicker;
 
 class ContractTrans extends React.Component {
 

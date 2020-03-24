@@ -1553,7 +1553,7 @@ class Navigation extends React.Component {
           >
             <div className="mobile-draw-menu">
               <MenuNavigation currentRoutes={routes} changeDrawerFun={()=>this.changeCurrentDrawerFun()}></MenuNavigation>
-              <Collapse accordion bordered={false} expandIconPosition="right" accordion={true} defaultActiveKey={[currentActive]} expandIcon={({ isActive }) => <Icon type="down" rotate={isActive ? 180 : 0} />}>
+              <Collapse accordion bordered={false} expandIconPosition="right"  defaultActiveKey={[currentActive]} expandIcon={({ isActive }) => <Icon type="down" rotate={isActive ? 180 : 0} />}>
                 <Panel header={'EXPLORERS'} key="0" >
                   <div className="languages-menu mobile-testnet-dropdown-menu">
                     {

@@ -5,17 +5,18 @@ import { TransferAssetContract } from "@tronscan/client/src/protocol/core/Contra
 import LedgerBridge from "../hw/ledger/LedgerBridge";
 import { transactionJsonToProtoBuf } from "@tronscan/client/src/utils/tronWeb";
 import { byteArray2hexStr } from "@tronscan/client/src/utils/bytes";
-
 import { Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 import { PulseLoader } from "react-spinners";
 import Contract from "../hw/ledger/TransactionConfirmation";
-import { ACCOUNT_LEDGER, ACCOUNT_PRIVATE_KEY, ACCOUNT_TRONLINK, SUNWEBCONFIG } from "../constants";
+import { ACCOUNT_LEDGER, ACCOUNT_PRIVATE_KEY, ACCOUNT_TRONLINK, SUNWEBCONFIG, API_URL } from "../constants";
 import { deepCopy } from "ethers/utils";
 import { Client } from "../services/api";
 import injectpromise from 'injectpromise';
 import config from '../config/main.config'
-const ledgerTokenList = require('./tokens');
-const ledgerExchangeList = require('./exchanges');
+import Lockr from "lockr";
+import xhr from "axios/index";
+let ledgerTokenList = Lockr.get("ledgerTokenList");
+let ledgerExchangeList = Lockr.get("ledgerExchangeList");
 
 export function withTronWeb(InnerComponent) {
  
@@ -145,7 +146,10 @@ export function withTronWeb(InnerComponent) {
                     );
                     // get token info
                     extra = await this.getTokenExtraInfo(transaction.raw_data.contract[0].parameter.value.asset_name);
-                    tokenInfo.push(this.getLedgerTokenInfo(ID).message);
+                    let tokenObj = await this.getLedgerTokenInfo(ID);
+                    if(tokenObj.message){
+                      tokenInfo.push(tokenObj.message);
+                    }
                     break;
                   case 41: //ExchangeCreateContract
                     const token1 = await this.getTokenExtraInfo(
@@ -220,7 +224,6 @@ export function withTronWeb(InnerComponent) {
 
                 const ledgerBridge = new LedgerBridge();
                 let signedResponse;
-
                 signedResponse = await ledgerBridge.signTransaction({
                   hex: rawDataHex,
                   info: tokenInfo,
@@ -267,7 +270,7 @@ export function withTronWeb(InnerComponent) {
       return { id: -1, decimals: 0, token_name: "" };;
     }
 
-    getLedgerTokenInfo(ID) {
+    async getLedgerTokenInfo(ID) {
       let tokenID = ID;
       if (typeof tokenID !== "number") {
         if (tokenID === "_")
@@ -275,15 +278,22 @@ export function withTronWeb(InnerComponent) {
         else
           tokenID = parseInt(tokenID);
       }
-      return ledgerTokenList.tokenList.find(o => o.id === tokenID);
+      if(!ledgerTokenList){
+        let { data } = await xhr.get(`${API_URL}/api/ledger?type=token10&start=0&limit=5000`); 
+        let ledgerTokenListNew = data.data;
+        return ledgerTokenListNew.find(o => o.id === tokenID);
+      }else{
+        return ledgerTokenList.find(o => o.id === tokenID);
+      }
+      
     }
 
-    getLedgerExchangeInfo(ID) {
+     getLedgerExchangeInfo(ID) {
       let exchangeID = ID;
       if (typeof exchangeID !== "number") {
         exchangeID = parseInt(exchangeID);
       }
-      return ledgerExchangeList.exchangeList.find(o => o.id === exchangeID);
+      return ledgerExchangeList.find(o => o.id === exchangeID);
     }
 
     hideModal = () => {

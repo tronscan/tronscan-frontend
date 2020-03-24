@@ -6,7 +6,7 @@ import SignList from './common/SignList'
 import { tu } from "../../../../utils/i18n";
 import BandwidthUsage from './common/BandwidthUsage'
 import { toThousands } from '../../../../utils/number'
-import { Icon, Tooltip } from "antd";
+//import { Icon, Tooltip } from "antd";
 export default function UpdateEnergyLimitContract(props) {
     const contract = props.contract;
     const {signature_addresses,contractType,cost,parameterValue,contract_address} = contract;

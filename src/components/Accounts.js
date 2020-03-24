@@ -205,6 +205,7 @@ class Accounts extends Component {
         dataIndex: 'index',
         key: 'index',
         align: 'center',
+        width: '5%',
         render: (text, record, index) => {
             return text
         }
@@ -215,7 +216,7 @@ class Accounts extends Component {
         key: 'address',
         align: 'left',
         className: 'ant_table',
-        width: '40%',
+        width: '38%',
         render: (text, record, index) => {
           return (
                 <div  className="d-flex">
@@ -255,7 +256,7 @@ class Accounts extends Component {
         sortDirections: ["descend", "ascend"],
         align: 'left',
         className: 'ant_table',
-        // width: '15%',
+        // width: '10%',
         render: (text, record, index) => {
           return <TRXPrice amount={parseInt(text) / ONE_TRX}/>
         }
@@ -277,7 +278,7 @@ class Accounts extends Component {
         sortDirections: ["descend", "ascend"],
         align: 'left',
         className: 'ant_table',
-        width: '15%',
+        width: '12%',
         render: (text, record, index) => {
           return <div><FormattedNumber
               value={(((parseInt(text) / ONE_TRX) / CIRCULATING_SUPPLY) * 100)}

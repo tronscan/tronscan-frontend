@@ -21,22 +21,23 @@
     padding: 20px 2.6%;
     background: #F4F4F2;
     font-size: 16px;
+    border-left:1px solid #D8D8D8;
+    border-right:1px solid #D8D8D8;
     .fa{
       color: #666;
     }
   }
   .address-info{
-    padding-right: 60px;
+    padding-right: 36px;
     border-right: 1px solid #eee;
   }
   .address-circle {
-    padding-left: 37px;
-
+    padding-left: 26px;
     font-size: 14px;
     color: #999999;
     font-family: PingFangSC-Medium;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     flex-direction: column;
     & > div {
       width: 100%;
@@ -104,7 +105,7 @@
     .color333 {
       color: #333 !important;
       font-size: 14px;
-      padding: 0 10px;
+      padding: 0 5px;
     }
   }
 
@@ -167,6 +168,12 @@
     }
     .mobile-no-flex {
       display: block !important;
+    }
+  }
+
+  .ant-table-header-column .ant-table-column-sorters{
+    &:hover{
+      
     }
   }
 }
