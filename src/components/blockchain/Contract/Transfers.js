@@ -13,8 +13,8 @@ import {TronLoader} from "../../common/loaders";
 import TotalInfo from "../../common/TableTotal";
 // import DateRange from "../../common/DateRange";
 import DateSelect from "../../common/newDateSelect";
-import xhr from "axios/index";
-import {API_URL} from '../../../constants.js'
+//import xhr from "axios/index";
+//import {API_URL} from '../../../constants.js'
 import { FormatNumberByDecimals } from '../../../utils/number'
 import BlockTime from '../../common/blockTime'
 
