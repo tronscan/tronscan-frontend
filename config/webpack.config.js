@@ -306,7 +306,7 @@ module.exports = function(webpackEnv) {
       // https://medium.com/webpack/webpack-4-code-splitting-chunk-graph-and-the-splitchunks-optimization-be739a861366
       splitChunks: {
         chunks: 'all',
-        name: true,
+        name: false,
       //   minSize: 30000,
       // maxSize: 0,
       // minChunks: 1,
@@ -344,13 +344,13 @@ module.exports = function(webpackEnv) {
         //   priority: 10,
         //   minChunks:1
         // },
-        // domloadsh: {
-        //   name: 'domloadsh',
-        //   chunks: 'all',
-        //   test: /[\\/]node_modules[\\/](react-dom|lodash|google-protobuf|@tronscan|@ant-design|ethers)[\\/]/,
-        //   priority: 10,
-        //   minChunks:1
-        // },
+        domloadsh: {
+          name: 'domloadsh',
+          chunks: 'all',
+          test: /[\\/]node_modules[\\/](react-dom|lodash|google-protobuf|@tronscan|@ant-design|ethers)[\\/]/,
+          priority: 10,
+          minChunks:1
+        },
 
         // vendors: {
         //   test: /[\\/]node_modules[\\/]/,
@@ -361,12 +361,12 @@ module.exports = function(webpackEnv) {
         //   priority: -20,
         //   reuseExistingChunk: true
         // }
-        // styles: {
-        //   name: 'styles',
-        //   test: /\.less$/,
-        //   chunks: 'all',
-        //   //enforce: true,
-        // }
+        styles: {
+          name: 'styles',
+          test: /\.less$/,
+          chunks: 'all',
+          //enforce: true,
+        }
       }
        },
       // Keep the runtime chunk separated to enable long term caching
