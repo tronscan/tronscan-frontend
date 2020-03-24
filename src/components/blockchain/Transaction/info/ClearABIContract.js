@@ -6,8 +6,11 @@ import { TransationTitle } from './common/Title'
 import BandwidthUsage from './common/BandwidthUsage'
 import { tu } from "../../../../utils/i18n";
 import { Icon, Tooltip } from "antd";
-export default function ClearABIContract(props) {
-    const contract = props.contract;
+import { upperFirst } from "lodash";
+import {injectIntl} from "react-intl";
+
+
+function ClearABIContract({contract,intl}) {
     const { signature_addresses, contractType, cost, contract_address } = contract;
     let signList = signature_addresses;
     return <Fragment>
@@ -16,30 +19,80 @@ export default function ClearABIContract(props) {
             <tbody>
                 {
                     contract['ownerAddress'] ?
-                        <Field label="transaction_owner_address"><AddressLink address={contract['ownerAddress']} /></Field>
+                        <Field label="transaction_owner_address">
+                            <span className="d-flex">
+                                {/*  Distinguish between contract and ordinary address */}
+                                {contract.contract_map[contract['ownerAddress']]? (
+                                    <Tooltip
+                                    placement="top"
+                                    title={upperFirst(
+                                        intl.formatMessage({
+                                        id: "transfersDetailContractAddress"
+                                        })
+                                    )}
+                                    >
+                                    <Icon
+                                        type="file-text"
+                                        style={{
+                                            verticalAlign: 0,
+                                            color: "#77838f",
+                                            lineHeight: 1.4
+                                        }}
+                                    />
+                                    </Tooltip>
+                                ) :null}
+                                <AddressLink address={contract['owner_address']}/>
+                            </span>
+                        </Field>
                         : ''
                 }
                 <Field label="contract_address">
-                    <AddressLink
-                        address={contract_address}
-                        isContract={true}
-                    >
-                        <Tooltip
+                    <span className="d-flex">
+                        {/*  Distinguish between contract and ordinary address */}
+                        {contract.contract_map[contract['ownerAddress']]? (
+                            <Tooltip
                             placement="top"
-                            title={tu("transfersDetailContractAddress")}
-                        >
+                            title={upperFirst(
+                                intl.formatMessage({
+                                id: "transfersDetailContractAddress"
+                                })
+                            )}
+                            >
                             <Icon
                                 type="file-text"
                                 style={{
-                                    fontSize: 12,
-                                    verticalAlign: 2,
-                                    marginRight: 4,
-                                    color: "#333"
+                                    verticalAlign: 0,
+                                    color: "#77838f",
+                                    lineHeight: 1.4
                                 }}
                             />
-                        </Tooltip>
-                        {contract_address}
-                    </AddressLink>
+                            </Tooltip>
+                        ) :null}
+                        {/* <AddressLink
+                            address={contract_address}
+                            isContract={true}
+                        >
+                            <Tooltip
+                                placement="top"
+                                title={tu("transfersDetailContractAddress")}
+                            >
+                                <Icon
+                                    type="file-text"
+                                    style={{
+                                        fontSize: 12,
+                                        verticalAlign: 2,
+                                        marginRight: 4,
+                                        color: "#333"
+                                    }}
+                                />
+                            </Tooltip>
+                            {contract_address}
+                        </AddressLink> */}
+                        <AddressLink    
+                            address={contract_address}
+                            isContract={true}/>
+                    </span>
+                    
                 </Field>
                 {JSON.stringify(contract.cost) !=
                     "{}" && <Field label="consume_bandwidth"><BandwidthUsage cost={cost} /></Field>}
@@ -48,3 +101,5 @@ export default function ClearABIContract(props) {
         </table>
     </Fragment>
 }
+
+export default injectIntl(ClearABIContract)

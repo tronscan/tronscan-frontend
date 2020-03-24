@@ -6,8 +6,11 @@ import SignList from './common/SignList'
 import { TransationTitle } from './common/Title'
 import { tu } from "../../../../utils/i18n";
 import BandwidthUsage from './common/BandwidthUsage'
-export default function ExchangeInjectContract(props) {
-    const contract = props.contract;
+import {injectIntl} from "react-intl";
+import { upperFirst } from "lodash";
+import { Tooltip,Icon } from 'antd';
+
+ function ExchangeInjectContract({contract,intl}) {
     const { quant, signature_addresses, contractType, cost, exchangeInfo } = contract;
     const { first_token_name, first_token_id, second_token_name } = exchangeInfo;
     let signList = signature_addresses;
@@ -17,7 +20,31 @@ export default function ExchangeInjectContract(props) {
             <tbody>
                 {
                     contract['owner_address'] ?
-                        <Field label="transaction_owner_address"><AddressLink address={contract['owner_address']} /></Field>
+                        <Field label="transaction_owner_address">
+                            <span className="d-flex">
+                                {/*  Distinguish between contract and ordinary address */}
+                                {contract.contract_map[contract['ownerAddress']]? (
+                                    <Tooltip
+                                    placement="top"
+                                    title={upperFirst(
+                                        intl.formatMessage({
+                                        id: "transfersDetailContractAddress"
+                                        })
+                                    )}
+                                    >
+                                    <Icon
+                                        type="file-text"
+                                        style={{
+                                        verticalAlign: 0,
+                                        color: "#77838f",
+                                        lineHeight: 1.4
+                                        }}
+                                    />
+                                    </Tooltip>
+                                ) :null}
+                                <AddressLink address={contract['ownerAddress']} />
+                            </span>
+                        </Field>
                         : ''
                 }
                 <Field label="pairs">{first_token_name} / {second_token_name && second_token_name.toUpperCase()}</Field>
@@ -30,3 +57,5 @@ export default function ExchangeInjectContract(props) {
         </table>
     </Fragment>
 }
+
+export default injectIntl(ExchangeInjectContract)
