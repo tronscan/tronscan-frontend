@@ -194,23 +194,21 @@ module.exports = function(webpackEnv) {
       minimize: isEnvProduction,
       usedExports: true,
       minimizer: [
-        new UglifyJsPlugin({
-          test: /\.js(\?.*)?$/i,
-          include: /\/includes/,
-          chunkFilter: (chunk) => {
-            // Exclude uglification for the `vendor` chunk
-            if (chunk.name === 'vendor') {
-              return false;
-            }
-  
-            return true;
-          },
+         new UglifyJsPlugin({
           cache: true,
-          parallel: true,
-
+          parallel: true, // 开启并行压缩，充分利用cpu
+          sourceMap: false,
+          extractComments: true, // 移除注释
           uglifyOptions: {
-            compress: false
-          },
+            compress: {
+              unused: true,
+              //warnings: false,
+              drop_debugger: true
+            },
+            output: {
+              comments: false
+            }
+          }
         }),
 
         // new MiniCssExtractPlugin({
