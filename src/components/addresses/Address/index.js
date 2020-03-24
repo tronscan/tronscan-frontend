@@ -44,6 +44,7 @@ import { Piechart } from "../components/Piechart";
 import SweetAlert from "react-bootstrap-sweetalert";
 import {transactionResultManager, transactionResultManagerSun} from "../../../utils/tron";
 import { loadUsdPrice } from "../../../actions/blockchain";
+import '../../../styles/account.scss'
 
 
 BigNumber.config({ EXPONENTIAL_AT: [-1e9, 1e9] });
