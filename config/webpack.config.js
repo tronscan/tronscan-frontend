@@ -347,7 +347,7 @@ module.exports = function(webpackEnv) {
         domloadsh: {
           name: 'domloadsh',
           chunks: 'all',
-          test: /[\\/]node_modules[\\/](react-dom|lodash|google-protobuf|@tronscan|@ant-design)[\\/]/,
+          test: /[\\/]node_modules[\\/](react-dom|lodash|google-protobuf|@tronscan|@ant-design|ethers)[\\/]/,
           priority: 10,
           minChunks:1
         },
