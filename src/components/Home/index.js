@@ -3,10 +3,10 @@ import { connect } from "react-redux";
 import xhr from "axios/index";
 import { injectIntl } from "react-intl";
 import { doSearch, getSearchType } from "../../services/search";
-import CountUp from "react-countup";
+//import CountUp from "react-countup";
 import { Client, Client20 } from "../../services/api";
-import { Link } from "react-router-dom";
-import { TRXPrice } from "../common/Price";
+//import { Link } from "react-router-dom";
+//import { TRXPrice } from "../common/Price";
 import RecentBlocks from "./RecentBlocks";
 import { KEY_ENTER } from "../../utils/constants";
 import { withTimers } from "../../utils/timing";
@@ -14,7 +14,7 @@ import isMobile from "../../utils/isMobile";
 import RecentTransfers from "./RecentTransfers";
 import { tu } from "../../utils/i18n";
 import { toastr } from "react-redux-toastr";
-import { HrefLink } from "../common/Links";
+//import { HrefLink } from "../common/Links";
 import { TronLoader } from "../common/loaders";
 import {
   LineReactHighChartAdd,
@@ -883,19 +883,6 @@ export default class Home extends Component {
   }
   MonitoringParameters(){
       let _this = this;
-      // 1.时区  timezone
-      // 2.浏览器 browser
-      // 3.页面URL  url
-      // 5.页面加载完成的时间  pageLoadTime
-      // 6.内容加载完成的时间  contentLoadTime
-      // 7.DNS 查询时间  dnsSearchTime
-      // 8.dom解析时间		domAnalyzeTime
-      // 9.ttfb读取页面第一个字节的时间	ttfbReadTime
-      // 10.TCP 建立连接完成握手的时间	tcpBuildTime
-      // 11.重定向的时间	redirectTime
-      // 12.执行 onload 回调函数的时间	onloadCallbackTime
-      // 13.卸载页面的时间	uninstallPageTime
-  
       if (window.performance || window.webkitPerformance) {
           var perf = window.performance || window.webkitPerformance;
           var timing = perf.timing;
@@ -958,7 +945,7 @@ export default class Home extends Component {
                       shelllod:time.domContentLoadedEventEnd - time.domContentLoadedEventStart,
                       measure5:parseInt(measure5),
                       blankTime:time.domLoading - time.fetchStart,
-                      v:'v1',
+                      v:'v5',
                       entryList:getPerformanceTimingEntry(),
                       udid:uuidv4
 
@@ -1034,57 +1021,8 @@ export default class Home extends Component {
                   })
                 }         
           }      
-
-    MonitoringParameters1(){
-        let _this = this;
-        // 1.时区  timezone
-        // 2.浏览器 browser
-        // 3.页面URL  url
-        // 5.页面加载完成的时间  pageLoadTime
-        // 6.内容加载完成的时间  contentLoadTime
-        // 7.DNS 查询时间  dnsSearchTime
-        // 8.dom解析时间		domAnalyzeTime
-        // 9.ttfb读取页面第一个字节的时间	ttfbReadTime
-        // 10.TCP 建立连接完成握手的时间	tcpBuildTime
-        // 11.重定向的时间	redirectTime
-        // 12.执行 onload 回调函数的时间	onloadCallbackTime
-        // 13.卸载页面的时间	uninstallPageTime
-          if (window.performance || window.webkitPerformance) {
-              var perf = window.performance || window.webkitPerformance;
-              var timing = perf.timing;
-              var navi = perf.navigation;
-              var timer = setInterval(function() {
-                  if (0 !== timing.loadEventEnd) {
-                      timing = perf.timing;
-                      let {loadPage,redirect,lookupDomain,request,connect} = getPerformanceTimingEntry()
-                      clearInterval(timer);
-                      var data = {
-                          url: window.location.href,
-                          timezone: new Date().getTimezoneOffset()/60,
-                          browser:window.navigator.userAgent,
-                          pageLoadTime:loadPage,
-                          contentLoadTime:request,
-                          dnsSearchTime:lookupDomain,
-                          // domAnalyzeTime:domReady,
-                          // ttfbReadTime:ttfb,
-                          tcpBuildTime:connect,
-                          redirectTime:redirect,
-                          // onloadCallbackTime:loadEvent,
-                          // uninstallPageTime: unloadEvent,
-                          isMobile:isMobile && isMobile[0],
-                    
-                      };
-                    
-
-                      // ApiClientMonitor.setMonitor(data)
-                      return data;
-                    }
-                  })
-                }         
-          }
-
           
-}
+ }
 
 const styles = {
   list: {

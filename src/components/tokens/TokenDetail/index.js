@@ -682,22 +682,10 @@ class TokenDetail extends React.Component {
   }
   MonitoringParameters(){
     let _this = this;
-    // 1.时区  timezone
-    // 2.浏览器 browser
-    // 3.页面URL  url
-    // 5.页面加载完成的时间  pageLoadTime
-    // 6.内容加载完成的时间  contentLoadTime
-    // 7.DNS 查询时间  dnsSearchTime
-    // 8.dom解析时间		domAnalyzeTime
-    // 9.ttfb读取页面第一个字节的时间	ttfbReadTime
-    // 10.TCP 建立连接完成握手的时间	tcpBuildTime
-    // 11.重定向的时间	redirectTime
-    // 12.执行 onload 回调函数的时间	onloadCallbackTime
-    // 13.卸载页面的时间	uninstallPageTime
       if (window.performance || window.webkitPerformance) {
           var perf = window.performance || window.webkitPerformance;
           var timing = perf.timing;
-          var navi = perf.navigation;
+          //var navi = perf.navigation;
 
           window.performance.mark("mySetTimeout-end3");
 
@@ -751,7 +739,7 @@ class TokenDetail extends React.Component {
                       shelllod:time.domContentLoadedEventEnd - time.domContentLoadedEventStart,
                       measure5:parseInt(measure5),
                       blankTime:time.domLoading - time.fetchStart,
-                      v:'v1',
+                      v:'v5',
                       entryList:getPerformanceTimingEntry(),
                       udid:uuidv4
                   };
