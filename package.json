@@ -2,6 +2,10 @@
     "name": "tronscan-frontend",
     "version": "0.1.0",
     "private": true,
+    "sideEffects": [
+        "./src/some-side-effectful-file.js",
+        "*.css"
+      ],
     "dependencies": {
         "@babel/core": "7.4.3",
         "@fortawesome/fontawesome": "^1.1.7",
@@ -168,7 +172,7 @@
         "uuid": "^3.2.1",
         "valid-url": "^1.0.9",
         "vivus": "^0.4.3",
-        "webpack": "4.29.6",
+        "webpack": "4.42.0",
         "webpack-build-notifier": "^1.0.3",
         "webpack-bundle-analyzer": "^3.3.2",
         "webpack-dev-server": "3.2.1",
@@ -255,7 +259,11 @@
     },
     "devDependencies": {
         "@babel/plugin-proposal-decorators": "^7.4.4",
-        "babel-plugin-add-module-exports": "^1.0.2"
+        "babel-plugin-add-module-exports": "^1.0.2",
+        "extract-text-webpack-plugin": "^3.0.2",
+        "glob": "^7.1.6",
+        "glob-all": "^3.2.1",
+        "purgecss-webpack-plugin": "^2.1.0"
     },
     "description": "<h1 align=\"center\">tronscan<br></h1>",
     "main": "desktop/main.js",

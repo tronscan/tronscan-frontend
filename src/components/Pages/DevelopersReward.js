@@ -7,14 +7,14 @@ import { upperFirst, trim } from "lodash";
 import { AddressLink } from "../common/Links";
 import { CIRCULATING_SUPPLY, ONE_TRX } from "../../constants";
 import { TRXPrice } from "../common/Price";
-import SmartTable from "../common/SmartTable.js";
+//import SmartTable from "../common/SmartTable.js";
 import { TronLoader } from "../common/loaders";
-import { QuestionMark } from "../common/QuestionMark";
-import xhr from "axios/index";
+//import { QuestionMark } from "../common/QuestionMark";
+//import xhr from "axios/index";
 import { Client } from "../../services/api";
 import { Tooltip, Input, Table } from "antd";
 import Note from "./Note";
-import { NameWithId } from "../common/names";
+//import { NameWithId } from "../common/names";
 const { Search } = Input;
 
 class developersReward extends Component {
