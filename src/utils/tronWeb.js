@@ -8,7 +8,7 @@ import { byteArray2hexStr } from "@tronscan/client/src/utils/bytes";
 import { Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 import { PulseLoader } from "react-spinners";
 import Contract from "../hw/ledger/TransactionConfirmation";
-import { ACCOUNT_LEDGER, ACCOUNT_PRIVATE_KEY, ACCOUNT_TRONLINK, SUNWEBCONFIG } from "../constants";
+import { ACCOUNT_LEDGER, ACCOUNT_PRIVATE_KEY, ACCOUNT_TRONLINK, SUNWEBCONFIG, API_URL } from "../constants";
 import { deepCopy } from "ethers/utils";
 import { Client } from "../services/api";
 import injectpromise from 'injectpromise';
@@ -279,7 +279,7 @@ export function withTronWeb(InnerComponent) {
           tokenID = parseInt(tokenID);
       }
       if(!ledgerTokenList){
-        let { data } = await xhr.get(`https://debugapilist.tronscan.org/api/ledger?type=token10&start=0&limit=5000`); 
+        let { data } = await xhr.get(`${API_URL}/api/ledger?type=token10&start=0&limit=5000`); 
         let ledgerTokenListNew = data.data;
         return ledgerTokenListNew.find(o => o.id === tokenID);
       }else{
