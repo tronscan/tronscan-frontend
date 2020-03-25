@@ -182,7 +182,8 @@ class Resource extends React.Component {
     for (let i = 0; i < num; i++) {
       items.push(i);
     }
-    let activeNum = percent * num;
+    let activeNum = percent * num/100;
+  
     return (
       <div className="d-flex resource-item">
         {items.map(i => (
