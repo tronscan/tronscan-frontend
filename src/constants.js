@@ -8,8 +8,8 @@ export const IS_TESTNET = process.env.NET === "testnet";
 export const IS_DESKTOP = process.env.DESKTOP === "true";
 
 
-export const IS_MAINNET = Lockr.get("NET") === "mainnet" || !Lockr.get("NET");
-export const IS_SUNNET = Lockr.get("NET") === "sunnet";
+// export const IS_MAINNET = Lockr.get("NET") === "mainnet" || !Lockr.get("NET");
+// export const IS_SUNNET = Lockr.get("NET") === "sunnet";
 
 
 export const IS_NILE = true;
@@ -48,8 +48,8 @@ if (NODE_ENV == "development") {
   // NODEAPI = "http://52.15.126.154:9016";
 }
 //
-// export let IS_MAINNET = MAINNET;
-// export let IS_SUNNET = SUNNET;
+export let IS_MAINNET = MAINNET;
+export let IS_SUNNET = SUNNET;
 
 //NODEAPI = "http://52.15.126.154:9016";
 //for nile
