@@ -4555,6 +4555,29 @@ h5 {
     z-index: 999;
   }
 }
+.transfers-Container{
+  .address-transfers-radio {
+    position: absolute;
+    top: 82px;
+    z-index: 999;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .transfers-Container{
+    .address-transfers-radio {
+      position: absolute;
+      top: 0px;
+      left: -4px;
+      z-index: 999;
+    }
+    .single-transferall-container{
+      top:40px !important;
+    }
+  }
+}
+
+
+
 
 @each $name in Weibo, Wechat, Discord, Facebook, Group, Steem, Instagram, Medium,
   Reddit, Telegram, Twitter, delete, GitHub

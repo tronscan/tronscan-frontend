@@ -463,7 +463,7 @@ class TransfersAll extends React.Component {
         // }
 
         return (
-            <div className="token_black table_pos">
+            <div className="token_black table_pos transfers-Container">
                 {loading && <div className="loading-style"><TronLoader/></div>}
                 <div className="d-flex justify-content-between" style={{right: 'auto'}}>
                     {!loading && <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" divClass="table_pos_info_addr" selected/> }
