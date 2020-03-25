@@ -10,8 +10,7 @@ export const IS_DESKTOP = process.env.DESKTOP === "true";
 
 export const IS_MAINNET = Lockr.get("NET") === "mainnet" || !Lockr.get("NET");
 export const IS_SUNNET = Lockr.get("NET") === "sunnet";
-// export const IS_MAINNET = true;
-// export const IS_SUNNET = false;
+
 
 export const IS_NILE = true;
 
@@ -37,17 +36,17 @@ let MAINNET;
 let SUNNET;
 let NODEAPI;
 
-// if (NODE_ENV == "development") {
-//   MAINNET = Lockr.get("NET") === "mainnet" || !Lockr.get("NET");
-//   SUNNET = Lockr.get("NET") === "sunnet";
-//   // NODEAPI = "http://52.15.126.154:9016";
-//   NODEAPI = process.env.API_URL;
-// } else {
-//   MAINNET = window.location.origin === NETURL.MAINNET;
-//   SUNNET = window.location.origin === NETURL.SUNNET;
-//   NODEAPI = process.env.API_URL;
-//   // NODEAPI = "http://52.15.126.154:9016";
-// }
+if (NODE_ENV == "development") {
+  MAINNET = Lockr.get("NET") === "mainnet" || !Lockr.get("NET");
+  SUNNET = Lockr.get("NET") === "sunnet";
+  // NODEAPI = "http://52.15.126.154:9016";
+  NODEAPI = process.env.API_URL;
+} else {
+  MAINNET = window.location.origin === NETURL.MAINNET;
+  SUNNET = window.location.origin === NETURL.SUNNET;
+  NODEAPI = process.env.API_URL;
+  // NODEAPI = "http://52.15.126.154:9016";
+}
 //
 // export let IS_MAINNET = MAINNET;
 // export let IS_SUNNET = SUNNET;
