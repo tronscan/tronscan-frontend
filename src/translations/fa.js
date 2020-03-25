@@ -2362,6 +2362,7 @@ export const messages = {
 "sun_network_development_document": "مستندات توسعه",
 "home_page":"صفحه اصلی",
 "developer_challenge":"Developer Challenge",
+/* 
     ##################################################################################
     #                                                                                #
     #   multi-signature               2019-11-19              #
