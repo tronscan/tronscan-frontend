@@ -21,7 +21,7 @@ function ExchangeTransactionContract({contract,intl}) {
                 {
                     contract['owner_address'] ?
                         <Field label="transaction_owner_address">
-                             <span className="d-flex">
+                            <span className="d-flex">
                                 {/*  Distinguish between contract and ordinary address */}
                                 {contract.contract_map[contract['ownerAddress']]? (
                                     <Tooltip

@@ -155,7 +155,6 @@ class Transaction extends React.Component {
                 hash: transaction["hash"],
                 signature_addresses: transaction.signature_addresses,
                 contract_map: transaction.contract_map,
-                ...transaction.contract_map,
               }}
             />
           )

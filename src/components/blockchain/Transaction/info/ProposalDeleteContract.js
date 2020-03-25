@@ -13,6 +13,7 @@ import {TransationTitle} from './common/Title'
 import {injectIntl} from "react-intl";
 import Field from "../../../tools/TransactionViewer/Field";
 
+
 function ProposalDeleteContract({contract,intl}){
   return(
     <Fragment>
