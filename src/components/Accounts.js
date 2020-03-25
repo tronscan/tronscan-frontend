@@ -205,7 +205,7 @@ class Accounts extends Component {
         dataIndex: 'index',
         key: 'index',
         align: 'center',
-        width: '5%',
+        width: '8%',
         render: (text, record, index) => {
             return text
         }
