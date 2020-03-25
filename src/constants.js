@@ -1,5 +1,5 @@
 import Lockr from "lockr";
-import uuidv4w  from "uuid/v4";
+import uuidv4w from "uuid/v4";
 /**
  * 1000000 sun = 1 TRX
  */
@@ -11,12 +11,12 @@ export const IS_DESKTOP = process.env.DESKTOP === "true";
 export const NETURL = {
   NEWMAINNET: "https://tronscan.io",
   NEWSUNNET: "https://dappchain.tronscan.io",
-  // MAINNET: "https://tronscan.org",
-  // SUNNET: "https://dappchain.tronscan.org",
+  MAINNET: "https://tronscan.org",
+  SUNNET: "https://dappchain.tronscan.org"
   // MAINNET: "http://18.217.215.94:69",
   // SUNNET: "http://18.217.215.94:70",
-  MAINNET: "https://debug.tronscan.org",
-  SUNNET: "https://debugdappchain.tronscan.org",
+  // MAINNET: "https://debug.tronscan.org",
+  // SUNNET: "https://debugdappchain.tronscan.org",
 };
 
 export const TOKENINFO_UPDATE = "TOKENINFO_UPDATE";
@@ -167,7 +167,7 @@ export const SUNWEBCONFIG = {
   // SIDECHAIN: "TGKotco6YoULzbYisTBuP6DWXDjEgJSpYz",
   // SIDEID: "41E209E4DE650F0150788E8EC5CAFA240A23EB8EB7"
 
-  // for tronex 
+  // for tronex
   // MAINFULLNODE: "https://testhttpapi.tronex.io",
   // MAINSOLIDITYNODE: "https://testhttpapi.tronex.io",
   // MAINEVENTSERVER: "https://testapi.tronex.io",
@@ -175,7 +175,7 @@ export const SUNWEBCONFIG = {
   // SUNFULLNODE: "https://suntest.tronex.io",
   // SUNSOLIDITYNODE: "https://suntest.tronex.io",
   // SUNEVENTSERVER: "https://suntest.tronex.io",
-  
+
   // MAINNET: "TWaPZru6PR5VjgT4sJrrZ481Zgp3iJ8Rfo",
   // SIDECHAIN: "TGKotco6YoULzbYisTBuP6DWXDjEgJSpYz",
   // SIDEID: "41E209E4DE650F0150788E8EC5CAFA240A23EB8EB7"
@@ -255,4 +255,12 @@ export const CONTRACT_LICENSES = [
 export const WARNING_VERSIONS = [];
 export const uuidv4 = uuidv4w();
 
-export const ADDRESS_TAG_ICON = ['Binance','Bittrex','Gate','Huobi','Kucoin','Okex','Poloniex']
+export const ADDRESS_TAG_ICON = [
+  "Binance",
+  "Bittrex",
+  "Gate",
+  "Huobi",
+  "Kucoin",
+  "Okex",
+  "Poloniex"
+];
