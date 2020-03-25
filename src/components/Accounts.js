@@ -363,7 +363,7 @@ class Accounts extends Component {
                 {/* <WidgetIcon className="fa fa-users text-secondary"/> */}
                 <div className="card-body">
                   <h3 className="text-primary">
-                    <FormattedNumber value={newAddressSeen}/>
+                    {newAddressSeen ? <FormattedNumber value={newAddressSeen}/> : '-'}
                   </h3>
                   {tu("account_lastDay_count")}
                 </div>
@@ -372,7 +372,7 @@ class Accounts extends Component {
                 {/* <WidgetIcon className="fa fa-users text-secondary"/> */}
                 <div className="card-body">
                   <h3 className="text-primary">
-                    <FormattedNumber value={rangeTotal}/>
+                  {rangeTotal ? <FormattedNumber value={rangeTotal}/> : '-'}
                   </h3>
                   {tu("account_realTime_count")}
                 </div>

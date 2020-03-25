@@ -1121,7 +1121,8 @@ class Address extends React.Component {
                                     className="colorYellow"
                                     onClick={this.scrollToAnchor.bind(this)}
                                   >
-                                    {address.totalTransactionCount} &nbsp;
+                                    <FormattedNumber value={address.totalTransactionCount}/>
+                                     &nbsp;
                                   </span>
                                 </NavLink>
                                 Txns
@@ -1145,7 +1146,8 @@ class Address extends React.Component {
                                       className="colorYellow"
                                       onClick={this.scrollToAnchor.bind(this)}
                                     >
-                                      {stats.transactions} &nbsp;
+                                        <FormattedNumber value={stats.transactions}/>
+                                       &nbsp;
                                     </div>
                                   </NavLink>
                                   Txns
@@ -1153,11 +1155,13 @@ class Address extends React.Component {
                                     <span className="ml-1">(</span>
                                     <i className="fa fa-arrow-down text-success" />
                                     &nbsp;
-                                    <span>{stats.transactions_in} Txns</span>
+                                    <span>
+                                    <FormattedNumber value={stats.transactions_in}/> Txns</span>
                                     &nbsp;
                                     <i className="fa fa-arrow-up  text-danger" />
                                     &nbsp;
-                                    <span>{stats.transactions_out} Txns</span>
+                                    <span>
+                                    <FormattedNumber value={stats.transactions_out}/> Txns</span>
                                     &nbsp;
                                     <span>)</span>
                                   </div>
