@@ -123,17 +123,14 @@ export const TRADINGMAP = {
 
 // SunWeb config
 export const SUNWEBCONFIG = {
-  // MAINFULLNODE: "https://api.trongrid.io",
-  // MAINSOLIDITYNODE: "https://api.trongrid.io",
-  // MAINEVENTSERVER: "https://api.trongrid.io",
+  MAINFULLNODE: "https://api.trongrid.io",
+  MAINSOLIDITYNODE: "https://api.trongrid.io",
+  MAINEVENTSERVER: "https://api.trongrid.io",
 
   // MAINFULLNODE: "https://api.nileex.io",
   // MAINSOLIDITYNODE: "https://api.nileex.io",
   // MAINEVENTSERVER: "https://event.nileex.io",
 
-  MAINFULLNODE: "https://api.shasta.trongrid.io",
-  MAINSOLIDITYNODE: "https://api.shasta.trongrid.io",
-  MAINEVENTSERVER: "https://api.shasta.trongrid.io",
 
   SUNFULLNODE: "https://sun.tronex.io",
   SUNSOLIDITYNODE: "https://sun.tronex.io",

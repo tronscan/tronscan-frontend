@@ -255,12 +255,10 @@ class Code extends React.Component {
                 let HexStr = Client.getTriggerSmartContractHexStr(unSignTransaction.raw_data.contract[0].parameter.value);
                 //sign transaction
                 let SignTransaction = await transactionMultiResultManager(unSignTransaction, tron, permissionId,permissionTime,HexStr);
-
-               // let { data } = await xhr.post("https://list.tronlink.org/api/wallet/multi/transaction", {
-                 let { data } = await xhr.post("https://testlist.tronlink.org/api/wallet/multi/transaction", {
+                let { data } = await xhr.post("https://list.tronlink.org/api/wallet/multi/transaction", {
                     "address": account.address,
                     "transaction": SignTransaction,
-                    "netType":"shasta",
+                    "netType":"main_net",
                     "functionSelector":function_selector,
                 });
                 let code = data.code;

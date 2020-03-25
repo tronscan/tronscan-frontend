@@ -130,11 +130,10 @@ class SendForm extends React.Component {
                 // xhr.defaults.headers.common["MainChain"] = 'MainChain';
 
                 //xhr multi-sign transaction api
-               // let { data } = await xhr.post("https://list.tronlink.org/api/wallet/multi/transaction", {
-                let { data } = await xhr.post("https://testlist.tronlink.org/api/wallet/multi/transaction", {
-                   "address": wallet.address,
+                let { data } = await xhr.post("https://list.tronlink.org/api/wallet/multi/transaction", {
+                    "address": wallet.address,
                     "transaction": SignTransaction,
-                    "netType":"shasta"
+                    "netType":"main_net"
                 });
                 result = data.code;
 
@@ -174,11 +173,10 @@ class SendForm extends React.Component {
                 // xhr.defaults.headers.common["MainChain"] = 'MainChain';
 
                 //xhr multi-sign transaction api
-                // let { data } = await xhr.post("https://list.tronlink.org/api/wallet/multi/transaction", {
-                let { data } = await xhr.post("https://testlist.tronlink.org/api/wallet/multi/transaction", {
+                let { data } = await xhr.post("https://list.tronlink.org/api/wallet/multi/transaction", {
                     "address": wallet.address,
                     "transaction": SignTransaction,
-                    "netType":"shasta"
+                    "netType":"main_net"
                 });
                 result = data.code;
             }
@@ -287,11 +285,10 @@ class SendForm extends React.Component {
             //sign transaction
             let SignTransaction = await transactionMultiResultManager(unSignTransaction, tronWeb, permissionId,permissionTime,HexStr);
 
-           // let { data } = await xhr.post("https://list.tronlink.org/api/wallet/multi/transaction", {
-            let { data } = await xhr.post("https://testlist.tronlink.org/api/wallet/multi/transaction", {
-                "address": wallet.address,
-                "transaction": SignTransaction,
-                "netType":"shasta"
+            let { data } = await xhr.post("https://list.tronlink.org/api/wallet/multi/transaction", {
+              "address": wallet.address,
+              "transaction": SignTransaction,
+              "netType":"main_net"
             });
             let result = data.code;
             if (result == 0) {

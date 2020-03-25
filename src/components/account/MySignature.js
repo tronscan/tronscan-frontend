@@ -93,15 +93,14 @@ class MySignature extends React.Component {
     let {
       data: { data }
     } = await xhr.get(
-       //"https://list.tronlink.org/api/wallet/multi/trx_record",
-       "https://testlist.tronlink.org/api/wallet/multi/trx_record",
+       "https://list.tronlink.org/api/wallet/multi/trx_record",
       {
         params: {
           address: wallet.address,
           start: (page - 1) * pageSize,
           state: filter.direction,
           limit: 5000,
-          netType: "shasta"
+          netType: "main_net"
         }
       }
     );
@@ -251,12 +250,11 @@ class MySignature extends React.Component {
       }  
       //xhr multi-sign transaction api
       let { data } = await xhr.post(
-        //"https://list.tronlink.org/api/wallet/multi/transaction",
-        "https://testlist.tronlink.org/api/wallet/multi/transaction",
+        "https://list.tronlink.org/api/wallet/multi/transaction",
         {
           address: wallet.address,
           transaction: SignTransaction,
-          netType: "shasta"
+          netType: "main_net"
         }
       );
       result = data.code;
