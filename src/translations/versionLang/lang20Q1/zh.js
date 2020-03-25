@@ -277,7 +277,7 @@ export const lang20Q1 = {
   account_representative_block_table_res: "资源消耗",
   account_representative_block_table_prize: "出块收益",
   account_representative_block_desc:
-    "累计出块{block}个，累计获得出块收益{trx}TRX",
+    "累计出块 {block} 个，累计获得出块收益 {trx} TRX",
   account_representative_voters_per_tip: "该选民投票数量占总得票的比例",
   account_representative_transfer_tip: "关联当前账户的TRX/10通证/ 20通证转账数",
   account_representative_unit:'当前共{number}名选民',

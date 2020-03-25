@@ -150,7 +150,7 @@ class Blocks extends React.Component {
         width:'150px',
         className: "ant_table",
         render: (text, record, index) => {
-          return <FormattedNumber value={text} />;
+          return <span><FormattedNumber value={text} /> Txns</span>;
         }
       },
       {
@@ -185,7 +185,7 @@ class Blocks extends React.Component {
         align: "left",
         className: "ant_table",
         render: (text, record, index) => {
-          return <FormattedNumber value={text} />;
+          return <span><FormattedNumber value={text} /> TRX</span>;
         }
       }
     ];

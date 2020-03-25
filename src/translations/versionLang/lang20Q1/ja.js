@@ -282,7 +282,7 @@ account_representative_owner: "スーパー代表報酬",
 account_representative_block_table_res: "消費資源",
 account_representative_block_table_prize: "ブロック報酬",
 account_representative_block_desc:
-  "生成された{block}ブロックから獲得した{trx} TRX",
+  "生成された{block} ブロックから獲得した{trx} TRX",
 account_representative_voters_per_tip: "投票者による投票/総投票数",
 account_representative_transfer_tip: "このアカウントに関連するTRX / TRC10 / TRC20トークン転送の数",
 account_representative_unit:'{number}投票者による{votes}票',

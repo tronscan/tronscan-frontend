@@ -286,7 +286,7 @@ export const lang20Q1 = {
   account_representative_owner: "슈퍼대표 리워드",
   account_representative_block_table_res: "자원소비",
   account_representative_block_table_prize: "블록보상",
-  account_representative_block_desc: "누적 {block}블록 생성으로 {trx} TRX 획득",
+  account_representative_block_desc: "누적 {block} 블록 생성으로 {trx} TRX 획득",
   account_representative_voters_per_tip: "투표자의 투표수 / 총 투표 수",
   account_representative_transfer_tip: "본 계정의 TRX/TRX10/TRX20 거래횟수 ",
   account_representative_unit: "{number} 명에 의해 {votes} 표를 받음",
