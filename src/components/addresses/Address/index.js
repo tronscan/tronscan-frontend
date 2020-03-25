@@ -349,25 +349,25 @@ class Address extends React.Component {
 
     // getAssetWithPriceList
     let tokenAry = [],selectIdAry = [];
-    await xhr.get(
-      `${API_URL}/api/getAssetWithPriceList`
-    )
-    .then(res => {
-      if (res.data && res.status == 200) {
-        if(res.data.data){
-          let newData = res.data.data;
-          newData.forEach(item=>{
-            tokenAry.push({label:item.abbr,value:item.id});
-            selectIdAry.push(item.id)
-          })
-        }
-      }else{
-        tokenAry = []
-      }
-    })
-    .catch(err => {
-      console.log(err);
-    });
+    // await xhr.get(
+    //   `${API_URL}/api/getAssetWithPriceList`
+    // )
+    // .then(res => {
+    //   if (res.data && res.status == 200) {
+    //     if(res.data.data){
+    //       let newData = res.data.data;
+    //       newData.forEach(item=>{
+    //         tokenAry.push({label:item.abbr,value:item.id});
+    //         selectIdAry.push(item.id)
+    //       })
+    //     }
+    //   }else{
+    //     tokenAry = []
+    //   }
+    // })
+    // .catch(err => {
+    //   console.log(err);
+    // });
     
     
     this.setState({
