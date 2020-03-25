@@ -216,7 +216,7 @@ class Accounts extends Component {
         key: 'address',
         align: 'left',
         className: 'ant_table',
-        width: '38%',
+        width: '35%',
         render: (text, record, index) => {
           return (
                 <div  className="d-flex">
