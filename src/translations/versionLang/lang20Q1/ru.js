@@ -120,18 +120,18 @@ export const lang20Q1 = {
   index_navigation_proposals: "ПРЕДЛОЖЕНИЯ",
 
   // 2020-02-04
-  chart_hold_trx_account:'Аккаунты, удерживающие TRX',
-  chart_hold_trx_account_per:'Процент держателя TRX',
-  chart_hold_trx_account_per_t:'Процент держателя TRX',
-  chart_hold_trx_account_per_tip:'Аккаунты, удерживающие TRX / Всего аккаунтов',
-  chart_hold_account_sum:'Всего аккаунтов',
-  chart_hold_trx:'Аккаунты, удерживающие TRX',
-  chart_hold_trx_more:'Больше данных',
-  chart_hold_trx_number:'Количество аккаунтов',
-  chart_resource_user_freeing:'Энергия от замораживания TRX',
-  chart_resource_user_burning:'Энергия от сжигания TRX',
-  chart_resource_contract_deployer:'Энергия от выпускников контрактов',
-
+  chart_hold_trx_account: "Аккаунты, удерживающие TRX",
+  chart_hold_trx_account_per: "Процент держателя TRX",
+  chart_hold_trx_account_per_t: "Процент держателя TRX",
+  chart_hold_trx_account_per_tip:
+    "Аккаунты, удерживающие TRX / Всего аккаунтов",
+  chart_hold_account_sum: "Всего аккаунтов",
+  chart_hold_trx: "Аккаунты, удерживающие TRX",
+  chart_hold_trx_more: "Больше данных",
+  chart_hold_trx_number: "Количество аккаунтов",
+  chart_resource_user_freeing: "Энергия от замораживания TRX",
+  chart_resource_user_burning: "Энергия от сжигания TRX",
+  chart_resource_contract_deployer: "Энергия от выпускников контрактов",
 
   // 2020-2-5 leon
   proposal_serial: "Нет",
@@ -140,7 +140,8 @@ export const lang20Q1 = {
   proposal_endtime: "Время истечения",
   proposal_total_votes: "все",
   proposal_valid_votes: "годный голос",
-  proposal_votes_tip: "Действительные голоса от лучших 27 SR.  Общее количество голосов - это голоса, отданные всеми SR. ",
+  proposal_votes_tip:
+    "Действительные голоса от лучших 27 SR.  Общее количество голосов - это голоса, отданные всеми SR. ",
   proposal_action: "Операции",
   proposal_more: "подробнее",
   proposal_approve: "Голосовать",
@@ -149,12 +150,15 @@ export const lang20Q1 = {
   proposal_cancel_tip: "Вы уверены, что хотите снять голосование?",
   proposal_apply_super: "Эта функция доступна только для SR.",
   proposal_apply_super_btn: "Подать заявку на SR",
-  proposal_apply_super_desc: "Все TRX-держатели могут подать заявку на участие в качестве кандидата в SR 27 наиболее проголосовавших кандидатов станут SR, а лучшие 28 - 127 кандидатов станут супер-партнерами. SR отвечают за упаковку транзакций и генерацию блоков. Они также имеют право блокировать награды и награды голосования. Суперпартнеры не упаковывают транзакции и не генерируют блоки и имеют право только на вознаграждение за голосование. Все кандидаты в SR, супер-партнеры и SR могут подать предложения по изменению параметров в сети TRON.",
+  proposal_apply_super_desc:
+    "Все TRX-держатели могут подать заявку на участие в качестве кандидата в SR 27 наиболее проголосовавших кандидатов станут SR, а лучшие 28 - 127 кандидатов станут супер-партнерами. SR отвечают за упаковку транзакций и генерацию блоков. Они также имеют право блокировать награды и награды голосования. Суперпартнеры не упаковывают транзакции и не генерируют блоки и имеют право только на вознаграждение за голосование. Все кандидаты в SR, супер-партнеры и SR могут подать предложения по изменению параметров в сети TRON.",
   // proposal_apply_super_input_name: "请输入您的名称",
   // proposal_apply_super_input_name_ph: "3-30个字符，设置后不可修改",
   proposal_apply_super_input_website: "Пожалуйста, введите ваш URL",
-  proposal_apply_super_input_website_ph: "Ссылка на сайт проекта или страницу социальной сети",
-  proposal_apply_super_success: "Заявка прошла успешна.  Функции SR теперь включены.",
+  proposal_apply_super_input_website_ph:
+    "Ссылка на сайт проекта или страницу социальной сети",
+  proposal_apply_super_success:
+    "Заявка прошла успешна.  Функции SR теперь включены.",
   proposal_my: "Мой",
   proposal_details: "Голоса",
   proposal_super_votes: "SR голоса",
@@ -179,57 +183,145 @@ export const lang20Q1 = {
     ##################################################################################
   */
   proposal_select: "Выберите параметры сети",
-  proposal_value: "новое значение", 
-  proposal_confirm: "Подтвердить", 
+  proposal_value: "новое значение",
+  proposal_confirm: "Подтвердить",
   proposal_result: "Результат",
-  proposal_create_info: "Инициировано предложение изменить параметры сети TRON. Каждый SR имеет право инициировать и голосовать за предложения. После получения голосов от 19 или более SR до истечения срока действия предложение считается принятым и соответствующие параметры сети будут изменены в следующем периоде обслуживания.",
+  proposal_create_info:
+    "Инициировано предложение изменить параметры сети TRON. Каждый SR имеет право инициировать и голосовать за предложения. После получения голосов от 19 или более SR до истечения срока действия предложение считается принятым и соответствующие параметры сети будут изменены в следующем периоде обслуживания.",
   proposal_select_table: "Выбрать",
-  proposal_selected_network_parameters:"Настройки сети выбраны",
-  proposal_content:"Содержание предложения",
-  proposal_new_value:"Новое значение",
-  proposal_submit_text:"Вы уверены, что инициируете предложение?",
-  proposal_created_successful:"Предложение инициировано",
-  proposal_created_failure:"Предложение не удалось",
-  proposal_validate_text_0:"Пожалуйста, введите значение между 81-86400",
-  proposal_validate_text_1:"Пожалуйста, введите значение между 0-100000000000",
-  proposal_validate_text_2:"Пожалуйста, введите значение между 0-1000",
-  proposal_validate_text_3:"Пожалуйста, выберите разрешить/запретить",
-  proposal_validate_text_4:"Пожалуйста, введите значение",
-  proposal_validate_text_5:"Пожалуйста, введите значение между 0-100000",
-  proposal_validate_text_6:"Пожалуйста, выберите вкл / выкл",
-  proposal_validate_text_7:"Пожалуйста, введите значение между 1-10000",
-  proposal_validate_text_8:"Пожалуйста, введите значение между 1-1000",
-  proposal_validate_text_9:"Пожалуйста, введите значение между 0-100000000000000000",
-  proposal_validate_text_10:"Пожалуйста, выберите бан / не бан",
-  propose_not_activate:"Не открыт",
-  proposal_value_same:"Новое значение идентично текущему",
-  go_to_proposals_list:"Проголосовать за предложение",
-  proposal_quit:"В настоящее время у вас есть незавершенные операции. Вы уверены, что хотите выйти?",
+  proposal_selected_network_parameters: "Настройки сети выбраны",
+  proposal_content: "Содержание предложения",
+  proposal_new_value: "Новое значение",
+  proposal_submit_text: "Вы уверены, что инициируете предложение?",
+  proposal_created_successful: "Предложение инициировано",
+  proposal_created_failure: "Предложение не удалось",
+  proposal_validate_text_0: "Пожалуйста, введите значение между 81-86400",
+  proposal_validate_text_1: "Пожалуйста, введите значение между 0-100000000000",
+  proposal_validate_text_2: "Пожалуйста, введите значение между 0-1000",
+  proposal_validate_text_3: "Пожалуйста, выберите разрешить/запретить",
+  proposal_validate_text_4: "Пожалуйста, введите значение",
+  proposal_validate_text_5: "Пожалуйста, введите значение между 0-100000",
+  proposal_validate_text_6: "Пожалуйста, выберите вкл / выкл",
+  proposal_validate_text_7: "Пожалуйста, введите значение между 1-10000",
+  proposal_validate_text_8: "Пожалуйста, введите значение между 1-1000",
+  proposal_validate_text_9:
+    "Пожалуйста, введите значение между 0-100000000000000000",
+  proposal_validate_text_10: "Пожалуйста, выберите бан / не бан",
+  propose_not_activate: "Не открыт",
+  proposal_value_same: "Новое значение идентично текущему",
+  go_to_proposals_list: "Проголосовать за предложение",
+  proposal_quit:
+    "В настоящее время у вас есть незавершенные операции. Вы уверены, что хотите выйти?",
   // full node
-  full_node_version_latest_block:'Последний блок',
-  full_node_version_confirmed:'CONFIRMED',
-  full_node_version_unconfirmed:'UNCONFIRMED',
-  full_node_version_confirmed_tips:'Transactions confirmed by 19 or more SRs will be marked "confirmed"，or is“uncomfirmed”',
-
+  full_node_version_latest_block: "Последний блок",
+  full_node_version_confirmed: "CONFIRMED",
+  full_node_version_unconfirmed: "UNCONFIRMED",
+  full_node_version_confirmed_tips:
+    'Transactions confirmed by 19 or more SRs will be marked "confirmed"，or is“uncomfirmed”',
 
   // 2020-02-19
-  chart_energy:'используемая энергия',
-  getAllowTvmSolidity059_tips:"Three new features of TVM (TRON Virtual Machine) will be opened: support for parallel signature verification, multi signature verification, and judge whether the address is the contract address",
-
+  chart_energy: "используемая энергия",
+  getAllowTvmSolidity059_tips:
+    "Three new features of TVM (TRON Virtual Machine) will be opened: support for parallel signature verification, multi signature verification, and judge whether the address is the contract address",
 
   // 0227 torn sr
-  sr_vote_team_information:'команда',
-  sr_vote_last_ranking:'Last Ranking',
-  sr_vote_last_votes:'Последние голоса',
-  sr_vote_current_ranking:'Current Ranking',
-  sr_vote_current_vote:'Текущие голоса',
-  sr_vote_percent_note:'SR голоса в последнем раунде/все голоса',
+  sr_vote_team_information: "команда",
+  sr_vote_last_ranking: "Last Ranking",
+  sr_vote_last_votes: "Последние голоса",
+  sr_vote_current_ranking: "Current Ranking",
+  sr_vote_current_vote: "Текущие голоса",
+  sr_vote_percent_note: "SR голоса в последнем раунде/все голоса",
 
-  block_detail_confirmed_show:'confirmed by {num} blocks',
-  block_detail_confirmed_over_show:'confirmed by over 200 blocks',
-  block_detail_rolled_back:'ROLLED BACK',
+  block_detail_confirmed_show: "confirmed by {num} blocks",
+  block_detail_confirmed_over_show: "confirmed by over 200 blocks",
+  block_detail_rolled_back: "ROLLED BACK",
 
-  freeze_TRX_error:"Something went wrong while trying to freeze TRX, please try again later.",
-  votes_cannot_exceed_5_SRs:"Votes cannot exceed 5 SRs",
+  freeze_TRX_error:
+    "Something went wrong while trying to freeze TRX, please try again later.",
+  votes_cannot_exceed_5_SRs: "Votes cannot exceed 5 SRs",
+
+  // 2020-03-03 leon
+  account_total_tip:
+    "Отображаются только первые 10000 записей, отсортированных по убыванию баланса TRX по умолчанию.",
+  account_rank: "№",
+  // account_title: "账户",
+  account_balance: "Общий баланс TRX",
+  account_percent: "Процент",
+  account_percent_tip: "TRX удерживаемый этим аккаунтом/Общее предложение TRX",
+  account_power: "Заморожено TRX (право голоса)",
+  account_trade_count: "Количество транзакций",
+  account_trade_count_tip: "Количество транзакций, связанных с этим адресом",
+  account_more: "Больше",
+  account_lastDay_count: "Новые аккаунты за предыдущий день",
+  account_realTime_count: "Количество аккаунтов в режиме реального времени",
+  // account_all: "全部",
+  // account_vote_reward: "累计获得奖励",
+  account_vote_voter_total: "Этот аккаунт проголосовал за {num} SR.",
+  account_vote_candidate_total: "{votes} голосов от {num} избирателей",
+  account_vote_self_percent_tip:
+    "Голоса за SR с этого аккаунта / общее количество голосов, поданных за этот аккаунт",
+  account_vote_total_percent_tip:
+    "Голоса за SR с этого аккаунтом/общее количество голосов, полученных SR",
+  account_vote_reward_tip: "Накопительные вознаграждения избирателей от SR",
+  account_get_reward: "Принято",
+  account_freeze_detail: "Детали для замораживания токенов",
+  account_freeze_self: "Для личного использования",
+  account_freeze_to_other: "Для других пользователей",
+  account_freeze_other_to: "От другого пользователя",
+  account_freeze_time: "Время замораживания ",
+  account_freeze_address: "Аккаунт замораживания",
+  account_freeze_received: "Аккаунт получения",
+  account_freeze_type: "Тип полученных ресурсов",
+  account_freeze_amount: "Сумма заморожена",
+  account_freeze_resource_amount: "Количество полученных ресурсов",
+  account_freeze_resource_amount_tip:
+    "Фактический объем полученных ресурсов зависит от отношения текущей замороженной суммы к общей замороженной сумме. Поскольку общая замораженная сумма в реальном времени изменяется, фактические полученные ресурсы будут постоянно меняться.",
+  account_freeze_no_data: "Информация не найдена",
+
+  // 2020-03-03
+  account_resource_last: "Последний раунд",
+  account_resource_realTime: "Текущий раунд",
+  account_resource_remain: "Остаток",
+  account_resource_last_tip: "Подсчет голосов и рейтинг последнего раунда",
+  account_resource_realTime_tip: "Подсчет голосов и рейтинг текущего раунда",
+  account_representative_block_ratio: "Эффективность производства блоков",
+  account_representative_block_ratio_tip:
+    "Изготовленные блоки / Производимые блоки",
+  account_representative_block_prize: "Накопительный блок вознаграждений",
+  account_representative_vote_prize: "Накопительные вознаграждения избирателей",
+  account_representative_split_ratio:
+    "Коэффициент распределения вознаграждений",
+  account_representative_split_ratio_tip:
+    "Всего наград состоит из наград избирателей и наград SR",
+  account_representative_voter: "Награды избирателям",
+  account_representative_owner: "SR награды",
+  account_representative_block_table_res: "Использованные ресурсы",
+  account_representative_block_table_prize: "Блок вознаграждения",
+  account_representative_block_desc:
+    "{trx} TRX заработано на {block} произведенных блоках",
+  account_representative_voters_per_tip:
+    "Голоса, поданные избирателем / всего голосов",
+  account_representative_transfer_tip:
+    "Количество переводов токенов TRX/TRC10/TRC20, связанных с этим аккаунтом",
+  account_representative_unit: "{number} голосов от {votes} избирателей",
+  account_piechart_title: "Распределение активов",
+
+  // 03-09 tron account  transfers transactions internal-transactions
+  address_account_tab_search_tips: "Поиск по Адресу/Хэшу Транзакции/Токену",
+
+  address_account_table_filter_all: "полный",
+  address_account_table_filter_transfers: "Перевод ",
+  address_account_table_filter_freeze: "Заморозить TRX",
+  address_account_table_filter_unfreeze: "Разморозить TRX",
+  address_account_table_filter_trigger_smartContracts:
+    "Запустить Смарт Контракт",
+  address_account_table_filter_vote: "Голосовать",
+  address_account_table_filter_other: "other",
+
+  address_account_table_filter_token_tips:
+    "The token is not included in TRONSCAN",
+  current_version: "издание",
+  account_block: "Блоки",
+  account_address_total_balance_tip:"Сумма стоимости всех токенов на счете"
 
 };
