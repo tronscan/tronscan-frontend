@@ -63,6 +63,9 @@
       &:last-child{
         margin-bottom: 0;
       }
+      @media screen and (max-width: 768px) {
+         margin-bottom:20px;
+      }
     }
   }
   .resource-item {
@@ -121,6 +124,7 @@
       // max-width:50%;
       @media screen and (max-width: 768px) {
         white-space: normal;
+        min-width: 88px;
       }
     }
     td {
@@ -129,6 +133,9 @@
       color: #333333;
       border: 0;
       border-bottom: 1px solid #eee;
+      @media screen and (max-width: 768px) {
+        word-break: break-word;
+      }
     }
     .href-link {
       a {
