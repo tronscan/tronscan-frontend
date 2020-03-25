@@ -7,7 +7,7 @@ import { Button, Radio, DatePicker } from "antd";
 import { tu } from "../../../utils/i18n";
 import { connect } from "react-redux";
 import { updateTokenInfo } from "../../../actions/tokenInfo";
-const { RangePicker } = DatePicker;
+//const { RangePicker } = DatePicker;
 
 
 class DateSelect extends React.Component {

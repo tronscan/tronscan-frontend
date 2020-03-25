@@ -6,14 +6,15 @@ import {
   tokensMap,
   tokens20Map
 } from "../utils/tokensMap.js";
-import {
-  store
-} from "./../store";
-import ApiClientMonitor from './../services/monitor'
-import isMobile from "./../utils/isMobile";
-import {
-  getPerformanceTiming
-} from "../utils/DateTime";
+// import {
+//   store
+// } from "./../store";
+//import ApiClientMonitor from './../services/monitor'
+//import isMobile from "./../utils/isMobile";
+//import {
+//  getPerformanceTiming
+//} from "../utils/DateTime";
+//import System from "../components/tools/System";
 
 // import { setToken20Map, setTokenMap } from './../actions/account';
 
@@ -28,10 +29,30 @@ export default class App {
   }
 
   async getTokensMap() {
-
     let {
       data
-    } = await xhr.get(`${API_URL}/api/token?uuid=${uuidv4}&showAll=1&limit=5000&id_gt=1000000&fields=id,name,precision,abbr,imgUrl`);
+    } = await xhr.get(`${API_URL}/api/token?uuid=${uuidv4}&showAll=1&limit=5000&id_gt=1002828&fields=id,name,precision,abbr,imgUrl`);
+    //var beginTime = +new Date();
+   // console.log("333:",tokensMap)
+
+      for (let k of Object.keys(tokensMap))  {
+        //k,obj[k]
+        //https://coin.top/production/js/20190509074813.png   _-_
+        //https://coin.top/production/logo/  |_|
+        //https://coin.top/tokenLogo/tokenLogo  !_!
+        //https://coin.top/production/upload/logo/ #_#
+        var value=tokensMap[k];
+        if (value.indexOf("_-_") >-1) {
+          value=value.replace("_-_","https://coin.top/production/js/20190509074813.png");
+        } else if (value.indexOf("|_|") >-1) {
+          value=value.replace("|_|","https://coin.top/production/logo/");
+        } else if (value.indexOf("!_!") >-1) {
+          value=value.replace("!_!","https://coin.top/tokenLogo/tokenLogo");
+        } else if (value.indexOf("#_#")>-1) {
+          value=value.replace("#_#","https://coin.top/production/upload/logo/");
+        }
+        tokensMap[k]=value;
+      }
 
     let imgUrl;
     for (var i = 0; i < data.data.length; i++) {
@@ -53,6 +74,8 @@ export default class App {
           imgUrl;
       }
     }
+    //console.log('default :getTokensMap2',tokensMap);
+
     localStorage.setItem("tokensMap", JSON.stringify(tokensMap));
     // store.dispatch(setTokenMap(tokensMap));
   }
@@ -98,53 +121,6 @@ export default class App {
     return this.externalLinkHandler;
   }
 
-
-  MonitoringParameters(){
-    let _this = this;
-    // 1.时区  timezone
-    // 2.浏览器 browser
-    // 3.页面URL  url
-    // 5.页面加载完成的时间  pageLoadTime
-    // 6.内容加载完成的时间  contentLoadTime
-    // 7.DNS 查询时间  dnsSearchTime
-    // 8.dom解析时间		domAnalyzeTime
-    // 9.ttfb读取页面第一个字节的时间	ttfbReadTime
-    // 10.TCP 建立连接完成握手的时间	tcpBuildTime
-    // 11.重定向的时间	redirectTime
-    // 12.执行 onload 回调函数的时间	onloadCallbackTime
-    // 13.卸载页面的时间	uninstallPageTime
-      if (window.performance || window.webkitPerformance) {
-          var perf = window.performance || window.webkitPerformance;
-          var timing = perf.timing;
-          var navi = perf.navigation;
-          var timer = setInterval(function() {
-              if (0 !== timing.loadEventEnd) {
-                  timing = perf.timing;
-                  let {loadPage,domReady,redirect,lookupDomain,ttfb,request,loadEvent,unloadEvent,connect} = getPerformanceTiming()
-                  clearInterval(timer);
-                  var data = {
-                      url: window.location.href,
-                      timezone: new Date().getTimezoneOffset()/60,
-                      browser:window.navigator.userAgent,
-                      pageLoadTime:loadPage,
-                      contentLoadTime:request,
-                      dnsSearchTime:lookupDomain,
-                      domAnalyzeTime:domReady,
-                      ttfbReadTime:ttfb,
-                      tcpBuildTime:connect,
-                      redirectTime:redirect,
-                      onloadCallbackTime:loadEvent,
-                      uninstallPageTime: unloadEvent,
-                      isMobile:isMobile && isMobile[0],
-                      isRefresh:true
-                  };
-                 
-                  ApiClientMonitor.setMonitor(data)
-                  return data;
-                }
-              })
-            }         
-      }
 } 
 
 // if ('serviceWorker' in navigator) {

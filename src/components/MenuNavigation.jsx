@@ -1,16 +1,16 @@
 import React, { Component } from "react";
-import Lockr from "lockr";
+//import Lockr from "lockr";
 import { injectIntl } from "react-intl";
 import { withRouter, Link, NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import { Badge } from "reactstrap";
 import { Menu, Icon } from "antd";
 import { tu, t } from "../utils/i18n";
-import { HrefLink } from "./common/Links";
+//import { HrefLink } from "./common/Links";
 import { filter, isString, isUndefined } from "lodash";
 import { IS_MAINNET } from "../constants";
 
-import ReduxToastr from "react-redux-toastr";
+//import ReduxToastr from "react-redux-toastr";
 
 const { SubMenu } = Menu;
 class Menunavigation extends Component {
