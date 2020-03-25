@@ -333,7 +333,7 @@ class Representative extends React.Component {
             <tr>
               <th className="line36">{tu("website")}:</th>
               <td>
-                <div className="d-flex">
+                <div className="d-flex flex-wrap">
                   <span className="line36">
                     {address.representative.url ? (
                       <ExternalLink url={address.representative.url} />
