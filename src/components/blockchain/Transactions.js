@@ -19,7 +19,8 @@ import moment from 'moment';
 //import xhr from "axios/index";
 import queryString from 'query-string';
 import BlockTime from '../common/blockTime'
-import {tu} from '../../utils/i18n'
+import {tu} from '../../utils/i18n';
+import { Tooltip,Icon } from 'antd';
 
 
 const RangePicker = DatePicker.RangePicker;
@@ -34,6 +35,7 @@ class Transactions extends React.Component {
         this.state = {
             transactions: [],
             total: 0,
+            contractMap:{}
         };
         this.addressLock = false
     }
@@ -114,9 +116,14 @@ class Transactions extends React.Component {
                 ]).catch(e => {
                     console.log('error:' + e);
                 });
-
-                let [{ transactions }, { rangeTotal, total }] = allData;
-
+                console.log(allData,'allData')
+                let [{ transactions,contractMap }, { rangeTotal, total }] = allData;
+                transactions.forEach(item=>{
+                    if(contractMap){
+                        contractMap[item.ownerAddress]? (item.ownerIsContract = true) :  (item.ownerIsContract = false)
+                        contractMap[item.toAddress]? (item.toIsContract = true) :  (item.toIsContract = false)
+                    }
+                })
                 this.setState({
                     total: total,
                     transactions: transactions,
@@ -140,8 +147,14 @@ class Transactions extends React.Component {
                 ]).catch(e => {
                     console.log('error:' + e);
                 });
-                let [{ transactions }, { wholeChainTxCount, total }] = allData;
-
+                let [{ transactions,contractMap }, { wholeChainTxCount, total }] = allData;
+                transactions.forEach(item=>{
+                    if(contractMap){
+                        contractMap[item.ownerAddress]? (item.ownerIsContract = true) :  (item.ownerIsContract = false)
+                        contractMap[item.toAddress]? (item.toIsContract = true) :  (item.toIsContract = false)
+                    }
+                })
+              
                 this.setState({
                     total: total,
                     transactions: transactions,
@@ -157,6 +170,7 @@ class Transactions extends React.Component {
 
     customizedColumn = () => {
         let {intl} = this.props;
+        const {contractMap} = this.state;
         let column = [
             {
                 title: '#',
@@ -210,7 +224,30 @@ class Transactions extends React.Component {
                 width: '30%',
                 className: 'ant_table',
                 render: (text, record, index) => {
-                    return <AddressLink address={text}/>
+                    console.log(record.ownerIsContract)
+                    return <span className="d-flex">
+                            {/*  Distinguish between contract and ordinary address */}
+                            {record.ownerIsContract? (
+                                <Tooltip
+                                placement="top"
+                                title={upperFirst(
+                                    intl.formatMessage({
+                                    id: "transfersDetailContractAddress"
+                                    })
+                                )}
+                                >
+                                <Icon
+                                    type="file-text"
+                                    style={{
+                                    verticalAlign: 0,
+                                    color: "#77838f",
+                                    lineHeight: 1.4
+                                    }}
+                                />
+                                </Tooltip>
+                            ) :null}
+                            <AddressLink address={text}/>
+                        </span>
                 }
             },
             {
