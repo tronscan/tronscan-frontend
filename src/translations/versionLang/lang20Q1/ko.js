@@ -114,19 +114,18 @@ export const lang20Q1 = {
   index_navigation_committee: "위원회",
   index_navigation_proposals: "제안",
 
-    // 2020-02-04
-  chart_hold_trx_account:'TRX 보유 계정 통계',
-  chart_hold_trx_account_per:'TRX 보유자 비율',
-  chart_hold_trx_account_per_t:'TRX 보유자 비율',
-  chart_hold_trx_account_per_tip:'TRX 보유 계정수/ 총 계정수',
-  chart_hold_account_sum:'총 계정수',
-  chart_hold_trx:'TRX 보유 계정수',
-  chart_hold_trx_more:'더 많은 데이터',
-  chart_hold_trx_number:'계정수',
-  chart_resource_user_freeing:'TRX 동결 에너지',
-  chart_resource_user_burning:'TRX 소각 에너지',
-  chart_resource_contract_deployer:'계약 배치자가 제공하는 에너지',
-
+  // 2020-02-04
+  chart_hold_trx_account: "TRX 보유 계정 통계",
+  chart_hold_trx_account_per: "TRX 보유자 비율",
+  chart_hold_trx_account_per_t: "TRX 보유자 비율",
+  chart_hold_trx_account_per_tip: "TRX 보유 계정수/ 총 계정수",
+  chart_hold_account_sum: "총 계정수",
+  chart_hold_trx: "TRX 보유 계정수",
+  chart_hold_trx_more: "더 많은 데이터",
+  chart_hold_trx_number: "계정수",
+  chart_resource_user_freeing: "TRX 동결 에너지",
+  chart_resource_user_burning: "TRX 소각 에너지",
+  chart_resource_contract_deployer: "계약 배치자가 제공하는 에너지",
 
   // 2020-2-5 leon
   proposal_serial: "넘버",
@@ -135,7 +134,8 @@ export const lang20Q1 = {
   proposal_endtime: "마감 시간",
   proposal_total_votes: "총 표수",
   proposal_valid_votes: "유효한 표수",
-  proposal_votes_tip: "유효한 표수는 탑 27위 SR이 투표한 표수고, 총 표수는 모든 SR이 투표한 표수입니다",
+  proposal_votes_tip:
+    "유효한 표수는 탑 27위 SR이 투표한 표수고, 총 표수는 모든 SR이 투표한 표수입니다",
   proposal_action: "처리",
   proposal_more: "자세한 내용 보기",
   proposal_approve: "찬성",
@@ -144,11 +144,13 @@ export const lang20Q1 = {
   proposal_cancel_tip: "이 제안에 대한 찬성을 취소하겠습니까?",
   proposal_apply_super: "이 기능은 SR 만 사용할 수 있습니다.",
   proposal_apply_super_btn: "SR 신청",
-  proposal_apply_super_desc: "모든 TRX 보유자는 SR 후보가 될 수 있습니다. 그중 가장 많은 표를 받은 탑 27위는 SR이 되고, 28~127위는 SR 파트너가 됩니다. SR은 거래 포장 및 블록 생성을 담당합니다. 또한 투표 및 블록 생성 보상을 받습니다. SR 파트너는 거래를 포장하거나 블록을 생성하지 않으며 투표 보상 만 받을 수 있습니다. 모든 SR 후보, SR 파트너 및 SR은 TRON 네트워크의 매개 변수를 수정하기 위한 제안을 제기 할 수 있습니다. ",
+  proposal_apply_super_desc:
+    "모든 TRX 보유자는 SR 후보가 될 수 있습니다. 그중 가장 많은 표를 받은 탑 27위는 SR이 되고, 28~127위는 SR 파트너가 됩니다. SR은 거래 포장 및 블록 생성을 담당합니다. 또한 투표 및 블록 생성 보상을 받습니다. SR 파트너는 거래를 포장하거나 블록을 생성하지 않으며 투표 보상 만 받을 수 있습니다. 모든 SR 후보, SR 파트너 및 SR은 TRON 네트워크의 매개 변수를 수정하기 위한 제안을 제기 할 수 있습니다. ",
   // proposal_apply_super_input_name: "请输入您的名称",
   // proposal_apply_super_input_name_ph: "3-30个字符，设置后不可修改",
   proposal_apply_super_input_website: "URL을 입력하세요",
-  proposal_apply_super_input_website_ph: "프로젝트 웹 사이트 또는 소셜 미디어 홈페이지 링크",
+  proposal_apply_super_input_website_ph:
+    "프로젝트 웹 사이트 또는 소셜 미디어 홈페이지 링크",
   proposal_apply_super_success: "신청 성공, SR 기능이 활성화되었습니다.",
   proposal_my: "나에",
   proposal_details: "투표 내역",
@@ -166,7 +168,7 @@ export const lang20Q1 = {
   proposal_or: "또는",
   proposal_vote_link: "제안에 투표",
   proposal_balance_not_enough: "잔액 불충분",
-  
+
   /*
     ##################################################################################
     #                                                                                #
@@ -175,55 +177,120 @@ export const lang20Q1 = {
     ##################################################################################
   */
   proposal_select: "네트워크 매개 변수 선택",
-  proposal_value: "새로운 가치 제안", 
-  proposal_confirm: "제안 확인", 
+  proposal_value: "새로운 가치 제안",
+  proposal_confirm: "제안 확인",
   proposal_result: "결과",
-  proposal_create_info: "TRON 네트워크 매개 변수를 수정하기 위한 제안이 시작되었습니다. 각 SR은 제안을 시작하고 투표 할 권리가 있습니다. 만료일 이전에 19개 이상의 SR로부터 투표를 받으면 제안이 통과 된 것으로 간주되며 다음 유지 보수 기간에 네트워크 매개 변수가 수정됩니다.",
+  proposal_create_info:
+    "TRON 네트워크 매개 변수를 수정하기 위한 제안이 시작되었습니다. 각 SR은 제안을 시작하고 투표 할 권리가 있습니다. 만료일 이전에 19개 이상의 SR로부터 투표를 받으면 제안이 통과 된 것으로 간주되며 다음 유지 보수 기간에 네트워크 매개 변수가 수정됩니다.",
   proposal_select_table: "선택",
-  proposal_selected_network_parameters:"선택된 네트워크 매개 변수",
-  proposal_content:"제안 내용",
-  proposal_new_value:"새로운 가치",
-  proposal_submit_text:"제안을 제출 하시겠습니까?",
-  proposal_created_successful:"제안 제출 성공",
-  proposal_created_failure:"제안을 시작하지 못했습니다",
-  proposal_validate_text_0:"81-86400 사이의 수치를 입력하세요",
-  proposal_validate_text_1:"0-100000000000 사이의 수치를 입력하세요",
-  proposal_validate_text_2:"0-1000 사이의 수치를 입력하세요",
-  proposal_validate_text_3:"허용 / 금지를 선택하세요",
-  proposal_validate_text_4:"값을 입력하십시오",
-  proposal_validate_text_5:"1-100000 사이의 수치를 입력하세요",
-  proposal_validate_text_6:"온 / 오프를 선택하십시오",
-  proposal_validate_text_7:"1-10000 사이의 수치를 입력하세요",
-  proposal_validate_text_8:"1-1000 사이의 수치를 입력하세요",
-  proposal_validate_text_9:"0-100000000000000000 사이의 수치를 입력하세요",
-  proposal_validate_text_10:"금지를 선택하십시오 / 금지하지 마십시오",
-  propose_not_activate:"열지 않음",
-  proposal_value_same:"새로운 수치는 현재 수치와 동일합니다",
-  go_to_proposals_list:"제안에 투표",
-  proposal_quit:"아직 완성되지 않았습니다. 종료 하시겠습니까?",
+  proposal_selected_network_parameters: "선택된 네트워크 매개 변수",
+  proposal_content: "제안 내용",
+  proposal_new_value: "새로운 가치",
+  proposal_submit_text: "제안을 제출 하시겠습니까?",
+  proposal_created_successful: "제안 제출 성공",
+  proposal_created_failure: "제안을 시작하지 못했습니다",
+  proposal_validate_text_0: "81-86400 사이의 수치를 입력하세요",
+  proposal_validate_text_1: "0-100000000000 사이의 수치를 입력하세요",
+  proposal_validate_text_2: "0-1000 사이의 수치를 입력하세요",
+  proposal_validate_text_3: "허용 / 금지를 선택하세요",
+  proposal_validate_text_4: "값을 입력하십시오",
+  proposal_validate_text_5: "1-100000 사이의 수치를 입력하세요",
+  proposal_validate_text_6: "온 / 오프를 선택하십시오",
+  proposal_validate_text_7: "1-10000 사이의 수치를 입력하세요",
+  proposal_validate_text_8: "1-1000 사이의 수치를 입력하세요",
+  proposal_validate_text_9: "0-100000000000000000 사이의 수치를 입력하세요",
+  proposal_validate_text_10: "금지를 선택하십시오 / 금지하지 마십시오",
+  propose_not_activate: "열지 않음",
+  proposal_value_same: "새로운 수치는 현재 수치와 동일합니다",
+  go_to_proposals_list: "제안에 투표",
+  proposal_quit: "아직 완성되지 않았습니다. 종료 하시겠습니까?",
   // full node
-  full_node_version_latest_block:'최신 블록',
-  full_node_version_confirmed:'CONFIRMED',
-  full_node_version_unconfirmed:'UNCONFIRMED',
-  full_node_version_confirmed_tips:'Transactions confirmed by 19 or more SRs will be marked "confirmed"，or is“uncomfirmed”',
-
+  full_node_version_latest_block: "최신 블록",
+  full_node_version_confirmed: "CONFIRMED",
+  full_node_version_unconfirmed: "UNCONFIRMED",
+  full_node_version_confirmed_tips:
+    'Transactions confirmed by 19 or more SRs will be marked "confirmed"，or is“uncomfirmed”',
 
   // 2020-02-19
-  chart_energy:'사용 된 에너지',
-  getAllowTvmSolidity059_tips:"Three new features of TVM (TRON Virtual Machine) will be opened: support for parallel signature verification, multi signature verification, and judge whether the address is the contract address",
-
+  chart_energy: "사용 된 에너지",
+  getAllowTvmSolidity059_tips:
+    "Three new features of TVM (TRON Virtual Machine) will be opened: support for parallel signature verification, multi signature verification, and judge whether the address is the contract address",
 
   // 0227 torn sr
-  sr_vote_team_information:'도급 주다',
-  sr_vote_last_ranking:'마지막 순위',
-  sr_vote_last_votes:'마지막 투표',
-  sr_vote_current_ranking:'현재 순위',
-  sr_vote_current_vote:'현재 투표',
-  sr_vote_percent_note:'SR 이 전 라운드에서의 득표수 / 총 득표수',
+  sr_vote_team_information: "도급 주다",
+  sr_vote_last_ranking: "마지막 순위",
+  sr_vote_last_votes: "마지막 투표",
+  sr_vote_current_ranking: "현재 순위",
+  sr_vote_current_vote: "현재 투표",
+  sr_vote_percent_note: "SR 이 전 라운드에서의 득표수 / 총 득표수",
 
-  block_detail_confirmed_show:'confirmed by {num} blocks',
-  block_detail_confirmed_over_show:'confirmed by over 200 blocks',
-  block_detail_rolled_back:'ROLLED BACK',
+  block_detail_confirmed_show: "confirmed by {num} blocks",
+  block_detail_confirmed_over_show: "confirmed by over 200 blocks",
+  block_detail_rolled_back: "ROLLED BACK",
+
+  freeze_TRX_error:
+    "Something went wrong while trying to freeze TRX, please try again later.",
+  votes_cannot_exceed_5_SRs: "Votes cannot exceed 5 SRs",
+
+  // 2020-03-03 leon
+  account_total_tip: "TRX잔액 기준 상위 10000개의 데이터까지 보여집니다",
+  account_rank: "일련번호",
+  // account_title: "账户",
+  account_balance: "TRX 총 잔액",
+  account_percent: "비율",
+  account_percent_tip: "TRX 보유량 / TRX 총량",
+  account_power: "TRX 동결량(투표권)",
+  account_trade_count: "거래 수량",
+  account_trade_count_tip: "본 주소의 거래수량",
+  account_more: "더보기",
+  account_lastDay_count: "전일 증가된 계정 수",
+  account_realTime_count: "실시간 계정 수",
+  // account_all: "全部",
+  // account_vote_reward: "累计获得奖励",
+  account_vote_voter_total: "본 계정은 {num} 슈퍼대표에게 투표함",
+  account_vote_candidate_total: "{num} 명에 의해 {votes} 표를 받음",
+  account_vote_self_percent_tip:
+    "이 슈퍼노드에 대한 투표 수와 총 투표 수의 비율",
+  account_vote_total_percent_tip:
+    "본 계정의 SR에 대한 투표 수 / SR의 총 득표수",
+  account_vote_reward_tip: "SR의 누적 투표자 보상",
+  account_get_reward: "받기",
+  account_freeze_detail: "동결 명세",
+  account_freeze_self: "개인용",
+  account_freeze_to_other: "타 사용자용",
+  account_freeze_other_to: "타 사용자로부터",
+  account_freeze_time: "동결 시간",
+  account_freeze_address: "동결 계정",
+  account_freeze_received: "수령 계정",
+  account_freeze_type: "받은 자원 종류",
+  account_freeze_amount: "동결 수량",
+  account_freeze_resource_amount: "받은 자원 수량",
+  account_freeze_resource_amount_tip:
+    "실제 수령한 자원의 양은 전체 동결 금액에 대한 현재 동결 금액의 비율에 따라 달라집니다. 실시간 전체 동결 금액이 달라짐에 따라 실제 수령한 자원은 지속적으로 변경됩니다.",
+  account_freeze_no_data: "동결 정보 찾을수 없음",
+
+  // 2020-03-03
+  account_resource_last: "이전 라운드",
+  account_resource_realTime: "본 라운드",
+  account_resource_remain: "잔여",
+  account_resource_last_tip: "이전 라운드의 득표수와 순위",
+  account_resource_realTime_tip: "본 라운드의 득표수와 순위",
+  account_representative_block_ratio: "블록 생성 효율",
+  account_representative_block_ratio_tip: "생성된 블록 / 생성가능 블록",
+  account_representative_block_prize: "누적 블록생성 리워드",
+  account_representative_vote_prize: "누적 투표 리워드",
+  account_representative_split_ratio: "분배 비율",
+  account_representative_split_ratio_tip:
+    "총 리워드는 투표자 인센티브와 슈퍼대표 리워드로 구성됩니다",
+  account_representative_voter: "투표자 리워드",
+  account_representative_owner: "슈퍼대표 리워드",
+  account_representative_block_table_res: "자원소비",
+  account_representative_block_table_prize: "블록보상",
+  account_representative_block_desc: "누적 {block} 블록 생성으로 {trx} TRX 획득",
+  account_representative_voters_per_tip: "투표자의 투표수 / 총 투표 수",
+  account_representative_transfer_tip: "본 계정의 TRX/TRX10/TRX20 거래횟수 ",
+  account_representative_unit: "{number} 명에 의해 {votes} 표를 받음",
+  account_piechart_title: "자산 분배",
 
   freeze_TRX_error:"Something went wrong while trying to freeze TRX, please try again later.",
   votes_cannot_exceed_5_SRs:"Votes cannot exceed 5 SRs",
@@ -231,7 +298,21 @@ export const lang20Q1 = {
   too_many_bytes_to_encode:"Too many bytes to encode",
   use_TRONlink_or_private_key :"Please login to use this function via TRONlink or private key",
   
+  // 03-09 tron account  transfers transactions internal-transactions
+  address_account_tab_search_tips: "주소 / 거래 해시 / 토큰",
 
+  address_account_table_filter_all: "모두",
+  address_account_table_filter_transfers: "전송",
+  address_account_table_filter_freeze: "자산 동결",
+  address_account_table_filter_unfreeze: "자산 동결 해제",
+  address_account_table_filter_trigger_smartContracts: "스마트 계약 트리거",
+  address_account_table_filter_vote: "투표",
+  address_account_table_filter_other: "other",
 
+  address_account_table_filter_token_tips:
+    "The token is not included in TRONSCAN",
+  current_version: "최신 버전",
+  account_block: "블록",
+  account_address_total_balance_tip:"계정에있는 모든 토큰의 가치 합계"
 
 };

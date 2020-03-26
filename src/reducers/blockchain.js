@@ -1,4 +1,4 @@
-import {SET_BLOCKS, SET_TOTAL_TRANSACTIONS, SET_TRANSACTIONS, SET_USD_PRICE} from "../actions/blockchain";
+import {SET_BLOCKS, SET_TOTAL_TRANSACTIONS, SET_TRANSACTIONS, SET_USD_PRICE,SET_ACCOUNT_TAB} from "../actions/blockchain";
 
 
 const initialState = {
@@ -6,6 +6,7 @@ const initialState = {
   blocks: [],
   totalNumberOfTransactions: 0,
   usdPrice: 0,
+  accountSearchAddress:'',
 };
 
 export function blockchainReducer(state = initialState, action) {
@@ -36,6 +37,13 @@ export function blockchainReducer(state = initialState, action) {
       return {
         ...state,
         usdPrice: action.price,
+      }
+    }
+
+    case SET_ACCOUNT_TAB:{
+      return {
+        ...state,
+        ...action.payload
       }
     }
 

@@ -59,6 +59,8 @@ class TokenBalances extends React.Component {
             page,
             balances:tokens,
         });
+
+        
     };
 
     setTop = (balances,id) =>{
@@ -75,6 +77,7 @@ class TokenBalances extends React.Component {
     }
 
     handleSwitch = (val) => {
+        
         this.setState({
             hideSmallCurrency: val
         },() => {

@@ -26,6 +26,7 @@ export class PieReact extends React.Component {
     if (myChart === undefined) {
       myChart = echarts.init(document.getElementById(id));
     }
+    console.log('data',data)
     let length = data !== null ? data.length : 0;
     //_config.pieChart.title.text = intl.formatMessage({id: 'Top'}) + length + ' ' + intl.formatMessage({id: 'voters'}) + ' ' + intl.formatMessage({id: 'addresses'});
     // config.pieChart.title.link = '#/blockchain/stats/accounts';
