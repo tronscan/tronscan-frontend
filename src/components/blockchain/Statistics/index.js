@@ -236,6 +236,12 @@ class StatsCharts extends React.Component {
 
   componentDidMount() {
     this.getScrollsIds();
+    console.log(this.props.location.hash)
+    this.props.location.hash && (
+      setTimeout(() => {
+        this.scrollToAnchor(this.props.location.hash.slice(1))
+      })
+    )
   }
 
   componentWillUnmount() {
@@ -249,7 +255,7 @@ class StatsCharts extends React.Component {
       linkIds.forEach((item, index) => {
         const el = $('#' + item.key).get(0);
         const top = el.getBoundingClientRect() && el.getBoundingClientRect().top
-        if (top <= viewPortHeight - 500) {
+        if (top <= viewPortHeight - 400) {
           $('.' + item.key).addClass('active');
           linkIds.forEach((k, v) => {
             if (item.key !== k.key) {
