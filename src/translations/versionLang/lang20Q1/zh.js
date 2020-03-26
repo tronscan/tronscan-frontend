@@ -316,7 +316,8 @@ export const lang20Q1 = {
 
 
 
-
+ // 03-26 tag 
+ account_tags_list:'标签列表'
 
 
 

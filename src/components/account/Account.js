@@ -44,6 +44,7 @@ import { Input, Tooltip as AntdTip } from 'antd';
 import Countdown from "react-countdown-now";
 import { isJSXEmptyExpression } from '@babel/types';
 import  MyPermission  from '../mutiSignature/MyPermission';
+import Tabs from './components/Tabs'
 
 
 @connect(
@@ -105,7 +106,7 @@ export default class Account extends Component {
       errorMess:'',
       isInMyPermission:true,
       isInMySignature:false,
-      mySignatureType:255
+      mySignatureType:255,
     };
 
   }
@@ -162,6 +163,8 @@ export default class Account extends Component {
 
           //}
       }
+
+      
     }
   }
 
@@ -258,12 +261,12 @@ export default class Account extends Component {
       if(anchorElement) { anchorElement.scrollIntoView(); }
 
   }
-    scrollToMultisign = () => {
+  scrollToMultisign = () => {
 
         let anchorElement = document.getElementById('tronMultisign');
         if(anchorElement) { anchorElement.scrollIntoView(); }
 
-    }
+  }
 
 
 
@@ -1988,7 +1991,7 @@ export default class Account extends Component {
   render() {
     let { modal, sr, issuedAsset, showBandwidth, showBuyTokens, temporaryName, hideSmallCurrency, tokenTRC10,
         isShowPledgeModal, isShowMappingModal, address, currency, balance, precision, id, type, isShowSignModal,
-        tokenTRX, trx20MappingAddress,brokerageValue, errorMess, reward, rewardData, accountReward,isInMyPermission,isInMySignature, mySignatureType} = this.state;
+        tokenTRX, trx20MappingAddress,brokerageValue, errorMess, reward, rewardData, accountReward,isInMyPermission,isInMySignature, mySignatureType,tabs} = this.state;
 
     let {account, frozen, totalTransactions, currentWallet, wallet, accountResource, trxBalance, intl} = this.props;
 
@@ -2050,7 +2053,9 @@ export default class Account extends Component {
               <span aria-hidden="true">&times;</span>
             </button>
           </div> */}
-          <div className="row">
+            
+         <div id="account_title">
+            <div className="row" >
             <div className="col-md-3">
               <div className="card h-100 bg-line_red bg-image_band">
                 <div className="card-body">
@@ -2108,8 +2113,9 @@ export default class Account extends Component {
                 </div>
               </div>
             </div>
-          </div>
-          {showBandwidth && this.renderBandwidth()}
+            </div>
+            {showBandwidth && this.renderBandwidth()}
+         </div>
           <div className="row mt-3">
             <div className="col-md-12">
               <div className="card px-3">
@@ -2234,7 +2240,7 @@ export default class Account extends Component {
           }
           {
             false &&
-            <div className="row mt-3">
+            <div className="row mt-3" >
               <div className="col-md-12">
                 <div className="card">
                   <div className="card-body">
@@ -2347,7 +2353,7 @@ export default class Account extends Component {
               </div>
             </div>
           }
-          <div className="row mt-3">
+          <div className="row mt-3" id="account_tokens">
             <div className="col-md-12">
               <div className="card">
                 <div className="card-body temp-table">
@@ -2407,7 +2413,7 @@ export default class Account extends Component {
             </div>
           </div>
           { !IS_SUNNET &&
-            <div className="row mt-3">
+            <div className="row mt-3" id="account_my_trading_pairs">
               <div className="col-md-12">
                 <div className="card">
                   <div className="card-body">
@@ -2515,7 +2521,7 @@ export default class Account extends Component {
           {/*</div>*/}
           {/*</div>*/}
           {/*</div>*/}
-          <div className="row mt-3">
+          <div className="row mt-3" id="account_transactions">
             <div className="col-md-12">
               <div className="card">
                 <div className="card-body temp-table">
@@ -2600,7 +2606,7 @@ export default class Account extends Component {
           
           {
               (currentWallet.representative.enabled  && IS_MAINNET) &&
-                <div className="row mt-3">
+                <div className="row mt-3" id="account_Super_Representatives">
                   <div className="col-md-12">
                     <div className="card">
                       <div className="card-body">
@@ -2806,7 +2812,7 @@ export default class Account extends Component {
           }
           {
               !currentWallet.representative.enabled &&
-              <div className="row mt-3">
+              <div className="row mt-3" id="account_Super_Representatives">
                 <div className="col-md-12">
                   <div className="card">
                     <div className="card-body">
