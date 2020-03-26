@@ -25,7 +25,7 @@ import { CONTRACT_ADDRESS_USDT, CONTRACT_ADDRESS_WIN, CONTRACT_ADDRESS_GGC } fro
 import qs from 'qs'
 import DateSelect from './dateSelect'
 import {API_URL} from "../../constants";
-import BlockTime from '../common/blockTime'
+import BlockTime from '../common/blockTime'
 
 class TransfersAll extends React.Component {
     constructor(props) {
@@ -236,7 +236,7 @@ class TransfersAll extends React.Component {
                 className: 'ant_table',
                 width: '14%',
                 render: (text, record, index) => {
-                    return <BlockTime time={text}></BlockTime>
+                    return <BlockTime time={text}></BlockTime>
                     // <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
                 }
             },
@@ -463,7 +463,7 @@ class TransfersAll extends React.Component {
         // }
 
         return (
-            <div className="token_black table_pos">
+            <div className="token_black table_pos transfers-Container">
                 {loading && <div className="loading-style"><TronLoader/></div>}
                 <div className="d-flex justify-content-between" style={{right: 'auto'}}>
                     {!loading && <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" divClass="table_pos_info_addr" selected/> }

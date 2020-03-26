@@ -325,7 +325,10 @@ export const lang19Q4 = {
    "chart_active_accounts":"活跃账户数",
    "chart_network":"网络",
 
-  
+
+    // account tab transfers transactions  internal-transactions
+
+    "account_tab_transactions_token_info":"如果交易中不包含通证信息，则展示“—”"
 
 
 

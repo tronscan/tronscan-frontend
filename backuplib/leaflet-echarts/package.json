@@ -1,0 +1,28 @@
+{
+  "name": "leaflet-echarts",
+  "version": "0.2.1",
+  "description": "A plugin for leaflet to load echarts map and make BigData Visualization.",
+  "main": "src/leaflet-echarts.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wandergis/leaflet-echarts.git"
+  },
+  "keywords": [
+    "leaflet",
+    "echarts",
+    "bigdata",
+    "visualization"
+  ],
+  "author": "wandergis",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wandergis/leaflet-echarts/issues"
+  },
+  "homepage": "https://github.com/wandergis/leaflet-echarts#readme"
+}
