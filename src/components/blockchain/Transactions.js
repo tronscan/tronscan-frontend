@@ -16,7 +16,7 @@ import TotalInfo from "../common/TableTotal";
 import DateRange from "../common/DateRange";
 import {DatePicker} from 'antd';
 import moment from 'moment';
-import xhr from "axios/index";
+//import xhr from "axios/index";
 import queryString from 'query-string';
 import BlockTime from '../common/blockTime'
 import {tu} from '../../utils/i18n'

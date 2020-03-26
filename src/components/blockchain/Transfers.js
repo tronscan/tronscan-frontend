@@ -13,11 +13,11 @@ import SmartTable from "../common/SmartTable.js"
 import {TronLoader} from "../common/loaders";
 import TotalInfo from "../common/TableTotal";
 import DateRange from "../common/DateRange";
-import {TRXPrice} from "../common/Price";
-import {ONE_TRX} from "../../constants";
+//import {TRXPrice} from "../common/Price";
+//import {ONE_TRX} from "../../constants";
 import {DatePicker} from 'antd';
 import moment from 'moment';
-import xhr from "axios/index";
+//import xhr from "axios/index";
 import {NameWithId} from "../common/names";
 import rebuildList from "../../utils/rebuildList";
 import BlockTime from '../common/blockTime'

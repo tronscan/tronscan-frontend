@@ -305,5 +305,9 @@ export const lang19Q4 = {
    "chart_network_resources":"منابع شبکه",
    "chart_active_accounts":"شبکه",
    "chart_network":"شبکه",
+
+    // account tab transfers transactions  internal-transactions
+    "account_tab_transactions_token_info":"如果交易中不包含通证信息，则展示“—”"
+
   
 }

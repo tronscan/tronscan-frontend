@@ -283,6 +283,39 @@ class ApiProposal{
   }
 }
 
+class ApiAccount{
+  constructor() {
+    this.apiUrl = {
+      mainnet: API_URL,
+      sunnet: API_URL_SUNNET
+    };
+  }
+
+  async getAccountOverviewStats(options = {},type) {
+    let url = this.apiUrl[type || "mainnet"];
+    let { data } = await xhr.get(
+      `${url}/api/stats/overview`,
+      {
+        params: options
+      }
+    );
+    return data;
+  }
+
+  async getAccountFreezeResource(options = {},type) {
+    let url = this.apiUrl[type || "mainnet"];
+    let { data } = await xhr.get(
+      `${url}/api/account/resource`,
+      {
+        params: options
+      }
+    );
+    return data;
+  }
+}
+
 export const proposalApi = new ApiProposal();
 
 export const Client20 = new ApiClient20();
+
+export const AccountApi = new ApiAccount();

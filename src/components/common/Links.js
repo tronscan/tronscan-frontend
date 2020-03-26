@@ -264,7 +264,7 @@ class addressLinkClass extends React.PureComponent {
           <Tooltip placement="top" title={t("Copy")}>
             <CopyToClipboard
               text={address}
-              className="ml-1"
+              className="ml-3"
               onCopy={() => {
                 message.success(
                   intl.formatMessage({ id: "contract_copy_success" }),
@@ -273,30 +273,35 @@ class addressLinkClass extends React.PureComponent {
               }}
             >
               <span style={{ cursor: "pointer" }}>
-                <i className="fa fa-paste" />
+                {/* <i className="fa fa-paste" /> */}
+                <img src={require('../../images/address/copy.svg')} style={{width:'15px'}}/>
+
               </span>
             </CopyToClipboard>
-          </Tooltip>
-        )}
-        {includeErcode && (
-          <Tooltip placement="top" title={t("show_qr_code")}>
-            <span
-              className="ml-2"
-              onClick={this.renderModal}
-              style={{ cursor: "pointer" }}
-            >
-              <i className="fas fa-qrcode" />
-            </span>
           </Tooltip>
         )}
         {includeTransfer && (
           <Tooltip placement="top" title={t("send_tokens")}>
             <span
-              className="ml-2"
+              className="ml-3"
               onClick={this.renderSend}
               style={{ cursor: "pointer" }}
             >
-              <i className="fas fa-exchange-alt" />
+              {/* <i className="fas fa-exchange-alt" /> */}
+              <img src={require('../../images/address/transfer.svg')} style={{width:'15px'}}/>
+
+            </span>
+          </Tooltip>
+        )}
+        {includeErcode && (
+          <Tooltip placement="top" title={t("show_qr_code")}>
+            <span
+              className="ml-3"
+              onClick={this.renderModal}
+              style={{ cursor: "pointer" }}
+            >
+              {/* <i className="fas fa-qrcode" /> */}
+              <img src={require('../../images/address/qrcode.svg')} style={{width:'15px'}}/>
             </span>
           </Tooltip>
         )}

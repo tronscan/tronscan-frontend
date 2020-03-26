@@ -8,7 +8,7 @@ import { TronLoader } from "../common/loaders";
 import { withRouter } from "react-router";
 import { connect } from "react-redux";
 
-import Trc10 from "./dex10/index";
+// import Trc10 from "./dex10/index";
 import Trc20 from "./dex20/index";
 
 class Exchange extends React.Component {
@@ -85,7 +85,7 @@ class Exchange extends React.Component {
             ) : null}
           </div> */}
 
-          {match.params.type === "trc10" && <Trc10 />}
+          {/* {match.params.type === "trc10" && <Trc10 />} */}
           {match.params.type === "trc20" && <Trc20 />}
         </main>
       </div>
