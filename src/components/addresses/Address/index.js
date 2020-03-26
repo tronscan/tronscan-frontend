@@ -372,7 +372,7 @@ class Address extends React.Component {
     
     this.setState({
       totalPower: totalPower,
-      TRXBalanceTotal: TRXBalance + totalPower / ONE_TRX,
+      TRXBalanceTotal: TRXBalance / ONE_TRX,
       netUsed: address.bandwidth.netUsed + address.bandwidth.freeNetUsed,
       netLimit: address.bandwidth.netLimit + address.bandwidth.freeNetLimit,
       netRemaining:
