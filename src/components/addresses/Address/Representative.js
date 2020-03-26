@@ -199,7 +199,8 @@ class Representative extends React.Component {
                     className="colorYellow"
                     onClick={this.scrollToAnchor.bind(this)}
                   >
-                    {address.totalTransactionCount} Txns
+                    <FormattedNumber value={address.totalTransactionCount} />{" "}
+                    Txns
                   </span>
                 </NavLink>
               </td>
@@ -220,18 +221,25 @@ class Representative extends React.Component {
                       className="colorYellow"
                       onClick={this.scrollToAnchor.bind(this)}
                     >
-                      {stats.transactions_in + stats.transactions_out} Txns
+                      <FormattedNumber
+                        value={stats.transactions_in + stats.transactions_out}
+                      />{" "}
+                      Txns
                     </div>
                   </NavLink>
                   <div>
                     <span className="ml-1">(</span>
                     <i className="fa fa-arrow-down text-success" />
                     &nbsp;
-                    <span>{stats.transactions_in} Txns</span>
+                    <span>
+                      <FormattedNumber value={stats.transactions_in} /> Txns
+                    </span>
                     &nbsp;
                     <i className="fa fa-arrow-up  text-danger" />
                     &nbsp;
-                    <span>{stats.transactions_out} Txns</span>
+                    <span>
+                      <FormattedNumber value={stats.transactions_out} /> Txns
+                    </span>
                     &nbsp;
                     <span>)</span>
                   </div>
@@ -333,7 +341,7 @@ class Representative extends React.Component {
             <tr>
               <th className="line36">{tu("website")}:</th>
               <td>
-                <div className="d-flex">
+                <div className="d-flex flex-wrap">
                   <span className="line36">
                     {address.representative.url ? (
                       <ExternalLink url={address.representative.url} />

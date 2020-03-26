@@ -173,23 +173,7 @@ class FreezeDetail extends Component {
         render: (text, record, index) => {
           return upperFirst(intl.formatMessage({ id: text.toLowerCase() })); //<span>{text}</span>
         }
-      },
-      {
-        title:
-          upperFirst(intl.formatMessage({ id: "account_freeze_amount" })) +
-          "(TRX)",
-        dataIndex: "frozenBalance",
-        key: "frozenBalance",
-        align: "left",
-        className: "ant_table",
-        render: (text, record, index) => {
-          return (
-            <span>
-              <FormattedNumber value={text / ONE_TRX} />
-            </span>
-          );
-        }
-      },
+      }, 
       {
         title: (
           <span>
@@ -212,6 +196,22 @@ class FreezeDetail extends Component {
           return (
             <span>
               <FormattedNumber value={text} />
+            </span>
+          );
+        }
+      },
+      {
+        title:
+          upperFirst(intl.formatMessage({ id: "account_freeze_amount" })) +
+          "(TRX)",
+        dataIndex: "frozenBalance",
+        key: "frozenBalance",
+        align: "left",
+        className: "ant_table",
+        render: (text, record, index) => {
+          return (
+            <span>
+              <FormattedNumber value={text / ONE_TRX} />
             </span>
           );
         }
