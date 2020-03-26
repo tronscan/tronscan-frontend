@@ -297,7 +297,11 @@ class Accounts extends Component {
         align: 'left',
         // width: '15%',
         render: (text, record, index) => {
-          return <FormattedNumber value={parseInt(text) / ONE_TRX}/>
+          return (
+            <span>
+              {text ? <FormattedNumber value={parseInt(text) / ONE_TRX} /> : (text == 0 ? 0 : '-')}
+            </span>
+          );
         }
       },
       {
@@ -316,7 +320,9 @@ class Accounts extends Component {
         sortDirections: ["descend", "ascend"],
         align: 'left',
         render: (text, record, index) => {
-            return <span> {record.totalTransactionCount} </span>
+            return (<span>
+              {record.totalTransactionCount ? <FormattedNumber value={record.totalTransactionCount} /> : (record.totalTransactionCount == 0 ? 0 : '-')}
+            </span>)
         }
       }
     ];
