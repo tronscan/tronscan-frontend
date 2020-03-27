@@ -19,8 +19,9 @@ import TotalInfo from "../common/TableTotal";
 import moment from 'moment';
 //import {DatePicker} from "antd/lib/index";
 import BlockTime from '../common/blockTime'
+import { Tooltip,Icon } from 'antd';
 
-//const RangePicker = DatePicker.RangePicker;
+
 
 class ContractTrans extends React.Component {
 
@@ -93,9 +94,15 @@ class ContractTrans extends React.Component {
                 end_timestamp:this.end,
                 ...searchParams,
             });
-        }
+        }   
+        let triggerList = result.triggers;
+        triggerList.forEach(item=>{
+            if(result.contractMap){
+                result.contractMap[item.ownerAddress]? (item.ownerIsContract = true) :  (item.ownerIsContract = false)
+            }
+          })
         this.setState({
-            transactions: result.triggers,
+            transactions: triggerList,
             loading: false,
             total: result.total,
             rangeTotal:result.rangeTotal,
@@ -147,7 +154,32 @@ class ContractTrans extends React.Component {
                 width: '30%',
                 className: 'ant_table',
                 render: (text, record, index) => {
-                    return <AddressLink address={text}/>
+                    return <span>
+                        {/*  Distinguish between contract and ordinary address */}
+                        {record.ownerIsContract? (
+                        <span className="d-flex">
+                            <Tooltip
+                            placement="top"
+                            title={upperFirst(
+                                intl.formatMessage({
+                                id: "transfersDetailContractAddress"
+                                })
+                            )}
+                            >
+                            <Icon
+                                type="file-text"
+                                style={{
+                                verticalAlign: 0,
+                                color: "#77838f",
+                                lineHeight: 1.4
+                                }}
+                            />
+                            </Tooltip>
+                            <AddressLink address={text} isContract={true}>{text}</AddressLink>
+                        </span>
+                        ) : <AddressLink address={text}>{text}</AddressLink>
+                        }
+                    </span>
                 }
             },
             {
@@ -158,7 +190,26 @@ class ContractTrans extends React.Component {
                 width: '30%',
                 className: 'ant_table',
                 render: (text, record, index) => {
-                    return <AddressLink address={text} isContract={true}/>
+                    return  <span className="d-flex">
+                        <Tooltip
+                        placement="top"
+                        title={upperFirst(
+                            intl.formatMessage({
+                            id: "transfersDetailContractAddress"
+                            })
+                        )}
+                        >
+                        <Icon
+                            type="file-text"
+                            style={{
+                            verticalAlign: 0,
+                            color: "#77838f",
+                            lineHeight: 1.4
+                            }}
+                        />
+                        </Tooltip>
+                        <AddressLink address={text} isContract={true}/>
+                    </span>
                 }
             },
             {

@@ -25,7 +25,9 @@ import { CONTRACT_ADDRESS_USDT, CONTRACT_ADDRESS_WIN, CONTRACT_ADDRESS_GGC } fro
 import qs from 'qs'
 import DateSelect from './dateSelect'
 import {API_URL} from "../../constants";
-import BlockTime from '../common/blockTime'
+import BlockTime from '../common/blockTime';
+import { Tooltip,Icon } from 'antd';
+
 
 class TransfersAll extends React.Component {
     constructor(props) {
@@ -67,6 +69,7 @@ class TransfersAll extends React.Component {
         });
 
     };
+
     load = async (page = 1, pageSize = 20) => {
         let transfersTRX;
         let {id,istrc20=false, getCsvUrl} = this.props;
@@ -103,7 +106,7 @@ class TransfersAll extends React.Component {
             console.log('error:' + e);
         });
 
-        const [{ transfers, total:totaldata, rangeTotal }, { count } ] = allData;
+        const [{ transfers, total:totaldata, rangeTotal,contractMap }, { count } ] = allData;
 
         list = transfers;
         total = count || totaldata;
@@ -139,6 +142,13 @@ class TransfersAll extends React.Component {
                 item.totip = true
             }
         })
+        rebuildRransfers.forEach(item=>{
+            if(contractMap){
+                contractMap[item.owner_address]? (item.ownerIsContract = true) :  (item.ownerIsContract = false)
+                contractMap[item.to_address]? (item.toIsContract = true) :  (item.toIsContract = false)
+            }
+        })
+        console.log(rebuildRransfers,'transfers');
         this.setState({
             page,
             transfers:rebuildRransfers,
@@ -147,6 +157,7 @@ class TransfersAll extends React.Component {
             loading: false,
         });
     };
+
     handleSwitch = (val) => {
         let {page, pageSize} = this.state;
         if(val){
@@ -166,6 +177,7 @@ class TransfersAll extends React.Component {
         }
 
     }
+
     customizedColumn = (activeLanguage) => {
         let { intl } = this.props;
             const defaultImg = require("../../images/logo_default.png");
@@ -248,15 +260,39 @@ class TransfersAll extends React.Component {
                 className: 'ant_table address_max_width',
                 width: '9%',
                 render: (text, record, index) => {
-                    return <div>
-                        {
-                            record.fromtip ?
-                                <AddressLink address={record.type == 'trc10'?text:record.from_address}>{record.type == 'trc10'?text:record.from_address}</AddressLink>:
-                                <TruncateAddress>{record.type == 'trc10'?text:record.from_address}</TruncateAddress>
+                    return  <span>
+                        {/*  Distinguish between contract and ordinary address */}
+                        {record.ownerIsContract? (
+                            <span className="d-flex">
+                                <Tooltip
+                                    placement="top"
+                                    title={upperFirst(
+                                        intl.formatMessage({
+                                        id: "transfersDetailContractAddress"
+                                        })
+                                    )}
+                                >
+                                    <Icon
+                                        type="file-text"
+                                        style={{
+                                        verticalAlign: 0,
+                                        color: "#77838f",
+                                        lineHeight: 1.4
+                                        }}
+                                    />
+                                </Tooltip>
+                                {record.fromtip ?
+                                    <AddressLink address={record.type == 'trc10'?text:record.from_address}>{record.type == 'trc10'?text:record.from_address}</AddressLink>
+                                    :
+                                    <TruncateAddress address={record.type == 'trc10'?text:record.from_address}>{record.type == 'trc10'?text:record.from_address}</TruncateAddress>}
+                            </span>
+                            ) : (
+                                record.fromtip ?
+                                    <AddressLink address={record.type == 'trc10'?text:record.from_address}>{record.type == 'trc10'?text:record.from_address}</AddressLink>:
+                                    <TruncateAddress address={record.type == 'trc10'?text:record.from_address}>{record.type == 'trc10'?text:record.from_address}</TruncateAddress>
+                            )
                         }
-
-                    </div>
-
+                    </span>
                 }
             },
             {
@@ -275,9 +311,39 @@ class TransfersAll extends React.Component {
                 className: 'ant_table address_max_width',
                 width: '9%',
                 render: (text, record, index) => {
-                    return record.totip?
-                        <AddressLink address={text}>{text}</AddressLink>:
-                        <TruncateAddress>{text}</TruncateAddress>
+                    return <span>
+                        {/*  Distinguish between contract and ordinary address */}
+                        {record.ownerIsContract? (
+                            <span className="d-flex">
+                                <Tooltip
+                                    placement="top"
+                                    title={upperFirst(
+                                        intl.formatMessage({
+                                        id: "transfersDetailContractAddress"
+                                        })
+                                    )}
+                                >
+                                    <Icon
+                                        type="file-text"
+                                        style={{
+                                        verticalAlign: 0,
+                                        color: "#77838f",
+                                        lineHeight: 1.4
+                                        }}
+                                    />
+                                </Tooltip>
+                                {record.totip ?
+                                    <AddressLink address={record.type == 'trc10'?text:record.from_address} isContract={true}>{record.type == 'trc10'?text:record.from_address}</AddressLink>
+                                    :
+                                    <TruncateAddress address={record.type == 'trc10'?text:record.from_address}>{record.type == 'trc10'?text:record.from_address}</TruncateAddress>}
+                            </span>
+                            ) : (
+                                record.totip ?
+                                    <AddressLink address={record.type == 'trc10'?text:record.from_address}>{record.type == 'trc10'?text:record.from_address}</AddressLink>:
+                                    <TruncateAddress address={record.type == 'trc10'?text:record.from_address}>{record.type == 'trc10'?text:record.from_address}</TruncateAddress>
+                            )
+                        }
+                    </span>
                 }
             },
             {
