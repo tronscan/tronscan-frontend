@@ -224,10 +224,10 @@ class Transactions extends React.Component {
                 width: '30%',
                 className: 'ant_table',
                 render: (text, record, index) => {
-                    console.log(record.ownerIsContract)
-                    return <span className="d-flex">
-                            {/*  Distinguish between contract and ordinary address */}
-                            {record.ownerIsContract? (
+                    return <span>
+                        {/*  Distinguish between contract and ordinary address */}
+                        {record.ownerIsContract? (
+                            <span className="d-flex">
                                 <Tooltip
                                 placement="top"
                                 title={upperFirst(
@@ -245,9 +245,11 @@ class Transactions extends React.Component {
                                     }}
                                 />
                                 </Tooltip>
-                            ) :null}
-                            <AddressLink address={text}/>
-                        </span>
+                                <AddressLink address={text} isContract={true}/>
+                            </span>
+                            ) : <AddressLink address={text}/>
+                        }
+                    </span>
                 }
             },
             {

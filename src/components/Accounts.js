@@ -12,7 +12,7 @@ import {TronLoader} from "./common/loaders";
 import {QuestionMark} from "./common/QuestionMark";
 import xhr from "axios/index";
 import {Client} from "../services/api";
-import {Tooltip} from 'antd'
+import {Tooltip,Icon} from 'antd'
 
 
 class Accounts extends Component {
@@ -43,36 +43,16 @@ class Accounts extends Component {
 
     this.setState({loading: true});
 
-    let {accounts, total, rangeTotal} = await Client.getAccounts({
+    let {accounts, total, rangeTotal,contractMap} = await Client.getAccounts({
       sort: '-balance',
       limit: pageSize,
       start: (page - 1) * pageSize
     })
-    // let exchangeFlag = await Client.getTagNameList()
-    //
-    // accounts.map(item => {
-    //   item.tagName = ''
-    //   exchangeFlag.map(coin => {
-    //     const typeList = Object.keys(coin.addressList)
-    //     typeList.map(type => {
-    //       if(coin.addressList[type].length == 1){
-    //         if(coin.addressList[type][0] === item.address){
-    //           item.tagName = `${upperFirst(coin.name)}${type !== 'default'? `-${type}`: ''}`
-    //         }
-    //       }else if(coin.addressList[type].length > 1){
-    //         coin.addressList[type].map((address, index) => {
-    //           if(address === item.address){
-    //             item.tagName = `${upperFirst(coin.name)}${type !== 'default'? `-${type} ${index + 1}`: ` ${index + 1}`}`
-    //           }
-    //         })
-    //       }
-    //     })
-    //   })
-    //  })
-
-
-     // let {txOverviewStats} = await Client.getTxOverviewStats();
-
+    accounts.forEach(item=>{
+      if(contractMap){
+          contractMap[item.address]? (item.ownerIsContract = true) :  (item.ownerIsContract = false)
+      }
+    })
     this.setState({
       loading: false,
       accounts: accounts,
@@ -169,15 +149,34 @@ class Accounts extends Component {
         className: 'ant_table',
         width: '40%',
         render: (text, record, index) => {
-          return record.accountType == 2 ?
-              <span className="d-flex">
-              <Tooltip placement="top" title={intl.formatMessage({id: 'contracts'})}>
-                <span><i className="far fa-file mr-1"></i></span>
-              </Tooltip>
-              
-              <AddressLink address={text} isContract={record.toAddressType == 2}/>
-            </span> :
-              <AddressLink address={text}/>
+          return <span className="d-flex">
+          {/*  Distinguish between contract and ordinary address */}
+          {record.ownerIsContract? (
+            <span className="d-flex">
+              <Tooltip
+                placement="top"
+                title={upperFirst(
+                    intl.formatMessage({
+                    id: "transfersDetailContractAddress"
+                    })
+                )}
+                >
+                <Icon
+                    type="file-text"
+                    style={{
+                    verticalAlign: 0,
+                    color: "#77838f",
+                    lineHeight: 1.4
+                    }}
+                />
+                </Tooltip>
+                <AddressLink address={text} isContract={true}/>
+            </span>
+          ) :
+            <AddressLink address={text}/>
+          }
+        </span>
+          // return record.accountType == 2  contract old judge
         }
       },
       {
