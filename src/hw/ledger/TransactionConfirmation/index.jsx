@@ -538,6 +538,7 @@ export default function Contract({ contract, extra }) {
           </Fragment>
         );
 
+
     default:
       return (
         <Fragment>
