@@ -2225,7 +2225,7 @@ export default class Account extends Component {
           </div> */}
         <Tabs tabs={tabs} scrollsId={scrollsId} changeScrollIds={this.changeScrollIds.bind(this)}/>
          <div id="account_title">
-            <div className="row" >
+           <div className="row" >
             <div className="col-md-3">
               <div className="card h-100 bg-line_red bg-image_band">
                 <div className="card-body">
@@ -2285,8 +2285,7 @@ export default class Account extends Component {
             </div>
             </div>
             {showBandwidth && this.renderBandwidth()}
-         </div>
-          <div className="row mt-3" >
+            <div className="row mt-3" >
             <div className="col-md-12">
               <div className="card px-3">
                 {
@@ -2405,7 +2404,9 @@ export default class Account extends Component {
               </div>
             </div>
           </div>
-          {
+           
+         </div>
+         {
             !IS_SUNNET  && <div id={(hasToken20 || issuedAsset) ? 'account_my_token' : ''}><IssuedToken {...this.props} issuedAsset={issuedAsset} loadAccount={this.loadAccount} unfreezeAssetsConfirmation={this.unfreezeAssetsConfirmation} hasToken20List={this.hasToken20List.bind(this)}/></div>
           }
           {
