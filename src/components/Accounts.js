@@ -220,7 +220,7 @@ class Accounts extends Component {
         render: (text, record, index) => {
           return (
                 <div  className="d-flex">
-                  <div style={{width: record.addressTag ? "200px" : 'auto'}}>
+                  <div style={{width: '240px'}}>
                     {
                       record.accountType == 2 ?
                       <span className="d-flex">

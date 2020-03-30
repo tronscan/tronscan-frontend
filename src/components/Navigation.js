@@ -1074,6 +1074,7 @@ class Navigation extends React.Component {
     let {search, popup, notifications, announcement, announId, annountime, searchResults, selectedNet,drawerVisible,currentActive,percent_change_24h,testNetAry } = this.state;
     let activeComponent = this.getActiveComponent();
     const isShowSideChain = !type || (type && IS_SUNNET);
+    let IsRepresentative = localStorage.getItem('representative')
     return (
         <div className="header-top nav-item-page">
           {popup}
@@ -1535,7 +1536,9 @@ class Navigation extends React.Component {
                       {/*{activeComponent.label === 'create' &&*/}
                       {/*<small className='text-muted' style={{fontSize: '14px'}}>{tu('issued_token_of_tronscan')}</small>*/}
                       {/*}*/}
+                      {IsRepresentative && activeComponent.label == 'contract_code_overview_account' && <span className="Representative-subTttle">{tu('Super Representatives')}</span>}
                     </h4>
+
                   }
 
                 </div>

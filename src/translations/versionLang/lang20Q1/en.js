@@ -254,7 +254,7 @@ export const lang20Q1 = {
   account_vote_total_percent_tip: "Votes for the SR from this account / total votes received by the SR",
   account_vote_reward_tip: "Accumulative voter rewards from the SR",
   account_get_reward: "Accept",
-  account_freeze_detail: "Token-freeze details",
+  account_freeze_detail: "freeze details",
   account_freeze_self: "For personal use",
   account_freeze_to_other: "For other user(s)",
   account_freeze_other_to: "From other user(s)",
