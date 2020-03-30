@@ -11,6 +11,8 @@ import {Truncate} from "../../../components/common/text";
 import TronWeb from "tronweb";
 
 export default function Contract({ contract, extra }) {
+  console.log('contract======',contract)
+  console.log('contract.type======',contract.type.toUpperCase())
   const contractParams = contract.parameter.value;
   let tokenInfo = '';
   let tokenList = [{"token_id":"","amount":""}];
@@ -332,10 +334,11 @@ export default function Contract({ contract, extra }) {
                     <Field label="From">
                         {TronWeb.address.fromHex(contractParams.owner_address)}
                     </Field>
-
-                    <Field label="To">
+                    {
+                      extra.to?<Field label="To">
                         {extra.to}
-                    </Field>
+                      </Field>:''
+                    }
                     {(extra && extra.to_name &&
                         <Field label="To Name">
                             {extra.to_name}
@@ -349,11 +352,14 @@ export default function Contract({ contract, extra }) {
                             {extra.to_name}
                         </Field>
                     )}
-                    <Field label="Amount">
-                        <FormattedNumber maximumFractionDigits={extra.decimals} minimunFractionDigits={extra.decimals}
-                                         value={extra.amount}/>&nbsp;
-                        {extra.token_name}
-                    </Field>
+                    {
+                      extra.to?<Field label="Amount">
+                      <FormattedNumber maximumFractionDigits={extra.decimals} minimunFractionDigits={extra.decimals}
+                                       value={extra.amount}/>&nbsp;
+                      {extra.token_name}
+                      </Field>:''
+                    }
+                    
                     {(extra && extra.hash &&
                         <Field label="Hash">
                             <Truncate>
@@ -485,7 +491,7 @@ export default function Contract({ contract, extra }) {
           return (
             <Fragment>
               <div className="card-body">
-                <h5 className="card-title text-center">Claim Rewards</h5>
+                <h5 className="card-title text-center">Update Account Permission</h5>
               </div>
               <table className="table">
                 <tbody>
