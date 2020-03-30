@@ -230,6 +230,9 @@ export const lang20Q1 = {
   freeze_TRX_error:"Something went wrong while trying to freeze TRX, please try again later.",
   votes_cannot_exceed_5_SRs:"Votes cannot exceed 5 SRs",
 
+  too_many_bytes_to_encode:"Too many bytes to encode",
+  use_TRONlink_or_private_key :"Please login to use this function via TRONlink or private key",
+
   // 2020-03-03 leon
   account_total_tip: "上位10000レコードのみが表示され、デフォルトでTRXバランスを減らしてソートされます。",
   account_rank: "ナンバー",

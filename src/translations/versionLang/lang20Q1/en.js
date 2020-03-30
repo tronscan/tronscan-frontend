@@ -233,6 +233,9 @@ export const lang20Q1 = {
   freeze_TRX_error:"Something went wrong while trying to freeze TRX, please try again later.",
   votes_cannot_exceed_5_SRs:"Votes cannot exceed 5 SRs",
 
+  too_many_bytes_to_encode:"Too many bytes to encode",
+  use_TRONlink_or_private_key :"Please login to use this function via TRONlink or private key",
+
   // 2020-03-03 leon
   account_total_tip: "Only the top 10000 records are displayed, sorted by decreasing TRX balance by default.",
   account_rank: "No.",
@@ -254,7 +257,7 @@ export const lang20Q1 = {
   account_vote_total_percent_tip: "Votes for the SR from this account / total votes received by the SR",
   account_vote_reward_tip: "Accumulative voter rewards from the SR",
   account_get_reward: "Accept",
-  account_freeze_detail: "Token-freeze details",
+  account_freeze_detail: "freeze details",
   account_freeze_self: "For personal use",
   account_freeze_to_other: "For other user(s)",
   account_freeze_other_to: "From other user(s)",

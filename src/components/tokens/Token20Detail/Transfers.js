@@ -447,7 +447,6 @@ class Transfers extends React.Component {
       rangeTotal
     } = this.props.tokensInfo.transfers20ListObj;
 
-    // console.log(   let { priceUSD } = this.props;)
 
     if (total == 0) {
       transfers = [];

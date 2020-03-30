@@ -12,9 +12,9 @@ export const NETURL = {
   NEWMAINNET: "https://tronscan.io",
   NEWSUNNET: "https://dappchain.tronscan.io",
   MAINNET: "https://tronscan.org",
-  SUNNET: "https://dappchain.tronscan.org"
-  // MAINNET: "http://18.217.215.94:69",
-  // SUNNET: "http://18.217.215.94:70",
+  SUNNET: "https://dappchain.tronscan.org",
+   //MAINNET: "http://18.217.215.94:71",
+   //SUNNET: "http://18.217.215.94:72",
   // MAINNET: "https://debug.tronscan.org",
   // SUNNET: "https://debugdappchain.tronscan.org",
 };
@@ -136,6 +136,7 @@ export const SUNWEBCONFIG = {
   // MAINFULLNODE: "https://api.nileex.io",
   // MAINSOLIDITYNODE: "https://api.nileex.io",
   // MAINEVENTSERVER: "https://event.nileex.io",
+
 
   SUNFULLNODE: "https://sun.tronex.io",
   SUNSOLIDITYNODE: "https://sun.tronex.io",
@@ -262,5 +263,6 @@ export const ADDRESS_TAG_ICON = [
   "Huobi",
   "Kucoin",
   "Okex",
-  "Poloniex"
+  "Poloniex",
+  "Bitfinex"
 ];
