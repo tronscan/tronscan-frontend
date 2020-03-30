@@ -66,7 +66,6 @@ class TokenDetail extends React.Component {
   async componentWillMount() {
     window.performance.mark("start2");
 
-    //console.log('Component WILL MOUNT!')
     var measure5  =-1;
     if (performance.navigation.type == 1) {
       performance.measure(

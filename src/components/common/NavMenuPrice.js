@@ -115,7 +115,6 @@ export class NavMenuTRXPrice extends React.PureComponent {
   renderPrice(value, priceValues) {
     let { currency = "" } = this.props;
     let id = currency || priceValues.priceShown;
-    console.log(priceValues,id,'111111')
     return priceValues[id.toUpperCase()] * value;
   }
 

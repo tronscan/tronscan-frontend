@@ -12,27 +12,28 @@ import { reloadWallet } from "../../../actions/wallet";
 import { deepCopy } from "ethers/utils";
 import { transactionMultiResultManager } from '../../../utils/tron'
 import { buildAccountPermissionUpdateContract } from '@tronscan/client/src/utils/transactionBuilder'
-// import xhr from "axios";
 import { postMutiSignTransaction } from '../../../services/apiMutiSign'
 import { injectIntl } from "react-intl";
 import { tu } from '../../../utils/i18n'
 import {QuestionMark} from "../../common/QuestionMark";
+
 @injectIntl
 @connect(
-    state => {
-        return {
+    state => (
+        {
             wallet: state.wallet,
             account: state.app.account,
+            walletType: state.app.wallet,
         }
-    },
+    ),
     {
-        reloadWallet
+      reloadWallet
     }
 )
 export default class MyPermission extends React.Component {
     constructor(props) {
         super(props);
-        const { wallet,tronWeb,account } = this.props;
+        const { wallet, tronWeb, account} = this.props;
         const { ownerPermission, activePermissions, witnessPermission } = wallet.current;
         if(ownerPermission){
             ownerPermission.type = 0;
@@ -105,7 +106,7 @@ export default class MyPermission extends React.Component {
             changedActivePermission: cloneDeep(activePermissions),
             changedWihnessPermission: cloneDeep(witnessPermission)
         }, () => {
-            console.log('initState', wallet.current.address);
+           
         })
     }
     componentDidUpdate(prevProps){
@@ -115,7 +116,6 @@ export default class MyPermission extends React.Component {
         }
     }
     // async componentWillReceiveProps(nextProps) {
-    //     console.log('nextProps',nextProps);
     //     if (nextProps.account.address != this.props.account.address) {
     //         this.initState(nextProps);
     //     }
@@ -384,7 +384,13 @@ export default class MyPermission extends React.Component {
 
     //点击保存
     async savePermission() {
-        const { tronWeb, reloadWallet, intl } = this.props;
+        const { reloadWallet, intl, tronWeb } = this.props;
+        // let tronWeb;
+        // if(walletType.type === "ACCOUNT_LEDGER"){
+        //     tronWeb = this.props.tronWeb();
+        // }else{
+        //     tronWeb = this.props.account.tronWeb;
+        // }
         const { changedOwnerPermission, changedActivePermission, changedWihnessPermission, curLoginAddress, curControlAddress } = this.state;
         if(!changedOwnerPermission){
             return;
@@ -488,19 +494,22 @@ export default class MyPermission extends React.Component {
         const UnmodifiedOwnerPermissionKeys = UnmodifiedOwnerPermission.keys;
         
         if (curControlAddress === curLoginAddress && UnmodifiedOwnerPermissionKeys.length < 2&&UnmodifiedOwnerPermissionKeys[0].address === tronWeb.address.toHex(curLoginAddress)) {
+            //Sign
+            
             const updateTransaction = await tronWeb.transactionBuilder.updateAccountPermissions(tronWeb.address.toHex(curLoginAddress), changedOwnerPermission, changedWihnessPermission, changedActivePermission);
             const signedTransaction = await tronWeb.trx.sign(updateTransaction);
-
             const res = await tronWeb.trx.broadcast(signedTransaction).catch(e => {
                 this.setState({
                     modal: (
-                        <SweetAlert warning title="Update Permission" onConfirm={this.hideModal}>
-                            {tu('signature_update_failed')}
+                        <SweetAlert warning onConfirm={this.hideModal}>
+                          {(signedTransaction === 0 && this.props.walletType.type==="ACCOUNT_LEDGER")? tu("too_many_bytes_to_encode"):tu('signature_update_failed')} 
                         </SweetAlert>
                     )
                 });
             });
-
+            if(!signedTransaction){
+                return;
+            }
             if (res && res.result) {
                 //  transaction_signature_muti_successful
                 this.setState({
@@ -523,14 +532,24 @@ export default class MyPermission extends React.Component {
                 }))
             }
         } else {
-            //
+            //multi Sign
             const updateTransaction = await tronWeb.transactionBuilder.updateAccountPermissions(tronWeb.address.toHex(curControlAddress), changedOwnerPermission, changedWihnessPermission, changedActivePermission);
 
             //const signedTransaction = await tronWeb.trx.multiSign(updateTransaction,tronWeb.defaultPrivateKey,0);
             const value = updateTransaction.raw_data.contract[0].parameter.value;
             const hexStr = buildAccountPermissionUpdateContract(value);
-
-            const signedTransaction = await transactionMultiResultManager(updateTransaction, tronWeb, 0, 1, hexStr);
+            const signedTransaction = await transactionMultiResultManager(updateTransaction, tronWeb, 0, 24, hexStr)
+;
+            if(!signedTransaction){
+                this.setState({
+                    modal: (
+                        <SweetAlert warning onConfirm={this.hideModal}>
+                             {(signedTransaction === 0 && this.props.walletType.type==="ACCOUNT_LEDGER")? tu("too_many_bytes_to_encode"):tu('signature_update_failed')} 
+                        </SweetAlert>
+                    )
+                });
+                return;
+            }
             let data = await postMutiSignTransaction(curLoginAddress, signedTransaction);
             const result = data.code;
 
@@ -556,7 +575,7 @@ export default class MyPermission extends React.Component {
     }
     render() {
         const { isEditOperateUser, isEditContent, curControlAddress, modal, modalAlert, curLoginAddress, ownerPermission, activePermissions, witnessPermission } = this.state;
-        const { wallet, tronWeb } = this.props;
+        const { wallet, tronWeb,walletType } = this.props;
         let permissionOrigin = null;
         if (curControlAddress === curLoginAddress) {
             permissionOrigin = wallet.current;
@@ -596,7 +615,7 @@ export default class MyPermission extends React.Component {
                 {activePermissions && !isEditContent && <ActiveRead activePermissions={activePermissions} tronWeb={tronWeb}/>}
                 {/* edit status */}
                 {ownerPermission && isEditContent && <OwnerEdit ownerPermission={ownerPermission} tronWeb={tronWeb} changeOwnerPermission={this.changeOwnerPermission.bind(this)} />}
-                {activePermissions && isEditContent && <ActiveEdit activePermissions={activePermissions} tronWeb={tronWeb} changeActivePermission={this.changeActivePermission.bind(this)} />}
+                {activePermissions && isEditContent && <ActiveEdit activePermissions={activePermissions} tronWeb={tronWeb} walletType={walletType} changeActivePermission={this.changeActivePermission.bind(this)} />}
 
             </main>)
     }
