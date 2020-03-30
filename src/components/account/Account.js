@@ -44,6 +44,8 @@ import { Input, Tooltip as AntdTip } from 'antd';
 import Countdown from "react-countdown-now";
 import { isJSXEmptyExpression } from '@babel/types';
 import  MyPermission  from '../mutiSignature/MyPermission';
+import Tabs from './components/Tabs'
+import $ from 'jquery';
 
 
 @connect(
@@ -105,7 +107,107 @@ export default class Account extends Component {
       errorMess:'',
       isInMyPermission:true,
       isInMySignature:false,
-      mySignatureType:255
+      mySignatureType:255,
+      tabs: [
+        {
+          name: 'contract_code_overview_account',
+          id: 'account_title'
+        },
+        {
+          name: 'tokens',
+          id: 'account_tokens'
+        },
+        // {
+        //   name: 'account_tags_list',
+        //   id: 'account_tags_list'
+        // },
+        {
+          name: 'my_trading_pairs',
+          id: 'account_my_trading_pairs'
+        },
+        {
+          name: 'transactions',
+          id: 'account_transactions'
+        },
+        {
+          name: 'power',
+          id: 'tronPower'
+        },
+        {
+          name: 'muti_sign',
+          id: 'tronMultisign'
+        },
+        {
+          name: 'Super Representatives',
+          id: 'account_Super_Representatives'
+        },
+
+      ],
+      tabsHasToken: [
+        {
+          name: 'contract_code_overview_account',
+          id: 'account_title'
+        },
+        {
+          name: 'my_created_token',
+          id: 'account_my_token'
+        },
+        {
+          name: 'tokens',
+          id: 'account_tokens'
+        },
+        // {
+        //   name: 'account_tags_list',
+        //   id: 'account_tags_list'
+        // },
+        {
+          name: 'my_trading_pairs',
+          id: 'account_my_trading_pairs'
+        },
+        {
+          name: 'transactions',
+          id: 'account_transactions'
+        },
+        {
+          name: 'power',
+          id: 'tronPower'
+        },
+        {
+          name: 'muti_sign',
+          id: 'tronMultisign'
+        },
+        {
+          name: 'Super Representatives',
+          id: 'account_Super_Representatives'
+        },
+
+      ],
+      tabsSunNet: [
+        {
+          name: 'contract_code_overview_account',
+          id: 'account_title'
+        },
+        {
+          name: 'tokens',
+          id: 'account_tokens'
+        },
+        {
+          name: 'transactions',
+          id: 'account_transactions'
+        },
+        {
+          name: 'power',
+          id: 'tronPower'
+        },
+        {
+          name: 'Super Representatives',
+          id: 'account_Super_Representatives'
+        },
+
+      ],
+      scrollsId: 'account_title',
+      linkIds: [],
+      hasToken20:false
     };
 
   }
@@ -162,7 +264,22 @@ export default class Account extends Component {
 
           //}
       }
+
+      // mainnet and dappchain different tabs
+      if(!IS_MAINNET){
+        this.setState({
+          tabs:this.state.tabsSunNet
+        },()=>{
+          this.getScrollsIds()
+        })
+      }else{
+        this.getScrollsIds()
+      }
+      
+      
     }
+   
+
   }
 
   async componentDidUpdate(prevProps) {
@@ -209,7 +326,13 @@ export default class Account extends Component {
       }
 
     }
+
   }
+
+  componentWillUnmount() {
+    window.onscroll = null;
+  }
+
   changeMySignatureType(value){
     this.setState({
       mySignatureType:value
@@ -258,17 +381,19 @@ export default class Account extends Component {
       if(anchorElement) { anchorElement.scrollIntoView(); }
 
   }
-    scrollToMultisign = () => {
+  scrollToMultisign = () => {
 
         let anchorElement = document.getElementById('tronMultisign');
         if(anchorElement) { anchorElement.scrollIntoView(); }
 
-    }
+  }
 
 
 
   loadAccount = async () => {
     let {account, loadRecentTransactions, currentWallet} = this.props;
+    let {tabsHasToken} = this.state
+
     loadRecentTransactions(account.address);
     this.setState({
       issuedAsset: null,
@@ -289,6 +414,10 @@ export default class Account extends Component {
       token.rangeTotal =  rangeTotal
       this.setState({
         issuedAsset: token,
+        tabs:tabsHasToken,
+      },()=>{
+        window.onscroll = null
+        this.getScrollsIds()
       });
     }
     
@@ -1985,10 +2114,54 @@ export default class Account extends Component {
         }
     };
 
+    onScrollEvent(linkIds) {
+      const viewPortHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+      if (linkIds.length) {
+        linkIds.forEach((item) => {
+          const el = $('#' + item.id).get(0);
+          const top = el.getBoundingClientRect() && el.getBoundingClientRect().top
+            if (top <= viewPortHeight - 200) {
+            this.setState({
+              scrollsId:item.id
+            })
+          }
+        });
+      }
+    }
+
+    getScrollsIds = () => {
+      let { tabs } = this.state;
+      let _this = this;
+    
+       window.onscroll = function () {
+        _this.onScrollEvent(tabs);
+      }
+  
+    };
+
+    changeScrollIds(val){
+  
+      this.setState({
+        scrollsId:val
+      })
+    }
+
+    hasToken20List(val){
+      let {tabs,tabsHasToken} = this.state
+      this.setState({
+        hasToken20:val && val>0,
+        tabs:val ? tabsHasToken : tabs
+      },()=>{
+        window.onscroll = null
+        this.getScrollsIds()
+      })
+    }
+
   render() {
     let { modal, sr, issuedAsset, showBandwidth, showBuyTokens, temporaryName, hideSmallCurrency, tokenTRC10,
         isShowPledgeModal, isShowMappingModal, address, currency, balance, precision, id, type, isShowSignModal,
-        tokenTRX, trx20MappingAddress,brokerageValue, errorMess, reward, rewardData, accountReward,isInMyPermission,isInMySignature, mySignatureType} = this.state;
+        tokenTRX, trx20MappingAddress,brokerageValue, errorMess, reward, rewardData, accountReward,isInMyPermission,
+        isInMySignature, mySignatureType,tabs,scrollsId,hasToken20} = this.state;
 
     let {account, frozen, totalTransactions, currentWallet, wallet, accountResource, trxBalance, intl} = this.props;
 
@@ -2037,7 +2210,7 @@ export default class Account extends Component {
       url = 'https://support.poloniex.org/hc/zh-cn/articles/360030644412-TRXMarket%E5%8A%A9%E5%8A%9BTRC20-USDT%E9%87%8D%E8%A3%85%E4%B8%8A%E9%98%B5-%E6%83%8A%E5%96%9C%E6%94%BE%E9%80%8110%E4%B8%87%E4%BA%BA%E6%B0%91%E5%B8%81'
       title = 'Poloni DEX-USDT重装上阵，惊喜放送10万人民币'
     }
-   
+
     return (
         <main className="container header-overlap token_black accounts">
           {modal}
@@ -2050,7 +2223,9 @@ export default class Account extends Component {
               <span aria-hidden="true">&times;</span>
             </button>
           </div> */}
-          <div className="row">
+        <Tabs tabs={tabs} scrollsId={scrollsId} changeScrollIds={this.changeScrollIds.bind(this)}/>
+         <div id="account_title">
+            <div className="row" >
             <div className="col-md-3">
               <div className="card h-100 bg-line_red bg-image_band">
                 <div className="card-body">
@@ -2108,9 +2283,10 @@ export default class Account extends Component {
                 </div>
               </div>
             </div>
-          </div>
-          {showBandwidth && this.renderBandwidth()}
-          <div className="row mt-3">
+            </div>
+            {showBandwidth && this.renderBandwidth()}
+         </div>
+          <div className="row mt-3" >
             <div className="col-md-12">
               <div className="card px-3">
                 {
@@ -2230,11 +2406,11 @@ export default class Account extends Component {
             </div>
           </div>
           {
-            !IS_SUNNET && <IssuedToken {...this.props} issuedAsset={issuedAsset} loadAccount={this.loadAccount} unfreezeAssetsConfirmation={this.unfreezeAssetsConfirmation} />
+            !IS_SUNNET  && <div id={(hasToken20 || issuedAsset) ? 'account_my_token' : ''}><IssuedToken {...this.props} issuedAsset={issuedAsset} loadAccount={this.loadAccount} unfreezeAssetsConfirmation={this.unfreezeAssetsConfirmation} hasToken20List={this.hasToken20List.bind(this)}/></div>
           }
           {
             false &&
-            <div className="row mt-3">
+            <div className="row mt-3" >
               <div className="col-md-12">
                 <div className="card">
                   <div className="card-body">
@@ -2347,7 +2523,7 @@ export default class Account extends Component {
               </div>
             </div>
           }
-          <div className="row mt-3">
+          <div className="row mt-3" id="account_tokens">
             <div className="col-md-12">
               <div className="card">
                 <div className="card-body temp-table">
@@ -2407,7 +2583,7 @@ export default class Account extends Component {
             </div>
           </div>
           { !IS_SUNNET &&
-            <div className="row mt-3">
+            <div className="row mt-3" id="account_my_trading_pairs">
               <div className="col-md-12">
                 <div className="card">
                   <div className="card-body">
@@ -2515,7 +2691,7 @@ export default class Account extends Component {
           {/*</div>*/}
           {/*</div>*/}
           {/*</div>*/}
-          <div className="row mt-3">
+          <div className="row mt-3" id="account_transactions">
             <div className="col-md-12">
               <div className="card">
                 <div className="card-body temp-table">
@@ -2600,7 +2776,7 @@ export default class Account extends Component {
           
           {
               (currentWallet.representative.enabled  && IS_MAINNET) &&
-                <div className="row mt-3">
+                <div className="row mt-3" id="account_Super_Representatives">
                   <div className="col-md-12">
                     <div className="card">
                       <div className="card-body">
@@ -2806,7 +2982,7 @@ export default class Account extends Component {
           }
           {
               !currentWallet.representative.enabled &&
-              <div className="row mt-3">
+              <div className="row mt-3" id="account_Super_Representatives">
                 <div className="col-md-12">
                   <div className="card">
                     <div className="card-body">
