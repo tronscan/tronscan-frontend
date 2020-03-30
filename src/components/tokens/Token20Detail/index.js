@@ -860,7 +860,7 @@ class Token20Detail extends React.Component {
                       {/*</div>*/}
                     </div>
                   </div>
-                  <Information token={token} priceUSD={priceUSD}></Information>
+                  <Information token={token} priceUSD={priceUSD} intl={intl}></Information>
                 </div>
 
                 <div

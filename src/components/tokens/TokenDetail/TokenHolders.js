@@ -61,50 +61,20 @@ class TokenHolders extends React.Component {
     });
     getCsvUrl(`${API_URL}/api/tokenholders?${query}`);
 
-    let { addresses, total, rangeTotal } = await Client.getTokenHolders(
+    let { addresses, total, rangeTotal,contractMap } = await Client.getTokenHolders(
       filter.token,
       params
     );
-
+    console.log(contractMap,'contractMap')
     // for (let index in addresses) {
     //   addresses[index].index = parseInt(index) + 1;
     // }
     let exchangeFlag = await Client.getTagNameList();
-
-    // if (addresses.length) {
-    //   addresses.map(item => {
-    //     item.tagName = "";
-    //     exchangeFlag.map(coin => {
-    //       const typeList = Object.keys(coin.addressList);
-    //       typeList.map(type => {
-    //         if (coin.addressList[type].length == 1) {
-    //           if (coin.addressList[type][0] === item.address) {
-    //             item.tagName = `${upperFirst(coin.name)}${
-    //               type !== "default" ? `-${type}` : ""
-    //             }`;
-    //             if (lowerCase(coin.name) === "binance") {
-    //               item.ico = lowerCase(coin.name);
-    //             }
-    //           }
-    //         } else if (coin.addressList[type].length > 1) {
-    //           coin.addressList[type].map((address, index) => {
-    //             if (address === item.address) {
-    //               item.tagName = `${upperFirst(coin.name)}${
-    //                 type !== "default"
-    //                   ? `-${type} ${index + 1}`
-    //                   : ` ${index + 1}`
-    //               }`;
-    //               if (lowerCase(coin.name) === "binance") {
-    //                 item.ico = lowerCase(coin.name);
-    //               }
-    //             }
-    //           });
-    //         }
-    //       });
-    //     });
-    //   });
-    // }
-
+    addresses.forEach(item=>{
+      if(contractMap){
+        contractMap[item.address]? (item.ownerIsContract = true) :  (item.ownerIsContract = false)
+      }
+    })
     this.setState({
       page,
       addresses,
@@ -143,7 +113,32 @@ class TokenHolders extends React.Component {
               style={{
                 display: "flex"
               }}
-            >
+            > 
+              <span>
+                {/*  Distinguish between contract and ordinary address */}
+                {record.ownerIsContract? (
+                  <span className="d-flex">
+                    <Tooltip
+                      placement="top"
+                      title={upperFirst(
+                          intl.formatMessage({
+                          id: "transfersDetailContractAddress"
+                          })
+                      )}
+                    >
+                      <Icon
+                        type="file-text"
+                        style={{
+                        verticalAlign: 0,
+                        color: "#77838f",
+                        lineHeight: 1.4
+                        }}
+                      />
+                    </Tooltip>
+                  </span>
+                  ) : null
+                }
+              </span>
               <Tooltip
                 placement="topLeft"
                 title={upperCase(
@@ -158,7 +153,26 @@ class TokenHolders extends React.Component {
                     maxWidth: 350
                   }}
                 >
-                  <AddressLink address={record.address} />
+                  {/*  Distinguish between contract and ordinary address */}
+                  {record.ownerIsContract? (
+                    <span className="d-flex">
+                      <div
+                        style={{
+                          maxWidth: 350
+                        }}
+                      >
+                        <AddressLink address={record.address} isContract={true}/>
+                      </div>
+                    </span>
+                    ) : 
+                    <div
+                      style={{
+                        maxWidth: 350
+                      }}
+                    >
+                      <AddressLink address={record.address}></AddressLink>
+                    </div>
+                  }
                 </span>
               </Tooltip>
               {record.addressTag ? (
@@ -178,18 +192,51 @@ class TokenHolders extends React.Component {
               )}
             </div>
           ) : (
+            
             <div
               style={{
                 display: "flex"
               }}
             >
-              <div
-                style={{
-                  maxWidth: 350
-                }}
-              >
-                <AddressLink address={record.address} />
-              </div>
+              <span>
+                {/*  Distinguish between contract and ordinary address */}
+                {record.ownerIsContract? (
+                  <span className="d-flex">
+                    <Tooltip
+                      placement="top"
+                      title={upperFirst(
+                          intl.formatMessage({
+                          id: "transfersDetailContractAddress"
+                          })
+                      )}
+                    >
+                      <Icon
+                        type="file-text"
+                        style={{
+                        verticalAlign: 0,
+                        color: "#77838f",
+                        lineHeight: 1.4
+                        }}
+                      />
+                    </Tooltip>
+                    <div
+                      style={{
+                        maxWidth: 350
+                      }}
+                    >
+                      <AddressLink address={record.address} isContract={true}/>
+                    </div>
+                  </span>
+                  ) : 
+                  <div
+                    style={{
+                      maxWidth: 350
+                    }}
+                  >
+                    <AddressLink address={record.address}></AddressLink>
+                  </div>
+                }
+              </span>
               {record.addressTag ? (
                 <div>
                   <img
