@@ -70,10 +70,10 @@ class Representative extends React.Component {
         {popup}
         <table className="table m-0 table-style">
           <tbody>
-            <tr>
+            {/* <tr>
               <th>{tu("type")}:</th>
               <td>{type}</td>
-            </tr>
+            </tr> */}
             <tr>
               <th>{tu("name")}:</th>
               <td>{address.name || "-"}</td>

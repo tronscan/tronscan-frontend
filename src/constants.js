@@ -263,5 +263,6 @@ export const ADDRESS_TAG_ICON = [
   "Huobi",
   "Kucoin",
   "Okex",
-  "Poloniex"
+  "Poloniex",
+  "Bitfinex"
 ];
