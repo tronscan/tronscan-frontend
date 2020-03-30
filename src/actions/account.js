@@ -72,7 +72,6 @@ export const setWebsocket = () => async dispatch => {
   //   return;
   // }
   // var wsUri = "wss://apilist.tronscan.org/api/tronsocket";
-  // var wsUri = "wss://api.shasta.tronscan.org/api/tronsocket";
   let wsUrl;
 
   if (IS_MAINNET) {

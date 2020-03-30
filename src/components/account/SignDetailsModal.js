@@ -126,10 +126,10 @@ class SignDetailsModal extends Component {
         return trx20MappingAddress;
     }
 
-    getParameterValue = async() =>{
+    getParameterValue = async () =>{
         const { details, account } = this.props;
         let hexstr = details.currentTransaction.raw_data.contract[0].parameter.value;
-        let parameterValue = Client.getParameterValue(hexstr);
+        let parameterValue = Client.getParameterValue(hexstr,'TriggerSmartContract');
         //details.contractData.data = parameterValue;
         let parameter = details.contractData;
         let function_selector = details.functionSelector;

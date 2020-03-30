@@ -2330,7 +2330,6 @@ export class OverallFreezingRateChart extends React.Component {
                         events: {
                             // legendItemClick: function(e) {
                             //     /*var target = e.target; 
-                            //     console.log(target === this);
                             //     */
                             //     var index = this.index;
                             //     var series = this.chart.series;
@@ -2351,7 +2350,6 @@ export class OverallFreezingRateChart extends React.Component {
                             hide: function(event) {
                                 var index = this.index;
                                 var series = this.chart.series;
-                                console.log(series[index].name)
                                 if(series[index].name == intl.formatMessage({id: 'freezing_column_total_circulation'})) {
                                     this.chart.yAxis[1].update({
                                         title:{
@@ -2528,7 +2526,6 @@ export class LineTRXSupplyChart extends React.Component {
             }
         })
         // amountBurned[amountBurned.length-1] = parseFloat(-1000000)
-        // console.log('totalWorth',totalWorth)
         if (newData && newData.length > 0) {
             let options =  {
                 chart:{
@@ -2693,9 +2690,7 @@ export class LineTRXSupplyChart extends React.Component {
                     series: {
                         events: {
                             legendItemClick: function(e) {
-                                /*var target = e.target; 
-                                console.log(target === this);
-                                */
+                              
                                 let index = this.index;
                                 let series = this.chart.series
                                 visibleY[index].visible = !visibleY[index].visible;
@@ -2704,11 +2699,7 @@ export class LineTRXSupplyChart extends React.Component {
                                         visible: visibleY[index].visible,                                        
                                     });
                                 }
-                                //     console.log('index',index)
-                                //     console.log('visibleY[index].visible',visibleY[index].visible)
-                                //     console.log('visibleY[1].visible',visibleY[1].visible)
-                                //     console.log('visibleY[3].visible',visibleY[3].visible)
-                                //     console.log('111',this.chart.yAxis)
+                            
                                 //     if(visibleY[1].visible || visibleY[3].visible){
                                 //         this.chart.yAxis[1].update({
                                 //             visible: true,
@@ -2721,8 +2712,6 @@ export class LineTRXSupplyChart extends React.Component {
                                 //         });
                                 //     }
                                 //     if(index == 1 || index == 3){
-                                //         console.log('this.chart.yAxis[0].visible',this.chart.yAxis[0].visible)
-                                //         console.log('this.chart.yAxis[2].visible',this.chart.yAxis[2].visible)
                                 //         if(visibleY[index].visible){
                                 //             if(!this.chart.yAxis[0].visible && this.chart.yAxis[2].visible){
                                 //                 this.chart.yAxis[1].update({
@@ -2793,14 +2782,12 @@ export class LineTRXSupplyChart extends React.Component {
                                 //     }
                                     
                                 // }
-                                // console.log('222',this.chart.yAxis)
                                 
                             },
 
                             hide: function(event) {
                                 // let index = this.index;
                                 // let series = this.chart.series;let yAxis = this.chart.yAxis;
-                                // console.log(series[index].name)
                                
                                 // $('#toggle-y').click(function () {
                                 //     yVis0 = !yVis0;
@@ -2825,7 +2812,6 @@ export class LineTRXSupplyChart extends React.Component {
                             show: function() {
                                 // var index = this.index;
                                 // var series = this.chart.series;
-                                // console.log(series[index].name)
                                 // if(series[index].name == intl.formatMessage({id: 'freezing_column_total_circulation'})) {
                                 //     this.chart.yAxis[1].update({
                                 //         title:{
@@ -2855,7 +2841,6 @@ export class LineTRXSupplyChart extends React.Component {
                         var s;
                         var points = this.points;
                         var pointsLength = points.length;
-                        console.log('points',points)
                         s = '<table class="tableformat" style="border: 0px;padding-left:10px;padding-right:10px" min-width="100%"><tr><td colspan=2 style="padding-bottom:5px;"><span style="font-size: 10px;"> ' + moment(points[0].x).format("YYYY-MM-DD") + '</span><br></td></tr>'
                         for (let index = 0; index < pointsLength; index += 1) {
                             s += '<tr><td style="padding-top:4px;padding-bottom:4px;border-top:1px solid #D5D8DC;color:' + points[index].series.color + ';" valign="top">' + '<span style="color:' + points[index].series.color + ';font-size: 15px !important;">\u25A0</span> ' + intl.formatMessage({id: points[index].series.name })+ '</td>' +

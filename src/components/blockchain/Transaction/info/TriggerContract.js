@@ -86,7 +86,6 @@ function TriggerContract({contract,intl}){
                                 "token_id",
                                 "call_value"
                               )
-                              // console.log(tokenList)
                               let vnode = []
                               tokenList.map(v=>{
                                 vnode.push(

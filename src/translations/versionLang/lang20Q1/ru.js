@@ -322,6 +322,9 @@ export const lang20Q1 = {
     "The token is not included in TRONSCAN",
   current_version: "издание",
   account_block: "Блоки",
-  account_address_total_balance_tip:"Сумма стоимости всех токенов на счете"
+  account_address_total_balance_tip:"Сумма стоимости всех токенов на счете",
+
+  too_many_bytes_to_encode:"Too many bytes to encode",
+  use_TRONlink_or_private_key :"Please login to use this function via TRONlink or private key",
 
 };
