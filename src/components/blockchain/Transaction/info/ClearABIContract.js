@@ -23,7 +23,38 @@ function ClearABIContract({contract,intl}) {
                             <span className="d-flex">
                                 {/*  Distinguish between contract and ordinary address */}
                                 {contract.contract_map[contract['ownerAddress']]? (
-                                    <Tooltip
+                                    <span className="d-flex">
+                                        <Tooltip
+                                        placement="top"
+                                        title={upperFirst(
+                                            intl.formatMessage({
+                                            id: "transfersDetailContractAddress"
+                                            })
+                                        )}
+                                        >
+                                        <Icon
+                                            type="file-text"
+                                            style={{
+                                                verticalAlign: 0,
+                                                color: "#77838f",
+                                                lineHeight: 1.4
+                                            }}
+                                        />
+                                        </Tooltip>
+                                        <AddressLink address={contract['owner_address']}  isContract={true}/>
+                                    </span>
+                                   
+                                ) : <AddressLink address={contract['owner_address']}/>}
+                            </span>
+                        </Field>
+                        : ''
+                }
+                <Field label="contract_address">
+                    <span className="d-flex">
+                        {/*  Distinguish between contract and ordinary address */}
+                        {contract.contract_map[contract['ownerAddress']]? (
+                            <span className="d-flex">
+                                <Tooltip
                                     placement="top"
                                     title={upperFirst(
                                         intl.formatMessage({
@@ -40,57 +71,15 @@ function ClearABIContract({contract,intl}) {
                                         }}
                                     />
                                     </Tooltip>
-                                ) :null}
-                                <AddressLink address={contract['owner_address']}/>
+                                <AddressLink    
+                                address={contract_address}
+                                isContract={true}/>
                             </span>
-                        </Field>
-                        : ''
-                }
-                <Field label="contract_address">
-                    <span className="d-flex">
-                        {/*  Distinguish between contract and ordinary address */}
-                        {contract.contract_map[contract['ownerAddress']]? (
-                            <Tooltip
-                            placement="top"
-                            title={upperFirst(
-                                intl.formatMessage({
-                                id: "transfersDetailContractAddress"
-                                })
-                            )}
-                            >
-                            <Icon
-                                type="file-text"
-                                style={{
-                                    verticalAlign: 0,
-                                    color: "#77838f",
-                                    lineHeight: 1.4
-                                }}
-                            />
-                            </Tooltip>
-                        ) :null}
-                        {/* <AddressLink
-                            address={contract_address}
-                            isContract={true}
-                        >
-                            <Tooltip
-                                placement="top"
-                                title={tu("transfersDetailContractAddress")}
-                            >
-                                <Icon
-                                    type="file-text"
-                                    style={{
-                                        fontSize: 12,
-                                        verticalAlign: 2,
-                                        marginRight: 4,
-                                        color: "#333"
-                                    }}
-                                />
-                            </Tooltip>
-                            {contract_address}
-                        </AddressLink> */}
+                        ) : 
                         <AddressLink    
-                            address={contract_address}
-                            isContract={true}/>
+                        address={contract_address}
+                        isContract={true}/>
+                        }
                     </span>
                     
                 </Field>

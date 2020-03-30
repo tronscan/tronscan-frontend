@@ -68,9 +68,10 @@ class AssetIssueContract extends React.Component {
           <table className="table">
             <tbody>
               <Field label="transaction_issue_address">
-                <span className="d-flex">
-                  {/*  Distinguish between contract and ordinary address */}
-                  {contract.contract_map[contract["owner_address"]]? (
+              <span className="d-flex">
+                {/*  Distinguish between contract and ordinary address */}
+                {contract.contract_map[contract["owner_address"]]? (
+                  <span className="d-flex">
                     <Tooltip
                       placement="top"
                       title={upperFirst(
@@ -88,9 +89,16 @@ class AssetIssueContract extends React.Component {
                         }}
                       />
                     </Tooltip>
-                  ) :null}
-                  <AddressLink address={contract["owner_address"]} />
-                </span>
+                    <AddressLink address={contract["owner_address"]} isContract={true}>
+                      {contract["owner_address"]}
+                    </AddressLink>
+                  </span>
+                ) :
+                <AddressLink address={contract["owner_address"]}>
+                  {contract["owner_address"]}
+                </AddressLink>
+                }
+              </span>
               </Field>
               <Field label="transaction_fee">{this.state.fee}</Field>
               <Field label="trc20_token_id">{contract.token_id}</Field>

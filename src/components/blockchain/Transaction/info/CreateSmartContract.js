@@ -94,30 +94,40 @@ function CreateSmartContract({contract,intl}){
             <span className="d-flex">
               {/*  Distinguish between contract and ordinary address */}
               {contract.info && contract.info.contract_address && contract.contract_map[contract.info.contract_address]? (
-                  <Tooltip
-                  placement="top"
-                  title={upperFirst(
-                      intl.formatMessage({
-                      id: "transfersDetailContractAddress"
-                    })
-                  )}
-                  >
-                  <Icon
-                      type="file-text"
-                      style={{
-                        verticalAlign: 0,
-                        color: "#77838f",
-                        lineHeight: 1.4
-                      }}
-                  />
-                  </Tooltip>
-              ) :null}
-               <AddressLink
-                  address={contract.info && contract.info.contract_address}
-                  isContract={true}
-                >
-                  {contract.info && contract.info.contract_address}
-                </AddressLink>
+                  <span className="d-flex">
+                    <Tooltip
+                    placement="top"
+                    title={upperFirst(
+                        intl.formatMessage({
+                        id: "transfersDetailContractAddress"
+                      })
+                    )}
+                    >
+                    <Icon
+                        type="file-text"
+                        style={{
+                          verticalAlign: 0,
+                          color: "#77838f",
+                          lineHeight: 1.4
+                        }}
+                    />
+                    </Tooltip>
+                    <AddressLink
+                      address={contract.info && contract.info.contract_address}
+                      isContract={true}
+                    >
+                      {contract.info && contract.info.contract_address}
+                    </AddressLink>
+                  </span>
+              ) :
+              <AddressLink
+                address={contract.info && contract.info.contract_address}
+                isContract={true}
+              >
+                {contract.info && contract.info.contract_address}
+              </AddressLink>
+              }
+               
             </span>
           </Field>
           <Field label="contract_name">{contract.new_contract.name}</Field>

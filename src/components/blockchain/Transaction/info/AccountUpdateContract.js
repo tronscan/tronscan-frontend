@@ -25,25 +25,33 @@ function AccountUpdateContract({contract,intl}){
             <span className="d-flex">
               {/*  Distinguish between contract and ordinary address */}
               {contract.contract_map[contract["owner_address"]]? (
-                <Tooltip
-                  placement="top"
-                  title={upperFirst(
-                    intl.formatMessage({
-                      id: "transfersDetailContractAddress"
-                    })
-                  )}
-                >
-                  <Icon
-                    type="file-text"
-                    style={{
-                      verticalAlign: 0,
-                      color: "#77838f",
-                      lineHeight: 1.4
-                    }}
-                  />
-                </Tooltip>
-              ) :null}
-              <AddressLink address={contract['owner_address']}/>
+                <span className="d-flex">
+                  <Tooltip
+                    placement="top"
+                    title={upperFirst(
+                      intl.formatMessage({
+                        id: "transfersDetailContractAddress"
+                      })
+                    )}
+                  >
+                    <Icon
+                      type="file-text"
+                      style={{
+                        verticalAlign: 0,
+                        color: "#77838f",
+                        lineHeight: 1.4
+                      }}
+                    />
+                  </Tooltip>
+                  <AddressLink address={contract["owner_address"]} isContract={true}>
+                    {contract["owner_address"]}
+                  </AddressLink>
+                </span>
+              ) :
+              <AddressLink address={contract["owner_address"]}>
+                {contract["owner_address"]}
+              </AddressLink>
+              }
             </span>
           </Field>
           <Field label="account_name">{name}</Field>

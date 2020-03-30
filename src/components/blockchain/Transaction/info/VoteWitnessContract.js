@@ -35,8 +35,9 @@ function VoteWitnessContract({contract,intl}){
             <tbody>
             <Field label="initiate_address">
               <span className="d-flex">
-               {/*  Distinguish between contract and ordinary address */}
-               {contract.contract_map[contract["owner_address"]]? (
+                {/*  Distinguish between contract and ordinary address */}
+                {contract.contract_map[contract["owner_address"]]? (
+                  <span className="d-flex">
                     <Tooltip
                       placement="top"
                       title={upperFirst(
@@ -54,9 +55,16 @@ function VoteWitnessContract({contract,intl}){
                         }}
                       />
                     </Tooltip>
-                  ) :null}
-                  <AddressLink address={contract['owner_address']}/>
-                </span>
+                    <AddressLink address={contract["owner_address"]} isContract={true}>
+                      {contract["owner_address"]}
+                    </AddressLink>
+                  </span>
+                ) :
+                <AddressLink address={contract["owner_address"]}>
+                  {contract["owner_address"]}
+                </AddressLink>
+                }
+              </span>
             </Field>
             <Field label="votes_count">
               <div className="flex1">

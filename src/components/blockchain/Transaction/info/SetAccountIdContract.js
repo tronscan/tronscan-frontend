@@ -25,26 +25,32 @@ function SetAccountIdContract({contract,intl}){
           <Field label="initiate_address">
             <span className="d-flex">
               {/*  Distinguish between contract and ordinary address */}
-              {contract.contract_map[contract['owner_address']] || contract.contract_map[contract['ownerAddress']]? (
+              {contract.contract_map[contract["owner_address"]] || contract.contract_map[contract['ownerAddress']]? (
+                  <span className="d-flex">
                   <Tooltip
-                  placement="top"
-                  title={upperFirst(
-                      intl.formatMessage({
-                      id: "transfersDetailContractAddress"
-                      })
-                  )}
+                      placement="top"
+                      title={upperFirst(
+                          intl.formatMessage({
+                          id: "transfersDetailContractAddress"
+                          })
+                      )}
                   >
-                  <Icon
+                      <Icon
                       type="file-text"
                       style={{
                       verticalAlign: 0,
                       color: "#77838f",
                       lineHeight: 1.4
                       }}
-                  />
+                      />
                   </Tooltip>
-              ) :null}
-              <AddressLink address={contract['owner_address']||contract['ownerAddress']}/>
+                  <AddressLink address={contract["ownerAddress"] || contract['owner_address']} isContract={true}> {contract["ownerAddress"] || contract['owner_address']}</AddressLink>
+                  </span>
+              ) :
+                  <AddressLink address={contract["ownerAddress"] || contract['owner_address']}>
+                      {contract["ownerAddress"] || contract['owner_address']}
+                  </AddressLink>
+              }
             </span>
           </Field>
           <Field label="account_id">{toUtf8(contract.account_id)}</Field>

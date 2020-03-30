@@ -28,30 +28,37 @@ function TriggerContract({contract,intl}){
               <div className="flex1">
                 <div className="d-flex border-bottom content_item">
                   {/*  Distinguish between contract and ordinary address */}
-                  {contract.contract_map[contract["owner_address"]]? (
-                    <Tooltip
-                      placement="top"
-                      title={upperFirst(
-                        intl.formatMessage({
-                          id: "transfersDetailContractAddress"
-                        })
-                      )}
-                    >
-                      <Icon
-                        type="file-text"
-                        style={{
-                          verticalAlign: 0,
-                          color: "#77838f",
-                          lineHeight: 1.4
-                        }}
-                      />
-                    </Tooltip>
-                  ) :null}
-                  <AddressLink
-                    address={contract["owner_address"]}
-                  >
-                    {contract["owner_address"]}
-                  </AddressLink>
+                  <span className="d-flex">
+                    {/*  Distinguish between contract and ordinary address */}
+                    {contract.contract_map[contract["owner_address"]]? (
+                      <span className="d-flex">
+                        <Tooltip
+                          placement="top"
+                          title={upperFirst(
+                            intl.formatMessage({
+                              id: "transfersDetailContractAddress"
+                            })
+                          )}
+                        >
+                          <Icon
+                            type="file-text"
+                            style={{
+                              verticalAlign: 0,
+                              color: "#77838f",
+                              lineHeight: 1.4
+                            }}
+                          />
+                        </Tooltip>
+                        <AddressLink address={contract["owner_address"]} isContract={true}>
+                          {contract["owner_address"]}
+                        </AddressLink>
+                      </span>
+                    ) :
+                    <AddressLink address={contract["owner_address"]}>
+                      {contract["owner_address"]}
+                    </AddressLink>
+                    }
+                  </span>
                 </div>
               </div>
             </div>
@@ -62,31 +69,37 @@ function TriggerContract({contract,intl}){
               <div className="flex1">
                 <div className="d-flex content_item">
                    {/*  Distinguish between contract and ordinary address */}
-                   {contract.contract_map[contract["contract_address"]]? (
-                    <Tooltip
-                      placement="top"
-                      title={upperFirst(
-                        intl.formatMessage({
-                          id: "transfersDetailContractAddress"
-                        })
-                      )}
-                    >
-                      <Icon
-                        type="file-text"
-                        style={{
-                          verticalAlign: 0,
-                          color: "#77838f",
-                          lineHeight: 1.4
-                        }}
-                      />
-                    </Tooltip>
-                  ) :null}
-                  <AddressLink
-                    address={contract["contract_address"]}
-                    isContract={true}
-                  >
-                    {contract["contract_address"]}
-                  </AddressLink>
+                   <span className="d-flex">
+                    {/*  Distinguish between contract and ordinary address */}
+                    {contract.contract_map[contract["contract_address"]]? (
+                      <span className="d-flex">
+                        <Tooltip
+                          placement="top"
+                          title={upperFirst(
+                            intl.formatMessage({
+                              id: "transfersDetailContractAddress"
+                            })
+                          )}
+                        >
+                          <Icon
+                            type="file-text"
+                            style={{
+                              verticalAlign: 0,
+                              color: "#77838f",
+                              lineHeight: 1.4
+                            }}
+                          />
+                        </Tooltip>
+                        <AddressLink address={contract["contract_address"]} isContract={true}>
+                          {contract["contract_address"]}
+                        </AddressLink>
+                      </span>
+                    ) :
+                    <AddressLink address={contract["contract_address"]}>
+                      {contract["contract_address"]}
+                    </AddressLink>
+                    }
+                  </span>
                 </div>
                 <div className="d-flex">
                 {JSON.stringify(contract.internal_transactions) !=

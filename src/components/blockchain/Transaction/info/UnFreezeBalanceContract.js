@@ -57,25 +57,35 @@ class UnFreezeBalanceContract extends React.Component {
               <Field label="transaction_recycling_address">
                 <span className="d-flex">
                   {/*  Distinguish between contract and ordinary address */}
-                  {contract.contract_map[contract["receiver_address"]] || contract.contract_map[contract["owner_address"]]? (
-                    <Tooltip
-                      placement="top"
-                      title={upperFirst(
-                        intl.formatMessage({
-                          id: "transfersDetailContractAddress"
-                        })
-                      )}
-                    >
-                      <Icon
-                        type="file-text"
-                        style={{
-                          verticalAlign: 0,
-                          color: "#77838f",
-                          lineHeight: 1.4
-                        }}
+                  {contract.contract_map[contract["receiver_address"]] || contract.contract_map[contract["owner_address"]] ? (
+                    <span className="d-flex">
+                      <Tooltip
+                        placement="top"
+                        title={upperFirst(
+                          intl.formatMessage({
+                            id: "transfersDetailContractAddress"
+                          })
+                        )}
+                      >
+                        <Icon
+                          type="file-text"
+                          style={{
+                            verticalAlign: 0,
+                            color: "#77838f",
+                            lineHeight: 1.4
+                          }}
+                        />
+                      </Tooltip>
+                      <AddressLink
+                        isContract={true}
+                        address={
+                          contract["receiver_address"]
+                            ? contract["receiver_address"]
+                            : contract["owner_address"]
+                        }
                       />
-                    </Tooltip>
-                  ) :null}
+                    </span>
+                  ) :
                   <AddressLink
                     address={
                       contract["receiver_address"]
@@ -83,8 +93,8 @@ class UnFreezeBalanceContract extends React.Component {
                         : contract["owner_address"]
                     }
                   />
+                  }
                 </span>
-                
               </Field>
                 <Field label="transaction_unfreeze_num">{ (contract.info && contract.info.unfreeze_amount/ONE_TRX) || 0} TRX</Field>
               {JSON.stringify(contract.cost) != "{}" && (

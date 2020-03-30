@@ -23,27 +23,33 @@ function ProposalApproveContract({contract,intl}){
           <Field label="initiate_address">
             <span className="d-flex">
               {/*  Distinguish between contract and ordinary address */}
-              {contract.contract_map[contract['ownerAddress']]? (
+              {contract.contract_map[contract["ownerAddress"]]? (
+                  <span className="d-flex">
                   <Tooltip
-                  placement="top"
-                  title={upperFirst(
-                      intl.formatMessage({
-                      id: "transfersDetailContractAddress"
-                      })
-                  )}
+                      placement="top"
+                      title={upperFirst(
+                          intl.formatMessage({
+                          id: "transfersDetailContractAddress"
+                          })
+                      )}
                   >
-                  <Icon
+                      <Icon
                       type="file-text"
                       style={{
                       verticalAlign: 0,
                       color: "#77838f",
                       lineHeight: 1.4
                       }}
-                  />
+                      />
                   </Tooltip>
-              ) :null}
-              <AddressLink address={contract['ownerAddress']} />
-            </span>
+                  <AddressLink address={contract["ownerAddress"]} isContract={true}> {contract["ownerAddress"]}</AddressLink>
+                  </span>
+              ) :
+                  <AddressLink address={contract["ownerAddress"]}>
+                      {contract["ownerAddress"]}
+                  </AddressLink>
+              }
+          </span>
           </Field>
           <Field label="proposal_ID">{contract.proposal_id}</Field>
           {
