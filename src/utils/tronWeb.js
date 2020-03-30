@@ -77,20 +77,23 @@ export function withTronWeb(InnerComponent) {
                 let extra = {};
                 console.log('transaction==========123',transaction)
                 if(transaction.raw_data.contract[0].type == 'ProposalCreateContract'){
-                  
+                  rawDataHex = transaction.raw_data_hex;
                 }else if(transaction.raw_data.contract[0].type == 'ProposalApproveContract'){
-
+                  rawDataHex = transaction.raw_data_hex;
                 }else if(transaction.raw_data.contract[0].type == 'ProposalDeleteContract'){
-
+                  rawDataHex = transaction.raw_data_hex;
                 }else if(transaction.raw_data.contract[0].type == 'FreezeBalanceContract'){
                   console.log('transaction.raw_data.contract[0].parameter.value',transaction.raw_data.contract[0].parameter.value)
-                   rawDataHex = await this.parameter2rawDataHex(transaction.raw_data.contract[0].parameter.value,'FreezeBalanceContract')
-                   console.log('rawDataHex====',rawDataHex)
-                }else{
+                  //let parameterValue =  transaction.raw_data.contract[0].parameter.value 
+                  // rawDataHex = await this.parameter2rawDataHex(transaction.raw_data.contract[0].parameter.value,'FreezeBalanceContract')
+                  rawDataHex = transaction.raw_data_hex;
+                  console.log('rawDataHex====111',rawDataHex)
+                } else{
+                  console.log("transaction.raw_data_hex====222",transaction.raw_data_hex)
                   console.log('transaction.raw_data.contract[0].parameter.type',transaction.raw_data.contract[0].parameter.type)
                   const transactionObj = transactionJsonToProtoBuf(transaction);
                   rawDataHex = byteArray2hexStr(transactionObj.getRawData().serializeBinary());
-                  console.log('rawDataHex======',rawDataHex)
+                  console.log('rawDataHex======3333',rawDataHex)
                   let raw = transactionObj.getRawData();
                   let contractObj = raw.getContractList()[0];
                   contractType = contractObj.getType();
