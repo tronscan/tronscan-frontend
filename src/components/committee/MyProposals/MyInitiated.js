@@ -14,9 +14,10 @@ import { Table } from "antd";
 import {Modal, ModalBody, ModalHeader} from "reactstrap";
 import SweetAlert from 'react-bootstrap-sweetalert';
 import {transactionResultManager, transactionResultManagerSun} from "../../../utils/tron";
+import {withTronWeb} from "../../../utils/tronWeb";
 
 
-
+@withTronWeb
 class MyInitiated extends React.Component {
     constructor() {
         super();

@@ -46,9 +46,7 @@ export function withTronWeb(InnerComponent) {
       //return window.tronWeb;
     };
     
-    parameter2rawDataHex = async( data, contractType) =>{
-      console.log('data====',data)
-      console.log('contractType====',contractType)
+    parameter2ValueDataHex = async( data, contractType) =>{
       let contractData = await xhr.post(`https://tronexapi.tronscan.org/api/contract/convert`, {
         "outType":"hex",
         "data":data,
@@ -75,25 +73,11 @@ export function withTronWeb(InnerComponent) {
                 let contractType,rawDataHex;
                 let tokenInfo = [];
                 let extra = {};
-                console.log('transaction==========123',transaction)
-                if(transaction.raw_data.contract[0].type == 'ProposalCreateContract'){
+                if(transaction.raw_data.contract[0].type == 'ProposalCreateContract' || transaction.raw_data.contract[0].type == 'ProposalApproveContract' || transaction.raw_data.contract[0].type == 'ProposalDeleteContract'){
                   rawDataHex = transaction.raw_data_hex;
-                }else if(transaction.raw_data.contract[0].type == 'ProposalApproveContract'){
-                  rawDataHex = transaction.raw_data_hex;
-                }else if(transaction.raw_data.contract[0].type == 'ProposalDeleteContract'){
-                  rawDataHex = transaction.raw_data_hex;
-                }else if(transaction.raw_data.contract[0].type == 'FreezeBalanceContract'){
-                  console.log('transaction.raw_data.contract[0].parameter.value',transaction.raw_data.contract[0].parameter.value)
-                  //let parameterValue =  transaction.raw_data.contract[0].parameter.value 
-                  // rawDataHex = await this.parameter2rawDataHex(transaction.raw_data.contract[0].parameter.value,'FreezeBalanceContract')
-                  rawDataHex = transaction.raw_data_hex;
-                  console.log('rawDataHex====111',rawDataHex)
-                } else{
-                  console.log("transaction.raw_data_hex====222",transaction.raw_data_hex)
-                  console.log('transaction.raw_data.contract[0].parameter.type',transaction.raw_data.contract[0].parameter.type)
+                } else {
                   const transactionObj = transactionJsonToProtoBuf(transaction);
                   rawDataHex = byteArray2hexStr(transactionObj.getRawData().serializeBinary());
-                  console.log('rawDataHex======3333',rawDataHex)
                   let raw = transactionObj.getRawData();
                   let contractObj = raw.getContractList()[0];
                   contractType = contractObj.getType();
@@ -117,7 +101,13 @@ export function withTronWeb(InnerComponent) {
                     break;  
                   case 16: //Create Proposal
                     extra = transaction.extra || {};
-                    break;     
+                    break;  
+                  case 17: //Approve Proposal
+                    extra = transaction.extra || {};
+                    break;
+                  case 18: //Delete Proposal
+                    extra = transaction.extra || {};
+                    break;           
                   case 41: //ExchangeCreateContract
                     const token1 = await this.getTokenExtraInfo(
                       transaction.raw_data.contract[0].parameter.value.first_token_id

@@ -228,8 +228,7 @@ export const lang20Q1 = {
   block_detail_confirmed_over_show: "confirmed by over 200 blocks",
   block_detail_rolled_back: "ROLLED BACK",
 
-  freeze_TRX_error:
-    "Something went wrong while trying to freeze TRX, please try again later.",
+  freeze_TRX_error: "Something went wrong while trying to freeze TRX, please try again later.",
   votes_cannot_exceed_5_SRs: "Votes cannot exceed 5 SRs",
 
   // 2020-03-03 leon
@@ -291,9 +290,6 @@ export const lang20Q1 = {
   account_representative_transfer_tip: "본 계정의 TRX/TRX10/TRX20 거래횟수 ",
   account_representative_unit: "{number} 명에 의해 {votes} 표를 받음",
   account_piechart_title: "자산 분배",
-
-  freeze_TRX_error:"Something went wrong while trying to freeze TRX, please try again later.",
-  votes_cannot_exceed_5_SRs:"Votes cannot exceed 5 SRs",
 
   too_many_bytes_to_encode:"Too many bytes to encode",
   use_TRONlink_or_private_key :"Please login to use this function via TRONlink or private key",

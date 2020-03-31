@@ -13,8 +13,9 @@ import {Link} from "react-router-dom";
 import { Table } from "antd";
 import SweetAlert from 'react-bootstrap-sweetalert';
 import {transactionResultManager, transactionResultManagerSun} from "../../../utils/tron";
+import {withTronWeb} from "../../../utils/tronWeb";
 
-
+@withTronWeb
 class MyParticipated extends React.Component {
     constructor() {
         super();
