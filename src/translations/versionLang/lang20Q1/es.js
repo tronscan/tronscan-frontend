@@ -230,6 +230,8 @@ export const lang20Q1 = {
   freeze_TRX_error:"Something went wrong while trying to freeze TRX, please try again later.",
   votes_cannot_exceed_5_SRs:"Votes cannot exceed 5 SRs",
 
+  too_many_bytes_to_encode:"Too many bytes to encode",
+  use_TRONlink_or_private_key :"Please login to use this function via TRONlink or private key",
   // 2020-03-03 leon
   account_total_tip: "Solo se muestran los 10000 registros principales, ordenados por disminución del saldo TRX de forma predeterminada.",
   account_rank: "No.",
@@ -303,6 +305,7 @@ export const lang20Q1 = {
   address_account_table_filter_token_tips: "The token is not included in TRONSCAN",
   current_version:'Última versión',
   account_block:'Producir bloques',
-  account_address_total_balance_tip:"Suma del valor de todos los tokens en la cuenta"
+  account_address_total_balance_tip:"Suma del valor de todos los tokens en la cuenta",
+  get_usdj:'Obtener USDJ',
 
 };

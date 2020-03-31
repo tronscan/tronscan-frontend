@@ -146,6 +146,7 @@ class Address extends React.Component {
 
   componentWillUnmount() {
     // this.live && this.live.close();
+    localStorage.removeItem('representative')
   }
 
   async loadWalletReward(addressT) {
@@ -189,9 +190,9 @@ class Address extends React.Component {
   async refreshAddress(id) {
     let { intl } = this.props;
     let address = await Client.getAddress(id);
-
     if (address.representative.enabled) {
       this.loadMedia(id);
+      localStorage.setItem('representative',true)
     }
 
     this.setState(prevProps => ({
@@ -216,6 +217,9 @@ class Address extends React.Component {
     let { intl } = this.props;
     this.setState({ loading: true, address: { address: id }, media: null });
     let address = await Client.getAddress(id);
+    if (address.representative.enabled) {
+      localStorage.setItem('representative',true)
+    }
     let sentDelegateBandwidth = 0;
     if (address.delegated && address.delegated.sentDelegatedBandwidth) {
       for (
@@ -372,7 +376,7 @@ class Address extends React.Component {
     
     this.setState({
       totalPower: totalPower,
-      TRXBalanceTotal: TRXBalance + totalPower / ONE_TRX,
+      TRXBalanceTotal: TRXBalance,
       netUsed: address.bandwidth.netUsed + address.bandwidth.freeNetUsed,
       netLimit: address.bandwidth.netLimit + address.bandwidth.freeNetLimit,
       netRemaining:

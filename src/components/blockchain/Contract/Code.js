@@ -167,7 +167,6 @@ class Code extends React.Component {
         abi: { entrys }
       }
     } = this.state;
-    //console.log('entrys',entrys);
     if (entrys) {
       const list = entrys.filter(
         entry =>

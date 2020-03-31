@@ -321,6 +321,9 @@ export const lang20Q1 = {
 
 
 
+  too_many_bytes_to_encode:"数据量过大，无法编译",
+  use_TRONlink_or_private_key :"请通过TRONlink或私钥登录使用此功能",
 
+  get_usdj:'获取USDJ',
 
 };

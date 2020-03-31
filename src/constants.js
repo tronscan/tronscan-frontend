@@ -13,9 +13,9 @@ export const NETURL = {
   NEWSUNNET: "https://dappchain.tronscan.io",
   // MAINNET: "https://tronscan.org",
   // SUNNET: "https://dappchain.tronscan.org",
-  // MAINNET: "http://18.217.215.94:65",
-  // SUNNET: "http://18.217.215.94:66",
-  MAINNET: "https://testhttps.tronscan.org",
+   //MAINNET: "http://18.217.215.94:71",
+   //SUNNET: "http://18.217.215.94:72",
+  MAINNET: "https://debug.tronscan.org",
   SUNNET: "https://debugdappchain.tronscan.org",
 };
 
@@ -129,20 +129,21 @@ export const TRADINGMAP = {
 
 // SunWeb config
 export const SUNWEBCONFIG = {
-  // MAINFULLNODE: "https://api.trongrid.io",
-  // MAINSOLIDITYNODE: "https://api.trongrid.io",
-  // MAINEVENTSERVER: "https://api.trongrid.io",
+  MAINFULLNODE: "https://api.trongrid.io",
+  MAINSOLIDITYNODE: "https://api.trongrid.io",
+  MAINEVENTSERVER: "https://api.trongrid.io",
 
-  // // MAINFULLNODE: "https://api.nileex.io",
-  // // MAINSOLIDITYNODE: "https://api.nileex.io",
-  // // MAINEVENTSERVER: "https://event.nileex.io",
+  // MAINFULLNODE: "https://api.nileex.io",
+  // MAINSOLIDITYNODE: "https://api.nileex.io",
+  // MAINEVENTSERVER: "https://event.nileex.io",
 
-  // SUNFULLNODE: "https://sun.tronex.io",
-  // SUNSOLIDITYNODE: "https://sun.tronex.io",
-  // SUNEVENTSERVER: "https://sun.tronex.io",
-  // MAINNET: "TWaPZru6PR5VjgT4sJrrZ481Zgp3iJ8Rfo",
-  // SIDECHAIN: "TGKotco6YoULzbYisTBuP6DWXDjEgJSpYz",
-  // SIDEID: "41E209E4DE650F0150788E8EC5CAFA240A23EB8EB7"
+
+  SUNFULLNODE: "https://sun.tronex.io",
+  SUNSOLIDITYNODE: "https://sun.tronex.io",
+  SUNEVENTSERVER: "https://sun.tronex.io",
+  MAINNET: "TWaPZru6PR5VjgT4sJrrZ481Zgp3iJ8Rfo",
+  SIDECHAIN: "TGKotco6YoULzbYisTBuP6DWXDjEgJSpYz",
+  SIDEID: "41E209E4DE650F0150788E8EC5CAFA240A23EB8EB7"
 
   // for shasta
   // MAINFULLNODE: 'http://47.252.84.158:8070',
@@ -156,16 +157,16 @@ export const SUNWEBCONFIG = {
   // SIDEID: '413AF23F37DA0D48234FDD43D89931E98E1144481B',
 
   // for nile
-  MAINFULLNODE: "https://httpapi.nileex.io",
-  MAINSOLIDITYNODE: "https://httpapi.nileex.io",
-  MAINEVENTSERVER: "https://eventtest.nileex.io",
+  // MAINFULLNODE: "https://httpapi.nileex.io",
+  // MAINSOLIDITYNODE: "https://httpapi.nileex.io",
+  // MAINEVENTSERVER: "https://eventtest.nileex.io",
 
-  SUNFULLNODE: "https://sun.tronex.io",
-  SUNSOLIDITYNODE: "https://sun.tronex.io",
-  SUNEVENTSERVER: "https://sun.tronex.io",
-  MAINNET: "TWaPZru6PR5VjgT4sJrrZ481Zgp3iJ8Rfo",
-  SIDECHAIN: "TGKotco6YoULzbYisTBuP6DWXDjEgJSpYz",
-  SIDEID: "41E209E4DE650F0150788E8EC5CAFA240A23EB8EB7"
+  // SUNFULLNODE: "https://sun.tronex.io",
+  // SUNSOLIDITYNODE: "https://sun.tronex.io",
+  // SUNEVENTSERVER: "https://sun.tronex.io",
+  // MAINNET: "TWaPZru6PR5VjgT4sJrrZ481Zgp3iJ8Rfo",
+  // SIDECHAIN: "TGKotco6YoULzbYisTBuP6DWXDjEgJSpYz",
+  // SIDEID: "41E209E4DE650F0150788E8EC5CAFA240A23EB8EB7"
 };
 
 //Socket config
@@ -249,5 +250,6 @@ export const ADDRESS_TAG_ICON = [
   "Huobi",
   "Kucoin",
   "Okex",
-  "Poloniex"
+  "Poloniex",
+  "Bitfinex"
 ];
