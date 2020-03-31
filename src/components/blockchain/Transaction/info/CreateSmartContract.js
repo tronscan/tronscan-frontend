@@ -68,7 +68,7 @@ function CreateSmartContract({contract,intl}){
           <Field label="contract_creator">
             <span className="d-flex">
               {/*  Distinguish between contract and ordinary address */}
-              {contract.contract_map[contract['ownerAddress']]? (
+              {contract.contract_map[contract['owner_address']]? (
                   <Tooltip
                   placement="top"
                   title={upperFirst(

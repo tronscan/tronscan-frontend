@@ -23,7 +23,7 @@ function ProposalApproveContract({contract,intl}){
           <Field label="initiate_address">
             <span className="d-flex">
               {/*  Distinguish between contract and ordinary address */}
-              {contract.contract_map[contract["ownerAddress"]]? (
+              {contract.contract_map[contract["owner_address"]]? (
                   <span className="d-flex">
                   <Tooltip
                       placement="top"
@@ -42,11 +42,11 @@ function ProposalApproveContract({contract,intl}){
                       }}
                       />
                   </Tooltip>
-                  <AddressLink address={contract["ownerAddress"]} isContract={true}> {contract["ownerAddress"]}</AddressLink>
+                  <AddressLink address={contract["owner_address"]} isContract={true}> {contract["owner_address"]}</AddressLink>
                   </span>
               ) :
-                  <AddressLink address={contract["ownerAddress"]}>
-                      {contract["ownerAddress"]}
+                  <AddressLink address={contract["owner_address"]}>
+                      {contract["owner_address"]}
                   </AddressLink>
               }
           </span>

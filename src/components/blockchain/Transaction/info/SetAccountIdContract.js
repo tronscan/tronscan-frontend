@@ -44,11 +44,11 @@ function SetAccountIdContract({contract,intl}){
                       }}
                       />
                   </Tooltip>
-                  <AddressLink address={contract["ownerAddress"] || contract['owner_address']} isContract={true}> {contract["ownerAddress"] || contract['owner_address']}</AddressLink>
+                  <AddressLink address={contract["owner_address"] || contract['ownerAddress']} isContract={true}> {contract["owner_address"] || contract['ownerAddress']}</AddressLink>
                   </span>
               ) :
-                  <AddressLink address={contract["ownerAddress"] || contract['owner_address']}>
-                      {contract["ownerAddress"] || contract['owner_address']}
+                  <AddressLink address={contract["owner_address"] || contract['ownerAddress']}>
+                      {contract["owner_address"] || contract['ownerAddress']}
                   </AddressLink>
               }
             </span>
