@@ -306,6 +306,7 @@ account_piechart_title:'資産配分',
   address_account_table_filter_token_tips: "The token is not included in TRONSCAN",
   current_version:'最新バージョン',
   account_block:'ブロック',
-  account_address_total_balance_tip:"アカウント内のすべてのトークンの価値の合計"
+  account_address_total_balance_tip:"アカウント内のすべてのトークンの価値の合計",
+  get_usdj:'得る USDJ',
 
 };
