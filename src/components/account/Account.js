@@ -46,7 +46,7 @@ import { isJSXEmptyExpression } from '@babel/types';
 import  MyPermission  from '../mutiSignature/MyPermission';
 import Tabs from './components/Tabs'
 import $ from 'jquery';
-
+import Tags from './components/Tags'
 
 @connect(
     state => {
@@ -117,10 +117,10 @@ export default class Account extends Component {
           name: 'tokens',
           id: 'account_tokens'
         },
-        // {
-        //   name: 'account_tags_list',
-        //   id: 'account_tags_list'
-        // },
+        {
+          name: 'account_tags_list',
+          id: 'account_tags'
+        },
         {
           name: 'my_trading_pairs',
           id: 'account_my_trading_pairs'
@@ -156,10 +156,10 @@ export default class Account extends Component {
           name: 'tokens',
           id: 'account_tokens'
         },
-        // {
-        //   name: 'account_tags_list',
-        //   id: 'account_tags_list'
-        // },
+        {
+          name: 'account_tags_list',
+          id: 'account_tags'
+        },
         {
           name: 'my_trading_pairs',
           id: 'account_my_trading_pairs'
@@ -190,6 +190,10 @@ export default class Account extends Component {
         {
           name: 'tokens',
           id: 'account_tokens'
+        },
+        {
+          name: 'account_tags_list',
+          id: 'account_tags'
         },
         {
           name: 'transactions',
@@ -2581,6 +2585,11 @@ export default class Account extends Component {
                   }
                 </div>
               </div>
+            </div>
+          </div>
+          <div className="row mt-3" id="account_tags">
+          <div className="col-md-12">
+              <Tags/>
             </div>
           </div>
           { !IS_SUNNET &&

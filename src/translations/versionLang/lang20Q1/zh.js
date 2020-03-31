@@ -317,11 +317,12 @@ export const lang20Q1 = {
 
 
  // 03-26 tag 
- account_tags_list:'标签列表'
-
-
-
-
-
+account_tags_list:'标签列表',
+account_tags_add:'添加',
+account_tags_desc:'标签功能，你可以给账户打私有的标签，更加方便的识别',
+account_tags_number:'共{total}个账户',
+account_tags_table_1:'标签',
+account_tags_table_2:'备注',
+account_tags_add_title:'添加标签'
 
 };
