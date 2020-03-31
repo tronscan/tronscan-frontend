@@ -313,6 +313,7 @@ export const lang20Q1 = {
     "The token is not included in TRONSCAN",
   current_version: "최신 버전",
   account_block: "블록",
-  account_address_total_balance_tip:"계정에있는 모든 토큰의 가치 합계"
+  account_address_total_balance_tip:"계정에있는 모든 토큰의 가치 합계",
+  get_usdj:'얻다 USDJ',
 
 };

@@ -326,5 +326,6 @@ export const lang20Q1 = {
 
   too_many_bytes_to_encode:"Too many bytes to encode",
   use_TRONlink_or_private_key :"Please login to use this function via TRONlink or private key",
+  get_usdj:'получать USDJ',
 
 };
