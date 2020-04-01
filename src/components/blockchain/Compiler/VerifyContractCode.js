@@ -54,7 +54,15 @@ class VerifyContractCode extends Component {
                 {
                     label:"tronbox_soljson_v3",
                     value:"tronbox_soljson_v3"
-                }
+                },
+                {
+                    label:"0.5.9_Odyssey_v3.6.5",
+                    value:"tron-0.5.9_Odyssey_v3.6.5"
+                },
+                {
+                    label:"0.5.10_Odyssey_v3.6.6",
+                    value:"tron-0.5.10_Odyssey_v3.6.6"
+                },
             ],
             licenses:[
                 {

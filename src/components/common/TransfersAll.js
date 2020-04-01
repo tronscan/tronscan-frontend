@@ -29,6 +29,7 @@ import BlockTime from '../common/blockTime';
 import { Tooltip,Icon } from 'antd';
 
 
+
 class TransfersAll extends React.Component {
     constructor(props) {
         super(props);
@@ -148,7 +149,6 @@ class TransfersAll extends React.Component {
                 contractMap[item.to_address]? (item.toIsContract = true) :  (item.toIsContract = false)
             }
         })
-        console.log(rebuildRransfers,'transfers');
         this.setState({
             page,
             transfers:rebuildRransfers,
@@ -248,7 +248,7 @@ class TransfersAll extends React.Component {
                 className: 'ant_table',
                 width: '14%',
                 render: (text, record, index) => {
-                    return <BlockTime time={text}></BlockTime>
+                    return <BlockTime time={text}></BlockTime>
                     // <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
                 }
             },
@@ -529,7 +529,7 @@ class TransfersAll extends React.Component {
         // }
 
         return (
-            <div className="token_black table_pos">
+            <div className="token_black table_pos transfers-Container">
                 {loading && <div className="loading-style"><TronLoader/></div>}
                 <div className="d-flex justify-content-between" style={{right: 'auto'}}>
                     {!loading && <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" divClass="table_pos_info_addr" selected/> }

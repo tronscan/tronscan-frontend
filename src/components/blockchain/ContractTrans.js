@@ -100,7 +100,7 @@ class ContractTrans extends React.Component {
             if(result.contractMap){
                 result.contractMap[item.ownerAddress]? (item.ownerIsContract = true) :  (item.ownerIsContract = false)
             }
-          })
+        })
         this.setState({
             transactions: triggerList,
             loading: false,

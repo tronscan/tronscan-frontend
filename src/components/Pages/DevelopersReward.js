@@ -386,11 +386,11 @@ class developersReward extends Component {
                 }}
               />
             </div>
-            {total ? (
+            {/* {total ? (
               <p className="developers_tip_bottom">{tu("developers_niTron")}</p>
             ) : (
               ""
-            )}
+            )} */}
           </div>
         </div>
       </main>

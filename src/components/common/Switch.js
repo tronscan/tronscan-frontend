@@ -24,7 +24,7 @@ export class SwitchToken extends React.Component {
         let {text = "",hoverText = "",isHide = true} = this.props;
         return (
             <div className="card-title m-0 d-flex">
-                <Switch checked={hideSmallCurrency} onChange={this.handleToggle('hideSmallCurrency')} />
+                <Switch checked={hideSmallCurrency} size="small" onChange={this.handleToggle('hideSmallCurrency')} />
                 <p className="ml-2 mr-2">{tu(text)}</p>
                 {
                     isHide?<div>

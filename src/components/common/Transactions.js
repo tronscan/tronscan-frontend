@@ -428,22 +428,23 @@ class Transactions extends React.Component {
           
           <div className="d-flex justify-content-between w-100"  style={{position: "absolute", left: 0, top: '-28px'}}>
             {(total && contract && isinternal)? <div className="d-flex align-items-center">
-                <i class="fas fa-exclamation-circle mr-2" style={{color:"#999999"}}></i><span className="flex-1" style={{width: '700px'}}>{tu('interTrx_tip_contract')}</span>
-            </div>: ''}
-              {
-                  !isBlock ?  <DateSelect onDateOk={(start,end) => this.onDateOk(start,end)} dataStyle={{marginTop: '-1.6rem'}}/>:''
-              }
+                <i className="fas fa-exclamation-circle mr-2" style={{color:"#999999"}}></i><span className="flex-1" style={{width: '700px'}}>{tu('interTrx_tip_contract')}</span>
+            </div>: ''
+            }
+
+            {
+                !isBlock ?  <DateSelect onDateOk={(start,end) => this.onDateOk(start,end)} dataStyle={{marginTop: '-1.6rem'}}/>:''
+            }
 
           </div>
-          {!loading && <TotalInfo total={total} isQuestionMark={!isBlock} rangeTotal={rangeTotal} typeText={(contract && isinternal)? "inter_contract_unit" : "transactions_unit"} common={!address} top={(!contract)? '-28px': '10px'} selected/>}
-          
+            {!loading && <TotalInfo total={total} isQuestionMark={!isBlock} rangeTotal={rangeTotal} typeText={(contract && isinternal)? "inter_contract_unit" : "transactions_unit"} common={!address} top={(!contract)? '-28px': '10px'} selected/>}
           {
-              (!loading && transactions.length === 0)?
-                  <div className="p-3 text-center no-data">{tu("no_transactions")}</div>:
-                  <SmartTable bordered={true} loading={loading} column={column} data={transactions} total={rangeTotal> 2000? 2000: rangeTotal}
-                              onPageChange={(page, pageSize) => {
-                                  this.loadTransactions(page, pageSize)
-                              }}/>
+            (!loading && transactions.length === 0)?
+              <div className="p-3 text-center no-data">{tu("no_transactions")}</div>:
+              <SmartTable bordered={true} loading={loading} column={column} data={transactions} total={rangeTotal> 2000? 2000: rangeTotal}
+              onPageChange={(page, pageSize) => {
+                this.loadTransactions(page, pageSize)
+              }}/>
           }
 
         </div>

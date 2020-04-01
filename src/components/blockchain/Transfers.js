@@ -86,6 +86,7 @@ class Transfers extends React.Component {
           contractMap[item.transferToAddress]? (item.toIsContract = true) :  (item.toIsContract = false)
       }
     })
+
     this.setState({
       transfers: transfersList,
       loading: false,

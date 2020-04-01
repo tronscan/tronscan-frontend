@@ -167,7 +167,6 @@ class Code extends React.Component {
         abi: { entrys }
       }
     } = this.state;
-    //console.log('entrys',entrys);
     if (entrys) {
       const list = entrys.filter(
         entry =>
@@ -269,6 +268,13 @@ class Code extends React.Component {
         break;
       case "tron-0.5.8_Odyssey_v3.6.0":
         version = "0.5.8";
+        
+        break;
+      case "tron-0.5.9_Odyssey_v3.6.5":
+        version = "0.5.9";
+        break;
+      case "tron-0.5.10_Odyssey_v3.6.6":
+        version = "0.5.10"; 
         break;
       default:
         version = v.match(/\d+(.\d+)*/g)[0] || "";

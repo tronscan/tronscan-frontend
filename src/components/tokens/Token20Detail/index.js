@@ -27,7 +27,8 @@ import {
   CONTRACT_ADDRESS_WIN,
   CONTRACT_ADDRESS_GGC,
   IS_MAINNET,
-  uuidv4
+  uuidv4,
+  CONTRACT_ADDRESS_USDJ
 } from "../../../constants";
 import { login } from "../../../actions/app";
 import { reloadWallet } from "../../../actions/wallet";
@@ -52,6 +53,8 @@ import {
 } from "../../../utils/DateTime";
 import isMobile from "../../../utils/isMobile";
 import ApiClientMonitor from '../../../services/monitor'
+import { HrefLink } from "../../common/Links";
+
 class Token20Detail extends React.Component {
   constructor() {
     window.performance.mark("start2");
@@ -847,6 +850,7 @@ class Token20Detail extends React.Component {
                       <div className="token-description">
                         <h5 className="card-title">
                           {token.name} ({token.symbol})
+                          {token.contract_address == CONTRACT_ADDRESS_USDJ && <section className="to-USDj"><HrefLink href="https://www.djed.network"><i className="fas fa-coins ml-2 mr-1"></i>{intl.formatMessage({id:'get_usdj'})}</HrefLink></section>}
                         </h5>
                         <p className="card-text">{token.token_desc}</p>
                       </div>

@@ -1,0 +1,29 @@
+"use strict";
+
+exports.__esModule = true;
+exports.getOptionSpecificExcludesFor = exports.getPlatformSpecificDefaultFor = void 0;
+var defaultWebIncludes = ["web.timers", "web.immediate", "web.dom.iterable"];
+var defaultExcludesForLooseMode = ["transform-typeof-symbol"];
+
+var getPlatformSpecificDefaultFor = function getPlatformSpecificDefaultFor(targets) {
+  var targetNames = Object.keys(targets);
+  var isAnyTarget = !targetNames.length;
+  var isWebTarget = targetNames.some(function (name) {
+    return name !== "node";
+  });
+  return isAnyTarget || isWebTarget ? defaultWebIncludes : null;
+};
+
+exports.getPlatformSpecificDefaultFor = getPlatformSpecificDefaultFor;
+
+var getOptionSpecificExcludesFor = function getOptionSpecificExcludesFor(_ref) {
+  var loose = _ref.loose;
+
+  if (loose) {
+    return defaultExcludesForLooseMode;
+  }
+
+  return null;
+};
+
+exports.getOptionSpecificExcludesFor = getOptionSpecificExcludesFor;

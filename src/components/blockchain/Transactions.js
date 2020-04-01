@@ -116,7 +116,6 @@ class Transactions extends React.Component {
                 ]).catch(e => {
                     console.log('error:' + e);
                 });
-                console.log(allData,'allData')
                 let [{ transactions,contractMap }, { rangeTotal, total }] = allData;
                 transactions.forEach(item=>{
                     if(contractMap){
@@ -162,6 +161,7 @@ class Transactions extends React.Component {
                     rangeTotal: wholeChainTxCount
                 })
             }
+
         }
         this.setState({
             loading: false,
@@ -170,7 +170,6 @@ class Transactions extends React.Component {
 
     customizedColumn = () => {
         let {intl} = this.props;
-        const {contractMap} = this.state;
         let column = [
             {
                 title: '#',

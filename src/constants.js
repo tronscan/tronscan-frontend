@@ -1,5 +1,5 @@
 import Lockr from "lockr";
-import uuidv4w  from "uuid/v4";
+import uuidv4w from "uuid/v4";
 /**
  * 1000000 sun = 1 TRX
  */
@@ -11,12 +11,12 @@ export const IS_DESKTOP = process.env.DESKTOP === "true";
 export const NETURL = {
   NEWMAINNET: "https://tronscan.io",
   NEWSUNNET: "https://dappchain.tronscan.io",
-  MAINNET: "https://tronscan.org",
-  SUNNET: "https://dappchain.tronscan.org",
-   //MAINNET: "http://18.217.215.94:71",
-   //SUNNET: "http://18.217.215.94:72",
-  //MAINNET: "https://debug.tronscan.org",
-   //SUNNET: "https://debugdappchain.tronscan.org",
+  // MAINNET: "https://tronscan.org",
+  // SUNNET: "https://dappchain.tronscan.org",
+   MAINNET: "http://18.217.215.94:67",
+   SUNNET: "http://18.217.215.94:68",
+  // MAINNET: "https://debug.tronscan.org",
+  // SUNNET: "https://debugdappchain.tronscan.org",
 };
 
 export const TOKENINFO_UPDATE = "TOKENINFO_UPDATE";
@@ -139,6 +139,7 @@ export const SUNWEBCONFIG = {
   // MAINSOLIDITYNODE: "https://api.nileex.io",
   // MAINEVENTSERVER: "https://event.nileex.io",
 
+
   SUNFULLNODE: "https://sun.tronex.io",
   SUNSOLIDITYNODE: "https://sun.tronex.io",
   SUNEVENTSERVER: "https://sun.tronex.io",
@@ -157,7 +158,7 @@ export const SUNWEBCONFIG = {
   // SIDECHAIN: 'TRDepx5KoQ8oNbFVZ5sogwUxtdYmATDRgX',
   // SIDEID: '413AF23F37DA0D48234FDD43D89931E98E1144481B',
 
-  //for nile
+  // for nile
   // MAINFULLNODE: "https://httpapi.nileex.io",
   // MAINSOLIDITYNODE: "https://httpapi.nileex.io",
   // MAINEVENTSERVER: "https://eventtest.nileex.io",
@@ -243,3 +244,14 @@ export const CONTRACT_LICENSES = [
 
 export const WARNING_VERSIONS = [];
 export const uuidv4 = uuidv4w();
+
+export const ADDRESS_TAG_ICON = [
+  "Binance",
+  "Bittrex",
+  "Gate",
+  "Huobi",
+  "Kucoin",
+  "Okex",
+  "Poloniex",
+  "Bitfinex"
+];

@@ -65,7 +65,7 @@ class TokenHolders extends React.Component {
       filter.token,
       params
     );
-    console.log(contractMap,'contractMap')
+    
     // for (let index in addresses) {
     //   addresses[index].index = parseInt(index) + 1;
     // }
@@ -369,14 +369,16 @@ class TokenHolders extends React.Component {
       });
       getCsvUrl(`${API_URL}/api/tokenholders?${query}`);
 
-      let { addresses, total, rangeTotal } = await Client.getTokenHolders(
+      let { addresses, total, rangeTotal,contractMap } = await Client.getTokenHolders(
         filter.token,
         params
       );
+      addresses.forEach(item=>{
+        if(contractMap){
+          contractMap[item.address]? (item.ownerIsContract = true) :  (item.ownerIsContract = false)
+        }
+      })
 
-      // for (let index in addresses) {
-      //   addresses[index].index = parseInt(index) + 1;
-      // }
       let exchangeFlag = await Client.getTagNameList();
       if (addresses.length) {
         addresses.map(item => {
