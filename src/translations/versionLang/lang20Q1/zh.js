@@ -329,5 +329,6 @@ export const lang20Q1 = {
   account_tags_add_title: "添加标签",
   account_tags_edit: "编辑",
   account_tags_delete: "移除",
-  account_tags_delete_is: "是否确认移除该标签？"
+  account_tags_delete_is: "是否确认移除该标签？",
+  account_tags_delete_succss: "移除成功"
 };

@@ -37,7 +37,8 @@ class Tags extends Component {
         total: 0,
         data: []
       },
-      popup: null
+      popup: null,
+      page:1
     };
   }
   componentDidMount() {
@@ -116,10 +117,15 @@ class Tags extends Component {
         render: (text, record, index) => {
           return (
             <span>
-              <button className="btn" onClick={this.editTagModal}>
+              <button className="btn btn-md btn-default mr-2" onClick={(record)=>this.editTagModal(record)}>
                 {tu("account_tags_edit")}
               </button>
-              <button className="btn" onClick={this.deleteTagModal}>
+              <button
+                className="btn btn-md btn-danger"
+                onClick={targetAddress =>
+                  this.deleteTagModal(record.targetAddress)
+                }
+              >
                 {tu("account_tags_delete")}
               </button>
             </span>
@@ -136,14 +142,15 @@ class Tags extends Component {
     });
   };
 
-  editTagModal = () => {
+  editTagModal = (record) => {
     this.setState({
-      popup: <AddTag onClose={this.hideModal} />
+      popup: <AddTag onClose={this.hideModal} record={record}/>
     });
   };
 
-  deleteTagModal = () => {
+  deleteTagModal = targetAddress => {
     this.setState({
+      deleteTargetAddress:targetAddress,
       popup: (
         <SweetAlert
           showCancel
@@ -167,8 +174,47 @@ class Tags extends Component {
     });
   };
 
-  deleteTag = () => {
+  deleteTag = async () => {
     // delete tags
+    let { address } = this.props;
+    let {deleteTargetAddress,page,pagination} = this.state
+    let obj = {
+      user_address: address,
+      target_address: deleteTargetAddress 
+    };
+
+    let { retCode,retMsg } = await ApiClientAccount.removeTag(obj);
+    if(retCode == 0){
+      this.setState({
+        popup: (
+          <SweetAlert
+            success
+            title={tu('account_tags_delete_succss')}
+            onConfirm={this.hideModal}
+          />
+        )
+      });
+
+  
+      this.load(page,pagination.pageSize)
+
+      setTimeout(()=>{
+        this.setState({
+          popup:null
+        })
+      },1000)
+    }else{
+      this.setState({
+        popup: (
+          <SweetAlert
+            success
+            title={retMsg[0]}
+            onConfirm={this.hideModal}
+          />
+        )
+      });
+    }
+      
   };
 
   hideModal = () => {
