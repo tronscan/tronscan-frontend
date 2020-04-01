@@ -2589,7 +2589,7 @@ export default class Account extends Component {
           </div>
           <div className="row mt-3" id="account_tags">
           <div className="col-md-12">
-              <Tags/>
+            <Tags address={this.props.account.address}/>
             </div>
           </div>
           { !IS_SUNNET &&
