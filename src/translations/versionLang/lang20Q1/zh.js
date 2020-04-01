@@ -318,17 +318,24 @@ export const lang20Q1 = {
   use_TRONlink_or_private_key: "请通过TRONlink或私钥登录使用此功能",
 
   get_usdj: "获取USDJ",
-
-  // 03-26 tag
-  account_tags_list: "标签列表",
-  account_tags_add: "添加",
-  account_tags_desc: "标签功能，你可以给账户打私有的标签，更加方便的识别",
-  account_tags_number: "共{total}个账户",
-  account_tags_table_1: "标签",
-  account_tags_table_2: "备注",
-  account_tags_add_title: "添加标签",
+  // 03-26 tag 
+  account_tags_list:'标签列表',
+  account_tags_add:'添加',
+  account_tags_desc:'标签功能，你可以给账户打私有的标签，更加方便的识别',
+  account_tags_number:'共{total}个账户',
+  account_tags_table_1:'标签',
+  account_tags_table_2:'备注',
+  account_tags_add_title:'添加标签',
   account_tags_edit: "编辑",
   account_tags_delete: "移除",
   account_tags_delete_is: "是否确认移除该标签？",
-  account_tags_delete_succss: "移除成功"
+  account_tags_delete_succss: "移除成功",
+  account_address_name_tag:'(平台认证标签)',
+  account_tags_address_placehold:'请输入正确的地址',
+  account_tags_tag_placehold:'请输入标签，长度20字符',
+  account_tags_note_placehold:'选填，长度100字符',
+  account_tags_tag_valid:'只能输入中文或英文',
+
+  
+ 
 };
