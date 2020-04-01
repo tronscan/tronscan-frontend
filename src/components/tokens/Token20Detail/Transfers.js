@@ -270,7 +270,7 @@ class Transfers extends React.Component {
               address={record.from_address}
               isContract={record.fromAddressIsContract}
             >
-              {!record.fromAddressIsContract ? (
+              {record.fromAddressIsContract ? (
                 <Tooltip
                   placement="top"
                   title={upperFirst(
