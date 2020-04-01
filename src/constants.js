@@ -12,9 +12,9 @@ export const NETURL = {
   NEWMAINNET: "https://tronscan.io",
   NEWSUNNET: "https://dappchain.tronscan.io",
   MAINNET: "https://tronscan.org",
-  SUNNET: "https://dappchain.tronscan.org"
-  // MAINNET: "http://18.217.215.94:69",
-  // SUNNET: "http://18.217.215.94:70",
+  SUNNET: "https://dappchain.tronscan.org",
+   //MAINNET: "http://18.217.215.94:71",
+   //SUNNET: "http://18.217.215.94:72",
   // MAINNET: "https://debug.tronscan.org",
   // SUNNET: "https://debugdappchain.tronscan.org",
 };
@@ -137,6 +137,7 @@ export const SUNWEBCONFIG = {
   // MAINSOLIDITYNODE: "https://api.nileex.io",
   // MAINEVENTSERVER: "https://event.nileex.io",
 
+
   SUNFULLNODE: "https://sun.tronex.io",
   SUNSOLIDITYNODE: "https://sun.tronex.io",
   SUNEVENTSERVER: "https://sun.tronex.io",
@@ -155,7 +156,7 @@ export const SUNWEBCONFIG = {
   // SIDECHAIN: 'TRDepx5KoQ8oNbFVZ5sogwUxtdYmATDRgX',
   // SIDEID: '413AF23F37DA0D48234FDD43D89931E98E1144481B',
 
-  //for nile
+  // for nile
   // MAINFULLNODE: "https://httpapi.nileex.io",
   // MAINSOLIDITYNODE: "https://httpapi.nileex.io",
   // MAINEVENTSERVER: "https://eventtest.nileex.io",
@@ -163,19 +164,6 @@ export const SUNWEBCONFIG = {
   // SUNFULLNODE: "https://sun.tronex.io",
   // SUNSOLIDITYNODE: "https://sun.tronex.io",
   // SUNEVENTSERVER: "https://sun.tronex.io",
-  // MAINNET: "TWaPZru6PR5VjgT4sJrrZ481Zgp3iJ8Rfo",
-  // SIDECHAIN: "TGKotco6YoULzbYisTBuP6DWXDjEgJSpYz",
-  // SIDEID: "41E209E4DE650F0150788E8EC5CAFA240A23EB8EB7"
-
-  // for tronex
-  // MAINFULLNODE: "https://testhttpapi.tronex.io",
-  // MAINSOLIDITYNODE: "https://testhttpapi.tronex.io",
-  // MAINEVENTSERVER: "https://testapi.tronex.io",
-
-  // SUNFULLNODE: "https://suntest.tronex.io",
-  // SUNSOLIDITYNODE: "https://suntest.tronex.io",
-  // SUNEVENTSERVER: "https://suntest.tronex.io",
-
   // MAINNET: "TWaPZru6PR5VjgT4sJrrZ481Zgp3iJ8Rfo",
   // SIDECHAIN: "TGKotco6YoULzbYisTBuP6DWXDjEgJSpYz",
   // SIDEID: "41E209E4DE650F0150788E8EC5CAFA240A23EB8EB7"
@@ -262,5 +250,6 @@ export const ADDRESS_TAG_ICON = [
   "Huobi",
   "Kucoin",
   "Okex",
-  "Poloniex"
+  "Poloniex",
+  "Bitfinex"
 ];

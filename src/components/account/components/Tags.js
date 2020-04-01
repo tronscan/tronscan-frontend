@@ -8,7 +8,7 @@ import { API_URL } from "../../../constants";
 import qs from "qs";
 import { Client } from "../../../services/api";
 import { TronLoader } from "../../common/loaders";
-import AddTags from './AddTags'
+import AddTag from './AddTag'
 
 class Tags extends Component{
     constructor(){
@@ -112,7 +112,7 @@ class Tags extends Component{
       console.log(111)
       this.setState({
         popup: (
-            <AddTags onClose={this.hideModal}/>
+            <AddTag onClose={this.hideModal}/>
         )
       });
     }
