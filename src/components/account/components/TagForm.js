@@ -206,7 +206,7 @@ class TagForm extends React.Component {
     let {intl, tokenBalances, account, tokens20 } = this.props;
     let {isLoading, modal, to, note, setAccount, tag} = this.state;
 
-    let isToValid = to.length !== 0 && isAddressValid(to);
+    let isToValid = setAccount.length !== 0 && isAddressValid(setAccount);
    // let isPrivateKeyValid = privateKey && privateKey.length === 64 && pkToAddress(privateKey) === account.address;
 
    
