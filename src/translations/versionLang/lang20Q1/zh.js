@@ -45,7 +45,7 @@ export const lang20Q1 = {
   data_number: "数量",
   data_per: "占比",
   data_total: "总计",
- 
+
   data_items: "笔数",
   data_unit_bi: "笔",
   data_piao: "票数",
@@ -132,12 +132,12 @@ export const lang20Q1 = {
   chart_resource_contract_deployer: "合约部署者提供的能量",
 
   // full node
-  full_node_version_latest_block:'最新区块',
-  full_node_version_confirmed:'已确认',
-  full_node_version_unconfirmed:'待确认',
+  full_node_version_latest_block: "最新区块",
+  full_node_version_confirmed: "已确认",
+  full_node_version_unconfirmed: "待确认",
   // full_node_version_confirmed_tips:'“已确认”是指被19个及以上区块确认，否则为“待确认”或“已回退”',
-  full_node_version_confirmed_tips:'“已确认”是指被19个及以上超级代表确认，否则为“待确认”',
-
+  full_node_version_confirmed_tips:
+    "“已确认”是指被19个及以上超级代表确认，否则为“待确认”",
 
   // 2020-02-19
   chart_energy: "能量消耗",
@@ -240,7 +240,8 @@ export const lang20Q1 = {
   account_vote_voter_total: "当前为 {num} 位超级代表投过票",
   account_vote_candidate_total: "共 {num} 个选民，累计获得 {votes} 票",
   account_vote_self_percent_tip: "为该超级节点投票的数量占自身总票数的比例",
-  account_vote_total_percent_tip: "该账户为此超级代表投票的数量占该超级代表总票数的比例",
+  account_vote_total_percent_tip:
+    "该账户为此超级代表投票的数量占该超级代表总票数的比例",
   account_vote_reward_tip: "为该超级代表投票累计获得的收益",
   account_get_reward: "领取",
   account_freeze_detail: "冻结明细",
@@ -253,9 +254,9 @@ export const lang20Q1 = {
   account_freeze_type: "获得资源类型",
   account_freeze_amount: "冻结数量",
   account_freeze_resource_amount: "获得资源数量",
-  account_freeze_resource_amount_tip: "实际获得的资源数量取决于当前冻结量与全网冻结量的比值，全网冻结量时刻变化，因此实际获得的资源数量也将不断变化",
+  account_freeze_resource_amount_tip:
+    "实际获得的资源数量取决于当前冻结量与全网冻结量的比值，全网冻结量时刻变化，因此实际获得的资源数量也将不断变化",
   account_freeze_no_data: "未查询到冻结信息",
-
 
   // 2020-03-03
   account_resource_last: "上轮",
@@ -280,10 +281,10 @@ export const lang20Q1 = {
     "累计出块 {block} 个，累计获得出块收益 {trx} TRX",
   account_representative_voters_per_tip: "该选民投票数量占总得票的比例",
   account_representative_transfer_tip: "关联当前账户的TRX/10通证/ 20通证转账数",
-  account_representative_unit:'当前共{number}名选民',
-  votes_cannot_exceed_5_SRs:"投票对象不能超过5个SR",
+  account_representative_unit: "当前共{number}名选民",
+  votes_cannot_exceed_5_SRs: "投票对象不能超过5个SR",
   freeze_TRX_error: "冻结TRX时出现问题，请稍后重试",
-  account_piechart_title:'资产分布',
+  account_piechart_title: "资产分布",
 
   // 0227 torn sr
   sr_vote_team_information: "团队详情",
@@ -298,8 +299,8 @@ export const lang20Q1 = {
   block_detail_rolled_back: "已回退",
 
   // 03-09 tron account  transfers transactions internal-transactions
-  address_account_tab_search_tips:"请输入地址/哈希/通证",
-  
+  address_account_tab_search_tips: "请输入地址/哈希/通证",
+
   address_account_table_filter_all: "全选",
   address_account_table_filter_transfers: "转账",
   address_account_table_filter_freeze: "冻结资产",
@@ -309,23 +310,24 @@ export const lang20Q1 = {
   address_account_table_filter_other: "其他",
 
   address_account_table_filter_token_tips: "该通证未在TRONSCAN收录",
-  account_block:'出块',
+  account_block: "出块",
 
-  current_version:'当前版本号',
+  current_version: "当前版本号",
   account_address_total_balance_tip: "账户中所有token的价值之和",
-  too_many_bytes_to_encode:"数据量过大，无法编译",
-  use_TRONlink_or_private_key :"请通过TRONlink或私钥登录使用此功能",
+  too_many_bytes_to_encode: "数据量过大，无法编译",
+  use_TRONlink_or_private_key: "请通过TRONlink或私钥登录使用此功能",
 
-  get_usdj:'获取USDJ',
+  get_usdj: "获取USDJ",
 
-
-  // 03-26 tag 
-  account_tags_list:'标签列表',
-  account_tags_add:'添加',
-  account_tags_desc:'标签功能，你可以给账户打私有的标签，更加方便的识别',
-  account_tags_number:'共{total}个账户',
-  account_tags_table_1:'标签',
-  account_tags_table_2:'备注',
-  account_tags_add_title:'添加标签'
-
+  // 03-26 tag
+  account_tags_list: "标签列表",
+  account_tags_add: "添加",
+  account_tags_desc: "标签功能，你可以给账户打私有的标签，更加方便的识别",
+  account_tags_number: "共{total}个账户",
+  account_tags_table_1: "标签",
+  account_tags_table_2: "备注",
+  account_tags_add_title: "添加标签",
+  account_tags_edit: "编辑",
+  account_tags_delete: "移除",
+  account_tags_delete_is: "是否确认移除该标签？"
 };

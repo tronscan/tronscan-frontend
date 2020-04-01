@@ -1,0 +1,18 @@
+.tags {
+  .ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .tag-len {
+    width: 200px;
+  }
+  .desc-len {
+    width: 340px;
+  }
+  .sweet-alert {
+    h2 {
+      padding-top: 20px;
+    }
+  }
+}
