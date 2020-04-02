@@ -328,4 +328,8 @@ export const lang20Q1 = {
   use_TRONlink_or_private_key :"Please login to use this function via TRONlink or private key",
   get_usdj:'получать USDJ',
 
+  account_tags_my_tag:'我的标签',
+  account_tags_my_tag_update:'更新',
+
+
 };

@@ -316,4 +316,8 @@ export const lang20Q1 = {
   account_address_total_balance_tip:"계정에있는 모든 토큰의 가치 합계",
   get_usdj:'얻다 USDJ',
 
+  account_tags_my_tag:'我的标签',
+  account_tags_my_tag_update:'更新',
+
+
 };

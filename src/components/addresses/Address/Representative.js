@@ -50,7 +50,7 @@ class Representative extends React.Component {
       version,
       witnessType
     } = this.props.data;
-    let { intl, url, account, walletType } = this.props;
+    let { intl, url, account, walletType,tagData } = this.props;
     let { votingEnabled, popup } = this.state;
     let type = "-";
     switch (witnessType) {
@@ -70,10 +70,36 @@ class Representative extends React.Component {
         {popup}
         <table className="table m-0 table-style">
           <tbody>
-            {/* <tr>
-              <th>{tu("type")}:</th>
-              <td>{type}</td>
-            </tr> */}
+            <tr>
+              <th>{tu("account_tags_my_tag")}:</th>
+              <td>
+                <span>
+                  {
+                    account.isLoggedIn && walletType.isOpen?
+                    <span>
+                      {tagData&&tagData.length>0?
+                        <span>
+                          {tagData.tag}
+                          <span>
+                            {tu("account_tags_my_tag_update")}
+                          </span>
+                        </span> 
+                        :
+                        <span>
+                          Not Available
+                          <span style={{color: "#C23631",marginLeft:'8px'}}>
+                            {tu("account_tags_add")}
+                          </span>
+                        </span>
+                      }
+                    </span>:
+                    <span style={{color: "#C23631",marginLeft:'8px'}}>
+                      {tu("login")}
+                    </span> 
+                  }
+                </span>
+              </td>
+            </tr>
             <tr>
               <th>{tu("name")}:</th>
               <td>{address.name || "-"}</td>

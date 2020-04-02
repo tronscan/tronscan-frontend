@@ -309,4 +309,8 @@ account_piechart_title:'資産配分',
   account_address_total_balance_tip:"アカウント内のすべてのトークンの価値の合計",
   get_usdj:'得る USDJ',
 
+  account_tags_my_tag:'我的标签',
+  account_tags_my_tag_update:'更新',
+
+
 };
