@@ -103,7 +103,9 @@ class MyParticipated extends React.Component {
             'getChangeDelegation',
             'getWitness127PayPerBlock',
             'getAllowTvmSolidity059',
-            'getAdaptiveResourceLimitTargetRatio'
+            'getAdaptiveResourceLimitTargetRatio',
+            'getShieldedTransactionCreateAccountFee',
+            'getForbidTransferToContract',
         ];
         let sunsideArr = [
             {
@@ -542,6 +544,26 @@ class MyParticipated extends React.Component {
                                                 <span>{ intl.formatMessage({id: 'propose_33'})}</span>
                                                 <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
                                                 <span>{ item.proposalVal }</span>
+                                            </div>
+                                        }
+                                         {
+                                            item.proposalKey == 'getShieldedTransactionCreateAccountFee' &&
+                                            <div className="mt-1">
+                                                <span>{ intl.formatMessage({id: 'propose_34'})}</span>
+                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                <span>{ item.proposalVal / ONE_TRX}</span> &nbsp;
+                                                <span>TRX</span>
+                                            </div>
+                                        }
+                                        {
+                                            item.proposalKey == 'getForbidTransferToContract' &&
+                                            <div>
+                                                <span>{ intl.formatMessage({id: 'propose_35'})}</span>
+                                                <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                {
+                                                    item.proposalVal? <span>{tu('propose_prohibit')}</span>:
+                                                        <span>{tu('propose_not_prohibit')}</span>
+                                                }
                                             </div>
                                         }
                                     </div>:<div>
