@@ -992,6 +992,14 @@ class Address extends React.Component {
                             <tr>
                               <th>{tu("name")}:</th>
                               <td>
+                                <span>
+                                  
+                                </span>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th>{tu("name")}:</th>
+                              <td>
                                 <span>{address.name ? address.name : "-"}</span>
                               </td>
                             </tr>
