@@ -305,6 +305,7 @@ export const lang20Q1 = {
   address_account_table_filter_token_tips: "The token is not included in TRONSCAN",
   current_version:'Última versión',
   account_block:'Producir bloques',
-  account_address_total_balance_tip:"Suma del valor de todos los tokens en la cuenta"
+  account_address_total_balance_tip:"Suma del valor de todos los tokens en la cuenta",
+  get_usdj:'Obtener USDJ',
 
 };
