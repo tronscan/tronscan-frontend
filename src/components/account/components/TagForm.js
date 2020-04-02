@@ -155,7 +155,7 @@ class TagForm extends React.Component {
                      className={"form-control " + (!isAccountValid ? "is-invalid" : "")}
                      value={tag}
                      placeholder={intl.formatMessage({id: "account_tags_tag_placehold"})}
-                     maxlength="20"
+                     maxLength="20"
               />
               <div className="invalid-feedback" id="tagTips">
                 

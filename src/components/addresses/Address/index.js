@@ -45,6 +45,7 @@ import SweetAlert from "react-bootstrap-sweetalert";
 import ApiClientAccount from "../../../services/accountApi";
 import {transactionResultManager, transactionResultManagerSun} from "../../../utils/tron";
 import { loadUsdPrice } from "../../../actions/blockchain";
+import AddTag from "../../account/components/AddTag";
 import '../../../styles/account.scss'
 
 
@@ -60,7 +61,7 @@ function setTagIcon(tag){
   })
   return name && <img src={require(`../../../images/address/tag/${name}.svg`)}/>
 }
-
+let tagInter = null
 class Address extends React.Component {
   constructor({ match }) {
     super();
@@ -148,7 +149,8 @@ class Address extends React.Component {
 
   componentWillUnmount() {
     // this.live && this.live.close();
-    localStorage.removeItem('representative')
+    localStorage.removeItem('representative');
+    clearInterval(tagInter)
   }
 
   async loadWalletReward(addressT) {
@@ -376,14 +378,24 @@ class Address extends React.Component {
     // });
     
     // tags
-    const params = {
-      user_address: id,
-      limit: 20,
-      start: 0
-    };
-
-    let { data:{user_tags:tagData} } = await ApiClientAccount.getTagsList(params);
-    console.log(tagData,'tagData')
+   
+    let tagData;
+    tagInter = setInterval(async() => {
+      let {walletType} = this.props;
+      console.log(walletType)
+      if(walletType.address){
+        clearInterval(tagInter)
+        const params = {
+          user_address:walletType.address,
+          tag_address:id,
+        };
+        let { data:{user_tags: tagList} } = await ApiClientAccount.getTagsList(params);
+        tagData = tagList;
+      }
+      console.log(tagData,'tagData')
+    }, 1000);
+   
+   
     this.setState({
       tagData,
       totalPower: totalPower,
@@ -906,6 +918,18 @@ class Address extends React.Component {
     }
   };
 
+  addTagsModal = () => {
+    this.setState({
+      popup: <AddTag onClose={this.hideModal} />
+    });
+  };
+
+  editTagModal = (record) => {
+    this.setState({
+      popup: <AddTag onClose={this.hideModal} record={record}/>
+    });
+  };
+
   render() {
     let {
       totalPower,
@@ -1011,15 +1035,15 @@ class Address extends React.Component {
                                       <span>
                                         {tagData&&tagData.length>0?
                                           <span>
-                                            {tagData.tag}
-                                            <span>
+                                            {tagData[0].tag}
+                                            <span style={{color: "#C23631",marginLeft:'8px'}} onClick={()=>this.editTagModal(tagData[0])}>
                                               {tu("account_tags_my_tag_update")}
                                             </span>
                                           </span> 
                                           :
                                           <span>
                                             Not Available
-                                            <span style={{color: "#C23631",marginLeft:'8px'}}>
+                                            <span style={{color: "#C23631",marginLeft:'8px'}}  onClick={this.addTagsModal}>
                                               {tu("account_tags_add")}
                                             </span>
                                           </span>

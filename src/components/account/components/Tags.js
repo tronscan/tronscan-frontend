@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component,Fragment } from "react";
 import { tu } from "../../../utils/i18n";
 import { upperFirst } from "lodash";
 import { BlockNumberLink } from "../../common/Links";
@@ -250,25 +250,32 @@ class Tags extends Component {
               </div>
             )}
             {total ? (
-              <div className="mb-2" style={{ left: "auto" }}>
-                {tableInfo}
-              </div>
+              <Fragment> 
+                  <div className="mb-2" style={{ left: "auto" }}>
+                    {tableInfo}
+                  </div>
+                  <Table
+                  bordered={true}
+                  loading={loading}
+                  dataSource={data}
+                  columns={column}
+                  pagination={this.state.pagination}
+                  onChange={(page, pageSize) => {
+                    this.load(page.current, page.pageSize);
+                  }}
+                  rowKey={(record, index) => {
+                    return index;
+                  }}
+                />
+              </Fragment>
             ) : (
-              ""
+              <div className="no-data">
+                <img src={require('../../../images/logo_default.png')}/>
+                <p className="text-muted">{tu('trc20_no_data')}</p>
+              </div>
             )}
-            <Table
-              bordered={true}
-              loading={loading}
-              dataSource={data}
-              columns={column}
-              pagination={this.state.pagination}
-              onChange={(page, pageSize) => {
-                this.load(page.current, page.pageSize);
-              }}
-              rowKey={(record, index) => {
-                return index;
-              }}
-            />
+            
+            
           </div>
         </div>
       </div>

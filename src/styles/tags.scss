@@ -48,4 +48,11 @@
     }
 
   }
+  .ant-table-bordered.ant-table-empty .ant-table-placeholder{
+      border:none;
+  }
+  .no-data{
+      margin:0 auto;
+      text-align: center;
+  }
 }

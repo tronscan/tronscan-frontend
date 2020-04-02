@@ -79,15 +79,15 @@ class Representative extends React.Component {
                     <span>
                       {tagData&&tagData.length>0?
                         <span>
-                          {tagData.tag}
-                          <span>
+                          {tagData[0].tag}
+                          <span style={{color: "#C23631",marginLeft:'8px'}} onClick={()=>this.editTagModal(tagData[0])}>
                             {tu("account_tags_my_tag_update")}
                           </span>
                         </span> 
                         :
                         <span>
                           Not Available
-                          <span style={{color: "#C23631",marginLeft:'8px'}}>
+                          <span style={{color: "#C23631",marginLeft:'8px'}}  onClick={this.addTagsModal}>
                             {tu("account_tags_add")}
                           </span>
                         </span>
