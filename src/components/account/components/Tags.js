@@ -15,6 +15,14 @@ import { Client } from "../../../services/api";
 import { TronLoader } from "../../common/loaders";
 import AddTag from "./AddTag";
 import ApiClientAccount from "../../../services/accountApi";
+import {
+  AddressLink,
+  HrefLink,
+  TokenLink,
+  TokenTRC20Link
+} from "../../common/Links";
+import "../../../styles/tags.scss";
+import SweetAlert from "react-bootstrap-sweetalert";
 
 class Tags extends Component {
   constructor() {
@@ -29,7 +37,8 @@ class Tags extends Component {
         total: 0,
         data: []
       },
-      popup: null
+      popup: null,
+      page:1
     };
   }
   componentDidMount() {
@@ -38,7 +47,7 @@ class Tags extends Component {
 
   load = async (page = 1, pageSize = 20) => {
     this.setState({ loading: true });
-    let {address} = this.props;
+    let { address } = this.props;
 
     const params = {
       user_address: address,
@@ -46,16 +55,16 @@ class Tags extends Component {
       start: (page - 1) * pageSize
     };
 
-    let { data, total } = await ApiClientAccount.getTagsList(params);
+    let { data } = await ApiClientAccount.getTagsList(params);
 
     this.setState({
       page,
       data: data.user_tags,
-      total,
+      total: data.total,
       loading: false,
       pagination: {
         ...this.state.pagination,
-        total
+        total: data.total
       }
     });
   };
@@ -66,43 +75,36 @@ class Tags extends Component {
     let column = [
       {
         title: upperFirst(intl.formatMessage({ id: "data_account" })),
-        dataIndex: "number",
-        key: "number",
+        dataIndex: "targetAddress",
+        key: "targetAddress",
         align: "left",
         className: "ant_table",
+        width: "30%",
         render: (text, record, index) => {
-          return <BlockNumberLink number={text} />;
+          return <AddressLink address={text}>{text}</AddressLink>;
         }
       },
 
       {
         title: upperFirst(intl.formatMessage({ id: "account_tags_table_1" })),
-        dataIndex: "nrOfTrx",
-        key: "nrOfTrx",
+        dataIndex: "tag",
+        key: "tag",
         align: "left",
-        width: "150px",
         className: "ant_table",
+        width: "20%",
         render: (text, record, index) => {
-          return (
-            <span>
-              <FormattedNumber value={text} /> Txns
-            </span>
-          );
+          return <div className="ellipsis tag-len">{text}</div>;
         }
       },
       {
         title: upperFirst(intl.formatMessage({ id: "account_tags_table_2" })),
-        key: "netUsage",
-        dataIndex: "netUsage",
+        key: "description",
+        dataIndex: "description",
         align: "left",
         className: "ant_table",
+        width: "35%",
         render: (text, record, index) => {
-          return (
-            <span>
-              <FormattedNumber value={record.netUsage} /> {tu("bandwidth")} /{" "}
-              <FormattedNumber value={record.energyUsage} /> {tu("energy")}
-            </span>
-          );
+          return <div className="ellipsis desc-len">{text}</div>;
         }
       },
       {
@@ -111,20 +113,108 @@ class Tags extends Component {
         key: "size",
         align: "left",
         className: "ant_table",
+        width: "15%",
         render: (text, record, index) => {
-          return <FormattedNumber value={text} />;
-        },
-        width: "150px"
+          return (
+            <span>
+              <button className="btn btn-md btn-default mr-2" onClick={(record)=>this.editTagModal(record)}>
+                {tu("account_tags_edit")}
+              </button>
+              <button
+                className="btn btn-md btn-danger"
+                onClick={targetAddress =>
+                  this.deleteTagModal(record.targetAddress)
+                }
+              >
+                {tu("account_tags_delete")}
+              </button>
+            </span>
+          );
+        }
       }
     ];
     return column;
   };
 
   addTagsModal = () => {
-    console.log(111);
     this.setState({
       popup: <AddTag onClose={this.hideModal} />
     });
+  };
+
+  editTagModal = (record) => {
+    this.setState({
+      popup: <AddTag onClose={this.hideModal} record={record}/>
+    });
+  };
+
+  deleteTagModal = targetAddress => {
+    this.setState({
+      deleteTargetAddress:targetAddress,
+      popup: (
+        <SweetAlert
+          showCancel
+          confirmBtnText={tu("account_tags_delete")}
+          confirmBtnBsStyle="danger"
+          cancelBtnBsStyle="default"
+          cancelBtnText={tu("cancel")}
+          title={tu("account_tags_delete_is")}
+          onConfirm={this.deleteTag}
+          onCancel={this.hideModal}
+          style={{ height: "300px" }}
+        >
+          <div className="form-group" style={{ marginBottom: "36px" }}>
+            <div
+              className="mt-3 mb-2 text-left"
+              style={{ color: "#666" }}
+            ></div>
+          </div>
+        </SweetAlert>
+      )
+    });
+  };
+
+  deleteTag = async () => {
+    // delete tags
+    let { address } = this.props;
+    let {deleteTargetAddress,page,pagination} = this.state
+    let obj = {
+      user_address: address,
+      target_address: deleteTargetAddress 
+    };
+
+    let { retCode,retMsg } = await ApiClientAccount.removeTag(obj);
+    if(retCode == 0){
+      this.setState({
+        popup: (
+          <SweetAlert
+            success
+            title={tu('account_tags_delete_succss')}
+            onConfirm={this.hideModal}
+          />
+        )
+      });
+
+  
+      this.load(page,pagination.pageSize)
+
+      setTimeout(()=>{
+        this.setState({
+          popup:null
+        })
+      },1000)
+    }else{
+      this.setState({
+        popup: (
+          <SweetAlert
+            success
+            title={retMsg[0]}
+            onConfirm={this.hideModal}
+          />
+        )
+      });
+    }
+      
   };
 
   hideModal = () => {
@@ -141,7 +231,7 @@ class Tags extends Component {
     );
 
     return (
-      <div className="card">
+      <div className="card tags">
         {popup}
         <div className="card-body temp-table">
           <div className="d-flex justify-content-between account-switch">
