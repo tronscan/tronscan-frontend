@@ -88,8 +88,10 @@ export const TOKEN_ID_BTT = "1002000";
 export const CONTRACT_ADDRESS_USDT = "TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t";
 export const CONTRACT_ADDRESS_WIN = "TLa2f6VPqDgRE67v1736s7bJ8Ray5wYjU7";
 export const CONTRACT_ADDRESS_GGC = "TB95FFYRJMLY6mWZqv4JUMqAqsHF4JCXga";
-export const CONTRACT_ADDRESS_USDJ = "TCkkpmnY38nsXAtideWzHTybvbMozzXUot";
-export const CONTRACT_ADDRESS_JED = "TTpozmSKuK5jbigUXtQn6fdxh6ivwKtGo5";
+export const CONTRACT_ADDRESS_USDJ_TESTNET = "TCkkpmnY38nsXAtideWzHTybvbMozzXUot";
+export const CONTRACT_ADDRESS_JED_TESTNET = "TTpozmSKuK5jbigUXtQn6fdxh6ivwKtGo5";
+export const CONTRACT_ADDRESS_USDJ = "TMwFHYXLJaRUPeW6421aqXL4ZEzPRFGkGT";
+export const CONTRACT_ADDRESS_JED = "TCFLL5dx5ZJdKnWuesXxi1VPwjLVmWZZy9";
 
 // Deployment to compile
 export const FILE_MAX_SIZE = 5 * 1024 * 1024;
