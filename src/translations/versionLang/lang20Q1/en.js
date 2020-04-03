@@ -313,6 +313,7 @@ export const lang20Q1 = {
 
   account_tags_my_tag:'我的标签',
   account_tags_my_tag_update:'更新',
+  account_tags_my_tag_login_show:'后显示',
 
 
 };

@@ -382,22 +382,24 @@ class Address extends React.Component {
     let tagData;
     tagInter = setInterval(async() => {
       let {walletType} = this.props;
-      console.log(walletType)
       if(walletType.address){
         clearInterval(tagInter)
         const params = {
           user_address:walletType.address,
-          tag_address:id,
+          target_address:id,
+          start:0,
+          limit:20
         };
         let { data:{user_tags: tagList} } = await ApiClientAccount.getTagsList(params);
         tagData = tagList;
+        this.setState({
+          tagData,
+        })
       }
-      console.log(tagData,'tagData')
     }, 1000);
    
    
     this.setState({
-      tagData,
       totalPower: totalPower,
       TRXBalanceTotal: TRXBalance,
       netUsed: address.bandwidth.netUsed + address.bandwidth.freeNetUsed,
@@ -925,6 +927,7 @@ class Address extends React.Component {
   };
 
   editTagModal = (record) => {
+    console.log(record,'record')
     this.setState({
       popup: <AddTag onClose={this.hideModal} record={record}/>
     });
@@ -985,7 +988,7 @@ class Address extends React.Component {
       <main className="container header-overlap account-new address-container">
         {popup}
         <div className="row">
-          <div className="col-md-12 ">
+          <div className="col-md-12">
             {loading ? (
               <div className="card">
                 <TronLoader>
@@ -1049,8 +1052,8 @@ class Address extends React.Component {
                                           </span>
                                         }
                                       </span>:
-                                      <span style={{color: "#C23631",marginLeft:'8px'}}>
-                                        {tu("login")}
+                                      <span >
+                                        <span style={{color: "#C23631"}}>{tu("login")}</span>{tu("account_tags_my_tag_login_show")}
                                       </span> 
                                     }
                                 </span>
