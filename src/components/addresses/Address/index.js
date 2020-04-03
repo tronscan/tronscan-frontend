@@ -124,6 +124,7 @@ class Address extends React.Component {
       transactionsSearchAddress:'',
       internalSearchAddress:'',
       tagData:[], //tag info 
+      modal:null,
     };
   }
 
@@ -931,10 +932,25 @@ class Address extends React.Component {
   };
 
   editTagModal = (record) => {
-    console.log(record,'record')
     this.setState({
       popup: <AddTag onClose={this.hideModal} record={record}/>
     });
+  };
+
+  isLoggedIn = () => {
+    let { account, intl } = this.props;
+    if (!account.isLoggedIn){
+        this.setState({
+            modal: <SweetAlert
+                warning
+                title={tu('not_signed_in')}
+                confirmBtnText={intl.formatMessage({ id: 'confirm' })}
+                confirmBtnBsStyle="danger"
+                onConfirm={() => { this.setState({ modal: null });  }}
+            >
+            </SweetAlert>
+        });
+    }
   };
 
   render() {
@@ -970,7 +986,8 @@ class Address extends React.Component {
       popup,
       searchAddress,
       searchAddressClose,
-      tagData
+      tagData,
+      modal
     } = this.state;
     let { match, intl, account, walletType,activeLanguage,priceUSD } = this.props;
     let addr = match.params.id;
@@ -1057,7 +1074,7 @@ class Address extends React.Component {
                                         }
                                       </span>:
                                       <span >
-                                        <span style={{color: "#C23631"}}>{tu("login")}</span>{tu("account_tags_my_tag_login_show")}
+                                        <span style={{color: "#C23631",cursor:"pointer"}} onClick={this.isLoggedIn}>{tu("login")}</span>{tu("account_tags_my_tag_login_show")}
                                       </span> 
                                     }
                                 </span>
@@ -1502,6 +1519,7 @@ class Address extends React.Component {
             )}
           </div>
         </div>
+        {modal}
       </main>
     );
   }
