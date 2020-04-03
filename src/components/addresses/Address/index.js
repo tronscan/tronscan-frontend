@@ -193,6 +193,9 @@ class Address extends React.Component {
     if (address.representative.enabled) {
       this.loadMedia(id);
       localStorage.setItem('representative',true)
+    }else{
+      localStorage.removeItem('representative')
+
     }
 
     this.setState(prevProps => ({
@@ -219,6 +222,8 @@ class Address extends React.Component {
     let address = await Client.getAddress(id);
     if (address.representative.enabled) {
       localStorage.setItem('representative',true)
+    }else{
+      localStorage.removeItem('representative')
     }
     let sentDelegateBandwidth = 0;
     if (address.delegated && address.delegated.sentDelegatedBandwidth) {
