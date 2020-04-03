@@ -287,7 +287,7 @@ class TransfersAll extends React.Component {
                                     />
                                 </Tooltip>
                                 {record.fromtip ?
-                                    <AddressLink address={record.type == 'trc10'?text:record.from_address}>{record.type == 'trc10'?text:record.from_address}</AddressLink>
+                                    <AddressLink address={record.type == 'trc10'?text:record.from_address} isContract={true}>{record.type == 'trc10'?text:record.from_address}</AddressLink>
                                     :
                                     <TruncateAddress address={record.type == 'trc10'?text:record.from_address}>{record.type == 'trc10'?text:record.from_address}</TruncateAddress>}
                             </span>
