@@ -145,10 +145,15 @@ class TransfersAll extends React.Component {
         })
         rebuildRransfers.forEach(item=>{
             if(contractMap){
-                contractMap[item.owner_address]? (item.ownerIsContract = true) :  (item.ownerIsContract = false)
+                if(item.type == 'trc10'){
+                    contractMap[item.owner_address]? (item.ownerIsContract = true) :  (item.ownerIsContract = false)
+                }else{
+                    contractMap[item.from_address]? (item.ownerIsContract = true) :  (item.ownerIsContract = false)
+                }
                 contractMap[item.to_address]? (item.toIsContract = true) :  (item.toIsContract = false)
             }
         })
+        // console.log(rebuildRransfers)
         this.setState({
             page,
             transfers:rebuildRransfers,
@@ -313,7 +318,7 @@ class TransfersAll extends React.Component {
                 render: (text, record, index) => {
                     return <span>
                         {/*  Distinguish between contract and ordinary address */}
-                        {record.ownerIsContract? (
+                        {record.toIsContract? (
                             <span className="d-flex">
                                 <Tooltip
                                     placement="top"
@@ -333,14 +338,14 @@ class TransfersAll extends React.Component {
                                     />
                                 </Tooltip>
                                 {record.totip ?
-                                    <AddressLink address={record.type == 'trc10'?text:record.to_address} isContract={true}>{record.type == 'trc10'?text:record.to_address}</AddressLink>
+                                    <AddressLink address={text} isContract={true}>{text}</AddressLink>
                                     :
-                                    <TruncateAddress address={record.type == 'trc10'?text:record.to_address}>{record.type == 'trc10'?text:record.to_address}</TruncateAddress>}
+                                    <TruncateAddress address={text}>{text}</TruncateAddress>}
                             </span>
                             ) : (
                                 record.totip ?
-                                    <AddressLink address={record.type == 'trc10'?text:record.to_address}>{record.type == 'trc10'?text:record.to_address}</AddressLink>:
-                                    <TruncateAddress address={record.type == 'trc10'?text:record.to_address}>{record.type == 'trc10'?text:record.to_address}</TruncateAddress>
+                                    <AddressLink address={text}>{text}</AddressLink>:
+                                    <TruncateAddress address={text}>{text}</TruncateAddress>
                             )
                         }
                     </span>
