@@ -20,7 +20,9 @@ import {
   CONTRACT_ADDRESS_WIN,
   CONTRACT_ADDRESS_GGC,
   CONTRACT_ADDRESS_USDJ,
+  CONTRACT_ADDRESS_USDJ_TESTNET,
   CONTRACT_ADDRESS_JED,
+  CONTRACT_ADDRESS_JED_TESTNET,
   IS_MAINNET
 } from "../../../constants";
 
@@ -117,7 +119,7 @@ export function Information({ token: tokens, priceUSD,intl }) {
       content: (
         <div className="d-flex ">
           {
-            token.contract_address == CONTRACT_ADDRESS_USDJ &&
+            (token.contract_address == CONTRACT_ADDRESS_USDJ || token.contract_address == CONTRACT_ADDRESS_USDJ_TESTNET) &&
             <div className="d-flex price-info">
             { ONE_USDJ.toFixed(6)} USD&nbsp;
             <span className="token-price-trx">
@@ -126,7 +128,7 @@ export function Information({ token: tokens, priceUSD,intl }) {
           </div> 
           }
           {
-            token.contract_address == CONTRACT_ADDRESS_JED &&
+            (token.contract_address == CONTRACT_ADDRESS_JED || token.contract_address == CONTRACT_ADDRESS_JED_TESTNET) &&
             <div className="d-flex price-info">
             { (ONE_USDJ/100).toFixed(6)} USD&nbsp;
             <span className="token-price-trx">
@@ -135,7 +137,7 @@ export function Information({ token: tokens, priceUSD,intl }) {
           </div> 
           }
 
-          { ((token.contract_address != CONTRACT_ADDRESS_USDJ || token.contract_address != CONTRACT_ADDRESS_JED)  && token["market_info"]) ? (
+          { ((token.contract_address != CONTRACT_ADDRESS_USDJ || token.contract_address != CONTRACT_ADDRESS_USDJ_TESTNET || token.contract_address != CONTRACT_ADDRESS_JED || token.contract_address != CONTRACT_ADDRESS_JED_TESTNET)  && token["market_info"]) ? (
             <div className="d-flex price-info">
               {token["priceToUsd"].toFixed(6)} USD&nbsp;
               <span className="token-price-trx">
