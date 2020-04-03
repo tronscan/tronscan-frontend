@@ -5594,16 +5594,10 @@ etag@~1.8.1:
   resolved "https://registry.yarnpkg.com/etag/-/etag-1.8.1.tgz#41ae2eeb65efa62268aebfea83ac7d79299b0887"
   integrity sha1-Qa4u62XvpiJorr/qg6x9eSmbCIc=
 
-<<<<<<< HEAD
 ethers@^4.0.40:
   version "4.0.40"
   resolved "https://registry.yarnpkg.com/ethers/-/ethers-4.0.40.tgz#6e1963d10b5d336a13cd81b519c230cc17624653"
-=======
-ethers@^4.0.32, ethers@^4.0.7:
-  version "4.0.39"
-  resolved "https://registry.yarnpkg.com/ethers/-/ethers-4.0.39.tgz#5ce9dfffedb03936415743f63b37d96280886a47"
-  integrity sha512-QVtC8TTUgTrnlQjQvdFJ7fkSWKwp8HVTbKRmrdbVryrPzJHMTf3WSeRNvLF2enGyAFtyHJyFNnjN0fSshcEr9w==
->>>>>>> origin/master
+  integrity sha512-MC9BtV7Hpq4dgFONEfanx9aU9GhhoWU270F+/wegHZXA7FR+2KXFdt36YIQYLmVY5ykUWswDxd+f9EVkIa7JOA==
   dependencies:
     aes-js "3.0.0"
     bn.js "^4.4.0"
@@ -5615,16 +5609,10 @@ ethers@^4.0.32, ethers@^4.0.7:
     uuid "2.0.1"
     xmlhttprequest "1.8.0"
 
-<<<<<<< HEAD
 ethers@^4.0.7:
   version "4.0.39"
   resolved "https://registry.yarnpkg.com/ethers/-/ethers-4.0.39.tgz#5ce9dfffedb03936415743f63b37d96280886a47"
-=======
-ethers@^4.0.40:
-  version "4.0.40"
-  resolved "https://registry.yarnpkg.com/ethers/-/ethers-4.0.40.tgz#6e1963d10b5d336a13cd81b519c230cc17624653"
-  integrity sha512-MC9BtV7Hpq4dgFONEfanx9aU9GhhoWU270F+/wegHZXA7FR+2KXFdt36YIQYLmVY5ykUWswDxd+f9EVkIa7JOA==
->>>>>>> origin/master
+  integrity sha512-QVtC8TTUgTrnlQjQvdFJ7fkSWKwp8HVTbKRmrdbVryrPzJHMTf3WSeRNvLF2enGyAFtyHJyFNnjN0fSshcEr9w==
   dependencies:
     "@types/node" "^10.3.2"
     aes-js "3.0.0"
@@ -13788,16 +13776,9 @@ stylis@^3.3.2:
   resolved "https://registry.yarnpkg.com/stylis/-/stylis-3.5.4.tgz#f665f25f5e299cf3d64654ab949a57c768b73fbe"
   integrity sha512-8/3pSmthWM7lsPBKv7NXkzn2Uc9W7NotcwGNpJaa3k7WMM1XDCA4MgT5k/8BIexd5ydZdboXtU90XH9Ec4Bv/Q==
 
-<<<<<<< HEAD
 sunweb@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/sunweb/-/sunweb-1.1.0.tgz#7d00dbd610f9fd7d3380f71ae1fa03dabd882094"
-=======
-sunweb@1.0.7:
-  version "1.0.7"
-  resolved "https://registry.yarnpkg.com/sunweb/-/sunweb-1.0.7.tgz#9a4d09e0b5848060c60b8e99740076132c91f49c"
-  integrity sha512-2Nr1haGdTjtylgE53y83aGy5Edx8SyUQMB/Fs/LEnTF5bZuMvPNFpljXUiae0xy5j/UMuEb0Q1a6ONKmSsQpCw==
->>>>>>> origin/master
   dependencies:
     "@babel/runtime" "^7.4.5"
     babel-runtime "^6.26.0"
@@ -14237,26 +14218,6 @@ tronweb@^2.10.1:
     semver "^5.6.0"
     validator "^10.7.1"
 
-<<<<<<< HEAD
-=======
-tronweb@^2.7.1:
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/tronweb/-/tronweb-2.8.0.tgz#e70247486590376a4ee3497d4c5dd66aa5f312d6"
-  integrity sha512-B5vn2TsH8hV9z7jvxlmMlIcKjd+qq7TS4p5E1w4422FJ1tBVe3cQqQZ0YP09aj/9k6eJQsGdWfBB1WYQQb0d5Q==
-  dependencies:
-    "@babel/runtime" "^7.0.0"
-    axios "^0.19.0"
-    babel-runtime "^6.26.0"
-    bignumber.js "^7.2.1"
-    elliptic "^6.4.1"
-    ethers "^4.0.7"
-    eventemitter3 "^3.1.0"
-    injectpromise "^1.0.0"
-    lodash "^4.17.14"
-    semver "^5.6.0"
-    validator "^10.7.1"
-
->>>>>>> origin/master
 trough@^1.0.0:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/trough/-/trough-1.0.4.tgz#3b52b1f13924f460c3fbfd0df69b587dbcbc762e"
