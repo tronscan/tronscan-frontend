@@ -10,11 +10,9 @@ import { injectIntl } from "react-intl";
 
 @injectIntl
 class AddTags extends React.PureComponent {
-  constructor({ isOpen = false, to = "" }) {
-    super();
-
+  constructor(props) {
+    super(props);
     this.state = {
-      isOpen,
       modal: (
         <Modal
           backdrop="static"
@@ -24,14 +22,20 @@ class AddTags extends React.PureComponent {
           className="modal-dialog-centered fiexd-none send-modal"
         >
           <ModalHeader className="text-center" toggle={this.hideModal}>
-            {tu('account_tags_add_title')}
+            {props.targetAddress ? tu('account_tags_edit_title') : tu('account_tags_add_title')}
           </ModalHeader>
           <ModalBody>
-            <TagForm to={to} onSend={this.onSend} />
+            <TagForm targetAddress={props.targetAddress} onloadTable={this.onloadTable}/>
           </ModalBody>
         </Modal>
       )
     };
+  }
+
+  onloadTable = ()=>{
+   
+    this.props.onloadTableP()
+    this.hideModal()
   }
 
   hideModal = () => {

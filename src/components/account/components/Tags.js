@@ -9,20 +9,15 @@ import {
   FormattedTime
 } from "react-intl";
 import { Table, Input, Button, Icon } from "antd";
-import { API_URL } from "../../../constants";
-import qs from "qs";
-import { Client } from "../../../services/api";
 import { TronLoader } from "../../common/loaders";
 import AddTag from "./AddTag";
 import ApiClientAccount from "../../../services/accountApi";
 import {
-  AddressLink,
-  HrefLink,
-  TokenLink,
-  TokenTRC20Link
+  AddressLink
 } from "../../common/Links";
 import "../../../styles/tags.scss";
 import SweetAlert from "react-bootstrap-sweetalert";
+import { Link } from "react-router-dom";
 
 class Tags extends Component {
   constructor() {
@@ -81,7 +76,12 @@ class Tags extends Component {
         className: "ant_table",
         width: "30%",
         render: (text, record, index) => {
-          return <AddressLink address={text}>{text}</AddressLink>;
+          return <div>
+            {record.addressTag && (
+                  <Link to={`/address/${text}`}>{record.addressTag}</Link>
+              )}
+            <AddressLink address={text}>{text}</AddressLink>
+            </div>
         }
       },
 
@@ -117,7 +117,7 @@ class Tags extends Component {
         render: (text, record, index) => {
           return (
             <span>
-              <button className="btn btn-md btn-default mr-2" onClick={(record)=>this.editTagModal(record)}>
+              <button className="btn btn-md btn-default mr-2" onClick={()=>this.editTagModal(record)}>
                 {tu("account_tags_edit")}
               </button>
               <button
@@ -138,15 +138,23 @@ class Tags extends Component {
 
   addTagsModal = () => {
     this.setState({
-      popup: <AddTag onClose={this.hideModal} />
+      popup: <AddTag onClose={this.hideModal} onloadTableP={this.onloadTable} onClose={this.hideModal}/>
     });
   };
 
   editTagModal = (record) => {
     this.setState({
-      popup: <AddTag onClose={this.hideModal} record={record}/>
+      popup: <AddTag onClose={this.hideModal} targetAddress={record.targetAddress} onloadTableP={this.onloadTable} onClose={this.hideModal}/>
     });
   };
+
+  onloadTable = () =>{
+    
+    let {page,pagination} = this.state
+    setTimeout(()=>{
+      this.load(page,pagination.pageSize)
+    },1000)
+  }
 
   deleteTagModal = targetAddress => {
     this.setState({

@@ -326,6 +326,10 @@ export const lang20Q1 = {
   account_tags_table_1:'标签',
   account_tags_table_2:'备注',
   account_tags_add_title:'添加标签',
+  account_tags_edit_title:'编辑标签',
+  account_tags_add_success:'添加成功',
+  account_tags_edit_success:'编辑成功',
+
   account_tags_edit: "编辑",
   account_tags_delete: "移除",
   account_tags_delete_is: "是否确认移除该标签？",
@@ -335,6 +339,7 @@ export const lang20Q1 = {
   account_tags_tag_placehold:'请输入标签，长度20字符',
   account_tags_note_placehold:'选填，长度100字符',
   account_tags_tag_valid:'只能输入中文或英文',
+  account_tags_rec:"推荐标签",
   account_tags_my_tag:'我的标签',
   account_tags_my_tag_update:'更新',
   account_tags_my_tag_login_show:'后显示',

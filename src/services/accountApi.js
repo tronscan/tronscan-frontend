@@ -34,6 +34,15 @@ class ApiClientAccount {
     return res && res.data;
   }
 
+   //edit tag
+   async editTag(data) {
+    let res = await xhr.post(
+      `${this.apiUrl["mainnet"]}/external/tag/update`,
+      data
+    );
+    return res && res.data;
+  }
+
 }
 
 export default new ApiClientAccount();

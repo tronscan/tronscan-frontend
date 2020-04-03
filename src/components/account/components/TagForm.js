@@ -31,14 +31,36 @@ class TagForm extends React.Component {
     this.state = {
       isLoading: false,
       modal: null,
-      address:'',
+      target_address:'',
       tag:'',
-      note: '',
+      description: '',
+      addressTag:''
     };
   }
 
   componentDidMount() {
-    
+    let { targetAddress } = this.props;
+    targetAddress && this.getTagsDetail(targetAddress)
+  }
+
+  async getTagsDetail(targetAddress){
+    const {account} = this.props;
+    let obj = {
+      user_address: account.address,
+      target_address:targetAddress,
+      limit: 2,
+      start: 0
+    }
+    let {retCode,retMsg,data} = await ApiClientAccount.getTagsList(obj)
+    let detail = data.user_tags[0]
+    if(retCode == 0){
+      this.setState({
+        target_address:targetAddress,
+        tag:detail.tag,
+        description: detail.description,
+        addressTag:detail.addressTag
+      })
+    }
   }
   /**
    * Check if the form is valid
@@ -56,9 +78,8 @@ class TagForm extends React.Component {
   };
 
   setAccount = (address) => {
-    this.setState({address: address});
+    this.setState({target_address: address});
     Client.getAddress(address).then(data => {
-      console.log('data====',data)
       this.setState({
         addressTag:data.addressTag?data.addressTag:''
       });
@@ -67,6 +88,9 @@ class TagForm extends React.Component {
 
   setTag = (tag) => {
     let { intl }  = this.props;
+    this.setState({
+      tag
+    });
     let tagTipsSpan = document.getElementById("tagTips");
     if (!tag.match( /^[\u4e00-\u9fa5|a-zA-Z]*$/)) {
       tagTipsSpan.innerHTML= intl.formatMessage({id: "account_tags_tag_valid"});
@@ -74,52 +98,65 @@ class TagForm extends React.Component {
     } else {
       tagTipsSpan.innerHTML='';
     }
-
-    this.setState({
-      tag:tag
-    });
+    
   }
 
-  setNote = (note) => {
+  setNote = (description) => {
     this.setState({
-      note
+      description
     });
   };
 
 
   submit = async() => {
-    const {address, tag, note} = this.state;
-    const {account} = this.props;
+    const {target_address, tag,description } = this.state;
+    const {account,targetAddress} = this.props;
     
     let obj = {
       user_address: account.address,
-      target_address: address,
+      target_address: target_address,
       tag: tag,
-      description:note
+      description:description
     };
 
-    let { retCode, retMsg } = await ApiClientAccount.addTag(obj);
-    console.log('retCode===',retCode)
-    console.log('retMsg===',retMsg)
+    let { retCode, retMsg } = targetAddress ? await ApiClientAccount.editTag(obj) : await ApiClientAccount.addTag(obj);
+  
     if(retCode == 0){
       this.setState({
-        popup: (
+        modal: (
           <SweetAlert
             success
-            title={tu('account_tags_delete_succss')}
+            title={targetAddress ? tu('account_tags_edit_success') : tu('account_tags_add_success')}
             onConfirm={this.hideModal}
           />
         )
       });
-    }  
+      this.props.onloadTable()
+    }else{
+      this.setState({
+        modal: (
+          <SweetAlert
+            warning
+            title={retMsg}
+            onConfirm={this.hideModal}
+          />
+        )
+      });
+    } 
+    
+    setTimeout(()=>{
+      this.setState({
+        modal:null
+      })
+    },1000)
   }
 
   render() {
 
     let { intl } = this.props;
-    let {isLoading, modal, note, address, tag , addressTag} = this.state;
+    let {isLoading, modal, description, target_address, tag , addressTag} = this.state;
 
-    let isAccountValid = address.length !== 0 && isAddressValid(address);
+    let isAccountValid = target_address.length !== 0 && isAddressValid(target_address);
 
     return (
         <form className="send-form">
@@ -131,7 +168,7 @@ class TagForm extends React.Component {
               <input type="text"
                      onChange={(ev) => this.setAccount(ev.target.value)}
                      className={"form-control " + (!isAccountValid ? "is-invalid" : "")}
-                     value={address}
+                     value={target_address}
                      placeholder={intl.formatMessage({id: "account_tags_address_placehold"})}
                    
               />
@@ -162,14 +199,20 @@ class TagForm extends React.Component {
               </div>
             </div>
           </div>
-
+          {
+              addressTag?<div className="mb-3">
+                <span style={{color:'#666666'}}>
+                {tu('account_tags_rec')}
+                </span>
+              </div>:''
+          } 
           <div className="form-group">
             <label>{tu("note")}</label>
             <div className="input-group mb-3">
             <textarea
                 onChange={(ev) => this.setNote(ev.target.value)}
                 className={"form-control"}
-                value={note}
+                value={description}
                 placeholder={intl.formatMessage({id: "account_tags_note_placehold"})}
             />
               <div className="invalid-feedback">
