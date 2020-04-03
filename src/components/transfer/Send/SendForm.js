@@ -318,8 +318,12 @@ class SendForm extends React.Component {
               unSignTransaction = unSignTransaction.transaction;
           console.log('unSignTransaction',unSignTransaction)       
           console.log('note',note)
-          const transactionWithNote = await this.props.account.tronWeb.transactionBuilder.addUpdateData(unSignTransaction, note, 'utf8'); 
-          console.log('transactionWithNote',transactionWithNote)    
+          let transactionWithNote = await tronWeb.transactionBuilder.addUpdateData(unSignTransaction, note, 'utf8'); 
+          console.log('transactionWithNote',transactionWithNote)  
+          if(this.props.wallet.type === "ACCOUNT_TRONLINK"){
+            transactionWithNote.__payload__ = unSignTransaction.__payload__;
+          }  
+          console.log('transactionWithNote22222====',transactionWithNote)  
           transactionId = await transactionResultManager(transactionWithNote, tronWeb)
         }
     }else{

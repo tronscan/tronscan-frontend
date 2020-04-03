@@ -12,6 +12,8 @@ import {TransationTitle} from './common/Title'
 import {injectIntl} from "react-intl";
 import {toThousands} from '../../../../utils/number'
 import { QuestionMark } from "../../../common/QuestionMark.js";
+import BigNumber from "bignumber.js";
+BigNumber.config({ EXPONENTIAL_AT: [-1e9, 1e9] });
 
 function TriggerContract({contract,intl}){
     const defaultImg = require("../../../../images/logo_default.png");
@@ -226,17 +228,13 @@ function TriggerContract({contract,intl}){
                         {tu("amount")}
                       </div>
                       <div className="flex1">
-                        {toThousands(Number(
-                          contract.tokenTransferInfo[
-                            "amount_str"
-                          ]
-                        ) /
-                          Math.pow(
-                            10,
-                            contract.tokenTransferInfo[
-                              "decimals"
-                            ]
-                          ))}
+                        {
+                          toThousands(
+                            new BigNumber(Number(contract.tokenTransferInfo["amount_str"])).dividedBy(
+                            Math.pow(10, contract.tokenTransferInfo["decimals"])
+                            )
+                          )  
+                        }
                       </div>
                     </div>
 
