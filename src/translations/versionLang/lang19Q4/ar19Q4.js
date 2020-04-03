@@ -63,7 +63,7 @@ export const lang19Q4 = {
     "token_rating_rule_title_p1_title": "Unknown",
     "token_rating_rule_title_p1": "Unknown is set as the default reputation for a newly added token. A token will be classified as unknown if no updates but mandatory information is provided after a successful token issuance. Mandatory information includes the token name, token abbreviation, token overview, total supply, decimals and issuer; for TRC20 tokens, information on the contract, time of contract creation and contract creator should also be provided.     ",
     "token_rating_rule_title_p2_title": "Neutral",
-    "token_rating_rule_title_p2": "Tokens assessed as neutral have their information added or updated after a successful token issuance. The information includes: official website, logo, email address, GitHub address, white paper address and social profile link(s).   ",
+    "token_rating_rule_title_p2": "Tokens assessed as neutral have their information added or updated after a successful token issuance. The information includes: official website, logo, white paper address and social profile link(s).",
     "token_rating_rule_title_p3_title": "OK",
     "token_rating_rule_title_p3": "Tokens listed and openly traded on POLONIDEX will be given the OK reputation.   ",
     "token_rating_rule_title_p3_1": "Please apply through TRONSCAN for listing tokens on POLONIDEX. Before you submit the request, note:   ",
@@ -291,5 +291,27 @@ export const lang19Q4 = {
    "Supply_amount_net_new_y_title":" العائد / صافي القيمة (TRX)",
    "Supply_amount_net_new_tip":"TRX جيل + تدمير TRX",
    "votes_num":"الأصوات",
+
+   /*
+        ##################################################################################
+        #                                                                                #
+        # txns type chart  2020-01-09                           #
+        #                                                                                #
+        ##################################################################################
+    */
+   "txns_contract_calls":"عدد معاملات دعوات العقد",
+   "txns_TRX_transfers":"عدد معاملات تحويل TRX ",
+   "txns_TRC10_transfers":"عدد معاملات تحويل TRC10 ",
+   "txns_frozen_transactions":"عدد المعاملات المجمدة",
+   "txns_votes_transactions":"عدد معاملات التصويت",
+   "txns_other_transactions":"معاملات أخرى",
+   "txns_shielded_transactions":"عدد المعاملات المجهولة",
+   "chart_network_resources":"موارد الشبكة",
+   "chart_active_accounts":"الشبكة",
+   "chart_network":"الشبكة",
+
+    // account tab transfers transactions  internal-transactions
+    "account_tab_transactions_token_info":"如果交易中不包含通证信息，则展示“—”"
+
   
 }

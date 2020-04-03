@@ -36,7 +36,6 @@ class SendForm extends React.Component {
 
   constructor(props) {
     super(props);
-    console.log('props',props)
     this.state = {
       privateKey: "",
       to: props.to || "",
@@ -180,7 +179,6 @@ class SendForm extends React.Component {
                     "netType":"main_net"
                 });
                 result = data.code;
-                console.log('code',result)
             }
 
             if (result == 0) {
@@ -288,9 +286,9 @@ class SendForm extends React.Component {
             let SignTransaction = await transactionMultiResultManager(unSignTransaction, tronWeb, permissionId,permissionTime,HexStr);
 
             let { data } = await xhr.post("https://list.tronlink.org/api/wallet/multi/transaction", {
-                "address": wallet.address,
-                "transaction": SignTransaction,
-                "netType":"main_net"
+              "address": wallet.address,
+              "transaction": SignTransaction,
+              "netType":"main_net"
             });
             let result = data.code;
             if (result == 0) {
@@ -701,7 +699,6 @@ class SendForm extends React.Component {
   onChangePermissionTime = e => {
     const { intl } = this.props;
     const numValue = e;
-    console.log('numValue',numValue)
     const MaxAmount  = 24;
     let errorMess = '';
     let reg = /^(([1-9])|(1\d)|(2[0-4]))$/
@@ -730,7 +727,6 @@ class SendForm extends React.Component {
   }
 
   handlePermissionChange =  (value) => {
-      console.log('value',value)
       this.setState({ permissionId: value },() =>{
           this.setPermissionAddress(value);
       });
@@ -795,7 +791,6 @@ class SendForm extends React.Component {
 
     let {intl, account } = this.props;
     let {tokenBalances, tokens20, isLoading, sendStatus, modal, to, from, note, toAccount, fromAccount, permissionTime,permissionId, signList, token, amount, privateKey,decimals, ownerOption, activeOption, errmessage} = this.state;
-    console.log('errmessage',errmessage)
     tokenBalances = _(tokenBalances)
         .filter(tb => tb.balance > 0)
         .filter(tb => tb.map_token_id > 0 || tb.map_token_id == '_')

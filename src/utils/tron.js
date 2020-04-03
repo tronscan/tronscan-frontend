@@ -1,4 +1,5 @@
 import {FormattedNumber} from "react-intl";
+import { cloneDeep } from 'lodash'
 import React from "react";
 
 export const tronAddresses = [
@@ -60,6 +61,10 @@ export async function transactionResultManagerSun(transaction, sunWeb) {
 export async function transactionMultiResultManager(unSignTransaction, tronWeb, permissionId, permissionTime, HexStr) {
     //set transaction expiration time (1H-24H)
     const newTransaction = await tronWeb.transactionBuilder.extendExpiration(unSignTransaction, (3600*permissionTime-60));
+    if(unSignTransaction.extra){
+      newTransaction.extra = unSignTransaction.extra;
+    }
+   
     //sign transaction
     const signedTransaction = await tronWeb.trx.multiSign(newTransaction, tronWeb.defaultPrivateKey , permissionId).catch(e => {
         console.log('e',e)

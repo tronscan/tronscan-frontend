@@ -180,6 +180,17 @@ class Transactions extends React.Component {
         }
       },
       {
+        title: upperFirst(intl.formatMessage({id: 'status'})),
+        dataIndex: 'confirmed',
+        key: 'confirmed',
+        align: 'left',
+        className: 'ant_table',
+        width: '15%',
+        render: (text, record, index) => {
+        return  text ? <span><img style={{ width: "20px", height: "20px" }} src={require("../../images/contract/Verified.png")}/> {tu('full_node_version_confirmed')}</span> : <span><img style={{ width: "20px", height: "20px" }} src={require("../../images/contract/Unverified.png")}/> {tu('full_node_version_unconfirmed')}</span>
+        }
+      },
+      {
         title: upperFirst(intl.formatMessage({id: 'age'})),
         dataIndex: 'timestamp',
         key: 'timestamp',
@@ -288,7 +299,7 @@ class Transactions extends React.Component {
         }
       },
       {
-        title: upperFirst(intl.formatMessage({id: 'trc20_my_trans_header_status'})),
+        title: upperFirst(intl.formatMessage({id: 'result'})),
         dataIndex: 'rejected',
         key: 'rejected',
         align: 'left',
@@ -296,11 +307,11 @@ class Transactions extends React.Component {
         render: (text, record, index) => {
           return <span>
               {
-                  text?<img style={{width: '20px', height: '20px'}} src={require("../../images/contract/Unverified.png")}/>:<img style={{width: '20px', height: '20px'}} src={require("../../images/contract/Verified.png")}/>
+                  text?'FAIL':'SUCCESS'
               }
+              
           </span>
         }
-      
       },
       {
         title: upperFirst(intl.formatMessage({id: 'amount'})),
@@ -360,21 +371,22 @@ class Transactions extends React.Component {
           <div className="d-flex justify-content-between w-100"  style={{position: "absolute", left: 0, top: '-28px'}}>
             {(total && contract && isinternal)? <div className="d-flex align-items-center">
                 <i class="fas fa-exclamation-circle mr-2" style={{color:"#999999"}}></i><span className="flex-1" style={{width: '700px'}}>{tu('interTrx_tip_contract')}</span>
-            </div>: ''}
-              {
-                  !isBlock ?  <DateSelect onDateOk={(start,end) => this.onDateOk(start,end)} dataStyle={{marginTop: '-1.6rem'}}/>:''
-              }
+            </div>: ''
+            }
+
+            {
+                !isBlock ?  <DateSelect onDateOk={(start,end) => this.onDateOk(start,end)} dataStyle={{marginTop: '-1.6rem'}}/>:''
+            }
 
           </div>
-          {!loading && <TotalInfo total={total} isQuestionMark={!isBlock} rangeTotal={rangeTotal} typeText={(contract && isinternal)? "inter_contract_unit" : "transactions_unit"} common={!address} top={(!contract)? '-28px': '10px'} selected/>}
-          
+            {!loading && <TotalInfo total={total} isQuestionMark={!isBlock} rangeTotal={rangeTotal} typeText={(contract && isinternal)? "inter_contract_unit" : "transactions_unit"} common={!address} top={(!contract)? '-28px': '10px'} selected/>}
           {
-              (!loading && transactions.length === 0)?
-                  <div className="p-3 text-center no-data">{tu("no_transactions")}</div>:
-                  <SmartTable bordered={true} loading={loading} column={column} data={transactions} total={rangeTotal> 2000? 2000: rangeTotal}
-                              onPageChange={(page, pageSize) => {
-                                  this.loadTransactions(page, pageSize)
-                              }}/>
+            (!loading && transactions.length === 0)?
+              <div className="p-3 text-center no-data">{tu("no_transactions")}</div>:
+              <SmartTable bordered={true} loading={loading} column={column} data={transactions} total={rangeTotal> 2000? 2000: rangeTotal}
+              onPageChange={(page, pageSize) => {
+                this.loadTransactions(page, pageSize)
+              }}/>
           }
 
         </div>

@@ -2,6 +2,9 @@
 import {
     lang19Q4
 } from './versionLang/lang19Q4/ru19Q4'; /* 2019Q4 */
+import {
+  lang20Q1
+} from './versionLang/lang20Q1/ru.js'; /* 2020Q1 */
 export const messages = {
     /*
   ##################################################################################
@@ -118,6 +121,7 @@ export const messages = {
   ##################################################################################
   */
   "blockchain": "Блокчейн",
+  "newblock":"Блокчейн",
   "wallet": "Кошелек",
   "home": "Главная",
   "transfers": "Переводы",
@@ -1547,17 +1551,27 @@ export const messages = {
   "propose_18": "Предлагается изменить общий предел энергии",
   "propose_18_1": "Предлагается изменить общий предел энергии",
   "propose_19": "Предлагается разрешить передачу токена TRC-10 в смарт-контрактах",
-  "propose_20": "Текущий предел энергии",
+  "propose_20": "Предложение изменить общий предел энергии",
   "propose_21": "Предлагаем разрешить инициирование мульти-подписи",
   "propose_22": "Предложить адаптивную корректировку общей энергии",
   "propose_23": "Целевой предел энергии",
   "propose_24": "Средний предел энергии",
   "propose_25": "Плата за обновление разрешения учетной записи",
   "propose_26": "Предлагаю изменить плату за мультиподпись",
-  "propose_27": "Propose to enable protocol optimization",
-  "propose_28": "Propose to support the new features of TRON Virtual Machine 0.5.4",
-  "propose_30":"Propose to support the decentralized vote dividend",
-  "propose_31": "Propose to modify the block voting rewards given to the top 27 SRs and the following 100 partners",
+  "propose_27": "Предложение включить оптимизацию протокола",
+  "propose_28": "Предложение разрешить TVM поддерживать Константинополь обновление",
+  "propose_28_1":"Предложение изменить комиссию за анонимную транзакцию",
+  "propose_29": "Предложение разрешить анонимные транзакции",
+  "propose_29_1":"Предложение изменить адаптивный множитель лимита ресурса",
+  "propose_30":"Предложение поддержать децентрализованное голосование дивидендов",
+  "propose_31": "Предложение изменить награды за голосование за блок, которые получили топ 27 SR и следующие 100 партнеров",
+  "propose_32": "Предложение разрешить TVM поддержку Solidity 0.5.9",
+  "propose_33": "Предложение изменить лимит целевого коэффициента адаптивных ресурсов",
+  "propose_34": "Предложение изменить комиссию за транзакцию при создании публичного адреса при переводе средств с анонимных адресов на публичные адреса в анонимных транзакцих",
+  "propose_35": "Предложение запретить передачу токенов TRX и TRC10 в смарт-контракты через TransferContract  или TransferAssetContract",
+  "propose_prohibit":"запрет",
+  "propose_not_prohibit":"не бан",
+  "propose_unprohibit":"не бан",
   "propose_minute": "мин",
   "propose_unactivate": "Не активирован",
   "propose_not_allowed": "Не разрешено",
@@ -1957,7 +1971,7 @@ export const messages = {
  */
   "ledger_user_guide": "Руководство по использованию Ledger",
   "latest_version_chrome": "Обновите Сhrome до последней версии",
-  "ledger_support_version": "Поддерживаемая версия Ledger: 0.1.1., Поддерживаемая версия Chrome 73.0",
+  "ledger_support_version": "Поддерживаемая версия Ledger: 0.1.6, Поддерживаемая версия Chrome 80.0",
   "ledger_you_can": "Вы можете посетить",
   "ledger_website": " Ledger веб-сайт ",
   "ledger_website_download": "Загрузите и обновите последнюю версию Ledger",
@@ -2261,13 +2275,14 @@ export const messages = {
   "sun_propose_6": "Управлять включением/выключением стимула для witness на сайдчейн",
   "sun_propose_7": "Метрики распределения стимулирующего пула сайдчейн",
   "sun_propose_8": "Коэффициент прибыли witness на сайдчейн",
+  sun_propose_12: "Propose to allow DAppChain 1.0.2 upgrade",
   "day":"день",
 
 
   "developers_username": "username",
-  "developers_current_year":"total points",
-  "developers_current_quarter": "quarter's points",
-  "developers_current_month":"month's points",
+  "developers_current_year":"Total points",
+  "developers_current_quarter": "Last quarter points",
+  "developers_current_month":"Last month points",
   "developers_view_points":"View Points Details",
   "developers_points_details": "Points details",
   "developers_contribution_link":"Contribution content corresponding link",
@@ -2324,7 +2339,7 @@ export const messages = {
   "SR_rank": "ранжирование",
   "SR_blocksMissed": "Пропущено блоков",
   "SR_votes": "Голоса",
-  "SR_voteRatio": "Соотношение голосов",
+  "SR_voteRatio": "Voting sharing ratio",
   "SR_normal":"Обычный",
   "SR_avnormal":"ненормальный",
   /*
@@ -2461,5 +2476,6 @@ export const messages = {
 "address_get_bandwith":"Для Пропускной Способности",
 "address_freeze_owner":"Для вашего аккаунта ",
 "address_freeze_other":"Для другого аккаунта(ов)",
-...lang19Q4
+...lang19Q4,
+...lang20Q1
 };

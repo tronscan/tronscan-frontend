@@ -2,6 +2,9 @@
 import {
     lang19Q4
 } from './versionLang/lang19Q4/ja19Q4'; /* 2019Q4 */
+import {
+  lang20Q1
+} from './versionLang/lang20Q1/ja'; /* 2020Q1 */
 export const messages = {
     /*
   ##################################################################################
@@ -118,6 +121,7 @@ export const messages = {
   ##################################################################################
   */
   "blockchain": "ブロックチェーン",
+  "newblock":"ブロックチェーン",
   "wallet": "ウォレット",
   "home": "ホーム",
   "transfers": "振替",
@@ -1532,18 +1536,28 @@ export const messages = {
   "propose_18": "総エネルギー上限の編集を提議します",
   "propose_18_1": "総エネルギー上限の編集を提議します",
   "propose_19": "スマート・コントラクトをTRC10トークンに切り替えようと提議します",
-  "propose_20": "現在のエネルギー上限",
+  "propose_20": "総エネルギー電流制限の変更を提案する",
   "propose_21": "複数署名機能を許可することを提案する",
   "propose_22": "エネルギー総額を自動的に調整することを提案する",
   "propose_23": "目標エネルギーの使用上限",
   "propose_24": "平均エネルギー上限",
   "propose_25": "アカウント権限を更新する費用",
   "propose_26": "複数署名を変更することを提案する",
-  "propose_27": "Propose to enable protocol optimization",
-  "propose_28": "Propose to support the new features of TRON Virtual Machine 0.5.4",
-  "propose_30":"Propose to support the decentralized vote dividend",
-  "propose_31": "Propose to modify the block voting rewards given to the top 27 SRs and the following 100 partners",
-  "propose_minute": "min",
+  "propose_27": "プロトコルの最適化を有効にすることを提案する",
+  "propose_28": "TVMがコンスタンチノープルのアップグレードをサポートできるようにすることを提案する",
+  "propose_28_1":"シールドされた取引手数料の変更を提案する",
+  "propose_29": "シールドされたトランザクションを許可することを提案する",
+  "propose_29_1": "適応リソース制限乗数の変更を提案する",
+  "propose_30": "分散投票の配当をサポートすることを提案する",
+  "propose_31": "上位27のSRと次の100のパートナーに与えられたブロック投票の報酬を変更することを提案する",
+  "propose_32": "TVMが堅牢性0.5.9をサポートできるようにすることを提案する",
+  "propose_33": "適応リソース制限の目標比率の変更を提案する",
+  "propose_34": "シールドトランザクションでシールドアドレスからパブリックアドレスに資金を移動する際にパブリックアドレスを作成する際のトランザクション料金を変更することを提案する",
+  "propose_35": "TransferContractまたはTransferAssetContractを介したTRXおよびTRC10トークンのスマートコントラクトへの転送を禁止することを提案する",
+  "propose_prohibit":"禁止",
+  "propose_not_prohibit":"禁止しない",
+  "propose_unprohibit":"禁止しない",
+  "propose_minute": "分",
   "propose_unactivate": "開かない",
   "propose_not_allowed": "不許可です",
   "propose_allowed": "許可する",
@@ -1952,7 +1966,7 @@ export const messages = {
   */
   "ledger_user_guide": "Ledgerご利用のガイド",
   "latest_version_chrome": "最新バージョンのChromeご利用をお薦めします",
-  "ledger_support_version": "Ledgerサポートできるバージョン:0.1.1、Chromeサポートできるバージョン73.0",
+  "ledger_support_version": "Ledgerサポートできるバージョン:0.1.6、Chromeサポートできるバージョン80.0",
   "ledger_you_can": "あなたは行くことができます",
   "ledger_website": "Ledgerの公式サイト",
   "ledger_website_download": "最新の元帳バージョンをダウンロードして更新する",
@@ -2253,12 +2267,13 @@ export const messages = {
   "sun_propose_6": "サイドチェーン witnessインセンティブスイッチがデフォルトではオフとなります",
   "sun_propose_7": "サイドチェーンインセンティブ奨金プールの分配パラメーター",
   "sun_propose_8": "サイドチェーンの収益はインセンティブ奨金プールで蓄積された割合",
+  sun_propose_12: "Propose to allow DAppChain 1.0.2 upgrade",
   "day":"日",
 
   "developers_username": "username",
-  "developers_current_year":"total points",
-  "developers_current_quarter": "quarter's points",
-  "developers_current_month":"month's points",
+  "developers_current_year":"Total points",
+  "developers_current_quarter": "Last quarter points",
+  "developers_current_month":"Last month points",
   "developers_view_points":"View Points Details",
   "developers_points_details": "Points details",
   "developers_contribution_link":"Contribution content corresponding link",
@@ -2452,5 +2467,6 @@ export const messages = {
 "address_get_bandwith":"帯域幅を取得するには",
 "address_freeze_owner":"自分に固定する",
 "address_freeze_other":"他人に固定する",
-...lang19Q4
+...lang19Q4,
+...lang20Q1
 }

@@ -3,12 +3,12 @@ import { tu } from "../../utils/i18n";
 import { injectIntl } from "react-intl";
 import { loadTransactions } from "../../actions/blockchain";
 import { connect } from "react-redux";
-import { TronLoader } from "../common/loaders";
+//import { TronLoader } from "../common/loaders";
 import { Truncate } from "../common/text";
-import { TRXPrice } from "../common/Price";
+//import { TRXPrice } from "../common/Price";
 import { AddressLink, TransactionHashLink } from "../common/Links";
 // import TimeAgo from "react-timeago";
-import moment from "moment";
+//import moment from "moment";
 import { Link } from "react-router-dom";
 import { withTimers } from "../../utils/timing";
 import "react-perfect-scrollbar/dist/css/styles.css";
@@ -32,7 +32,7 @@ class RecentTransfers extends Component {
     this.props.loadTransactions();
     this.props.setInterval(() => {
       this.props.loadTransactions();
-    }, 10000);
+    }, 3000);
   }
 
   render() {

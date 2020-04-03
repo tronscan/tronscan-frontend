@@ -12,9 +12,12 @@ import { connect } from "react-redux";
 import {
   API_URL,
   ONE_TRX,
+  ONE_USDJ,
   CONTRACT_ADDRESS_USDT,
   CONTRACT_ADDRESS_WIN,
   CONTRACT_ADDRESS_GGC,
+  CONTRACT_ADDRESS_USDJ,
+  CONTRACT_ADDRESS_JED,
   IS_MAINNET
 } from "../../../constants";
 
@@ -110,7 +113,26 @@ export function Information({ token: tokens, priceUSD }) {
       name: "token_price_new",
       content: (
         <div className="d-flex ">
-          {token["market_info"] ? (
+          {
+            token.contract_address == CONTRACT_ADDRESS_USDJ &&
+            <div className="d-flex price-info">
+            { ONE_USDJ.toFixed(6)} USD&nbsp;
+            <span className="token-price-trx">
+              ≈ {(ONE_USDJ/priceUSD).toFixed(6)} TRX
+            </span>
+          </div> 
+          }
+          {
+            token.contract_address == CONTRACT_ADDRESS_JED &&
+            <div className="d-flex price-info">
+            { (ONE_USDJ/100).toFixed(6)} USD&nbsp;
+            <span className="token-price-trx">
+              ≈ {((ONE_USDJ/100)/priceUSD).toFixed(6)} TRX
+            </span>
+          </div> 
+          }
+
+          { ((token.contract_address != CONTRACT_ADDRESS_USDJ || token.contract_address != CONTRACT_ADDRESS_JED)  && token["market_info"]) ? (
             <div className="d-flex price-info">
               {token["priceToUsd"].toFixed(6)} USD&nbsp;
               <span className="token-price-trx">
@@ -145,9 +167,17 @@ export function Information({ token: tokens, priceUSD }) {
                 {tu("token_trade")}
               </Link>
             </div>
-          ) : (
-            defaultContent
-          )}
+          
+            ) : (
+                <div>
+                  {
+                    (token.contract_address == CONTRACT_ADDRESS_USDJ || token.contract_address == CONTRACT_ADDRESS_JED) ?
+                    ""
+                    :defaultContent
+                  }
+                </div>
+              )
+          }
         </div>
       )
     },
@@ -179,7 +209,7 @@ export function Information({ token: tokens, priceUSD }) {
       content: (
         <div className="d-flex" style={{ justifyContent: "space-between" }}>
           {tu(`token_rules_${Number(token.level > 100 ? 2 : token.level) || 0}`)}
-          {/* <Link to="/tokens/rating-rule">{tu("token_credit_rating_rule")}</Link> */}
+          <Link to="/tokens/rating-rule">{tu("token_credit_rating_rule")}</Link>
         </div>
       )
     }

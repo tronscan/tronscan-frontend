@@ -8,7 +8,7 @@ import {ONE_TRX} from "../../constants";
 import {TRXPrice} from "../common/Price";
 import {AddressLink, TransactionHashLink} from "../common/Links";
 // import TimeAgo from "react-timeago";
-import moment from 'moment';
+//import moment from 'moment';
 import {Link} from "react-router-dom";
 import {withTimers} from "../../utils/timing";
 import BlockTime from '../common/blockTime'

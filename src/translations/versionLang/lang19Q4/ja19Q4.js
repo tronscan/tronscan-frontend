@@ -65,7 +65,7 @@ export const lang19Q4 = {
     "token_rating_rule_title_p1_title": "Unknown",
     "token_rating_rule_title_p1": "Unknown is set as the default reputation for a newly added token. A token will be classified as unknown if no updates but mandatory information is provided after a successful token issuance. Mandatory information includes the token name, token abbreviation, token overview, total supply, decimals and issuer; for TRC20 tokens, information on the contract, time of contract creation and contract creator should also be provided.     ",
     "token_rating_rule_title_p2_title": "Neutral",
-    "token_rating_rule_title_p2": "Tokens assessed as neutral have their information added or updated after a successful token issuance. The information includes: official website, logo, email address, GitHub address, white paper address and social profile link(s).   ",
+    "token_rating_rule_title_p2": "Tokens assessed as neutral have their information added or updated after a successful token issuance. The information includes: official website, logo, white paper address and social profile link(s).",
     "token_rating_rule_title_p3_title": "OK",
     "token_rating_rule_title_p3": "Tokens listed and openly traded on POLONIDEX will be given the OK reputation.   ",
     "token_rating_rule_title_p3_1": "Please apply through TRONSCAN for listing tokens on POLONIDEX. Before you submit the request, note:   ",
@@ -289,4 +289,26 @@ export const lang19Q4 = {
    "Supply_amount_net_new_tip":"TRX生成 + TRX破壊",
    "votes_num":"投票",
 
+   /*
+        ##################################################################################
+        #                                                                                #
+        # txns type chart  2020-01-09                           #
+        #                                                                                #
+        ##################################################################################
+    */
+   "txns_contract_calls":"コントラクト調達数",
+   "txns_TRX_transfers":"TRXの振替数",
+   "txns_TRC10_transfers":"TRC10の振替数",
+   "txns_frozen_transactions":"凍結した取引数",
+   "txns_votes_transactions":"投票数",
+   "txns_other_transactions":"その他の取引数",
+   "txns_shielded_transactions":"匿名取引",
+   "chart_network_resources":"ネットワークリソース",
+   "chart_active_accounts":"ネットワーク",
+   "chart_network":"ネットワーク",
+
+    // account tab transfers transactions  internal-transactions
+    "account_tab_transactions_token_info":"如果交易中不包含通证信息，则展示“—”"
+
+  
 }

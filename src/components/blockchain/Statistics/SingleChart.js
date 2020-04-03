@@ -9,6 +9,7 @@ import {tronAddresses} from "../../../utils/tron";
 import {TronLoader} from "../../common/loaders";
 import PieReact from "../../common/PieChart";
 import LineReact from "../../common/LineChart";
+import {BigNumber} from 'bignumber.js'
 import {cloneDeep} from "lodash";
 import {tu} from "../../../utils/i18n";
 import CountUp from 'react-countup';
@@ -35,6 +36,7 @@ import {
     ContractInvocationDistributionChart,
     EnergyConsumeDistributionChart,
     OverallFreezingRateChart,
+    LineTxOverviewStatsType,
 } from "../../common/LineCharts";
 
 import {
@@ -60,6 +62,7 @@ class Statistics extends React.Component {
             blockStats: null,
             transactionValueStats: null,
             txOverviewStats: null,
+            txOverviewStatsType:null,
             txOverviewStatsFull: null,
             addressesStats: null,
             blockSizeStats: null,
@@ -95,6 +98,11 @@ class Statistics extends React.Component {
             OverallFreezingRateParams:{
                 start_day:'2019-12-01',
                 end_day:'2019-12-12'
+            },
+            energyConsumeDataTop:{
+                freezingEnergy:0,
+                burningEnergy:0,
+                userBurningEnergy:0
             }
         };
     }
@@ -137,9 +145,16 @@ class Statistics extends React.Component {
             case 'OverallFreezingRate':
                 this.loadOverallFreezingRate();
                 break;   
+            case 'txOverviewStatsType':
+                this.loadTxOverviewStatsType();
+                break;       
+            case 'txOverviewStats':
+                this.loadTxOverviewStats();
+                break;
             default:
                 this.loadTxOverviewStats();
                 break;
+
         }
     }
 
@@ -179,11 +194,41 @@ class Statistics extends React.Component {
             {value: funds.turnOver, name: 'circulating_supply', selected: true,sliced: true},
             {value: funds.fundTrx, name: 'total_frozen', selected: false,sliced: false},
         ]
-        let eurURL = encodeURI(`https://api.coinmarketcap.com/v1/ticker/tronix/?convert=EUR`);
-        let trxPriceData = await xhr.get(`${API_URL}/api/system/proxy?url=${eurURL}`);
-        let priceUSD = ((parseFloat(trxPriceData.data[0].price_usd))*1000).toFixed(2);
-        let priceBTC = ((parseFloat(trxPriceData.data[0].price_btc))*1000).toFixed(5)
-        let marketCapitalization = ((parseFloat(trxPriceData.data[0].price_usd)*(funds.totalTurnOver))).toFixed(2);
+        // cmc change api
+        let btcURL =  encodeURI(
+            `https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=TRX&convert=BTC`
+        );
+        let usdURL = encodeURI(
+            `https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=TRX&convert=USD`
+        );
+        var { data: {data:dataBTC} } = await xhr.post(
+            `${API_URL}/api/system/proxy`,
+            {
+              url:btcURL
+            }
+          );
+        var { data: {data:dataUSD} } = await xhr.post(
+            `${API_URL}/api/system/proxy`,
+            {
+                url:usdURL
+            }
+        );
+
+        let priceUSD,marketCapitalization
+        if(dataUSD){
+            priceUSD = (parseFloat(dataUSD.TRX.quote.USD.price)*1000).toFixed(2);  
+            marketCapitalization = (dataUSD.TRX.quote.USD.price*(funds.totalTurnOver)).toFixed(2);
+        }else{
+            priceUSD = 0
+        }
+        let priceBTC;
+        if(dataBTC){
+            let  x = new BigNumber(dataBTC.TRX.quote.BTC.price); 
+            priceBTC = x.multipliedBy(1000).toFixed(5);
+        }else{
+            priceBTC = 0
+        }
+        
         this.setState({
             supplyTypesChart: supplyTypesChartData,
             genesisNum:intl.formatNumber(funds.genesisBlockIssue),
@@ -200,50 +245,6 @@ class Statistics extends React.Component {
         });
     }
 
-    // async loadTotalTRXSupply(){
-    //     let {intl} = this.props;
-    //     let TronicsSupportPlanTotal = Math.abs((48051405879291 + 47301714286684 + 43765311477181 +  43778265726411 + 40084942291066 + 30849150245777 + 26800712361681 ) / ONE_TRX).toFixed(2);
-    //     let random = Math.random();
-    //     let balanceData = await xhr.get(`${API_URL}/api/fund?random="${random}&page_index=1&per_page=1`);
-    //     let TRONFoundationTotal = balanceData.data.data.total/ONE_TRX - TronicsSupportPlanTotal;
-    //     let {blocks} = await Client.getBlocks({
-    //         limit: 1,
-    //         sort: '-number',
-    //     });
-    //     let blockHeight = blocks[0] ? blocks[0].number : 0;
-    //     let nodeRewardsNum = blockHeight * 16;
-    //     let blockProduceRewardsNum = blockHeight * 32;
-    //     let address = await Client.getAddress('TLsV52sRDL79HXGGm9yzwKibb6BeruhUzy');
-    //     let startFeeBurnedNum = Math.abs(-9223372036854.775808)
-    //     let feeBurnedNum = (startFeeBurnedNum - Math.abs(address.balance / ONE_TRX)).toFixed(2);
-    //     let genesisNum = 100000000000;
-    //     let independenceDayBurned = 1000000000;
-    //     let currentTotalSupply = genesisNum + blockProduceRewardsNum + nodeRewardsNum - independenceDayBurned - feeBurnedNum;
-    //     let circulatingNum = (currentTotalSupply  - TRONFoundationTotal).toFixed(2);
-    //     let supplyTypesChartData = [
-    //         {value: circulatingNum, name: 'circulating_supply', selected: true,sliced: true},
-    //         {value: TRONFoundationTotal, name: 'total_frozen', selected: false,sliced: false},
-    //
-    //     ]
-    //     let trxPriceData = await xhr.get(`https://api.coinmarketcap.com/v1/ticker/tronix/?convert=EUR`);
-    //     let priceUSD = ((parseFloat(trxPriceData.data[0].price_usd))*1000).toFixed(2);
-    //     let priceBTC = ((parseFloat(trxPriceData.data[0].price_btc))*1000).toFixed(5);
-    //     let marketCapitalization = ((parseFloat(trxPriceData.data[0].price_usd)*currentTotalSupply)).toFixed(2);
-    //     this.setState({
-    //         supplyTypesChart: supplyTypesChartData,
-    //         genesisNum:intl.formatNumber(genesisNum),
-    //         blockProduceRewardsNum:intl.formatNumber(blockProduceRewardsNum),
-    //         nodeRewardsNum:intl.formatNumber(nodeRewardsNum),
-    //         independenceDayBurned:intl.formatNumber(independenceDayBurned),
-    //         feeBurnedNum:intl.formatNumber(feeBurnedNum),
-    //         currentTotalSupply:currentTotalSupply,
-    //         priceUSD:priceUSD,
-    //         priceBTC:priceBTC,
-    //         marketCapitalization:marketCapitalization,
-    //         foundationFreeze:intl.formatNumber(TRONFoundationTotal),
-    //         circulatingNum:intl.formatNumber(circulatingNum)
-    //     });
-    // }
     async loadPieChart(){
         let {intl} = this.props;
         let {statisticData} = await Client.getStatisticData()
@@ -336,7 +337,6 @@ class Statistics extends React.Component {
                         date: pr[0].time * 1000,
                         increment: pr[0].close
                     }],
-
             }
         });
     }
@@ -500,6 +500,114 @@ class Statistics extends React.Component {
         });
     }
 
+    async loadTxOverviewStatsType() {
+        let { txOverviewStats } = await Client.getTxOverviewStatsAll();
+        
+
+        let temp = [];
+        let addressesTemp = [];
+        let blockSizeStatsTemp = [];
+        let blockchainSizeStatsTemp = [];
+        // for (let txs in txOverviewStats) {
+        //     let tx = parseInt(txs);
+        //     if (tx === 0) {
+        //         temp.push({
+        //             avgBlockSize: txOverviewStats[tx].avgBlockSize,
+        //             avgBlockTime: txOverviewStats[tx].avgBlockTime,
+        //             blockchainSize: txOverviewStats[tx].blockchainSize,
+        //             date: txOverviewStats[tx].date,
+        //             newAddressSeen: txOverviewStats[tx].newAddressSeen,
+        //             newBlockSeen: txOverviewStats[tx].newBlockSeen,
+        //             newTransactionSeen: txOverviewStats[tx].newTransactionSeen,
+        //             totalAddress: txOverviewStats[tx].totalAddress,
+        //             totalBlockCount: txOverviewStats[tx].totalBlockCount,
+        //             totalTransaction: txOverviewStats[tx].totalTransaction,
+        //             newtotalTransaction:txOverviewStats[tx].totalTransaction,
+        //             newtotalAddress:txOverviewStats[tx].totalAddress,
+        //             newtotalBlockCount:txOverviewStats[tx].totalBlockCount,
+        //         })
+        //         addressesTemp.push({
+        //             date: txOverviewStats[tx].date,
+        //             total: txOverviewStats[tx].newAddressSeen,
+        //             increment: txOverviewStats[tx].newAddressSeen,
+        //         });
+        //     }
+        //     else {
+        //         temp.push({
+        //             date: txOverviewStats[tx].date,
+        //             totalTransaction: (txOverviewStats[tx].totalTransaction - txOverviewStats[tx - 1].totalTransaction),
+        //             avgBlockTime: txOverviewStats[tx].avgBlockTime,
+        //             avgBlockSize: txOverviewStats[tx].avgBlockSize,
+        //             totalBlockCount: (txOverviewStats[tx].totalBlockCount - txOverviewStats[tx - 1].totalBlockCount),
+        //             newAddressSeen: txOverviewStats[tx].newAddressSeen,
+        //             newtotalTransaction:txOverviewStats[tx].totalTransaction,
+        //             newtotalAddress:txOverviewStats[tx].totalAddress,
+        //             newtotalBlockCount:txOverviewStats[tx].totalBlockCount,
+        //         });
+        //         addressesTemp.push({
+        //             date: txOverviewStats[tx].date,
+        //             total: txOverviewStats[tx].totalAddress,
+        //             increment: txOverviewStats[tx].newAddressSeen
+        //         });
+        //     }
+        //     blockSizeStatsTemp.push({
+        //         date: txOverviewStats[tx].date,
+        //         avgBlockSize: txOverviewStats[tx].avgBlockSize
+        //     });
+        //     blockchainSizeStatsTemp.push({
+        //         date: txOverviewStats[tx].date,
+        //         blockchainSize: txOverviewStats[tx].blockchainSize
+        //     });
+        // }
+        txOverviewStats.map((item, index) => {
+            item.newTransactionSeen_num = item.newTransactionSeen?item.newTransactionSeen:0;
+            item.triggers_num = item.newTrigger?item.newTrigger:0;
+            item.trx_transfer_num = item.trx_transfer?item.trx_transfer:0;
+            item.trc10_transfer_num = item.trc10_transfer?item.trc10_transfer:0;
+            item.freeze_transaction_num = item.freeze_transaction?item.freeze_transaction:0;
+            item.vote_transaction_num = item.vote_transaction?item.vote_transaction:0;
+            item.other_transaction_num = item.other_transaction?item.other_transaction:0;
+            item.shielded_transaction_num = item.shielded_transaction?item.shielded_transaction:0;
+        })
+       
+        this.setState({
+            txOverviewStatsType:  txOverviewStats.slice(0, txOverviewStats.length - 1),
+        });
+
+        function compare (property) {
+            return function (obj1, obj2) {
+
+                if (obj1[property] > obj2[property]) {
+                    return 1;
+                } else if (obj1[property] < obj2[property]) {
+                    return -1;
+                } else {
+                    return 0;
+                }
+
+            }
+        }
+
+        let higest = {date: '', increment: ''};
+        let lowest = {date: '', increment: ''};
+        let tx = cloneDeep(txOverviewStats).sort(compare('newTransactionSeen'));
+  
+        this.setState({
+            summit: {
+                txOverviewStatsType_sort: [
+                    {
+                        date: tx[tx.length - 1].date,
+                        increment: tx[tx.length - 1].newTransactionSeen
+                    },
+                    {
+                        date: tx[0].date,
+                        increment: tx[0].newTransactionSeen
+                    }],
+            }
+        });
+    }
+    
+
     // 获取TRON日能量消耗图表
     async loadEnergyConsumeData() {
         let {data} = await xhr.get(API_URL + "/api/energystatistic");
@@ -574,13 +682,21 @@ class Statistics extends React.Component {
 
         let totle_used_energy = 0
         let used_scale = ''
+        let freezingEnergy = 0
+        let burningEnergy = 0
+        let userBurningEnergy = 0;
 
         data.map((item, index) => {
             item.percent = ((item.total_energy / totalEnergy)*100).toFixed(2) + '%'
             item.index = index+1
             item.name = item.name || '-'
             totle_used_energy += item.total_energy
+            freezingEnergy += Number(item.energy)
+            burningEnergy += Number(item.trx)
+            userBurningEnergy += Number(item.contract_supplied)
         })
+
+        
 
         used_scale = ((totle_used_energy / totalEnergy)*100).toFixed(2) + '%'
 
@@ -591,6 +707,11 @@ class Statistics extends React.Component {
                 total_used_energy: totle_used_energy,
                 scale: used_scale,
                 total_energy: totalEnergy
+            },
+            energyConsumeDataTop:{
+                freezingEnergy,
+                burningEnergy,
+                userBurningEnergy
             }
         });
     }
@@ -702,56 +823,113 @@ class Statistics extends React.Component {
                 title: "#",
                 dataIndex: 'index',
                 key: 'index',
-                width: '60px',
+                width: '5%',
                 align: 'center',
                 render: (text, record, index) => {
-                  return <span>{text}</span>
+                  return <span style={{width:''}}>{text}</span>
                 }
             },
           {
             title: upperFirst(intl.formatMessage({id: 'contract_address'})),
             dataIndex: 'contract_address',
             key: 'contract_address',
+            width: '15%',
             render: (text, record, index) => {
-              return <AddressLink address={text} isContract={true}/>
+            return <Truncate><AddressLink address={text} isContract={true}>{text}</AddressLink></Truncate>
             }
           },
           {
-            title: upperFirst(intl.formatMessage({id: 'contract_name'})),
+            title: () => {
+                let title2 = upperFirst(intl.formatMessage({id: 'contract_name'}))
+                return (
+                  <span className={'th-word-break'}>
+                    {title2}
+                  </span>
+                );
+              },
             dataIndex: 'name',
             key: 'name',
+            width: '15%',
             render: (text, record, index) => {
-              return <span>{text || '-'}</span>
+              return <span style={{wordBreak:'break-all'}}>{text || '-'}</span>
             }
           },
           {
-            title: upperFirst(intl.formatMessage({id: 'total_energy_used'})),
+            title: () => {
+                let title2 = upperFirst(intl.formatMessage({id: 'total_energy_used'}))
+                return (
+                  <span className={'th-word-break'}>
+                    {title2}
+                  </span>
+                );
+              },
+              width: '12%',
             dataIndex: 'total_energy',
             key: 'total_energy',
             render: (text, record, index) => {
-              return <FormattedNumber value={text}/>
+              return <span style={{width:''}}><FormattedNumber value={text}/></span>
             }
           },
           {
-            title: upperFirst(intl.formatMessage({id: 'freezing_energy'})),
+            title: () => {
+                let title2 = upperFirst(intl.formatMessage({id: 'chart_resource_user_freeing'}))
+                return (
+                  <span className={'th-word-break'}>
+                    {title2}
+                  </span>
+                );
+              },
+              width: '12%',
             dataIndex: 'energy',
             key: 'energy',
             render: (text, record, index) => {
-              return <FormattedNumber value={text}/>
+              return <span style={{width:''}}><FormattedNumber value={text}/></span>
             }
           },
           {
-            title: upperFirst(intl.formatMessage({id: 'burning_energy'})),
+            title: () => {
+                let title2 = upperFirst(intl.formatMessage({id: 'chart_resource_user_burning'}))
+                return (
+                  <span className={'th-word-break'}>
+                    {title2}
+                  </span>
+                );
+              },
             dataIndex: 'trx',
             key: 'trx',
+            width: '12%',
             render: (text, record, index) => {
-              return <FormattedNumber value={text}/>
+              return <span style={{width:''}}><FormattedNumber value={text}/></span>
             }
           },
           {
-            title: upperFirst(intl.formatMessage({id: 'energy_scale'})),
+            title: () => {
+                let title2 = upperFirst(intl.formatMessage({id: 'chart_resource_contract_deployer'}))
+                return (
+                  <span className={'th-word-break'}>
+                    {title2}
+                  </span>
+                );
+              },
+            width: '12%',
+            dataIndex: 'contract_supplied',
+            key: 'contract_supplied',
+            render: (text, record, index) => {
+              return <span style={{width:''}}><FormattedNumber value={text || 0}/></span>
+            }
+          },
+          {
+            title: () => {
+                let title2 = upperFirst(intl.formatMessage({id: 'energy_scale'}))
+                return (
+                  <span className={'th-word-break'}>
+                    {title2}
+                  </span>
+                );
+              },
             dataIndex: 'percent',
             key: 'percent',
+            width: '12%',
             render: (text, record, index) => {
               return <span>{text}</span>
             }
@@ -778,7 +956,7 @@ class Statistics extends React.Component {
             dataIndex: 'contract_address',
             key: 'contract_address',
             render: (text, record, index) => {
-              return <AddressLink address={text}/>
+              return <AddressLink address={text} isContract={true}/>
             }
           },
           {
@@ -917,7 +1095,7 @@ class Statistics extends React.Component {
 
     render() {
         let {match, intl} = this.props;
-        let {txOverviewStats, txOverviewStatsFull, 
+        let {txOverviewStats, txOverviewStatsType, txOverviewStatsFull, 
             addressesStats, blockSizeStats, blockchainSizeStats, 
             priceStats, transactionStats, transactionValueStats, 
             blockStats, accounts, volumeStats, pieChart, 
@@ -927,7 +1105,7 @@ class Statistics extends React.Component {
             priceUSD,priceBTC,marketCapitalization,foundationFreeze,
             circulatingNum, energyConsumeData, ContractInvocation,
             ContractInvocationDistribution, ContractInvocationDistributionParams,
-            EnergyConsumeDistribution,OverallFreezingRate } = this.state;
+            EnergyConsumeDistribution,OverallFreezingRate,energyConsumeDataTop } = this.state;
 
         let unit;
         let uploadURL = API_URL + "/api/v2/node/overview_upload";
@@ -936,6 +1114,7 @@ class Statistics extends React.Component {
         let freezing_column = this.freezingCustomizedColumn();
 
         let chartHeight = isMobile? 240: 500
+       
 
         if (match.params.chartName === 'blockchainSizeStats' || match.params.chartName === 'addressesStats') {
             unit = 'increase';
@@ -984,6 +1163,19 @@ class Statistics extends React.Component {
                                         <LineReactHighChartTx source='singleChart' style={{height: chartHeight}}
                                                               data={txOverviewStats} intl={intl}/>
                                 }
+
+                            </div>
+                        }
+                        {
+                            match.params.chartName === 'txOverviewStatsType' &&
+                            <div style={{height: chartHeight}}>
+                                {
+                                    txOverviewStatsType === null ?
+                                        <TronLoader/> :
+                                        <LineTxOverviewStatsType source='singleChart' style={{height: chartHeight}}
+                                                              data={txOverviewStatsType} intl={intl}/>
+                                }
+                                
                             </div>
                         }
                         {
@@ -1164,11 +1356,19 @@ class Statistics extends React.Component {
                                     />
                                     <div className="token_black">
                                     <div className="col-md-12 table_pos">
-                                        <p>{intl.formatMessage({id:'a_total'})+ intl.formatNumber(ContractInvocationDistributionParams.total_energy)+ 
+                                        {/* <p>{intl.formatMessage({id:'a_total'})+ intl.formatNumber(ContractInvocationDistributionParams.total_energy)+ 
                                         intl.formatMessage({id:'energe'})+' ('+ intl.formatMessage({id:'with_the_proportion_of'})+ContractInvocationDistributionParams.scale+
                                             ') '+ intl.formatMessage({id:'uesd_by_the'}) + ContractInvocationDistributionParams.range_type +
                                             intl.formatMessage({id:'contracts_from_the_total_used_of'}) + intl.formatNumber(ContractInvocationDistributionParams.total_used_energy)+
                                             intl.formatMessage({id:'energe'})}
+                                        </p> */}
+                                         <p style={{textAlign:'center'}}>
+                                            {`${upperFirst(intl.formatMessage({id:'total_energy_used'}))}: ${intl.formatNumber(ContractInvocationDistributionParams.total_energy)} ENERGY,
+                                            ${ContractInvocationDistributionParams.range_type} ${intl.formatMessage({id:'chart_energy'})}: ${intl.formatNumber(ContractInvocationDistributionParams.total_used_energy)} ENERGY
+                                            (${intl.formatMessage({id: 'chart_resource_user_freeing'})} ${intl.formatNumber(energyConsumeDataTop.freezingEnergy)} ENERGY,
+                                            ${intl.formatMessage({id: 'chart_resource_user_burning'})} ${intl.formatNumber(energyConsumeDataTop.burningEnergy)} ENERGY,
+                                            ${intl.formatMessage({id: 'chart_resource_contract_deployer'})} ${intl.formatNumber(energyConsumeDataTop.userBurningEnergy)} ENERGY),
+                                            ${upperFirst(intl.formatMessage({id:'energy_scale'}))} ${ContractInvocationDistributionParams.scale}`}
                                         </p>
                                         {( EnergyConsumeDistribution.length === 0)?
                                         <div className="p-3 text-center no-data">{tu("no_data")}</div>
@@ -1352,7 +1552,7 @@ class Statistics extends React.Component {
                                                 </tr>
                                                 <tr>
                                                   <td style={{color:'red'}} className="go-foundation">
-                                                    <Link to="/blockchain/foundation" style={{color:'red',}}>{tu("total_frozen")}</Link>
+                                                    <Link to="/data/foundation" style={{color:'red',}}>{tu("total_frozen")}</Link>
                                                   </td>
                                                   <td>
                                                       {foundationFreeze} TRX

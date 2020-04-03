@@ -3,10 +3,10 @@ import { connect } from "react-redux";
 import xhr from "axios/index";
 import { injectIntl } from "react-intl";
 import { doSearch, getSearchType } from "../../services/search";
-import CountUp from "react-countup";
+//import CountUp from "react-countup";
 import { Client, Client20 } from "../../services/api";
-import { Link } from "react-router-dom";
-import { TRXPrice } from "../common/Price";
+//import { Link } from "react-router-dom";
+//import { TRXPrice } from "../common/Price";
 import RecentBlocks from "./RecentBlocks";
 import { KEY_ENTER } from "../../utils/constants";
 import { withTimers } from "../../utils/timing";
@@ -14,7 +14,7 @@ import isMobile from "../../utils/isMobile";
 import RecentTransfers from "./RecentTransfers";
 import { tu } from "../../utils/i18n";
 import { toastr } from "react-redux-toastr";
-import { HrefLink } from "../common/Links";
+//import { HrefLink } from "../common/Links";
 import { TronLoader } from "../common/loaders";
 import {
   LineReactHighChartAdd,
@@ -22,10 +22,15 @@ import {
   LineReactHighChartHomeAddress,
   LineReactHighChartHomeTx
 } from "../common/LineCharts";
-import { API_URL, IS_MAINNET } from "../../constants";
+import { API_URL, IS_MAINNET ,uuidv4} from "../../constants";
 import { setWebsocket } from "../../actions/account";
 import Lockr from "lockr";
 import PaneGroup from "./PaneGroup";
+import {
+  getPerformanceTiming,
+  getPerformanceTimingEntry
+} from "../../utils/DateTime";
+import ApiClientMonitor from '../../services/monitor'
 
 @connect(
   state => {
@@ -78,6 +83,25 @@ export default class Home extends Component {
       },
       newNotice: [" ", " ", " "]
     };
+  }
+  async componentWillMount() {
+    window.performance.mark("start2");
+
+    var measure5  =-1;
+    if (performance.navigation.type == 1) {
+      performance.measure(
+        "mySetTimeout5",
+        "start",
+        "start2"
+      )
+      var measures5 = window.performance.getEntriesByName("mySetTimeout5");
+      measure5 = measures5[0].duration;
+      this.MonitoringParameters3(measure5);
+      //window.performance.getEntries();
+    
+
+      
+    } 
   }
 
   async loadNodes() {
@@ -360,6 +384,9 @@ export default class Home extends Component {
     const data = await Client20.getTRONNotice(intl.locale, { page: 3 });
     // intl.locale == "zh"? data.articles.unshift(noticezhIEO):data.articles.unshift(noticeenIEO);
     this.setState({ notice: data.articles });
+
+    this.MonitoringParameters();
+
   }
 
   async componentDidUpdate(prevProps) {
@@ -448,7 +475,7 @@ export default class Home extends Component {
       <main className="home pb-0">
         {/* <i className="main-icon-left"></i>
           <i className="main-icon-right"></i> */}
-        <div className="container-fluid position-relative d-flex pt-1 pt-md-4 mx-auto flex-column">
+        <div className={isMobile ? "container-fluid position-relative d-flex pt-1 pt-md-4 mx-auto flex-column" : "container-fluid position-relative d-flex  mx-auto flex-column"}>
           {/*<div ref={(el) => this.$ref = el} style={{*/}
           {/*zIndex: 0,*/}
           {/*left: 0,*/}
@@ -457,17 +484,23 @@ export default class Home extends Component {
           {/*bottom: 0,*/}
           {/*}} className="position-absolute"/>*/}
 
-          <div className="container home-splash p-0 p-md-3">
+          <div
+            className={
+              isMobile
+                ? "container home-splash p-0 p-md-3"
+                : "container pc-home-splash p-0 p-md-3"
+            }
+          >
             {IS_MAINNET ? (
               <div className="row justify-content-center text-center">
-                <div className="col-12 exchange">
-                  <div className="notice">
+                <div className="col-12 exchange noticeNews">
+                  <div className="notice notice-new-style">
                     <img
                       src={require("../../images/announcement-logo.png")}
                       alt=""
                     />
 
-                    <div className="notice-wrap">
+                    <div className="notice-wrap ">
                       {this.state.notice.length == 0
                         ? this.state.newNotice.map((v, i) => (
                             <a className="item" key={i}>
@@ -505,35 +538,6 @@ export default class Home extends Component {
                       </a>
                     ) : null}
                   </div>
-                  {/*<p className="mt-5 mt-5-logo">*/}
-                  {/*<img src={this.getLogo()}*/}
-                  {/*className="animated ad-600ms zoomIn"/>*/}
-                  {/*</p>*/}
-                  {/*<h2 className="mb-5 text-muted animated fadeIn ad-1600ms" style={{fontSize: 32}}>*/}
-                  {/*{tu("tron_main_message")}*/}
-                  {/*</h2>*/}
-                  {/*
-                    <div className={
-                      "input-group input-group-lg mb-4" +
-                      (isShaking ? " animated shake " : "") +
-                      (hasFound ? " animated bounceOut" : "")
-                    }>
-                      <input type="text"
-                             className="form-control p-3 bg-tron-light  color-grey-100 border-0 box-shadow-none"
-                             style={{fontSize: 13, borderRadius: 0}}
-                             value={search}
-                             onKeyDown={this.onSearchKeyDown}
-                             onChange={ev => this.setState({search: ev.target.value})}
-                             placeholder={intl.formatMessage({id: 'search_description'})}/>
-
-                      <div className="input-group-append">
-                        <button className="btn btn-search box-shadow-none" onClick={this.doSearch}
-                                style={{borderRadius: 0}}>
-                          <i className="fa fa-search"/>
-                        </button>
-                      </div>
-                    </div>
-                    */}
                 </div>
               </div>
             ) : (
@@ -672,7 +676,7 @@ export default class Home extends Component {
             {/* )} */}
           </div>
         </div>
-        <div className=" pb-3 pb-md-5">
+        <div className={isMobile? "pb-3 pb-md-5":"transferBlockSec"}>
           <div className="container">
             {isMobile ? (
               <div className="row mt-0 mt-md-4 mb-3">
@@ -764,7 +768,7 @@ export default class Home extends Component {
                 </div>
               </div>
             ) : (
-              <div className="row mt-0 mt-md-4 mb-3">
+              <div className="row mt-0 ">
                 <div className="col-md-6 mt-3 mt-md-0 ">
                   <div className="card " style={styles.card}>
                     {/* <div
@@ -862,7 +866,7 @@ export default class Home extends Component {
               </div>
             )}
 
-            <div className="row mt-0 mt-md-4 indxe-page-bottom-sec">
+            <div className={isMobile?"row mt-0 mt-md-4 indxe-page-bottom-sec":"row indxe-page-bottom-sec-pc"}>
               <div className="col-md-6 mt-0 mb-3 mt-md-0 text-center">
                 <RecentBlocks />
               </div>
@@ -875,7 +879,145 @@ export default class Home extends Component {
       </main>
     );
   }
-}
+  MonitoringParameters(){
+      let _this = this;
+      if (window.performance || window.webkitPerformance) {
+          var perf = window.performance || window.webkitPerformance;
+          var timing = perf.timing;
+          var navi = perf.navigation;
+
+          window.performance.mark("mySetTimeout-end2");
+
+          performance.measure(
+            "mySetTimeout",
+            "start2",
+            "mySetTimeout-end2"
+          );
+
+          var measure5  =-1;
+          if (performance.navigation.type == 1) {
+            performance.measure(
+              "mySetTimeout5",
+              "start",
+              "start2"
+            );
+            var measures5 = window.performance.getEntriesByName("mySetTimeout5");
+            measure5 = measures5[0].duration;
+          }
+ 
+
+          var measures = window.performance.getEntriesByName("mySetTimeout");
+          var measure = measures[0];
+
+
+
+          var timer = setInterval(function() {
+              if (0 !== timing.loadEventEnd) {
+                  timing = perf.timing;
+                  let {loadPage,domReady,redirect,lookupDomain,ttfb,request,loadEvent,unloadEvent,connect} = getPerformanceTiming()
+                  clearInterval(timer);
+                  var time = performance.timing;
+                  if (measure5 == -1) {
+                    measure5 = domReady;
+                  }
+                  var data = {
+                      url: window.location.href,
+                      timezone: new Date().getTimezoneOffset()/60,
+                      browser:window.navigator.userAgent,
+                      pageLoadTime:loadPage,
+                      contentLoadTime:request,
+                      dnsSearchTime:lookupDomain,
+                      domAnalyzeTime:domReady,
+                      ttfbReadTime:ttfb,
+                      tcpBuildTime:connect,
+                      redirectTime:redirect,
+                      onloadCallbackTime:loadEvent,
+                      uninstallPageTime: unloadEvent,
+                      isMobile:isMobile && isMobile[0],
+                      navigationtype:performance.navigation.type,
+                      measure:parseInt(measure.duration),
+                      dompreload: time.responseEnd - time.navigationStart,
+                      domloadend:time.domComplete - time.domLoading,
+                      domative:time.domInteractive - time.domLoading,
+                      shelllod:time.domContentLoadedEventEnd - time.domContentLoadedEventStart,
+                      measure5:parseInt(measure5),
+                      blankTime:time.domLoading - time.fetchStart,
+                      v:'v4',
+                      entryList:getPerformanceTimingEntry(),
+                      udid:uuidv4
+
+                  };
+                window.performance.clearMarks();
+                window.performance.clearMeasures();
+
+               
+                ApiClientMonitor.setMonitor(data)
+                  return data;
+                }
+              })
+            }         
+      }
+
+      MonitoringParameters3(measure5){
+        let _this = this;
+          if (window.performance || window.webkitPerformance) {
+              var perf = window.performance || window.webkitPerformance;
+              var timing = perf.timing;
+              var navi = perf.navigation;
+    
+              window.performance.mark("mySetTimeout-end2");
+    
+              performance.measure(
+                "mySetTimeout",
+                "start2",
+                "mySetTimeout-end2"
+              ); 
+  
+              var measures = window.performance.getEntriesByName("mySetTimeout");
+              var measure = measures[0];
+
+              var timer = setInterval(function() {
+                   {
+                      timing = perf.timing;
+                      let {loadPage,domReady,redirect,lookupDomain,ttfb,request,loadEvent,unloadEvent,connect} = getPerformanceTiming()
+                      clearInterval(timer);
+                      var time = performance.timing;
+                      var data = {
+                          url: window.location.href,
+                          timezone: new Date().getTimezoneOffset()/60,
+                          browser:window.navigator.userAgent,
+                          pageLoadTime:loadPage,
+                          contentLoadTime:request,
+                          dnsSearchTime:lookupDomain,
+                          domAnalyzeTime:domReady,
+                          ttfbReadTime:ttfb,
+                          tcpBuildTime:connect,
+                          redirectTime:redirect,
+                          onloadCallbackTime:loadEvent,
+                          uninstallPageTime: unloadEvent,
+                          isMobile:isMobile && isMobile[0],
+                          navigationtype:performance.navigation.type,
+                          measure:parseInt(measure.duration),
+                          dompreload: time.responseEnd - time.navigationStart,
+                          domloadend:time.domComplete - time.domLoading,
+                          domative:time.domInteractive - time.domLoading,
+                          shelllod:time.domContentLoadedEventEnd - time.domContentLoadedEventStart,
+                          measure5:parseInt(measure5),
+                          blankTime:time.domLoading - time.fetchStart,
+                          v:'v3',
+
+                      };
+    
+                    // window.performance.clearMarks();
+                    // window.performance.clearMeasures();
+                    ApiClientMonitor.setMonitor(data)
+                      return data;
+                    }
+                  })
+                }         
+          }      
+          
+ }
 
 const styles = {
   list: {

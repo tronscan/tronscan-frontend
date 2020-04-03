@@ -8,11 +8,23 @@ class HelpLinkCont extends Component {
   constructor() {
     super();
     this.state = {
-      unfold: true
+      unfold: true,
+      isFootPosition:false
     };
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    // window.onscroll = function () {
+    //   if(document.body.scrollHeight == document.body.clientHeight + document.documentElement.scrollTop){
+    //     console.log(document.body.scrollHeight,document.body.clientHeight,document.documentElement.scrollTop)
+      
+    //   }
+    // }
+
+  }
+
+  
+
 
   render() {
     const myPng = src => {
@@ -36,7 +48,7 @@ class HelpLinkCont extends Component {
                 <Icon type="up" />
                 <p>{tu("index_page_idebar_expand")}</p>
               </li>
-              <li className="help commonLi">
+             <li className="help commonLi">
                 <a
                   href={ activeLanguage == "zh"?'https://support.tronscan.org/hc/zh-cn/requests/new':'https://support.tronscan.org/hc/en-us/requests/new'}
                   target="_blank"
@@ -68,7 +80,7 @@ class HelpLinkCont extends Component {
                   <span className="img"></span>
                 </a>
               </li>
-              <li className="help commonLi">
+             <li className="help commonLi">
                 <a
                   href="https://support.tronscan.org/hc/zh-cn/requests/new"
                   target="_blank"

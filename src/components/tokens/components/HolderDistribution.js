@@ -3,7 +3,7 @@ import { injectIntl } from "react-intl";
 import { connect } from "react-redux";
 import xhr from "axios/index";
 import { Tooltip } from "antd";
-import { API_URL } from "../../../constants";
+import { API_URL ,uuidv4} from "../../../constants";
 import { tv, tu } from "../../../utils/i18n";
 import { updateTokenInfo } from "../../../actions/tokenInfo";
 import { loadUsdPrice } from "../../../actions/blockchain";
@@ -78,7 +78,7 @@ class HolderDistribution extends React.Component {
         : tokensInfo.tokenDetail.total_supply_with_decimals;
 
     await xhr
-      .get(`${API_URL}/api/tokens/position-distribution?tokenId=${tokenId}`)
+      .get(`${API_URL}/api/tokens/position-distribution?uuid=${uuidv4}&tokenId=${tokenId}`)
       .then(res => {
         if (res.data) {
           return res.data;

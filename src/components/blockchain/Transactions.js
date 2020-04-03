@@ -16,7 +16,7 @@ import TotalInfo from "../common/TableTotal";
 import DateRange from "../common/DateRange";
 import {DatePicker} from 'antd';
 import moment from 'moment';
-import xhr from "axios/index";
+//import xhr from "axios/index";
 import queryString from 'query-string';
 import BlockTime from '../common/blockTime'
 import {tu} from '../../utils/i18n'
@@ -189,6 +189,17 @@ class Transactions extends React.Component {
                 render: (text, record, index) => {
                     return <BlockTime time={text}></BlockTime>
                     // <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
+                }
+            },
+            {
+                title: upperFirst(intl.formatMessage({id: 'status'})),
+                dataIndex: 'confirmed',
+                key: 'confirmed',
+                align: 'left',
+                className: 'ant_table',
+                width: '14%',
+                render: (text, record, index) => {
+                    return  text ? <span><img style={{ width: "20px", height: "20px" }} src={require("../../images/contract/Verified.png")}/> {tu('full_node_version_confirmed')}</span> : <span><img style={{ width: "20px", height: "20px" }} src={require("../../images/contract/Unverified.png")}/> {tu('full_node_version_unconfirmed')}</span>
                 }
             },
             {

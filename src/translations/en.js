@@ -1,5 +1,7 @@
 /* eslint-disable */
 import { lang19Q4 } from "./versionLang/lang19Q4/en19Q4";
+import { lang20Q1 } from "./versionLang/lang20Q1/en";
+
 export const messages = {
   /*
   ##################################################################################
@@ -116,6 +118,7 @@ export const messages = {
   ##################################################################################
   */
   blockchain: "Blockchain",
+  newblock:"Blockchain",
   wallet: "Wallet",
   home: "Home",
   transfers: "Transfers",
@@ -1751,7 +1754,7 @@ export const messages = {
   propose_18: "Propose to modify the total energy limit",
   propose_18_1: "Propose to modify current total energy limit",
   propose_19: "Propose to allow the TRC-10 token transfer in smart contracts",
-  propose_20: "Current Energy Limit",
+  propose_20: "Propose to modify the total energy current limit",
   propose_21: "Propose to allow the initiation of multi-signature",
   propose_22: "Propose to allow adaptive adjustment for total Energy",
   propose_23: "Target Energy Limit",
@@ -1759,11 +1762,19 @@ export const messages = {
   propose_25: "Propose to modify the fee for updating account permission",
   propose_26: "Propose to modify the fee for multi-signature",
   propose_27: "Propose to enable protocol optimization",
-  propose_28:
-    "Propose to support the new features of TRON Virtual Machine 0.5.4",
+  propose_28:"Propose to allow TVM to support Constantinople upgrade",
+  propose_28_1: "Propose to modify the shielded transaction fee",
+  propose_29:"Propose to allow shielded transaction ",
+  propose_29_1: "Propose to modify the adaptive resource limit multiplier",
   propose_30: "Propose to support the decentralized vote dividend",
-  propose_31:
-    "Propose to modify the block voting rewards given to the top 27 SRs and the following 100 partners",
+  propose_31:"Propose to modify the block voting rewards given to the top 27 SRs and the following 100 partners",
+  propose_32:"Propose to allow  TVM to support solidity 0.5.9",
+  propose_33: "Propose to modify the adaptive resource limit target ratio",
+  propose_34: "Propose to modify the transaction fee on creating public address when transferring funds from shielded addresses to public addresses in shielded transaction",
+  propose_35: "Propose to ban transferring TRX and TRC10 tokens to smart contracts via TransferContract or TransferAssetContract",
+  propose_prohibit:"Ban",
+  propose_not_prohibit:"Not ban",
+  propose_unprohibit:"Not ban",
   propose_minute: "minute",
   propose_unactivate: "Not activated",
   propose_not_allowed: "Not allowed",
@@ -2204,7 +2215,7 @@ export const messages = {
   ledger_user_guide: "Ledger User Guide",
   latest_version_chrome: "we recommend the latest version of Chrome",
   ledger_support_version:
-    "Ledger support version: 0.1.1, Chrome support version 73.0",
+    "Ledger support version: 0.1.6, Chrome support version 80.0",
   ledger_you_can: "You can go to the",
   ledger_website: " Ledger Website ",
   ledger_website_download:
@@ -2544,12 +2555,14 @@ export const messages = {
     "Manage if the incentive switch for witness on the side chain is on/off ",
   sun_propose_7: "Distribution metrics of the side chain incentive pool",
   sun_propose_8: "Revenue ratio of witness on the side chain",
+
+  sun_propose_12: "Propose to allow DAppChain 1.0.2 upgrade",
   day: "day",
 
   developers_username: "username",
-  developers_current_year: "total points",
-  developers_current_quarter: "quarter's points",
-  developers_current_month: "month's points",
+  developers_current_year: "Total points",
+  developers_current_quarter: "Last quarter points",
+  developers_current_month:"Last month points",
   developers_view_points: "View Points Details",
   developers_points_details: "Points details",
   developers_contribution_link: "Contribution content corresponding link",
@@ -2770,5 +2783,6 @@ export const messages = {
   address_get_bandwith: "For Bandwidth",
   address_freeze_owner: "To your account",
   address_freeze_other: "To others' account(s)",
-  ...lang19Q4
+  ...lang19Q4,
+  ...lang20Q1
 };

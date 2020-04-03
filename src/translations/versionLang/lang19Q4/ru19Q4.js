@@ -65,7 +65,7 @@ export const lang19Q4 = {
     "token_rating_rule_title_p1_title": "Unknown",
     "token_rating_rule_title_p1": "Unknown is set as the default reputation for a newly added token. A token will be classified as unknown if no updates but mandatory information is provided after a successful token issuance. Mandatory information includes the token name, token abbreviation, token overview, total supply, decimals and issuer; for TRC20 tokens, information on the contract, time of contract creation and contract creator should also be provided.     ",
     "token_rating_rule_title_p2_title": "Neutral",
-    "token_rating_rule_title_p2": "Tokens assessed as neutral have their information added or updated after a successful token issuance. The information includes: official website, logo, email address, GitHub address, white paper address and social profile link(s).   ",
+    "token_rating_rule_title_p2": "Tokens assessed as neutral have their information added or updated after a successful token issuance. The information includes: official website, logo, white paper address and social profile link(s).",
     "token_rating_rule_title_p3_title": "OK",
     "token_rating_rule_title_p3": "Tokens listed and openly traded on POLONIDEX will be given the OK reputation.   ",
     "token_rating_rule_title_p3_1": "Please apply through TRONSCAN for listing tokens on POLONIDEX. Before you submit the request, note:   ",
@@ -177,7 +177,7 @@ export const lang19Q4 = {
    "index_page_footer_feedback":"Обратная связь",
    "index_page_footer_expand":"Расширить",
    "index_page_footer_donate_address":"Адрес принадлежит TRON. Ваш донат помогает построить лучшую экосистему TRON.",
-   "index_page_confirmed_blocks":"Подтвержденные блоки",
+   "index_page_confirmed_blocks":"блоки",
    "index_page_confirmed_blocks_tips":"Блоки подтверждены более чем 19 SR",
    "index_page_switch_tokens":"Поменять токены",
    "index_page_tronscan_info":"TRONSCAN, лучший blockchain explorer Tron.",
@@ -216,6 +216,23 @@ export const lang19Q4 = {
    "Supply_amount_net_new_y_title":"Доходность / Чистая стоимость (TRX)",
    "Supply_amount_net_new_tip":"TRX поколение + TRX уничтожение",
    "votes_num":"голосов",
+   /*
+        ##################################################################################
+        #                                                                                #
+        # txns type chart  2020-01-09                           #
+        #                                                                                #
+        ##################################################################################
+    */
+   "txns_contract_calls":"Вызов контракта",
+   "txns_TRX_transfers":"TRX переводы",
+   "txns_TRC10_transfers":"TRC10 переводы",
+   "txns_frozen_transactions":"Замороженные Транзакции",
+   "txns_votes_transactions":"Голоса",
+   "txns_other_transactions":"Другие транзакции",
+   "txns_shielded_transactions":"Анонимные транзакции",
+   "chart_network_resources":"Сетевые ресурсы",
+   "chart_active_accounts":"Активные аккаунты",
+   "chart_network":"Сеть",
   
 
     // 2019-12-25 xyy
@@ -289,4 +306,9 @@ export const lang19Q4 = {
      "account_id":"Аккаунт ID",
      "trans_ticket":"голосов",
      "trans_tickets":"голосов",
+
+    // account tab transfers transactions  internal-transactions
+    "account_tab_transactions_token_info":"如果交易中不包含通证信息，则展示“—”"
+
+
 }

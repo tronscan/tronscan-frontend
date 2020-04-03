@@ -2,6 +2,9 @@
 import {
     lang19Q4
 } from './versionLang/lang19Q4/ko19Q4'; /* 2019Q4 */
+import {
+  lang20Q1
+} from './versionLang/lang20Q1/ko.js'; /* 2020Q1 */
 export const messages = {
     /*
   ##################################################################################
@@ -117,6 +120,7 @@ export const messages = {
   ##################################################################################
   */
   "blockchain": "블록체인",
+  "newblock":"블록체인",
   "wallet": "지갑",
   "home": "홈",
   "transfers": "전송",
@@ -1532,17 +1536,27 @@ export const messages = {
   "propose_18": "총 에너지 한도 수정 제안",
   "propose_18_1": "総エネルギー上限の編集を提議します",
   "propose_19": "스마트 컨트랙트에서 TRC-10 토큰 전송을 허용 제안",
-  "propose_20": "현재 에너지 한도",
+  "propose_20": "총 에너지 전류 제한 수정 제안",
   "propose_21": "다중 서명을 허용할것을 제안합니다",
   "propose_22": "총 ENERGY 조정 허용을 제안합니다",
   "propose_23": "목표 에너지 사용 상한선",
   "propose_24": "평균 에너지 상한선",
   "propose_25": "계정 권한 업데이트 비용",
   "propose_26": "다중 서명 비용 수정 제안",
-  "propose_27": "Propose to enable protocol optimization",
-  "propose_28": "Propose to support the new features of TRON Virtual Machine 0.5.4",
-  "propose_30":"Propose to support the decentralized vote dividend",
-  "propose_31": "Propose to modify the block voting rewards given to the top 27 SRs and the following 100 partners",
+  "propose_27": "프로토콜 최적화 활성화 제안",
+  "propose_28": "TVM이 콘스탄티노플의 업그레이드를 지원할 수 있도록 제안",
+  "propose_28_1":"차폐 거래 수수료 수정 제안",
+  "propose_29": "차폐 거래 허용 제안",
+  "propose_29_1":"적응 형 자원 제한 승수 수정 제안",
+  "propose_30":"탈 중앙화 투표 배당 지원 제안",
+  "propose_31": "상위 27 개 SR 및 그 뒤 100명의 파트너에게 제공되는 블록 투표 보상 수정 제안",
+  "propose_32": "0.5.9 버전의 TVM이 견고성을 지원할 수 있도록 제안",
+  "propose_33": "적응 형 자원 제한 목표 비율 수정 제안",
+  "propose_34": "익명 거래에서 익명 주소를 공개 주소로 이전 할 때 공개 주소를 만들기 위한 처리 수수료 수정 제안",
+  "propose_35": "TransferContract 및 TransferAssetContract 를통해 TRX 및 TRC10 자산이 스마트 계약으로 이전되는 것을 금지하도록 제안",
+  "propose_prohibit":"반",
+  "propose_not_prohibit":"금지하지 않음",
+  "propose_unprohibit":"금지하지 않음",
   "propose_minute": "분",
   "propose_unactivate": "열리지 않음",
   "propose_not_allowed": "허락되지 않음",
@@ -1942,7 +1956,7 @@ export const messages = {
  */
   "ledger_user_guide": "Ledger사용 가이드",
   "latest_version_chrome": "최신 버전 Chrome 사용 추천",
-  "ledger_support_version": "Ledger지원 버전: 0.1.1, Chrome버전 73.0",
+  "ledger_support_version": "Ledger지원 버전: 0.1.6, Chrome버전 80.0",
   "ledger_you_can": "너는 할 수있다",
   "ledger_website": "Ledger 공식 웹 사이트",
   "ledger_website_download": "원장의 최신 버전을 다운로드하여 업데이트하십시오",
@@ -2257,12 +2271,13 @@ export const messages = {
   "sun_propose_6": "사이드 체인 인센티브 스위치는 닫힌 것으로 묵인합니다",
   "sun_propose_7": "사이드체인 인센티브 풀 분배 계수",
   "sun_propose_8": "사이드 체인 수익이 인센티브 풀로 누적되는 비율",
+  sun_propose_12: "Propose to allow DAppChain 1.0.2 upgrade",
   "day":"일",
 
   "developers_username": "username",
-  "developers_current_year":"total points",
-  "developers_current_quarter": "quarter's points",
-  "developers_current_month":"month's points",
+  "developers_current_year":"Total points",
+  "developers_current_quarter": "Last quarter points",
+  "developers_current_month":"Last month points",
   "developers_view_points":"View Points Details",
   "developers_points_details": "Points details",
   "developers_contribution_link":"Contribution content corresponding link",
@@ -2456,5 +2471,6 @@ export const messages = {
    "address_get_bandwith":"대역폭 획득하려면",
    "address_freeze_owner":"자신에게 동결",
    "address_freeze_other":"타인에게 동결",
-   ...lang19Q4
+   ...lang19Q4,
+   ...lang20Q1
 };

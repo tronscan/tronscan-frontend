@@ -9,7 +9,7 @@ import {Table, Input, Button, Icon} from 'antd';
 import xhr from "axios/index";
 import {Tooltip} from "reactstrap";
 import {TRXPrice} from "./common/Price";
-import {ONE_TRX,API_URL} from "../constants";
+import {ONE_TRX,API_URL,uuidv4} from "../constants";
 import {Client} from "../services/api";
 
 class Accounts extends Component {
@@ -39,7 +39,7 @@ class Accounts extends Component {
     this.setState({loading: true});
     const {list} = await Client.getlistdonators();
     let random = Math.random();
-    let data = await xhr.get(`${API_URL}/api/fund?random="${random}&page_index=${page}&per_page=${pageSize}`);
+    let data = await xhr.get(`${API_URL}/api/fund?uuid=${uuidv4}&random=${random}&page_index=${page}&per_page=${pageSize}`);
     const {funds} = await Client.getFundsSupply();
     function compare(property) {
         return function (obj1, obj2) {

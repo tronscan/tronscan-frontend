@@ -65,7 +65,7 @@ export const lang19Q4 = {
     "token_rating_rule_title_p1_title": "Unknown",
     "token_rating_rule_title_p1": "Unknown is set as the default reputation for a newly added token. A token will be classified as unknown if no updates but mandatory information is provided after a successful token issuance. Mandatory information includes the token name, token abbreviation, token overview, total supply, decimals and issuer; for TRC20 tokens, information on the contract, time of contract creation and contract creator should also be provided.     ",
     "token_rating_rule_title_p2_title": "Neutral",
-    "token_rating_rule_title_p2": "Tokens assessed as neutral have their information added or updated after a successful token issuance. The information includes: official website, logo, email address, GitHub address, white paper address and social profile link(s).   ",
+    "token_rating_rule_title_p2": "Tokens assessed as neutral have their information added or updated after a successful token issuance. The information includes: official website, logo, white paper address and social profile link(s).",
     "token_rating_rule_title_p3_title": "OK",
     "token_rating_rule_title_p3": "Tokens listed and openly traded on POLONIDEX will be given the OK reputation.   ",
     "token_rating_rule_title_p3_1": "Please apply through TRONSCAN for listing tokens on POLONIDEX. Before you submit the request, note:   ",
@@ -177,11 +177,11 @@ export const lang19Q4 = {
     "index_page_footer_team_info":"Team info",
     "index_page_footer_feedback":"Feedback",
     "index_page_footer_expand":"Expand",
-    "index_page_footer_donate_address":"The address is held by Tron. Your donation helps build a better ecosystem.",
+    "index_page_footer_donate_address":"The address is held by TRON. Your donation helps build a better ecosystem.",
     "index_page_confirmed_blocks":"Confirmed blocks",
-    "index_page_confirmed_blocks_tips":"Blocks confirmed by over 19  SRs",
+    "index_page_confirmed_blocks_tips":"Blocks confirmed by 19 or more SRs",
     "index_page_switch_tokens":"Switch tokens",
-    "index_page_tronscan_info":"TRONSCAN, the best blockchain explorer of Tron.",
+    "index_page_tronscan_info":"TRONSCAN | The best block explorer of TRON.",
     "index_page_down_excel_tips":"Change the decimals mannually when opening the file in Excel.",
     "index_page_pane_current":"Current",
     "index_page_pane_MaxTPS":"Max TPS",
@@ -217,10 +217,28 @@ export const lang19Q4 = {
    "Supply_amount_net_new_tip":"TRX Produced + TRX Burned",
    "votes_num":"Votes",
 
+   /*
+        ##################################################################################
+        #                                                                                #
+        # txns type chart  2020-01-09                           #
+        #                                                                                #
+        ##################################################################################
+    */
+   "txns_contract_calls":"Contract calls",
+   "txns_TRX_transfers":"TRX transfers",
+   "txns_TRC10_transfers":"TRC10 transfers",
+   "txns_frozen_transactions":"Frozen Transactions",
+   "txns_votes_transactions":"Votes",
+   "txns_other_transactions":"Other transactions",
+   "txns_shielded_transactions":"Shielded transactions",
+   "chart_network_resources":"Network resources",
+   "chart_active_accounts":"Active accounts",
+   "chart_network":"Network",
+
 
     // 2019-12-25 xyy
     "transaction_hash":"Hash",
-    "transaction_status_tip":'Transactions confirmed by over 19 SRs will be marked "confirmed"',
+    "transaction_status_tip":'Transactions confirmed by 19 or more SRs will be marked "confirmed"',
     "transaction_type": "Transaction type",
     "transaction_owner_address":"Owner address",
     "transaction_receiver_address":"Resource-receiving address",
@@ -289,4 +307,9 @@ export const lang19Q4 = {
     "account_id":"Account ID",
     "trans_ticket":"vote",
     "trans_tickets":"votes",
+
+
+    // account tab transfers transactions  internal-transactions
+    "account_tab_transactions_token_info":"如果交易中不包含通证信息，则展示“—”"
+
 }

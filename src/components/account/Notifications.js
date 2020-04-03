@@ -1,7 +1,7 @@
 import React, {Fragment} from "react";
 import {ONE_TRX} from "../../constants";
 import {AddressLink} from "../common/Links";
-import {Divider} from 'antd';
+//import {Divider} from 'antd';
 import {getNotifyPermission, requestNotifyPermissions, sendNotification} from "../../services/notifications";
 import SweetAlert from "react-bootstrap-sweetalert";
 import {connect} from "react-redux";
@@ -21,24 +21,24 @@ function Notification({account, notification}) {
 
       if (notification.transferFromAddress === account.address) {
         return (
-            <li key={notification.id} className="dropdown-item p-1">
+            <li key={notification.id} className="dropdown-item p-1 dropdown-text-none">
               <div className="media">
                 <i className="fa fa-sort-up fa-2x text-danger m-2"/>
                 <div className="media-body mr-2">
                   <h6 className="m-0 text-danger">Send <NameWithId value={notification}/></h6>
-                  to <AddressLink address={notification.transferToAddress} truncate={false}/>
+                  To <AddressLink address={notification.transferToAddress} truncate={false}/>
                 </div>
               </div>
             </li>
         );
       } else if (notification.transferToAddress === account.address) {
         return (
-            <li key={notification.id} className="dropdown-item p-1">
+            <li key={notification.id} className="dropdown-item p-1 dropdown-text-none">
               <div className="media">
                 <i className="fa fa-sort-down fa-2x text-success m-2"/>
                 <div className="media-body mr-2">
                   <h6 className="m-0 text-success">Received <NameWithId value={notification}/></h6>
-                  from <AddressLink address={notification.transferFromAddress} truncate={false}/>
+                  From <AddressLink address={notification.transferFromAddress} truncate={false}/>
                 </div>
               </div>
             </li>
@@ -49,12 +49,12 @@ function Notification({account, notification}) {
     case "vote":
 
       return (
-          <li key={notification.id} className="dropdown-item p-1">
+          <li key={notification.id} className="dropdown-item p-1 dropdown-text-none">
             <div className="media">
               <i className="fa fa-bullhorn fa-2x text-primary m-2"/>
               <div className="media-body mr-2">
                 <h6 className="m-0 text-primary">Received {notification.votes} votes</h6>
-                from <AddressLink address={notification.voterAddress} truncate={false}/>
+                From <AddressLink address={notification.voterAddress} truncate={false}/>
               </div>
             </div>
           </li>
@@ -188,7 +188,6 @@ class Notifications extends React.Component {
         <li className="nav-item dropdown">
           {modal}
           <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:;">
-            <Divider type="vertical" style={{marginRight:'1rem',height: '1.2em'}}/>
             <i className="fa fa-bell mr-2"/>
             {
               notifications.length > 0 &&

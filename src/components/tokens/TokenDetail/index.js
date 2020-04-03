@@ -10,7 +10,7 @@ import Transfers from "./Transfers.js";
 import TokenInfo from "./TokenInfo.js";
 import BTTSupply from "./BTTSupply.js";
 import { Information } from "./Information.js";
-import { ONE_TRX, API_URL, IS_MAINNET } from "../../../constants";
+import { ONE_TRX, API_URL, IS_MAINNET,uuidv4 } from "../../../constants";
 import { login } from "../../../actions/app";
 import { reloadWallet } from "../../../actions/wallet";
 import { updateTokenInfo } from "../../../actions/tokenInfo";
@@ -31,10 +31,18 @@ import { loadUsdPrice } from "../../../actions/blockchain";
 import ExchangeQuotes from "../ExchangeQuotes";
 import ApiClientToken from "../../../services/tokenApi";
 import rebuildList from "../../../utils/rebuildList";
+import {
+  getPerformanceTiming,
+  getPerformanceTimingEntry
+} from "../../../utils/DateTime";
+import isMobile from "../../../utils/isMobile";
+import ApiClientMonitor from '../../../services/monitor'
 
 @withTronWeb
 class TokenDetail extends React.Component {
   constructor() {
+    window.performance.mark("start2");
+
     super();
     this.start = moment([2018, 5, 25])
       .startOf("day")
@@ -55,6 +63,22 @@ class TokenDetail extends React.Component {
     };
   }
 
+  async componentWillMount() {
+    window.performance.mark("start2");
+
+    var measure5  =-1;
+    if (performance.navigation.type == 1) {
+      performance.measure(
+        "mySetTimeout5",
+        "start",
+        "start2"
+      );
+      var measures5 = window.performance.getEntriesByName("mySetTimeout5");
+      measure5 = measures5[0].duration;
+      this.MonitoringParameters3(measure5);
+    } 
+
+}
   async componentDidMount() {
     let { match, priceUSD } = this.props;
     !priceUSD && (await this.props.loadUsdPrice());
@@ -64,6 +88,9 @@ class TokenDetail extends React.Component {
     } else {
       this.loadToken(decodeURI(match.params.id));
     }
+    this.MonitoringParameters()
+    console.log('t1 uuidv4 :',uuidv4);
+
   }
 
   componentDidUpdate(prevProps) {
@@ -253,7 +280,7 @@ class TokenDetail extends React.Component {
     } = this.props.tokensInfo.tokenDetail;
     await xhr
       .get(
-        `${API_URL}/api/tokenholders?address=${ownerAddress}&holder_address=${serchInputVal}&id=${tokenID}`
+        `${API_URL}/api/tokenholders?uuid=${uuidv4}&address=${ownerAddress}&holder_address=${serchInputVal}&id=${tokenID}`
       )
       .then(res => {
         if (res.data) {
@@ -652,6 +679,140 @@ class TokenDetail extends React.Component {
       </main>
     );
   }
+  MonitoringParameters(){
+    let _this = this;
+      if (window.performance || window.webkitPerformance) {
+          var perf = window.performance || window.webkitPerformance;
+          var timing = perf.timing;
+          //var navi = perf.navigation;
+
+          window.performance.mark("mySetTimeout-end3");
+
+          performance.measure(
+            "mySetTimeout",
+            "start2",
+            "mySetTimeout-end3"
+          );
+          var measures = window.performance.getEntriesByName("mySetTimeout");
+          var measure = measures[0];
+
+          var measure5  =-1;
+          if (performance.navigation.type == 1) {
+            performance.measure(
+              "mySetTimeout5",
+              "start",
+              "start2"
+            );
+            var measures5 = window.performance.getEntriesByName("mySetTimeout5");
+            measure5 = measures5[0].duration;
+          }
+
+          var timer = setInterval(function() {
+              if (0 !== timing.loadEventEnd) {
+                  timing = perf.timing;
+                  let {loadPage,domReady,redirect,lookupDomain,ttfb,request,loadEvent,unloadEvent,connect} = getPerformanceTiming()
+                  clearInterval(timer);
+                  var time = performance.timing;
+                  if (measure5 == -1) {
+                    measure5 = domReady;
+                  }
+                  var data = {
+                      url: window.location.href,
+                      timezone: new Date().getTimezoneOffset()/60,
+                      browser:window.navigator.userAgent,
+                      pageLoadTime:loadPage,
+                      contentLoadTime:request,
+                      dnsSearchTime:lookupDomain,
+                      domAnalyzeTime:domReady,
+                      ttfbReadTime:ttfb,
+                      tcpBuildTime:connect,
+                      redirectTime:redirect,
+                      onloadCallbackTime:loadEvent,
+                      uninstallPageTime: unloadEvent,
+                      isMobile:isMobile && isMobile[0],
+                      navigationtype:performance.navigation.type,
+                      measure:parseInt(measure.duration),
+                      dompreload: time.responseEnd - time.navigationStart,
+                      domloadend:time.domComplete - time.domLoading,
+                      domative:time.domInteractive - time.domLoading,
+                      shelllod:time.domContentLoadedEventEnd - time.domContentLoadedEventStart,
+                      measure5:parseInt(measure5),
+                      blankTime:time.domLoading - time.fetchStart,
+                      v:'v4',
+                      entryList:getPerformanceTimingEntry(),
+                      udid:uuidv4
+                  };
+                 
+
+                  window.performance.clearMarks();
+                  window.performance.clearMeasures();
+
+                  ApiClientMonitor.setMonitor(data)
+                  return data;
+                }
+              })
+            }         
+      }
+
+      MonitoringParameters3(measure5){
+        let _this = this;
+          if (window.performance || window.webkitPerformance) {
+              var perf = window.performance || window.webkitPerformance;
+              var timing = perf.timing;
+              var navi = perf.navigation;
+    
+              window.performance.mark("mySetTimeout-end2");
+    
+              performance.measure(
+                "mySetTimeout",
+                "start2",
+                "mySetTimeout-end2"
+              ); 
+  
+              var measures = window.performance.getEntriesByName("mySetTimeout");
+              var measure = measures[0];
+
+              var timer = setInterval(function() {
+                   {
+                      timing = perf.timing;
+                      let {loadPage,domReady,redirect,lookupDomain,ttfb,request,loadEvent,unloadEvent,connect} = getPerformanceTiming()
+                      clearInterval(timer);
+                      var time = performance.timing;
+                      var data = {
+                          url: window.location.href,
+                          timezone: new Date().getTimezoneOffset()/60,
+                          browser:window.navigator.userAgent,
+                          pageLoadTime:loadPage,
+                          contentLoadTime:request,
+                          dnsSearchTime:lookupDomain,
+                          domAnalyzeTime:domReady,
+                          ttfbReadTime:ttfb,
+                          tcpBuildTime:connect,
+                          redirectTime:redirect,
+                          onloadCallbackTime:loadEvent,
+                          uninstallPageTime: unloadEvent,
+                          isMobile:isMobile && isMobile[0],
+                          navigationtype:performance.navigation.type,
+                          measure:parseInt(measure.duration),
+                          dompreload: time.responseEnd - time.navigationStart,
+                          domloadend:time.domComplete - time.domLoading,
+                          domative:time.domInteractive - time.domLoading,
+                          shelllod:time.domContentLoadedEventEnd - time.domContentLoadedEventStart,
+                          measure5:parseInt(measure5),
+                          blankTime:time.domLoading - time.fetchStart,
+                          v:'v3'
+                      };
+    
+                    // window.performance.clearMarks();
+                    // window.performance.clearMeasures();
+
+              
+                    ApiClientMonitor.setMonitor(data)
+                      return data;
+                    }
+                  })
+                }         
+          }      
 }
 
 function mapStateToProps(state) {

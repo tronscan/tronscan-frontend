@@ -1,16 +1,16 @@
 import React, { Component } from "react";
-import Lockr from "lockr";
+//import Lockr from "lockr";
 import { injectIntl } from "react-intl";
 import { withRouter, Link, NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import { Badge } from "reactstrap";
 import { Menu, Icon } from "antd";
 import { tu, t } from "../utils/i18n";
-import { HrefLink } from "./common/Links";
+//import { HrefLink } from "./common/Links";
 import { filter, isString, isUndefined } from "lodash";
 import { IS_MAINNET } from "../constants";
 
-import ReduxToastr from "react-redux-toastr";
+//import ReduxToastr from "react-redux-toastr";
 
 const { SubMenu } = Menu;
 class Menunavigation extends Component {
@@ -86,18 +86,15 @@ class Menunavigation extends Component {
                 title={
                   <span className="nav-network-hot">
                     {tu(route.label)}
-                    {route.label == "nav_network" ? (
-                      <i className="hot-nav"></i>
-                    ) : (
-                      ""
-                    )}
+                  
                   </span>
                 }
               >
                 <span>
                   {route.routes &&
                     route.label !== "nav_more" &&
-                    route.label !== "nav_network" && (
+                    route.label !== "nav_network" && 
+                    route.label !== "newblock" && (
                       // className="dropdown-menu"
                       <div>
                         {route.routes &&
@@ -131,6 +128,7 @@ class Menunavigation extends Component {
                                   href={subRoute.url}
                                   title={
                                     <span
+                                      className="dapp-link-style"
                                       style={{
                                         display: "inline-block",
                                         width: "50%"
@@ -233,12 +231,12 @@ class Menunavigation extends Component {
                     )}
                   {route.routes &&
                     (route.label == "nav_network" ||
-                      route.label == "nav_more") && (
+                      route.label == "nav_more" ||  route.label == "newblock") && (
                       <div>
                         {route.routes &&
                           route.routes.map((subRoute, index) => {
                             return (
-                              <div className="" key={index}>
+                              <div className="more-menu-mobile-wrapper" key={index}>
                                 <div className="more-menu-line"></div>
                                 {subRoute.map((Route, j) => {
                                   if (isString(Route)) {
@@ -264,7 +262,8 @@ class Menunavigation extends Component {
                                   ) {
                                     return (
                                       <Menu.ItemGroup
-                                        className="mr-3 d-inline-block developer_challenge_box"
+                                        className="mr-3  developer_challenge_box" 
+                                        style={{display: 'block',}}
                                         key={Route.label}
                                         title={
                                           <span
@@ -439,8 +438,8 @@ class Menunavigation extends Component {
                                         <span
                                           className={
                                             currentRouter == Route.path
-                                              ? "menu-single-tilte menu-active-tilte"
-                                              : "menu-single-tilte"
+                                              ? "menu-single-tilte more-menu-single-tilte-style menu-active-tilte"
+                                              : "menu-single-tilte more-menu-single-tilte-style"
                                           }
                                           style={{
                                             display: "inline-block",

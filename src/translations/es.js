@@ -2,6 +2,9 @@
 import {
   lang19Q4
 } from './versionLang/lang19Q4/es19Q4';
+import {
+  lang20Q1
+} from './versionLang/lang20Q1/es';
 export const messages = {
   /*
   ##################################################################################
@@ -118,6 +121,7 @@ export const messages = {
   ##################################################################################
   */
   "blockchain": "Blockchain",
+  "newblock":"Blockchain",
   "wallet": "Cartera",
   "home": "Principal",
   "transfers": "Transferencias",
@@ -1546,17 +1550,27 @@ export const messages = {
   "propose_18": "Proponer modificar el límite de energía total.",
   "propose_18_1": "Propose to modify the total energy limit",
   "propose_19": "Proponer permitir la transferencia de token TRC-10 en contratos inteligentes.",
-  "propose_20": "Límite de la energía",
+  "propose_20": "Proponer modificar el límite actual de energía total",
   "propose_21": "Recomiendan que habilite multi-firma",
   "propose_22": "Recomiendan que habilite la función de adjustar cantidad automáticamente",
   "propose_23": "Límite de energía para usar",
   "propose_24": "Límite de energía promedia",
   "propose_25": "Actualizar costo para dar más permiso de la cuenta",
   "propose_26": "Recomienda que modificar costo de multi-firma",
-  "propose_27": "Propose to enable protocol optimization",
-  "propose_28": "Propose to support the new features of TRON Virtual Machine 0.5.4",
-  "propose_30":"Propose to support the decentralized vote dividend",
-  "propose_31": "Propose to modify the block voting rewards given to the top 27 SRs and the following 100 partners",
+  "propose_27": "Proponer para habilitar la optimización del protocolo",
+  "propose_28": "Proponer permitir que TVM admita la actualización de Constantinopla",
+  "propose_28_1":"Proponer modificar la tarifa de transacción protegida",
+  "propose_29": "Proponer permitir transacciones blindadas",
+  "propose_29_1":"Proponer modificar el multiplicador de límite de recursos adaptativo",
+  "propose_30": "Proponer para habilitar el sistema de descentralizar la ganancia de votar",
+  "propose_31": "Proponer modificar la recompensa de votación en bloque otorgadas a los 27 mejores SR y los siguientes 100 socios",
+  "propose_32": "Proponer permitir que TVM soporte solidez 0.5.9",
+  "propose_33": "Proponer modificar la relación objetivo de límite de recursos adaptativos",
+  "propose_34": "proponer modificar la tarifa de transacción basado en la dirección público cuando una transfiere sus fondos desde direcciones anónimas a direcciones públicas en una transacción anónima",
+  "propose_35": "Proponer prohibir fondo de TRX o de TRC20 convertir en el contrato inteligente de manera TransferContract y TransferAssetContract",
+  "propose_prohibit":"Prohibición",
+  "propose_not_prohibit":"No prohibir",
+  "propose_unprohibit":"No prohibir",
   "propose_unactivate": "No abierto",
   "propose_minute": "min",
   "propose_not_allowed": "No permitido",
@@ -1954,7 +1968,7 @@ export const messages = {
    */
   "ledger_user_guide": "Ledger User Guide",
   "latest_version_chrome": "we recommend the latest version of chrome",
-  "ledger_support_version": "Ledger support version: 0.1.1, chrome support version 73.0",
+  "ledger_support_version": "Ledger support version: 0.1.6, chrome support version 80.0",
   "ledger_you_can": "You can go to the ",
   "ledger_website": "Ledger Website",
   "ledger_website_download": "to download and update the latest version of Ledger",
@@ -2259,12 +2273,13 @@ export const messages = {
   "sun_propose_6": "Administre si el interruptor de incentivo para testigo en la cadena lateral está activado / desactivado",
   "sun_propose_7": "Métricas de distribución del grupo de incentivos de la cadena lateral",
   "sun_propose_8": "Proporción de ingresos del testigo en la cadena lateral",
+  sun_propose_12: "Propose to allow DAppChain 1.0.2 upgrade",
   "day":"día",
 
   "developers_username": "username",
-  "developers_current_year":"total points",
-  "developers_current_quarter": "quarter's points",
-  "developers_current_month":"month's points",
+  "developers_current_year":"Total points",
+  "developers_current_quarter": "Last quarter points",
+  "developers_current_month":"Last month points",
   "developers_view_points":"View Points Details",
   "developers_points_details": "Points details",
   "developers_contribution_link":"Contribution content corresponding link",
@@ -2322,7 +2337,7 @@ export const messages = {
   "SR_rank": "Clasificación",
   "SR_blocksMissed": "Bloques perdidos",
   "SR_votes": "Votos",
-  "SR_voteRatio": "Ratio de intercambio de votos",
+  "SR_voteRatio": "Voting sharing ratio",
   "SR_normal":"Normal",
   "SR_avnormal":"Anormal",
    /*
@@ -2459,5 +2474,6 @@ export const messages = {
 "address_get_bandwith":"Para ancho de banda",
 "address_freeze_owner":"A tu cuenta",
 "address_freeze_other":"A la (s) cuenta (s) de otros",
-  ...lang19Q4
+  ...lang19Q4,
+  ...lang20Q1
 };

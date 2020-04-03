@@ -32,6 +32,14 @@ export default class CompilerModal extends React.PureComponent {
                     label:"tron-0.4.24",
                     value:"tron-0.4.24"
                 },
+                {
+                    label:"0.5.9_Odyssey_v3.6.5",
+                    value:"tron-0.5.9_Odyssey_v3.6.5"
+                },
+                {
+                    label:"0.5.10_Odyssey_v3.6.6",
+                    value:"tron-0.5.10_Odyssey_v3.6.6"
+                },
             ],
             runs:[
                 {

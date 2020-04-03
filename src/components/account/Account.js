@@ -14,7 +14,7 @@ import {API_URL,CONTRACT_MAINNET_API_URL, IS_TESTNET, ONE_TRX, CONTRACT_ADDRESS_
 import {Client} from "../../services/api";
 import ApplyForDelegate from "./ApplyForDelegate";
 import _, {trim} from "lodash";
-import {Modal, ModalBody, ModalHeader} from "reactstrap";
+import {Modal, ModalBody, ModalHeader,Tooltip} from "reactstrap";
 import QRImageCode from "../common/QRImageCode";
 import ChangeNameModal from "./ChangeNameModal";
 import CreateTxnPairModal from "./CreateTxnPairModal";
@@ -40,7 +40,6 @@ import PledgeModal from './PledgeModal';
 import MySignature from './MySignature';
 import MappingMessageModal from './MappingMessageModal';
 import SignModal from './SignModal';
-import {Tooltip} from "reactstrap";
 import { Input, Tooltip as AntdTip } from 'antd';
 import Countdown from "react-countdown-now";
 import { isJSXEmptyExpression } from '@babel/types';
@@ -996,7 +995,7 @@ export default class Account extends Component {
                 this.setState({
                   modal: (
                       <SweetAlert warning title={tu("Error")} onConfirm={this.hideModal}>
-                        Something went wrong while trying to freeze TRX
+                          {tu('freeze_TRX_error')}
                       </SweetAlert>
                   )
                 });
@@ -1908,7 +1907,7 @@ export default class Account extends Component {
             return
         }
         let {account, currentWallet, walletType} = this.props;
-        if (this.state.isTronLink === 1) {
+        if (this.state.isTronLink === 1 || this.props.walletType.type === "ACCOUNT_LEDGER") {
             let tronWeb;
             if (this.props.walletType.type === "ACCOUNT_LEDGER") {
                 tronWeb = this.props.tronWeb();

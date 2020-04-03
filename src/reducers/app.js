@@ -43,6 +43,10 @@ import {
   TRCWITHDRAWMIN
 } from "../constants";
 
+
+
+
+
 const initialState = {
   theme: Lockr.get("theme", "light"),
   accounts: [],
@@ -61,7 +65,7 @@ const initialState = {
     fa: "فارسی",
     es: "Español"
   },
-  activeLanguage: "en",
+  activeLanguage: 'en',
   account: {
     key: undefined,
     address: undefined,
@@ -198,23 +202,25 @@ export function appReducer(state = initialState, action) {
         eventServer,
         privateKey
       });
-      const sunWeb = new SunWeb(
-        {
-          fullNode: ServerNode,
-          solidityNode: ServerNode,
-          eventServer: ServerNode
-        },
-        {
-          fullNode: SUNWEBCONFIG.SUNFULLNODE,
-          solidityNode: SUNWEBCONFIG.SUNSOLIDITYNODE,
-          eventServer: SUNWEBCONFIG.SUNEVENTSERVER
-        },
-        SUNWEBCONFIG.MAINNET,
-        SUNWEBCONFIG.SIDECHAIN,
-        SUNWEBCONFIG.SIDEID,
+    const mainchain = new TronWeb( {
+        fullNode: ServerNode,
+        solidityNode: ServerNode,
+        eventServer: ServerNode,
         privateKey
-      );
-
+    });
+    const sidechain = new TronWeb({
+        fullNode: SUNWEBCONFIG.SUNFULLNODE,
+        solidityNode: SUNWEBCONFIG.SUNSOLIDITYNODE,
+        eventServer: SUNWEBCONFIG.SUNEVENTSERVER,
+        privateKey
+    })
+    const sunWeb = new SunWeb(
+      mainchain,
+      sidechain,
+      SUNWEBCONFIG.MAINNET,
+      SUNWEBCONFIG.SIDECHAIN,
+      SUNWEBCONFIG.SIDEID,
+    );
       //window.sunWeb = sunWeb
       return {
         ...state,
