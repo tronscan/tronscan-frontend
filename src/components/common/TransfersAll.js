@@ -333,14 +333,14 @@ class TransfersAll extends React.Component {
                                     />
                                 </Tooltip>
                                 {record.totip ?
-                                    <AddressLink address={record.type == 'trc10'?text:record.from_address} isContract={true}>{record.type == 'trc10'?text:record.from_address}</AddressLink>
+                                    <AddressLink address={record.type == 'trc10'?text:record.to_address} isContract={true}>{record.type == 'trc10'?text:record.to_address}</AddressLink>
                                     :
-                                    <TruncateAddress address={record.type == 'trc10'?text:record.from_address}>{record.type == 'trc10'?text:record.from_address}</TruncateAddress>}
+                                    <TruncateAddress address={record.type == 'trc10'?text:record.to_address}>{record.type == 'trc10'?text:record.to_address}</TruncateAddress>}
                             </span>
                             ) : (
                                 record.totip ?
-                                    <AddressLink address={record.type == 'trc10'?text:record.from_address}>{record.type == 'trc10'?text:record.from_address}</AddressLink>:
-                                    <TruncateAddress address={record.type == 'trc10'?text:record.from_address}>{record.type == 'trc10'?text:record.from_address}</TruncateAddress>
+                                    <AddressLink address={record.type == 'trc10'?text:record.to_address}>{record.type == 'trc10'?text:record.to_address}</AddressLink>:
+                                    <TruncateAddress address={record.type == 'trc10'?text:record.to_address}>{record.type == 'trc10'?text:record.to_address}</TruncateAddress>
                             )
                         }
                     </span>

@@ -250,7 +250,26 @@ function TriggerContract({contract,intl}){
                       <div className="content_name">
                         {tu("from")}
                       </div>
-                      <div className="flex1">
+                      <div className="flex1 d-flex">
+                        {contract.contract_map[contract.tokenTransferInfo["from_address"]]? (
+                          <Tooltip
+                            placement="top"
+                            title={upperFirst(
+                              intl.formatMessage({
+                                id: "transfersDetailContractAddress"
+                              })
+                            )}
+                          >
+                            <Icon
+                              type="file-text"
+                              style={{
+                                verticalAlign: 0,
+                                color: "#77838f",
+                                lineHeight: 1.4
+                              }}
+                            />
+                          </Tooltip>
+                        ) :null}
                         <AddressLink
                           address={
                             contract.tokenTransferInfo[
@@ -271,7 +290,26 @@ function TriggerContract({contract,intl}){
                       <div className="content_name">
                         {tu("to")}
                       </div>
-                      <div className="flex1">
+                      <div className="flex1 d-flex">
+                        {contract.contract_map[contract.tokenTransferInfo["to_address"]]? (
+                          <Tooltip
+                            placement="top"
+                            title={upperFirst(
+                              intl.formatMessage({
+                                id: "transfersDetailContractAddress"
+                              })
+                            )}
+                          >
+                            <Icon
+                              type="file-text"
+                              style={{
+                                verticalAlign: 0,
+                                color: "#77838f",
+                                lineHeight: 1.4
+                              }}
+                            />
+                          </Tooltip>
+                        ) :null}
                         <AddressLink
                           address={
                             contract.tokenTransferInfo[
