@@ -308,4 +308,8 @@ export const lang20Q1 = {
   account_address_total_balance_tip:"Suma del valor de todos los tokens en la cuenta",
   get_usdj:'Obtener USDJ',
 
+  account_tags_my_tag:'我的标签',
+  account_tags_my_tag_update:'更新',
+
+
 };

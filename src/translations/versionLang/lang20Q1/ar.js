@@ -307,4 +307,8 @@ export const lang20Q1 = {
   account_block:'الكتل',
   account_address_total_balance_tip:"مجموع قيمة جميع الرموز المميزة في الحساب",
   get_usdj:'تحصل USDJ',
+
+  account_tags_my_tag:'我的标签',
+  account_tags_my_tag_update:'更新',
+
 };

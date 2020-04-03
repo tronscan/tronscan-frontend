@@ -42,8 +42,10 @@ import Representative from "./Representative";
 import FreezeDetail from './FreezeDetail';
 import { Piechart } from "../components/Piechart";
 import SweetAlert from "react-bootstrap-sweetalert";
+import ApiClientAccount from "../../../services/accountApi";
 import {transactionResultManager, transactionResultManagerSun} from "../../../utils/tron";
 import { loadUsdPrice } from "../../../actions/blockchain";
+import AddTag from "../../account/components/AddTag";
 import '../../../styles/account.scss'
 
 
@@ -59,7 +61,7 @@ function setTagIcon(tag){
   })
   return name && <img src={require(`../../../images/address/tag/${name}.svg`)}/>
 }
-
+let tagInter = null
 class Address extends React.Component {
   constructor({ match }) {
     super();
@@ -121,6 +123,7 @@ class Address extends React.Component {
       transfersSearchAddress:'',
       transactionsSearchAddress:'',
       internalSearchAddress:'',
+      tagData:[], //tag info 
     };
   }
 
@@ -146,7 +149,8 @@ class Address extends React.Component {
 
   componentWillUnmount() {
     // this.live && this.live.close();
-    localStorage.removeItem('representative')
+    localStorage.removeItem('representative');
+    clearInterval(tagInter)
   }
 
   async loadWalletReward(addressT) {
@@ -377,8 +381,27 @@ class Address extends React.Component {
     //   console.log(err);
     // });
     
-    
+    // tags
+   
+    let tagData;
+    tagInter = setInterval(async() => {
+      let {walletType} = this.props;
+      console.log(walletType)
+      if(walletType.address){
+        clearInterval(tagInter)
+        const params = {
+          user_address:walletType.address,
+          tag_address:id,
+        };
+        let { data:{user_tags: tagList} } = await ApiClientAccount.getTagsList(params);
+        tagData = tagList;
+      }
+      console.log(tagData,'tagData')
+    }, 1000);
+   
+   
     this.setState({
+      tagData,
       totalPower: totalPower,
       TRXBalanceTotal: TRXBalance,
       netUsed: address.bandwidth.netUsed + address.bandwidth.freeNetUsed,
@@ -747,6 +770,7 @@ class Address extends React.Component {
       </div>
     );
   }
+
   pieChart() {
     let { intl,priceUSD } = this.props;
     let chartHeight = "300px";
@@ -898,6 +922,18 @@ class Address extends React.Component {
     }
   };
 
+  addTagsModal = () => {
+    this.setState({
+      popup: <AddTag onClose={this.hideModal} />
+    });
+  };
+
+  editTagModal = (record) => {
+    this.setState({
+      popup: <AddTag onClose={this.hideModal} record={record}/>
+    });
+  };
+
   render() {
     let {
       totalPower,
@@ -930,7 +966,8 @@ class Address extends React.Component {
       changeRank,
       popup,
       searchAddress,
-      searchAddressClose
+      searchAddressClose,
+      tagData
     } = this.state;
     let { match, intl, account, walletType,activeLanguage,priceUSD } = this.props;
     let addr = match.params.id;
@@ -989,10 +1026,40 @@ class Address extends React.Component {
                   <div className="row info-wrap">
                     <div className="col-md-7 address-info">
                       {address.representative.enabled ? (
-                        <Representative data={this.state} url={match.url} account={account} walletType={walletType} priceToUSd={priceUSD}/>
+                        <Representative data={this.state} tagData={tagData} url={match.url} account={account} walletType={walletType} priceToUSd={priceUSD}/>
                       ) : (
                         <table className="table m-0">
                           <tbody>
+                            <tr>
+                              <th>{tu("account_tags_my_tag")}:</th>
+                              <td>
+                                <span>
+                                    {
+                                      account.isLoggedIn && walletType.isOpen?
+                                      <span>
+                                        {tagData&&tagData.length>0?
+                                          <span>
+                                            {tagData[0].tag}
+                                            <span style={{color: "#C23631",marginLeft:'8px'}} onClick={()=>this.editTagModal(tagData[0])}>
+                                              {tu("account_tags_my_tag_update")}
+                                            </span>
+                                          </span> 
+                                          :
+                                          <span>
+                                            Not Available
+                                            <span style={{color: "#C23631",marginLeft:'8px'}}  onClick={this.addTagsModal}>
+                                              {tu("account_tags_add")}
+                                            </span>
+                                          </span>
+                                        }
+                                      </span>:
+                                      <span style={{color: "#C23631",marginLeft:'8px'}}>
+                                        {tu("login")}
+                                      </span> 
+                                    }
+                                </span>
+                              </td>
+                            </tr>
                             <tr>
                               <th>{tu("name")}:</th>
                               <td>

@@ -335,6 +335,10 @@ export const lang20Q1 = {
   account_tags_tag_placehold:'请输入标签，长度20字符',
   account_tags_note_placehold:'选填，长度100字符',
   account_tags_tag_valid:'只能输入中文或英文',
+  account_tags_my_tag:'我的标签',
+  account_tags_my_tag_update:'更新',
+
+
 
   
  

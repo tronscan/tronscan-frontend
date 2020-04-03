@@ -311,4 +311,9 @@ export const lang20Q1 = {
   get_usdj:'به دست آوردن USDJ',
 
 
+  account_tags_my_tag:'我的标签',
+  account_tags_my_tag_update:'更新',
+
+
+
 };
