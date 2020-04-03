@@ -153,7 +153,7 @@ export const SUNWEBCONFIG = {
 //Socket config
 export const TORNSOCKET = {
     WSSURLMAIN: "wss://nileapi.tronscan.org/api/tronsocket",
-    WSSURLSUN: "wss://dappchainapi.tronscan.org/api/tronsocket"
+    WSSURLSUN: "wss://niledappapi.tronscan.org/api/tronsocket"
 };
 
 // export const TORNSOCKET = {
