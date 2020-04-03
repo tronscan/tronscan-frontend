@@ -2307,7 +2307,7 @@ export const messages = {
 
 
     "developers_username": "用户名",
-    "developers_current_year": "本年度积分",
+    "developers_current_year": "总积分",
     "developers_current_quarter": "上季度积分",
     "developers_current_month": "上月度积分",
     "developers_view_points": "查看积分明细",
