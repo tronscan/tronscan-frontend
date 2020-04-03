@@ -11,15 +11,19 @@ import _,{upperFirst} from 'lodash'
 import {ONE_TRX,IS_MAINNET} from "../../../constants";
 import {transactionResultManager} from "../../../utils/tron";
 import { TronLoader } from "../../common/loaders";
+import {withTronWeb} from "../../../utils/tronWeb";
 const Step = Steps.Step;
+
 
 @connect(
   state => ({
     wallet: state.wallet.current,
     account: state.app.account,
+    walletType: state.app.wallet,
   })
 )
 
+@withTronWeb
 export class SubmitProposal extends Component {
 
   constructor(props) {
@@ -620,7 +624,7 @@ export class SubmitProposal extends Component {
 
   createProposal = async () =>{
     let { dataSource, proposalsCreateList } = this.state;
-    const { account, account: { tronWeb },intl } = this.props;
+    const { account ,intl } = this.props;
     this.setState({
       modal: (
         <SweetAlert
@@ -636,12 +640,17 @@ export class SubmitProposal extends Component {
       loading: true
     });
     let proposalsCreateListNew  = [];
-    let res;
+    let res, tronWeb;
     proposalsCreateList.map((item,index)=>{
       proposalsCreateListNew.push({"key": Number(item.key), "value":parseFloat(item.newValue)})
     })
-  
-    const unSignTransaction = await tronWeb.transactionBuilder.createProposal(proposalsCreateListNew,tronWeb.defaultAddress.hex,1).catch(res=>console.log(res))
+    if(this.props.walletType.type === "ACCOUNT_LEDGER"){
+        tronWeb = this.props.tronWeb();
+    }else{
+        tronWeb = account.tronWeb;
+    }
+    
+    const unSignTransaction = await tronWeb.transactionBuilder.createProposal(proposalsCreateListNew,tronWeb.address.toHex(account.address),1).catch(res=>console.log(res))
   
   
     if (!unSignTransaction && unSignTransaction != "") {
