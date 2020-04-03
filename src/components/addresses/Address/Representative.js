@@ -94,7 +94,7 @@ class Representative extends React.Component {
                       }
                     </span>:
                     <span >
-                      <span style={{color: "#C23631"}}>{tu("login")}</span>{tu("account_tags_my_tag_login_show")}
+                      <span>{tu("account_tags_my_tag_login_show")}</span>
                     </span> 
                   }
               </span>
