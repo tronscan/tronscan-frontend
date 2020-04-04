@@ -34,7 +34,8 @@ class TagForm extends React.Component {
       target_address:'',
       tag:'',
       description: '',
-      addressTag:''
+      addressTag:'',
+      recommendList:[]
     };
   }
 
@@ -83,6 +84,12 @@ class TagForm extends React.Component {
       this.setState({
         addressTag:data.addressTag?data.addressTag:''
       });
+    })
+
+    ApiClientAccount.recTag({target_address:address}).then(res=>{
+      this.setState({
+        recommendList:res.data.recommend_tags || []
+      })
     })
   };
 
@@ -154,12 +161,12 @@ class TagForm extends React.Component {
   render() {
 
     let { intl } = this.props;
-    let {isLoading, modal, description, target_address, tag , addressTag} = this.state;
+    let {isLoading, modal, description, target_address, tag , addressTag,recommendList} = this.state;
 
     let isAccountValid = target_address.length !== 0 && isAddressValid(target_address);
 
     return (
-        <form className="send-form">
+        <form className="send-form tag-form">
           {modal}
           {isLoading && <TronLoader/>}
           <div className="form-group">
@@ -200,11 +207,21 @@ class TagForm extends React.Component {
             </div>
           </div>
           {
-              addressTag?<div className="mb-3">
-                <span style={{color:'#666666'}}>
+              recommendList.length>0 && <div className="mb-3">
+                <span style={{color:'#666666'}} className="mr-3">
                 {tu('account_tags_rec')}
                 </span>
-              </div>:''
+                {recommendList.map((item)=>(
+                  <span className="rec-tags">
+                  {item.tag}
+                <b className="ml-1">
+                  {intl.formatMessage(
+                  { id: "account_tags_number_rec" },
+                  { number: item.number }
+                )}</b>
+                  </span>
+                ))}
+              </div>
           } 
           <div className="form-group">
             <label>{tu("note")}</label>

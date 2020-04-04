@@ -43,6 +43,15 @@ class ApiClientAccount {
     return res && res.data;
   }
 
+  //recomend tag
+  async recTag(params) {
+    let res = await xhr.get(
+      `${this.apiUrl["mainnet"]}/external/tag/recommend`,
+      {params}
+    );
+    return res && res.data;
+  }
+
 }
 
 export default new ApiClientAccount();
