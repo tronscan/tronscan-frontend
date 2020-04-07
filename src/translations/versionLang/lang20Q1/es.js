@@ -307,5 +307,6 @@ export const lang20Q1 = {
   account_block:'Producir bloques',
   account_address_total_balance_tip:"Suma del valor de todos los tokens en la cuenta",
   get_usdj:'Obtener USDJ',
+  pledge_to_get_USDJ:'Pledge to get USDJ',
 
 };

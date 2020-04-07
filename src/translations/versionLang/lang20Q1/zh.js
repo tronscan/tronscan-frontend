@@ -325,5 +325,5 @@ export const lang20Q1 = {
   use_TRONlink_or_private_key :"请通过TRONlink或私钥登录使用此功能",
 
   get_usdj:'获取USDJ',
-
+  pledge_to_get_USDJ:'质押获取USDJ',
 };
