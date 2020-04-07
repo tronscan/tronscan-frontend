@@ -851,7 +851,7 @@ class Token20Detail extends React.Component {
                       <div className="token-description">
                         <h5 className="card-title">
                           {token.name} ({token.symbol})
-                          {(token.contract_address == CONTRACT_ADDRESS_USDJ || token.contract_address == CONTRACT_ADDRESS_USDJ_TESTNET) && <section className="to-USDj"><HrefLink href="https://www.just.network"><i className="fas fa-coins ml-2 mr-1"></i>{intl.formatMessage({id:'get_usdj'})}</HrefLink></section>}
+                          { (token.contract_address == CONTRACT_ADDRESS_USDJ || token.contract_address == CONTRACT_ADDRESS_USDJ_TESTNET) && <section className="to-USDj"><HrefLink href="https://www.just.network"><i className="fas fa-coins ml-2 mr-1"></i>{intl.formatMessage({id:'get_usdj'})}</HrefLink></section>}
                         </h5>
                         <p className="card-text">{token.token_desc}</p>
                       </div>

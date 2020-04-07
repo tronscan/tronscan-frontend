@@ -93,6 +93,7 @@ export const CONTRACT_ADDRESS_JED_TESTNET = "TTpozmSKuK5jbigUXtQn6fdxh6ivwKtGo5"
 export const CONTRACT_ADDRESS_USDJ = "TMwFHYXLJaRUPeW6421aqXL4ZEzPRFGkGT";
 export const CONTRACT_ADDRESS_JED = "TCFLL5dx5ZJdKnWuesXxi1VPwjLVmWZZy9";
 
+
 // Deployment to compile
 export const FILE_MAX_SIZE = 5 * 1024 * 1024;
 export const FILE_MAX_NUM = 10;
