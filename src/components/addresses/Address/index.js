@@ -134,6 +134,7 @@ class Address extends React.Component {
     this.loadAddress(match.params.id);
     this.loadWitness(match.params.id);
     this.loadWalletReward(match.params.id);
+    this.loadTag(match.params.id)
     !priceUSD && (await this.props.loadUsdPrice());
 
   }
@@ -145,6 +146,7 @@ class Address extends React.Component {
       this.loadAddress(match.params.id);
       this.loadWitness(match.params.id);
       this.loadWalletReward(match.params.id);
+      this.loadTag(match.params.id)
     }
   }
 
@@ -384,24 +386,7 @@ class Address extends React.Component {
     
     // tags
    
-    let tagData;
-    tagInter = setInterval(async() => {
-      let {walletType} = this.props;
-      if(walletType.address){
-        clearInterval(tagInter)
-        const params = {
-          user_address:walletType.address,
-          target_address:id,
-          start:0,
-          limit:20
-        };
-        let { data:{user_tags: tagList} } = await ApiClientAccount.getTagsList(params);
-        tagData = tagList;
-        this.setState({
-          tagData,
-        })
-      }
-    }, 1000);
+   
    
    
     this.setState({
@@ -684,6 +669,27 @@ class Address extends React.Component {
 
   }
 
+  async loadTag(id){
+    let tagData;
+    tagInter = setInterval(async() => {
+      let {walletType} = this.props;
+      if(walletType.address){
+        clearInterval(tagInter)
+        const params = {
+          user_address:walletType.address,
+          target_address:id,
+          start:0,
+          limit:20
+        };
+        let { data:{user_tags: tagList} } = await ApiClientAccount.getTagsList(params);
+        tagData = tagList;
+        this.setState({
+          tagData
+        })
+      }
+    }, 1000);
+  }
+
   async loadWitness(id) {
     /* 需要总票数，实时排名俩个参数*/
     let { data } = await Client.getVoteWitness(id);
@@ -932,10 +938,24 @@ class Address extends React.Component {
   };
 
   editTagModal = (record) => {
+    console.log(record,'record')
     this.setState({
-      popup: <AddTag onClose={this.hideModal} record={record}/>
+      popup: <AddTag onClose={this.hideModal} targetAddress={record.targetAddress} onloadTableP={this.onloadTable} />
     });
   };
+
+
+  hideModal = () => {
+    this.setState({ popup: null });
+  };
+
+  onloadTable = () =>{
+    let { match} = this.props;
+    setTimeout(()=>{
+      this.loadTag(match.params.id)
+    },1000)
+  }
+
 
   isLoggedIn = () => {
     let { account, intl } = this.props;
