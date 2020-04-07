@@ -10,25 +10,25 @@
   .desc-len {
     width: 340px;
   }
-  .btn-default{
-      background:#fff;
-      border: 1px solid #999999;
-      span{
-          color:#999999;
-      }
-      &:hover{
-          span{
-            color:#999999!important; 
-          }
-      }
-  }
-  .btn-danger{
-    background:#fff;
-    border:1px solid  #C23631;
-    span{
-        color: #C23631;
+  .btn-default {
+    background: #fff;
+    border: 1px solid #999999;
+    span {
+      color: #999999;
     }
-}
+    &:hover {
+      span {
+        color: #999999 !important;
+      }
+    }
+  }
+  .btn-danger {
+    background: #fff;
+    border: 1px solid #c23631;
+    span {
+      color: #c23631;
+    }
+  }
   .sweet-alert {
     h2 {
       padding-top: 20px;
@@ -46,24 +46,33 @@
       line-height: 38px;
       padding-top: 0 !important;
     }
-
   }
-  .ant-table-bordered.ant-table-empty .ant-table-placeholder{
-      border:none;
+  .ant-table-bordered.ant-table-empty .ant-table-placeholder {
+    border: none;
   }
-  .no-data{
-      margin:0 auto;
-      text-align: center;
+  .no-data {
+    margin: 0 auto;
+    text-align: center;
   }
 }
 
-.tag-form{
-    .rec-tags{
-        color:#666;
-        b{
-            font-weight: normal;
-            color: #C8C8C8;
-        }
+.tag-form {
+  .rec-tags {
+    color: #666;
+    cursor: pointer;
+    b {
+      font-weight: normal !important;
+      color: #c8c8c8;
     }
-    
+    .tag-name {
+      max-width: 100px;
+      display: inline-block;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+  }
+  .tag-flex-wrap {
+    flex-wrap: wrap;
+  }
 }

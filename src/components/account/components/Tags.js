@@ -1,4 +1,4 @@
-import React, { Component,Fragment } from "react";
+import React, { Component, Fragment } from "react";
 import { tu } from "../../../utils/i18n";
 import { upperFirst } from "lodash";
 import { BlockNumberLink } from "../../common/Links";
@@ -12,9 +12,7 @@ import { Table, Input, Button, Icon } from "antd";
 import { TronLoader } from "../../common/loaders";
 import AddTag from "./AddTag";
 import ApiClientAccount from "../../../services/accountApi";
-import {
-  AddressLink
-} from "../../common/Links";
+import { AddressLink } from "../../common/Links";
 import "../../../styles/tags.scss";
 import SweetAlert from "react-bootstrap-sweetalert";
 import { Link } from "react-router-dom";
@@ -33,7 +31,7 @@ class Tags extends Component {
         data: []
       },
       popup: null,
-      page:1
+      page: 1
     };
   }
   componentDidMount() {
@@ -76,12 +74,14 @@ class Tags extends Component {
         className: "ant_table",
         width: "30%",
         render: (text, record, index) => {
-          return <div>
-            {record.addressTag && (
-                  <Link to={`/address/${text}`}>{record.addressTag}</Link>
+          return (
+            <div>
+              {record.addressTag && (
+                <Link to={`/address/${text}`}>{record.addressTag}</Link>
               )}
-            <AddressLink address={text}>{text}</AddressLink>
+              <AddressLink address={text}>{text}</AddressLink>
             </div>
+          );
         }
       },
 
@@ -117,7 +117,10 @@ class Tags extends Component {
         render: (text, record, index) => {
           return (
             <span>
-              <button className="btn btn-md btn-default mr-2" onClick={()=>this.editTagModal(record)}>
+              <button
+                className="btn btn-md btn-default mr-2"
+                onClick={() => this.editTagModal(record)}
+              >
                 {tu("account_tags_edit")}
               </button>
               <button
@@ -138,27 +141,39 @@ class Tags extends Component {
 
   addTagsModal = () => {
     this.setState({
-      popup: <AddTag onClose={this.hideModal} onloadTableP={this.onloadTable} onClose={this.hideModal}/>
+      popup: (
+        <AddTag
+          onClose={this.hideModal}
+          onloadTableP={this.onloadTable}
+          onClose={this.hideModal}
+        />
+      )
     });
   };
 
-  editTagModal = (record) => {
+  editTagModal = record => {
     this.setState({
-      popup: <AddTag onClose={this.hideModal} targetAddress={record.targetAddress} onloadTableP={this.onloadTable} onClose={this.hideModal}/>
+      popup: (
+        <AddTag
+          onClose={this.hideModal}
+          targetAddress={record.targetAddress}
+          onloadTableP={this.onloadTable}
+          onClose={this.hideModal}
+        />
+      )
     });
   };
 
-  onloadTable = () =>{
-    
-    let {page,pagination} = this.state
-    setTimeout(()=>{
-      this.load(page,pagination.pageSize)
-    },1000)
-  }
+  onloadTable = () => {
+    let { page, pagination } = this.state;
+    setTimeout(() => {
+      this.load(page, pagination.pageSize);
+    }, 1000);
+  };
 
   deleteTagModal = targetAddress => {
     this.setState({
-      deleteTargetAddress:targetAddress,
+      deleteTargetAddress: targetAddress,
       popup: (
         <SweetAlert
           showCancel
@@ -185,44 +200,37 @@ class Tags extends Component {
   deleteTag = async () => {
     // delete tags
     let { address } = this.props;
-    let {deleteTargetAddress,page,pagination} = this.state
+    let { deleteTargetAddress, page, pagination } = this.state;
     let obj = {
       user_address: address,
-      target_address: deleteTargetAddress 
+      target_address: deleteTargetAddress
     };
 
-    let { retCode,retMsg } = await ApiClientAccount.removeTag(obj);
-    if(retCode == 0){
+    let { retCode, retMsg } = await ApiClientAccount.removeTag(obj);
+    if (retCode == 0) {
       this.setState({
         popup: (
           <SweetAlert
             success
-            title={tu('account_tags_delete_succss')}
+            title={tu("account_tags_delete_succss")}
             onConfirm={this.hideModal}
           />
         )
       });
 
-  
-      this.load(page,pagination.pageSize)
-
-      setTimeout(()=>{
+      setTimeout(() => {
+        this.load(page, pagination.pageSize);
         this.setState({
-          popup:null
-        })
-      },1000)
-    }else{
+          popup: null
+        });
+      }, 1000);
+    } else {
       this.setState({
         popup: (
-          <SweetAlert
-            success
-            title={retMsg[0]}
-            onConfirm={this.hideModal}
-          />
+          <SweetAlert success title={retMsg[0]} onConfirm={this.hideModal} />
         )
       });
     }
-      
   };
 
   hideModal = () => {
@@ -258,11 +266,11 @@ class Tags extends Component {
               </div>
             )}
             {total ? (
-              <Fragment> 
-                  <div className="mb-2" style={{ left: "auto" }}>
-                    {tableInfo}
-                  </div>
-                  <Table
+              <Fragment>
+                <div className="mb-2" style={{ left: "auto" }}>
+                  {tableInfo}
+                </div>
+                <Table
                   bordered={true}
                   loading={loading}
                   dataSource={data}
@@ -278,12 +286,10 @@ class Tags extends Component {
               </Fragment>
             ) : (
               <div className="no-data">
-                <img src={require('../../../images/logo_default.png')}/>
-                <p className="text-muted">{tu('trc20_no_data')}</p>
+                <img src={require("../../../images/logo_default.png")} />
+                <p className="text-muted">{tu("trc20_no_data")}</p>
               </div>
             )}
-            
-            
           </div>
         </div>
       </div>

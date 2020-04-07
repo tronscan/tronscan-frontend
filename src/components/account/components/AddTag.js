@@ -7,6 +7,7 @@ import { Modal, ModalBody, ModalHeader } from "reactstrap";
 import SweetAlert from "react-bootstrap-sweetalert";
 import { tu } from "../../../utils/i18n";
 import { injectIntl } from "react-intl";
+import "../../../styles/tags.scss";
 
 @injectIntl
 class AddTags extends React.PureComponent {
@@ -22,37 +23,29 @@ class AddTags extends React.PureComponent {
           className="modal-dialog-centered fiexd-none send-modal"
         >
           <ModalHeader className="text-center" toggle={this.hideModal}>
-            {props.targetAddress ? tu('account_tags_edit_title') : tu('account_tags_add_title')}
+            {props.targetAddress
+              ? tu("account_tags_edit_title")
+              : tu("account_tags_add_title")}
           </ModalHeader>
           <ModalBody>
-            <TagForm targetAddress={props.targetAddress} onloadTable={this.onloadTable}/>
+            <TagForm
+              targetAddress={props.targetAddress}
+              onloadTable={this.onloadTable}
+            />
           </ModalBody>
         </Modal>
       )
     };
   }
 
-  onloadTable = ()=>{
-   
-    this.props.onloadTableP()
-    this.hideModal()
-  }
+  onloadTable = () => {
+    this.props.onloadTableP();
+    this.hideModal();
+  };
 
   hideModal = () => {
     let { onClose } = this.props;
     onClose && onClose();
-  };
-
-  onSend = () => {
-    this.setState({
-      modal: (
-        <SweetAlert
-          success
-          title="Successful Transaction"
-          onConfirm={this.hideModal}
-        />
-      )
-    });
   };
 
   render() {
@@ -66,9 +59,6 @@ class AddTags extends React.PureComponent {
           danger
           title={intl.formatMessage({ id: "not_login" })}
           onConfirm={this.hideModal}
-          // style={{
-          //   width:'478px'
-          // }}
         >
           {tu("login_first")}
         </SweetAlert>

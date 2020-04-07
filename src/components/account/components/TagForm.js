@@ -67,7 +67,17 @@ class TagForm extends React.Component {
         modal: <SweetAlert warning title={retMsg} onConfirm={this.hideModal} />
       });
     }
+
+    this.getRecommendTags(targetAddress);
   }
+
+  getRecommendTags = address => {
+    ApiClientAccount.recTag({ target_address: address }).then(res => {
+      this.setState({
+        recommendList: res.data.recommend_tags || []
+      });
+    });
+  };
   /**
    * Check if the form is valid
    * @returns {*|boolean}
@@ -91,11 +101,7 @@ class TagForm extends React.Component {
       });
     });
 
-    ApiClientAccount.recTag({ target_address: address }).then(res => {
-      this.setState({
-        recommendList: res.data.recommend_tags || []
-      });
-    });
+    this.getRecommendTags(address);
   };
 
   setTag = tag => {
@@ -146,7 +152,9 @@ class TagForm extends React.Component {
           />
         )
       });
-      this.props.onloadTable();
+      setTimeout(() => {
+        this.props.onloadTable();
+      }, 1000);
     } else {
       this.setState({
         modal: <SweetAlert warning title={retMsg} onConfirm={this.hideModal} />
@@ -233,21 +241,27 @@ class TagForm extends React.Component {
           </div>
         </div>
         {recommendList.length > 0 && (
-          <div className="mb-3">
+          <div className="mb-3 d-flex">
             <span style={{ color: "#666666" }} className="mr-3">
               {tu("account_tags_rec")}
             </span>
-            {recommendList.map((item, index) => (
-              <span className="rec-tags mr-2" key={index}>
-                {item.tag}
-                <b className="ml-1">
-                  {intl.formatMessage(
-                    { id: "account_tags_number_rec" },
-                    { number: item.number }
-                  )}
-                </b>
-              </span>
-            ))}
+            <span className="d-flex tag-flex-wrap">
+              {recommendList.map((item, index) => (
+                <span
+                  className="rec-tags mr-3 d-flex"
+                  key={index}
+                  onClick={() => this.setTag(item.tag)}
+                >
+                  <span className="tag-name">{item.tag}</span>
+                  <b className="ml-1">
+                    {intl.formatMessage(
+                      { id: "account_tags_number_rec" },
+                      { number: item.number }
+                    )}
+                  </b>
+                </span>
+              ))}
+            </span>
           </div>
         )}
         <div className="form-group">
