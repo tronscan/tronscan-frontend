@@ -311,9 +311,33 @@ export const lang20Q1 = {
   get_usdj:'به دست آوردن USDJ',
 
 
-  account_tags_my_tag:'我的标签',
-  account_tags_my_tag_update:'更新',
-  account_tags_my_tag_login_show:'后显示',
+  // 03-26 tag 
+  account_tags_list:'标签列表',
+  account_tags_add:'اضافه کنید',
+  account_tags_desc:'عملکرد برچسب ، می توانید حساب خود را به صورت خصوصی برای مشخص کردن حساب خود برچسب گذاری کنید',
+  account_tags_number:'مجموع حساب {total}',
+  account_tags_table_1:'برچسب زدن',
+  account_tags_table_2:'سخنان',
+  account_tags_add_title:'برچسب ها را اضافه کنید',
+  account_tags_edit_title:'编辑标签',
+  account_tags_add_success:'添加成功',
+  account_tags_edit_success:'编辑成功',
+  account_tags_number_rec:'{number}人标记',
+  account_tags_tip:'برچسب خصوصی ، فقط برای شما قابل مشاهده است',
+
+  account_tags_edit: "编辑",
+  account_tags_delete: "移除",
+  account_tags_delete_is: "آیا شما برای حذف برچسب مطمئن هستید؟",
+  account_tags_delete_succss: "با موفقیت حذف شد",
+  account_address_name_tag:'(بستر های نرم افزاری برچسب صدور گواهینامه)',
+  account_tags_address_placehold:'请输入正确的地址',
+  account_tags_tag_placehold:'لطفاً یک برچسب ، شامل 20 کاراکتر وارد کنید',
+  account_tags_note_placehold:'اختیاری، شامل 100 کاراکتر',
+  account_tags_tag_valid:'فقط می توانید چینی یا انگلیسی وارد کنید',
+  account_tags_rec:"بستر های نرم افزاری برچسب صدور گواهینامه",
+ account_tags_my_tag:'برچسب های من',
+ account_tags_my_tag_update:'بروزرسانی کنید',
+ account_tags_my_tag_login_show:'نمایش پس از ورود به سیستم',
 
 
 

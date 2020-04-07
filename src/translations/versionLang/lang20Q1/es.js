@@ -308,9 +308,33 @@ export const lang20Q1 = {
   account_address_total_balance_tip:"Suma del valor de todos los tokens en la cuenta",
   get_usdj:'Obtener USDJ',
 
-  account_tags_my_tag:'我的标签',
-  account_tags_my_tag_update:'更新',
-  account_tags_my_tag_login_show:'后显示',
+ // 03-26 tag 
+ account_tags_list:'标签列表',
+ account_tags_add:'Agregar',
+ account_tags_desc:'Función de etiquetas, poner etiquetas personales para que puedas agregar cuentas con más facilidad',
+ account_tags_number:'{total} cuentas en total',
+ account_tags_table_1:'etiquetas',
+ account_tags_table_2:'Nota',
+ account_tags_add_title:'Agregar etiquetas',
+ account_tags_edit_title:'编辑标签',
+ account_tags_add_success:'添加成功',
+ account_tags_edit_success:'编辑成功',
+ account_tags_number_rec:'{number}人标记',
+ account_tags_tip:'Etiquetas personales, sólo se muestra para tí',
+
+ account_tags_edit: "编辑",
+ account_tags_delete: "移除",
+ account_tags_delete_is: "¿Estás seguro de quitar la etiqueta?",
+ account_tags_delete_succss: "Eliminado con éxito",
+ account_address_name_tag:'(Etiqueta certificada por la plataforma)',
+ account_tags_address_placehold:'请输入正确的地址',
+ account_tags_tag_placehold:'Ingrese una etiqueta con una longitud de 20 caracteres.',
+ account_tags_note_placehold:'Opcional, entre 100 caracteres',
+ account_tags_tag_valid:'Solo se acepta chino o inglés',
+ account_tags_rec:"Etiqueta certificada por la plataforma",
+account_tags_my_tag:'Mis etiquetas',
+account_tags_my_tag_update:'Actualización',
+account_tags_my_tag_login_show:'Mostrar después de iniciar sesión',
 
 
 };

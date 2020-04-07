@@ -311,9 +311,33 @@ export const lang20Q1 = {
   account_address_total_balance_tip:"Sum of the value of all tokens in the account",
   get_usdj:'Obtain USDJ',
 
-  account_tags_my_tag:'我的标签',
-  account_tags_my_tag_update:'更新',
-  account_tags_my_tag_login_show:'后显示',
+  // 03-26 tag 
+  account_tags_list:'标签列表',
+  account_tags_add:'Add',
+  account_tags_desc:'Tag feature: you can attach private tags to accounts so as to identify them more easily',
+  account_tags_number:'{total} accounts in total',
+  account_tags_table_1:'tag',
+  account_tags_table_2:'Note',
+  account_tags_add_title:'Add a tag',
+  account_tags_edit_title:'编辑标签',
+  account_tags_add_success:'添加成功',
+  account_tags_edit_success:'编辑成功',
+  account_tags_number_rec:'{number}人标记',
+  account_tags_tip:'Private tag. Only visible to yourself.',
+
+  account_tags_edit: "编辑",
+  account_tags_delete: "移除",
+  account_tags_delete_is: "Are you sure to remove the tag?",
+  account_tags_delete_succss: "The tag has been removed.",
+  account_address_name_tag:'(Verified tag)',
+  account_tags_address_placehold:'请输入正确的地址',
+  account_tags_tag_placehold:'Please enter a tag (no more than 20 characters).',
+  account_tags_note_placehold:'Optional, no more than 100 characters.',
+  account_tags_tag_valid:'Chinese or English only',
+  account_tags_rec:"Recommended tag",
+ account_tags_my_tag:'My tags',
+ account_tags_my_tag_update:'Update',
+ account_tags_my_tag_login_show:'The content will show after login.',
 
 
 };

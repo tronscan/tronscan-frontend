@@ -292,9 +292,6 @@ export const lang20Q1 = {
   account_representative_unit: "{number} 명에 의해 {votes} 표를 받음",
   account_piechart_title: "자산 분배",
 
-  freeze_TRX_error:"Something went wrong while trying to freeze TRX, please try again later.",
-  votes_cannot_exceed_5_SRs:"Votes cannot exceed 5 SRs",
-
   too_many_bytes_to_encode:"Too many bytes to encode",
   use_TRONlink_or_private_key :"Please login to use this function via TRONlink or private key",
   
@@ -316,9 +313,33 @@ export const lang20Q1 = {
   account_address_total_balance_tip:"계정에있는 모든 토큰의 가치 합계",
   get_usdj:'얻다 USDJ',
 
-  account_tags_my_tag:'我的标签',
-  account_tags_my_tag_update:'更新',
-  account_tags_my_tag_login_show:'后显示',
+  // 03-26 tag 
+  account_tags_list:'标签列表',
+  account_tags_add:'追加',
+  account_tags_desc:'태그 기능 : 개인 태그를 계정에 연결하여 더 쉽게 식별 할 수 있습니다.',
+  account_tags_number:'총 {total} 개 계정',
+  account_tags_table_1:'꼬리표',
+  account_tags_table_2:'备注',
+  account_tags_add_title:'태그 추가',
+  account_tags_edit_title:'编辑标签',
+  account_tags_add_success:'添加成功',
+  account_tags_edit_success:'编辑成功',
+  account_tags_number_rec:'{number}人标记',
+  account_tags_tip:'개인태그. 나에게만 보입니다.',
+
+  account_tags_edit: "编辑",
+  account_tags_delete: "移除",
+  account_tags_delete_is: "태그를 제거하시겟습니까?",
+  account_tags_delete_succss: "태그 제거 완료",
+  account_address_name_tag:'(플랫폼 인증 태그)',
+  account_tags_address_placehold:'请输入正确的地址',
+  account_tags_tag_placehold:'태그를 입력하세요.(20자 제한)',
+  account_tags_note_placehold:'선택사항 (100자 제한)',
+  account_tags_tag_valid:'중국어, 영어만 입력가능',
+  account_tags_rec:"추천 태그",
+ account_tags_my_tag:'私のタグ',
+ account_tags_my_tag_update:'업데이트',
+ account_tags_my_tag_login_show:'로그인 후 표시됨',
 
 
 };

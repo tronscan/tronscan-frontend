@@ -330,7 +330,7 @@ export const lang20Q1 = {
   account_tags_add_success:'添加成功',
   account_tags_edit_success:'编辑成功',
   account_tags_number_rec:'{number}人标记',
-
+  account_tags_tip:'私有标签，只有自己可见',
   account_tags_edit: "编辑",
   account_tags_delete: "移除",
   account_tags_delete_is: "是否确认移除该标签？",
