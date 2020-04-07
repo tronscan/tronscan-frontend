@@ -16,7 +16,7 @@ import { QuestionMark } from "../../common/QuestionMark";
 function setTagIcon(tag) {
   if (!tag) return;
   let name = "";
-  ADDRESS_TAG_ICON.map(v => {
+  ADDRESS_TAG_ICON.map((v) => {
     if (tag.indexOf(v) > -1) {
       name = v;
     }
@@ -36,7 +36,7 @@ class TagForm extends React.Component {
       tag: "",
       description: "",
       addressTag: "",
-      recommendList: []
+      recommendList: [],
     };
   }
 
@@ -51,7 +51,7 @@ class TagForm extends React.Component {
       user_address: account.address,
       target_address: targetAddress,
       limit: 2,
-      start: 0
+      start: 0,
     };
     let { retCode, retMsg, data } = await ApiClientAccount.getTagsList(obj);
     let detail = data.user_tags[0];
@@ -60,21 +60,21 @@ class TagForm extends React.Component {
         target_address: targetAddress,
         tag: detail.tag,
         description: detail.description,
-        addressTag: detail.addressTag
+        addressTag: detail.addressTag,
       });
     } else {
       this.setState({
-        modal: <SweetAlert warning title={retMsg} onConfirm={this.hideModal} />
+        modal: <SweetAlert warning title={retMsg} onConfirm={this.hideModal} />,
       });
     }
 
     this.getRecommendTags(targetAddress);
   }
 
-  getRecommendTags = address => {
-    ApiClientAccount.recTag({ target_address: address }).then(res => {
+  getRecommendTags = (address) => {
+    ApiClientAccount.recTag({ target_address: address }).then((res) => {
       this.setState({
-        recommendList: res.data.recommend_tags || []
+        recommendList: res.data.recommend_tags || [],
       });
     });
   };
@@ -89,37 +89,37 @@ class TagForm extends React.Component {
 
   hideModal = () => {
     this.setState({
-      modal: null
+      modal: null,
     });
   };
 
-  setAccount = address => {
+  setAccount = (address) => {
     this.setState({ target_address: address });
-    Client.getAddress(address).then(data => {
+    Client.getAddress(address).then((data) => {
       this.setState({
-        addressTag: data.addressTag ? data.addressTag : ""
+        addressTag: data.addressTag ? data.addressTag : "",
       });
     });
 
     this.getRecommendTags(address);
   };
 
-  setTag = tag => {
+  setTag = (tag) => {
     let { intl } = this.props;
     this.setState({
-      tag
+      tag,
     });
   };
 
-  isValidTag = tag => {
+  isValidTag = (tag) => {
     if (!tag.match(/^[\u4e00-\u9fa5|a-zA-Z]*$/)) {
       return true;
     }
   };
 
-  setNote = description => {
+  setNote = (description) => {
     this.setState({
-      description
+      description,
     });
   };
 
@@ -131,7 +131,7 @@ class TagForm extends React.Component {
       user_address: account.address,
       target_address: target_address,
       tag: tag,
-      description: description
+      description: description,
     };
 
     let { retCode, retMsg } = targetAddress
@@ -150,22 +150,16 @@ class TagForm extends React.Component {
             }
             onConfirm={this.hideModal}
           />
-        )
+        ),
       });
       setTimeout(() => {
         this.props.onloadTable();
       }, 1000);
     } else {
       this.setState({
-        modal: <SweetAlert warning title={retMsg} onConfirm={this.hideModal} />
+        modal: <SweetAlert warning title={retMsg} onConfirm={this.hideModal} />,
       });
     }
-
-    // setTimeout(() => {
-    //   this.setState({
-    //     modal: null
-    //   });
-    // }, 1000);
   };
 
   render() {
@@ -177,7 +171,7 @@ class TagForm extends React.Component {
       target_address,
       tag,
       addressTag,
-      recommendList
+      recommendList,
     } = this.state;
 
     let isAccountValid =
@@ -196,13 +190,13 @@ class TagForm extends React.Component {
           <div className="input-group mb-3">
             <input
               type="text"
-              onChange={ev => this.setAccount(ev.target.value)}
+              onChange={(ev) => this.setAccount(ev.target.value)}
               className={
                 "form-control " + (!isAccountValid ? "is-invalid" : "")
               }
               value={target_address}
               placeholder={intl.formatMessage({
-                id: "account_tags_address_placehold"
+                id: "account_tags_address_placehold",
               })}
               disabled={targetAddress ? true : false}
             />
@@ -227,11 +221,11 @@ class TagForm extends React.Component {
           <div className="input-group mb-3">
             <input
               type="text"
-              onChange={ev => this.setTag(ev.target.value)}
+              onChange={(ev) => this.setTag(ev.target.value)}
               className={"form-control " + (isValidTag ? "is-invalid" : "")}
               value={tag}
               placeholder={intl.formatMessage({
-                id: "account_tags_tag_placehold"
+                id: "account_tags_tag_placehold",
               })}
               maxLength="20"
             />
@@ -268,11 +262,11 @@ class TagForm extends React.Component {
           <label>{tu("note")}</label>
           <div className="input-group mb-3">
             <textarea
-              onChange={ev => this.setNote(ev.target.value)}
+              onChange={(ev) => this.setNote(ev.target.value)}
               className={"form-control"}
               value={description}
               placeholder={intl.formatMessage({
-                id: "account_tags_note_placehold"
+                id: "account_tags_note_placehold",
               })}
             />
             <div className="invalid-feedback">{tu("fill_a_valid_address")}</div>
@@ -297,13 +291,13 @@ function mapStateToProps(state) {
     account: state.app.account,
     wallet: state.app.wallet,
     tokenBalances: state.account.tokens,
-    tokens20: state.account.tokens20
+    tokens20: state.account.tokens20,
   };
 }
 
 const mapDispatchToProps = {
   login,
-  reloadWallet
+  reloadWallet,
 };
 
 export default connect(
