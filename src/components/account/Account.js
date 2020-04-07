@@ -2202,7 +2202,7 @@ export default class Account extends Component {
                         (!currentWallet.representative.enabled  && IS_MAINNET) && <tr>
                           <th >{tu("SR_vote_for_reward")}:</th>
                           <td>
-                            <TRXPrice amount={accountReward / ONE_TRX} className="font-weight-bold"/>
+                            <TRXPrice amount={accountReward / ONE_TRX}/>
                               {
                                   accountReward == 0 ?  <AntdTip title={<span>{tu('no_rewards_available_yet')}</span>}>
                                                             <a href="javascript:;"
