@@ -191,10 +191,10 @@ export default class Account extends Component {
           name: 'tokens',
           id: 'account_tokens'
         },
-        {
-          name: 'account_tags_list',
-          id: 'account_tags'
-        },
+        // {
+        //   name: 'account_tags_list',
+        //   id: 'account_tags'
+        // },
         {
           name: 'transactions',
           id: 'account_transactions'
@@ -2587,11 +2587,11 @@ export default class Account extends Component {
               </div>
             </div>
           </div>
-          <div className="row mt-3" id="account_tags">
-          <div className="col-md-12">
-            <Tags address={this.props.account.address}/>
+          {!IS_SUNNET && <div className="row mt-3" id="account_tags">
+            <div className="col-md-12">
+             <Tags address={this.props.account.address}/>
             </div>
-          </div>
+          </div>}
           { !IS_SUNNET &&
             <div className="row mt-3" id="account_my_trading_pairs">
               <div className="col-md-12">

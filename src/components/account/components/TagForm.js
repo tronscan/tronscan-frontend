@@ -123,10 +123,12 @@ class TagForm extends React.Component {
     });
   };
 
-  submit = async () => {
+  submitTag = async () => {
     const { target_address, tag, description } = this.state;
     const { account, targetAddress } = this.props;
-
+    if(!isAddressValid(target_address) || this.isValidTag(tag)){
+      return ;
+    }
     let obj = {
       user_address: account.address,
       target_address: target_address,
@@ -179,7 +181,7 @@ class TagForm extends React.Component {
     let isValidTag = tag.length != 0 && this.isValidTag(tag);
 
     return (
-      <form className="send-form tag-form">
+      <div className="send-form tag-form">
         {modal}
         {isLoading && <TronLoader />}
         <div className="form-group">
@@ -196,7 +198,7 @@ class TagForm extends React.Component {
               }
               value={target_address}
               placeholder={intl.formatMessage({
-                id: "account_tags_address_placehold",
+                id: "fill_a_valid_address",
               })}
               disabled={targetAddress ? true : false}
             />
@@ -276,12 +278,13 @@ class TagForm extends React.Component {
           <button
             className="btn btn-danger btn-lg"
             style={{ width: "100%" }}
-            onClick={this.submit}
+            onClick={this.submitTag}
+            disabled={!isAddressValid(target_address) || this.isValidTag(tag)}
           >
             {tu("submit")}
           </button>
         </section>
-      </form>
+      </div>
     );
   }
 }

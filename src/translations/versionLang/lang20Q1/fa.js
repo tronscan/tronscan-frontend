@@ -312,21 +312,21 @@ export const lang20Q1 = {
 
 
   // 03-26 tag 
-  account_tags_list:'标签列表',
+  account_tags_list:'لیست برچسب ها ',
   account_tags_add:'اضافه کنید',
   account_tags_desc:'عملکرد برچسب ، می توانید حساب خود را به صورت خصوصی برای مشخص کردن حساب خود برچسب گذاری کنید',
   account_tags_number:'مجموع حساب {total}',
   account_tags_table_1:'برچسب زدن',
   account_tags_table_2:'سخنان',
   account_tags_add_title:'برچسب ها را اضافه کنید',
-  account_tags_edit_title:'编辑标签',
-  account_tags_add_success:'添加成功',
-  account_tags_edit_success:'编辑成功',
-  account_tags_number_rec:'{number}人标记',
+  account_tags_edit_title:'لیست برچسب ها ',
+  account_tags_add_success:'The tag has been successfully added',
+  account_tags_edit_success:'The tag has been successfully edited',
+  account_tags_number_rec:'{number} accounts mark',
   account_tags_tip:'برچسب خصوصی ، فقط برای شما قابل مشاهده است',
 
-  account_tags_edit: "编辑",
-  account_tags_delete: "移除",
+  account_tags_edit: "edit",
+  account_tags_delete: "remove",
   account_tags_delete_is: "آیا شما برای حذف برچسب مطمئن هستید؟",
   account_tags_delete_succss: "با موفقیت حذف شد",
   account_address_name_tag:'(بستر های نرم افزاری برچسب صدور گواهینامه)',
