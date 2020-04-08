@@ -67,6 +67,11 @@ export function Information({ token: tokens, priceUSD }) {
     currentTotal = token.winkTotalSupply.totalTurnOver || 0;
     currentTotalSupplyUsd = parseInt(token.winkTotalSupply.marketValue) || 0;
   }
+  // if jst
+  // if (token.contract_address === "TCFLL5dx5ZJdKnWuesXxi1VPwjLVmWZZy9") {
+  //   currentTotal = token.jstTotalSupply.totalTurnOver || 0;
+  //   currentTotalSupplyUsd = parseInt(token.jstTotalSupply.marketValue) || 0;
+  // }
 
   const defaultContent = "-";
 
