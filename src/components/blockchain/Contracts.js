@@ -147,8 +147,7 @@ class Contracts extends React.Component {
     return version;
   };
   customizedColumn = () => {
-    let { intl,activeLanguage } = this.props;
-    console.log(activeLanguage,'activeLanguage')
+    let { intl } = this.props;
     const title = (
       <div>
         {upperFirst(intl.formatMessage({ id: "balance" }))}
@@ -163,39 +162,36 @@ class Contracts extends React.Component {
         dataIndex: "address",
         key: "address",
         align: "left",
-        width: "12%",
+        width:"12%",
         className: "ant_table",
         render: (text, record, index) => {
           return (
-            <Truncate>
-              <span className="d-flex" style={{
-                    display: "table",
-                    tableLayout: "fixed",
-                    width: "100%",
-                    whiteSpace: "nowrap"
-              }}>
-                <Tooltip
-                    placement="top"
-                    title={upperFirst(
-                        intl.formatMessage({
-                        id: "transfersDetailContractAddress"
-                        })
-                    )}
-                  >
-                    <Icon
-                      type="file-text"
-                      style={{
-                      verticalAlign: 0,
-                      color: "#77838f",
-                      lineHeight: 1.4
-                      }}
-                    />
-                  </Tooltip>
-                <AddressLink address={text} isContract={true}>
-                  {text}
-                </AddressLink>
-              </span>
-            </Truncate>
+            <div>
+              <Truncate>
+                <span className="d-flex" >
+                  <Tooltip
+                      placement="top"
+                      title={upperFirst(
+                          intl.formatMessage({
+                          id: "transfersDetailContractAddress"
+                          })
+                      )}
+                    >
+                      <Icon
+                        type="file-text"
+                        style={{
+                        verticalAlign: 0,
+                        color: "#77838f",
+                        lineHeight: 1.4
+                        }}
+                      />
+                    </Tooltip>
+                  <AddressLink address={text} isContract={true}>
+                    {text}
+                  </AddressLink>
+                </span>
+              </Truncate>
+            </div>
           );
         }
       },
@@ -360,6 +356,7 @@ class Contracts extends React.Component {
         dataIndex: "license",
         key: "license",
         align: "left",
+        width:'5%',
         className: "ant_table",
         render: (text, record, index) => {
           return (
@@ -761,7 +758,7 @@ class Contracts extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    activeLanguage: state.app.activeLanguage,
+  
   };
 }
 
