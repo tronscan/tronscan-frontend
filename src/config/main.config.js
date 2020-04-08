@@ -1,4 +1,3 @@
-
 let config = {
     curEnv:'production',
     networkUrl : `https://api.trongrid.io`,

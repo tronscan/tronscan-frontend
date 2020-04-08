@@ -68,8 +68,10 @@ module.exports = function(webpackEnv) {
     : isEnvDevelopment && '/';
   // Some apps do not use client-side routing with pushState.
   // For these, "homepage" can be set to "." to enable relative asset paths.
+  console.log("publicPath:",publicPath);
   const shouldUseRelativeAssetPaths = publicPath === './';
 
+  console.log("shouldUseRelativeAssetPaths:",shouldUseRelativeAssetPaths);
   // `publicUrl` is just like `publicPath`, but we will provide it to our app
   // as %PUBLIC_URL% in `index.html` and `process.env.PUBLIC_URL` in JavaScript.
   // Omit trailing slash as %PUBLIC_URL%/xyz looks better than %PUBLIC_URL%xyz.
@@ -77,6 +79,8 @@ module.exports = function(webpackEnv) {
     ? publicPath.slice(0, -1)
     : isEnvDevelopment && '';
   // Get environment variables to inject into our app.
+  console.log("publicUrl:",publicUrl);
+
   const env = getClientEnvironment(publicUrl);
 
   // common function to get style loaders
@@ -180,7 +184,7 @@ module.exports = function(webpackEnv) {
 
       // We inferred the "public path" (such as / or /my-project) from homepage.
       // We use "/" in development.
-      publicPath: publicPath,
+      publicPath: "https://cdn.test.com",
       // Point sourcemap entries to original disk location (format as URL on Windows)
       devtoolModuleFilenameTemplate: isEnvProduction
         ? info =>
