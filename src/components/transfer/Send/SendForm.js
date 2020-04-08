@@ -291,12 +291,12 @@ class SendForm extends React.Component {
             );
             if (unSignTransaction.transaction !== undefined)
                 unSignTransaction = unSignTransaction.transaction;
-            unSignTransaction.extra = {
-                to: to,
-                decimals: decimals,
-                token_name: TokenName,
-                amount: amount,
-            }
+                unSignTransaction.extra = {
+                    to: to,
+                    decimals: decimals,
+                    token_name: TokenName,
+                    amount: amount,
+                }
             transactionId = await transactionResultManager(unSignTransaction, tronWeb)
         } else if (this.props.wallet.type === "ACCOUNT_TRONLINK" || this.props.wallet.type === "ACCOUNT_PRIVATE_KEY") {
               tronWeb = this.props.account.tronWeb;
