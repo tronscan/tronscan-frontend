@@ -355,7 +355,7 @@ class TransfersAll extends React.Component {
                 title: upperFirst(intl.formatMessage({id: 'amount'})),
                 dataIndex: 'amount',
                 key: 'amount',
-                align: 'left',
+                align: 'center',
                 className: 'ant_table _text_nowrap',
                 render: (text, record, index) => {
                     return <span className="d-inline-block text-truncate"  style={{maxWidth: '200px'}}>{toThousands(record.map_amount)}</span>
