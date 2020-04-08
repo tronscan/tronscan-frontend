@@ -11,12 +11,12 @@ export const IS_DESKTOP = process.env.DESKTOP === "true";
 export const NETURL = {
   NEWMAINNET: "https://tronscan.io",
   NEWSUNNET: "https://dappchain.tronscan.io",
-  // MAINNET: "https://tronscan.org",
-  // SUNNET: "https://dappchain.tronscan.org",
-  //  MAINNET: "http://18.217.215.94:67",
-  //  SUNNET: "http://18.217.215.94:68",
-  MAINNET: "https://debug.tronscan.org",
-  SUNNET: "https://debugdappchain.tronscan.org",
+  MAINNET: "https://tronscan.org",
+  SUNNET: "https://dappchain.tronscan.org",
+  // MAINNET: "http://18.217.215.94:65",
+  // SUNNET: "http://18.217.215.94:66",
+  // MAINNET: "https://debug.tronscan.org",
+  // SUNNET: "https://debugdappchain.tronscan.org",
 };
 
 export const TOKENINFO_UPDATE = "TOKENINFO_UPDATE";
@@ -92,6 +92,7 @@ export const CONTRACT_ADDRESS_USDJ_TESTNET = "TCkkpmnY38nsXAtideWzHTybvbMozzXUot
 export const CONTRACT_ADDRESS_JED_TESTNET = "TTpozmSKuK5jbigUXtQn6fdxh6ivwKtGo5";
 export const CONTRACT_ADDRESS_USDJ = "TMwFHYXLJaRUPeW6421aqXL4ZEzPRFGkGT";
 export const CONTRACT_ADDRESS_JED = "TCFLL5dx5ZJdKnWuesXxi1VPwjLVmWZZy9";
+export const CONTRACT_ADDRESS_JST = "TCFLL5dx5ZJdKnWuesXxi1VPwjLVmWZZy9";
 
 
 // Deployment to compile

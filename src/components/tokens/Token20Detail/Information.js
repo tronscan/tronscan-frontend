@@ -23,6 +23,7 @@ import {
   CONTRACT_ADDRESS_USDJ_TESTNET,
   CONTRACT_ADDRESS_JED,
   CONTRACT_ADDRESS_JED_TESTNET,
+  CONTRACT_ADDRESS_JST,
   IS_MAINNET
 } from "../../../constants";
 
@@ -70,6 +71,11 @@ export function Information({ token: tokens, priceUSD,intl }) {
     currentTotal = token.winkTotalSupply.totalTurnOver || 0;
     currentTotalSupplyUsd = parseInt(token.winkTotalSupply.marketValue) || 0;
   }
+  // if jst
+  // if (token.contract_address === "TCFLL5dx5ZJdKnWuesXxi1VPwjLVmWZZy9") {
+  //   currentTotal = token.jstTotalSupply.totalTurnOver || 0;
+  //   currentTotalSupplyUsd = parseInt(token.jstTotalSupply.marketValue) || 0;
+  // }
 
   const defaultContent = "-";
 
@@ -286,7 +292,8 @@ export function Information({ token: tokens, priceUSD,intl }) {
         <div>
           {token.home_page ? (
             token.contract_address === CONTRACT_ADDRESS_USDT ||
-            token.contract_address === CONTRACT_ADDRESS_WIN ? (
+            token.contract_address === CONTRACT_ADDRESS_WIN ||
+            token.contract_address === CONTRACT_ADDRESS_JST ? (
               <HrefLink href={token.home_page}>{token.home_page}</HrefLink>
             ) : (
               <ExternalLink url={token.home_page} />
@@ -303,7 +310,8 @@ export function Information({ token: tokens, priceUSD,intl }) {
         <div>
           {token.white_paper ? (
             token.contract_address === CONTRACT_ADDRESS_USDT ||
-            token.contract_address === CONTRACT_ADDRESS_WIN ? (
+            token.contract_address === CONTRACT_ADDRESS_WIN ||
+            token.contract_address === CONTRACT_ADDRESS_JST? (
               <HrefLink
                 style={{
                   whiteSpace: "nowrap",
