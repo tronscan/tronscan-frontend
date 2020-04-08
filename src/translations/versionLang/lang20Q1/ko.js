@@ -319,7 +319,7 @@ export const lang20Q1 = {
   account_tags_desc:'태그 기능 : 개인 태그를 계정에 연결하여 더 쉽게 식별 할 수 있습니다.',
   account_tags_number:'총 {total} 개 계정',
   account_tags_table_1:'꼬리표',
-  account_tags_table_2:'备注',
+  account_tags_table_2:'비고',
   account_tags_add_title:'태그 추가',
   account_tags_edit_title:'edit tag',
   account_tags_add_success:'The tag has been successfully added',
