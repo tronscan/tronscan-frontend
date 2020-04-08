@@ -225,35 +225,33 @@ class Accounts extends Component {
         width: '35%',
         render: (text, record, index) => {
           return (
-                <div  className="d-flex">
+                <div className="d-flex">
                   <div style={{width: '240px'}}>
-                      <span className="d-flex">
-                        {/*  Distinguish between contract and ordinary address */}
-                        {record.ownerIsContract? (
-                          <span className="d-flex">
-                            <Tooltip
-                              placement="top"
-                              title={upperFirst(
-                                  intl.formatMessage({
-                                  id: "transfersDetailContractAddress"
-                                  })
-                              )}
-                              >
-                              <Icon
-                                  type="file-text"
-                                  style={{
-                                  verticalAlign: 0,
-                                  color: "#77838f",
-                                  lineHeight: 1.4
-                                  }}
-                              />
-                              </Tooltip>
-                              <AddressLink address={text} isContract={true}/>
-                          </span>
-                        ) :
-                          <AddressLink address={text}/>
-                        }
+                    {/*  Distinguish between contract and ordinary address */}
+                    {record.ownerIsContract? (
+                      <span className="d-flex"> 
+                        <Tooltip
+                          placement="top"
+                          title={upperFirst(
+                              intl.formatMessage({
+                              id: "transfersDetailContractAddress"
+                              })
+                          )}
+                          >
+                          <Icon
+                              type="file-text"
+                              style={{
+                              verticalAlign: 0,
+                              color: "#77838f",
+                              lineHeight: 1.4
+                              }}
+                          />
+                          </Tooltip>
+                          <AddressLink address={text} isContract={true}>{text}</AddressLink>
                       </span>
+                    ) :
+                      <AddressLink address={text}>{text}</AddressLink>
+                    }
                   </div>
                   <div style={{marginLeft: '10px'}}>
                     <span style={{whiteSpace:'nowrap'}}> 

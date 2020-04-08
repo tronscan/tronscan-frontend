@@ -218,17 +218,17 @@ class Token20Detail extends React.Component {
           winkTotalSupply = await this.getWinkFund();
         }
 
-        let jstTotalSupply = {};
-        if (address === "TCFLL5dx5ZJdKnWuesXxi1VPwjLVmWZZy9") {
-          tabs.push({
-            id: "JstSupply",
-            icon: "",
-            path: "/supply",
-            label: <span>{tu("JST_supply")}</span>,
-            cmp: () => <JstSupply token={token} />
-          });
-          // jstTotalSupply = await this.getWinkFund();
-        }
+        // let jstTotalSupply = {};
+        // if (address === "TCFLL5dx5ZJdKnWuesXxi1VPwjLVmWZZy9") {
+        //   tabs.push({
+        //     id: "JstSupply",
+        //     icon: "",
+        //     path: "/supply",
+        //     label: <span>{tu("JST_supply")}</span>,
+        //     cmp: () => <JstSupply token={token} />
+        //   });
+        //   // jstTotalSupply = await this.getWinkFund();
+        // }
 
         let transferNumber = await this.getTransferNum(address);
 
