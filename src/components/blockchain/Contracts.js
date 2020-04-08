@@ -147,7 +147,8 @@ class Contracts extends React.Component {
     return version;
   };
   customizedColumn = () => {
-    let { intl } = this.props;
+    let { intl,activeLanguage } = this.props;
+    console.log(activeLanguage,'activeLanguage')
     const title = (
       <div>
         {upperFirst(intl.formatMessage({ id: "balance" }))}
@@ -167,7 +168,12 @@ class Contracts extends React.Component {
         render: (text, record, index) => {
           return (
             <Truncate>
-              <span className="d-flex">
+              <span className="d-flex" style={{
+                    display: "table",
+                    tableLayout: "fixed",
+                    width: "100%",
+                    whiteSpace: "nowrap"
+              }}>
                 <Tooltip
                     placement="top"
                     title={upperFirst(
@@ -754,7 +760,9 @@ class Contracts extends React.Component {
 }
 
 function mapStateToProps(state) {
-  return {};
+  return {
+    activeLanguage: state.app.activeLanguage,
+  };
 }
 
 const mapDispatchToProps = {
