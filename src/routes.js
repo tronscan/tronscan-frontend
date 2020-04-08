@@ -308,14 +308,14 @@ export const routes = [
         showInMenu: false,
         component: TopDataAsync
       },
-      {
-        path: "/data/foundation",
-        label: "foundation",
-        // icon: "fa fa-address-book",
-        icon: false,
-        showInMenu: IS_MAINNET ? true : false,
-        component: FoundationAsync
-      },
+      // {
+      //   path: "/data/foundation",
+      //   label: "foundation",
+      //   // icon: "fa fa-address-book",
+      //   icon: false,
+      //   showInMenu: IS_MAINNET ? true : false,
+      //   component: FoundationAsync
+      // },
       {
         label: "statistics",
         // icon: `fa fa-chart-pie`,
