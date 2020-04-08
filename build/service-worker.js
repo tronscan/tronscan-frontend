@@ -14,11 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-<<<<<<< HEAD
-  "/precache-manifest.76b828e9a308a301d2d77a103e3f3957.js"
-=======
-  "/precache-manifest.eb90ebf5cd15b206cc2bfb2ccee6f047.js"
->>>>>>> origin/hotfix/add-usdj-url
+  "/precache-manifest.e6fa177c6fcddda28af62870d79a09e9.js"
 );
 
 self.addEventListener('message', (event) => {
