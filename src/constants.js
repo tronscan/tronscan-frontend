@@ -142,12 +142,20 @@ export const SUNWEBCONFIG = {
   MAINSOLIDITYNODE: "https://httpapi.nileex.io",
   MAINEVENTSERVER: "https://eventtest.nileex.io",
 
-  SUNFULLNODE: "https://sun.tronex.io",
-  SUNSOLIDITYNODE: "https://sun.tronex.io",
-  SUNEVENTSERVER: "https://sun.tronex.io",
-  MAINNET: "TWaPZru6PR5VjgT4sJrrZ481Zgp3iJ8Rfo",
-  SIDECHAIN: "TGKotco6YoULzbYisTBuP6DWXDjEgJSpYz",
-  SIDEID: "41E209E4DE650F0150788E8EC5CAFA240A23EB8EB7"
+
+//   SUNFULLNODE: "https://sun.tronex.io",
+//   SUNSOLIDITYNODE: "https://sun.tronex.io",
+//   SUNEVENTSERVER: "https://sun.tronex.io",
+//   MAINNET: "TWaPZru6PR5VjgT4sJrrZ481Zgp3iJ8Rfo",
+//   SIDECHAIN: "TGKotco6YoULzbYisTBuP6DWXDjEgJSpYz",
+//   SIDEID: "41E209E4DE650F0150788E8EC5CAFA240A23EB8EB7"
+
+  SUNFULLNODE: "https://kageraex.io",
+  SUNSOLIDITYNODE: "https://kageraex.io",
+  SUNEVENTSERVER: "https://kageraex.io",
+  MAINNET: "TTYtjySdWFkZeUnQEB7cfwyxj3PD2ZsEmd",
+  SIDECHAIN: "TWLoD341FRJ43JfwTPADRqGnUT4zEU3UxG",
+  SIDEID: "41C0D909CC323543142E77AAD3786389364B981EEC"
 };
 
 //Socket config
