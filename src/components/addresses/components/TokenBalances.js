@@ -10,7 +10,7 @@ import {upperFirst} from "lodash";
 import _ from "lodash";
 import { CONTRACT_ADDRESS_USDT, CONTRACT_ADDRESS_WIN, CONTRACT_ADDRESS_GGC } from "../../../constants";
 import {TRXPrice} from "../../common/Price";
-import {Table, Menu, Dropdown, Button} from 'antd'
+import {Table, Menu, Dropdown,Tooltip,Icon} from 'antd'
 import { ONE_TRX } from "../../../constants";
 import { recoverAddress } from "ethers/utils";
 
@@ -196,7 +196,26 @@ class TokenBalances extends React.Component {
                     return <div>
                         {
                             record.tokenType == 'TRC20' ? 
-                            <AddressLink address={record.contract_address} isContract={true}>{record.contract_address}</AddressLink>
+                                <span className="d-flex">
+                                    <Tooltip
+                                        placement="top"
+                                        title={upperFirst(
+                                            intl.formatMessage({
+                                            id: "transfersDetailContractAddress"
+                                            })
+                                        )}
+                                    >
+                                        <Icon
+                                            type="file-text"
+                                            style={{
+                                            verticalAlign: 0,
+                                            color: "#77838f",
+                                            lineHeight: 1.4
+                                            }}
+                                        />
+                                    </Tooltip>
+                                <AddressLink address={record.contract_address} isContract={true}>{record.contract_address}</AddressLink>
+                                </span>
                             : (isNaN(text)?'-':text)
                         }
                     </div>

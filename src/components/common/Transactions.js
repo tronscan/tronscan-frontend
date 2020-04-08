@@ -17,7 +17,9 @@ import {NameWithId} from "./names";
 import rebuildList from "../../utils/rebuildList";
 import {API_URL} from "../../constants";
 import qs from 'qs'
-import BlockTime from '../common/blockTime'
+import BlockTime from '../common/blockTime';
+import { Tooltip,Icon } from 'antd';
+
 
 
 const RangePicker = DatePicker.RangePicker;
@@ -147,8 +149,14 @@ class Transactions extends React.Component {
         });
 
         const [data, { count } ] = allData;
-
-        let newdata = rebuildList(data.list, 'tokenId', 'callValue', 'valueInfoList')
+        let internalTransactionList = data.list;
+        internalTransactionList.forEach(item=>{
+          if(data.contractMap){
+            data.contractMap[item.from]? (item.ownerIsContract = true) :  (item.ownerIsContract = false)
+            data.contractMap[item.to]? (item.toIsContract = true) :  (item.toIsContract = false)
+          }
+        })
+        let newdata = rebuildList(internalTransactionList, 'tokenId', 'callValue', 'valueInfoList');
         transactions = newdata;
         total = count || data.total
         rangeTotal = data.rangeTotal
@@ -277,7 +285,32 @@ class Transactions extends React.Component {
         align: 'left',
         className: 'ant_table',
         render: (text, record, index) => {
-            return <AddressLink address={text}>{text}</AddressLink>
+            return <span>
+              {/*  Distinguish between contract and ordinary address */}
+              {record.ownerIsContract? (
+                <span className="d-flex">
+                  <Tooltip
+                    placement="top"
+                    title={upperFirst(
+                        intl.formatMessage({
+                        id: "transfersDetailContractAddress"
+                        })
+                    )}
+                  >
+                    <Icon
+                      type="file-text"
+                      style={{
+                      verticalAlign: 0,
+                      color: "#77838f",
+                      lineHeight: 1.4
+                      }}
+                    />
+                  </Tooltip>
+                  <AddressLink address={text} isContract={true}>{text}</AddressLink>
+                </span>
+                ) : <AddressLink address={text}>{text}</AddressLink>
+              }
+            </span>
         }
       },
       {
@@ -295,7 +328,32 @@ class Transactions extends React.Component {
         align: 'left',
         className: 'ant_table',
         render: (text, record, index) => {
-          return <AddressLink address={text}>{text}</AddressLink>
+          return <span>
+              {/*  Distinguish between contract and ordinary address */}
+              {record.toIsContract? (
+                <span className="d-flex">
+                  <Tooltip
+                    placement="top"
+                    title={upperFirst(
+                        intl.formatMessage({
+                        id: "transfersDetailContractAddress"
+                        })
+                    )}
+                  >
+                    <Icon
+                      type="file-text"
+                      style={{
+                      verticalAlign: 0,
+                      color: "#77838f",
+                      lineHeight: 1.4
+                      }}
+                    />
+                  </Tooltip>
+                  <AddressLink address={text} isContract={true}>{text}</AddressLink>
+                </span>
+                ) : <AddressLink address={text}>{text}</AddressLink>
+              }
+            </span>
         }
       },
       {
@@ -370,7 +428,7 @@ class Transactions extends React.Component {
           
           <div className="d-flex justify-content-between w-100"  style={{position: "absolute", left: 0, top: '-28px'}}>
             {(total && contract && isinternal)? <div className="d-flex align-items-center">
-                <i class="fas fa-exclamation-circle mr-2" style={{color:"#999999"}}></i><span className="flex-1" style={{width: '700px'}}>{tu('interTrx_tip_contract')}</span>
+                <i className="fas fa-exclamation-circle mr-2" style={{color:"#999999"}}></i><span className="flex-1" style={{width: '700px'}}>{tu('interTrx_tip_contract')}</span>
             </div>: ''
             }
 
