@@ -251,7 +251,7 @@ class BTTSupply extends React.Component {
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div className="col-md-12" style={{backgroundColor: '#F5F5F5',marginTop:0,paddingBottom:15}}>
+                                                    <div className="col-md-12" style={{backgroundColor: '#F5F5F5',marginTop:0,padding:15}}>
                                                         {/* <div className="main-counters row" style={{marginBottom:'0px'}}>
                                                             <div className="counters col-md-6 col-sm-6">
                                                                 <span className="counter">
