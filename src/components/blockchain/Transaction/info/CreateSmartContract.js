@@ -93,31 +93,31 @@ function CreateSmartContract({contract,intl}){
           <Field label="contract_address">
             <span className="d-flex">
               {/*  Distinguish between contract and ordinary address */}
-                  <span className="d-flex">
-                    <Tooltip
-                    placement="top"
-                    title={upperFirst(
-                        intl.formatMessage({
-                        id: "transfersDetailContractAddress"
-                      })
-                    )}
-                    >
-                    <Icon
-                        type="file-text"
-                        style={{
-                          verticalAlign: 0,
-                          color: "#77838f",
-                          lineHeight: 1.4
-                        }}
-                    />
-                    </Tooltip>
-                    <AddressLink
-                      address={contract.info && contract.info.contract_address}
-                      isContract={true}
-                    >
-                      {contract.info && contract.info.contract_address}
-                    </AddressLink>
-                  </span>
+              <span className="d-flex">
+                <Tooltip
+                placement="top"
+                title={upperFirst(
+                    intl.formatMessage({
+                    id: "transfersDetailContractAddress"
+                  })
+                )}
+                >
+                <Icon
+                    type="file-text"
+                    style={{
+                      verticalAlign: 0,
+                      color: "#77838f",
+                      lineHeight: 1.4
+                    }}
+                />
+                </Tooltip>
+                <AddressLink
+                  address={contract.info && contract.info.contract_address}
+                  isContract={true}
+                >
+                  {contract.info && contract.info.contract_address}
+                </AddressLink>
+              </span>
             </span>
           </Field>
           <Field label="contract_name">{contract.new_contract.name}</Field>
