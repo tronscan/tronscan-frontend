@@ -58,67 +58,72 @@ class Code extends React.Component {
       contractAddress: address
     };
 
-    let { data } = await xhr
+    try{
+      let { data } = await xhr
       // .post(`${API_URL}/api/solidity/contract/info`, params)
       .post(`${CONTRACT_NODE_API}/api/solidity/contract/info`, params)
       .catch(function(e) {
         console.log(e);
       });
-
-    const dataInfo = data.data;
-    // eslint-disable-next-line
-    const {
-      status,
-      contract_name,
-      byte_code,
-      contract_code,
-      constructor_params,
-      optimizer,
-      compiler,
-      optimizer_runs,
-      license
-    } = dataInfo;
-
-    if (!status || status === 3 || status === 1 || status === 4) {
-      this.setState(
-        {
-          contractVerifyState: false,
-          loading: false
-        },
-        async () => {
-          await this.getContractInfos();
+      if(data){
+        const dataInfo = data.data;
+        // eslint-disable-next-line
+        const {
+          status,
+          contract_name,
+          byte_code,
+          contract_code,
+          constructor_params,
+          optimizer,
+          compiler,
+          optimizer_runs,
+          license
+        } = dataInfo;
+    
+        if (!status || status === 3 || status === 1 || status === 4) {
+          this.setState(
+            {
+              contractVerifyState: false,
+              loading: false
+            },
+            async () => {
+              await this.getContractInfos();
+            }
+          );
+        } else {
+          let infoObj;
+          const abi = dataInfo.abi && JSON.parse(dataInfo.abi);
+          /* eslint-disable */
+          infoObj = {
+            interfaceAbi: abi || "",
+            name: contract_name || "",
+            bytecode: byte_code || "",
+            contractCode: contract_code || [],
+            constructorParams: constructor_params || "",
+            optimizer,
+            compiler,
+            optimizer_runs,
+            license: CONTRACT_LICENSES[license] || "--"
+          };
+          /* eslint-disable */
+          this.setState(
+            {
+              contractVerifyState: true,
+              contractInfoList: infoObj,
+              loading: false
+            },
+            async () => {
+              this.getContractTokenList();
+              await this.getContractInfos();
+              this.viewFuntions();
+              this.payableFuntions();
+              this.nonePayableFuntions();
+            }
+          );
         }
-      );
-    } else {
-      let infoObj;
-      const abi = dataInfo.abi && JSON.parse(dataInfo.abi);
-      /* eslint-disable */
-      infoObj = {
-        interfaceAbi: abi || "",
-        name: contract_name || "",
-        bytecode: byte_code || "",
-        contractCode: contract_code || [],
-        constructorParams: constructor_params || "",
-        optimizer,
-        compiler,
-        optimizer_runs,
-        license: CONTRACT_LICENSES[license] || "--"
-      };
-      /* eslint-disable */
-      this.setState(
-        {
-          contractVerifyState: true,
-          contractInfoList: infoObj,
-          loading: false
-        },
-        async () => {
-          this.getContractTokenList();
-          await this.getContractInfos();
-          this.viewFuntions();
-          this.payableFuntions();
-          this.nonePayableFuntions();
-        }
-      );
+      }
+    }catch(e){
+      console.log(e)
     }
   }
 

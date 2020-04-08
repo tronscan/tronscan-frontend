@@ -126,7 +126,6 @@ class Address extends React.Component {
 
   async componentDidMount() {
     let { match ,priceUSD} = this.props;
-   
     this.loadAddress(match.params.id);
     this.loadWitness(match.params.id);
     this.loadWalletReward(match.params.id);
@@ -136,7 +135,6 @@ class Address extends React.Component {
 
   componentDidUpdate(prevProps) {
     let { match } = this.props;
-    
     if (match.params.id !== prevProps.match.params.id) {
       this.loadAddress(match.params.id);
       this.loadWitness(match.params.id);
@@ -220,6 +218,10 @@ class Address extends React.Component {
     let { intl } = this.props;
     this.setState({ loading: true, address: { address: id }, media: null });
     let address = await Client.getAddress(id);
+    if(address.contractMap&&address.contractMap[id]){
+      this.props.history.push(`/contract/${id}/code`);
+      return;
+    }
     if (address.representative.enabled) {
       localStorage.setItem('representative',true)
     }else{

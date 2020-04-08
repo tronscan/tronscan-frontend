@@ -2256,6 +2256,11 @@ export const messages = {
   "WIN_Token_Release_Schedule": "WIN Token Release Schedule",
   "source_WIN_team": "Source: WIN Management Team",
 
+  "JST_distribution_overview": "JST DISTRIBUTION OVERVIEW",
+  "JST_supply": "JST Supply",
+  "JST_Token_Release_Schedule": "JST Token Release Schedule",
+  "source_JST_team": "Source: JST Management Team",
+
   "Side_Chain":"DAppChain",
   "Main_Chain":"MainChain",
   "7day": "7 días",

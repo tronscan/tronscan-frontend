@@ -13,6 +13,9 @@ import rebuildList from "../../../../utils/rebuildList";
 import { TransationTitle } from "./common/Title";
 import BandwidthUsage from "./common/BandwidthUsage";
 import SignList from "./common/SignList";
+import { upperFirst } from "lodash";
+import { Tooltip,Icon } from 'antd';
+import {injectIntl} from "react-intl";
 
 class TransferAssetContract extends React.Component {
   constructor(props) {
@@ -20,7 +23,8 @@ class TransferAssetContract extends React.Component {
     this.state = {};
   }
   render() {
-    let { contract } = this.props;
+    let { contract,intl } = this.props;
+
     let TokenIDList = [];
     let tokenIdData;
     TokenIDList.push(contract);
@@ -36,14 +40,70 @@ class TransferAssetContract extends React.Component {
           <table className="table">
             <tbody>
               <Field label="from">
-                <AddressLink address={contract["owner_address"]}>
-                  {contract["owner_address"]}
-                </AddressLink>
+                <span className="d-flex">
+                  {/*  Distinguish between contract and ordinary address */}
+                  {contract.contract_map[contract["owner_address"]]? (
+                    <span className="d-flex">
+                      <Tooltip
+                        placement="top"
+                        title={upperFirst(
+                          intl.formatMessage({
+                            id: "transfersDetailContractAddress"
+                          })
+                        )}
+                      >
+                        <Icon
+                          type="file-text"
+                          style={{
+                            verticalAlign: 0,
+                            color: "#77838f",
+                            lineHeight: 1.4
+                          }}
+                        />
+                      </Tooltip>
+                      <AddressLink address={contract["owner_address"]} isContract={true}>
+                        {contract["owner_address"]}
+                      </AddressLink>
+                    </span>
+                  ) :
+                  <AddressLink address={contract["owner_address"]}>
+                    {contract["owner_address"]}
+                  </AddressLink>
+                  }
+                </span>
               </Field>
               <Field label="to">
-                <AddressLink address={contract["to_address"]}>
-                  {contract["to_address"]}
-                </AddressLink>
+                <span className="d-flex">
+                  {/*  Distinguish between contract and ordinary address */}
+                  {contract.contract_map[contract["to_address"]]? (
+                    <span className="d-flex">
+                      <Tooltip
+                        placement="top"
+                        title={upperFirst(
+                          intl.formatMessage({
+                            id: "transfersDetailContractAddress"
+                          })
+                        )}
+                      >
+                        <Icon
+                          type="file-text"
+                          style={{
+                            verticalAlign: 0,
+                            color: "#77838f",
+                            lineHeight: 1.4
+                          }}
+                        />
+                      </Tooltip>
+                      <AddressLink address={contract["to_address"]} isContract={true}>
+                        {contract["to_address"]}
+                      </AddressLink>
+                    </span>
+                  ) :
+                  <AddressLink address={contract["to_address"]}>
+                    {contract["to_address"]}
+                  </AddressLink>
+                  }
+                </span>
               </Field>
               <Field label="amount">{tokenIdData.map_amount || 0}</Field>
               <Field label="trc20_token_id">
@@ -79,4 +139,4 @@ class TransferAssetContract extends React.Component {
   }
 }
 
-export default TransferAssetContract;
+export default injectIntl(TransferAssetContract);

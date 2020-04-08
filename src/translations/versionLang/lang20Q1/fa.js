@@ -309,6 +309,7 @@ export const lang20Q1 = {
   account_block:'بلوک',
   account_address_total_balance_tip:"مبلغ ارزش تمام نشانه های موجود در حساب",
   get_usdj:'به دست آوردن USDJ',
+  pledge_to_get_USDJ:'Pledge to get USDJ',
 
 
 };

@@ -10,7 +10,7 @@ import {SwitchToken} from "../common/Switch";
 import FreezeBalanceModal from "./FreezeBalanceModal";
 import {AddressLink, HrefLink, TokenLink, TokenTRC20Link} from "../common/Links";
 import SweetAlert from "react-bootstrap-sweetalert";
-import {API_URL,CONTRACT_MAINNET_API_URL, IS_TESTNET, ONE_TRX, CONTRACT_ADDRESS_USDT, CONTRACT_ADDRESS_WIN, CONTRACT_ADDRESS_GGC, IS_SUNNET, CURRENCYTYPE, IS_MAINNET } from "../../constants";
+import {API_URL, CONTRACT_MAINNET_API_URL, IS_TESTNET, ONE_TRX, CONTRACT_ADDRESS_USDT, CONTRACT_ADDRESS_WIN, CONTRACT_ADDRESS_GGC, IS_SUNNET, CURRENCYTYPE, IS_MAINNET, NETURL } from "../../constants";
 import {Client} from "../../services/api";
 import ApplyForDelegate from "./ApplyForDelegate";
 import _, {trim} from "lodash";
@@ -87,7 +87,7 @@ export default class Account extends Component {
       temporaryName: "",
       selectedResource: null,
       hideSmallCurrency: false,
-      tokenTRC10: true,
+      tokenTRC10: false,
       tokens20: [],
       dealPairTrxLimit: 100000,
       isTronLink: 0,
@@ -98,7 +98,7 @@ export default class Account extends Component {
       isShowMappingModal: false,
       isShowSignModal: false,
       type: CURRENCYTYPE.TRX10,
-      tokenTRX: false,
+      tokenTRX: true,
       trx20MappingAddress: [],
       reward:false,
       accountReward:0,
@@ -312,7 +312,7 @@ export default class Account extends Component {
     let result = await xhr.get(API_URL + "/api/token_trc20?sort=issue_time&start=0&limit=50");
     let tokens20 = result.data.trc20_tokens;
     const tronWebLedger = this.props.tronWeb();
-    const {tronWeb,} = this.props.account;
+    const { tronWeb } = this.props.account;
     if (this.props.walletType.type === "ACCOUNT_LEDGER") {
       tokens20 && tokens20.map(async item => {
         item.token20_name = item.name + '(' + item.symbol + ')';
@@ -503,7 +503,7 @@ export default class Account extends Component {
 
   renderTRX() {
     let {hideSmallCurrency, isPrivateKey} = this.state;
-    let {tokenBalances = []} = this.props;
+    let {tokenBalances = [],intl} = this.props;
     if (hideSmallCurrency) {
       tokenBalances = _(tokenBalances)
           .filter(tb => tb.name.toUpperCase() === "_")
@@ -550,13 +550,22 @@ export default class Account extends Component {
             tokenBalances.map((token) => (
                 <tr key={token.name}>
                   <td className="text-nowrap">
-                      {
-                          token.map_token_id == 1002000?<div className="map-token-top">
-                            <TokenLink id={token.map_token_id} name={token.map_token_name+' ('+token.map_token_name_abbr+")"} address={token.address}/>
-                            <i></i>
-                          </div>: <TokenLink id={token.map_token_id} name={token.map_token_name+' ('+token.map_token_name_abbr+")"} address={token.address}/>
-                      }
-
+                      <div className="d-flex">
+                        {
+                            token.map_token_id == 1002000?<div className="map-token-top">
+                              <TokenLink id={token.map_token_id} name={token.map_token_name+' ('+token.map_token_name_abbr+")"} address={token.address}/>
+                              <i></i>
+                            </div>: <TokenLink id={token.map_token_id} name={token.map_token_name+' ('+token.map_token_name_abbr+")"} address={token.address}/>
+                        }
+                        {
+                          IS_MAINNET ? 
+                          intl.locale == 'zh'?
+                          <a href={window.location.origin === NETURL.MAINNET ?`https://just.tronscan.org/?lang=zh-CN`:`https://just.tronscan.io/?lang=zh-CN`} className="ml-4 float-right" target="_blank"><span className="mr-1"  style={{textDecoration: 'underline'}}>{t("pledge_to_get_USDJ")}</span>></a>
+                          :
+                          <a href={window.location.origin === NETURL.MAINNET ?`https://just.tronscan.org/?lang=en-US`:`https://just.tronscan.io/?lang=en-US`} className="ml-4 float-right" target="_blank"><span className="mr-1"  style={{textDecoration: 'underline'}}>{t("pledge_to_get_USDJ")}</span>></a>
+                          :''
+                        }
+                      </div>
                   </td>
                   <td>
                     <div className="tokenBalances_id">{token.map_token_id}</div>
@@ -2105,6 +2114,15 @@ export default class Account extends Component {
                     <TRXPrice amount={currentWallet.balance / ONE_TRX}/>
                   </h3>
                   {tu("available_balance")}
+                  {
+                      IS_MAINNET ? 
+                      intl.locale == 'zh'?
+                      <a href={window.location.origin === NETURL.MAINNET ?`https://just.tronscan.org/?lang=zh-CN`:`https://just.tronscan.io/?lang=zh-CN`} className="ml-2 float-right" target="_blank"><span className="mr-1"  style={{textDecoration: 'underline', fontSize: '12px'}}>{t("pledge_to_get_USDJ")}</span>></a>
+                      :
+                      <a href={window.location.origin === NETURL.MAINNET ?`https://just.tronscan.org/?lang=en-US`:`https://just.tronscan.io/?lang=en-US`} className="ml-2 float-right" target="_blank"><span className="mr-1"  style={{textDecoration: 'underline', fontSize: '12px'}}>{t("pledge_to_get_USDJ")}</span>></a>
+                      :''
+                  }
+                 
                 </div>
               </div>
             </div>
@@ -2184,7 +2202,7 @@ export default class Account extends Component {
                         (!currentWallet.representative.enabled  && IS_MAINNET) && <tr>
                           <th >{tu("SR_vote_for_reward")}:</th>
                           <td>
-                            <TRXPrice amount={accountReward / ONE_TRX} className="font-weight-bold"/>
+                            <TRXPrice amount={accountReward / ONE_TRX}/>
                               {
                                   accountReward == 0 ?  <AntdTip title={<span>{tu('no_rewards_available_yet')}</span>}>
                                                             <a href="javascript:;"
@@ -2360,7 +2378,12 @@ export default class Account extends Component {
                   </div>
                   <div className="account-token-tab">
                     <a href="javascript:;"
-                       className={"btn btn-default btn-sm" + (tokenTRC10 && !tokenTRX ? ' active' : '')}
+                       className={"btn btn-default btn-sm" + (tokenTRX ? ' active' : '')}
+                       onClick={this.handleTRXToken}>
+                      TRX
+                    </a>
+                    <a href="javascript:;"
+                       className={"btn btn-default btn-sm ml-2" + (tokenTRC10 && !tokenTRX ? ' active' : '')}
                        onClick={this.handleTRC10Token}>
                       {tu("TRC10_token")}
                     </a>
@@ -2368,11 +2391,6 @@ export default class Account extends Component {
                        className={"btn btn-default btn-sm ml-2" + (tokenTRC10 || tokenTRX ? '' : ' active')}
                        onClick={this.handleTRC20Token}>
                       {tu("TRC20_token")}
-                    </a>
-                    <a href="javascript:;"
-                       className={"btn btn-default btn-sm ml-2" + (tokenTRX ? ' active' : '')}
-                       onClick={this.handleTRXToken}>
-                      TRX
                     </a>
                       {
                           IS_MAINNET?  <a href={`https://poloniex.org`} className="ml-2 float-right" target="_blank"><span className="mr-1"  style={{textDecoration: 'underline'}}>{t("Trade_on_Poloni DEX")}</span>></a>
