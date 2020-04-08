@@ -20,6 +20,7 @@ import {
   CONTRACT_ADDRESS_USDJ_TESTNET,
   CONTRACT_ADDRESS_JED,
   CONTRACT_ADDRESS_JED_TESTNET,
+  CONTRACT_ADDRESS_JST,
   IS_MAINNET
 } from "../../../constants";
 
@@ -267,7 +268,8 @@ export function Information({ token: tokens, priceUSD }) {
         <div>
           {token.home_page ? (
             token.contract_address === CONTRACT_ADDRESS_USDT ||
-            token.contract_address === CONTRACT_ADDRESS_WIN ? (
+            token.contract_address === CONTRACT_ADDRESS_WIN ||
+            token.contract_address === CONTRACT_ADDRESS_JST ? (
               <HrefLink href={token.home_page}>{token.home_page}</HrefLink>
             ) : (
               <ExternalLink url={token.home_page} />
@@ -284,7 +286,8 @@ export function Information({ token: tokens, priceUSD }) {
         <div>
           {token.white_paper ? (
             token.contract_address === CONTRACT_ADDRESS_USDT ||
-            token.contract_address === CONTRACT_ADDRESS_WIN ? (
+            token.contract_address === CONTRACT_ADDRESS_WIN ||
+            token.contract_address === CONTRACT_ADDRESS_JST? (
               <HrefLink
                 style={{
                   whiteSpace: "nowrap",
