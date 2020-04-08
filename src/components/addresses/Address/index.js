@@ -218,6 +218,10 @@ class Address extends React.Component {
     let { intl } = this.props;
     this.setState({ loading: true, address: { address: id }, media: null });
     let address = await Client.getAddress(id);
+    if(address.contractMap&&address.contractMap[id]){
+      this.props.history.push(`/contract/${id}/code`);
+      return;
+    }
     if (address.representative.enabled) {
       localStorage.setItem('representative',true)
     }else{
