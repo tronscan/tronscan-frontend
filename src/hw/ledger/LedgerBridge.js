@@ -1,10 +1,8 @@
-import AppTrx from "./Tron";
+import AppTrx from '@ledgerhq/hw-app-trx';
 import Transport from "@ledgerhq/hw-transport-u2f";
 
 export default class LedgerBridge {
   constructor(win) {
-    this.win = win;
-    this.transport = null;
     this.path = "44'/195'/0'/0/0";
   }
 
@@ -47,10 +45,11 @@ export default class LedgerBridge {
       const transport = await Transport.create();
       try {
         const trx = new AppTrx(transport);
-        let response = await trx.signTransactionWithTokenName(
+        const response = await trx.signTransaction(
           this.path,
           transaction.hex,
-          transaction.info);
+          transaction.info
+        );
         resolve(response);
       } catch(e) {
         reject(e);
@@ -59,4 +58,5 @@ export default class LedgerBridge {
       }
     });
   }
+
 }

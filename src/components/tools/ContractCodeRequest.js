@@ -1,7 +1,7 @@
 import React,{Component}  from "react";
 import {RecaptchaAsync} from "../common/async";
-import {FormattedNumber} from "react-intl";
-import {Alert} from "reactstrap";
+//import {FormattedNumber} from "react-intl";
+//import {Alert} from "reactstrap";
 
 class TestNetRequest extends Component {
     constructor() {

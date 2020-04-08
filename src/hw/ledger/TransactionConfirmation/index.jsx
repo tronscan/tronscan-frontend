@@ -11,6 +11,8 @@ import {Truncate} from "../../../components/common/text";
 import TronWeb from "tronweb";
 
 export default function Contract({ contract, extra }) {
+  console.log('contract======',contract)
+  console.log('contract.type======',contract.type.toUpperCase())
   const contractParams = contract.parameter.value;
   let tokenInfo = '';
   let tokenList = [{"token_id":"","amount":""}];
@@ -324,43 +326,63 @@ export default function Contract({ contract, extra }) {
       return (
         <Fragment>
           <div className="card-body">
-            <h5 className="card-title text-center">Send TRC20</h5>
+            <h5 className="card-title text-center">{extra.to?'Send TRC20':'Trigger Smart Contract'}</h5>
           </div>
-          <table className="table">
-            <tbody>
-            <Field label="From">
-              {TronWeb.address.fromHex(contractParams.owner_address)}
-            </Field>
-            <Field label="To">
-              {extra.to}
-            </Field>
-            {(extra && extra.to_name && 
-                <Field label="To Name">
-                  {extra.to_name}
-                </Field>
-            )}
-            <Field label="Contract">
-              {TronWeb.address.fromHex(contractParams.contract_address)}
-            </Field>
-            {(extra && extra.to_name && 
-                <Field label="To Name">
-                  {extra.to_name}
-                </Field>
-            )}
-            <Field label="Amount">
-              <FormattedNumber maximumFractionDigits={extra.decimals} minimunFractionDigits={extra.decimals}  
-              value={extra.amount}/>&nbsp;
-              {extra.token_name}
-            </Field>
-            {(extra && extra.hash && 
-                  <Field label="Hash">
-                      <Truncate>
-                        #{extra.hash}
-                      </Truncate>
-                  </Field>
-              )}
-            </tbody>
-          </table>
+            {
+                extra.to !=''? <table className="table">
+                    <tbody>
+                    <Field label="From">
+                        {TronWeb.address.fromHex(contractParams.owner_address)}
+                    </Field>
+                    {
+                      extra.to?<Field label="To">
+                        {extra.to}
+                      </Field>:''
+                    }
+                    {(extra && extra.to_name &&
+                        <Field label="To Name">
+                            {extra.to_name}
+                        </Field>
+                    )}
+                    <Field label="Contract">
+                        {TronWeb.address.fromHex(contractParams.contract_address)}
+                    </Field>
+                    {(extra && extra.to_name &&
+                        <Field label="To Name">
+                            {extra.to_name}
+                        </Field>
+                    )}
+                    {
+                      extra.to?<Field label="Amount">
+                      <FormattedNumber maximumFractionDigits={extra.decimals} minimunFractionDigits={extra.decimals}
+                                       value={extra.amount}/>&nbsp;
+                      {extra.token_name}
+                      </Field>:''
+                    }
+                    
+                    {(extra && extra.hash &&
+                        <Field label="Hash">
+                            <Truncate>
+                                #{extra.hash}
+                            </Truncate>
+                        </Field>
+                    )}
+                    </tbody>
+                </table> : <table className="table">
+                    <tbody>
+                        <Field label="Contract">
+                            {TronWeb.address.fromHex(contractParams.contract_address)}
+                        </Field>
+                        {(extra && extra.hash &&
+                            <Field label="Hash">
+                                <Truncate>
+                                    #{extra.hash}
+                                </Truncate>
+                            </Field>
+                        )}
+                    </tbody>
+                </table>
+            }
         </Fragment>
       );
 
@@ -465,7 +487,82 @@ export default function Contract({ contract, extra }) {
             </table>
           </Fragment>
         );
-
+        case "ACCOUNTPERMISSIONUPDATECONTRACT":
+          return (
+            <Fragment>
+              <div className="card-body">
+                <h5 className="card-title text-center">Update Account Permission</h5>
+              </div>
+              <table className="table">
+                <tbody>
+                {(extra && extra.hash && 
+                      <Field label="Hash">
+                          <Truncate>
+                            #{extra.hash}
+                          </Truncate>
+                      </Field>
+                  )}
+                  </tbody>
+              </table>
+            </Fragment>
+          );
+        case "PROPOSALCREATECONTRACT":
+          return (
+            <Fragment>
+              <div className="card-body">
+                <h5 className="card-title text-center">Raise Proposal</h5>
+              </div>
+              <table className="table">
+                <tbody>
+                {(extra && extra.hash && 
+                      <Field label="Hash">
+                          <Truncate>
+                            #{extra.hash}
+                          </Truncate>
+                      </Field>
+                  )}
+                  </tbody>
+              </table>
+            </Fragment>
+          );  
+        case "PROPOSALAPPROVECONTRACT":
+          return (
+            <Fragment>
+              <div className="card-body">
+                <h5 className="card-title text-center">Vote For Proposal</h5>
+              </div>
+              <table className="table">
+                <tbody>
+                {(extra && extra.hash && 
+                      <Field label="Hash">
+                          <Truncate>
+                            #{extra.hash}
+                          </Truncate>
+                      </Field>
+                  )}
+                  </tbody>
+              </table>
+            </Fragment>
+          );
+        case "PROPOSALDELETECONTRACT":
+          return (
+            <Fragment>
+              <div className="card-body">
+                <h5 className="card-title text-center">Delete Proposal</h5>
+              </div>
+              <table className="table">
+                <tbody>
+                {(extra && extra.hash && 
+                      <Field label="Hash">
+                          <Truncate>
+                            #{extra.hash}
+                          </Truncate>
+                      </Field>
+                  )}
+                  </tbody>
+              </table>
+            </Fragment>
+          );   
         case "EXCHANGEINJECTCONTRACT":
         return (
           <Fragment>
@@ -497,6 +594,7 @@ export default function Contract({ contract, extra }) {
             </table>
           </Fragment>
         );
+
 
     default:
       return (

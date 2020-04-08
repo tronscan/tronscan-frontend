@@ -36,7 +36,7 @@ export class resultInfo extends Component {
     }
 
     /**
-     * to TRXMarket trading
+     * to Poloni DEX trading
      */
     toTrading = () => {
         window.open(MARKET_HTTP_URL)
@@ -84,7 +84,7 @@ export class resultInfo extends Component {
                 <p className="mytoken result-success-info pt-5">
                     {tu('market_enter_success')}，
                     {tu('token_input_success_you_can')}
-                    <span className="color-red pl-1 pr-1">TRXMarket</span>
+                    <span className="color-red pl-1 pr-1">Poloni DEX</span>
                     <span>{tu('search_trading')}</span>
                 </p>
                 <button className="ml-4 btn btn-danger" htmltype="submit"

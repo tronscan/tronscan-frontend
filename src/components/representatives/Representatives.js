@@ -57,6 +57,7 @@ class Representatives extends Component {
   };
   renderWitnesses(witnesses) {
     let { latestBlock } = this.state;
+    let {intl} = this.props;
     if (witnesses.length === 0) {
       return (
         <div className="card">
@@ -80,8 +81,9 @@ class Representatives extends Component {
         ? (account.representerStatus = true)
         : (account.representerStatus = false);
     });
+    let locale = intl.locale;
     return (
-      <div className="card border-0 represent__table w-1000">
+      <div className={locale == 'ru' ? "card border-0 represent__table w-1000 represent__table-ru" : "card border-0 represent__table w-1000"} >
         <table
           className="table table-hover table-striped bg-white m-0 sr"
           style={{ border: "1px solid #DFD7CA" }}
@@ -90,6 +92,7 @@ class Representatives extends Component {
             <tr>
               <th className="text-center">{tu("SR_rank")}</th>
               <th>{tu("name")}</th>
+              <th>{tu("current_version")}</th>
               <th className="text-center text-nowrap">{tu("status")}</th>
               <th className="text-center text-nowrap d-none d-lg-table-cell">
                 {tu("last_block")}
@@ -104,7 +107,6 @@ class Representatives extends Component {
               <th className="text-center text-nowrap">{tu("productivity")}</th>
               <th
                 className="text-right text-nowrap"
-                style={{ borderRight: "1px solid rgb(223, 215, 202)" }}
               >
                 {tu("SR_votes")}
               </th>
@@ -121,7 +123,7 @@ class Representatives extends Component {
           </thead>
           <tbody>
             <tr style={{ height: "72px" }}>
-              <td colSpan="9" className="font-weight-bold">
+              <td colSpan="10" className="font-weight-bold">
                 <i
                   className="fa fa-trophy mr-2 ml-2"
                   style={{ color: "#666" }}
@@ -139,7 +141,7 @@ class Representatives extends Component {
               />
             ))}
             <tr style={{ height: "72px" }}>
-              <td colSpan="9" className="font-weight-bold">
+              <td colSpan="10" className="font-weight-bold">
                 <i
                   className="far fa-handshake mr-2 ml-2"
                   style={{ color: "#666" }}
@@ -211,6 +213,7 @@ class Representatives extends Component {
       .filter(w => w.producedTotal > 0)
       .sortBy(w => w.producePercentage)
       .value()[0];
+      leastProductive = leastProductive ? leastProductive : {}
 
     return (
       <main className="container header-overlap pb-3 token_black">
@@ -261,7 +264,7 @@ class Representatives extends Component {
                         <FormattedNumber
                           maximumFractionDigits={2}
                           minimunFractionDigits={2}
-                          value={leastProductive.producePercentage}
+                          value={leastProductive.producePercentage || 0}
                         />
                         %
                       </h3>
@@ -337,7 +340,7 @@ function Row({ account, showSync = true, index, state, props }) {
         {account.name ? (
           <div
             className="_context_right_click font-weight-bold"
-            style={{ width: "200px" }}
+            style={{ width: "150px" }}
           >
             <AddressLink address={account.address}>
               {account.name}
@@ -351,6 +354,7 @@ function Row({ account, showSync = true, index, state, props }) {
           </div>
         )}
       </td>
+      <td className="text-center">{account.version || '-'}</td>
       {showSync ? (
         <td className="text-center">
           {account.representerStatus ? (

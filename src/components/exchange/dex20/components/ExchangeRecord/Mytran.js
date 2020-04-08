@@ -259,8 +259,8 @@ class Mytran extends Component {
               <a
                 href={
                   activeLanguage === "zh"
-                    ? "https://support.trx.market/hc/zh-cn/signin?return_to=https%3A%2F%2Fsupport.trx.market%2Fhc%2Fzh-cn%2Farticles%2F360033085292-%25E4%25B8%25BA%25E4%25BB%2580%25E4%25B9%2588%25E4%25BC%259A-%25E5%25A7%2594%25E6%2589%2598%25E5%25A4%25B1%25E8%25B4%25A5-"
-                    : "https://support.trx.market/hc/en-us/articles/360033085292-Why-is-there-Submit-Failed-"
+                    ? "https://support.poloniex.org/hc/zh-cn/signin?return_to=https%3A%2F%2Fsupport.poloniex.org%2Fhc%2Fzh-cn%2Farticles%2F360033085292-%25E4%25B8%25BA%25E4%25BB%2580%25E4%25B9%2588%25E4%25BC%259A-%25E5%25A7%2594%25E6%2589%2598%25E5%25A4%25B1%25E8%25B4%25A5-"
+                    : "https://support.poloniex.org/hc/en-us/articles/360033085292-Why-is-there-Submit-Failed-"
                 }
                 className="learn-more"
                 target="_blank"

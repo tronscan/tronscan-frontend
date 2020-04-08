@@ -26,6 +26,8 @@ import {
   setExchanges20Search,
   getExchangesByIdsContent
 } from "../../../../../actions/exchange";
+import { loadUsdPrice } from "../../../../../actions/blockchain";
+
 import { connect } from "react-redux";
 import Lockr from "lockr";
 import { QuestionMark } from "../../../../common/QuestionMark";
@@ -70,9 +72,9 @@ class ExchangeList extends React.Component {
       sec: "",
       AdClose: true,
       adURL:
-        "https://support.trx.market/hc/en-us/articles/360030644412-TRC20-USDT-Reloaded-with-Powerful-Aid-from-TRXMarket-15-000-USD-Awaits-",
+        "https://support.poloniex.org/hc/en-us/articles/360030644412-TRC20-USDT-Reloaded-with-Powerful-Aid-from-TRXMarket-15-000-USD-Awaits-",
       adchURL:
-        "https://support.trx.market/hc/zh-cn/articles/360030644412-TRXMarket%E5%8A%A9%E5%8A%9BTRC20-USDT%E9%87%8D%E8%A3%85%E4%B8%8A%E9%98%B5-%E6%83%8A%E5%96%9C%E6%94%BE%E9%80%8110%E4%B8%87%E4%BA%BA%E6%B0%91%E5%B8%81",
+        "https://support.poloniex.org/hc/zh-cn/articles/360030644412-TRXMarket%E5%8A%A9%E5%8A%9BTRC20-USDT%E9%87%8D%E8%A3%85%E4%B8%8A%E9%98%B5-%E6%83%8A%E5%96%9C%E6%94%BE%E9%80%8110%E4%B8%87%E4%BA%BA%E6%B0%91%E5%B8%81",
       activedId: 0,
       activedTab: "1",
       priceObj: {},
@@ -93,12 +95,14 @@ class ExchangeList extends React.Component {
     const {
       getExchanges20,
       getExchangesByIds,
-      getExchangesByIdsContent
+      getExchangesByIdsContent,
+      loadUsdPrice
     } = this.props;
     //get every token unit conversion
+    await loadUsdPrice()
     await this.getCovert("trx");
     await this.getCovert("usdt");
-
+    
     getExchanges20(1);
     getExchanges20(0);
     getExchanges20(2);
@@ -372,7 +376,7 @@ class ExchangeList extends React.Component {
             {/* <h6 className="m-0">
               
               <a href="https://trx.market" target="_blank" className="">
-                TRXMarket
+                Poloni DEX
               </a>
             </h6> */}
 
@@ -380,8 +384,8 @@ class ExchangeList extends React.Component {
               <a
                 href={
                   intl.locale == "zh"
-                    ? "	https://support.trx.market/hc/zh-cn/requests/new"
-                    : "	https://support.trx.market/hc/en-us/requests/new"
+                    ? "	https://support.poloniex.org/hc/zh-cn/requests/new"
+                    : "	https://support.poloniex.org/hc/en-us/requests/new"
                 }
                 target="_bank"
                 className="pr-1 border-right border-light"
@@ -391,8 +395,8 @@ class ExchangeList extends React.Component {
               <a
                 href={
                   intl.locale == "zh"
-                    ? "https://support.trx.market/hc/zh-cn/categories/360001517211-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98"
-                    : "https://support.trx.market/hc/en-us/categories/360001517211-FAQ"
+                    ? "https://support.poloniex.org/hc/zh-cn/categories/360001517211-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98"
+                    : "https://support.poloniex.org/hc/en-us/categories/360001517211-FAQ"
                 }
                 target="_blank"
                 className="px-1 border-right  border-light"
@@ -621,30 +625,34 @@ class ExchangeList extends React.Component {
   }
   // Unit conversion 
   async getCovert(type) {
-    const { setPriceConvert } = this.props;
+    const { setPriceConvert, priceUSD } = this.props;
     let { priceObj } = this.state;
-    let data = await Client20.coinMarketCap(type, "ETH");
-    let data1 = await Client20.coinMarketCap(type, "EUR");
+    // let data = await Client20.coinMarketCap(type, "USD");
+    // let data1 = await Client20.coinMarketCap(type, "EUR");
     if (type === "trx") {
       let trxToOther = {};
-
+      // let _price = data.data &&
+      //               data.data.TRX &&
+      //               data.data.TRX.quote &&
+      //               data.data.TRX.quote['USD'] && 
+      //               data.data.TRX.quote['USD'].price
       trxToOther = {
-        usd: data[0].price_usd,
-        btc: data[0].price_btc,
-        eth: data[0].price_eth,
-        eur: data1[0].price_eur,
+        usd: priceUSD,
+        // btc: data[0].price_btc,
+        // eth: data[0].price_eth,
+        // eur: data1[0].price_eur,
         trx: 1
       };
       priceObj.trxToOther = trxToOther;
     } else if (type === "usdt") {
       let usdtToOther = {};
 
-      let data2 = await Client20.coinMarketCap(type, "TRX");
+      // let data2 = await Client20.coinMarketCap(type, "TRX");
       usdtToOther = {
-        trx: data2[0].price_trx,
-        btc: data[0].price_btc,
-        eth: data[0].price_eth,
-        eur: data1[0].price_eur,
+        // trx: data2[0].price_trx,
+        // btc: data[0].price_btc,
+        // eth: data[0].price_eth,
+        // eur: data1[0].price_eur,
         usd: 1
       };
       priceObj.usdtToOther = usdtToOther;
@@ -783,7 +791,8 @@ function mapStateToProps(state) {
     klineLock: state.exchange.klineLock,
     price: state.exchange.price,
     exchanges20SearchList: state.exchange.searchList,
-    exchanges20SearchListByIds: state.exchange.searchListByIds
+    exchanges20SearchListByIds: state.exchange.searchListByIds,
+    priceUSD: state.blockchain.usdPrice
   };
 }
 
@@ -796,7 +805,8 @@ const mapDispatchToProps = {
   getExchanges20Search,
   getExchangesByIds,
   setExchanges20Search,
-  getExchangesByIdsContent
+  getExchangesByIdsContent,
+  loadUsdPrice
 };
 
 export default connect(

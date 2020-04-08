@@ -118,6 +118,7 @@ export default class FreezeBalanceModal extends React.PureComponent {
     try {
         const tronWebLedger = this.props.tronWeb();
         const { tronWeb, sunWeb } = this.props.account;
+
         if (!selectedResource) {
             type = 'BANDWIDTH';
         } else {

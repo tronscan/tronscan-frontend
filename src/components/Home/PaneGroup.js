@@ -4,6 +4,9 @@ import { injectIntl } from "react-intl";
 import CountUp from "react-countup";
 import { Link } from "react-router-dom";
 import { TRXPrice } from "../common/Price";
+
+import RecentBlocks from "./RecentBlocks";
+import { KEY_ENTER } from "../../utils/constants";
 import { withTimers } from "../../utils/timing";
 import { tu } from "../../utils/i18n";
 import { toastr } from "react-redux-toastr";
@@ -13,6 +16,9 @@ import { setWebsocket, setWebsocketSun } from "../../actions/account";
 import Lockr from "lockr";
 import { Icon, Divider, Tooltip, Tag } from "antd";
 import ApiHome from "../../services/homeApi";
+import MobilePanelGroup from "./MobilePaneGroup";
+import isMobile from "../../utils/isMobile";
+// import BigNumber from "bignumber.js"
 
 @connect(
   state => {
@@ -39,19 +45,6 @@ export default class panelGroup extends Component {
     super();
     this.listener = null;
     this.state = {
-      search: "",
-      isShaking: false,
-      hasFound: false,
-      totalAccounts: 0,
-      startblockHeight: 0,
-      onlineNodes: 0,
-      blockHeight: 0,
-      transactionPerDay: 0,
-      txOverviewStats: null,
-      addressesStats: null,
-      maxTps: 0,
-      tps: 0,
-      startTps: 0,
       isExpand: false,
       mainnetData: {
         onlineNodes: 0,
@@ -76,9 +69,9 @@ export default class panelGroup extends Component {
       complexData: {
         totalAccounts: 0,
         transactionPerDay: 0,
-        onlineNodes: 0
-      },
-      onlineNodesSun: 12
+        onlineNodes: 0,
+        tps: 0
+      }
     };
   }
 
@@ -88,7 +81,9 @@ export default class panelGroup extends Component {
     Lockr.set("dataEur", data.priceEUR);
     let { mainnetData, sunnetData, complexData, onlineNodesSun } = this.state;
     let Data = {
-      onlineNodes: (data && data.node && data.node.total)? data.node.total: 0,
+
+      onlineNodes: data.node && data.node.total,
+
       maxTps: data.tps.data.maxTps ? data.tps.data.maxTps : 0,
       tps: data.tps.data.currentTps ? data.tps.data.currentTps : 0,
       blockHeight: data.tps.data.blockHeight ? data.tps.data.blockHeight : 0,
@@ -101,7 +96,8 @@ export default class panelGroup extends Component {
           ...complexData,
           onlineNodes: sunnetData.onlineNodes + Data.onlineNodes,
           transactionPerDay:
-            sunnetData.transactionPerDay + Data.transactionPerDay
+            sunnetData.transactionPerDay + Data.transactionPerDay,
+          tps: sunnetData.tps + Data.tps
         }
       });
     } else if (type == "sunnet") {
@@ -111,7 +107,8 @@ export default class panelGroup extends Component {
           ...complexData,
           onlineNodes: Data.onlineNodes + mainnetData.onlineNodes,
           transactionPerDay:
-            mainnetData.transactionPerDay + Data.transactionPerDay
+            mainnetData.transactionPerDay + Data.transactionPerDay,
+          tps: mainnetData.tps + Data.tps
         }
       });
     }
@@ -172,7 +169,13 @@ export default class panelGroup extends Component {
 
   reconnect(type) {
     const { wsdata, wsdataSun, websocket, setWebsocket } = this.props;
-    const { blockHeight, tps, mainnetData, sunnetData } = this.state;
+    const {
+      blockHeight,
+      tps,
+      mainnetData,
+      sunnetData,
+      complexData
+    } = this.state;
     const info = wsdata.type === "tps" && wsdata.data;
 
     if (IS_MAINNET) {
@@ -185,7 +188,12 @@ export default class panelGroup extends Component {
         startTps: mainnetData.tps
       };
       this.setState({
-        mainnetData: data
+        mainnetData: data,
+        complexData: {
+          ...complexData,
+          tps: data.tps + sunnetData.tps,
+          startTps: complexData.tps
+        }
       });
     } else {
       let data = {
@@ -197,7 +205,12 @@ export default class panelGroup extends Component {
         startTps: sunnetData.tps
       };
       this.setState({
-        sunnetData: data
+        sunnetData: data,
+        complexData: {
+          ...complexData,
+          tps: data.tps + mainnetData.tps,
+          startTps: complexData.tps
+        }
       });
     }
   }
@@ -229,229 +242,72 @@ export default class panelGroup extends Component {
 
   render() {
     let { intl, activeLanguage } = this.props;
-    let {
-      isExpand,
-      mainnetData,
-      sunnetData,
-      complexData
-    } = this.state;
+
+    let { isExpand, mainnetData, sunnetData, complexData } = this.state;
     return (
       <div>
-        {/* mainnet */}
-        {!IS_MAINNET && (
-          <div className="panel-group ">
-            <span
-              className="col-tag"
-              onClick={() => {
-                this.expand();
-              }}
-            >
-              {isExpand ? tu("collapse") : tu("expand")}
-              <Icon type={isExpand ? "caret-up" : "caret-down"} />
-            </span>
-            <div className="text-center mr-0 ml-0 mt-2">
-              <div
-                className="col-12  card  pt-1 pl-0 pr-0"
-                style={{ border: "none", borderRadius: 0 }}
-              >
-                <div className="card-body row pt-3 pb-3 home-stats">
-                  <div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0  mb-md-3 ">
-                    <p className="m-0 panel-title">{tu("online_nodes")}</p>
-                    <Tooltip
-                      title={intl.formatMessage({ id: "tooltip_onlineNodes" })}
-                    >
-                      {complexData.onlineNodes != 0 ? (
-                        <h2 className="hover-red">
-                          <CountUp
-                            start={0}
-                            end={complexData.onlineNodes}
-                            duration={1}
-                          />
-                        </h2>
-                      ) : (
-                        <h2>-</h2>
-                      )}
-                    </Tooltip>
-                  </div>
+        {isMobile && (
+          <MobilePanelGroup
+            complexData={complexData}
+            mainnetData={mainnetData}
+            sunnetData={sunnetData}
+          ></MobilePanelGroup>
+        )}
+        {!isMobile && (
+          <div>
+            {/* mainnet */}
+            {IS_MAINNET && (
+              <div className="panel-group ">
+                <span
+                  className="col-tag"
+                  onClick={() => {
+                    this.expand();
+                  }}
+                >
+                  {isExpand ? tu("collapse") : tu("expand")}
+                  <Icon type={isExpand ? "caret-up" : "caret-down"} />
+                </span>
+                <div className={isMobile ? "text-center mr-0 ml-0 mt-2" : "text-center mr-0 ml-0"}>
 
-                  <div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0 mb-md-3">
-                    <p className="m-0 panel-title">{tu("block_height")}</p>
-                    {/* <Tooltip
-                      title={intl.formatMessage({ id: "tooltip_blockHeight" })}
-                    > */}
-
-                    {mainnetData.blockHeight != 0 ? (
-                      <h2 className="hover-red">
-                        <CountUp
-                          start={mainnetData.startblockHeight}
-                          end={mainnetData.blockHeight}
-                          duration={1}
-                        />
-                      </h2>
-                    ) : (
-                      <h2>-</h2>
-                    )}
-
-                    {/* </Tooltip> */}
-                  </div>
-                  <div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0  mb-md-3">
-                    <p className="m-0 panel-title">{tu("current_MaxTPS")}</p>
-                    <div
-                      href="javascript:;"
-                      className="hvr-underline-from-center hvr-underline-white text-muted"
-                    >
-                      {mainnetData.maxTps ? (
-                        <h2>
-                          {/* <Tooltip
-                            title={intl.formatMessage({
-                              id: "tooltip_startTps"
-                            })}
-                          > */}
-                          <span className="hover-red">
-                            <CountUp
-                              start={mainnetData.startTps}
-                              end={mainnetData.tps}
-                              duration={2}
-                            />
-                          </span>
-                          {/* </Tooltip> */}/
-                          {/* <Tooltip
-                            title={intl.formatMessage({ id: "tooltip_tps" })}
-                          > */}
-                          <span className="hover-red">
-                            <CountUp
-                              start={0}
-                              end={mainnetData.maxTps}
-                              duration={1}
-                            />
-                          </span>
-                          {/* </Tooltip> */}
-                        </h2>
-                      ) : (
-                        <h2>-/-</h2>
-                      )}
-                    </div>
-                  </div>
-                  <div className="col-lg-2 col-md-4 col-xs-12">
-                    <p className="m-0 panel-title">
-                      {tu("transactions_last_day")}
-                    </p>
-                    <Tooltip
-                      title={intl.formatMessage({
-                        id: "tooltip_transactionPerDay"
-                      })}
-                    >
-                      {complexData.transactionPerDay != 0 ? (
-                        <h2 className="hover-red">
-                          <CountUp
-                            start={0}
-                            end={complexData.transactionPerDay}
-                            duration={1}
-                          />
-                        </h2>
-                      ) : (
-                        <h2>-</h2>
-                      )}
-                    </Tooltip>
-                  </div>
-                  <div className="col-lg-2 col-md-4 col-xs-12">
-                    <p className="m-0 panel-title">{tu("total_accounts")}</p>
-                    <Tooltip
-                      title={intl.formatMessage({
-                        id: "tooltip_accounts"
-                      })}
-                    >
-                      {complexData.totalAccounts != 0 ? (
-                        <h2 className="hover-red">
-                          <CountUp
-                            start={0}
-                            end={complexData.totalAccounts}
-                            duration={1}
-                          />
-                        </h2>
-                      ) : (
-                        <h2>-</h2>
-                      )}
-                    </Tooltip>
-                  </div>
-                  <div className="col-lg-2 col-md-4 col-xs-12">
-                    <p className="m-0 panel-title">{tu("pice_per_1trx")}</p>
-                    <Tooltip
-                      title={intl.formatMessage({
-                        id: "tooltip_trxPrice"
-                      })}
-                    >
-                      <HrefLink
-                        href="https://coinmarketcap.com/currencies/tron/"
-                        target="_blank"
-                        className="hvr-underline-from-center hvr-underline-white text-muted"
-                      >
-                        <h2 className="hover-red">
-                          <TRXPrice
-                            showPopup={false}
-                            amount={1}
-                            currency="USD"
-                            source="home"
-                          />
-                        </h2>
-                      </HrefLink>
-                    </Tooltip>
-                  </div>
-                </div>
-              </div>
-            </div>
-            {
-              <div
-                className={
-                  isExpand ? "hidden-panel hidden-panel-height" : "hidden-panel"
-                }
-              >
-                {/* hiden mainnet */}
-                <Divider orientation="left">{tu("main_chain")}</Divider>
-                <div className="text-center mr-0 ml-0 mt-2">
                   <div
                     className="col-12  card  pt-1 pl-0 pr-0"
                     style={{ border: "none", borderRadius: 0 }}
                   >
-                    <div className="card-body row pt-2 pb-2 home-stats">
+                    <div className="card-body row pt-3 pb-3 home-stats">
+                      <div className="col-lg-1 col-md-2 col-xs-6"></div>
                       <div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0  mb-md-3 ">
+                        <p className="m-0 panel-title">{tu("online_nodes")}</p>
                         <Tooltip
                           title={intl.formatMessage({
-                            id: "tooltip_onlineNodes_mainnet"
+                            id: "tooltip_onlineNodes"
                           })}
                         >
-                          <Link
-                            to="/blockchain/nodes"
-                            className="hvr-underline-from-center hvr-underline-white text-muted"
-                          >
-                            {mainnetData.onlineNodes != 0 ? (
-                              <h2 className="hover-red">
-                                <CountUp
-                                  start={0}
-                                  end={mainnetData.onlineNodes}
-                                  duration={1}
-                                />
-                              </h2>
-                            ) : (
-                              <h2>-</h2>
-                            )}
-                          </Link>
+                          {complexData.onlineNodes != 0 ? (
+                            <h2 className="hover-red">
+                              <CountUp
+                               separator=","
+                                start={0}
+                                end={complexData.onlineNodes}
+                                duration={1}
+                              />
+                            </h2>
+                          ) : (
+                            <h2>-</h2>
+                          )}
                         </Tooltip>
                       </div>
 
                       <div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0 mb-md-3">
-                        {/* <Tooltip
+                        <p className="m-0 panel-title">{tu("block_height")}</p>
+                        <Tooltip
                           title={intl.formatMessage({
-                            id: "tooltip_blockHeight_mainnet"
+                            id: "tooltip_blockHeight"
                           })}
-                        > */}
-                        <Link
-                          to="/blockchain/blocks"
-                          className="hvr-underline-from-center hvr-underline-white text-muted"
                         >
                           {mainnetData.blockHeight != 0 ? (
                             <h2 className="hover-red">
                               <CountUp
+                                separator=","
                                 start={mainnetData.startblockHeight}
                                 end={mainnetData.blockHeight}
                                 duration={1}
@@ -460,10 +316,12 @@ export default class panelGroup extends Component {
                           ) : (
                             <h2>-</h2>
                           )}
-                        </Link>
-                        {/* </Tooltip> */}
+                        </Tooltip>
                       </div>
                       <div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0  mb-md-3">
+                        <p className="m-0 panel-title">
+                          {tu("current_MaxTPS")}
+                        </p>
                         <div
                           href="javascript:;"
                           className="hvr-underline-from-center hvr-underline-white text-muted"
@@ -472,13 +330,14 @@ export default class panelGroup extends Component {
                             <h2>
                               <Tooltip
                                 title={intl.formatMessage({
-                                  id: "tooltip_startTps_mainnet"
+                                  id: "tooltip_startTps"
                                 })}
                               >
                                 <span className="hover-red">
                                   <CountUp
-                                    start={mainnetData.startTps}
-                                    end={mainnetData.tps}
+                                    separator=","
+                                    start={complexData.startTps}
+                                    end={complexData.tps}
                                     duration={2}
                                   />
                                 </span>
@@ -486,11 +345,12 @@ export default class panelGroup extends Component {
                               /
                               <Tooltip
                                 title={intl.formatMessage({
-                                  id: "tooltip_tps_mainnet"
+                                  id: "tooltip_tps"
                                 })}
                               >
                                 <span className="hover-red">
                                   <CountUp
+                                    separator=","
                                     start={0}
                                     end={mainnetData.maxTps}
                                     duration={1}
@@ -504,95 +364,383 @@ export default class panelGroup extends Component {
                         </div>
                       </div>
                       <div className="col-lg-2 col-md-4 col-xs-12">
+                        <p className="m-0 panel-title">
+                          {tu("transactions_last_day")}
+                        </p>
                         <Tooltip
                           title={intl.formatMessage({
-                            id: "tooltip_transactionPerDay_mainnet"
+                            id: "tooltip_transactionPerDay"
                           })}
                         >
-                          <Link
-                            to="/blockchain/transactions"
-                            className="hvr-underline-from-center hvr-underline-white text-muted"
-                          >
-                            {mainnetData.transactionPerDay != 0 ? (
-                              <h2 className="hover-red">
-                                <CountUp
-                                  start={0}
-                                  end={mainnetData.transactionPerDay}
-                                  duration={1}
-                                />
-                              </h2>
-                            ) : (
-                              <h2>-</h2>
-                            )}
-                          </Link>
-                        </Tooltip>
-                      </div>
-                      <div className="col-lg-2 col-md-4 col-xs-12">
-                        <Tooltip
-                          title={intl.formatMessage({
-                            id: "tooltip_accounts_mainnet"
-                          })}
-                        >
-                          <Link
-                            to="/blockchain/accounts"
-                            className="hvr-underline-from-center hvr-underline-white text-muted"
-                          >
-                            {mainnetData.totalAccounts != 0 ? (
-                              <h2 className="hover-red">
-                                <CountUp
-                                  start={0}
-                                  end={mainnetData.totalAccounts}
-                                  duration={1}
-                                />
-                              </h2>
-                            ) : (
-                              <h2>-</h2>
-                            )}
-                          </Link>
-                        </Tooltip>
-                      </div>
-                      <div className="col-lg-2 col-md-4 col-xs-12">
-                        <Tooltip
-                          title={intl.formatMessage({
-                            id: "tooltip_trxPrice_mainnet"
-                          })}
-                        >
-                          <HrefLink
-                            href="https://coinmarketcap.com/currencies/tron/"
-                            target="_blank"
-                            className="hvr-underline-from-center hvr-underline-white text-muted"
-                          >
+                          {complexData.transactionPerDay != 0 ? (
                             <h2 className="hover-red">
-                              <TRXPrice
-                                showPopup={false}
-                                amount={1}
-                                currency="USD"
-                                source="home"
+                              <CountUp
+                                separator=","
+                                start={0}
+                                end={complexData.transactionPerDay}
+                                duration={1}
                               />
                             </h2>
-                          </HrefLink>
+                          ) : (
+                            <h2>-</h2>
+                          )}
                         </Tooltip>
                       </div>
+                      <div className="col-lg-2 col-md-4 col-xs-12">
+                        <p className="m-0 panel-title">
+                          {tu("total_accounts")}
+                        </p>
+                        <Tooltip
+                          title={intl.formatMessage({
+                            id: "tooltip_accounts"
+                          })}
+                        >
+                          {complexData.totalAccounts != 0 ? (
+                            <h2 className="hover-red">
+                              <CountUp
+                                separator=","
+                                start={0}
+                                end={complexData.totalAccounts}
+                                duration={1}
+                              />
+                            </h2>
+                          ) : (
+                            <h2>-</h2>
+                          )}
+                        </Tooltip>
+                      </div>
+                     
                     </div>
                   </div>
                 </div>
-                {/* hiden sun network */}
-                <Divider orientation="left">{tu("sun_network")}</Divider>
-                <div className="text-center mr-0 ml-0 mt-2">
+                {
                   <div
-                    className="col-12  card  pt-1 pl-0 pr-0"
-                    style={{ border: "none", borderRadius: 0 }}
+                    className={
+                      isExpand
+                        ? "hidden-panel hidden-panel-height"
+                        : "hidden-panel"
+                    }
                   >
-                    <div className="card-body row pt-2 pb-2 home-stats">
-                      <div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0  mb-md-3 ">
-                        <Tooltip
-                          title={intl.formatMessage({
-                            id: "tooltip_onlineNodes_sunnet"
-                          })}
+                    {/* hiden mainnet */}
+                    <Divider orientation="left">{tu("main_chain")}</Divider>
+                    <div className="text-center mr-0 ml-0 mt-2">
+                      <div
+                        className="col-12  card  pt-1 pl-0 pr-0"
+                        style={{ border: "none", borderRadius: 0 }}
+                      >
+                        <div className="card-body row pt-2 pb-2 home-stats">
+                        <div className="col-lg-1 col-md-2 col-xs-6"></div>
+                          <div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0  mb-md-3 ">
+                            <Tooltip
+                              title={intl.formatMessage({
+                                id: "tooltip_onlineNodes_mainnet"
+                              })}
+                            >
+                              <Link
+                                to="/blockchain/nodes"
+                                className="hvr-underline-from-center hvr-underline-white text-muted"
+                              >
+                                {mainnetData.onlineNodes != 0 ? (
+                                  <h2 className="hover-red">
+                                    <CountUp
+                                      separator=","
+                                      start={0}
+                                      end={mainnetData.onlineNodes}
+                                      duration={1}
+                                    />
+                                  </h2>
+                                ) : (
+                                  <h2>-</h2>
+                                )}
+                              </Link>
+                            </Tooltip>
+                          </div>
+
+                          <div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0 mb-md-3">
+                            <Tooltip
+                              title={intl.formatMessage({
+                                id: "tooltip_blockHeight_mainnet"
+                              })}
+                            >
+                              <Link
+                                to="/blockchain/blocks"
+                                className="hvr-underline-from-center hvr-underline-white text-muted"
+                              >
+                                {mainnetData.blockHeight != 0 ? (
+                                  <h2 className="hover-red">
+                                    <CountUp
+                                      separator=","
+                                      start={mainnetData.startblockHeight}
+                                      end={mainnetData.blockHeight}
+                                      duration={1}
+                                    />
+                                  </h2>
+                                ) : (
+                                  <h2>-</h2>
+                                )}
+                              </Link>
+                            </Tooltip>
+                          </div>
+                          <div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0  mb-md-3">
+                            <div
+                              href="javascript:;"
+                              className="hvr-underline-from-center hvr-underline-white text-muted"
+                            >
+                              {mainnetData.maxTps ? (
+                                <h2>
+                                  <Tooltip
+                                    title={intl.formatMessage({
+                                      id: "tooltip_startTps_mainnet"
+                                    })}
+                                  >
+                                    <span className="hover-red">
+                                      <CountUp
+                                        separator=","
+                                        start={mainnetData.startTps}
+                                        end={mainnetData.tps}
+                                        duration={2}
+                                      />
+                                    </span>
+                                  </Tooltip>
+                                  /
+                                  <Tooltip
+                                    title={intl.formatMessage({
+                                      id: "tooltip_tps_mainnet"
+                                    })}
+                                  >
+                                    <span className="hover-red">
+                                      <CountUp
+                                        separator=","
+                                        start={0}
+                                        end={mainnetData.maxTps}
+                                        duration={1}
+                                      />
+                                    </span>
+                                  </Tooltip>
+                                </h2>
+                              ) : (
+                                <h2>-/-</h2>
+                              )}
+                            </div>
+                          </div>
+                          <div className="col-lg-2 col-md-4 col-xs-12">
+                            <Tooltip
+                              title={intl.formatMessage({
+                                id: "tooltip_transactionPerDay_mainnet"
+                              })}
+                            >
+                              <Link
+                                to="/blockchain/transactions"
+                                className="hvr-underline-from-center hvr-underline-white text-muted"
+                              >
+                                {mainnetData.transactionPerDay != 0 ? (
+                                  <h2 className="hover-red">
+                                    <CountUp
+                                      separator=","
+                                      start={0}
+                                      end={mainnetData.transactionPerDay}
+                                      duration={1}
+                                    />
+                                  </h2>
+                                ) : (
+                                  <h2>-</h2>
+                                )}
+                              </Link>
+                            </Tooltip>
+                          </div>
+                          <div className="col-lg-2 col-md-4 col-xs-12">
+                            <Tooltip
+                              title={intl.formatMessage({
+                                id: "tooltip_accounts_mainnet"
+                              })}
+                            >
+                              <Link
+                                to="/blockchain/accounts"
+                                className="hvr-underline-from-center hvr-underline-white text-muted"
+                              >
+                                {mainnetData.totalAccounts != 0 ? (
+                                  <h2 className="hover-red">
+                                    <CountUp
+                                      separator=","
+                                      start={0}
+                                      end={mainnetData.totalAccounts}
+                                      duration={1}
+                                    />
+                                  </h2>
+                                ) : (
+                                  <h2>-</h2>
+                                )}
+                              </Link>
+                            </Tooltip>
+                          </div>
+                         
+                        </div>
+                      </div>
+                    </div>
+                    {/* hiden sun network */}
+                    <Divider orientation="left">{tu("sun_network")}</Divider>
+                    <div className="text-center mr-0 ml-0 mt-2">
+                      <div
+                        className="col-12  card  pt-1 pl-0 pr-0"
+                        style={{ border: "none", borderRadius: 0 }}
+                      >
+                        <div className="card-body row pt-2 pb-2 home-stats">
+                        <div className="col-lg-1 col-md-2 col-xs-6"></div>
+                          <div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0  mb-md-3 ">
+                            <Tooltip
+                              title={intl.formatMessage({
+                                id: "tooltip_onlineNodes_sunnet"
+                              })}
+                            >
+                              {sunnetData.onlineNodes != 0 ? (
+                                <h2 className="hover-red">
+                                  <CountUp
+                                    separator=","
+                                    start={0}
+                                    end={sunnetData.onlineNodes}
+                                    duration={1}
+                                  />
+                                </h2>
+                              ) : (
+                                <h2>-</h2>
+                              )}
+                            </Tooltip>
+                          </div>
+
+                          <div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0 mb-md-3">
+                            <Tooltip
+                              title={intl.formatMessage({
+                                id: "tooltip_blockHeight_sunnet"
+                              })}
+                            >
+                              {sunnetData.blockHeight != 0 ? (
+                                <h2 className="hover-red">
+                                  <CountUp
+                                    separator=","
+                                    start={sunnetData.startblockHeight}
+                                    end={sunnetData.blockHeight}
+                                    duration={1}
+                                  />
+                                </h2>
+                              ) : (
+                                <h2>-</h2>
+                              )}
+                            </Tooltip>
+                          </div>
+                          <div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0  mb-md-3">
+                            <div
+                              href="javascript:;"
+                              className="hvr-underline-from-center hvr-underline-white text-muted"
+                            >
+                              {sunnetData.maxTps ? (
+                                <h2>
+                                  <Tooltip
+                                    title={intl.formatMessage({
+                                      id: "tooltip_startTps_sunnet"
+                                    })}
+                                  >
+                                    <span className="hover-red">
+                                      <CountUp
+                                         separator=","
+                                        start={sunnetData.startTps}
+                                        end={sunnetData.tps}
+                                        duration={2}
+                                      />
+                                    </span>
+                                  </Tooltip>
+                                  /
+                                  <Tooltip
+                                    title={intl.formatMessage({
+                                      id: "tooltip_tps_sunnet"
+                                    })}
+                                  >
+                                    <span className="hover-red">
+                                      <CountUp
+                                        separator=","
+                                        start={0}
+                                        end={sunnetData.maxTps}
+                                        duration={1}
+                                      />
+                                    </span>
+                                  </Tooltip>
+                                </h2>
+                              ) : (
+                                <h2>-/-</h2>
+                              )}
+                            </div>
+                          </div>
+                          <div className="col-lg-2 col-md-4 col-xs-12">
+                            <Tooltip
+                              title={intl.formatMessage({
+                                id: "tooltip_transactionPerDay_sunnet"
+                              })}
+                            >
+                              {sunnetData.transactionPerDay != 0 ? (
+                                <h2 className="hover-red">
+                                  <CountUp
+                                    separator=","
+                                    start={0}
+                                    end={sunnetData.transactionPerDay}
+                                    duration={1}
+                                  />
+                                </h2>
+                              ) : (
+                                <h2>-</h2>
+                              )}
+                            </Tooltip>
+                          </div>
+                          <div className="col-lg-2 col-md-4 col-xs-12">
+                            <Tooltip
+                              title={intl.formatMessage({
+                                id: "tooltip_accounts_sunnet"
+                              })}
+                            >
+                              {sunnetData.totalAccounts != 0 ? (
+                                <h2 className="hover-red">
+                                  <CountUp
+                                    separator=","
+                                    start={0}
+                                    end={sunnetData.totalAccounts}
+                                    duration={1}
+                                  />
+                                </h2>
+                              ) : (
+                                <h2>-</h2>
+                              )}
+                            </Tooltip>
+                          </div>
+                       
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                }
+              </div>
+            )}
+            {/* sun network */}
+            {!IS_MAINNET && (
+              <div className="panel-group row text-center mr-0 ml-0 mt-2">
+                <div
+                  className="col-12  card  pt-1 pl-0 pr-0"
+                  style={{ border: "none", borderRadius: 0 }}
+                >
+                  <div className="card-body row pt-3 pb-3 home-stats">
+                    <div className="col-lg-1 col-md-2 col-xs-6"></div>
+                    <div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0  mb-md-3">
+                      <p className="m-0 panel-title">{tu("online_nodes")}</p>
+                      <Tooltip
+                        title={intl.formatMessage({
+                          id: "tooltip_onlineNodes_sunnet"
+                        })}
+                      >
+                        <Link
+                          to="/blockchain/nodes"
+                          className="hvr-underline-from-center hvr-underline-white text-muted"
                         >
                           {sunnetData.onlineNodes != 0 ? (
                             <h2 className="hover-red">
                               <CountUp
+                                separator=","
                                 start={0}
                                 end={sunnetData.onlineNodes}
                                 duration={1}
@@ -601,79 +749,96 @@ export default class panelGroup extends Component {
                           ) : (
                             <h2>-</h2>
                           )}
-                        </Tooltip>
-                      </div>
+                        </Link>
+                      </Tooltip>
+                    </div>
+                    <div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0 mb-md-3">
+                      <p className="m-0 panel-title">{tu("block_height")}</p>
 
-                      <div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0 mb-md-3">
-                        {/* <Tooltip
-                          title={intl.formatMessage({
-                            id: "tooltip_blockHeight_sunnet"
-                          })}
-                        > */}
-
-                        {sunnetData.blockHeight != 0 ? (
-                          <h2 className="hover-red">
-                            <CountUp
-                              start={sunnetData.startblockHeight}
-                              end={sunnetData.blockHeight}
-                              duration={1}
-                            />
-                          </h2>
-                        ) : (
-                          <h2>-</h2>
-                        )}
-
-                        {/* </Tooltip> */}
-                      </div>
-                      <div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0  mb-md-3">
-                        <div
-                          href="javascript:;"
+                      <Tooltip
+                        title={intl.formatMessage({
+                          id: "tooltip_blockHeight_sunnet"
+                        })}
+                      >
+                        <Link
+                          to="/blockchain/blocks"
                           className="hvr-underline-from-center hvr-underline-white text-muted"
                         >
-                          {sunnetData.maxTps ? (
-                            <h2>
-                              <Tooltip
-                                title={intl.formatMessage({
-                                  id: "tooltip_startTps_sunnet"
-                                })}
-                              >
-                                <span className="hover-red">
-                                  <CountUp
-                                    start={sunnetData.startTps}
-                                    end={sunnetData.tps}
-                                    duration={2}
-                                  />
-                                </span>
-                              </Tooltip>
-                              /
-                              <Tooltip
-                                title={intl.formatMessage({
-                                  id: "tooltip_tps_sunnet"
-                                })}
-                              >
-                                <span className="hover-red">
-                                  <CountUp
-                                    start={0}
-                                    end={sunnetData.maxTps}
-                                    duration={1}
-                                  />
-                                </span>
-                              </Tooltip>
+                          {sunnetData.blockHeight != 0 ? (
+                            <h2 className="hover-red">
+                              <CountUp
+                                separator=","
+                                start={sunnetData.startblockHeight}
+                                end={sunnetData.blockHeight}
+                                duration={1}
+                              />
                             </h2>
                           ) : (
-                            <h2>-/-</h2>
+                            <h2>-</h2>
                           )}
-                        </div>
+                        </Link>
+                      </Tooltip>
+                    </div>
+                    <div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0  mb-md-3">
+                      <p className="m-0 panel-title">{tu("current_MaxTPS")}</p>
+                      <div
+                        href="javascript:;"
+                        className="hvr-underline-from-center hvr-underline-white text-muted"
+                      >
+                        {sunnetData.maxTps ? (
+                          <h2 className="hover-red">
+                            <Tooltip
+                              title={intl.formatMessage({
+                                id: "tooltip_startTps_sunnet"
+                              })}
+                            >
+                              <span className="hover-red">
+                                <CountUp
+                                   separator=","
+                                  start={sunnetData.startTps}
+                                  end={sunnetData.tps}
+                                  duration={2}
+                                />
+                              </span>
+                            </Tooltip>
+                            /
+                            <Tooltip
+                              title={intl.formatMessage({
+                                id: "tooltip_tps_sunnet"
+                              })}
+                            >
+                              <span className="hover-red">
+                                <CountUp
+                                   separator=","
+                                  start={0}
+                                  end={sunnetData.maxTps}
+                                  duration={1}
+                                />
+                              </span>
+                            </Tooltip>
+                          </h2>
+                        ) : (
+                          <h2 className="hover-red">-/-</h2>
+                        )}
                       </div>
-                      <div className="col-lg-2 col-md-4 col-xs-12">
-                        <Tooltip
-                          title={intl.formatMessage({
-                            id: "tooltip_transactionPerDay_sunnet"
-                          })}
+                    </div>
+                    <div className="col-lg-2 col-md-4 col-xs-12">
+                      <p className="m-0 panel-title">
+                        {tu("transactions_last_day")}
+                      </p>
+                      <Tooltip
+                        title={intl.formatMessage({
+                          id: "tooltip_transactionPerDay_sunnet"
+                        })}
+                      >
+                        <Link
+                          to="/blockchain/transactions"
+                          className="hvr-underline-from-center hvr-underline-white text-muted"
                         >
                           {sunnetData.transactionPerDay != 0 ? (
                             <h2 className="hover-red">
                               <CountUp
+                                separator=","
                                 start={0}
                                 end={sunnetData.transactionPerDay}
                                 duration={1}
@@ -682,17 +847,24 @@ export default class panelGroup extends Component {
                           ) : (
                             <h2>-</h2>
                           )}
-                        </Tooltip>
-                      </div>
-                      <div className="col-lg-2 col-md-4 col-xs-12">
-                        <Tooltip
-                          title={intl.formatMessage({
-                            id: "tooltip_accounts_sunnet"
-                          })}
+                        </Link>
+                      </Tooltip>
+                    </div>
+                    <div className="col-lg-2 col-md-4 col-xs-12">
+                      <p className="m-0 panel-title">{tu("total_accounts")}</p>
+                      <Tooltip
+                        title={intl.formatMessage({
+                          id: "tooltip_accounts_sunnet"
+                        })}
+                      >
+                        <Link
+                          to="/blockchain/accounts"
+                          className="hvr-underline-from-center hvr-underline-white text-muted"
                         >
                           {sunnetData.totalAccounts != 0 ? (
                             <h2 className="hover-red">
                               <CountUp
+                                separator=","
                                 start={0}
                                 end={sunnetData.totalAccounts}
                                 duration={1}
@@ -701,214 +873,16 @@ export default class panelGroup extends Component {
                           ) : (
                             <h2>-</h2>
                           )}
-                        </Tooltip>
-                      </div>
-                      <div className="col-lg-2 col-md-4 col-xs-12">
-                        <Tooltip
-                          title={intl.formatMessage({
-                            id: "tooltip_trxPrice_sunnet"
-                          })}
-                        >
-                          <HrefLink
-                            href="https://coinmarketcap.com/currencies/tron/"
-                            target="_blank"
-                            className="hvr-underline-from-center hvr-underline-white text-muted"
-                          >
-                            <h2 className="hover-red">
-                              <TRXPrice
-                                showPopup={false}
-                                amount={1}
-                                currency="USD"
-                                source="home"
-                              />
-                            </h2>
-                          </HrefLink>
-                        </Tooltip>
-                      </div>
+                        </Link>
+                      </Tooltip>
                     </div>
+                  
                   </div>
                 </div>
               </div>
-            }
-          </div>
-        )}
-        {/* sun network */}
-        {IS_TESTNET && (
-          <div className="panel-group row text-center mr-0 ml-0 mt-2">
-            <div
-              className="col-12  card  pt-1 pl-0 pr-0"
-              style={{ border: "none", borderRadius: 0 }}
-            >
-              <div className="card-body row pt-3 pb-3 home-stats">
-                <div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0  mb-md-3">
-                  <p className="m-0 panel-title">{tu("online_nodes")}</p>
-                  {/*<Tooltip*/}
-                    {/*title={intl.formatMessage({*/}
-                      {/*id: "tooltip_onlineNodes_sunnet"*/}
-                    {/*})}*/}
-                  {/*>*/}
-                    {/*<Link*/}
-                      {/*to="/blockchain/nodes"*/}
-                      {/*className="hvr-underline-from-center hvr-underline-white text-muted"*/}
-                    {/*>*/}
-                      {sunnetData.onlineNodes != 0 ? (
-                        <h2 className="hover-red">
-                          <CountUp
-                            start={0}
-                            end={6}
-                            duration={1}
-                          />
-                        </h2>
-                      ) : (
-                        <h2>-</h2>
-                      )}
-                    {/*</Link>*/}
-                  {/*</Tooltip>*/}
-                </div>
-                <div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0 mb-md-3">
-                  <p className="m-0 panel-title">{tu("block_height")}</p>
 
-                  {/* <Tooltip
-                    title={intl.formatMessage({
-                      id: "tooltip_blockHeight_sunnet"
-                    })}
-                  > */}
-                  <Link
-                    to="/blockchain/blocks"
-                    className="hvr-underline-from-center hvr-underline-white text-muted"
-                  >
-                    {sunnetData.blockHeight != 0 ? (
-                      <h2 className="hover-red">
-                        <CountUp
-                          start={sunnetData.startblockHeight}
-                          end={sunnetData.blockHeight}
-                          duration={1}
-                        />
-                      </h2>
-                    ) : (
-                      <h2>-</h2>
-                    )}
-                  </Link>
-                  {/* </Tooltip> */}
-                </div>
-                <div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0  mb-md-3">
-                  <p className="m-0 panel-title">{tu("current_MaxTPS")}</p>
-                  <div
-                    href="javascript:;"
-                    className="hvr-underline-from-center hvr-underline-white text-muted"
-                  >
-                    {sunnetData.maxTps ? (
-                      <h2 className="hover-red">
-                        {/*<Tooltip*/}
-                          {/*title={intl.formatMessage({*/}
-                            {/*id: "tooltip_startTps_sunnet"*/}
-                          {/*})}*/}
-                        {/*>*/}
-                          <span className="hover-red">
-                            <CountUp
-                              start={sunnetData.startTps}
-                              end={sunnetData.tps}
-                              duration={2}
-                            />
-                          </span>
-                        {/*</Tooltip>*/}
-                        /
-                        {/*<Tooltip*/}
-                          {/*title={intl.formatMessage({*/}
-                            {/*id: "tooltip_tps_sunnet"*/}
-                          {/*})}*/}
-                        {/*>*/}
-                          <span className="hover-red">
-                            <CountUp
-                              start={0}
-                              end={sunnetData.maxTps}
-                              duration={1}
-                            />
-                          </span>
-                        {/*</Tooltip>*/}
-                      </h2>
-                    ) : (
-                      <h2 className="hover-red">-/-</h2>
-                    )}
-                  </div>
-                </div>
-                <div className="col-lg-2 col-md-4 col-xs-12">
-                  <p className="m-0 panel-title">
-                    {tu("transactions_last_day")}
-                  </p>
-                  {/*<Tooltip*/}
-                    {/*title={intl.formatMessage({*/}
-                      {/*id: "tooltip_transactionPerDay_sunnet"*/}
-                    {/*})}*/}
-                  {/*>*/}
-                    <Link
-                      to="/blockchain/transactions"
-                      className="hvr-underline-from-center hvr-underline-white text-muted"
-                    >
-                      {sunnetData.transactionPerDay != 0 ? (
-                        <h2 className="hover-red">
-                          <CountUp
-                            start={0}
-                            end={sunnetData.transactionPerDay}
-                            duration={1}
-                          />
-                        </h2>
-                      ) : (
-                        <h2>-</h2>
-                      )}
-                    </Link>
-                  {/*</Tooltip>*/}
-                </div>
-                <div className="col-lg-2 col-md-4 col-xs-12">
-                  <p className="m-0 panel-title">{tu("total_accounts")}</p>
-                  {/*<Tooltip*/}
-                    {/*title={intl.formatMessage({*/}
-                      {/*id: "tooltip_accounts_sunnet"*/}
-                    {/*})}*/}
-                  {/*>*/}
-                    <Link
-                      to="/blockchain/accounts"
-                      className="hvr-underline-from-center hvr-underline-white text-muted"
-                    >
-                      {sunnetData.totalAccounts != 0 ? (
-                        <h2 className="hover-red">
-                          <CountUp
-                            start={0}
-                            end={sunnetData.totalAccounts}
-                            duration={1}
-                          />
-                        </h2>
-                      ) : (
-                        <h2>-</h2>
-                      )}
-                    </Link>
-                  {/*</Tooltip>*/}
-                </div>
-                <div className="col-lg-2 col-md-4 col-xs-12">
-                  <p className="m-0 panel-title">{tu("pice_per_1trx")}</p>
-                  <Tooltip
-                    title={intl.formatMessage({
-                      id: "tooltip_trxPrice_sunnet"
-                    })}
-                  >
-                    <HrefLink
-                      href="https://coinmarketcap.com/currencies/tron/"
-                      target="_blank"
-                      className="hvr-underline-from-center hvr-underline-white text-muted"
-                    >
-                      <h2 className="hover-red">
-                        <TRXPrice
-                          showPopup={false}
-                          amount={1}
-                          currency="USD"
-                          source="home"
-                        />
-                      </h2>
-                    </HrefLink>
-                  </Tooltip>
-                </div>
-              </div>
-            </div>
+            )}
+
           </div>
         )}
       </div>

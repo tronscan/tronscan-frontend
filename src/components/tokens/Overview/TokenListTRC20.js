@@ -331,6 +331,7 @@ class TokenList extends Component {
                 >
                   {tableInfo} &nbsp;&nbsp;
                   {/* <Link to="/exchange/trc20">{t("Trade_on_TRXMarket")}></Link> */}
+
                 </div>
               ) : (
                 ""

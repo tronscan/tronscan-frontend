@@ -1,4 +1,5 @@
 import Lockr from "lockr";
+import uuidv4w from "uuid/v4";
 /**
  * 1000000 sun = 1 TRX
  */
@@ -10,19 +11,28 @@ export const IS_DESKTOP = process.env.DESKTOP === "true";
 export const NETURL = {
   MAINNET: "https://shasta.tronscan.org/",
   SUNNET: "https://dappchain.tronscan.org"
+
 };
+
+export const TOKENINFO_UPDATE = "TOKENINFO_UPDATE";
 
 let { NET, NODE_ENV } = process.env;
 let MAINNET;
 let SUNNET;
+let NODEAPI;
+
 if (NODE_ENV == "development") {
   MAINNET = Lockr.get("NET") === "mainnet" || !Lockr.get("NET");
   SUNNET = Lockr.get("NET") === "sunnet";
+  // NODEAPI = "https://tronexapi.tronscan.org";
+  // NODEAPI = "http://18.222.181.154:9017"
+  NODEAPI = process.env.API_URL;
 } else {
   // MAINNET = window.location.origin === NETURL.MAINNET;
   // SUNNET = window.location.origin === NETURL.SUNNET;
     MAINNET = true;
     SUNNET = false;
+
 }
 
 export let IS_MAINNET = MAINNET;
@@ -42,25 +52,38 @@ export const PUBLIC_URL = process.env.PUBLIC_URL || window.location.origin;
 //export const API_URL_SUNNET = "http://52.15.68.74:10001";
 
 export const API_URL_SUNNET = "https://dappchainapi.tronscan.org";
+
+// export const API_URL_SUNNET = "https://debugdappchainapilist.tronscan.org";
 // export const API_URL_MAINNET = 'https://apilist.tronscan.org';
 export const API_URL = IS_SUNNET ? API_URL_SUNNET : process.env.API_URL;
 export const CONTRACT_MAINNET_API_URL = process.env.API_URL;
-
+export const CONTRACT_NODE_API = API_URL;
+// export const CONTRACT_NODE_API = API_URL;
 //Token issued
 export const MARKET_API_URL = "https://platform.tron.network";
 
-//trx.market
-export const MARKET_HTTP_URL = "https://trx.market";
+//poloniex.org
+export const MARKET_HTTP_URL = "https://poloniex.org";
 
 export const ACCOUNT_PRIVATE_KEY = "ACCOUNT_PRIVATE_KEY";
 export const ACCOUNT_ADDRESS = "ACCOUNT_ADDRESS";
 export const ACCOUNT_LEDGER = "ACCOUNT_LEDGER";
 export const ACCOUNT_TRONLINK = "ACCOUNT_TRONLINK";
 
+/**
+ * USDJ = 1 USD
+ */
+export const ONE_USDJ = 1;
 export const TOKEN_ID_BTT = "1002000";
 export const CONTRACT_ADDRESS_USDT = "TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t";
 export const CONTRACT_ADDRESS_WIN = "TLa2f6VPqDgRE67v1736s7bJ8Ray5wYjU7";
 export const CONTRACT_ADDRESS_GGC = "TB95FFYRJMLY6mWZqv4JUMqAqsHF4JCXga";
+export const CONTRACT_ADDRESS_USDJ_TESTNET = "TCkkpmnY38nsXAtideWzHTybvbMozzXUot";
+export const CONTRACT_ADDRESS_JED_TESTNET = "TTpozmSKuK5jbigUXtQn6fdxh6ivwKtGo5";
+export const CONTRACT_ADDRESS_USDJ = "TMwFHYXLJaRUPeW6421aqXL4ZEzPRFGkGT";
+export const CONTRACT_ADDRESS_JED = "TCFLL5dx5ZJdKnWuesXxi1VPwjLVmWZZy9";
+
+
 
 // Deployment to compile
 export const FILE_MAX_SIZE = 5 * 1024 * 1024;
@@ -105,12 +128,50 @@ export const SUNWEBCONFIG = {
   MAINFULLNODE: "https://api.shasta.trongrid.io",
   MAINSOLIDITYNODE: "https://api.shasta.trongrid.io",
   MAINEVENTSERVER: "https://api.shasta.trongrid.io",
+
   SUNFULLNODE: "https://sun.tronex.io",
   SUNSOLIDITYNODE: "https://sun.tronex.io",
   SUNEVENTSERVER: "https://sun.tronex.io",
   MAINNET: "TWaPZru6PR5VjgT4sJrrZ481Zgp3iJ8Rfo",
   SIDECHAIN: "TGKotco6YoULzbYisTBuP6DWXDjEgJSpYz",
-  SIDEID: "41E209E4DE650F0150788E8EC5CAFA240A23EB8EB7"
+  SIDEID: "41E209E4DE650F0150788E8EC5CAFA240A23EB8EB7",
+
+  //for nile
+  // MAINFULLNODE: "https://api.nileex.io",
+  // MAINSOLIDITYNODE: "https://api.nileex.io",
+  // MAINEVENTSERVER: "https://event.nileex.io",
+  // SUNFULLNODE: "https://sun.tronex.io",
+  // SUNSOLIDITYNODE: "https://sun.tronex.io",
+  // SUNEVENTSERVER: "https://sun.tronex.io",
+  // MAINNET: "TWaPZru6PR5VjgT4sJrrZ481Zgp3iJ8Rfo",
+  // SIDECHAIN: "TGKotco6YoULzbYisTBuP6DWXDjEgJSpYz",
+  // SIDEID: "41E209E4DE650F0150788E8EC5CAFA240A23EB8EB7"
+
+  // for shasta
+  // MAINFULLNODE: 'http://47.252.84.158:8070',
+  // MAINSOLIDITYNODE: 'http://47.252.84.158:8071',
+  // MAINEVENTSERVER: 'http://47.252.81.14:8070',
+  // SUNFULLNODE: 'http://47.252.85.90:8070',
+  // SUNSOLIDITYNODE: 'http://47.252.85.90:8071',
+  // SUNEVENTSERVER: 'http://47.252.87.129:8070',
+  // MAINNET: 'TFLtPoEtVJBMcj6kZPrQrwEdM3W3shxsBU',
+  // SIDECHAIN: 'TRDepx5KoQ8oNbFVZ5sogwUxtdYmATDRgX',
+  // SIDEID: '413AF23F37DA0D48234FDD43D89931E98E1144481B',
+
+  
+
+  // for tronex
+  // MAINFULLNODE: "https://testhttpapi.tronex.io",
+  // MAINSOLIDITYNODE: "https://testhttpapi.tronex.io",
+  // MAINEVENTSERVER: "https://testapi.tronex.io",
+
+  // SUNFULLNODE: "https://suntest.tronex.io",
+  // SUNSOLIDITYNODE: "https://suntest.tronex.io",
+  // SUNEVENTSERVER: "https://suntest.tronex.io",
+
+  // MAINNET: "TWaPZru6PR5VjgT4sJrrZ481Zgp3iJ8Rfo",
+  // SIDECHAIN: "TGKotco6YoULzbYisTBuP6DWXDjEgJSpYz",
+  // SIDEID: "41E209E4DE650F0150788E8EC5CAFA240A23EB8EB7"
 };
 
 //Socket config
@@ -159,4 +220,41 @@ export const JSENCRYPTKEY = `-----BEGIN PUBLIC KEY-----MIGfMA0GCSqGSIb3DQEBAQUAA
 export const FROMID = 1;
 
 // url regexp
+/* eslint-disable */
 export const URLREGEXP = /^((ht|f)tps?):\/\/[\w\-]+(\.[\w\-]+)+([\w\-.,@?^=%&:\\/~+#]*[\w\-@?^=%&\\/~+#])?$/;
+
+export const ADDRESS_SIZE = 34;
+export const ADDRESS_PREFIX = "41";
+export const ADDRESS_PREFIX_BYTE = 0x41;
+export const ADDRESS_PREFIX_REGEX = /^(41)/;
+
+// contract
+export const CONTRACT_LICENSES = [
+  "--",
+  "None",
+  "Unlicense",
+  "MIT",
+  "GNU GPLv2",
+  "GNU GPLv3",
+  "GNU LGPLv2.1",
+  "GNU LGPLv3",
+  "BSD-2-Clause",
+  "BSD-3-Clause",
+  "MPL-2.0",
+  "OSL-3.0",
+  "Apache-2.0"
+];
+
+export const WARNING_VERSIONS = [];
+export const uuidv4 = uuidv4w();
+
+export const ADDRESS_TAG_ICON = [
+  "Binance",
+  "Bittrex",
+  "Gate",
+  "Huobi",
+  "Kucoin",
+  "Okex",
+  "Poloniex",
+  "Bitfinex"
+];

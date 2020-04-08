@@ -1,108 +1,135 @@
 //boostrap overwrites
 .border-bottom {
-    border-bottom: 1px solid $light-grey;
+  border-bottom: 1px solid $light-grey;
 }
 
 .bg-dark {
-    background-color: $dark-grey !important;
+  background-color: $dark-grey !important;
 }
 
 .dropdown-item.active,
 .dropdown-item:active {
-    background-color: transparent !important;
-    outline: none !important;
+  background-color: transparent !important;
+  outline: none !important;
 }
 
 .btn:focus,
 .btn:active {
-    outline: none !important;
-    box-shadow: none !important;
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 .page-link:focus {
-    box-shadow: none;
+  box-shadow: none;
 }
 
-h6{
-    line-height: 1.3;
+h6 {
+  line-height: 1.3;
 }
 
 // .token_black{
 
-    .btn {
-        border-radius: 1px;
-        // font-weight: lighter;
-        span{
-            // color: #fff;
-        }
-        &-default{
-            background: transparent;
-            border-color: $main-red;
-            span{
-                color: $main-red;
-            }
-
-            &:hover{
-                border-color: $main-red;
-                background-color: $main-red;
-                color: #fff!important;
-                span{
-                    color: #fff!important;
-                }
-            }
-        }
-        &-success, &-success:disabled{
-            background-color: #69C265; 
-            border-color: #69C265;
-        }
-        &-primary{
-            background-color: #4A90E2;
-            border-color: #4A90E2;
-        }
-
-        &-lg {
-            padding: {
-                top: 8px;
-                bottom: 8px;
-            }
-        }
-        &-xs {
-            padding: {
-                top: 0px;
-                bottom: 0px;
-            }
-        }
+.btn {
+  border-radius: 1px;
+  // font-weight: lighter;
+  span {
+    // color: #fff;
+  }
+  &-default {
+    background: transparent;
+    border-color: $main-red;
+    span {
+      color: $main-red;
     }
 
-    
-    
-// }
-// badge ===================
-.badge{
-    border-radius: 2px;
-    font-size: 12px;
-    padding: 3px 14px;
+    &:hover {
+      border-color: $main-red;
+      background-color: $main-red;
+      color: #fff !important;
+      span {
+        color: #fff !important;
+      }
+    }
+  }
+  &-success,
+  &-success:disabled {
+    background-color: #69c265;
+    border-color: #69c265;
+  }
+  &-primary {
+    background-color: #4a90e2;
+    border-color: #4a90e2;
+  }
 
-    &-danger{
-        background: rgba(194,54,49,0.2);
-        color: $main-red;
+  &-lg {
+    padding: {
+      top: 8px;
+      bottom: 8px;
     }
-    &-success{
-        background: rgba(105,194,101,0.2);
-        color: #2EAC28;
+  }
+  &-xs {
+    padding: {
+      top: 0px;
+      bottom: 0px;
     }
-    &-warning{
-        background: rgba(244,124,60,0.2);
-        color: #F47C3C;
-    }
-    &-secondary{
-        background: rgba(142,140,132,0.2);
-        color: #8E8C84;
-    }
+  }
 }
 
-.border{
-    &-light{
-        border-color: #999!important;
+// }
+// badge ===================
+.badge {
+  border-radius: 2px;
+  font-size: 12px;
+  padding: 3px 14px;
+
+  &-danger {
+    background: rgba(194, 54, 49, 0.2);
+    color: $main-red;
+  }
+  &-success {
+    background: rgba(105, 194, 101, 0.2);
+    color: #2eac28;
+  }
+  &-warning {
+    background: rgba(244, 124, 60, 0.2);
+    color: #f47c3c;
+  }
+  &-secondary {
+    background: rgba(142, 140, 132, 0.2);
+    color: #8e8c84;
+  }
+}
+
+.border {
+  &-light {
+    border-color: #999 !important;
+  }
+}
+
+.modal-dialog-link {
+  .modal-footer {
+    text-align: center;
+    border-top: none;
+    .btn-primary {
+      background: #c23631;
+      border-radius: 1px;
+      margin: 0 auto;
+      border: 1px solid #c23631;
     }
+  }
+  .modal-header {
+    margin: 0 30px;
+    font-size: 16px;
+    color: #333333;
+  }
+  .text-truncate {
+    font-size: 14px;
+    color: #c23631;
+    font-weight: 500;
+    line-height: 50px;
+  }
+  .close {
+    color: #666666;
+    font-size: 28px;
+  }
 }

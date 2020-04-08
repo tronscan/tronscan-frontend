@@ -54,7 +54,7 @@ class DateSelect extends React.Component {
         const { dataStyle } = this.props
 
         return (
-            <div style={{position: "absolute", top: '30px', textAlign: 'right',zIndex: '1', right: 0, ...dataStyle}}>
+            <div className="single-transferall-container" style={{position: "absolute", top: '30px', textAlign: 'right',zIndex: '1', right: 0, ...dataStyle}}>
                 <Radio.Group value={dataItem} onChange={this.handleSizeChange}>
                     {dataItemList.map(dateItem =>  (
                         <Radio.Button value={dateItem} key={dateItem}>{tu(`${dateItem}day`)}</Radio.Button>

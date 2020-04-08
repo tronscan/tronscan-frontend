@@ -23,13 +23,17 @@ const getClientEnvironment = require('./env');
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const ForkTsCheckerWebpackPlugin = require('react-dev-utils/ForkTsCheckerWebpackPlugin');
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
-// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+ //const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const postcssNormalize = require('postcss-normalize');
 const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const CompressionPlugin = require('compression-webpack-plugin');
+//const PurgecssPlugin = require('purgecss-webpack-plugin');
+//const glob = require('glob');
+//const ExtractTextPlugin = require("extract-text-webpack-plugin");
+
 
 
 
@@ -87,6 +91,7 @@ module.exports = function(webpackEnv) {
         loader: require.resolve('css-loader'),
         options: cssOptions,
       },
+
       {
         // Options for PostCSS as we reference these options twice
         // Adds vendor prefixing based on your specified browser support in
@@ -133,6 +138,7 @@ module.exports = function(webpackEnv) {
         ? 'source-map'
         : false
       : isEnvDevelopment && 'cheap-module-source-map',
+    //  devtool:false,
     // These are the "entry points" to our application.
     // This means they will be the "root" imports that are included in JS bundle.
     entry: [
@@ -186,25 +192,49 @@ module.exports = function(webpackEnv) {
     },
     optimization: {
       minimize: isEnvProduction,
+      usedExports: true,
       minimizer: [
-        new UglifyJsPlugin({
-          test: /\.js(\?.*)?$/i,
-          include: /\/includes/,
-          chunkFilter: (chunk) => {
-            // Exclude uglification for the `vendor` chunk
-            if (chunk.name === 'vendor') {
-              return false;
-            }
-  
-            return true;
-          },
+         new UglifyJsPlugin({
           cache: true,
-          parallel: true,
-
+          parallel: true, // 开启并行压缩，充分利用cpu
+          sourceMap: false,
+          extractComments: true, // 移除注释
           uglifyOptions: {
-            compress: false
-          },
+            compress: {
+              unused: true,
+              //warnings: false,
+              drop_debugger: true
+            },
+            output: {
+              comments: false
+            }
+          }
         }),
+
+        // new MiniCssExtractPlugin({
+        //   filename: "css/[name].css?[hash:8]"
+        // }),
+    // new PurgecssPlugin({
+    //   paths: glob.sync([
+    //     path.join(__dirname, '../index.html'),
+    //     path.join(__dirname, '../src/*/*.jsx')
+    //   ])
+    // }),
+        //    new MiniCssExtractPlugin({
+        //   filename: "css/[name].css?[hash:8]"
+        //  }),
+        // new PurgecssPlugin({
+        //   paths: glob.sync([
+        //     path.join(__dirname, '../index.html'),
+        //     path.join(__dirname, '../src/*/*.jsx')
+        //   ])
+          
+          // paths: glob.sync(`${path.join(__dirname, 'src')}/**/*`,
+          // { 
+          //   // 不匹配目录，只匹配文件
+          //   nodir: true,
+          // }),
+        // }),
         // This is only used in production mode
         new TerserPlugin({
           terserOptions: {
@@ -275,7 +305,68 @@ module.exports = function(webpackEnv) {
       splitChunks: {
         chunks: 'all',
         name: false,
-      },
+      //   minSize: 30000,
+      // maxSize: 0,
+      // minChunks: 1,
+      // maxAsyncRequests: 4,
+      // maxInitialRequests: 2,
+      // automaticNameDelimiter: '~',
+      //name: false,
+      cacheGroups: {
+
+        // tronweb:{ 
+        //   name:'tronweb', 
+        //   chunks:'all', 
+        //   priority:11, 
+        //   test:/(tronweb|sunweb)/, //  
+        //   minChunks:1 //  
+        // },
+        // vendors1: {
+        //   name: 'vendors1',
+        //   chunks: 'all',
+        //   test: /\.css$/,
+        //   minChunks: 1,
+        //   minSize: 0,
+        // },
+        // monaco:{ 
+        //   name:'monaco', 
+        //   chunks:'all', 
+        //   priority:10, 
+        //   test:/(monaco-editor)/, //  
+        //   minChunks:1 //  
+        // },
+        // antdesigns: {
+        //   name: 'antdesigns',
+        //   chunks: 'all',
+        //   test: /[\\/]node_modules[\\/](@ant-design|antd)[\\/]/,
+        //   priority: 10,
+        //   minChunks:1
+        // },
+        domloadsh: {
+          name: 'domloadsh',
+          chunks: 'all',
+          test: /[\\/]node_modules[\\/](react-dom|lodash|google-protobuf|@tronscan|@ant-design|ethers)[\\/]/,
+          priority: 10,
+          minChunks:1
+        },
+
+        // vendors: {
+        //   test: /[\\/]node_modules[\\/]/,
+        //   priority: -10
+        // },
+        // default: {
+        //   minChunks: 2,
+        //   priority: -20,
+        //   reuseExistingChunk: true
+        // }
+        styles: {
+          name: 'styles',
+          test: /\.less$/,
+          chunks: 'all',
+          //enforce: true,
+        }
+      }
+       },
       // Keep the runtime chunk separated to enable long term caching
       // https://twitter.com/wSokra/status/969679223278505985
       runtimeChunk: true,
@@ -314,6 +405,8 @@ module.exports = function(webpackEnv) {
         // please link the files into your node_modules/ and let module-resolution kick in.
         // Make sure your source files are compiled, as they will not be processed in any way.
         new ModuleScopePlugin(paths.appSrc, [paths.appPackageJson]),
+
+
       ],
     },
     resolveLoader: {
@@ -366,41 +459,41 @@ module.exports = function(webpackEnv) {
             // The preset includes JSX, Flow, TypeScript, and some ESnext features.
             {
               test: /\.(js|mjs|jsx|ts|tsx)$/,
-              include: [
-                paths.appSrc,
-                path.resolve(paths.appNodeModules, "@tronscan/client/src"),
-                path.resolve(paths.appNodeModules, "query-string"),
-                path.resolve(paths.appNodeModules, "strict-uri-encode"),
-                path.resolve(paths.appNodeModules, "instascan/src/camera.js"),
-                path.resolve(paths.appNodeModules, "instascan/src/scanner.js"),
-                path.resolve(paths.appNodeModules, "instascan/index.js"),
-              ],
+              include: paths.appSrc,
               loader: require.resolve('babel-loader'),
               options: {
-                customize: require.resolve(
-                  'babel-preset-react-app/webpack-overrides'
-                ),
-                
-                plugins: [
-                  [
-                    require.resolve('babel-plugin-named-asset-import'),
-                    {
-                      loaderMap: {
-                        svg: {
-                          ReactComponent: '@svgr/webpack?-svgo,+ref![path]',
-                        },
-                      },
-                    },
+                  customize: require.resolve(
+                      'babel-preset-react-app/webpack-overrides'
+                  ),
+
+                  plugins: [
+
+                      [
+                          require.resolve('babel-plugin-named-asset-import'),
+                          {
+                              loaderMap: {
+                                  svg: {
+                                      ReactComponent: '@svgr/webpack?-svgo,+ref![path]',
+                                  },
+                              },
+                          },
+                      ],
+                      [
+                          require.resolve('babel-plugin-import'),// 导入 import 插件
+                          {
+                              libraryName: 'antd',   //暴露antd
+                              style: 'css'
+                          }
+                      ]
                   ],
-                ],
-                // This is a feature of `babel-loader` for webpack (not Babel itself).
-                // It enables caching results in ./node_modules/.cache/babel-loader/
-                // directory for faster rebuilds.
-                cacheDirectory: true,
-                cacheCompression: isEnvProduction,
-                compact: isEnvProduction,
+                  // This is a feature of `babel-loader` for webpack (not Babel itself).
+                  // It enables caching results in ./node_modules/.cache/babel-loader/
+                  // directory for faster rebuilds.
+                  cacheDirectory: true,
+                  cacheCompression: isEnvProduction,
+                  compact: isEnvProduction,
               },
-            },
+          },
             // Process any JS outside of the app with Babel.
             // Unlike the application JS, we only compile the standard ES features.
             {
@@ -515,6 +608,7 @@ module.exports = function(webpackEnv) {
     },
     plugins: [
       // Generates an `index.html` file with the <script> injected.
+
       new HtmlWebpackPlugin(
         Object.assign(
           {},
@@ -540,6 +634,37 @@ module.exports = function(webpackEnv) {
             : undefined
         )
       ),
+    //   new MiniCssExtractPlugin({
+    //     filename: '[name].[hash].css',
+    //   }),
+    //   new PurgecssPlugin({
+    //     paths: glob.sync("./src/**/*.{html}"),
+    //     // html body 标签相关样式不会被去除
+    //     // content: [
+    //     //   ".src/**/*.*",
+    //     // ],
+    //    // whitelist: ['html', 'body'],
+    //     // 命名带有 btn 的 class 不会被去除
+    //     whitelist: [
+    //       "./src/styles/*.{css}",
+    //       "./src/styles/themes/*.{css}",
+    //       "./src/styles/utilities/*.{css}",
+    //   ],
+    //   whitelistPatterns: [],
+    //   extensions: [
+    //       "html",
+    //       "js",
+    //       "twig",
+    //       "vue"
+    //   ]
+    // }),
+      // whitelistPatterns: [/btn/],
+      //   extensions: [
+      //     "html",
+      //     "js",
+      // ]
+        // whitelistPatternsChildren: [/btn/]
+   
       // Inlines the webpack runtime script. This script is too small to warrant
       // a network request.
       isEnvProduction &&
@@ -623,7 +748,8 @@ module.exports = function(webpackEnv) {
       // the HTML & assets that are part of the Webpack build.
       new MonacoWebpackPlugin({
           // available options are documented at https://github.com/Microsoft/monaco-editor-webpack-plugin#options
-          languages: ['solidity']
+          languages: ['solidity'],
+          features: ['!gotoSymbol'],
       }),
       isEnvProduction &&
         new WorkboxWebpackPlugin.GenerateSW({
@@ -674,7 +800,7 @@ module.exports = function(webpackEnv) {
         }),
       
       // isEnvProduction &&
-      //    new BundleAnalyzerPlugin({ analyzerPort: 8919 })
+      // new BundleAnalyzerPlugin({ analyzerPort: 8919 })
     ].filter(Boolean),
     // Some libraries import Node modules but don't use them in the browser.
     // Tell Webpack to provide empty mocks for them so importing them works.

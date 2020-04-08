@@ -16,9 +16,10 @@ import TotalInfo from "../common/TableTotal";
 import DateRange from "../common/DateRange";
 import {DatePicker} from 'antd';
 import moment from 'moment';
-import xhr from "axios/index";
+//import xhr from "axios/index";
 import queryString from 'query-string';
 import BlockTime from '../common/blockTime'
+import {tu} from '../../utils/i18n'
 
 
 const RangePicker = DatePicker.RangePicker;
@@ -191,6 +192,17 @@ class Transactions extends React.Component {
                 }
             },
             {
+                title: upperFirst(intl.formatMessage({id: 'status'})),
+                dataIndex: 'confirmed',
+                key: 'confirmed',
+                align: 'left',
+                className: 'ant_table',
+                width: '14%',
+                render: (text, record, index) => {
+                    return  text ? <span><img style={{ width: "20px", height: "20px" }} src={require("../../images/contract/Verified.png")}/> {tu('full_node_version_confirmed')}</span> : <span><img style={{ width: "20px", height: "20px" }} src={require("../../images/contract/Unverified.png")}/> {tu('full_node_version_unconfirmed')}</span>
+                }
+            },
+            {
                 title: upperFirst(intl.formatMessage({id: 'address'})),
                 dataIndex: 'ownerAddress',
                 key: 'ownerAddress',
@@ -202,13 +214,13 @@ class Transactions extends React.Component {
                 }
             },
             {
-                title: upperFirst(intl.formatMessage({id: 'contract'})),
+                title: upperFirst(intl.formatMessage({id: 'transaction_type'})),
                 dataIndex: 'contractType',
                 key: 'contractType',
                 align: 'right',
                 className: 'ant_table',
                 render: (text, record, index) => {
-                    return <span>{ContractTypes[text]}</span>
+                    return <span>{ContractTypes[text] && tu(`transaction_${ContractTypes[text]}`)}</span>
                 },
             },
             // {

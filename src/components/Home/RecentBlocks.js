@@ -3,10 +3,10 @@ import {tu} from "../../utils/i18n";
 import {FormattedNumber, injectIntl} from "react-intl";
 import {loadBlocks} from "../../actions/blockchain";
 import {connect} from "react-redux";
-import {TronLoader} from "../common/loaders";
+//import {TronLoader} from "../common/loaders";
 import {AddressLink} from "../common/Links";
 // import TimeAgo from "react-timeago";
-import moment from 'moment';
+//import moment from 'moment';
 import {Link} from "react-router-dom";
 import {TRXPrice} from "../common/Price";
 import {withTimers} from "../../utils/timing";
@@ -17,8 +17,8 @@ import BlockTime from '../common/blockTime'
 
 
 import isMobile from "../../utils/isMobile";
-import {timeDiffFormat,setTimeString} from '../../utils/DateTime'
-import { clear } from "sisteransi";
+//import {timeDiffFormat,setTimeString} from '../../utils/DateTime'
+//import { clear } from "sisteransi";
 
 
 
@@ -39,7 +39,7 @@ class RecentBlocks extends Component {
     this.props.setInterval(() => {
       this.props.loadBlocks();
       
-    }, 10000); 
+    }, 3000); 
 
   }
 
@@ -59,10 +59,14 @@ class RecentBlocks extends Component {
 
     return (
         <div className="card" style={styles.card}>
-          {/* 测试 */}
+          {/* test */}
           <div className="card-header bg-tron-light d-flex">
             <i className="fa fa-cubes mr-3 fa_width_20 color-grey-100"></i>
-            <h5 className="m-0 lh-175 color-grey-100">{tu("blocks")}</h5>
+            <h5 className="m-0 lh-175 color-grey-100 confirmed_block_tip">
+              {tu("blocks")}
+              
+            
+            </h5>
             <Link to="/blockchain/blocks"
                   className="ml-auto btn btn-sm btn-default"
                   style={{borderRadius: '0.15rem'}}>
@@ -178,7 +182,7 @@ class RecentBlocks extends Component {
                 // blocks.length != 0 && transactions.length != 0
                   blocks.length != 0 ? (
                     blocks.map(block => (
-                      <li key={block.number} className="list-group-item overflow-h">
+                      <li key={block.number} className="list-group-item overflow-h" style={{ minHeight: "100px" }}>
                         <div key={block.number} className="d-flex flex-column">
                           <div className="media-body mb-0 d-flex" style={{paddingTop: 1}}>
                             <div className="text-left">

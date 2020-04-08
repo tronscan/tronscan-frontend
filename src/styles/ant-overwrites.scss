@@ -292,3 +292,40 @@
   border-color: $main-red !important;
   box-shadow: -1px 0 0 0 $main-red;
 }
+
+.home .ant-carousel .slick-dots li button {
+  background: #999;
+}
+.home .ant-carousel .slick-dots li.slick-active button {
+  background: #666;
+}
+.mobile-card .card {
+  padding-bottom: 12px;
+}
+.ant-carousel {
+  font-size: inherit;
+}
+.ant-message {
+  z-index: 1060;
+  color: rgba(255, 255, 255, 0.8);
+}
+.ant-message-notice-content {
+  background: rgba(0, 0, 0, 0.8);
+}
+.ant-message .anticon {
+  vertical-align: 0.1rem;
+}
+
+.confirmed_block_tip{
+  svg{
+    vertical-align: -2px !important;
+  }
+}
+
+.ant-table-thead>tr>th .ant-table-column-sorter .ant-table-column-sorter-inner .ant-table-column-sorter-up.on{
+  color:#c23631 !important;
+}
+.ant-table-thead > tr > th .ant-table-column-sorter .ant-table-column-sorter-inner .ant-table-column-sorter-down.on{
+  color:#c23631 !important;
+}
+

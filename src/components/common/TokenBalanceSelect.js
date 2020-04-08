@@ -120,7 +120,7 @@ class TokenBalanceSelect extends React.Component {
             item.token_name_type = item.map_token_name + '-' + item.map_token_id + '-TRC10';
             return item
         });
-        tokens20.map(item =>{
+        tokens20 && tokens20.map(item =>{
             item.token_name_type =  item.name + '-TRC20';
             return item
         });
