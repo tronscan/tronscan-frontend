@@ -10,8 +10,11 @@ import SignList from "./common/SignList";
 import { TransationTitle } from "./common/Title";
 import BandwidthUsage from "./common/BandwidthUsage";
 import { tu } from "../../../../utils/i18n";
-export default function UpdateBrokerageContract(props) {
-  const contract = props.contract;
+import {injectIntl} from "react-intl";
+import { upperFirst } from "lodash";
+import { Tooltip,Icon } from 'antd';
+
+function UpdateBrokerageContract({contract,intl}) {
   const { brokerage, signature_addresses, contractType, cost } = contract;
   let signList = signature_addresses;
   return (
@@ -21,7 +24,35 @@ export default function UpdateBrokerageContract(props) {
         <tbody>
           {contract["owner_address"] ? (
             <Field label="transaction_owner_address">
-              <AddressLink address={contract["owner_address"]} />
+              <span className="d-flex">
+                {/*  Distinguish between contract and ordinary address */}
+                {contract.contract_map[contract["owner_address"]]? (
+                    <span className="d-flex">
+                    <Tooltip
+                        placement="top"
+                        title={upperFirst(
+                            intl.formatMessage({
+                            id: "transfersDetailContractAddress"
+                            })
+                        )}
+                    >
+                        <Icon
+                        type="file-text"
+                        style={{
+                        verticalAlign: 0,
+                        color: "#77838f",
+                        lineHeight: 1.4
+                        }}
+                        />
+                    </Tooltip>
+                    <AddressLink address={contract["owner_address"]} isContract={true}> {contract["owner_address"]}</AddressLink>
+                    </span>
+                ) :
+                    <AddressLink address={contract["owner_address"]}>
+                        {contract["owner_address"]}
+                    </AddressLink>
+                }
+              </span>
             </Field>
           ) : (
             ""
@@ -48,3 +79,5 @@ export default function UpdateBrokerageContract(props) {
     </Fragment>
   );
 }
+
+export default injectIntl(UpdateBrokerageContract)

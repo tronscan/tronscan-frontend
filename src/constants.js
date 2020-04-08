@@ -13,8 +13,8 @@ export const NETURL = {
   NEWSUNNET: "https://dappchain.tronscan.io",
   MAINNET: "https://tronscan.org",
   SUNNET: "https://dappchain.tronscan.org",
-   //MAINNET: "http://18.217.215.94:71",
-   //SUNNET: "http://18.217.215.94:72",
+  // MAINNET: "http://18.217.215.94:65",
+  // SUNNET: "http://18.217.215.94:66",
   // MAINNET: "https://debug.tronscan.org",
   // SUNNET: "https://debugdappchain.tronscan.org",
 };
@@ -57,12 +57,14 @@ export const PUBLIC_URL = process.env.PUBLIC_URL || window.location.origin;
 //test
 //export const API_URL_SUNNET = 'http://3.15.181.169:9000';
 //test pro
-//export const API_URL_SUNNET = "http://52.15.68.74:10001";
+// export const API_URL_SUNNET = "http://52.15.68.74:10001";
+// export const API_URL_SUNNET = "http://52.15.68.74:8898";
+
 
 export const API_URL_SUNNET = "https://dappchainapi.tronscan.org";
 
 // export const API_URL_SUNNET = "https://debugdappchainapilist.tronscan.org";
-// export const API_URL_MAINNET = 'https://apilist.tronscan.org';
+
 export const API_URL = IS_SUNNET ? API_URL_SUNNET : process.env.API_URL;
 export const CONTRACT_MAINNET_API_URL = process.env.API_URL;
 export const CONTRACT_NODE_API = API_URL;
@@ -90,7 +92,7 @@ export const CONTRACT_ADDRESS_USDJ_TESTNET = "TCkkpmnY38nsXAtideWzHTybvbMozzXUot
 export const CONTRACT_ADDRESS_JED_TESTNET = "TTpozmSKuK5jbigUXtQn6fdxh6ivwKtGo5";
 export const CONTRACT_ADDRESS_USDJ = "TMwFHYXLJaRUPeW6421aqXL4ZEzPRFGkGT";
 export const CONTRACT_ADDRESS_JED = "TCFLL5dx5ZJdKnWuesXxi1VPwjLVmWZZy9";
-
+export const CONTRACT_ADDRESS_JST = "TCFLL5dx5ZJdKnWuesXxi1VPwjLVmWZZy9";
 
 
 // Deployment to compile

@@ -42,6 +42,7 @@ import { some, toLower } from "lodash";
 import xhr from "axios/index";
 import _ from "lodash";
 import WinkSupply from "./winkSupply.js";
+import JstSupply from "./jstSupply.js";
 import { CsvExport } from "../../common/CsvExport";
 import { loadUsdPrice } from "../../../actions/blockchain";
 import Code from "../../blockchain/Contract/Code";
@@ -217,6 +218,18 @@ class Token20Detail extends React.Component {
           winkTotalSupply = await this.getWinkFund();
         }
 
+        let jstTotalSupply = {};
+        if (address === "TCFLL5dx5ZJdKnWuesXxi1VPwjLVmWZZy9") {
+          tabs.push({
+            id: "JstSupply",
+            icon: "",
+            path: "/supply",
+            label: <span>{tu("JST_supply")}</span>,
+            cmp: () => <JstSupply token={token} />
+          });
+          // jstTotalSupply = await this.getWinkFund();
+        }
+
         let transferNumber = await this.getTransferNum(address);
 
         this.setState({ loading: true });
@@ -226,6 +239,7 @@ class Token20Detail extends React.Component {
             : 0;
 
         token.winkTotalSupply = winkTotalSupply;
+        // token.jstTotalSupply = jstTotalSupply;
         token.transferNumber = transferNumber.rangeTotal || 0;
         this.setState({
           loading: false,
@@ -865,7 +879,7 @@ class Token20Detail extends React.Component {
                       {/*</div>*/}
                     </div>
                   </div>
-                  <Information token={token} priceUSD={priceUSD}></Information>
+                  <Information token={token} priceUSD={priceUSD} intl={intl}></Information>
                 </div>
 
                 <div
