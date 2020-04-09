@@ -11,6 +11,7 @@ export const tronAddresses = [
 
 export async function transactionResultManager(transaction, tronWeb) {
   console.log('transaction',transaction)
+  console.log('tronWeb-ledger=======',tronWeb)
   const signedTransaction = await tronWeb.trx.sign(transaction, tronWeb.defaultPrivateKey).catch(e => {
     console.log(e.toString());
     return false;

@@ -98,9 +98,21 @@ class SendForm extends React.Component {
         if (TokenName === "_") {
             amount = this.Mul(amount,ONE_TRX);
             if(this.props.wallet.type==="ACCOUNT_LEDGER") {
-                result = await this.props.tronWeb().trx.sendTransaction(to, amount, {address: wallet.address}, false).catch(function (e) {
-                    console.log(e)
+                // result = await this.props.tronWeb().trx.sendTransaction(to, amount, {address: wallet.address}, false).catch(function (e) {
+                //     console.log(e)
+                // });
+                console.log('wallet.address=============',wallet.address)
+                const unSignTransaction = await this.props.tronWeb().transactionBuilder.sendTrx(to, amount, wallet.address).catch(function (e) {
+                  console.log(e)
                 });
+                console.log('unSignTransaction============',unSignTransaction)
+                //set transaction note
+                console.log('note===========',note)
+                const transactionWithNote = await this.props.tronWeb().transactionBuilder.addUpdateData(unSignTransaction, note, 'utf8');
+                console.log('transactionWithNote==========',transactionWithNote)
+                result = await transactionResultManager(transactionWithNote, this.props.tronWeb());
+
+                console.log('result',result)
             }
             if(this.props.wallet.type==="ACCOUNT_TRONLINK"){
                 const unSignTransaction = await this.props.account.tronWeb.transactionBuilder.sendTrx(to, amount, wallet.address).catch(function (e) {
@@ -127,9 +139,18 @@ class SendForm extends React.Component {
         } else {
             amount = this.Mul(amount,Math.pow(10, decimals));
             if(this.props.wallet.type==="ACCOUNT_LEDGER") {
-                result = await this.props.tronWeb().trx.sendToken(to, amount, TokenName, {address:wallet.address}, false).catch(function (e) {
-                    console.log(e)
-                });
+              const unSignTransaction = await this.props.tronWeb().transactionBuilder.sendToken(to, amount, TokenName, wallet.address).catch(function (e) {
+                console.log(e)
+              });
+              console.log('unSignTransaction',unSignTransaction)
+              //set transaction note
+              console.log('note',note)
+              const transactionWithNote = await this.props.tronWeb().transactionBuilder.addUpdateData(unSignTransaction, note, 'utf8');
+              console.log('transactionWithNote',transactionWithNote)
+              result = await transactionResultManager(transactionWithNote, this.props.tronWeb());
+                // result = await this.props.tronWeb().trx.sendToken(to, amount, TokenName, {address:wallet.address}, false).catch(function (e) {
+                //     console.log(e)
+                // });
             }
             if(this.props.wallet.type==="ACCOUNT_TRONLINK"){
               const unSignTransaction = await this.props.account.tronWeb.transactionBuilder.sendToken(to, amount, TokenName, wallet.address).catch(function (e) {
@@ -291,13 +312,16 @@ class SendForm extends React.Component {
             );
             if (unSignTransaction.transaction !== undefined)
                 unSignTransaction = unSignTransaction.transaction;
-                unSignTransaction.extra = {
+                let transactionWithNote = await tronWeb.transactionBuilder.addUpdateData(unSignTransaction, note, 'utf8'); 
+                console.log('transactionWithNote======ACCOUNT_LEDGER',transactionWithNote)  
+                transactionWithNote.extra = {
                     to: to,
                     decimals: decimals,
                     token_name: TokenName,
                     amount: amount,
+                    note:note
                 }
-            transactionId = await transactionResultManager(unSignTransaction, tronWeb)
+            transactionId = await transactionResultManager(transactionWithNote, tronWeb)
         } else if (this.props.wallet.type === "ACCOUNT_TRONLINK" || this.props.wallet.type === "ACCOUNT_PRIVATE_KEY") {
               tronWeb = this.props.account.tronWeb;
             //  let contractInstance = await tronWeb.contract().at(contractAddress);

@@ -23,7 +23,7 @@ export default function Contract({ contract, extra }) {
   }
 
 
-
+  console.log('extra===',extra)
   switch (contract.type.toUpperCase()) {
     case "TRANSFERCONTRACT":
       return (
@@ -47,6 +47,9 @@ export default function Contract({ contract, extra }) {
               {/*</Field>*/}
               <Field label="Amount">
                 <FormattedTRX value={contractParams.amount / ONE_TRX}/> TRX
+              </Field>
+              <Field label="Note">
+                {TronWeb.toUtf8(extra.note)}
               </Field>
               {(extra && extra.hash && 
                 <Field label="Hash">
@@ -82,6 +85,9 @@ export default function Contract({ contract, extra }) {
             <Field label="Amount">
               <FormattedNumber maximumFractionDigits={tokenInfo.map_token_precision} minimunFractionDigits={tokenInfo.map_token_precision}
                     value={tokenInfo.map_amount}/>&nbsp;{tokenInfo.map_token_name}&nbsp;<font size="-2">[{TronWeb.toUtf8(contractParams.asset_name)}]</font>
+            </Field>
+            <Field label="Note">
+                {TronWeb.toUtf8(extra.note)}
             </Field>
             {(extra && extra.hash && 
                 <Field label="Hash">
