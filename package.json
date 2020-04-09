@@ -14,7 +14,7 @@
         "@ledgerhq/hw-app-trx": "^5.11.0",
         "@ledgerhq/hw-transport-u2f": "^5.9.0",
         "@svgr/webpack": "4.1.0",
-        "@tronscan/client": "^0.2.65",
+        "@tronscan/client": "^0.2.66",
         "@tweenjs/tween.js": "^17.2.0",
         "@typescript-eslint/eslint-plugin": "1.6.0",
         "@typescript-eslint/parser": "1.6.0",

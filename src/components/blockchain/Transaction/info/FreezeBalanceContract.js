@@ -12,6 +12,9 @@ import { ONE_TRX } from "../../../../constants";
 import { TransationTitle } from "./common/Title";
 import BandwidthUsage from "./common/BandwidthUsage";
 import SignList from "./common/SignList";
+import { upperFirst } from "lodash";
+import { Tooltip,Icon } from 'antd';
+import {injectIntl} from "react-intl";
 @connect(
   state => {
     return {
@@ -25,8 +28,9 @@ class FreezeBalanceContract extends React.Component {
     this.state = {};
   }
   render() {
-    let { contract,activeLanguage } = this.props;
+    let { contract,activeLanguage,intl } = this.props;
     let signList = contract.signature_addresses || [];
+
     return (
       <Fragment>
         <TransationTitle contractType={contract.contractType}></TransationTitle>
@@ -34,16 +38,71 @@ class FreezeBalanceContract extends React.Component {
           <table className="table">
             <tbody>
               <Field label="transaction_owner_address">
-                <AddressLink address={contract["owner_address"]} />
+                <span className="d-flex">
+                  {/*  Distinguish between contract and ordinary address */}
+                  {contract.contract_map[contract["owner_address"]]? (
+                    <span className="d-flex">
+                      <Tooltip
+                        placement="top"
+                        title={upperFirst(
+                          intl.formatMessage({
+                            id: "transfersDetailContractAddress"
+                          })
+                        )}
+                      >
+                        <Icon
+                          type="file-text"
+                          style={{
+                            verticalAlign: 0,
+                            color: "#77838f",
+                            lineHeight: 1.4
+                          }}
+                        />
+                      </Tooltip>
+                      <AddressLink address={contract["owner_address"]} isContract={true}>
+                        {contract["owner_address"]}
+                      </AddressLink>
+                    </span>
+                  ) :
+                  <AddressLink address={contract["owner_address"]}>
+                    {contract["owner_address"]}
+                  </AddressLink>
+                  }
+                </span>
               </Field>
               <Field label="transaction_receiver_address">
-                <AddressLink
-                  address={
-                    contract["receiver_address"]
-                      ? contract["receiver_address"]
-                      : contract["owner_address"]
+                <span className="d-flex">
+                  {/*  Distinguish between contract and ordinary address */}
+                  {contract.contract_map[contract["receiver_address"]] || contract.contract_map[contract["owner_address"]] ? (
+                    <span className="d-flex">
+                      <Tooltip
+                        placement="top"
+                        title={upperFirst(
+                          intl.formatMessage({
+                            id: "transfersDetailContractAddress"
+                          })
+                        )}
+                      >
+                        <Icon
+                          type="file-text"
+                          style={{
+                            verticalAlign: 0,
+                            color: "#77838f",
+                            lineHeight: 1.4
+                          }}
+                        />
+                      </Tooltip>
+                      <AddressLink address={contract["receiver_address"] || contract["owner_address"]} isContract={true}>
+                        {contract["receiver_address"] || contract["owner_address"]}
+                      </AddressLink>
+                    </span>
+                  ) :
+                  <AddressLink address={contract["receiver_address"] || contract["owner_address"]}>
+                    {contract["receiver_address"] || contract["owner_address"]}
+                  </AddressLink>
                   }
-                />
+                </span>
+               
               </Field>
 
               <Field label="transaction_freeze_num">
@@ -74,4 +133,4 @@ class FreezeBalanceContract extends React.Component {
   }
 }
 
-export default FreezeBalanceContract;
+export default injectIntl(FreezeBalanceContract);

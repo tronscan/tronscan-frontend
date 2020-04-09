@@ -2283,8 +2283,16 @@ export const messages = {
     "WIN_supply": "WIN 流通量",
     "WIN_Token_Release_Schedule": "WIN 代币解锁时间表",
     "source_WIN_team": "信息来源：WIN管理团队",
+
+    "JST_distribution_overview": "JST分布概览",
+    "JST_supply": "JST 流通量",
+    "JST_Token_Release_Schedule": "JST 代币解锁时间表",
+    "source_JST_team": "信息来源：JST管理团队",
+
     "Side_Chain": "侧链浏览器",
     "Main_Chain": "主链浏览器",
+
+    
 
     "7day": "7天",
     "14day": "14天",

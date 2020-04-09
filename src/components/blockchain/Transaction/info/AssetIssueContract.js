@@ -18,6 +18,9 @@ import { Link } from "react-router-dom";
 import { TransationTitle } from "./common/Title";
 import BandwidthUsage from "./common/BandwidthUsage";
 import SignList from "./common/SignList";
+import { upperFirst } from "lodash";
+import { Tooltip,Icon } from 'antd';
+
 @connect(
   state => {
     return {
@@ -53,7 +56,7 @@ class AssetIssueContract extends React.Component {
     
   }
   render() {
-    let { contract,activeLanguage } = this.props;
+    let { contract,activeLanguage,intl } = this.props;
     let {createTime,TrxUnit} = this.state;
     let signList = contract.signature_addresses || [];
     let frozen_supply = contract.frozen_supply && contract.frozen_supply[0] ? contract.frozen_supply[0] : {}
@@ -65,7 +68,37 @@ class AssetIssueContract extends React.Component {
           <table className="table">
             <tbody>
               <Field label="transaction_issue_address">
-                <AddressLink address={contract["owner_address"]} />
+              <span className="d-flex">
+                {/*  Distinguish between contract and ordinary address */}
+                {contract.contract_map[contract["owner_address"]]? (
+                  <span className="d-flex">
+                    <Tooltip
+                      placement="top"
+                      title={upperFirst(
+                        intl.formatMessage({
+                          id: "transfersDetailContractAddress"
+                        })
+                      )}
+                    >
+                      <Icon
+                        type="file-text"
+                        style={{
+                          verticalAlign: 0,
+                          color: "#77838f",
+                          lineHeight: 1.4
+                        }}
+                      />
+                    </Tooltip>
+                    <AddressLink address={contract["owner_address"]} isContract={true}>
+                      {contract["owner_address"]}
+                    </AddressLink>
+                  </span>
+                ) :
+                <AddressLink address={contract["owner_address"]}>
+                  {contract["owner_address"]}
+                </AddressLink>
+                }
+              </span>
               </Field>
               <Field label="transaction_fee">{this.state.fee}</Field>
               <Field label="trc20_token_id">{contract.token_id}</Field>
@@ -167,4 +200,4 @@ class AssetIssueContract extends React.Component {
   }
 }
 
-export default AssetIssueContract;
+export default injectIntl(AssetIssueContract);

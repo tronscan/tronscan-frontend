@@ -8,7 +8,8 @@ import { TronLoader } from "../../common/loaders";
 import { ContractInvocationChart } from "../../common/LineCharts";
 import { upperFirst } from 'lodash'
 import SmartTable from "../../common/SmartTable.js"
-import { DatePicker } from 'antd';
+import { Tooltip,Icon,DatePicker } from 'antd';
+
 import moment from 'moment';
 
 class Energy extends React.Component {
@@ -64,7 +65,7 @@ class Energy extends React.Component {
   loadContractInvocation = async (page = 1, pageSize = 20) => {
     let {filter: {address}} = this.props
     let {date} = this.state
-    let {data: {data, totalCallerAmount, total}} = await xhr.get(API_URL + "/api/onecontractcallers", {params: {
+    let {data: {data, totalCallerAmount, total,contractMap}} = await xhr.get(API_URL + "/api/onecontractcallers", {params: {
       address,
       day: date,
       limit: pageSize,
@@ -75,6 +76,11 @@ class Energy extends React.Component {
 
     data.map(item => {
       item.scale = ((item.amount / totalCallerAmount)*100).toFixed(2) + '%';
+    })
+    data.forEach(item=>{
+      if(contractMap){
+        contractMap[item.caller_address]? (item.ownerIsContract = true) :  (item.ownerIsContract = false)
+      }
     })
     this.setState({
         ContractInvocation: data,
@@ -108,7 +114,32 @@ class Energy extends React.Component {
         dataIndex: 'caller_address',
         key: 'caller_address',
         render: (text, record, index) => {
-          return <AddressLink address={text}/>
+          return <span>
+          {/*  Distinguish between contract and ordinary address */}
+          {record.ownerIsContract? (
+            <span className="d-flex">
+              <Tooltip
+                placement="top"
+                title={upperFirst(
+                    intl.formatMessage({
+                    id: "transfersDetailContractAddress"
+                    })
+                )}
+              >
+                <Icon
+                  type="file-text"
+                  style={{
+                  verticalAlign: 0,
+                  color: "#77838f",
+                  lineHeight: 1.4
+                  }}
+                />
+              </Tooltip>
+              <AddressLink address={text} isContract={true}></AddressLink>
+            </span>
+            ) : <AddressLink address={text}></AddressLink>
+          }
+        </span>
         }
       },
       {

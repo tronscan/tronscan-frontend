@@ -14,7 +14,7 @@ import Field from "../../../tools/TransactionViewer/Field";
 import xhr from "axios/index";
 import {toUtf8} from 'tronweb'
 
-export default function SetAccountIdContract({contract}){
+function SetAccountIdContract({contract,intl}){
   // const name = useFetch(contract.hash)
   return(
     <Fragment>
@@ -22,7 +22,37 @@ export default function SetAccountIdContract({contract}){
       <div className="table-responsive">
       <table className="table">
           <tbody>
-          <Field label="initiate_address"><AddressLink address={contract['owner_address']||contract['ownerAddress']}/></Field>
+          <Field label="initiate_address">
+            <span className="d-flex">
+              {/*  Distinguish between contract and ordinary address */}
+              {contract.contract_map[contract["owner_address"]] || contract.contract_map[contract['ownerAddress']]? (
+                  <span className="d-flex">
+                  <Tooltip
+                      placement="top"
+                      title={upperFirst(
+                          intl.formatMessage({
+                          id: "transfersDetailContractAddress"
+                          })
+                      )}
+                  >
+                      <Icon
+                      type="file-text"
+                      style={{
+                      verticalAlign: 0,
+                      color: "#77838f",
+                      lineHeight: 1.4
+                      }}
+                      />
+                  </Tooltip>
+                  <AddressLink address={contract["owner_address"] || contract['ownerAddress']} isContract={true}> {contract["owner_address"] || contract['ownerAddress']}</AddressLink>
+                  </span>
+              ) :
+                  <AddressLink address={contract["owner_address"] || contract['ownerAddress']}>
+                      {contract["owner_address"] || contract['ownerAddress']}
+                  </AddressLink>
+              }
+            </span>
+          </Field>
           <Field label="account_id">{toUtf8(contract.account_id)}</Field>
           {JSON.stringify(contract.cost) != "{}" && (
             <Field label="consume_bandwidth">
@@ -40,3 +70,5 @@ export default function SetAccountIdContract({contract}){
     </Fragment>
   )
 }
+
+export default injectIntl(SetAccountIdContract)
