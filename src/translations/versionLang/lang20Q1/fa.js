@@ -319,7 +319,7 @@ export const lang20Q1 = {
   account_tags_table_1:'برچسب زدن',
   account_tags_table_2:'سخنان',
   account_tags_add_title:'برچسب ها را اضافه کنید',
-  account_tags_edit_title:'لیست برچسب ها ',
+  account_tags_edit_title:'edit tag',
   account_tags_add_success:'The tag has been successfully added',
   account_tags_edit_success:'The tag has been successfully edited',
   account_tags_number_rec:'{number} accounts mark',

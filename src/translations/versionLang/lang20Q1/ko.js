@@ -315,7 +315,7 @@ export const lang20Q1 = {
 
   // 03-26 tag 
   account_tags_list:'태그 목록',
-  account_tags_add:'追加',
+  account_tags_add:'추가',
   account_tags_desc:'태그 기능 : 개인 태그를 계정에 연결하여 더 쉽게 식별 할 수 있습니다.',
   account_tags_number:'총 {total} 개 계정',
   account_tags_table_1:'꼬리표',
