@@ -335,9 +335,10 @@ export const lang20Q1 = {
   account_tags_note_placehold:'Optional, no more than 100 characters.',
   account_tags_tag_valid:'Chinese or English only',
   account_tags_rec:"Recommended tag",
- account_tags_my_tag:'My tags',
- account_tags_my_tag_update:'Update',
- account_tags_my_tag_login_show:'The content will show after login.',
+  account_tags_my_tag:'My tags',
+  account_tags_my_tag_update:'Update',
+  account_tags_my_tag_login_show:'The content will show after login.',
+  account_tags_my_tag_not_available:'Not Available',
 
 
 };

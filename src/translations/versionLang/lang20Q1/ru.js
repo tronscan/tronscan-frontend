@@ -352,9 +352,11 @@ export const lang20Q1 = {
   account_tags_note_placehold:'Необязательно, не более 100 символов.',
   account_tags_tag_valid:'Принимается китайский или англиский ',
   account_tags_rec:"Рекомендуемый тег",
- account_tags_my_tag:'Мои теги',
- account_tags_my_tag_update:'Обновления',
- account_tags_my_tag_login_show:'Содержание будет отображаться после входа.',
+  account_tags_my_tag:'Мои теги',
+  account_tags_my_tag_update:'Обновления',
+  account_tags_my_tag_login_show:'Содержание будет отображаться после входа.',
+  account_tags_my_tag_not_available:'Not Available',
+
 
 
 };

@@ -941,8 +941,9 @@ class Address extends React.Component {
   };
 
   addTagsModal = () => {
+    let { match } = this.props;
     this.setState({
-      popup: <AddTag onClose={this.hideModal} onloadTableP={this.onloadTable} />
+      popup: <AddTag onClose={this.hideModal} defaultAddress={match.params.id} onloadTableP={this.onloadTable} />
     });
   };
 
@@ -1103,7 +1104,7 @@ class Address extends React.Component {
                                             </span> 
                                             :
                                             <span>
-                                              Not Available
+                                              {tu("account_tags_my_tag_not_available")}
                                               <span style={{color: "#C23631",marginLeft:'8px'}}  onClick={this.addTagsModal}>
                                                 {tu("account_tags_add")}
                                               </span>

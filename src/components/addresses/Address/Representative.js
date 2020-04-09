@@ -41,8 +41,9 @@ class Representative extends React.Component {
   }
 
   addTagsModal = () => {
+    let { match } = this.props;
     this.setState({
-      popup: <AddTag onClose={this.hideModal} onloadTableP={this.props.onloadTable} />
+      popup: <AddTag onClose={this.hideModal} defaultAddress={match.params.id} onloadTableP={this.props.onloadTable} />
     });
   };
 

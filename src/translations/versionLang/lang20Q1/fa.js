@@ -335,9 +335,11 @@ export const lang20Q1 = {
   account_tags_note_placehold:'اختیاری، شامل 100 کاراکتر',
   account_tags_tag_valid:'فقط می توانید چینی یا انگلیسی وارد کنید',
   account_tags_rec:"بستر های نرم افزاری برچسب صدور گواهینامه",
- account_tags_my_tag:'برچسب های من',
- account_tags_my_tag_update:'بروزرسانی کنید',
- account_tags_my_tag_login_show:'نمایش پس از ورود به سیستم',
+  account_tags_my_tag:'برچسب های من',
+  account_tags_my_tag_update:'بروزرسانی کنید',
+  account_tags_my_tag_login_show:'نمایش پس از ورود به سیستم',
+  account_tags_my_tag_not_available:'Not Available',
+
 
 
 

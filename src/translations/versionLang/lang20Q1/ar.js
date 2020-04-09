@@ -333,5 +333,7 @@ export const lang20Q1 = {
   account_tags_my_tag:'علاماتي',
   account_tags_my_tag_update:'تحديث',
   account_tags_my_tag_login_show:'سيظهر المحتوى بعد تسجيل الدخول',
+  account_tags_my_tag_not_available:'Not Available',
+
 
 };

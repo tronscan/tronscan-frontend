@@ -41,8 +41,13 @@ class TagForm extends React.Component {
   }
 
   componentDidMount() {
-    let { targetAddress } = this.props;
+    let { targetAddress,defaultAddress } = this.props;
     targetAddress && this.getTagsDetail(targetAddress);
+    if(isAddressValid(defaultAddress)){
+      this.setState({
+        target_address:defaultAddress
+      })
+    }
   }
 
   async getTagsDetail(targetAddress) {
@@ -166,6 +171,7 @@ class TagForm extends React.Component {
 
   render() {
     let { intl, targetAddress } = this.props;
+    
     let {
       isLoading,
       modal,
@@ -175,6 +181,8 @@ class TagForm extends React.Component {
       addressTag,
       recommendList,
     } = this.state;
+
+   
 
     let isAccountValid =
       target_address.length !== 0 && isAddressValid(target_address);

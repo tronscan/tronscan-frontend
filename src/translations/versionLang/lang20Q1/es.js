@@ -332,9 +332,11 @@ export const lang20Q1 = {
  account_tags_note_placehold:'Opcional, entre 100 caracteres',
  account_tags_tag_valid:'Solo se acepta chino o inglés',
  account_tags_rec:"Etiqueta certificada por la plataforma",
-account_tags_my_tag:'Mis etiquetas',
-account_tags_my_tag_update:'Actualización',
-account_tags_my_tag_login_show:'Mostrar después de iniciar sesión',
+  account_tags_my_tag:'Mis etiquetas',
+  account_tags_my_tag_update:'Actualización',
+  account_tags_my_tag_login_show:'Mostrar después de iniciar sesión',
+  account_tags_my_tag_not_available:'Not Available',
+
 
 
 };
