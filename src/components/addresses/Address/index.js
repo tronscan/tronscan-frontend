@@ -148,6 +148,10 @@ class Address extends React.Component {
       this.loadWalletReward(match.params.id);
       this.loadTag(match.params.id)
     }
+    let {walletType} = this.props;
+    if(walletType.address !== prevProps.walletType.address){
+      this.loadTag(match.params.id)
+    }
   }
 
   componentWillUnmount() {
@@ -933,7 +937,7 @@ class Address extends React.Component {
 
   addTagsModal = () => {
     this.setState({
-      popup: <AddTag onClose={this.hideModal} />
+      popup: <AddTag onClose={this.hideModal} onloadTableP={this.onloadTable} />
     });
   };
 

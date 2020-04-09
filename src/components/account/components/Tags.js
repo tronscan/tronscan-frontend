@@ -151,7 +151,6 @@ class Tags extends Component {
         <AddTag
           onClose={this.hideModal}
           onloadTableP={this.onloadTable}
-          onClose={this.hideModal}
         />
       )
     });
@@ -164,7 +163,6 @@ class Tags extends Component {
           onClose={this.hideModal}
           targetAddress={record.targetAddress}
           onloadTableP={this.onloadTable}
-          onClose={this.hideModal}
         />
       )
     });
