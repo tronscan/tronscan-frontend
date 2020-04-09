@@ -6,7 +6,7 @@ import { QuestionMark } from "../../common/QuestionMark";
 import { TRXPrice } from "../../common/Price";
 import { HrefLink } from "../../common/Links";
 import { FormattedNumber } from "react-intl";
-import { ONE_TRX } from "../../../constants";
+import { ONE_TRX,IS_MAINNET } from "../../../constants";
 import { Tooltip, Icon } from "antd";
 import { ExternalLink } from "../../common/Links";
 import { NavLink, Route, Switch } from "react-router-dom";
@@ -99,33 +99,37 @@ class Representative extends React.Component {
           <tbody>
             <tr>
               <th>{tu("account_tags_my_tag")}:</th>
-              <td>
-                <span>
-                    {
-                      account.isLoggedIn && walletType.isOpen?
-                      <span>
-                        {tagData&&tagData.length>0?
-                          <span>
-                            {tagData[0].tag}
-                            <span style={{color: "#C23631",marginLeft:'8px'}} onClick={()=>this.editTagModal(tagData[0])}>
-                              {tu("account_tags_my_tag_update")}
+              {
+                IS_MAINNET?
+                <td>
+                  <span>
+                      {
+                        account.isLoggedIn && walletType.isOpen?
+                        <span>
+                          {tagData&&tagData.length>0?
+                            <span>
+                              {tagData[0].tag}
+                              <span style={{color: "#C23631",marginLeft:'8px'}} onClick={()=>this.editTagModal(tagData[0])}>
+                                {tu("account_tags_my_tag_update")}
+                              </span>
+                            </span> 
+                            :
+                            <span>
+                              {tu("account_tags_my_tag_not_available")}
+                              <span style={{color: "#C23631",marginLeft:'8px'}}  onClick={this.addTagsModal}>
+                                {tu("account_tags_add")}
+                              </span>
                             </span>
-                          </span> 
-                          :
-                          <span>
-                            Not Available
-                            <span style={{color: "#C23631",marginLeft:'8px'}}  onClick={this.addTagsModal}>
-                              {tu("account_tags_add")}
-                            </span>
-                          </span>
-                        }
-                      </span>:
-                      <span >
-                        <span>{tu("account_tags_my_tag_login_show")}</span>
-                      </span> 
-                    }
-                </span>
-              </td>
+                          }
+                        </span>:
+                        <span >
+                          <span>{tu("account_tags_my_tag_login_show")}</span>
+                        </span> 
+                      }
+                  </span>
+                </td>
+                :null
+              }
             </tr>
             <tr>
               <th>{tu("name")}:</th>
