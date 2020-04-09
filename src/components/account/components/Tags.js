@@ -38,6 +38,12 @@ class Tags extends Component {
     this.load();
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.address !== prevProps.address) {
+      this.load();
+    }
+  }
+
   load = async (page = 1, pageSize = 20) => {
     this.setState({ loading: true });
     let { address } = this.props;
