@@ -333,9 +333,11 @@ account_piechart_title:'資産配分',
   account_tags_note_placehold:'オプション、長さ100文字',
   account_tags_tag_valid:'Only Chinese, English or Arabic numbers can be entered',
   account_tags_rec:"おすすめのタグ",
- account_tags_my_tag:'私のタグ',
- account_tags_my_tag_update:'更新',
- account_tags_my_tag_login_show:'ログイン後に表示',
+  account_tags_my_tag:'私のタグ',
+  account_tags_my_tag_update:'更新',
+  account_tags_my_tag_login_show:'ログイン後に表示',
+  account_tags_my_tag_not_available:'Not Available',
+
 
 
 };

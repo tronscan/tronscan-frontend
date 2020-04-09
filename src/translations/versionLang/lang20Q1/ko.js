@@ -337,9 +337,11 @@ export const lang20Q1 = {
   account_tags_note_placehold:'선택사항 (100자 제한)',
   account_tags_tag_valid:'Only Chinese, English or Arabic numbers can be entered',
   account_tags_rec:"추천 태그",
- account_tags_my_tag:'私のタグ',
- account_tags_my_tag_update:'업데이트',
- account_tags_my_tag_login_show:'로그인 후 표시됨',
+  account_tags_my_tag:'私のタグ',
+  account_tags_my_tag_update:'업데이트',
+  account_tags_my_tag_login_show:'로그인 후 표시됨',
+  account_tags_my_tag_not_available:'Not Available',
+
 
 
 };

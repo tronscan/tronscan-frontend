@@ -30,6 +30,7 @@ class AddTags extends React.PureComponent {
           <ModalBody>
             <TagForm
               targetAddress={props.targetAddress}
+              defaultAddress={props.defaultAddress}
               onloadTable={this.onloadTable}
             />
           </ModalBody>
