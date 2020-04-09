@@ -350,7 +350,7 @@ export const lang20Q1 = {
   account_tags_address_placehold:'请输入正确的地址',
   account_tags_tag_placehold:'Пожалуйста, введите тег (не более 20 символов).',
   account_tags_note_placehold:'Необязательно, не более 100 символов.',
-  account_tags_tag_valid:'Принимается китайский или англиский ',
+  account_tags_tag_valid:'Only Chinese, English or Arabic numbers can be entered',
   account_tags_rec:"Рекомендуемый тег",
  account_tags_my_tag:'Мои теги',
  account_tags_my_tag_update:'Обновления',

@@ -328,7 +328,7 @@ export const lang20Q1 = {
    account_tags_address_placehold:'请输入正确的地址',
    account_tags_tag_placehold:'يرجى إدخال علامة (لا يزيد عن 20 حرف)',
    account_tags_note_placehold:'اختياري ، لا يزيد عن 100 حرف.',
-   account_tags_tag_valid:'الصينية أو الإنجليزية فقط',
+   account_tags_tag_valid:'Only Chinese, English or Arabic numbers can be entered',
    account_tags_rec:"العلامة الموصى بها",
   account_tags_my_tag:'علاماتي',
   account_tags_my_tag_update:'تحديث',
