@@ -11,12 +11,16 @@ import { Tooltip, Icon } from "antd";
 import { ExternalLink } from "../../common/Links";
 import { NavLink, Route, Switch } from "react-router-dom";
 import SweetAlert from "react-bootstrap-sweetalert";
+import ApiClientAccount from "../../../services/accountApi";
 import {
   transactionResultManager,
   transactionResultManagerSun
 } from "../../../utils/tron";
 import { connect } from "react-redux";
 import { Piechart } from "../components/Piechart";
+import AddTag from "../../account/components/AddTag";
+
+let superTagInter = null
 @connect(state => {
   return {
     account: state.app.account,
@@ -28,11 +32,32 @@ class Representative extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      votingEnabled: false
+      votingEnabled: false,
+      popup:null
     };
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+  }
+
+  addTagsModal = () => {
+    this.setState({
+      popup: <AddTag onClose={this.hideModal} onloadTableP={this.props.onloadTable} />
+    });
+  };
+
+  editTagModal = (record) => {
+    this.setState({
+      popup: <AddTag onClose={this.hideModal} targetAddress={record.targetAddress} onloadTableP={this.props.onloadTable} />
+    });
+  };
+
+
+  hideModal = () => {
+    this.setState({ popup: null });
+  };
+
+  
 
   render() {
     let {
@@ -51,7 +76,8 @@ class Representative extends React.Component {
       witnessType
     } = this.props.data;
     let { intl, url, account, walletType,tagData } = this.props;
-    let { votingEnabled, popup } = this.state;
+    console.log(tagData)
+    let { votingEnabled, popup, } = this.state;
     let type = "-";
     switch (witnessType) {
       case 1:
@@ -66,7 +92,7 @@ class Representative extends React.Component {
     }
 
     return (
-      <Fragment>
+      <div>
         {popup}
         <table className="table m-0 table-style">
           <tbody>
@@ -74,30 +100,30 @@ class Representative extends React.Component {
               <th>{tu("account_tags_my_tag")}:</th>
               <td>
                 <span>
-                  {
-                    account.isLoggedIn && walletType.isOpen?
-                    <span>
-                      {tagData&&tagData.length>0?
-                        <span>
-                          {tagData[0].tag}
-                          <span style={{color: "#C23631",marginLeft:'8px'}} onClick={()=>this.editTagModal(tagData[0])}>
-                            {tu("account_tags_my_tag_update")}
+                    {
+                      account.isLoggedIn && walletType.isOpen?
+                      <span>
+                        {tagData&&tagData.length>0?
+                          <span>
+                            {tagData[0].tag}
+                            <span style={{color: "#C23631",marginLeft:'8px'}} onClick={()=>this.editTagModal(tagData[0])}>
+                              {tu("account_tags_my_tag_update")}
+                            </span>
+                          </span> 
+                          :
+                          <span>
+                            Not Available
+                            <span style={{color: "#C23631",marginLeft:'8px'}}  onClick={this.addTagsModal}>
+                              {tu("account_tags_add")}
+                            </span>
                           </span>
-                        </span> 
-                        :
-                        <span>
-                          Not Available
-                          <span style={{color: "#C23631",marginLeft:'8px'}}  onClick={this.addTagsModal}>
-                            {tu("account_tags_add")}
-                          </span>
-                        </span>
-                      }
-                    </span>:
-                    <span >
-                      <span>{tu("account_tags_my_tag_login_show")}</span>
-                    </span> 
-                  }
-              </span>
+                        }
+                      </span>:
+                      <span >
+                        <span>{tu("account_tags_my_tag_login_show")}</span>
+                      </span> 
+                    }
+                </span>
               </td>
             </tr>
             <tr>
@@ -391,7 +417,7 @@ class Representative extends React.Component {
             </tr>
           </tbody>
         </table>
-      </Fragment>
+      </div>
     );
   }
   renderFrozenTokens() {
@@ -561,6 +587,7 @@ class Representative extends React.Component {
       )
     });
   }
+
   hideModal = () => {
     this.setState({ popup: null });
   };

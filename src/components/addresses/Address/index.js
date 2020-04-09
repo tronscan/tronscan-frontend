@@ -61,7 +61,7 @@ function setTagIcon(tag){
   })
   return name && <img src={require(`../../../images/address/tag/${name}.svg`)}/>
 }
-let tagInter = null
+let tagInter = null;
 class Address extends React.Component {
   constructor({ match }) {
     super();
@@ -130,7 +130,6 @@ class Address extends React.Component {
 
   async componentDidMount() {
     let { match ,priceUSD} = this.props;
-   
     this.loadAddress(match.params.id);
     this.loadWitness(match.params.id);
     this.loadWalletReward(match.params.id);
@@ -157,7 +156,7 @@ class Address extends React.Component {
   componentWillUnmount() {
     // this.live && this.live.close();
     localStorage.removeItem('representative');
-    clearInterval(tagInter)
+    window.clearInterval(tagInter)
   }
 
   async loadWalletReward(addressT) {
@@ -675,10 +674,9 @@ class Address extends React.Component {
 
   async loadTag(id){
     let tagData;
-    tagInter = setInterval(async() => {
-      let {walletType} = this.props;
-      if(walletType.address){
-        clearInterval(tagInter)
+      let { account } = this.props;
+      if(account.isLoggedIn){
+        const {walletType} = this.props
         const params = {
           user_address:walletType.address,
           target_address:id,
@@ -687,12 +685,15 @@ class Address extends React.Component {
         };
         let { data:{user_tags: tagList} } = await ApiClientAccount.getTagsList(params);
         tagData = tagList;
+        console.log(tagData)
         this.setState({
           tagData
         })
+        window.clearInterval(tagInter)
       }
-    }, 1000);
   }
+
+
 
   async loadWitness(id) {
     /* 需要总票数，实时排名俩个参数*/
@@ -942,7 +943,6 @@ class Address extends React.Component {
   };
 
   editTagModal = (record) => {
-    console.log(record,'record')
     this.setState({
       popup: <AddTag onClose={this.hideModal} targetAddress={record.targetAddress} onloadTableP={this.onloadTable} />
     });
@@ -955,9 +955,7 @@ class Address extends React.Component {
 
   onloadTable = () =>{
     let { match} = this.props;
-    setTimeout(()=>{
-      this.loadTag(match.params.id)
-    },1000)
+    this.loadTag(match.params.id)
   }
 
 
@@ -1070,14 +1068,23 @@ class Address extends React.Component {
                   <div className="row info-wrap">
                     <div className="col-md-7 address-info">
                       {address.representative.enabled ? (
-                        <Representative data={this.state} tagData={tagData} url={match.url} account={account} walletType={walletType} priceToUSd={priceUSD}/>
+                        <Representative  
+                         data={this.state}
+                         tagData={tagData} 
+                         url={match.url} 
+                         account={account} 
+                         walletType={walletType} 
+                         priceToUSd={priceUSD}
+                         match={match}
+                         onloadTable={this.onloadTable}
+                         />
                       ) : (
                         <table className="table m-0">
                           <tbody>
                             <tr>
                               <th>{tu("account_tags_my_tag")}:</th>
                               <td>
-                                <span>
+                                <span>    
                                     {
                                       account.isLoggedIn && walletType.isOpen?
                                       <span>
