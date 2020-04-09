@@ -117,7 +117,7 @@ class TagForm extends React.Component {
   };
 
   isValidTag = (tag) => {
-    if (!tag.match(/^[\u4e00-\u9fa5|a-zA-Z]*$/)) {
+    if (!tag.match(/^[\u4e00-\u9fa5|a-zA-Z|0-9]*$/)) {
       return true;
     }
   };
@@ -278,6 +278,7 @@ class TagForm extends React.Component {
               placeholder={intl.formatMessage({
                 id: "account_tags_note_placehold",
               })}
+              maxLength="100"
             />
             <div className="invalid-feedback">{tu("fill_a_valid_address")}</div>
           </div>

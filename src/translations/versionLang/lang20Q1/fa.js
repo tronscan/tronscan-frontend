@@ -333,7 +333,7 @@ export const lang20Q1 = {
   account_tags_address_placehold:'请输入正确的地址',
   account_tags_tag_placehold:'لطفاً یک برچسب ، شامل 20 کاراکتر وارد کنید',
   account_tags_note_placehold:'اختیاری، شامل 100 کاراکتر',
-  account_tags_tag_valid:'فقط می توانید چینی یا انگلیسی وارد کنید',
+  account_tags_tag_valid:'Only Chinese, English or Arabic numbers can be entered',
   account_tags_rec:"بستر های نرم افزاری برچسب صدور گواهینامه",
   account_tags_my_tag:'برچسب های من',
   account_tags_my_tag_update:'بروزرسانی کنید',

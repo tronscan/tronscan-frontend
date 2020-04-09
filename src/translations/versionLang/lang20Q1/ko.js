@@ -335,7 +335,7 @@ export const lang20Q1 = {
   account_tags_address_placehold:'请输入正确的地址',
   account_tags_tag_placehold:'태그를 입력하세요.(20자 제한)',
   account_tags_note_placehold:'선택사항 (100자 제한)',
-  account_tags_tag_valid:'중국어, 영어만 입력가능',
+  account_tags_tag_valid:'Only Chinese, English or Arabic numbers can be entered',
   account_tags_rec:"추천 태그",
   account_tags_my_tag:'私のタグ',
   account_tags_my_tag_update:'업데이트',
