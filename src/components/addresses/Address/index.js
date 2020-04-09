@@ -21,7 +21,7 @@ import _ from "lodash";
 import Blocks from "../../common/Blocks";
 import rebuildList from "../../../utils/rebuildList";
 import rebuildToken20List from "../../../utils/rebuildToken20List";
-import { ONE_TRX, API_URL, ADDRESS_TAG_ICON } from "../../../constants.js";
+import { ONE_TRX, API_URL, ADDRESS_TAG_ICON,IS_MAINNET } from "../../../constants.js";
 import { updateAccountTabInfo } from "../../../actions/blockchain";
 import {
   FormatNumberByDecimals,
@@ -133,23 +133,28 @@ class Address extends React.Component {
     this.loadAddress(match.params.id);
     this.loadWitness(match.params.id);
     this.loadWalletReward(match.params.id);
-    this.loadTag(match.params.id)
+    if(IS_MAINNET){
+      this.loadTag(match.params.id)
+    }
     !priceUSD && (await this.props.loadUsdPrice());
 
   }
 
   componentDidUpdate(prevProps) {
     let { match } = this.props;
-    
     if (match.params.id !== prevProps.match.params.id) {
       this.loadAddress(match.params.id);
       this.loadWitness(match.params.id);
       this.loadWalletReward(match.params.id);
-      this.loadTag(match.params.id)
+      if(IS_MAINNET){
+        this.loadTag(match.params.id)
+      }
     }
     let {walletType} = this.props;
     if(walletType.address !== prevProps.walletType.address){
-      this.loadTag(match.params.id)
+      if(IS_MAINNET){
+        this.loadTag(match.params.id)
+      }
     }
   }
 
@@ -685,7 +690,6 @@ class Address extends React.Component {
         };
         let { data:{user_tags: tagList} } = await ApiClientAccount.getTagsList(params);
         tagData = tagList;
-        console.log(tagData)
         this.setState({
           tagData
         })
@@ -1081,36 +1085,40 @@ class Address extends React.Component {
                       ) : (
                         <table className="table m-0">
                           <tbody>
-                            <tr>
-                              <th>{tu("account_tags_my_tag")}:</th>
-                              <td>
-                                <span>    
-                                    {
-                                      account.isLoggedIn && walletType.isOpen?
-                                      <span>
-                                        {tagData&&tagData.length>0?
-                                          <span>
-                                            {tagData[0].tag}
-                                            <span style={{color: "#C23631",marginLeft:'8px'}} onClick={()=>this.editTagModal(tagData[0])}>
-                                              {tu("account_tags_my_tag_update")}
+                            {
+                              IS_MAINNET ?
+                              <tr>
+                                <th>{tu("account_tags_my_tag")}:</th>
+                                <td>
+                                  <span>    
+                                      {
+                                        account.isLoggedIn && walletType.isOpen?
+                                        <span>
+                                          {tagData&&tagData.length>0?
+                                            <span>
+                                              {tagData[0].tag}
+                                              <span style={{color: "#C23631",marginLeft:'8px'}} onClick={()=>this.editTagModal(tagData[0])}>
+                                                {tu("account_tags_my_tag_update")}
+                                              </span>
+                                            </span> 
+                                            :
+                                            <span>
+                                              Not Available
+                                              <span style={{color: "#C23631",marginLeft:'8px'}}  onClick={this.addTagsModal}>
+                                                {tu("account_tags_add")}
+                                              </span>
                                             </span>
-                                          </span> 
-                                          :
-                                          <span>
-                                            Not Available
-                                            <span style={{color: "#C23631",marginLeft:'8px'}}  onClick={this.addTagsModal}>
-                                              {tu("account_tags_add")}
-                                            </span>
-                                          </span>
-                                        }
-                                      </span>:
-                                      <span >
-                                        <span>{tu("account_tags_my_tag_login_show")}</span>
-                                      </span> 
-                                    }
-                                </span>
-                              </td>
-                            </tr>
+                                          }
+                                        </span>:
+                                        <span >
+                                          <span>{tu("account_tags_my_tag_login_show")}</span>
+                                        </span> 
+                                      }
+                                  </span>
+                                </td>
+                              </tr>
+                              :null
+                            }
                             <tr>
                               <th>{tu("name")}:</th>
                               <td>
