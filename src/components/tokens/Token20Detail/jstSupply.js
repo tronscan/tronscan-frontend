@@ -58,9 +58,9 @@ class BTTSupply extends React.Component {
 
     componentDidMount() {
         this.loadTotalTRXSupply();
-        setInterval(() => {
-            this.loadTotalTRXSupply();
-        }, 60000);
+        // setInterval(() => {
+        //     this.loadTotalTRXSupply();
+        // }, 60000);
     }
 
     compare (property) {

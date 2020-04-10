@@ -123,6 +123,10 @@ class Token20Detail extends React.Component {
     let winkSupply = await ApiClientToken.getWinkFund();
     return winkSupply;
   }
+  async getJstFund() {
+    const {data: funds} = await xhr.get(`${API_URL}/api/jst/fund`);
+    return funds;
+  }
 
   async getTransferNum(address) {
     let params = {
@@ -218,17 +222,17 @@ class Token20Detail extends React.Component {
           winkTotalSupply = await this.getWinkFund();
         }
 
-        // let jstTotalSupply = {};
-        // if (address === "TCFLL5dx5ZJdKnWuesXxi1VPwjLVmWZZy9") {
-        //   tabs.push({
-        //     id: "JstSupply",
-        //     icon: "",
-        //     path: "/supply",
-        //     label: <span>{tu("JST_supply")}</span>,
-        //     cmp: () => <JstSupply token={token} />
-        //   });
-        //   // jstTotalSupply = await this.getWinkFund();
-        // }
+        let jstTotalSupply = {};
+        if (address === "TCFLL5dx5ZJdKnWuesXxi1VPwjLVmWZZy9") {
+          tabs.push({
+            id: "JstSupply",
+            icon: "",
+            path: "/supply",
+            label: <span>{tu("JST_supply")}</span>,
+            cmp: () => <JstSupply token={token} />
+          });
+          jstTotalSupply = await this.getJstFund();
+        }
 
         let transferNumber = await this.getTransferNum(address);
 
@@ -239,7 +243,7 @@ class Token20Detail extends React.Component {
             : 0;
 
         token.winkTotalSupply = winkTotalSupply;
-        // token.jstTotalSupply = jstTotalSupply;
+        token.jstTotalSupply = jstTotalSupply;
         token.transferNumber = transferNumber.rangeTotal || 0;
         this.setState({
           loading: false,
