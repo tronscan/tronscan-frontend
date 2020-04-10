@@ -116,7 +116,7 @@ class BTTSupply extends React.Component {
             // nodeRewardsNum:intl.formatNumber(funds.totalNodePay),
             // independenceDayBurned:intl.formatNumber(funds.burnPerDay),
             // feeBurnedNum:intl.formatNumber(funds.burnByCharge),
-            currentTotalSupply:parseInt(funds.totalTurnOver != 0 ? funds.totalTurnOver : total),
+            currentTotalSupply:parseInt(funds.totalTurnOver),
             priceUSD:priceUSD,
             priceBTC:priceBTC,
             marketCapitalization:marketCapitalization,
@@ -186,7 +186,7 @@ class BTTSupply extends React.Component {
                                 {
                                     <div>
                                         {
-                                            !currentTotalSupply?
+                                            !genesisNum?
                                                 <TronLoader/> :
                                                 <div className="row" style={{fontSize : 12,marginRight:0}}>
                                                     <div className="col-md-12">

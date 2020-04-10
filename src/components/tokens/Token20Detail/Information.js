@@ -16,6 +16,7 @@ import {
   API_URL,
   ONE_TRX,
   ONE_USDJ,
+  ONE_JST,
   CONTRACT_ADDRESS_USDT,
   CONTRACT_ADDRESS_WIN,
   CONTRACT_ADDRESS_GGC,
@@ -73,7 +74,7 @@ export function Information({ token: tokens, priceUSD,intl }) {
   }
   // if jst
   if (token.contract_address === "TCFLL5dx5ZJdKnWuesXxi1VPwjLVmWZZy9") {
-    currentTotal = (token.jstTotalSupply.totalTurnOver && Number(token.jstTotalSupply.totalTurnOver).toFixed(token.decimals)) || 0;
+    currentTotal = Number(token.jstTotalSupply.totalTurnOver) > 0 ? Number(token.jstTotalSupply.totalTurnOver).toFixed(token.decimals) : '0';
     currentTotalSupplyUsd = parseInt(token.jstTotalSupply.marketValue) || 0;
   }
 
@@ -136,9 +137,9 @@ export function Information({ token: tokens, priceUSD,intl }) {
           {
            (token.contract_address == CONTRACT_ADDRESS_JED || token.contract_address == CONTRACT_ADDRESS_JED_TESTNET )&&
             <div className="d-flex price-info">
-            { (ONE_USDJ/100).toFixed(6)} USD&nbsp;
+            { ONE_JST.toFixed(6)} USD&nbsp;
             <span className="token-price-trx">
-              ≈ {((ONE_USDJ/100)/priceUSD).toFixed(6)} TRX
+              ≈ {(ONE_JST/priceUSD).toFixed(6)} TRX
             </span>
           </div> 
           }
