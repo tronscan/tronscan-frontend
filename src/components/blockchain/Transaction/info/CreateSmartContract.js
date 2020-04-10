@@ -65,33 +65,60 @@ function CreateSmartContract({contract,intl}){
       <div className="table-responsive">
       <table className="table">
         <tbody>
-          <Field label="contract_creator"><AddressLink address={contract['owner_address']}/></Field>
+          <Field label="contract_creator">
+            <span className="d-flex">
+              {/*  Distinguish between contract and ordinary address */}
+              {contract.contract_map[contract['owner_address']]? (
+                  <Tooltip
+                  placement="top"
+                  title={upperFirst(
+                      intl.formatMessage({
+                      id: "transfersDetailContractAddress"
+                    })
+                  )}
+                  >
+                  <Icon
+                      type="file-text"
+                      style={{
+                        verticalAlign: 0,
+                        color: "#77838f",
+                        lineHeight: 1.4
+                      }}
+                  />
+                  </Tooltip>
+              ) :null}
+              <AddressLink address={contract['owner_address']}/>
+            </span>
+          </Field>
           <Field label="contract_address">
-            <AddressLink
-              address={contract.info && contract.info.contract_address}
-              isContract={true}
-            >
-              {/* <Tooltip
+            <span className="d-flex">
+              {/*  Distinguish between contract and ordinary address */}
+              <span className="d-flex">
+                <Tooltip
                 placement="top"
                 title={upperFirst(
-                  intl.formatMessage({
+                    intl.formatMessage({
                     id: "transfersDetailContractAddress"
                   })
                 )}
-              >
+                >
                 <Icon
-                  type="file-text"
-                  style={{
-                    fontSize: 12,
-                    verticalAlign: 2,
-                    marginRight: 4,
-                    color: "#333"
-                  }}
+                    type="file-text"
+                    style={{
+                      verticalAlign: 0,
+                      color: "#77838f",
+                      lineHeight: 1.4
+                    }}
                 />
-              </Tooltip> */}
-              {contract.info && contract.info.contract_address}
-            </AddressLink>
-            {/* <AddressLink address={contract['owner_address']}/> */}
+                </Tooltip>
+                <AddressLink
+                  address={contract.info && contract.info.contract_address}
+                  isContract={true}
+                >
+                  {contract.info && contract.info.contract_address}
+                </AddressLink>
+              </span>
+            </span>
           </Field>
           <Field label="contract_name">{contract.new_contract.name}</Field>
           <Field label="contract_enery" tip text={t('contract_enery_tip')}>

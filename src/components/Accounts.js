@@ -12,7 +12,7 @@ import {TronLoader} from "./common/loaders";
 import {QuestionMark} from "./common/QuestionMark";
 import xhr from "axios/index";
 import {Client, AccountApi} from "../services/api";
-import {Tooltip, Table} from 'antd'
+import {Tooltip, Table,Icon} from 'antd'
 import { Link } from "react-router-dom";
 
 function setTagIcon(tag){
@@ -67,12 +67,18 @@ class Accounts extends Component {
 
     this.setState({loading: true});
 
-    let {accounts, total, rangeTotal} = await Client.getAccounts({
+
+ 
+    let {accounts, total, rangeTotal,contractMap} = await Client.getAccounts({
       sort: sort,
       limit: pageSize,
       start: (page - 1) * pageSize
     }).catch(e => console.log(e))
-
+    accounts.forEach(item=>{
+      if(contractMap){
+          contractMap[item.address]? (item.ownerIsContract = true) :  (item.ownerIsContract = false)
+      }
+    })
     let { data } = await AccountApi.getAccountOverviewStats({
       days: 1
     }).catch(e => console.log(e))
@@ -101,7 +107,7 @@ class Accounts extends Component {
 
 
      // let {txOverviewStats} = await Client.getTxOverviewStats();
-     let count = 0;
+    let count = 0;
     accounts.map((item,index) => {
       item.index = count + 1 + (page-1)*pageSize
       count++
@@ -219,17 +225,32 @@ class Accounts extends Component {
         width: '35%',
         render: (text, record, index) => {
           return (
-                <div  className="d-flex">
+                <div className="d-flex">
                   <div style={{width: '240px'}}>
-                    {
-                      record.accountType == 2 ?
-                      <span className="d-flex">
-                        <Tooltip placement="top" title={intl.formatMessage({id: 'contracts'})}>
-                          <span><i className="far fa-file mr-1"></i></span>
-                        </Tooltip>
-                        <AddressLink address={text} truncate={false} isContract={record.toAddressType == 2}>{text}</AddressLink>
-                      </span> :
-                      <AddressLink address={text} truncate={false}>{text}</AddressLink>
+                    {/*  Distinguish between contract and ordinary address */}
+                    {record.ownerIsContract? (
+                      <span className="d-flex"> 
+                        <Tooltip
+                          placement="top"
+                          title={upperFirst(
+                              intl.formatMessage({
+                              id: "transfersDetailContractAddress"
+                              })
+                          )}
+                          >
+                          <Icon
+                              type="file-text"
+                              style={{
+                              verticalAlign: 0,
+                              color: "#77838f",
+                              lineHeight: 1.4
+                              }}
+                          />
+                          </Tooltip>
+                          <AddressLink address={text} isContract={true}>{text}</AddressLink>
+                      </span>
+                    ) :
+                      <AddressLink address={text}>{text}</AddressLink>
                     }
                   </div>
                   <div style={{marginLeft: '10px'}}>

@@ -17,7 +17,7 @@ import { updateTokenInfo } from "../../../actions/tokenInfo";
 import { QuestionMark } from "../../common/QuestionMark";
 import HolderDistribution from "../components/HolderDistribution";
 import qs from "qs";
-import { Icon } from "antd";
+import { Tooltip,Icon } from "antd";
 
 class TokenHolders extends React.Component {
   constructor(props) {
@@ -72,6 +72,7 @@ class TokenHolders extends React.Component {
     let addresses = data.trc20_tokens;
     let total = data.total;
     let rangeTotal = data.rangeTotal;
+    let contractMap = data.contractMap;
     for (let index in addresses) {
       addresses[index].index = parseInt(index) + 1 + (page - 1) * pageSize;
     }
@@ -110,7 +111,11 @@ class TokenHolders extends React.Component {
         });
       });
     }
-
+    addresses.forEach(item=>{
+      if(contractMap){
+        contractMap[item.holder_address]? (item.ownerIsContract = true) :  (item.ownerIsContract = false)
+      }
+    })
     this.setState({
       page,
       addresses,
@@ -150,13 +155,42 @@ class TokenHolders extends React.Component {
                 display: "flex"
               }}
             >
-              <div
-                style={{
-                  maxWidth: 380
-                }}
-              >
-                <AddressLink address={record.holder_address} />
-              </div>
+              {record.ownerIsContract? (
+                <span className="d-flex">
+                  <Tooltip
+                    placement="top"
+                    title={upperFirst(
+                        intl.formatMessage({
+                        id: "transfersDetailContractAddress"
+                        })
+                    )}
+                  >
+                    <Icon
+                      type="file-text"
+                      style={{
+                      verticalAlign: 0,
+                      color: "#77838f",
+                      lineHeight: 1.4
+                      }}
+                    />
+                  </Tooltip>
+                  <div
+                    style={{
+                      maxWidth: 380
+                    }}
+                  >
+                    <AddressLink address={record.holder_address} isContract={true}></AddressLink>
+                  </div>
+                </span>
+                ) : 
+                <div
+                  style={{
+                    maxWidth: 380
+                  }}
+                >
+                  <AddressLink address={record.holder_address}></AddressLink>
+                </div>
+              }
               <span
                 style={{
                   whiteSpace: "nowrap"

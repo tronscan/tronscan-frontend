@@ -336,4 +336,5 @@ export const lang20Q1 = {
   account_tags_my_tag_not_available:'Not Available',
 
 
+  pledge_to_get_USDJ:'Pledge to get USDJ',
 };

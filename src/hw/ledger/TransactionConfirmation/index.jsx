@@ -506,6 +506,63 @@ export default function Contract({ contract, extra }) {
               </table>
             </Fragment>
           );
+        case "PROPOSALCREATECONTRACT":
+          return (
+            <Fragment>
+              <div className="card-body">
+                <h5 className="card-title text-center">Raise Proposal</h5>
+              </div>
+              <table className="table">
+                <tbody>
+                {(extra && extra.hash && 
+                      <Field label="Hash">
+                          <Truncate>
+                            #{extra.hash}
+                          </Truncate>
+                      </Field>
+                  )}
+                  </tbody>
+              </table>
+            </Fragment>
+          );  
+        case "PROPOSALAPPROVECONTRACT":
+          return (
+            <Fragment>
+              <div className="card-body">
+                <h5 className="card-title text-center">Vote For Proposal</h5>
+              </div>
+              <table className="table">
+                <tbody>
+                {(extra && extra.hash && 
+                      <Field label="Hash">
+                          <Truncate>
+                            #{extra.hash}
+                          </Truncate>
+                      </Field>
+                  )}
+                  </tbody>
+              </table>
+            </Fragment>
+          );
+        case "PROPOSALDELETECONTRACT":
+          return (
+            <Fragment>
+              <div className="card-body">
+                <h5 className="card-title text-center">Delete Proposal</h5>
+              </div>
+              <table className="table">
+                <tbody>
+                {(extra && extra.hash && 
+                      <Field label="Hash">
+                          <Truncate>
+                            #{extra.hash}
+                          </Truncate>
+                      </Field>
+                  )}
+                  </tbody>
+              </table>
+            </Fragment>
+          );   
         case "EXCHANGEINJECTCONTRACT":
         return (
           <Fragment>
@@ -537,6 +594,7 @@ export default function Contract({ contract, extra }) {
             </table>
           </Fragment>
         );
+
 
     default:
       return (

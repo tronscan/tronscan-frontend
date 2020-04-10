@@ -77,7 +77,9 @@ class TagForm extends React.Component {
   }
 
   getRecommendTags = (address) => {
-    ApiClientAccount.recTag({ target_address: address }).then((res) => {
+    const { account, targetAddress } = this.props;
+
+    ApiClientAccount.recTag({ target_address: address,user_address:account.address }).then((res) => {
       this.setState({
         recommendList: res.data.recommend_tags || [],
       });

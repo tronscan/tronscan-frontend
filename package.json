@@ -5,7 +5,7 @@
     "sideEffects": [
         "./src/some-side-effectful-file.js",
         "*.css"
-      ],
+    ],
     "dependencies": {
         "@babel/core": "7.4.3",
         "@fortawesome/fontawesome": "^1.1.7",
@@ -14,7 +14,7 @@
         "@ledgerhq/hw-app-trx": "^5.11.0",
         "@ledgerhq/hw-transport-u2f": "^5.9.0",
         "@svgr/webpack": "4.1.0",
-        "@tronscan/client": "^0.2.64",
+        "@tronscan/client": "^0.2.65",
         "@tweenjs/tween.js": "^17.2.0",
         "@typescript-eslint/eslint-plugin": "1.6.0",
         "@typescript-eslint/parser": "1.6.0",
@@ -161,7 +161,7 @@
         "semver": "6.0.0",
         "socket.io-client": "^2.1.0",
         "style-loader": "0.23.1",
-        "sunweb": "1.0.7",
+        "sunweb": "^1.1.0",
         "sw-precache-webpack-plugin": "0.11.4",
         "terser-webpack-plugin": "1.2.3",
         "tronstation": "^1.0.1",

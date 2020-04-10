@@ -308,6 +308,7 @@ account_piechart_title:'資産配分',
   account_block:'ブロック',
   account_address_total_balance_tip:"アカウント内のすべてのトークンの価値の合計",
   get_usdj:'得る USDJ',
+  pledge_to_get_USDJ:'Pledge to get USDJ',
 
   // 03-26 tag 
   account_tags_list:'タグのリスト',

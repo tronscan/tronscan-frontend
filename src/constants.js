@@ -57,12 +57,14 @@ export const PUBLIC_URL = process.env.PUBLIC_URL || window.location.origin;
 //test
 //export const API_URL_SUNNET = 'http://3.15.181.169:9000';
 //test pro
-//export const API_URL_SUNNET = "http://52.15.68.74:10001";
+// export const API_URL_SUNNET = "http://52.15.68.74:10001";
+// export const API_URL_SUNNET = "http://52.15.68.74:8898";
+
 
 export const API_URL_SUNNET = "https://dappchainapi.tronscan.org";
 
 // export const API_URL_SUNNET = "https://debugdappchainapilist.tronscan.org";
-// export const API_URL_MAINNET = 'https://apilist.tronscan.org';
+
 export const API_URL = IS_SUNNET ? API_URL_SUNNET : process.env.API_URL;
 export const CONTRACT_MAINNET_API_URL = process.env.API_URL;
 export const CONTRACT_NODE_API = API_URL;
@@ -86,8 +88,12 @@ export const TOKEN_ID_BTT = "1002000";
 export const CONTRACT_ADDRESS_USDT = "TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t";
 export const CONTRACT_ADDRESS_WIN = "TLa2f6VPqDgRE67v1736s7bJ8Ray5wYjU7";
 export const CONTRACT_ADDRESS_GGC = "TB95FFYRJMLY6mWZqv4JUMqAqsHF4JCXga";
-export const CONTRACT_ADDRESS_USDJ = "TCkkpmnY38nsXAtideWzHTybvbMozzXUot";
-export const CONTRACT_ADDRESS_JED = "TTpozmSKuK5jbigUXtQn6fdxh6ivwKtGo5";
+export const CONTRACT_ADDRESS_USDJ_TESTNET = "TCkkpmnY38nsXAtideWzHTybvbMozzXUot";
+export const CONTRACT_ADDRESS_JED_TESTNET = "TTpozmSKuK5jbigUXtQn6fdxh6ivwKtGo5";
+export const CONTRACT_ADDRESS_USDJ = "TMwFHYXLJaRUPeW6421aqXL4ZEzPRFGkGT";
+export const CONTRACT_ADDRESS_JED = "TCFLL5dx5ZJdKnWuesXxi1VPwjLVmWZZy9";
+export const CONTRACT_ADDRESS_JST = "TCFLL5dx5ZJdKnWuesXxi1VPwjLVmWZZy9";
+
 
 // Deployment to compile
 export const FILE_MAX_SIZE = 5 * 1024 * 1024;
@@ -129,6 +135,7 @@ export const TRADINGMAP = {
 
 // SunWeb config
 export const SUNWEBCONFIG = {
+  // for main
   MAINFULLNODE: "https://api.trongrid.io",
   MAINSOLIDITYNODE: "https://api.trongrid.io",
   MAINEVENTSERVER: "https://api.trongrid.io",
@@ -155,14 +162,17 @@ export const SUNWEBCONFIG = {
   // SIDECHAIN: 'TRDepx5KoQ8oNbFVZ5sogwUxtdYmATDRgX',
   // SIDEID: '413AF23F37DA0D48234FDD43D89931E98E1144481B',
 
-  // for nile
-  // MAINFULLNODE: "https://httpapi.nileex.io",
-  // MAINSOLIDITYNODE: "https://httpapi.nileex.io",
-  // MAINEVENTSERVER: "https://eventtest.nileex.io",
+  
 
-  // SUNFULLNODE: "https://sun.tronex.io",
-  // SUNSOLIDITYNODE: "https://sun.tronex.io",
-  // SUNEVENTSERVER: "https://sun.tronex.io",
+  // for tronex
+  // MAINFULLNODE: "https://testhttpapi.tronex.io",
+  // MAINSOLIDITYNODE: "https://testhttpapi.tronex.io",
+  // MAINEVENTSERVER: "https://testapi.tronex.io",
+
+  // SUNFULLNODE: "https://suntest.tronex.io",
+  // SUNSOLIDITYNODE: "https://suntest.tronex.io",
+  // SUNEVENTSERVER: "https://suntest.tronex.io",
+
   // MAINNET: "TWaPZru6PR5VjgT4sJrrZ481Zgp3iJ8Rfo",
   // SIDECHAIN: "TGKotco6YoULzbYisTBuP6DWXDjEgJSpYz",
   // SIDEID: "41E209E4DE650F0150788E8EC5CAFA240A23EB8EB7"

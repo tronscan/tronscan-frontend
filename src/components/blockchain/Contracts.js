@@ -19,7 +19,7 @@ import xhr from "axios/index";
 import { API_URL, CONTRACT_LICENSES } from "../../constants";
 import { TRXPrice } from "../common/Price";
 import { ONE_TRX, IS_MAINNET, WARNING_VERSIONS } from "../../constants";
-import { Tooltip, Table, Switch } from "antd";
+import { Tooltip, Table, Switch,Icon } from "antd";
 import { QuestionMark } from "../common/QuestionMark.js";
 import { tu } from "../../utils/i18n";
 import { Link } from "react-router-dom";
@@ -162,15 +162,36 @@ class Contracts extends React.Component {
         dataIndex: "address",
         key: "address",
         align: "left",
-        width: "12%",
+        width:"12%",
         className: "ant_table",
         render: (text, record, index) => {
           return (
-            <Truncate>
-              <AddressLink address={text} isContract={true}>
-                {text}
-              </AddressLink>
-            </Truncate>
+            <div>
+              <Truncate>
+                <span className="d-flex" >
+                  <Tooltip
+                      placement="top"
+                      title={upperFirst(
+                          intl.formatMessage({
+                          id: "transfersDetailContractAddress"
+                          })
+                      )}
+                    >
+                      <Icon
+                        type="file-text"
+                        style={{
+                        verticalAlign: 0,
+                        color: "#77838f",
+                        lineHeight: 1.4
+                        }}
+                      />
+                    </Tooltip>
+                  <AddressLink address={text} isContract={true}>
+                    {text}
+                  </AddressLink>
+                </span>
+              </Truncate>
+            </div>
           );
         }
       },
@@ -335,6 +356,7 @@ class Contracts extends React.Component {
         dataIndex: "license",
         key: "license",
         align: "left",
+        width:'5%',
         className: "ant_table",
         render: (text, record, index) => {
           return (
@@ -486,9 +508,28 @@ class Contracts extends React.Component {
         render: (text, record, index) => {
           return (
             <Truncate>
-              <AddressLink address={text} isContract={true}>
-                {text}
-              </AddressLink>
+               <span className="d-flex">
+                <Tooltip
+                    placement="top"
+                    title={upperFirst(
+                        intl.formatMessage({
+                        id: "transfersDetailContractAddress"
+                        })
+                    )}
+                  >
+                    <Icon
+                      type="file-text"
+                      style={{
+                      verticalAlign: 0,
+                      color: "#77838f",
+                      lineHeight: 1.4
+                      }}
+                    />
+                  </Tooltip>
+                <AddressLink address={text} isContract={true}>
+                  {text}
+                </AddressLink>
+              </span>
             </Truncate>
           );
         }
@@ -716,7 +757,9 @@ class Contracts extends React.Component {
 }
 
 function mapStateToProps(state) {
-  return {};
+  return {
+  
+  };
 }
 
 const mapDispatchToProps = {

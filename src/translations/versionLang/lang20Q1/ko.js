@@ -228,8 +228,7 @@ export const lang20Q1 = {
   block_detail_confirmed_over_show: "confirmed by over 200 blocks",
   block_detail_rolled_back: "ROLLED BACK",
 
-  freeze_TRX_error:
-    "Something went wrong while trying to freeze TRX, please try again later.",
+  freeze_TRX_error: "Something went wrong while trying to freeze TRX, please try again later.",
   votes_cannot_exceed_5_SRs: "Votes cannot exceed 5 SRs",
 
   // 2020-03-03 leon
@@ -312,6 +311,7 @@ export const lang20Q1 = {
   account_block: "블록",
   account_address_total_balance_tip:"계정에있는 모든 토큰의 가치 합계",
   get_usdj:'얻다 USDJ',
+  pledge_to_get_USDJ:'Pledge to get USDJ',
 
   // 03-26 tag 
   account_tags_list:'태그 목록',
