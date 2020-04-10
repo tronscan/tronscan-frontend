@@ -13779,6 +13779,7 @@ stylis@^3.3.2:
 sunweb@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/sunweb/-/sunweb-1.1.0.tgz#7d00dbd610f9fd7d3380f71ae1fa03dabd882094"
+  integrity sha512-RoQHMAE3EMM04/y9XHDOhmnf4prhes2yYsRMi5mYANSHohpPvLl+v5I7xD0M5f5W6dMz2eSY7b0NsIyfH/1V/g==
   dependencies:
     "@babel/runtime" "^7.4.5"
     babel-runtime "^6.26.0"
