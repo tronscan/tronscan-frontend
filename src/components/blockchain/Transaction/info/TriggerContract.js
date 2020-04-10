@@ -237,6 +237,19 @@ function TriggerContract({contract,intl}){
                 </div>
               </div>
             </div>
+            {
+              (!contract.tokenTransferInfo && contract.contract_note) && <div className="d-flex border-bottom">
+                <div className="content_box_name">
+                  {tu("note")}:
+                </div>
+                <div className="flex1">
+                  <div className="d-flex content_item">
+                    {decodeURIComponent(contract.contract_note || "")}
+                  </div>
+                </div>
+            </div>
+            }
+            
             {contract.tokenTransferInfo &&
               contract.tokenTransferInfo.decimals !==
                 undefined &&
