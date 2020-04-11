@@ -172,27 +172,27 @@ class SendForm extends React.Component {
     }else{
         //DAppChain
         if (TokenName === "_") {
-          // amount = this.Mul(amount,ONE_TRX);
-          // const unSignTransaction = await this.props.account.sunWeb.sidechain.transactionBuilder.sendTrx(to, amount, wallet.address).catch(function (e) {
-          //   console.log(e)
-          // });
-          // //set transaction note
-          // const transactionWithNote = await this.props.account.sunWeb.sidechain.transactionBuilder.addUpdateData(unSignTransaction, note, 'utf8');
-          // result = await transactionResultManagerSun(transactionWithNote, this.props.account.sunWeb);
-          result = await this.props.account.sunWeb.sidechain.trx.sendTransaction(to, amount, {address: wallet.address}, false).catch(function (e) {
-              console.log(e)
+          amount = this.Mul(amount,ONE_TRX);
+          const unSignTransaction = await this.props.account.sunWeb.sidechain.transactionBuilder.sendTrx(to, amount, wallet.address).catch(function (e) {
+            console.log(e)
           });
+          //set transaction note
+          const transactionWithNote = await this.props.account.sunWeb.sidechain.transactionBuilder.addUpdateData(unSignTransaction, note, 'utf8');
+          result = await transactionResultManagerSun(transactionWithNote, this.props.account.sunWeb);
+          // result = await this.props.account.sunWeb.sidechain.trx.sendTransaction(to, amount, {address: wallet.address}, false).catch(function (e) {
+          //     console.log(e)
+          // });
         }else{
-            // amount = this.Mul(amount,Math.pow(10, decimals));
-            // const unSignTransaction = await this.props.account.sunWeb.sidechain.transactionBuilder.sendToken(to, amount, TokenName, wallet.address).catch(function (e) {
-            //   console.log(e)
-            // });
-            // //set transaction note
-            // const transactionWithNote = await this.props.account.sunWeb.sidechain.transactionBuilder.addUpdateData(unSignTransaction, note, 'utf8');
-            // result = await transactionResultManagerSun(transactionWithNote, this.props.account.sunWeb);
-            result = await this.props.account.sunWeb.sidechain.trx.sendToken(to, amount, TokenName, {address:wallet.address}, false).catch(function (e) {
-                console.log(e)
+            amount = this.Mul(amount,Math.pow(10, decimals));
+            const unSignTransaction = await this.props.account.sunWeb.sidechain.transactionBuilder.sendToken(to, amount, TokenName, wallet.address).catch(function (e) {
+              console.log(e)
             });
+            //set transaction note
+            const transactionWithNote = await this.props.account.sunWeb.sidechain.transactionBuilder.addUpdateData(unSignTransaction, note, 'utf8');
+            result = await transactionResultManagerSun(transactionWithNote, this.props.account.sunWeb);
+            // result = await this.props.account.sunWeb.sidechain.trx.sendToken(to, amount, TokenName, {address:wallet.address}, false).catch(function (e) {
+            //     console.log(e)
+            // });
         }
         if (result) {
             success = result.result;
@@ -412,12 +412,12 @@ class SendForm extends React.Component {
                 {'type':'uint256','value':sendNum}
               ]
             )
-          // let transactionWithNote = await sunWeb.sidechain.transactionBuilder.addUpdateData(transaction, note, 'utf8'); 
-          // console.log('transactionWithNote',transactionWithNote)  
-          // if(this.props.wallet.type === "ACCOUNT_TRONLINK"){
-          //   transactionWithNote.__payload__ = transaction.__payload__;
-          // }     
-          transactionId = await transactionResultManagerSun(transaction,sunWeb)
+          let transactionWithNote = await sunWeb.sidechain.transactionBuilder.addUpdateData(transaction, note, 'utf8'); 
+          console.log('transactionWithNote',transactionWithNote)  
+          if(this.props.wallet.type === "ACCOUNT_TRONLINK"){
+            transactionWithNote.__payload__ = transaction.__payload__;
+          }     
+          transactionId = await transactionResultManagerSun(transactionWithNote,sunWeb)
         }
     }
     if (transactionId) {
