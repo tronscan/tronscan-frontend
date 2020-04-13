@@ -328,5 +328,8 @@ export const lang20Q1 = {
   use_TRONlink_or_private_key :"Please login to use this function via TRONlink or private key",
   get_usdj:'получать USDJ',
   pledge_to_get_USDJ:'Pledge to get USDJ',
-
+  address_token_less_than_10:'tokens with a value less than 10 TRX',
+  address_total_tron_power:'Total TRON Power',
+  address_total_tron_power_remain:'Available TORN Power',
+  address_total_tron_power_used:'Used TRON Power'
 };
