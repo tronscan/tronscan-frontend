@@ -384,7 +384,7 @@ class TokenBalances extends React.Component {
                       {tableInfo}
                   </div>
                   <div className={" d-md-block " + (balances.length ? "table_pos_switch_addr4" : "")}>
-                    <SwitchToken  handleSwitch={this.handleSwitch} text="hide_small_currency" hoverText="tokens_less_than_10"/>
+                    <SwitchToken  handleSwitch={this.handleSwitch} text="hide_small_currency" hoverText="address_token_less_than_10"/>
                   </div>
                 </div>
                 {/*<div className={"account-token-tab address-token-tab " + (balances.length ? '' : "address-token-tab-mobile")}>*/}
