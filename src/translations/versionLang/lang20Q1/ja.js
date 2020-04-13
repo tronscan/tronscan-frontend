@@ -309,5 +309,9 @@ account_piechart_title:'資産配分',
   account_address_total_balance_tip:"アカウント内のすべてのトークンの価値の合計",
   get_usdj:'得る USDJ',
   pledge_to_get_USDJ:'Pledge to get USDJ',
+  address_token_less_than_10:'tokens with a value less than 10 TRX',
+  address_total_tron_power:'Total TRON Power',
+  address_total_tron_power_remain:'Available TORN Power',
+  address_total_tron_power_used:'Used TRON Power'
 
 };

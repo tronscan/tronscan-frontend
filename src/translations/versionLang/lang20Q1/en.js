@@ -311,5 +311,8 @@ export const lang20Q1 = {
   account_address_total_balance_tip:"Sum of the value of all tokens in the account",
   get_usdj:'Obtain USDJ',
   pledge_to_get_USDJ:'Pledge to get USDJ',
-
+  address_token_less_than_10:'tokens with a value less than 10 TRX',
+  address_total_tron_power:'Total TRON Power',
+  address_total_tron_power_remain:'Available TORN Power',
+  address_total_tron_power_used:'Used TRON Power'
 };
