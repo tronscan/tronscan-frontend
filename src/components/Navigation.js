@@ -1122,9 +1122,15 @@ class Navigation extends React.Component {
                 </div>
                 {
                   IS_TESTNET &&
-                  <div className="col text-center text-info font-weight-bold py-2">
-                    SHASTA TESTNET
-                  </div>
+                  
+                    <span className="d-flex mt-2">
+                    <span className="ml-2 d-block" style={{borderLeft:'1px solid #999999',height:'75%'}}>
+                     </span>
+                     <span className="ml-2" style={{color:"#000000",marginTop:"9px"}}>
+                         SHASTA TESTNET
+                     </span>
+                 </span>
+                    
                 }
                 {
                   (syncStatus && syncStatus.sync && syncStatus.sync.progress < 95) &&
