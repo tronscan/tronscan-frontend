@@ -36,8 +36,11 @@ class Tabs extends Component {
             <li className="nav-item scroll-li" key={tab.id}>
               <a
                 href="javascript:"
+                // className={`scroll-tab nav-link ${tab.id} ${
+                //   tab.id === scrollsId ? "active" : ""
+                // }`}
                 className={`scroll-tab nav-link ${tab.id} ${
-                  tab.id === scrollsId ? "active" : ""
+                  tab.id ==='account_title'  ? "active" : ""
                 }`}
                 key={tab.id}
                 onClick={() => this.scrollToAnchorTab(tab.id)}

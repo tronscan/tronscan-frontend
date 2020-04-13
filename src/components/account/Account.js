@@ -230,7 +230,7 @@ export default class Account extends Component {
           isTronLink: Lockr.get("islogin"),
       });
       this.reloadTokens();
-      this.loadAccount();
+      this.loadAccount(); 
       this.getAddressReward();
       this.getAddressRewardBok();
 
@@ -2129,15 +2129,31 @@ export default class Account extends Component {
 
     onScrollEvent(linkIds) {
       const viewPortHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+  
+      let number = 200 
       if (linkIds.length) {
+        if( viewPortHeight < 600 ){
+          number = 200
+        }else{
+          linkIds.length > 8 ? number = 350 : number = 400;
+        }
+        
+        console.log(123,number,viewPortHeight)
         linkIds.forEach((item) => {
           const el = $('#' + item.id).get(0);
-          const top = el.getBoundingClientRect() && el.getBoundingClientRect().top
-            if (top <= viewPortHeight - 200) {
-            this.setState({
-              scrollsId:item.id
-            })
-          }
+          const top = el && el.getBoundingClientRect() && el.getBoundingClientRect().top
+          
+          if (top <= (viewPortHeight - number)) {
+            // this.setState({
+            //   scrollsId:item.id
+            // })
+            $('.' + item.id).addClass('active');
+              linkIds.forEach((k, v) => {
+                if (item.id !== k.id) {
+                  $('.' + k.id).removeClass('active');
+                }
+              });
+            }
         });
       }
     }
