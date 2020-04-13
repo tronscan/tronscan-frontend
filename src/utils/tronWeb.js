@@ -45,100 +45,45 @@ export function withTronWeb(InnerComponent) {
 
       //return window.tronWeb;
     };
+    
+    parameter2ValueDataHex = async( data, contractType) =>{
+      let contractData = await xhr.post(`https://tronexapi.tronscan.org/api/contract/convert`, {
+        "outType":"hex",
+        "data":data,
+        "contractType":contractType
+      });
+      let parameterValue =  contractData.data.message
+      
+      return parameterValue;
+   }
 
-
-     mutiSign= async( tronWeb, transaction = false, privateKey = false, permissionId = false, callback = false)=> {
-      let copyTransaction = transaction;
-      const utils = tronWeb.utils;
-      if (utils.isFunction(permissionId)) {
-        callback = permissionId;
-        permissionId = 0;
-      }
-
-      if (utils.isFunction(privateKey)) {
-        callback = privateKey;
-        privateKey = tronWeb.defaultPrivateKey;
-        permissionId = 0;
-      }
-      // if (!callback)
-      //   return this.injectPromise(this.multiSign, transaction, privateKey, permissionId);
-
-      // if (!utils.isObject(transaction) || !transaction.raw_data || !transaction.raw_data.contract)
-      //   return callback('Invalid transaction provided');
-      // If owner permission or permission id exists in transaction, do sign directly
-      // If no permission id inside transaction or user passes permission id, use old way to reset permission id
-      transaction.raw_data.contract[0].Permission_id = permissionId;
-      if (!transaction.raw_data.contract[0].Permission_id && permissionId > 0) {
-        // set permission id
-        transaction.raw_data.contract[0].Permission_id = permissionId;
-        // check if private key insides permission list
-        // const address = tronWeb.address.toHex(tronWeb.address.fromPrivateKey(privateKey)).toLowerCase();
-        const address = tronWeb.address.toHex(this.props.wallet.address).toLowerCase();
-        const signWeight = await tronWeb.trx.getSignWeight(transaction, permissionId);
-
-        if (signWeight.result.code === 'PERMISSION_ERROR') {
-           throw new Error('PERMISSION_ERROR')
-        }
-
-        let foundKey = false;
-        signWeight.permission.keys.map(key => {
-          if (key.address === address)
-            foundKey = true;
-        });
-
-        if (!foundKey)
-          //return callback(privateKey + ' has no permission to sign');
-          throw new Error(privateKey + ' has no permission to sign')
-
-        if (signWeight.approved_list && signWeight.approved_list.indexOf(address) != -1) {
-          //return callback(privateKey + ' already sign transaction');
-          throw new Error(privateKey + ' already sign transaction')
-        }
-
-        // reset transaction
-        if (signWeight.transaction && signWeight.transaction.transaction) {
-          transaction = signWeight.transaction.transaction;
-          if (permissionId > 0) {
-            transaction.raw_data.contract[0].Permission_id = permissionId;
-          }
-          return transaction;
-        } else {
-          throw new Error('Invalid transaction provided')
-          //eturn callback('Invalid transaction provided');
-        }
-      }
-      return transaction;
-    }
+  
 
     buildTransactionSigner(tronWeb, isMulti) {
       const { account, wallet } = this.props;
-
       return async (transaction, privateKey = false, permissionId = false, callback = false) => {
-
         if (!wallet.isOpen) {
           throw new Error("wallet is not open");
         }
         try {
-
           switch (wallet.type) {
             case ACCOUNT_LEDGER:
 
               try {
-                const transactionObj = transactionJsonToProtoBuf(transaction);
-                const rawDataHex = byteArray2hexStr(transactionObj.getRawData().serializeBinary());
-                let raw = transactionObj.getRawData();
-                let contractObj = raw.getContractList()[0];
-                if (isMulti) {
-                  transaction = await this.mutiSign(tronWeb, transaction, privateKey, permissionId).catch(e=>{
-                    console.log(e.toString())
-                  });
-                  if(!isMulti){
-                    return;
-                  }
-                }
-                let contractType = contractObj.getType();
+                let contractType,rawDataHex;
                 let tokenInfo = [];
                 let extra = {};
+                if(transaction.raw_data.contract[0].type == 'ProposalCreateContract' || transaction.raw_data.contract[0].type == 'ProposalApproveContract' || transaction.raw_data.contract[0].type == 'ProposalDeleteContract'){
+                  rawDataHex = transaction.raw_data_hex;
+                } else {
+                  const transactionObj = transactionJsonToProtoBuf(transaction);
+                  rawDataHex = byteArray2hexStr(transactionObj.getRawData().serializeBinary());
+                  let raw = transactionObj.getRawData();
+                  let contractObj = raw.getContractList()[0];
+                  contractType = contractObj.getType();
+                  let PermissionId = contractObj.getPermissionId();
+                }
+                
                 switch (contractType) {
                   case 2: // Transfer Assets
                     const ID = tronWeb.toUtf8(
@@ -151,6 +96,18 @@ export function withTronWeb(InnerComponent) {
                       tokenInfo.push(tokenObj.message);
                     }
                     break;
+                  case 5: //Create Witness  
+                    extra = transaction.extra || {};
+                    break;  
+                  case 16: //Create Proposal
+                    extra = transaction.extra || {};
+                    break;  
+                  case 17: //Approve Proposal
+                    extra = transaction.extra || {};
+                    break;
+                  case 18: //Delete Proposal
+                    extra = transaction.extra || {};
+                    break;           
                   case 41: //ExchangeCreateContract
                     const token1 = await this.getTokenExtraInfo(
                       transaction.raw_data.contract[0].parameter.value.first_token_id
@@ -207,13 +164,13 @@ export function withTronWeb(InnerComponent) {
                     };
                     tokenInfo.push(exchange.message);
                     break;
-
+                    
                   case 31: //Trigger Smart Contract
                     extra = transaction.extra || {};
                     break;
                   case 46:
-                    extra = {};
-                    tokenInfo = undefined;
+                    extra = transaction.extra || {};
+                    // tokenInfo = undefined;
                     break;
                 }
 
@@ -228,11 +185,25 @@ export function withTronWeb(InnerComponent) {
                   hex: rawDataHex,
                   info: tokenInfo,
                 })
-                transaction.signature = [signedResponse];
+               
+               
+                if (Array.isArray(transaction.signature)) {
+                  if (!transaction.signature.includes(signedResponse))
+                      transaction.signature.push(signedResponse);
+                } else{
+                  transaction.signature = [signedResponse];
+                }
+                 
                 return transaction;
               } catch (e) {
                 console.log("Error signing ledger", e);
-
+               
+                if(e == "Error: Too many bytes to encode."){
+                  return 0
+                }else{
+                  return false;
+                }
+                
               } finally {
                 this.hideModal();
               }

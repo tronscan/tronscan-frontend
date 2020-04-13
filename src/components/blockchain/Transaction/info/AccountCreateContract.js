@@ -12,6 +12,9 @@ import { ONE_TRX } from "../../../../constants";
 import { TransationTitle } from "./common/Title";
 import BandwidthUsage from "./common/BandwidthUsage";
 import SignList from "./common/SignList";
+import { upperFirst } from "lodash";
+import { Tooltip,Icon } from 'antd';
+import { injectIntl } from "react-intl";
 
 class AccountCreateContract extends React.Component {
   constructor(props) {
@@ -19,7 +22,7 @@ class AccountCreateContract extends React.Component {
     this.state = {};
   }
   render() {
-    let { contract } = this.props;
+    let { contract,intl } = this.props;
     let signList = contract.signature_addresses || [];
     return (
       <Fragment>
@@ -28,10 +31,70 @@ class AccountCreateContract extends React.Component {
           <table className="table">
             <tbody>
               <Field label="transaction_owner_address">
-                <AddressLink address={contract["owner_address"]} />
+                <span className="d-flex">
+                  {/*  Distinguish between contract and ordinary address */}
+                  {contract.contract_map[contract["owner_address"]]? (
+                    <span className="d-flex">
+                      <Tooltip
+                        placement="top"
+                        title={upperFirst(
+                          intl.formatMessage({
+                            id: "transfersDetailContractAddress"
+                          })
+                        )}
+                      >
+                        <Icon
+                          type="file-text"
+                          style={{
+                            verticalAlign: 0,
+                            color: "#77838f",
+                            lineHeight: 1.4
+                          }}
+                        />
+                      </Tooltip>
+                      <AddressLink address={contract["owner_address"]} isContract={true}>
+                        {contract["owner_address"]}
+                      </AddressLink>
+                    </span>
+                  ) :
+                  <AddressLink address={contract["owner_address"]}>
+                    {contract["owner_address"]}
+                  </AddressLink>
+                  }
+                </span>
               </Field>
               <Field label="transaction_activate_account">
-                <AddressLink address={contract["account_address"]} />
+                <span className="d-flex">
+                  {/*  Distinguish between contract and ordinary address */}
+                  {contract.contract_map[contract["account_address"]]? (
+                    <span className="d-flex">
+                      <Tooltip
+                        placement="top"
+                        title={upperFirst(
+                          intl.formatMessage({
+                            id: "transfersDetailContractAddress"
+                          })
+                        )}
+                      >
+                        <Icon
+                          type="file-text"
+                          style={{
+                            verticalAlign: 0,
+                            color: "#77838f",
+                            lineHeight: 1.4
+                          }}
+                        />
+                      </Tooltip>
+                      <AddressLink address={contract["account_address"]} isContract={true}>
+                        {contract["account_address"]}
+                      </AddressLink>
+                    </span>
+                  ) :
+                  <AddressLink address={contract["account_address"]}>
+                    {contract["account_address"]}
+                  </AddressLink>
+                  }
+                </span>
               </Field>
               {JSON.stringify(contract.cost) != "{}" && (
                 <Field label="consume_bandwidth">
@@ -51,4 +114,4 @@ class AccountCreateContract extends React.Component {
   }
 }
 
-export default AccountCreateContract;
+export default injectIntl(AccountCreateContract);

@@ -1953,7 +1953,7 @@ export const messages = {
   */
   "ledger_user_guide": "دليل المستخدم لليدجر",
   "latest_version_chrome": "ننصحك باستخدام أحدث نسخة من الكروم",
-  "ledger_support_version": "نسخة ليدجر المدعومة: 0.1.1 ، دعم كروم لنسخة الإصدار 73.0",
+  "ledger_support_version": "نسخة ليدجر المدعومة: 0.1.6 ، دعم كروم لنسخة الإصدار 80.0",
   "ledger_you_can": "يمكنك الذهاب ",
   "ledger_website": "يقوم موقع Ledger",
   "ledger_website_download": "قم بتنزيل وتحديث نسخة دفتر الأستاذ",
@@ -2239,6 +2239,11 @@ export const messages = {
   "Side_Chain":"DAppChain",
   "Main_Chain":"MainChain",
 
+  "JST_distribution_overview": "JST DISTRIBUTION OVERVIEW",
+  "JST_supply": "JST Supply",
+  "JST_Token_Release_Schedule": "JST Token Release Schedule",
+  "source_JST_team": "Source: JST Management Team",
+
 
   "7day": "7 أيام",
   "14day": "14 يوما",
@@ -2259,9 +2264,9 @@ export const messages = {
 
 
   "developers_username": "username",
-  "developers_current_year":"year's points",
-  "developers_current_quarter": "quarter's points",
-  "developers_current_month":"month's points",
+  "developers_current_year":"Total points",
+  "developers_current_quarter": "Last quarter points",
+  "developers_current_month":"Last month points",
   "developers_view_points":"View Points Details",
   "developers_points_details": "Points details",
   "developers_contribution_link":"Contribution content corresponding link",

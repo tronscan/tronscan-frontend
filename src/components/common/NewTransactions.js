@@ -22,7 +22,7 @@ import rebuildList from "../../utils/rebuildList";
 import xhr from "axios/index";
 import {API_URL} from '../../constants.js'
 import qs from 'qs'
-import BlockTime from '../common/blockTime'
+import BlockTime from '../common/blockTime'
 
 
 const RangePicker = DatePicker.RangePicker;
@@ -259,7 +259,7 @@ class NewTransactions extends React.Component {
                 className: 'ant_table',
                 width: activeLanguage ==='ru' ? '12%' : '15%',
                 render: (text, record, index) => {
-                    return <BlockTime time={text}></BlockTime>
+                    return <BlockTime time={text}></BlockTime>
                     // <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
                 }
             },

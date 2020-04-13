@@ -1971,7 +1971,7 @@ export const messages = {
  */
   "ledger_user_guide": "Руководство по использованию Ledger",
   "latest_version_chrome": "Обновите Сhrome до последней версии",
-  "ledger_support_version": "Поддерживаемая версия Ledger: 0.1.1., Поддерживаемая версия Chrome 73.0",
+  "ledger_support_version": "Поддерживаемая версия Ledger: 0.1.6, Поддерживаемая версия Chrome 80.0",
   "ledger_you_can": "Вы можете посетить",
   "ledger_website": " Ledger веб-сайт ",
   "ledger_website_download": "Загрузите и обновите последнюю версию Ledger",
@@ -2260,6 +2260,11 @@ export const messages = {
   "Side_Chain":"DAppChain",
   "Main_Chain":"MainChain",
 
+  "JST_distribution_overview": "JST DISTRIBUTION OVERVIEW",
+  "JST_supply": "JST Supply",
+  "JST_Token_Release_Schedule": "JST Token Release Schedule",
+  "source_JST_team": "Source: JST Management Team",
+
   "7day": "7 дней",
   "14day": "14 дней",
   "30day": "1 месяц",
@@ -2280,9 +2285,9 @@ export const messages = {
 
 
   "developers_username": "username",
-  "developers_current_year":"year's points",
-  "developers_current_quarter": "quarter's points",
-  "developers_current_month":"month's points",
+  "developers_current_year":"Total points",
+  "developers_current_quarter": "Last quarter points",
+  "developers_current_month":"Last month points",
   "developers_view_points":"View Points Details",
   "developers_points_details": "Points details",
   "developers_contribution_link":"Contribution content corresponding link",

@@ -335,6 +335,25 @@
       width: 44px;
     }
   }
+  .account_main{
+    th{
+      white-space: normal!important;
+    }
+    @media screen and (max-width: 768px) {
+      .panel{
+        display: block!important;
+        &>div{
+          &:first-child{
+            margin-right:0;
+          }
+          &:last-child{
+            margin: 10px 0;
+          }
+          height:auto!important; 
+        }
+      }
+    }
+  }
   // default background style ====================================================
   .token_black {
     // 背景色样式
@@ -916,7 +935,52 @@
       }
     }
   }
+  // address-container
+  .address-container{
+    .ant-table-content{
+      .ant-table-thead > tr > th .anticon-filter, .ant-table-thead > tr > th .ant-table-filter-icon{
+        right: auto;
+      }
+      .ant-table-column-has-filters span, .ant-table-column-has-filters i{
+        color:#666 !important;
+      }
+    }
+    // .transfersAll-container{
+
+    // }
+ 
+  }
 }
+.ant-checkbox-indeterminate{
+  .ant-checkbox-inner::after{
+    background-color:#C23631;
+  }
+}
+// ant-table-filter-dropdown-btns 
+.ant-dropdown{
+  .ant-table-filter-dropdown{
+    .ant-checkbox-group-item{
+      margin: 0;
+      display: block;
+      clear: both;
+      margin: 0;
+      padding: 5px 12px;
+      color: rgba(0, 0, 0, 0.65);
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 22px;
+      white-space: nowrap;
+      cursor: pointer;
+      -webkit-transition: all 0.3s;
+      transition: all 0.3s;
+      &:hover{
+        background-color: #e6f7ff;
+      }
+    }
+   
+  }
+}
+
 
 .confirm .borderBottom {
   borderbottom: "1px solid #DFD7CA" !important;

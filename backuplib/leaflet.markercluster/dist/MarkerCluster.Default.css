@@ -1,0 +1,68 @@
+.marker-cluster-small {
+    background-color: red;
+}
+
+.marker-cluster-small div {
+    background-color: red;
+}
+
+.marker-cluster-medium {
+    background-color: red;
+}
+
+.marker-cluster-medium div {
+    background-color: red;
+}
+
+.marker-cluster-large {
+    background-color: red;
+}
+
+.marker-cluster-large div {
+    background-color: red;
+}
+
+/* IE 6-8 fallback colors */
+.leaflet-oldie .marker-cluster-small {
+    background-color: red;
+}
+
+.leaflet-oldie .marker-cluster-small div {
+    background-color: red;
+}
+
+.leaflet-oldie .marker-cluster-medium {
+    background-color: red;
+}
+
+.leaflet-oldie .marker-cluster-medium div {
+    background-color: red;
+}
+
+.leaflet-oldie .marker-cluster-large {
+    background-color: red;
+}
+
+.leaflet-oldie .marker-cluster-large div {
+    background-color: red;
+}
+
+.marker-cluster {
+    background-clip: padding-box;
+    border-radius: 20px;
+}
+
+.marker-cluster div {
+    width: 30px;
+    height: 30px;
+    margin-left: 5px;
+    margin-top: 5px;
+
+    text-align: center;
+    border-radius: 15px;
+    font: 12px "Helvetica Neue", Arial, Helvetica, sans-serif;
+}
+
+.marker-cluster span {
+    line-height: 30px;
+}

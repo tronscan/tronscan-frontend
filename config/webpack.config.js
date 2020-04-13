@@ -137,12 +137,12 @@ module.exports = function(webpackEnv) {
     mode: isEnvProduction ? 'production' : isEnvDevelopment && 'development',
     // Stop compilation early in production
     bail: isEnvProduction,
-    // devtool: isEnvProduction
-    //   ? shouldUseSourceMap
-    //     ? 'source-map'
-    //     : false
-    //   : isEnvDevelopment && 'cheap-module-source-map',
-      devtool:false,
+    devtool: isEnvProduction
+      ? shouldUseSourceMap
+        ? 'source-map'
+        : false
+      : isEnvDevelopment && 'cheap-module-source-map',
+    //  devtool:false,
     // These are the "entry points" to our application.
     // This means they will be the "root" imports that are included in JS bundle.
     entry: [
@@ -752,7 +752,8 @@ module.exports = function(webpackEnv) {
       // the HTML & assets that are part of the Webpack build.
       new MonacoWebpackPlugin({
           // available options are documented at https://github.com/Microsoft/monaco-editor-webpack-plugin#options
-          languages: ['solidity']
+          languages: ['solidity'],
+          features: ['!gotoSymbol'],
       }),
       isEnvProduction &&
         new WorkboxWebpackPlugin.GenerateSW({

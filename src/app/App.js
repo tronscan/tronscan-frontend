@@ -33,7 +33,6 @@ export default class App {
       data
     } = await xhr.get(`${API_URL}/api/token?uuid=${uuidv4}&showAll=1&limit=5000&id_gt=1002828&fields=id,name,precision,abbr,imgUrl`);
     //var beginTime = +new Date();
-   // console.log("333:",tokensMap)
 
       for (let k of Object.keys(tokensMap))  {
         //k,obj[k]
@@ -74,7 +73,6 @@ export default class App {
           imgUrl;
       }
     }
-    //console.log('default :getTokensMap2',tokensMap);
 
     localStorage.setItem("tokensMap", JSON.stringify(tokensMap));
     // store.dispatch(setTokenMap(tokensMap));

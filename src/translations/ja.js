@@ -1966,7 +1966,7 @@ export const messages = {
   */
   "ledger_user_guide": "Ledgerご利用のガイド",
   "latest_version_chrome": "最新バージョンのChromeご利用をお薦めします",
-  "ledger_support_version": "Ledgerサポートできるバージョン:0.1.1、Chromeサポートできるバージョン73.0",
+  "ledger_support_version": "Ledgerサポートできるバージョン:0.1.6、Chromeサポートできるバージョン80.0",
   "ledger_you_can": "あなたは行くことができます",
   "ledger_website": "Ledgerの公式サイト",
   "ledger_website_download": "最新の元帳バージョンをダウンロードして更新する",
@@ -2251,6 +2251,11 @@ export const messages = {
   "Side_Chain":"DAppChain",
   "Main_Chain":"MainChain",
 
+  "JST_distribution_overview": "JST DISTRIBUTION OVERVIEW",
+  "JST_supply": "JST Supply",
+  "JST_Token_Release_Schedule": "JST Token Release Schedule",
+  "source_JST_team": "Source: JST Management Team",
+
   "7day": "7日",
   "14day": "14日間",
   "30day": "1ヶ月",
@@ -2271,9 +2276,9 @@ export const messages = {
   "day":"日",
 
   "developers_username": "username",
-  "developers_current_year":"year's points",
-  "developers_current_quarter": "quarter's points",
-  "developers_current_month":"month's points",
+  "developers_current_year":"Total points",
+  "developers_current_quarter": "Last quarter points",
+  "developers_current_month":"Last month points",
   "developers_view_points":"View Points Details",
   "developers_points_details": "Points details",
   "developers_contribution_link":"Contribution content corresponding link",

@@ -305,6 +305,7 @@ body .token_black {
     }
   }
   @mixin bg-line($image, $color: $main-red, $width: 4) {
+
     &:after {
       content: "";
       position: absolute;
@@ -331,9 +332,36 @@ body .token_black {
   .accout_unit {
     position: relative;
     background-color: $white;
-    @include bg-line(accounts, $main-red, 6);
-    h3 {
+    margin-right: 20px;
+    flex: 1;
+    padding-left: 3.75rem;
+    @include bg-line(account, $main-red, 4);
+    h3,
+    h3 * {
       color: $bg-color !important;
+    }
+    span {
+      color: $text-block-dark;
+      position: relative;
+    }
+    @media screen and (max-width: 768px) {
+      height:auto!important;
+    }
+  }
+
+  .accout_total {
+    position: relative;
+    background-color: $white;
+    flex: 1;
+    padding-left: 3.75rem;
+    @include bg-line(time, $main-red, 4);
+    h3,
+    h3 * {
+      color: $bg-color !important;
+    }
+    span {
+      color: $text-block-dark;
+      position: relative;
     }
   }
   .foundation_title {
@@ -374,6 +402,15 @@ body .token_black {
       }
     }
   }
+  .represent__table-ru{
+    th {
+      background: #f3f3f3;
+      color: #333;
+      border: none;
+      white-space: normal!important;
+      word-break:break-all!important;
+    }
+  }
   .represent__table {
     table {
       border: 1px solid #d8d8d8;
@@ -382,6 +419,7 @@ body .token_black {
       background: #f3f3f3;
       color: #333;
       border: none;
+      white-space: normal!important;
     }
     td {
       background: #fff;
@@ -600,6 +638,7 @@ body .token_black {
     th,
     td {
       border: none;
+      vertical-align: middle;
     }
     th {
       background-color: #fff;
