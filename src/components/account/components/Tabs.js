@@ -15,7 +15,7 @@ class Tabs extends Component {
       const anchorElement = document.getElementById(anchorName);
       let offsetTop = anchorElement.offsetTop;
       window.scrollTo(0, offsetTop);
-      this.props.changeScrollIds(anchorName);
+      // this.props.changeScrollIds(anchorName);
     }
   };
   render() {

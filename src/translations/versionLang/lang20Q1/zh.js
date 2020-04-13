@@ -346,4 +346,9 @@ export const lang20Q1 = {
   account_tags_my_tag_login_show:'登录后显示',
   account_tags_my_tag_not_available:'无标签',
   pledge_to_get_USDJ:'质押获取USDJ',
+  address_token_less_than_10:'通证价值小于10TRX的币种',
+  address_total_tron_power:'总投票权',
+  address_total_tron_power_remain:'可用投票权',
+  address_total_tron_power_used:'已用投票权'
+
 };
