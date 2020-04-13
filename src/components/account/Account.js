@@ -107,8 +107,43 @@ export default class Account extends Component {
       errorMess:'',
       isInMyPermission:true,
       isInMySignature:false,
-      mySignatureType:255,
+      mySignatureType:255,   
       tabs: [
+        {
+          name: 'contract_code_overview_account',
+          id: 'account_title'
+        },
+        {
+          name: 'tokens',
+          id: 'account_tokens'
+        },
+        {
+          name: 'account_tags_list',
+          id: 'account_tags'
+        },
+        {
+          name: 'my_trading_pairs',
+          id: 'account_my_trading_pairs'
+        },
+        {
+          name: 'transactions',
+          id: 'account_transactions'
+        },
+        {
+          name: 'power',
+          id: 'tronPower'
+        },
+        {
+          name: 'muti_sign',
+          id: 'tronMultisign'
+        },
+        {
+          name: 'Super Representatives',
+          id: 'account_Super_Representatives'
+        },
+
+      ],
+      defaultTabs: [
         {
           name: 'contract_code_overview_account',
           id: 'account_title'
@@ -277,7 +312,11 @@ export default class Account extends Component {
           this.getScrollsIds()
         })
       }else{
-        this.getScrollsIds()
+        this.setState({
+          tabs:this.state.defaultTabs
+        },()=>{
+          this.getScrollsIds()
+        })
       }
       
       
@@ -327,6 +366,17 @@ export default class Account extends Component {
             this.getSRBrokerage();
 
         //}
+      }
+
+      // mainnet and dappchain different tabs
+      if(!IS_MAINNET){
+        this.setState({
+          tabs:this.state.tabsSunNet
+        },()=>{
+          this.getScrollsIds()
+        })
+      }else{
+        this.getScrollsIds()
       }
 
     }
@@ -2129,16 +2179,17 @@ export default class Account extends Component {
 
     onScrollEvent(linkIds) {
       const viewPortHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-  
       let number = 200 
       if (linkIds.length) {
-        if( viewPortHeight < 600 ){
+        if(viewPortHeight < 400){
+          number = 150
+        }else if( viewPortHeight < 600 ){
           number = 200
         }else{
           linkIds.length > 8 ? number = 350 : number = 400;
         }
+        console.log(11,number,viewPortHeight)
         
-        console.log(123,number,viewPortHeight)
         linkIds.forEach((item) => {
           const el = $('#' + item.id).get(0);
           const top = el && el.getBoundingClientRect() && el.getBoundingClientRect().top
@@ -2176,10 +2227,11 @@ export default class Account extends Component {
     }
 
     hasToken20List(val){
-      let {tabs,tabsHasToken} = this.state
+      let {tabs,defaultTabs,tabsHasToken} = this.state
+      
       this.setState({
         hasToken20:val && val>0,
-        tabs:val ? tabsHasToken : tabs
+        tabs:val ? tabsHasToken : defaultTabs
       },()=>{
         window.onscroll = null
         this.getScrollsIds()

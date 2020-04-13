@@ -20,12 +20,19 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/editor.worker.js.gz"
   },
   {
-    "revision": "9eecffa8406cd1e005057f8241121a63",
+    "revision": "7848574f78c5bad0bb274b0ac0908175",
     "url": "/index.html"
   },
   {
-    "revision": "c014e33ae9ab540edc8365df4ca39c79",
+    "revision": "8e1a83f8835e8e6f31e98f34c27dc373",
     "url": "/index.html.gz"
+  },
+  {
+    "url": "/precache-manifest.4197f7d31a04f6945ff24884f224621c.js"
+  },
+  {
+    "revision": "04f6dfbcbe82a6f5aa38f677d5f82306",
+    "url": "/service-worker.js"
   },
   {
     "revision": "4a6d3a4a121473d64989",
@@ -44,7 +51,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/css/79.bd022918.chunk.css.gz"
   },
   {
-    "revision": "70618b8b5d7b3727662a",
+    "revision": "01a90029bd6b29713f15",
     "url": "/static/css/Account.f62c56b5.chunk.css"
   },
   {
@@ -332,12 +339,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/About.66d69c34.chunk.js.gz"
   },
   {
-    "revision": "70618b8b5d7b3727662a",
-    "url": "/static/js/Account.e4735bab.chunk.js"
+    "revision": "01a90029bd6b29713f15",
+    "url": "/static/js/Account.4e0084fb.chunk.js"
   },
   {
-    "revision": "3fe6b96b71b906b512ccca261093f771",
-    "url": "/static/js/Account.e4735bab.chunk.js.gz"
+    "revision": "9bac6351a42cf04e31e81cb329a3d9d8",
+    "url": "/static/js/Account.4e0084fb.chunk.js.gz"
   },
   {
     "revision": "c3b8616f38eb9c285e31",
@@ -884,12 +891,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/main.cf241b84.chunk.js.gz"
   },
   {
-    "revision": "891097085c9f18cdab01",
-    "url": "/static/js/runtime~main.0a20fbfa.js"
+    "revision": "a605562efa1765f88fc3",
+    "url": "/static/js/runtime~main.188fc08c.js"
   },
   {
-    "revision": "b6659289a5d37e097e22c011538069db",
-    "url": "/static/js/runtime~main.0a20fbfa.js.gz"
+    "revision": "f1399be537d0b61767008ebd6490c486",
+    "url": "/static/js/runtime~main.188fc08c.js.gz"
   },
   {
     "revision": "8ad2ef29191592ceb7b4bafbeac0e4cc",
