@@ -27,4 +27,6 @@ export const lang20Q2 = {
    index_page_nav_more_support:'کمک پشتیبانی کنید',
    index_page_nav_more_guide:'راهنمای تازه کار',
    index_page_nav_more_service:'خدمات',
+   index_page_price_loading:'Loading',
+   index_page_price_time_out:'Time out',
 }

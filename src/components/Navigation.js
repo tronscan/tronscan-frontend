@@ -85,6 +85,7 @@ class Navigation extends React.Component {
       drawerVisible:false,//draw is visible
       currentActive:3,
       percent_change_24h:0,
+      USD_Price:0,
       testNetAry: [
         "testnet",
         {
@@ -168,12 +169,16 @@ class Navigation extends React.Component {
       );
       if (dataEurObj) {
         let percent_change_24h = dataEurObj.TRX.quote.USD.percent_change_24h.toFixed(2) || 0;
+        let USD_Price = parseFloat(dataEurObj.TRX.quote.USD.price)
         this.setState({
-          percent_change_24h
+          percent_change_24h,
+          USD_Price
         });
       } else{
+       
         this.setState({
-          percent_change_24h:0
+          percent_change_24h:0,
+          USD_Price:0
         });
       }
      
@@ -1071,7 +1076,7 @@ class Navigation extends React.Component {
       syncStatus,
       walletType: { type },
     } = this.props;
-    let {search, popup, notifications, announcement, announId, annountime, searchResults, selectedNet,drawerVisible,currentActive,percent_change_24h,testNetAry } = this.state;
+    let {search, popup, notifications, announcement, announId, annountime, searchResults, selectedNet,drawerVisible,currentActive,percent_change_24h,USD_Price,testNetAry } = this.state;
     let activeComponent = this.getActiveComponent();
     const isShowSideChain = !type || (type && IS_SUNNET);
     let IsRepresentative = localStorage.getItem('representative')
@@ -1110,6 +1115,7 @@ class Navigation extends React.Component {
                               currency="USD"
                               source="home"
                               showCurreny={true}
+                              currentPrice={USD_Price}
                               priceChage={percent_change_24h}
                             />
                           </span>

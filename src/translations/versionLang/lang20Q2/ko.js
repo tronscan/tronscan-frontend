@@ -26,4 +26,6 @@ export const lang20Q2 = {
     index_page_nav_more_support:'도움 및 지원',
     index_page_nav_more_guide:'초보자 가이드',
     index_page_nav_more_service:'서비스',
+    index_page_price_loading:'Loading',
+    index_page_price_time_out:'Time out',
 }

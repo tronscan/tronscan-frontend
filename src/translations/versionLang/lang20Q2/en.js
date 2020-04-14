@@ -26,4 +26,6 @@ export const lang20Q2 = {
     index_page_nav_more_support:'SUPPORT&HELP',
     index_page_nav_more_guide:"BEGINNER'S GUIDE",
     index_page_nav_more_service:'SERVICE',
+    index_page_price_loading:'Loading',
+    index_page_price_time_out:'Time out',
 }

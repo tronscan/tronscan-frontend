@@ -26,4 +26,6 @@ export const lang20Q2 = {
     index_page_nav_more_support:'الدعم والمساعدة',
     index_page_nav_more_guide:"دليل المبتدئ",
     index_page_nav_more_service:'الخدمة',
+    index_page_price_loading:'Loading',
+    index_page_price_time_out:'Time out',
 }

@@ -27,6 +27,9 @@ export const lang20Q2 = {
     index_page_nav_more_support:'支持与帮助',
     index_page_nav_more_guide:'新手引导',
     index_page_nav_more_service:'周边服务',
+    index_page_price_loading:'加载中',
+    index_page_price_time_out:'请求超时',
+
 
 
 }

@@ -4,6 +4,7 @@ import xhr from "axios/index";
 import { FormattedNumber,injectIntl } from "react-intl";
 import { Tooltip } from "reactstrap";
 import { alpha } from "../../utils/str";
+import {tu} from "../../utils/i18n"
 import { connect } from "react-redux";
 import { ONE_TRX, API_URL } from "../../constants";
 import Lockr from "lockr";
@@ -27,7 +28,8 @@ class PriceProviderCmp extends React.PureComponent {
       },
       priceShown: props.activeCurrency || "TRX",
       currencies: {},
-      activePrice: 1
+      activePrice: 1,
+      isLoading:false
     };
 
     for (let currency of props.currencies) {
@@ -43,6 +45,9 @@ class PriceProviderCmp extends React.PureComponent {
   }
 
   async loadPrices() {
+    this.setState({
+      isLoading:true
+    })
     var dataEur = Lockr.get("dataEur");
     var dataEth = Lockr.get("dataEth");
     // old api https://api.coinmarketcap.com/v1/ticker/bittorrent/?convert=EUR
@@ -120,7 +125,8 @@ class PriceProviderCmp extends React.PureComponent {
 
     this.setState(state => ({
       prices: newPrices,
-      activePrice: newPrices[state.priceShown.toUpperCase()]
+      activePrice: newPrices[state.priceShown.toUpperCase()],
+      isLoading:false
     }));
   }
 
@@ -186,6 +192,7 @@ export class TRXPrice extends React.PureComponent {
       currency = "",
       showCurreny = true,
       showPopup = true,
+      currentPrice = 0,
       priceChage = 0,
       ...props
     } = this.props;
@@ -281,27 +288,37 @@ export class TRXPrice extends React.PureComponent {
                         onMouseOut={() => this.setState({ open: false })}
                         {...props}
                       >
-                        <span className="currentTrxPirce">{value} </span>
-                        <span className="currentCurrency">
-                          {showCurreny &&
-                            (currency.toUpperCase() ||
-                              priceValues.priceShown.toUpperCase())}{" "}
-                        </span>
-                        <span
-                          className={
-                            Number(priceChage) > 0 ? "greenPrice " : "redPrice "
-                          }
-                          style={{ display: "inline-block" }}
-                        >
-                          {Number(priceChage) === 0 ? (
-                            <span>({priceChage}%)</span>
-                          ) : (
-                            <span>
-                              ({Number(priceChage) > 0 ? "+" : ""}
-                              {priceChage}%)
+                        {
+                          priceValues.isLoading?
+                          <span className="currentTrxPirce">
+                             {tu("index_page_price_loading")}
+                          </span>
+                          :
+                          <span>
+                            <span className="currentTrxPirce">{value} </span>
+                            <span className="currentCurrency">
+                              {showCurreny &&
+                                (currency.toUpperCase() ||
+                                  priceValues.priceShown.toUpperCase())}{" "}
                             </span>
-                          )}
-                        </span>
+                            <span
+                              className={
+                                Number(priceChage) > 0 ? "greenPrice " : "redPrice "
+                              }
+                              style={{ display: "inline-block" }}
+                            >
+                              {Number(priceChage) === 0 ? (
+                                <span>({priceChage}%)</span>
+                              ) : (
+                                <span>
+                                  ({Number(priceChage) > 0 ? "+" : ""}
+                                  {priceChage}%)
+                                </span>
+                              )}
+                            </span>
+                          </span>
+                        }
+         
                       </span>
                     )}
                   </FormattedNumber>

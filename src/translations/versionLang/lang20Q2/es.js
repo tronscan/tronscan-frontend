@@ -27,5 +27,7 @@ export const lang20Q2 = {
     index_page_nav_more_support:'Ayuda de apoyo',
     index_page_nav_more_guide:'Guía novato',
     index_page_nav_more_service:'Servicio',
+    index_page_price_loading:'Loading',
+    index_page_price_time_out:'Time out',
 
 }
