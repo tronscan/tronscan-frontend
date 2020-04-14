@@ -328,5 +328,6 @@ export const lang20Q1 = {
   use_TRONlink_or_private_key :"Please login to use this function via TRONlink or private key",
   get_usdj:'получать USDJ',
   pledge_to_get_USDJ:'Pledge to get USDJ',
-
+  fill_a_valid_ledger_note:'Please confirm that the Transactions Data option in the ledger settings is allowed, otherwise you cannot send notes',
+  enter_up_to_50_characters:'Enter up to 50 characters',
 };

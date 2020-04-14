@@ -244,7 +244,7 @@ function TriggerContract({contract,intl}){
                 </div>
                 <div className="flex1">
                   <div className="d-flex content_item">
-                    {decodeURIComponent(contract.contract_note || "")}
+                    {contract.contract_note || ""}
                   </div>
                 </div>
             </div>
@@ -445,7 +445,7 @@ function TriggerContract({contract,intl}){
                         {tu("note")}
                       </div>
                       <div className="flex1">
-                        {decodeURIComponent(contract.contract_note || "")}
+                        {contract.contract_note || ""}
                       </div>
                     </div>}      
                   </div>

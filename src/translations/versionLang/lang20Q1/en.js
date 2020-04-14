@@ -311,5 +311,6 @@ export const lang20Q1 = {
   account_address_total_balance_tip:"Sum of the value of all tokens in the account",
   get_usdj:'Obtain USDJ',
   pledge_to_get_USDJ:'Pledge to get USDJ',
-
+  fill_a_valid_ledger_note:'Please confirm that the Transactions Data option in the ledger settings is allowed, otherwise you cannot send notes',
+  enter_up_to_50_characters:'Enter up to 50 characters',
 };

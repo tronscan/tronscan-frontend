@@ -326,4 +326,7 @@ export const lang20Q1 = {
 
   get_usdj:'获取USDJ',
   pledge_to_get_USDJ:'质押获取USDJ',
+
+  fill_a_valid_ledger_note:'请确认ledger设置里的Transactions Data选项处于允许状态，否则无法发送备注',
+  enter_up_to_50_characters:'最大输入50个字符',
 };
