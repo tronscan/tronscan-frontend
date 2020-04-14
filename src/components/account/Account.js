@@ -2188,7 +2188,6 @@ export default class Account extends Component {
         }else{
           linkIds.length > 8 ? number = 350 : number = 400;
         }
-        console.log(11,number,viewPortHeight)
         
         linkIds.forEach((item) => {
           const el = $('#' + item.id).get(0);

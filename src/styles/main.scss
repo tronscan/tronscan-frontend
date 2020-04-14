@@ -5417,9 +5417,12 @@ h5 {
       li{
         min-width: 0;
         padding:0 0.5rem;
-        // a:hover span{
-        //   color:#999;
-        // }
+        a:hover span{
+          color:#999;
+        }
+        a.active span{
+          color: #C23631
+        }
       }
     }
   }
