@@ -29,9 +29,11 @@ class Tabs extends Component {
           zIndex: 10,
           background: "#fff",
           borderBottom: "none",
-          marginBottom: "10px"
+          marginBottom: "10px",
+          overflow:'scroll'
         }}
       >
+        <div>
         <ul className="nav nav-tabs card-header-tabs navbar-nav">
           {Object.values(tabs).map(tab => (
             <li className="nav-item scroll-li" key={tab.id}>
@@ -51,7 +53,9 @@ class Tabs extends Component {
             </li>
           ))}
         </ul>
-      </nav>
+      
+        </div>
+     </nav>
     );
   }
 }

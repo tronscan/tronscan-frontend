@@ -5413,7 +5413,8 @@ h5 {
     ul{
       width:100%;
       display: flex;
-      flex-direction: row;
+      flex-flow: row nowrap;
+      -webkit-flex-flow:row nowrap;
       li{
         min-width: 0;
         padding:0 0.5rem;

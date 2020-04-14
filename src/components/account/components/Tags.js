@@ -146,7 +146,7 @@ class Tags extends Component {
         key: "size",
         align: "left",
         className: "ant_table",
-        width: "15%",
+        width: "30%",
         render: (text, record, index) => {
           return (
             <span>
