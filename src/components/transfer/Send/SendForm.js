@@ -862,9 +862,12 @@ class SendForm extends React.Component {
                     placeholder={this.props.wallet.type === "ACCOUNT_LEDGER"?intl.formatMessage({id: "enter_up_to_50_characters"}):''}
                     maxLength={this.props.wallet.type === "ACCOUNT_LEDGER"?50:1000000}
                 />
-                <div className="ledger-note-invalid">
+                {
+                  this.props.wallet.type === "ACCOUNT_LEDGER"?<div className="ledger-note-invalid">
                   {tu("fill_a_valid_ledger_note")}
-                </div>
+                </div>:''
+                }
+                
               </div>
             </div> 
           }         
