@@ -316,6 +316,9 @@ class Footer extends Component {
                           </HrefLink>
                         </li>
                         <li className="p-2">
+                          <HrefLink href="https://tronlending.org/?utm_source=TS">TRONLENDING</HrefLink>
+                        </li>
+                        <li className="p-2">
                           <HrefLink href="https://tron.app">DApp House</HrefLink>
                         </li>
                       </ul>

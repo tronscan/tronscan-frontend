@@ -3,6 +3,9 @@ import {
     lang19Q4
 } from './versionLang/lang19Q4/ar19Q4'; /* 2019Q4 */
 import {lang20Q1} from './versionLang/lang20Q1/ar';/* 2020Q1 */
+import {
+  lang20Q2
+} from './versionLang/lang20Q2/ar'; /* 2020Q2 */
 export const messages = {
     /*
   ##################################################################################
@@ -2003,7 +2006,7 @@ export const messages = {
   "footer_fellow_us": "Follow Us",
   "footer_developer_resources": "Developer Resources",
   "footer_support_center": "Support Center",
-  "footer_tron_network": "TRON",
+  "footer_tron_network": "Tron.network",
   "login_privatekey_warn": "للحفاظ على أمان حسابك يرجى الاحتفاظ بمفتاحك الخاص في حالة فقد الأصول الخاصة بك ، ويوصى باستخدام ",
   "login_privatekey_warn_safe": "  لتسجيل الدخول الآمن.",
   "updata_token_info": "تحديث بيانات الرموز",
@@ -2459,4 +2462,5 @@ export const messages = {
    "address_freeze_other":"تجميد إلى حسابات الآخرين",
    ...lang19Q4,
    ...lang20Q1,
+   ...lang20Q2
 };

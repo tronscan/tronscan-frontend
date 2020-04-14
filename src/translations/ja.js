@@ -5,6 +5,10 @@ import {
 import {
   lang20Q1
 } from './versionLang/lang20Q1/ja'; /* 2020Q1 */
+import {
+  lang20Q2
+} from './versionLang/lang20Q2/ja'; /* 2020Q2 */
+
 export const messages = {
     /*
   ##################################################################################
@@ -2016,7 +2020,7 @@ export const messages = {
   "footer_fellow_us": "Follow Us",
   "footer_developer_resources": "Developer Resources",
   "footer_support_center": "Support Center",
-  "footer_tron_network": "TRON",
+  "footer_tron_network": "Tron.network",
   "login_privatekey_warn": "アカウントアセットの安全を守るため、紛失しないように、秘密鍵を大事に保存してください。",
   "login_privatekey_warn_safe": "でログインをお薦めします。",
   "token_does_not_support_exchange": "Token doesn't support trading now",
@@ -2473,5 +2477,6 @@ export const messages = {
 "address_freeze_owner":"自分に固定する",
 "address_freeze_other":"他人に固定する",
 ...lang19Q4,
-...lang20Q1
+...lang20Q1,
+...lang20Q2
 }
