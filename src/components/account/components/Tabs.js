@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component,Fragment } from "react";
 import { tu } from "../../../utils/i18n";
 import $ from "jquery";
 
@@ -19,7 +19,7 @@ class Tabs extends Component {
     }
   };
   render() {
-    const { tabs, scrollsId } = this.props;
+    const { tabs, scrollsId,intl } = this.props;
     return (
       <nav
         className="card-header list-style-body-scroll__header navbar navbar-expand-sm fixed-top account-owner"
@@ -45,7 +45,7 @@ class Tabs extends Component {
                 key={tab.id}
                 onClick={() => this.scrollToAnchorTab(tab.id)}
               >
-                {tu(tab.name)}
+                {tab.id == 'tronPower' ? <span>TRON{tu(tab.name)}</span> : tu(tab.name)}
               </a>
             </li>
           ))}

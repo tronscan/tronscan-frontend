@@ -340,6 +340,18 @@ export default class Account extends Component {
         })
     }
     if (((prevProps.account.isLoggedIn !== account.isLoggedIn) && account.isLoggedIn) || ((prevProps.account.address !== account.address) && account.isLoggedIn)) {
+      
+      // mainnet and dappchain different tabs
+      if(!IS_MAINNET){
+        this.setState({
+          tabs:this.state.tabsSunNet
+        },()=>{
+          this.getScrollsIds()
+        })
+      }else{
+          this.getScrollsIds()
+      }
+
       this.setState({isTronLink: Lockr.get("islogin")});
       this.reloadTokens();
       this.loadAccount();
@@ -368,16 +380,7 @@ export default class Account extends Component {
         //}
       }
 
-      // mainnet and dappchain different tabs
-      if(!IS_MAINNET){
-        this.setState({
-          tabs:this.state.tabsSunNet
-        },()=>{
-          this.getScrollsIds()
-        })
-      }else{
-        this.getScrollsIds()
-      }
+      
 
     }
 
@@ -462,7 +465,7 @@ export default class Account extends Component {
     }
 
     const {token} =  await Client.getIssuedAsset(account.address)
-
+  
     if(token){
       const { rangeTotal } = await Client.getAssetTransfers({limit: 0, start: 0, issueAddress: account.address})
       token.rangeTotal =  rangeTotal
@@ -2179,26 +2182,14 @@ export default class Account extends Component {
 
     onScrollEvent(linkIds) {
       const viewPortHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-      let number = 200 
+
       if (linkIds.length) {
-        if(viewPortHeight < 400){
-          number = 150
-        }else if( viewPortHeight < 600 ){
-          number = 200
-        }else if(viewPortHeight < 800){
-          // linkIds.length > 8 ? number = 350 : number = 400;
-          number = 400
-        }else{
-          linkIds.length > 8 ? number = 550 : number = 550;
-        }
-      
-        console.log(123,number,viewPortHeight,viewPortHeight-number)
         
         linkIds.forEach((item) => {
           const el = $('#' + item.id).get(0);
           const top = el && el.getBoundingClientRect() && el.getBoundingClientRect().top
           
-          if (top <= (viewPortHeight - number)) {
+          if ((top <= 200 && item.id != 'account_Super_Representatives') || (item.id == 'account_Super_Representatives' && top <= viewPortHeight - 400)) {
             // this.setState({
             //   scrollsId:item.id
             // })
@@ -2209,7 +2200,6 @@ export default class Account extends Component {
                 }
               });
             }
-          
         });
       }
     }
@@ -2233,7 +2223,6 @@ export default class Account extends Component {
 
     hasToken20List(val){
       let {tabs,defaultTabs,tabsHasToken} = this.state
-      
       this.setState({
         hasToken20:val && val>0,
         tabs:val ? tabsHasToken : defaultTabs
