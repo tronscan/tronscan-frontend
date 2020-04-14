@@ -317,6 +317,7 @@ export const lang20Q1 = {
   account_tags_add:'Add',
   account_tags_desc:'Tag feature: you can attach private tags to accounts so as to identify them more easily',
   account_tags_number:'{total} accounts in total',
+  account_tags_number_one:'{total} account in total',
   account_tags_table_1:'tag',
   account_tags_table_2:'Note',
   account_tags_add_title:'Add a tag',
@@ -324,6 +325,7 @@ export const lang20Q1 = {
   account_tags_add_success:'The tag has been successfully added',
   account_tags_edit_success:'The tag has been successfully edited',
   account_tags_number_rec:'{number} accounts mark',
+  account_tags_number_rec_one:'{number} account mark',
   account_tags_tip:'Private tag. Only visible to yourself.',
 
   account_tags_edit: "edit",

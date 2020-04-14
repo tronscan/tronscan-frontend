@@ -11,6 +11,7 @@ class Tabs extends Component {
   componentDidUpdate() {}
 
   scrollToAnchorTab = anchorName => {
+    let {tabs} = this.props;
     if (anchorName || anchorName === 0) {
       const anchorElement = document.getElementById(anchorName);
       let offsetTop = anchorElement.offsetTop;

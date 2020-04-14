@@ -189,7 +189,7 @@ class TagForm extends React.Component {
     let isAccountValid =
       target_address.length !== 0 && isAddressValid(target_address);
     let isValidTag = tag.length != 0 && this.isValidTag(tag);
-
+    console.log(111,intl)
     return (
       <div className="send-form tag-form">
         {modal}
@@ -260,7 +260,10 @@ class TagForm extends React.Component {
                 >
                   <span className="tag-name">{item.tag}</span>
                   <b className="ml-1">
-                    {intl.formatMessage(
+                    {(item.number == 1 && intl.locale == 'en') ?  intl.formatMessage(
+                      { id: "account_tags_number_rec_one" },
+                      { number: item.number }
+                    ) : intl.formatMessage(
                       { id: "account_tags_number_rec" },
                       { number: item.number }
                     )}

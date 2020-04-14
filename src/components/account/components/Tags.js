@@ -269,10 +269,13 @@ class Tags extends Component {
     let { page, total, pageSize, loading, data, popup } = this.state;
     let column = this.customizedColumn();
     let { intl } = this.props;
-    let tableInfo = intl.formatMessage(
-      { id: "account_tags_number" },
-      { total: total }
-    );
+    let tableInfo =
+      total == 1 && intl.locale == "en"
+        ? intl.formatMessage(
+            { id: "account_tags_number_one" },
+            { total: total }
+          )
+        : intl.formatMessage({ id: "account_tags_number" }, { total: total });
 
     return (
       <div className="card tags">
