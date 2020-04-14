@@ -1,14 +1,8 @@
 import React, { Component, Fragment } from "react";
 import { tu } from "../../../utils/i18n";
 import { upperFirst } from "lodash";
-import { BlockNumberLink } from "../../common/Links";
-import {
-  FormattedNumber,
-  injectIntl,
-  FormattedDate,
-  FormattedTime
-} from "react-intl";
-import { Table, Input, Button, Icon } from "antd";
+import { injectIntl } from "react-intl";
+import { Table, Icon, Tooltip } from "antd";
 import { TronLoader } from "../../common/loaders";
 import AddTag from "./AddTag";
 import ApiClientAccount from "../../../services/accountApi";
@@ -28,10 +22,10 @@ class Tags extends Component {
         showSizeChanger: true,
         defaultPageSize: 20,
         total: 0,
-        data: []
       },
+      data: [],
       popup: null,
-      page: 1
+      page: 1,
     };
   }
   componentDidMount() {
@@ -51,20 +45,28 @@ class Tags extends Component {
     const params = {
       user_address: address,
       limit: pageSize,
-      start: (page - 1) * pageSize
+      start: (page - 1) * pageSize,
     };
 
     let { data } = await ApiClientAccount.getTagsList(params);
+    let { user_tags, contract_map, total } = data;
+    user_tags.forEach((item) => {
+      if (contract_map) {
+        contract_map[item.targetAddress]
+          ? (item.ownerIsContract = true)
+          : (item.ownerIsContract = false);
+      }
+    });
 
     this.setState({
       page,
-      data: data.user_tags,
-      total: data.total,
+      data: user_tags,
+      total: total,
       loading: false,
       pagination: {
         ...this.state.pagination,
-        total: data.total
-      }
+        total: data.total,
+      },
     });
   };
 
@@ -85,10 +87,35 @@ class Tags extends Component {
               {record.addressTag && (
                 <Link to={`/address/${text}`}>{record.addressTag}</Link>
               )}
-              <AddressLink address={text}>{text}</AddressLink>
+              {record.ownerIsContract ? (
+                <span className="d-flex">
+                  <Tooltip
+                    placement="top"
+                    title={upperFirst(
+                      intl.formatMessage({
+                        id: "transfersDetailContractAddress",
+                      })
+                    )}
+                  >
+                    <Icon
+                      type="file-text"
+                      style={{
+                        verticalAlign: 0,
+                        color: "#77838f",
+                        lineHeight: 1.4,
+                      }}
+                    />
+                  </Tooltip>
+                  <AddressLink address={text} isContract={true}>
+                    {text}
+                  </AddressLink>
+                </span>
+              ) : (
+                <AddressLink address={text}>{text}</AddressLink>
+              )}
             </div>
           );
-        }
+        },
       },
 
       {
@@ -100,7 +127,7 @@ class Tags extends Component {
         width: "20%",
         render: (text, record, index) => {
           return <div className="ellipsis tag-len">{text}</div>;
-        }
+        },
       },
       {
         title: upperFirst(intl.formatMessage({ id: "account_tags_table_2" })),
@@ -111,7 +138,7 @@ class Tags extends Component {
         width: "35%",
         render: (text, record, index) => {
           return <div className="ellipsis desc-len">{text}</div>;
-        }
+        },
       },
       {
         title: upperFirst(intl.formatMessage({ id: "proposal_action" })),
@@ -131,7 +158,7 @@ class Tags extends Component {
               </button>
               <button
                 className="btn btn-md btn-danger"
-                onClick={targetAddress =>
+                onClick={(targetAddress) =>
                   this.deleteTagModal(record.targetAddress)
                 }
               >
@@ -139,8 +166,8 @@ class Tags extends Component {
               </button>
             </span>
           );
-        }
-      }
+        },
+      },
     ];
     return column;
   };
@@ -148,15 +175,12 @@ class Tags extends Component {
   addTagsModal = () => {
     this.setState({
       popup: (
-        <AddTag
-          onClose={this.hideModal}
-          onloadTableP={this.onloadTable}
-        />
-      )
+        <AddTag onClose={this.hideModal} onloadTableP={this.onloadTable} />
+      ),
     });
   };
 
-  editTagModal = record => {
+  editTagModal = (record) => {
     this.setState({
       popup: (
         <AddTag
@@ -164,7 +188,7 @@ class Tags extends Component {
           targetAddress={record.targetAddress}
           onloadTableP={this.onloadTable}
         />
-      )
+      ),
     });
   };
 
@@ -175,7 +199,7 @@ class Tags extends Component {
     }, 1000);
   };
 
-  deleteTagModal = targetAddress => {
+  deleteTagModal = (targetAddress) => {
     this.setState({
       deleteTargetAddress: targetAddress,
       popup: (
@@ -197,7 +221,7 @@ class Tags extends Component {
             ></div>
           </div>
         </SweetAlert>
-      )
+      ),
     });
   };
 
@@ -207,7 +231,7 @@ class Tags extends Component {
     let { deleteTargetAddress, page, pagination } = this.state;
     let obj = {
       user_address: address,
-      target_address: deleteTargetAddress
+      target_address: deleteTargetAddress,
     };
 
     let { retCode, retMsg } = await ApiClientAccount.removeTag(obj);
@@ -219,20 +243,20 @@ class Tags extends Component {
             title={tu("account_tags_delete_succss")}
             onConfirm={this.hideModal}
           />
-        )
+        ),
       });
 
       setTimeout(() => {
         this.load(page, pagination.pageSize);
         this.setState({
-          popup: null
+          popup: null,
         });
       }, 1000);
     } else {
       this.setState({
         popup: (
           <SweetAlert success title={retMsg[0]} onConfirm={this.hideModal} />
-        )
+        ),
       });
     }
   };

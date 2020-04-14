@@ -2185,9 +2185,14 @@ export default class Account extends Component {
           number = 150
         }else if( viewPortHeight < 600 ){
           number = 200
+        }else if(viewPortHeight < 800){
+          // linkIds.length > 8 ? number = 350 : number = 400;
+          number = 400
         }else{
-          linkIds.length > 8 ? number = 350 : number = 400;
+          linkIds.length > 8 ? number = 550 : number = 550;
         }
+      
+        console.log(123,number,viewPortHeight,viewPortHeight-number)
         
         linkIds.forEach((item) => {
           const el = $('#' + item.id).get(0);
@@ -2204,6 +2209,7 @@ export default class Account extends Component {
                 }
               });
             }
+          
         });
       }
     }
