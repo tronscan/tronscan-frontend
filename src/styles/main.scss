@@ -5415,14 +5415,21 @@ h5 {
       display: flex;
       flex-flow: row nowrap;
       -webkit-flex-flow:row nowrap;
+      line-height: 50px;
       li{
-        min-width: 0;
-        padding:0 0.5rem;
+        min-width: auto;
+        display: block; 
+        white-space: nowrap;
+        line-height: 50px;
         a:hover span{
           color:#999;
         }
         a.active span{
           color: #C23631
+        }
+        a{
+          padding:0 0.5rem;
+          line-height: 50px;
         }
       }
     }
