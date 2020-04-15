@@ -871,7 +871,8 @@ class Token20Detail extends React.Component {
                           {token.name} ({token.symbol})
                           { (token.contract_address == CONTRACT_ADDRESS_USDJ || token.contract_address == CONTRACT_ADDRESS_USDJ_TESTNET) && <section className="to-USDj"><HrefLink href="https://www.just.network"><i className="fas fa-coins ml-2 mr-1"></i>{intl.formatMessage({id:'get_usdj'})}</HrefLink></section>}
                         </h5>
-                        <p className="card-text">{token.token_desc}</p>
+                        <p className="card-text" style={{marginBottom: 0}}>{token.token_desc}</p>
+                        { token.contract_address == CONTRACT_ADDRESS_USDJ && <div className="to-USDj" style={{marginTop: '.5rem'}}><HrefLink href="https://tronscanorg.zendesk.com/hc/en-us/articles/360041737852-Step-by-step-instructions-on-how-to-generate-USDJ-on-JUST-CDP"><i className="fas fa-book mx-1"></i>{intl.formatMessage({id:'get_usdj_guide'})}</HrefLink></div>}
                       </div>
                       <div className="token-sign">TRC20</div>
                       {/*<div className="ml-auto">*/}

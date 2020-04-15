@@ -84,7 +84,7 @@ export const ACCOUNT_TRONLINK = "ACCOUNT_TRONLINK";
  * USDJ = 1 USD
  */
 export const ONE_USDJ = 1;
-export const ONE_JST = 0.00202;
+export const ONE_JST = 0.01;
 export const TOKEN_ID_BTT = "1002000";
 export const CONTRACT_ADDRESS_USDT = "TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t";
 export const CONTRACT_ADDRESS_WIN = "TLa2f6VPqDgRE67v1736s7bJ8Ray5wYjU7";
