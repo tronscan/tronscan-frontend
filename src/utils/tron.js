@@ -10,13 +10,12 @@ export const tronAddresses = [
 ];
 
 export async function transactionResultManager(transaction, tronWeb) {
-  console.log('transaction',transaction)
-  console.log('tronWeb-ledger=======',tronWeb)
+  
   const signedTransaction = await tronWeb.trx.sign(transaction, tronWeb.defaultPrivateKey).catch(e => {
     console.log(e.toString());
     return false;
   });
-  console.log('signedTransaction',signedTransaction)
+  
   if (signedTransaction) {
     const broadcast = await tronWeb.trx.sendRawTransaction(signedTransaction);
     if (!broadcast.result) {
@@ -45,12 +44,11 @@ export async function transactionResultManagerByLedger(transaction, tronWeb) {
 
 export async function transactionResultManagerSun(transaction, sunWeb) {
     //sign((transaction = false), (privateKey = this.sidechain.defaultPrivateKey), (useTronHeader = true), (multisig = false));
-    console.log('transaction========1111',transaction)
+   
     const signedTransaction = await sunWeb.sidechain.trx.sign(transaction, sunWeb.sidechain.defaultPrivateKey).catch(e => {
         return false;
     });
-    console.log('sunWeb========',sunWeb)
-    console.log('signedTransaction========2222',signedTransaction)
+  
     if (signedTransaction) {
         const broadcast = await sunWeb.sidechain.trx.sendRawTransaction(signedTransaction);
         if (!broadcast.result) {
