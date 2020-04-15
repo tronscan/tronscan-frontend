@@ -312,6 +312,38 @@ export const lang20Q1 = {
   account_address_total_balance_tip:"계정에있는 모든 토큰의 가치 합계",
   get_usdj:'얻다 USDJ',
   pledge_to_get_USDJ:'Pledge to get USDJ',
+
+  // 03-26 tag 
+  account_tags_list:'태그 목록',
+  account_tags_add:'추가',
+  account_tags_desc:'태그 기능 : 개인 태그를 계정에 연결하여 더 쉽게 식별 할 수 있습니다.',
+  account_tags_number:'총 {total} 개 계정',
+  account_tags_table_1:'꼬리표',
+  account_tags_table_2:'비고',
+  account_tags_add_title:'태그 추가',
+  account_tags_edit_title:'edit tag',
+  account_tags_add_success:'The tag has been successfully added',
+  account_tags_edit_success:'The tag has been successfully edited',
+  account_tags_number_rec:'{number} accounts mark',
+  account_tags_tip:'개인태그. 나에게만 보입니다.',
+
+  account_tags_edit: "edit",
+  account_tags_delete: "remove",
+  account_tags_delete_is: "태그를 제거하시겟습니까?",
+  account_tags_delete_succss: "태그 제거 완료",
+  account_address_name_tag:'(플랫폼 인증 태그)',
+  account_tags_address_placehold:'请输入正确的地址',
+  account_tags_tag_placehold:'태그를 입력하세요.(20자 제한)',
+  account_tags_note_placehold:'선택사항 (100자 제한)',
+  account_tags_tag_valid:'Only Chinese, English or Arabic numbers can be entered',
+  account_tags_rec:"추천 태그",
+  account_tags_my_tag:'私のタグ',
+  account_tags_my_tag_update:'업데이트',
+  account_tags_my_tag_login_show:'로그인 후 표시됨',
+  account_tags_my_tag_not_available:'Not Available',
+
+
+
   fill_a_valid_ledger_note:'Please confirm that the Transactions Data option in the ledger settings is allowed, otherwise you cannot send notes',
   enter_up_to_50_characters:'Enter up to 50 characters',
   address_token_less_than_10:'tokens with a value less than 10 TRX',

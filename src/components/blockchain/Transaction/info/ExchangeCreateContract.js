@@ -28,7 +28,6 @@ function ExchangeCreateContract({contract,intl}) {
     second_token_name
   } = contract;
   let signList = signature_addresses;
-  console.log(contract, first_token_id, first_token_name);
   return (
     <Fragment>
       <TransationTitle contractType={contractType} />

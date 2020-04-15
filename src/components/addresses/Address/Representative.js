@@ -6,17 +6,21 @@ import { QuestionMark } from "../../common/QuestionMark";
 import { TRXPrice } from "../../common/Price";
 import { HrefLink } from "../../common/Links";
 import { FormattedNumber } from "react-intl";
-import { ONE_TRX } from "../../../constants";
+import { ONE_TRX,IS_MAINNET } from "../../../constants";
 import { Tooltip, Icon } from "antd";
 import { ExternalLink } from "../../common/Links";
 import { NavLink, Route, Switch } from "react-router-dom";
 import SweetAlert from "react-bootstrap-sweetalert";
+import ApiClientAccount from "../../../services/accountApi";
 import {
   transactionResultManager,
   transactionResultManagerSun
 } from "../../../utils/tron";
 import { connect } from "react-redux";
 import { Piechart } from "../components/Piechart";
+import AddTag from "../../account/components/AddTag";
+
+let superTagInter = null
 @connect(state => {
   return {
     account: state.app.account,
@@ -28,11 +32,33 @@ class Representative extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      votingEnabled: false
+      votingEnabled: false,
+      popup:null
     };
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+  }
+
+  addTagsModal = () => {
+    let { match } = this.props;
+    this.setState({
+      popup: <AddTag onClose={this.hideModal} defaultAddress={match.params.id} onloadTableP={this.props.onloadTable} />
+    });
+  };
+
+  editTagModal = (record) => {
+    this.setState({
+      popup: <AddTag onClose={this.hideModal} targetAddress={record.targetAddress} onloadTableP={this.props.onloadTable} />
+    });
+  };
+
+
+  hideModal = () => {
+    this.setState({ popup: null });
+  };
+
+  
 
   render() {
     let {
@@ -50,8 +76,9 @@ class Representative extends React.Component {
       version,
       witnessType
     } = this.props.data;
-    let { intl, url, account, walletType } = this.props;
-    let { votingEnabled, popup } = this.state;
+    let { intl, url, account, walletType,tagData } = this.props;
+    console.log(tagData)
+    let { votingEnabled, popup, } = this.state;
     let type = "-";
     switch (witnessType) {
       case 1:
@@ -66,14 +93,44 @@ class Representative extends React.Component {
     }
 
     return (
-      <Fragment>
+      <div>
         {popup}
         <table className="table m-0 table-style">
           <tbody>
-            {/* <tr>
-              <th>{tu("type")}:</th>
-              <td>{type}</td>
-            </tr> */}
+            <tr>
+              <th>{tu("account_tags_my_tag")}:</th>
+              {
+                IS_MAINNET?
+                <td>
+                  <span>
+                      {
+                        account.isLoggedIn && walletType.isOpen?
+                        <span>
+                          {tagData&&tagData.length>0?
+                            <span>
+                              {tagData[0].tag}
+                              <span style={{color: "#C23631",marginLeft:'8px',cursor:'pointer'}} onClick={()=>this.editTagModal(tagData[0])}>
+                                {tu("account_tags_my_tag_update")}
+                              </span>
+                            </span> 
+                            :
+                            <span>
+                              {tu("account_tags_my_tag_not_available")}
+                              <span style={{color: "#C23631",marginLeft:'8px',cursor:'pointer'}}  onClick={this.addTagsModal}>
+                                {tu("account_tags_add")}
+                              </span>
+                            </span>
+                          }
+                        </span>:
+                        <span >
+                          <span>{tu("account_tags_my_tag_login_show")}</span>
+                        </span> 
+                      }
+                  </span>
+                </td>
+                :null
+              }
+            </tr>
             <tr>
               <th>{tu("name")}:</th>
               <td>{address.name || "-"}</td>
@@ -365,7 +422,7 @@ class Representative extends React.Component {
             </tr>
           </tbody>
         </table>
-      </Fragment>
+      </div>
     );
   }
   renderFrozenTokens() {
@@ -535,6 +592,7 @@ class Representative extends React.Component {
       )
     });
   }
+
   hideModal = () => {
     this.setState({ popup: null });
   };
