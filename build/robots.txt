@@ -1,5 +1,11 @@
-User-agent: *
+User-agent:*
 User-agent: Googlebot
+Allow: /
 User-agent: Googlebot-Image
+Allow: /
+User-agent: Baiduspider
+Allow: /
+User-agent: baiduspider
+Allow: /
 
 Sitemap: https://tronscan.io/sitemap.xml
