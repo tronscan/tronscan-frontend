@@ -83,7 +83,7 @@ class NavTRXPrice extends React.Component {
     const {timeoutState,isLoading,percent_change_24h,USD_Price} = this.state;
     return (
       <span>
-        <FormattedNumber value={USD_Price}>
+       
         {
           timeoutState?
               <span className="currentTrxPirce">
@@ -111,24 +111,27 @@ class NavTRXPrice extends React.Component {
                       target="_blank"
                       className="hvr-underline-from-center hvr-underline-white text-muted"
                   >
-                      <span className="currentTrxPirce">{USD_Price} </span>
-                          <span className="currentCurrency">
-                              USD
-                          </span>
-                          <span
-                          className={
-                              Number(percent_change_24h) > 0 ? "greenPrice " : "redPrice "
-                          }
-                          style={{ display: "inline-block" }}
-                          >
-                          {Number(percent_change_24h) === 0 ? (
-                              <span>({percent_change_24h}%)</span>
-                          ) : (
-                              <span>
-                              ({Number(percent_change_24h) > 0 ? "+" : ""}
-                              {percent_change_24h}%)
-                              </span>
-                          )}
+                      
+                      <span className="currentTrxPirce">
+                        <FormattedNumber value={USD_Price}></FormattedNumber>
+                      </span>
+                      <span className="currentCurrency">
+                          USD
+                      </span>
+                      <span
+                        className={
+                            Number(percent_change_24h) > 0 ? "greenPrice " : "redPrice "
+                        }
+                        style={{ display: "inline-block" }}
+                        >
+                        {Number(percent_change_24h) === 0 ? (
+                            <span>({percent_change_24h}%)</span>
+                        ) : (
+                            <span>
+                            ({Number(percent_change_24h) > 0 ? "+" : ""}
+                            {percent_change_24h}%)
+                            </span>
+                        )}
                       </span>
                   </HrefLink>
                   </Tooltip>
@@ -137,7 +140,6 @@ class NavTRXPrice extends React.Component {
               }
           </span>
         }
-       </FormattedNumber>
       </span>
     )
   }
