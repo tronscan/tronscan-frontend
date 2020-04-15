@@ -16,7 +16,7 @@ import { Tooltip, Input, Table } from "antd";
 import {HrefLink} from "../common/Links";
 const { Search } = Input;
 
-class AwardList extends React.Component {
+class AwardList extends Component {
   constructor() {
     super();
 
@@ -30,6 +30,7 @@ class AwardList extends React.Component {
               awards: 'First Prize',
               dappName:'BestDApp',
               website:'bestd.app',
+              websiteHref:'http://bestd.app',
               Introduction:'Best.dapp is a decentralized game platform based on the blockchain technology, with fairness, equality, transparency, openness and complete anonymousness.',
               bonus:'5000',
           },
@@ -38,6 +39,7 @@ class AwardList extends React.Component {
             awards: 'First Prize',
             dappName:'Lottery',
             website:'tronlott.me',
+            websiteHref:'http://tronlott.me',
             Introduction:'TRON-Lottery is the first lottery game on sunnetwork. It is based on smart contracts and is completely fair. It also supports mining, dividends and other operations. Welcome to play.',
             bonus:'5000',
         },
@@ -46,6 +48,7 @@ class AwardList extends React.Component {
             awards: 'First Prize',
             dappName:'DApp1st',
             website:'dapp1st.co',
+            websiteHref:'http://dapp1st.co',
             Introduction:'Dapp1st is a classic dice game on the blockchain.It is based on smart contracts, completely open source, and completely fair.',
             bonus:'5000',
         },
@@ -54,6 +57,7 @@ class AwardList extends React.Component {
             awards: 'Second Prize',
             dappName:'TRONSix',
             website:'tronsix.com',
+            websiteHref:'http://tronsix.com',
             Introduction:"TRONSix is a dice game that we run on the TRON sidechain. The underlying layer is based on the TRON VM's smart contract. Fair, open source, and fair.",
             bonus:'3000',
         },
@@ -62,6 +66,7 @@ class AwardList extends React.Component {
             awards: 'Second Prize',
             dappName:'Tron-Racer',
             website:'arinatycoon.com/tron-racer',
+            websiteHref:'http://arinatycoon.com/tron-racer',
             Introduction:'-',
             bonus:'3000',
         },
@@ -69,7 +74,8 @@ class AwardList extends React.Component {
             id:6,
             awards: 'Second Prize',
             dappName:'Cryptucky',
-            website:'http://www.cryptuckyderby.com',
+            website:'cryptuckyderby.com',
+            websiteHref:'http://www.cryptuckyderby.com',
             Introduction:'-',
             bonus:'3000',
         },
@@ -77,7 +83,8 @@ class AwardList extends React.Component {
             id:7,
             awards: 'Second Prize',
             dappName:'cryptoidols',
-            website:'https://www.arinahunters.com/cryptoidols',
+            website:'arinahunters.com/cryptoidols',
+            websiteHref:'https://www.arinahunters.com/cryptoidols',
             Introduction:`本游戏为A.I.美少女卡牌区块链游戏,
             玩家为偶像事务所的经纪人,
             透过招募美少女偶像(721 TOKEN),
@@ -106,6 +113,7 @@ class AwardList extends React.Component {
             awards: 'Second Prize',
             dappName:'TRON Win',
             website:'tronwin.cc',
+            websiteHref:'http://tronwin.cc',
             Introduction:"TRONWin wants to become the BIGGEST and BEST online gambling platform on TRON.  We've developed lots of DApps on different blockchain before. Mine is our first try, lots of more is coming. Have fun!",
             bonus:'3000',
         },
@@ -114,6 +122,7 @@ class AwardList extends React.Component {
             awards: 'Second Prize',
             dappName:'SpayFall',
             website:'dappz.cc',
+            websiteHref:'http://dappz.cc',
             Introduction:'SpyFall aims to become a new standard dice game run on the SUN Network.',
             bonus:'3000',
         },
@@ -121,7 +130,8 @@ class AwardList extends React.Component {
             id:10,
             awards: 'Third Prize',
             dappName:'pockernumber',
-            website:'https://tronbet.fun',
+            website:'tronbet.fun',
+            websiteHref:'https://tronbet.fun',
             Introduction:'PokerNumber is a puzzle poker game. Players can earn high returns by investing in corresponding projects.',
             bonus:'1000',
         },
@@ -130,6 +140,7 @@ class AwardList extends React.Component {
             awards: 'Third Prize',
             dappName:'sunnetwork-maze',
             website:'sunnetwork-maze.com',
+            websiteHref:'http://sunnetwork-maze.com',
             Introduction:'-',
             bonus:'1000',
         },
@@ -138,6 +149,7 @@ class AwardList extends React.Component {
             awards: 'Third Prize',
             dappName:'Poker',
             website:'tronpk.com',
+            websiteHref:'http://tronpk.com',
             Introduction:'TRON Poker is a decentralized, fair, transparent, and open game platform based on blockchain technology.It has launched a variety of blockchain games based on TRON smart contracts worldwide. The platform uses blockchain technology to provide completely fair game rules, automated revenue distribution, complete protection of player privacy, and all traceable transaction records.',
             bonus:'1000',
         },
@@ -146,6 +158,7 @@ class AwardList extends React.Component {
             awards: 'Third Prize',
             dappName:'ChineseZodiac',
             website:'tronad.cc',
+            websiteHref:'http://tronad.cc',
             Introduction:'Welcome to ChineseZodiac. The Sun Network Gaming Center.',
             bonus:'1000',
         },
@@ -154,6 +167,7 @@ class AwardList extends React.Component {
             awards: 'Third Prize',
             dappName:'CoinFlip',
             website:'troncool.com',
+            websiteHref:'http://troncool.com',
             Introduction:'Choose coin side to win the future',
             bonus:'1000',
         },
@@ -162,6 +176,7 @@ class AwardList extends React.Component {
             awards: 'Third Prize',
             dappName:'OneDice',
             website:'51bf.me',
+            websiteHref:'http://51bf.me',
             Introduction:'OneDice wants to become the BIGGEST and BEST online gambling platform on #TRX blockchain.',
             bonus:'1000',
         },
@@ -170,6 +185,7 @@ class AwardList extends React.Component {
             awards: 'Third Prize',
             dappName:'ThreeColor',
             website:'dappad.cc',
+            websiteHref:'http://dappad.cc',
             Introduction:'ThreeColor it’s a platform for decentralized games where everyone can make a real profit through games',
             bonus:'1000',
         },
@@ -178,7 +194,8 @@ class AwardList extends React.Component {
             id:17,
             awards: 'Third Prize',
             dappName:'Energy',
-            website:'https://abet.fun',
+            website:'abet.fun',
+            websiteHref:'https://abet.fun',
             Introduction:'Energy is a Tron smart contract for placing bets on our provably-fair dice game using TRX with no deposits or sign-ups.',
             bonus:'1000',
         },
@@ -187,6 +204,7 @@ class AwardList extends React.Component {
             awards: 'Third Prize',
             dappName:'ZodiacSigns',
             website:'tronfun.cc',
+            websiteHref:'http://tronfun.cc',
             Introduction:'Welcome to ZodiacSigns. The Sun Network Gaming Center',
             bonus:'1000',
         },
@@ -194,7 +212,8 @@ class AwardList extends React.Component {
             id:19,
             awards: 'Third Prize',
             dappName:'PokerSuit',
-            website:'https://trondice.xyz',
+            website:'trondice.xyz',
+            websiteHref:'https://trondice.xyz',
             Introduction:'PokerSuit is a decentralized gambling site that utilizes the official Sun Network oracle for provably fair games.',
             bonus:'1000',
         },
@@ -203,6 +222,7 @@ class AwardList extends React.Component {
             awards: 'Third Prize',
             dappName:'betNow!',
             website:'trxbet.cc',
+            websiteHref:'http://trxbet.cc',
             Introduction:'BetNow is completely developed based on TRON smart contract, fair and open and safe. A series of gameplay such as mining dividends will be launched in the future.',
             bonus:'1000',
         },
@@ -211,6 +231,7 @@ class AwardList extends React.Component {
             awards: 'Third Prize',
             dappName:'Be Fun',
             website:'befun.pw',
+            websiteHref:'http://befun.pw',
             Introduction:'-',
             bonus:'1000',
         },
@@ -218,7 +239,8 @@ class AwardList extends React.Component {
             id:22,
             awards: 'Participation Award',
             dappName:'HumanSenses',
-            website:'https://solarbet.xyz',
+            website:'solarbet.xyz',
+            websiteHref:'https://solarbet.xyz',
             Introduction:'-',
             bonus:'250',
         },
@@ -271,10 +293,48 @@ class AwardList extends React.Component {
     // this.loadAccounts();
   }
 
+  loadAccounts = async (page = 1, pageSize = 20) => {
+    const { searchCriteria, filter } = this.state;
+    this.setState({ loading: true });
+
+    let { data, total } = await Client.getUserList({
+      search: searchCriteria,
+      pageSize: pageSize,
+      page: page,
+      ...filter
+    });
+
+    data.map((item, index) => {
+      item.index = index + 1;
+      // eslint-disable-next-line
+      item.extraData = new Function("return " + item.extra)();
+    });
+    this.setState({
+      loading: false,
+      developers: data,
+      total: total,
+      pagination: {
+        ...this.state.pagination,
+        total
+      }
+    });
+  };
+
 
   onChange = (page, pageSize) => {
     this.loadAccounts(page, pageSize);
   };
+
+//   onSearchChange = searchCriteria => {
+//     this.setState(
+//       {
+//         searchCriteria: trim(searchCriteria)
+//       },
+//       () => {
+//         this.loadAccounts();
+//       }
+//     );
+//   };
 
 
 
@@ -288,6 +348,7 @@ class AwardList extends React.Component {
           title: 'ID',
           dataIndex: 'ID',
           align: 'left',
+          width:'5%',
           render: (text, record, index) => {
               return <div>{record.id}</div>
           }
@@ -298,6 +359,7 @@ class AwardList extends React.Component {
         key: "awards",
         align: "left",
         className: "ant_table",
+        width:'10%',
         render: (text, record, index) => {
           return (
             <div>
@@ -313,50 +375,49 @@ class AwardList extends React.Component {
         key: "dappName",
         align: "center",
         className: "ant_table",
+        width:'20%',
         render: (text, record, index) => {
           return (
-            <HrefLink href={record.website} target="_blank" className="text-muted">
+            <HrefLink href={record.websiteHref} target="_blank" className="text-muted">
                 <span style={{'wordBreak': 'break-all'}}>{record.dappName}</span>
             </HrefLink>
           );
         }
       },
-      {
-        title: 'Website',
-        dataIndex: "website",
-        key: "website",
-        align: "center",
-        width:'5%',
-        render: (text, record, index) => {
-          return (
-            <HrefLink href={record.website} target="_blank" className="text-muted">
-                <span className="truncate-ellipsis">{record.website}</span>
-            </HrefLink>
-          );
-        }
-      },
+      // {
+      //   title: 'Website',
+      //   dataIndex: "website",
+      //   key: "website",
+      //   align: "center",
+      //   width:'10%',
+      //   render: (text, record, index) => {
+      //     return (
+      //       <HrefLink href={record.websiteHref} target="_blank" className="text-muted">
+      //           <span style={{overflow: "hidden",whiteSpace: "nowrap",textOverflow: "ellipsis"}}>{record.website}</span>
+      //       </HrefLink>
+      //     );
+      //   }
+      // },
       {
         title: 'Introduction',
         dataIndex: "Introduction",
         key: "Introduction",
         align: "center",
-        width:'20%',
         className: "ant_table",
         render: (text, record, index) => {
           return (
             <div >
                 <Tooltip title={record.Introduction}>
-                    <div className="truncate-ellipsis">
+                    <div style={{width:'600px',overflow: "hidden",whiteSpace: "nowrap",textOverflow: "ellipsis"}}>
                         {record.Introduction}
                     </div>
                 </Tooltip>
-               
             </div>
           );
         }
       },
       {
-        title: 'Bonus',
+        title: 'Bonus(USDT)',
         dataIndex: "bonus",
         key: "bonus",
         align: "right",
@@ -376,7 +437,7 @@ class AwardList extends React.Component {
     let { total, loading, rangeTotal = 0, developers, modal } = this.state;
     let column = this.customizedColumn();
     return (
-      <div className="container header-overlap pb-3 token_black">
+      <main className="container header-overlap pb-3 token_black">
         {modal}
         {loading && (
           <div className="loading-style">
@@ -413,7 +474,7 @@ class AwardList extends React.Component {
                 onSearch={value => this.onSearchChange(value)}
               />
             </div> */}
-            <div className="card table_pos table_pos_addr table_pos_addr_data">
+            <div className="card table_pos table_pos_addr">
               <Table
                 columns={column}
                 rowKey={(record, index) => index}
@@ -436,7 +497,7 @@ class AwardList extends React.Component {
             )} */}
           </div>
         </div>
-      </div>
+      </main>
     );
   }
 }
@@ -451,4 +512,7 @@ const mapDispatchToProps = {
   loadAccounts
 };
 
-export default injectIntl(AwardList)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(injectIntl(AwardList));

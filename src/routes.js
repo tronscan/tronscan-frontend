@@ -1131,7 +1131,7 @@ export const routes = [
         },
         {
           label: "The first DApp competition",
-          path: "/help/award",
+          path: "/awards",
           icon: false,
           component: AwardListAsync,
           showInMenu: IS_MAINNET?false:true,
