@@ -695,14 +695,14 @@ export default class Home extends Component {
                     <div className="card-body pt-0">
                       <div
                         style={
-                          IS_MAINNET
+                          !IS_MAINNET
                             ? { minWidth: 255, height: 200 }
                             : { minWidth: 255, height: 140 }
                         }
                       >
                         {txOverviewStats === null ? (
                           <TronLoader />
-                        ) : IS_MAINNET ? (
+                        ) : !IS_MAINNET ? (
                           <LineReactHighChartHomeTx
                             style={{ minWidth: 255, height: 200 }}
                             data={txOverviewStats}
@@ -738,14 +738,14 @@ export default class Home extends Component {
                     <div className="card-body pt-0">
                       <div
                         style={
-                          IS_MAINNET
+                          !IS_MAINNET
                             ? { minWidth: 255, height: 200 }
                             : { minWidth: 255, height: 140 }
                         }
                       >
                         {addressesStats === null ? (
                           <TronLoader />
-                        ) : IS_MAINNET ? (
+                        ) : !IS_MAINNET ? (
                           <LineReactHighChartHomeAddress
                             style={{ minWidth: 255, height: 200 }}
                             data={addressesStats}
@@ -807,7 +807,7 @@ export default class Home extends Component {
                           />
                         ) : (
                           <LineReactHighChartTx
-                            style={{ minWidth: 255, height: 250 }}
+                            style={{ minWidth: 255, height: 220 }}
                             data={txOverviewStats}
                             intl={intl}
                             source="home"
@@ -855,7 +855,7 @@ export default class Home extends Component {
                           />
                         ) : (
                           <LineReactHighChartAdd
-                            style={{ minWidth: 255, height: 250 }}
+                            style={{ minWidth: 255, height: 220 }}
                             data={addressesStats}
                             intl={intl}
                             source="home"

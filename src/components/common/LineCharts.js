@@ -269,16 +269,17 @@ export class LineReactHighChartAdd extends React.Component {
                     _config.xAxis.categories.push(moment(val.date).format('M/D'));
                     _config.series[0].data.push(temp);
                 })
-                _config.series[0].name = 'SUN Network'
+                _config.series[0].name = 'Shasta Testnet'
             }
             _config.chart.spacingTop = 20;
             _config.exporting.enabled = true;
-            _config.yAxis.min = (data[0].total - 100000)< 0  ? 0 : data[0].total - 100000 ;
+            // _config.yAxis.min = (data[0].total - 100000)< 0  ? 0 : data[0].total - 100000 ;
             if(IS_MAINNET){
-                _config.yAxis.tickInterval = 100000;
+                _config.yAxis.tickInterval = 10000;
             }else{
-                _config.yAxis.tickInterval = 1000
+                _config.yAxis.tickInterval = 100
             }
+            _config.yAxis.min = 0;
             _config.yAxis.tickAmount = 4;
             _config.yAxis.allowDecimals = true;
             if(IS_MAINNET) {
@@ -539,7 +540,7 @@ export class LineReactHighChartTx extends React.Component {
                     _config.series[0].data.push(temp);
                     
                 })
-                _config.series[0].name= 'SUN Network';
+                _config.series[0].name= 'Shasta Testnet';
             }
             _config.chart.spacingTop = 20;
             _config.yAxis.tickAmount = 4;

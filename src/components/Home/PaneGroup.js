@@ -81,9 +81,7 @@ export default class panelGroup extends Component {
     Lockr.set("dataEur", data.priceEUR);
     let { mainnetData, sunnetData, complexData, onlineNodesSun } = this.state;
     let Data = {
-
       onlineNodes: data.node && data.node.total,
-
       maxTps: data.tps.data.maxTps ? data.tps.data.maxTps : 0,
       tps: data.tps.data.currentTps ? data.tps.data.currentTps : 0,
       blockHeight: data.tps.data.blockHeight ? data.tps.data.blockHeight : 0,
@@ -94,10 +92,12 @@ export default class panelGroup extends Component {
         mainnetData: Object.assign(mainnetData, Data),
         complexData: {
           ...complexData,
-          onlineNodes: sunnetData.onlineNodes + Data.onlineNodes,
-          transactionPerDay:
-            sunnetData.transactionPerDay + Data.transactionPerDay,
-          tps: sunnetData.tps + Data.tps
+          // onlineNodes: sunnetData.onlineNodes + Data.onlineNodes,
+          // transactionPerDay:sunnetData.transactionPerDay + Data.transactionPerDay,
+          // tps: sunnetData.tps + Data.tps
+          onlineNodes:Data.onlineNodes,
+          transactionPerDay:Data.transactionPerDay,
+          tps:Data.tps
         }
       });
     } else if (type == "sunnet") {
@@ -105,10 +105,12 @@ export default class panelGroup extends Component {
         sunnetData: Object.assign(sunnetData, Data),
         complexData: {
           ...complexData,
-          onlineNodes: Data.onlineNodes + mainnetData.onlineNodes,
-          transactionPerDay:
-            mainnetData.transactionPerDay + Data.transactionPerDay,
-          tps: mainnetData.tps + Data.tps
+          // onlineNodes: Data.onlineNodes + mainnetData.onlineNodes,
+          // transactionPerDay: mainnetData.transactionPerDay + Data.transactionPerDay,
+          // tps: mainnetData.tps + Data.tps
+          onlineNodes:Data.onlineNodes,
+          transactionPerDay:mainnetData.transactionPerDay,
+          tps:mainnetData.tps
         }
       });
     }
@@ -122,7 +124,8 @@ export default class panelGroup extends Component {
         mainnetData: { ...mainnetData, totalAccounts: rangeTotal },
         complexData: {
           ...complexData,
-          totalAccounts: sunnetData.totalAccounts + rangeTotal
+        //  totalAccounts: sunnetData.totalAccounts + rangeTotal
+        totalAccounts:rangeTotal
         }
       });
     } else {
@@ -130,7 +133,8 @@ export default class panelGroup extends Component {
         sunnetData: { ...sunnetData, totalAccounts: rangeTotal },
         complexData: {
           ...complexData,
-          totalAccounts: mainnetData.totalAccounts + rangeTotal
+          // totalAccounts: mainnetData.totalAccounts + rangeTotal
+          totalAccounts:rangeTotal
         }
       });
     }
@@ -258,7 +262,7 @@ export default class panelGroup extends Component {
             {/* mainnet */}
             {IS_MAINNET && (
               <div className="panel-group ">
-                <span
+                {/* <span
                   className="col-tag"
                   onClick={() => {
                     this.expand();
@@ -266,7 +270,7 @@ export default class panelGroup extends Component {
                 >
                   {isExpand ? tu("collapse") : tu("expand")}
                   <Icon type={isExpand ? "caret-up" : "caret-down"} />
-                </span>
+                </span> */}
                 <div className={isMobile ? "text-center mr-0 ml-0 mt-2" : "text-center mr-0 ml-0"}>
 
                   <div
@@ -277,12 +281,12 @@ export default class panelGroup extends Component {
                       <div className="col-lg-1 col-md-2 col-xs-6"></div>
                       <div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0  mb-md-3 ">
                         <p className="m-0 panel-title">{tu("online_nodes")}</p>
-                        <Tooltip
+                        {/* <Tooltip
                           title={intl.formatMessage({
                             id: "tooltip_onlineNodes"
                           })}
-                        >
-                          {complexData.onlineNodes != 0 ? (
+                        > */}
+                          {/* {complexData.onlineNodes != 0 ? (
                             <h2 className="hover-red">
                               <CountUp
                                separator=","
@@ -293,17 +297,18 @@ export default class panelGroup extends Component {
                             </h2>
                           ) : (
                             <h2>-</h2>
-                          )}
-                        </Tooltip>
+                          )} */}
+                          <h2>-</h2>
+                        {/* </Tooltip> */}
                       </div>
 
                       <div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0 mb-md-3">
                         <p className="m-0 panel-title">{tu("block_height")}</p>
-                        <Tooltip
+                        {/* <Tooltip
                           title={intl.formatMessage({
                             id: "tooltip_blockHeight"
                           })}
-                        >
+                        > */}
                           {mainnetData.blockHeight != 0 ? (
                             <h2 className="hover-red">
                               <CountUp
@@ -316,7 +321,7 @@ export default class panelGroup extends Component {
                           ) : (
                             <h2>-</h2>
                           )}
-                        </Tooltip>
+                        {/* </Tooltip> */}
                       </div>
                       <div className="col-lg-2 col-md-4 col-xs-12 mb-lg-0  mb-md-3">
                         <p className="m-0 panel-title">
@@ -328,11 +333,11 @@ export default class panelGroup extends Component {
                         >
                           {mainnetData.maxTps ? (
                             <h2>
-                              <Tooltip
+                              {/* <Tooltip
                                 title={intl.formatMessage({
                                   id: "tooltip_startTps"
                                 })}
-                              >
+                              > */}
                                 <span className="hover-red">
                                   <CountUp
                                     separator=","
@@ -341,13 +346,13 @@ export default class panelGroup extends Component {
                                     duration={2}
                                   />
                                 </span>
-                              </Tooltip>
+                              {/* </Tooltip> */}
                               /
-                              <Tooltip
+                              {/* <Tooltip
                                 title={intl.formatMessage({
                                   id: "tooltip_tps"
                                 })}
-                              >
+                              > */}
                                 <span className="hover-red">
                                   <CountUp
                                     separator=","
@@ -356,7 +361,7 @@ export default class panelGroup extends Component {
                                     duration={1}
                                   />
                                 </span>
-                              </Tooltip>
+                              {/* </Tooltip> */}
                             </h2>
                           ) : (
                             <h2>-/-</h2>
@@ -367,11 +372,11 @@ export default class panelGroup extends Component {
                         <p className="m-0 panel-title">
                           {tu("transactions_last_day")}
                         </p>
-                        <Tooltip
+                        {/* <Tooltip
                           title={intl.formatMessage({
                             id: "tooltip_transactionPerDay"
                           })}
-                        >
+                        > */}
                           {complexData.transactionPerDay != 0 ? (
                             <h2 className="hover-red">
                               <CountUp
@@ -384,17 +389,17 @@ export default class panelGroup extends Component {
                           ) : (
                             <h2>-</h2>
                           )}
-                        </Tooltip>
+                        {/* </Tooltip> */}
                       </div>
                       <div className="col-lg-2 col-md-4 col-xs-12">
                         <p className="m-0 panel-title">
                           {tu("total_accounts")}
                         </p>
-                        <Tooltip
+                        {/* <Tooltip
                           title={intl.formatMessage({
                             id: "tooltip_accounts"
                           })}
-                        >
+                        > */}
                           {complexData.totalAccounts != 0 ? (
                             <h2 className="hover-red">
                               <CountUp
@@ -407,7 +412,7 @@ export default class panelGroup extends Component {
                           ) : (
                             <h2>-</h2>
                           )}
-                        </Tooltip>
+                        {/* </Tooltip> */}
                       </div>
                      
                     </div>

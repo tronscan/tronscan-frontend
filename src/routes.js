@@ -87,15 +87,15 @@ export const routes = [
     icon: false,
     routes: [
       [
-        {
-          label: "nodes",
-          // icon: "fa fa-server",
-          icon: false,
-          path: "/blockchain/nodes",
-          component: NodesAsync,
-          showInMenu: true
-          // showInMenu: IS_MAINNET?true:false,
-        },
+        // {
+        //   label: "nodes",
+        //   // icon: "fa fa-server",
+        //   icon: false,
+        //   path: "/blockchain/nodes",
+        //   component: NodesAsync,
+        //   showInMenu: true
+        //   // showInMenu: IS_MAINNET?true:false,
+        // },
         {
           path: "/blockchain/blocks",
           label: "blocks",

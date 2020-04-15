@@ -77,7 +77,7 @@ export default class MobilePanelGroup extends Component {
     return (
       <div className="mobile-card">
         {/* mobile main net */}
-        {IS_MAINNET && (
+        {!IS_MAINNET && (
           <Carousel autoplay>
             <div className="row text-center mr-0 ml-0 mobile-home-state">
               <div
@@ -609,7 +609,7 @@ export default class MobilePanelGroup extends Component {
           </Carousel>
         )}
         {/* mobile sun net */}
-        {!IS_MAINNET && (
+        {IS_MAINNET && (
           <div className="row text-center mr-0 ml-0 mobile-home-state">
             <div
               className="col-12  card  pt-1 mb-0"
@@ -628,7 +628,7 @@ export default class MobilePanelGroup extends Component {
                     to="/blockchain/nodes"
                     className="hvr-underline-from-center hvr-underline-white text-muted"
                   >
-                    {sunnetData.onlineNodes != 0 ? (
+                    {/* {sunnetData.onlineNodes != 0 ? (
                       <h2>
                         <CountUp
                           start={0}
@@ -638,7 +638,8 @@ export default class MobilePanelGroup extends Component {
                       </h2>
                     ) : (
                       <h2>-</h2>
-                    )}
+                    )} */}
+                    <h2>-</h2>
                   </Link>
                 </div>
 
