@@ -278,3 +278,8 @@ export const RatingRule = loadable(() =>
     /* webpackChunkName: "ContractSourceCode" */ "./tokens/RatingRule"
   )
 );
+
+
+export const AwardListAsync = loadable(() =>
+  import(/* webpackChunkName: "AwardList" */ "./Pages/AwardList")
+);
