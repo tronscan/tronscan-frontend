@@ -46,6 +46,7 @@ class Tags extends Component {
       user_address: address,
       limit: pageSize,
       start: (page - 1) * pageSize,
+      random:parseInt(Math.random()*10000)
     };
 
     let { data } = await ApiClientAccount.getTagsList(params);
@@ -251,7 +252,7 @@ class Tags extends Component {
         this.setState({
           popup: null,
         });
-      }, 2000);
+      }, 1000);
     } else {
       this.setState({
         popup: (

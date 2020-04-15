@@ -163,7 +163,7 @@ class TagForm extends React.Component {
       });
       setTimeout(() => {
         this.props.onloadTable();
-      }, 2000);
+      }, 1000);
     } else {
       this.setState({
         modal: <SweetAlert warning title={retMsg && retMsg[0]} onConfirm={this.hideModal} />,
