@@ -1123,11 +1123,18 @@ export const routes = [
         },
         {
           label: "The first DApp competition",
+          path: "/help/awards",
           icon: false,
           component: AwardListAsync,
-          path: "/awards/list",
           showInMenu: IS_MAINNET?false:true,
-        },
+        }
+        // {
+        //   label: "The first DApp competition",
+        //   icon: false,
+        //   component: AwardListAsync,
+        //   path: "/awards/list",
+        //   showInMenu: IS_MAINNET?false:true,
+        // },
       ]
     ]
   },
