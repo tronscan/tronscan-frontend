@@ -189,7 +189,7 @@ class TagForm extends React.Component {
     let isAccountValid =
       target_address.length !== 0 && isAddressValid(target_address);
     let isValidTag = tag.length != 0 && this.isValidTag(tag);
-    console.log(111,intl)
+   
     return (
       <div className="send-form tag-form">
         {modal}
