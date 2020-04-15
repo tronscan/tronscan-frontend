@@ -947,13 +947,13 @@ class Address extends React.Component {
   addTagsModal = () => {
     let { match } = this.props;
     this.setState({
-      popup: <AddTag onClose={this.hideModal} defaultAddress={match.params.id} onloadTableP={this.onloadAddTable} />
+      popup: <AddTag onClose={this.hideModal} defaultAddress={match.params.id} onloadTableP={this.onloadTable} />
     });
   };
 
   editTagModal = (record) => {
     this.setState({
-      popup: <AddTag onClose={this.hideModal} targetAddress={record.targetAddress} onloadTableP={this.onloadAddTable} />
+      popup: <AddTag onClose={this.hideModal} targetAddress={record.targetAddress} onloadTableP={this.onloadTable} />
     });
   };
 

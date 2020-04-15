@@ -60,9 +60,9 @@ class Representative extends React.Component {
 
   onloadAddTable = () =>{
     // let { match} = this.props;
-    setTimeout(() => {
+    // setTimeout(() => {
       this.props.onloadTable();
-    }, 2000);
+    // }, 2000);
   }
 
   
