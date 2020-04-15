@@ -11,7 +11,7 @@
         "@fortawesome/fontawesome": "^1.1.7",
         "@fortawesome/fontawesome-free-solid": "^5.0.12",
         "@fortawesome/react-fontawesome": "^0.0.19",
-        "@ledgerhq/hw-app-trx": "^5.11.0",
+        "@ledgerhq/hw-app-trx": "5.13.0",
         "@ledgerhq/hw-transport-u2f": "^5.9.0",
         "@svgr/webpack": "4.1.0",
         "@tronscan/client": "^0.2.65",
