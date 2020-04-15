@@ -46,8 +46,8 @@ import {toastr} from 'react-redux-toastr'
 import Lockr from "lockr";
 import {BarLoader} from "./common/loaders";
 import {Truncate} from "./common/text";
-import { TRXPrice } from "./common/Price";
-import { Icon,Tooltip,Drawer,Collapse,Divider } from 'antd';
+import {TRXPrice} from "./common/Price";
+import { Icon,Drawer,Collapse,Divider } from 'antd';
 import isMobile from '../utils/isMobile';
 import {Client} from '../services/api';
 import $ from 'jquery';
@@ -151,8 +151,8 @@ class Navigation extends React.Component {
         selectedNet: IS_MAINNET?'mainnet':'sunnet'
     });
     Lockr.set("NET", IS_MAINNET?'mainnet':'sunnet')
-    this.loadTrxPrices()
-    this.oTimer = setInterval(() => this.loadTrxPrices(), 1000*60*10);
+    // this.loadTrxPrices()
+    // this.oTimer = setInterval(() => this.loadTrxPrices(), 1000*60*10);
 
   }
 
@@ -1096,31 +1096,25 @@ class Navigation extends React.Component {
                   {
                     IS_MAINNET?
                     <div className="currentTRXInfo">
-                      <Tooltip
-                        placement="bottom"
-                        title={intl.formatMessage({
-                          id: "tooltip_trxPrice"
-                        })}
-                      >
-                        <HrefLink
-                          href="https://coinmarketcap.com/currencies/tron/"
-                          target="_blank"
-                          className="hvr-underline-from-center hvr-underline-white text-muted"
-                        >
-                          <span className="TRXPrice">
-                            <span className="trxTitle">TRX: </span> 
-                            <TRXPrice
-                              showPopup={false}
-                              amount={1}
-                              currency="USD"
-                              source="home"
-                              showCurreny={true}
-                              currentPrice={USD_Price}
-                              priceChage={percent_change_24h}
-                            />
-                          </span>
-                        </HrefLink>
-                      </Tooltip>
+                      <span className="TRXPrice">
+                        <span className="trxTitle">TRX: </span> 
+                        <TRXPrice
+                          showPopup={false}
+                          amount={1}
+                          currency="USD"
+                          source="home"
+                          showCurreny={true}
+                          currentPrice={USD_Price}
+                          priceChage={percent_change_24h}
+                          />
+                          {/* showPopup={false}
+                          amount={1}
+                          currency="USD"
+                          source="home"
+                          showCurreny={true}
+                          currentPrice={USD_Price}
+                          priceChage={percent_change_24h} */}
+                      </span>
                     </div>
                     :null
                   }
