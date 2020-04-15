@@ -251,7 +251,7 @@ class Tags extends Component {
         this.setState({
           popup: null,
         });
-      }, 1500);
+      }, 2000);
     } else {
       this.setState({
         popup: (
