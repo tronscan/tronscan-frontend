@@ -43,13 +43,13 @@ class Representative extends React.Component {
   addTagsModal = () => {
     let { match } = this.props;
     this.setState({
-      popup: <AddTag onClose={this.hideModal} defaultAddress={match.params.id} onloadTableP={this.props.onloadTable} />
+      popup: <AddTag onClose={this.hideModal} defaultAddress={match.params.id} onloadTableP={this.onloadAddTable} />
     });
   };
 
   editTagModal = (record) => {
     this.setState({
-      popup: <AddTag onClose={this.hideModal} targetAddress={record.targetAddress} onloadTableP={this.props.onloadTable} />
+      popup: <AddTag onClose={this.hideModal} targetAddress={record.targetAddress} onloadTableP={this.onloadAddTable} />
     });
   };
 
@@ -57,6 +57,13 @@ class Representative extends React.Component {
   hideModal = () => {
     this.setState({ popup: null });
   };
+
+  onloadAddTable = () =>{
+    // let { match} = this.props;
+    // setTimeout(() => {
+      this.props.onloadTable();
+    // }, 2000);
+  }
 
   
 
