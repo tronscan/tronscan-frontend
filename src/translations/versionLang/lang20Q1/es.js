@@ -309,4 +309,41 @@ export const lang20Q1 = {
   get_usdj:'Obtener USDJ',
   pledge_to_get_USDJ:'Pledge to get USDJ',
 
+ // 03-26 tag 
+ account_tags_list:'Lista de etiquetas',
+ account_tags_add:'Agregar',
+ account_tags_desc:'Función de etiquetas, poner etiquetas personales para que puedas agregar cuentas con más facilidad',
+ account_tags_number:'{total} cuentas en total',
+ account_tags_table_1:'etiquetas',
+ account_tags_table_2:'Nota',
+ account_tags_add_title:'Agregar etiquetas',
+ account_tags_edit_title:'edit tag',
+ account_tags_add_success:'The tag has been successfully added',
+ account_tags_edit_success:'The tag has been successfully edited',
+ account_tags_number_rec:'{number} accounts mark',
+ account_tags_tip:'Etiquetas personales, sólo se muestra para tí',
+
+ account_tags_edit: "edit",
+ account_tags_delete: "remove",
+ account_tags_delete_is: "¿Estás seguro de quitar la etiqueta?",
+ account_tags_delete_succss: "Eliminado con éxito",
+ account_address_name_tag:'(Etiqueta certificada por la plataforma)',
+ account_tags_address_placehold:'请输入正确的地址',
+ account_tags_tag_placehold:'Ingrese una etiqueta con una longitud de 20 caracteres.',
+ account_tags_note_placehold:'Opcional, entre 100 caracteres',
+ account_tags_tag_valid:'Only Chinese, English or Arabic numbers can be entered',
+ account_tags_rec:"Etiqueta certificada por la plataforma",
+  account_tags_my_tag:'Mis etiquetas',
+  account_tags_my_tag_update:'Actualización',
+  account_tags_my_tag_login_show:'Mostrar después de iniciar sesión',
+  account_tags_my_tag_not_available:'Not Available',
+
+
+  fill_a_valid_ledger_note:'Please confirm that the Transactions Data option in the ledger settings is allowed, otherwise you cannot send notes',
+  enter_up_to_50_characters:'Enter up to 50 characters',
+
+  address_token_less_than_10:'tokens with a value less than 10 TRX',
+  address_total_tron_power:'Total TRON Power',
+  address_total_tron_power_remain:'Available TORN Power',
+  address_total_tron_power_used:'Used TRON Power'
 };

@@ -236,7 +236,6 @@ class StatsCharts extends React.Component {
 
   componentDidMount() {
     this.getScrollsIds();
-    console.log(this.props.location.hash)
     this.props.location.hash && (
       setTimeout(() => {
         this.scrollToAnchor(this.props.location.hash.slice(1))

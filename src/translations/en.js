@@ -243,7 +243,7 @@ export const messages = {
     "Do not send TRX from your own wallet or exchange to the above account address of testnet!",
   bandwidth: "bandwidth",
   balance: "Balance",
-  tron_power: "Voting rights",
+  tron_power: "TRON Power",
   transactions: "transactions",
   no_transfers: "No Transfers",
   no_tokens: "No Tokens",
