@@ -967,6 +967,13 @@ class Address extends React.Component {
     this.loadTag(match.params.id)
   }
 
+  onloadAddTable = () =>{
+    let { match} = this.props;
+    setTimeout(() => {
+      this.loadTag(match.params.id);
+    }, 2000);
+  }
+
 
   isLoggedIn = () => {
     let { account, intl } = this.props;
