@@ -906,7 +906,8 @@ export const routes = [
         // icon: "fa fa-recycle",
         icon: false,
         label: "link_test_fauct"
-      }
+      },
+     
     ]
   },
   {
@@ -941,6 +942,13 @@ export const routes = [
         component: AboutAsync,
         path: "/help/about",
         showInMenu: false
+      },
+      {
+        label: "The first DApp competition",
+        path: "/help/award",
+        icon: false,
+        component: AwardListAsync,
+        // showInMenu: IS_MAINNET?false:true,
       },
       {
         label: "ledger_guide",
@@ -1123,18 +1131,12 @@ export const routes = [
         },
         {
           label: "The first DApp competition",
-          path: "/help/awards",
+          path: "/help/award",
           icon: false,
           component: AwardListAsync,
-          showInMenu: IS_MAINNET?false:true,
-        }
-        // {
-        //   label: "The first DApp competition",
-        //   icon: false,
-        //   component: AwardListAsync,
-        //   path: "/awards/list",
-        //   showInMenu: IS_MAINNET?false:true,
-        // },
+          // showInMenu: IS_MAINNET?false:true,
+        },
+       
       ]
     ]
   },

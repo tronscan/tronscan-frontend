@@ -16,7 +16,7 @@ import { Tooltip, Input, Table } from "antd";
 import {HrefLink} from "../common/Links";
 const { Search } = Input;
 
-class AwardList extends Component {
+class AwardList extends React.Component {
   constructor() {
     super();
 
@@ -268,48 +268,10 @@ class AwardList extends Component {
     // this.loadAccounts();
   }
 
-  loadAccounts = async (page = 1, pageSize = 20) => {
-    const { searchCriteria, filter } = this.state;
-    this.setState({ loading: true });
-
-    let { data, total } = await Client.getUserList({
-      search: searchCriteria,
-      pageSize: pageSize,
-      page: page,
-      ...filter
-    });
-
-    data.map((item, index) => {
-      item.index = index + 1;
-      // eslint-disable-next-line
-      item.extraData = new Function("return " + item.extra)();
-    });
-    this.setState({
-      loading: false,
-      developers: data,
-      total: total,
-      pagination: {
-        ...this.state.pagination,
-        total
-      }
-    });
-  };
-
 
   onChange = (page, pageSize) => {
     this.loadAccounts(page, pageSize);
   };
-
-//   onSearchChange = searchCriteria => {
-//     this.setState(
-//       {
-//         searchCriteria: trim(searchCriteria)
-//       },
-//       () => {
-//         this.loadAccounts();
-//       }
-//     );
-//   };
 
 
 
@@ -411,7 +373,7 @@ class AwardList extends Component {
     let { total, loading, rangeTotal = 0, developers, modal } = this.state;
     let column = this.customizedColumn();
     return (
-      <main className="container header-overlap pb-3 token_black">
+      <div className="container header-overlap pb-3 token_black">
         {modal}
         {loading && (
           <div className="loading-style">
@@ -471,7 +433,7 @@ class AwardList extends Component {
             )} */}
           </div>
         </div>
-      </main>
+      </div>
     );
   }
 }
@@ -486,7 +448,4 @@ const mapDispatchToProps = {
   loadAccounts
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(injectIntl(AwardList));
+export default injectIntl(AwardList)
