@@ -323,10 +323,13 @@ export const lang20Q1 = {
 
   too_many_bytes_to_encode:"数据量过大，无法编译",
   use_TRONlink_or_private_key :"请通过TRONlink或私钥登录使用此功能",
-
   get_usdj:'获取USDJ',
   pledge_to_get_USDJ:'质押获取USDJ',
-
   fill_a_valid_ledger_note:'请确认ledger设置里的Transactions Data选项处于允许状态，否则无法发送备注',
   enter_up_to_50_characters:'最大输入50个字符',
+  address_token_less_than_10:'通证价值小于10TRX的币种',
+  address_total_tron_power:'总投票权',
+  address_total_tron_power_remain:'可用投票权',
+  address_total_tron_power_used:'已用投票权',
+
 };
