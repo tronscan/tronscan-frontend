@@ -1121,13 +1121,13 @@ export const routes = [
           component: LedgerHelpAsync,
           path: "/help/ledger"
         },
-        {
-          label: "The first DApp competition",
-          icon: false,
-          component: AwardListAsync,
-          path: "/awards/list",
-          showInMenu: IS_MAINNET?false:true,
-        },
+        // {
+        //   label: "The first DApp competition",
+        //   icon: false,
+        //   component: AwardListAsync,
+        //   path: "/awards/list",
+        //   showInMenu: IS_MAINNET?false:true,
+        // },
       ]
     ]
   },
@@ -1168,14 +1168,14 @@ export const routes = [
     showInMenu: false,
     component: DevelopersRewardAsync
   },
-  // {
-  //   path: "/awards",
-  //   label: "developers_scored_users",
-  //   // icon: "fa fa-users",
-  //   icon: false,
-  //   showInMenu: false,
-  //   component: AwardListAsync
-  // }
+  {
+    path: "/awards",
+    label: "The First DApp Competition",
+    // icon: "fa fa-users",
+    icon: false,
+    showInMenu: false,
+    component: AwardListAsync
+  }
 ];
 
 export const flatRoutes = flatten(

@@ -250,7 +250,7 @@ class AwardList extends Component {
             dappName:'pangu',
             website:'pangu.trade',
             websiteHref:'http://pangu.trade',
-            Introduction:'decentralized exchange based on TRON & SUN DAppChain',
+            Introduction:'Decentralized exchange based on TRON & SUN DAppChain',
             bonus:'250',
         },
         {
@@ -259,7 +259,7 @@ class AwardList extends Component {
             dappName:'Wild Universe',
             website:'wilduniverse.co',
             websiteHref:'http://wilduniverse.co',
-            Introduction:'life simulation game about pets based on SUN DAppChain.',
+            Introduction:'Life simulation game about pets based on SUN DAppChain.',
             bonus:'250',
         },
         {
@@ -268,7 +268,7 @@ class AwardList extends Component {
             dappName:'G Connect',
             website:'gconnect.io',
             websiteHref:'http://gconnect.io',
-            Introduction:'payment solutions for gaming industry. First solution is donation service for gamers based on TRON Network. Second is cryptocurrency wallet for iOS & Android.',
+            Introduction:'Payment solutions for gaming industry. First solution is donation service for gamers based on TRON Network. Second is cryptocurrency wallet for iOS & Android.',
             bonus:'250',
         },
       ],
@@ -444,7 +444,7 @@ class AwardList extends Component {
             <TronLoader />
           </div>
         )}
-        <div className="row mt-2">
+        <div className="row">
           {/* {total ? (
             <p className="developers_reward_tip">
               {tu("developers_reward_tip")}
@@ -453,7 +453,7 @@ class AwardList extends Component {
             ""
           )} */}
 
-          <div className="col-md-12 table_pos trc20-ad-bg">
+          <div className="col-md-12">
             {/* {total ? (
               <div
                 className="table_pos_info d-none d-md-block"
