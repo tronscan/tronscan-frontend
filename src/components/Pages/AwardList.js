@@ -227,7 +227,8 @@ class AwardList extends React.Component {
             awards: 'Participation Award',
             dappName:'pangu',
             website:'pangu.trade',
-            Introduction:'decentralized exchange based on TRON & SUN DAppChain',
+            websiteHref:'http://pangu.trade',
+            Introduction:'Decentralized exchange based on TRON & SUN DAppChain',
             bonus:'250',
         },
         {
@@ -235,7 +236,8 @@ class AwardList extends React.Component {
             awards: 'Participation Award',
             dappName:'Wild Universe',
             website:'wilduniverse.co',
-            Introduction:'life simulation game about pets based on SUN DAppChain.',
+            websiteHref:'http://wilduniverse.co',
+            Introduction:'Life simulation game about pets based on SUN DAppChain.',
             bonus:'250',
         },
         {
@@ -243,7 +245,8 @@ class AwardList extends React.Component {
             awards: 'Participation Award',
             dappName:'G Connect',
             website:'gconnect.io',
-            Introduction:'payment solutions for gaming industry. First solution is donation service for gamers based on TRON Network. Second is cryptocurrency wallet for iOS & Android.',
+            websiteHref:'http://gconnect.io',
+            Introduction:'Payment solutions for gaming industry. First solution is donation service for gamers based on TRON Network. Second is cryptocurrency wallet for iOS & Android.',
             bonus:'250',
         },
       ],
@@ -380,7 +383,7 @@ class AwardList extends React.Component {
             <TronLoader />
           </div>
         )}
-        <div className="row mt-2">
+        <div className="row">
           {/* {total ? (
             <p className="developers_reward_tip">
               {tu("developers_reward_tip")}
@@ -389,7 +392,7 @@ class AwardList extends React.Component {
             ""
           )} */}
 
-          <div className="col-md-12 table_pos trc20-ad-bg">
+          <div className="col-md-12">
             {/* {total ? (
               <div
                 className="table_pos_info d-none d-md-block"

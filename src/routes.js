@@ -1134,9 +1134,9 @@ export const routes = [
           path: "/help/award",
           icon: false,
           component: AwardListAsync,
-          // showInMenu: IS_MAINNET?false:true,
+          showInMenu: IS_MAINNET?false:true,
         },
-       
+
       ]
     ]
   },
@@ -1177,14 +1177,14 @@ export const routes = [
     showInMenu: false,
     component: DevelopersRewardAsync
   },
-  // {
-  //   path: "/awards",
-  //   label: "developers_scored_users",
-  //   // icon: "fa fa-users",
-  //   icon: false,
-  //   showInMenu: false,
-  //   component: AwardListAsync
-  // }
+  {
+    path: "/awards",
+    label: "The First DApp Competition",
+    // icon: "fa fa-users",
+    icon: false,
+    showInMenu: false,
+    component: AwardListAsync
+  }
 ];
 
 export const flatRoutes = flatten(
