@@ -27,7 +27,7 @@ export default function PermissionItem(props) {
     //         item.operations = arr;
     //     }
     // })
-    console.log(permissionArray)
+
     return (
         <Fragment>
             <Field label={label}>

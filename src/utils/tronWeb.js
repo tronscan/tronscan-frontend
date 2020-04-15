@@ -78,7 +78,6 @@ export function withTronWeb(InnerComponent) {
                 } else {
                   const transactionObj = transactionJsonToProtoBuf(transaction);
                   rawDataHex = byteArray2hexStr(transactionObj.getRawData().serializeBinary());
-                  console.log('ledger-rawDataHex======',rawDataHex)
                   let raw = transactionObj.getRawData();
                   let contractObj = raw.getContractList()[0];
                   contractType = contractObj.getType();
