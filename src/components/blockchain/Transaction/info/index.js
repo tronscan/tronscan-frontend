@@ -101,7 +101,6 @@ export default function Info({contract}) {
     if(TokenIDList){
         tokenIdData  = rebuildList(TokenIDList,'asset_name','amount')[0]
     }
-    console.log(contract,contract.contractType,'contract')
     if(contract.contractType){
         switch (contract.contractType.toUpperCase()) {
             case "TRANSFERCONTRACT":
