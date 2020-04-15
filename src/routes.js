@@ -8,6 +8,7 @@ import {
   AboutAsync,
   AccountAsync,
   AccountsAsync,
+  AwardListAsync,
   //CopyrightAsync,
   DemoAsync,
   FaqAsync,
@@ -905,7 +906,8 @@ export const routes = [
         // icon: "fa fa-recycle",
         icon: false,
         label: "link_test_fauct"
-      }
+      },
+     
     ]
   },
   {
@@ -940,6 +942,13 @@ export const routes = [
         component: AboutAsync,
         path: "/help/about",
         showInMenu: false
+      },
+      {
+        label: "The first DApp competition",
+        path: "/help/award",
+        icon: false,
+        component: AwardListAsync,
+        // showInMenu: IS_MAINNET?false:true,
       },
       {
         label: "ledger_guide",
@@ -1119,12 +1128,15 @@ export const routes = [
           icon: false,
           component: LedgerHelpAsync,
           path: "/help/ledger"
-        }
-        // {
-        //   icon: "fas fa-columns",
-        //   label: "Main_Chain",
-        //   sidechain:true,
-        // },
+        },
+        {
+          label: "The first DApp competition",
+          path: "/awards",
+          icon: false,
+          component: AwardListAsync,
+          showInMenu: IS_MAINNET?false:true,
+        },
+
       ]
     ]
   },
@@ -1164,6 +1176,14 @@ export const routes = [
     icon: false,
     showInMenu: false,
     component: DevelopersRewardAsync
+  },
+  {
+    path: "/awards",
+    label: "The First DApp Competition",
+    // icon: "fa fa-users",
+    icon: false,
+    showInMenu: false,
+    component: AwardListAsync
   }
 ];
 

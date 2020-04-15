@@ -1324,15 +1324,15 @@ class Navigation extends React.Component {
                                             }
 
                                             return (
-                                                <Link
+                                                <NavLink
                                                     key={Route.path}
                                                     className={currentRouter == Route.path ? "dropdown-item text-uppercase menu-active-tilte-pc" : "dropdown-item text-uppercase"}
                                                     to={Route.path}>
-                                                  {Route.icon &&
-                                                  <i className={`${Route.icon} mr-2 fa_width`}/>}
+                                                  {/* {Route.icon &&
+                                                  <i className={`${Route.icon} mr-2 fa_width`}/>} */}
                                                   {tu(Route.label)}
-                                                  {Route.badge && <Badge value={Route.badge}/>}
-                                                </Link>
+                                                  {/* {Route.badge && <Badge value={Route.badge}/>} */}
+                                                </NavLink>
                                             );
                                           })
                                         }
