@@ -312,6 +312,7 @@ export const lang20Q1 = {
   account_address_total_balance_tip:"계정에있는 모든 토큰의 가치 합계",
   get_usdj:'얻다 USDJ',
   pledge_to_get_USDJ:'Pledge to get USDJ',
+  get_usdj_guide: "USDJ 를 얻는 방법",
 
   // 03-26 tag 
   account_tags_list:'태그 목록',

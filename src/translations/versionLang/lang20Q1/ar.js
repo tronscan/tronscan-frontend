@@ -307,6 +307,7 @@ export const lang20Q1 = {
   account_block:'الكتل',
   account_address_total_balance_tip:"مجموع قيمة جميع الرموز المميزة في الحساب",
   get_usdj:'تحصل USDJ',
+  get_usdj_guide: "كيفية الحصول على USDJ",
    // 03-26 tag 
    account_tags_list:'قائمة علامات التبويب',
    account_tags_add:'إضافة',

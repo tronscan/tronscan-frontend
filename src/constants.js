@@ -13,8 +13,8 @@ export const NETURL = {
   NEWSUNNET: "https://dappchain.tronscan.io",
   MAINNET: "https://tronscan.org",
   SUNNET: "https://dappchain.tronscan.org",
-  // MAINNET: "http://18.217.215.94:67",
-  // SUNNET: "http://18.217.215.94:68",
+  // MAINNET: "http://18.217.215.94:65",
+  // SUNNET: "http://18.217.215.94:66",
   // MAINNET: "https://debug.tronscan.org",
   // SUNNET: "https://debugdappchain.tronscan.org",
 };
@@ -84,6 +84,7 @@ export const ACCOUNT_TRONLINK = "ACCOUNT_TRONLINK";
  * USDJ = 1 USD
  */
 export const ONE_USDJ = 1;
+export const ONE_JST = 0.003;
 export const TOKEN_ID_BTT = "1002000";
 export const CONTRACT_ADDRESS_USDT = "TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t";
 export const CONTRACT_ADDRESS_WIN = "TLa2f6VPqDgRE67v1736s7bJ8Ray5wYjU7";
