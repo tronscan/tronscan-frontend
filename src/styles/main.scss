@@ -2844,6 +2844,7 @@ h5 {
   height: 40px;
 
   .token20-search {
+    height:36px;
     display: flex;
     position: absolute;
     right: 22px;
@@ -2852,6 +2853,7 @@ h5 {
       font-size: 13px;
       width: 260px;
       min-width: 260px;
+      height: 100%
     }
     .padding20 {
       padding: 0px 20px 0px 14px !important;
@@ -2867,7 +2869,7 @@ h5 {
       right: 22px;
 
       input {
-        fontsize: 13px;
+        font-size: 13px;
         width: 220px;
         min-width: 200px;
       }
