@@ -46,7 +46,7 @@ import {toastr} from 'react-redux-toastr'
 import Lockr from "lockr";
 import {BarLoader} from "./common/loaders";
 import {Truncate} from "./common/text";
-import {TRXPrice} from "./common/Price";
+import NavPrice from "./common/NavPrice";
 import { Icon,Drawer,Collapse,Divider } from 'antd';
 import isMobile from '../utils/isMobile';
 import {Client} from '../services/api';
@@ -1091,14 +1091,12 @@ class Navigation extends React.Component {
                 <div className="mobileFlexible">
                   <Link to="/">
                     <img  src={this.getLogo()} className="logo" alt="Tron"/>
-                 
                   </Link>
                   {
                     IS_MAINNET?
                     <div className="currentTRXInfo">
                       <span className="TRXPrice">
-                        <span className="trxTitle">TRX: </span> 
-                        <TRXPrice
+                        <NavPrice
                           showPopup={false}
                           amount={1}
                           currency="USD"
@@ -1107,13 +1105,6 @@ class Navigation extends React.Component {
                           currentPrice={USD_Price}
                           priceChage={percent_change_24h}
                           />
-                          {/* showPopup={false}
-                          amount={1}
-                          currency="USD"
-                          source="home"
-                          showCurreny={true}
-                          currentPrice={USD_Price}
-                          priceChage={percent_change_24h} */}
                       </span>
                     </div>
                     :null
