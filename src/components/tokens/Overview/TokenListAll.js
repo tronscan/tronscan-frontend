@@ -4,7 +4,7 @@ import {t, tu} from "../../../utils/i18n";
 import {Client} from "../../../services/api";
 import {TokenLink, TokenTRC20Link} from "../../common/Links";
 import {QuestionMark} from "../../common/QuestionMark";
-import {API_URL, ONE_TRX, ONE_USDJ, IS_MAINNET, CONTRACT_ADDRESS_USDJ, CONTRACT_ADDRESS_USDJ_TESTNET, CONTRACT_ADDRESS_JED,CONTRACT_ADDRESS_JED_TESTNET} from "../../../constants";
+import {API_URL, ONE_TRX, ONE_USDJ, ONE_JST, IS_MAINNET, CONTRACT_ADDRESS_USDJ, CONTRACT_ADDRESS_USDJ_TESTNET, CONTRACT_ADDRESS_JED,CONTRACT_ADDRESS_JED_TESTNET} from "../../../constants";
 import {upperFirst, toLower} from "lodash";
 import {TronLoader} from "../../common/loaders";
 import xhr from "axios/index";
@@ -301,7 +301,7 @@ class TokenList extends Component {
                 (record.contractAddress == CONTRACT_ADDRESS_USDJ || record.contractAddress == CONTRACT_ADDRESS_USDJ_TESTNET) &&  <span>{ ONE_USDJ.toFixed(6)} {' USD'}</span>
               }
               {
-                (record.contractAddress == CONTRACT_ADDRESS_JED || record.contractAddress == CONTRACT_ADDRESS_JED_TESTNET) && <span>{ (ONE_USDJ/100).toFixed(6)} {' USD'}</span>
+                (record.contractAddress == CONTRACT_ADDRESS_JED || record.contractAddress == CONTRACT_ADDRESS_JED_TESTNET) && <span>{ ONE_JST.toFixed(6)} {' USD'}</span>
               }
               { (record.contractAddress == CONTRACT_ADDRESS_USDJ || record.contractAddress == CONTRACT_ADDRESS_USDJ_TESTNET || record.contractAddress == CONTRACT_ADDRESS_JED || record.contractAddress == CONTRACT_ADDRESS_JED_TESTNET) ? "": "-"}
             </div>

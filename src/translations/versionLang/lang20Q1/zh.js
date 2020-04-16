@@ -318,6 +318,7 @@ export const lang20Q1 = {
   use_TRONlink_or_private_key: "请通过TRONlink或私钥登录使用此功能",
 
   get_usdj: "获取USDJ",
+  get_usdj_guide: "USDJ获取指南",
   // 03-26 tag
   account_tags_list: "标签列表",
   account_tags_add: "添加",
