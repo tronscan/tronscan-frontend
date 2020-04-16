@@ -2862,7 +2862,7 @@ h5 {
 
   @media only screen and (max-width: 768px) {
     height: 40px;
-
+   
     .token20-search {
       display: flex;
       position: absolute;
@@ -2873,11 +2873,17 @@ h5 {
         width: 220px;
         min-width: 200px;
       }
-      .padding20 {
-      }
     }
   }
 }
+.tonken20DetailMain,.tonken10DetailMain{
+  @media only screen and (max-width: 768px) {
+    .mobile-distribution-title{
+      flex-direction: column;
+    }
+  }
+}
+ 
 
 .exchange-title {
   display: flex;
