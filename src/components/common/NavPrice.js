@@ -136,14 +136,14 @@ class NavTRXPrice extends React.Component {
                     <span className="currentTrxPirce">
                       <FormattedNumber value={USD_Price}></FormattedNumber>
                     </span>
-                    <span className="currentCurrency">
+                    <span className="currentCurrency currentCurrencyMobile">
                     {" "}{showCurreny && (currency.toUpperCase())}{" "}
                     </span>
                     <span
                       className={
                         Number(percent_change_24h) > 0
-                          ? "greenPrice "
-                          : "redPrice "
+                          ? "greenPrice currentCurrencyMobile "
+                          : "redPrice currentCurrencyMobile "
                       }
                       style={{ display: "inline-block" }}
                     >
