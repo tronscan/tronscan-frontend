@@ -21,24 +21,20 @@ class NavTRXPrice extends React.Component {
   }
 
   componentDidMount() {
-    let usdURL = encodeURI(
-      `https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=TRX&convert=USD`
-    );
-    this.requestUsdPrice(usdURL);
+    this.requestUsdPrice();
   }
 
-  async requestUsdPrice(usdURL) {
+  async requestUsdPrice() {
     let USD_Price,
       myClear = null;
     await xhr
-      .post(`${API_URL}/api/system/proxy`, {
-        url: usdURL,
-      })
+      .get(`${API_URL}/api/token/price?token=trx`)
       .then((res) => {
-        if (res && res.data && res.data.data) {
-          USD_Price = parseFloat(res.data.data.TRX.quote.USD.price);
+        console.log(res)
+        if (res && res.data) {
+          USD_Price = parseFloat(res.data.price_in_usd);
           let percent_change_24h =
-            res.data.data.TRX.quote.USD.percent_change_24h.toFixed(2) || 0;
+          parseFloat(res.data.percent_change_24h).toFixed(2) || 0;
           this.setState({
             percent_change_24h,
             isLoading: false,
@@ -58,7 +54,7 @@ class NavTRXPrice extends React.Component {
             });
           } else {
             myClear = setTimeout(() => {
-              this.requestUsdPrice(usdURL);
+              this.requestUsdPrice();
             }, 3000);
             this.setState({
               timeoutState: false,
@@ -73,10 +69,7 @@ class NavTRXPrice extends React.Component {
   }
 
   refreshPrice() {
-    let usdURL = encodeURI(
-      `https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=TRX&convert=USD`
-    );
-    this.requestUsdPrice(usdURL);
+    this.requestUsdPrice();
   }
 
   render() {
