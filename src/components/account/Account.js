@@ -586,7 +586,7 @@ export default class Account extends Component {
           <tbody>
           {
             tokens20.map((token) => (
-                <tr key={token.token20_name}>
+                <tr key={token.contract_address}>
                   <td className="text-nowrap">
 
                       {
@@ -658,7 +658,7 @@ export default class Account extends Component {
           <tbody>
           {
             tokenBalances.map((token) => (
-                <tr key={token.name}>
+                <tr key={token.map_token_id}>
                   <td className="text-nowrap">
                       {
                           token.map_token_id == 1002000?<div className="map-token-top">
