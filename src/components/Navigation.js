@@ -144,6 +144,7 @@ class Navigation extends React.Component {
     setWebsocket();
     $(document).click(() => {
       $('#_searchBox').css({display: 'none'});
+      document.getElementById("mobile_searchBox").style.display = 'none'
     });
 
     this.setState({
@@ -479,6 +480,7 @@ class Navigation extends React.Component {
     if (ev.keyCode === 13) {
       this.doSearch();
       $('#_searchBox').css({display: 'none'});
+      document.getElementById("mobile_searchBox").style.display = 'none'
     }
   };
 
@@ -495,6 +497,7 @@ class Navigation extends React.Component {
     if (search === "") {
       this.setState({searchResults: []});
       $('#_searchBox').css({display: 'none'});
+      document.getElementById("mobile_searchBox").style.display = 'none'
       return;
     } 
 
@@ -512,12 +515,13 @@ class Navigation extends React.Component {
       {desc: 'Contract', value: "TVethjgashn8t4cwKWfGA3VvSgMwVmHKNM"},
       {desc: 'TxHash', value: "9073aca5dfacd63c8e61f6174c98ab3f350bc9365df6ffc3bc7a70a252711d6f"}
     ];*/
-
     this.setState({searchResults: results});
     if (results.length) {
       $('#_searchBox').css({display: 'block'});
+      document.getElementById("mobile_searchBox").style.display = 'block';
     } else {
       $('#_searchBox').css({display: 'none'});
+      document.getElementById("mobile_searchBox").style.display = 'none'
     }
   }
 
@@ -1473,7 +1477,7 @@ class Navigation extends React.Component {
                   <i className="fa fa-search"/>
                 </button>
               </div>
-              <div className="dropdown-menu" id="_searchBox" style={{width: '100%',maxHeight:'300px', overflow:'auto'}}>
+              <div className="dropdown-menu" id="mobile_searchBox" style={{width: '100%',maxHeight:'300px', overflow:'auto'}}>
                 {
                   searchResults && searchResults.map((result, index) => {
                         if (result.desc === 'Block') {
