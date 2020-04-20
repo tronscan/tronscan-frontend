@@ -8,7 +8,8 @@ import { API_URL } from "../../constants";
 // import { connect } from "react-redux";
 
 let myTime = 0;
-
+let errorMyTime = 0;
+let errortMyClear = null;
 class NavTRXPrice extends React.Component {
   constructor(props) {
     super(props);
@@ -21,7 +22,54 @@ class NavTRXPrice extends React.Component {
   }
 
   componentDidMount() {
+    this.axiosHandlerError()
     this.requestUsdPrice();
+  }
+
+  axiosHandlerError(){
+    //请求时的拦截
+    xhr.interceptors.request.use(config => {
+      return config;
+      }, err => {
+          console.log('请求超时!' );
+          return Promise.resolve(err);
+      })
+      //响应时的拦截
+      xhr.interceptors.response.use(data => {
+          // 返回响应时做一些处理
+          // 第二种方式，我采取的
+          if (data.status && data.status == 200 && data.data.status == 'error') {
+              console.log(data.data.msg);
+              return data;
+          }
+          return data;
+      },err => {
+          // 当响应异常时做一些处理
+          if (err && err.response) {
+              
+          } else {
+            err.message = '连接服务器失败!'
+          }
+       
+          if(err){
+            errorMyTime++;
+            if (errorMyTime > 2) {
+              window.clearTimeout(errortMyClear);
+              this.setState({
+                timeoutState: true,
+              });
+            } else {
+              errortMyClear = setTimeout(() => {
+                this.requestUsdPrice();
+              }, 3000);
+              this.setState({
+                timeoutState: false,
+              });
+            }
+          }
+          console.log(err.message);
+          return Promise.resolve(err);
+      })
   }
 
   async requestUsdPrice() {
