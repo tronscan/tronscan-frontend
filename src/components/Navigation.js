@@ -144,6 +144,7 @@ class Navigation extends React.Component {
     setWebsocket();
     $(document).click(() => {
       $('#_searchBox').css({display: 'none'});
+      document.getElementById("mobile_searchBox").style.display = 'none'
     });
 
     this.setState({
@@ -479,6 +480,7 @@ class Navigation extends React.Component {
     if (ev.keyCode === 13) {
       this.doSearch();
       $('#_searchBox').css({display: 'none'});
+      document.getElementById("mobile_searchBox").style.display = 'none'
     }
   };
 
@@ -495,6 +497,7 @@ class Navigation extends React.Component {
     if (search === "") {
       this.setState({searchResults: []});
       $('#_searchBox').css({display: 'none'});
+      document.getElementById("mobile_searchBox").style.display = 'none'
       return;
     } 
 
