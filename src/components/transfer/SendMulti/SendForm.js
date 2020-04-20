@@ -1075,7 +1075,7 @@ class SendForm extends React.Component {
             </div>
           </div>
 
-          <div className="form-group">
+          {/* <div className="form-group">
             <label>{tu("note")}</label>
             <div className="input-group mb-3">
             <textarea
@@ -1085,10 +1085,10 @@ class SendForm extends React.Component {
             />
               <div className="invalid-feedback">
                 {tu("fill_a_valid_address")}
-                {/* tu("invalid_address") */}
               </div>
             </div>
           </div>
+           */}
           {this.renderFooter()}
         </form>
     )

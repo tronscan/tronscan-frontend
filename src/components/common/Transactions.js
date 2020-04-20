@@ -162,10 +162,11 @@ class Transactions extends React.Component {
         rangeTotal = data.rangeTotal
     }
 
+
     this.setState({
-        transactions,
-        total,
-        rangeTotal,
+        transactions: transactions || [],
+        total: total || 0,
+        rangeTotal:rangeTotal || 0,
         loading: false,
     });
   };

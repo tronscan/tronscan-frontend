@@ -85,12 +85,20 @@ export function withTronWeb(InnerComponent) {
                 }
                 
                 switch (contractType) {
+                  case 1: //Transfer
+                    if(transaction.raw_data.data){
+                      extra.note = transaction.raw_data.data
+                    }
+                  break;  
                   case 2: // Transfer Assets
                     const ID = tronWeb.toUtf8(
                       transaction.raw_data.contract[0].parameter.value.asset_name
                     );
                     // get token info
                     extra = await this.getTokenExtraInfo(transaction.raw_data.contract[0].parameter.value.asset_name);
+                    if(transaction.raw_data.data){
+                      extra.note = transaction.raw_data.data
+                    }
                     let tokenObj = await this.getLedgerTokenInfo(ID);
                     if(tokenObj.message){
                       tokenInfo.push(tokenObj.message);

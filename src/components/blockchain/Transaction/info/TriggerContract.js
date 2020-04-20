@@ -12,10 +12,11 @@ import {TransationTitle} from './common/Title'
 import {injectIntl} from "react-intl";
 import {toThousands} from '../../../../utils/number'
 import { QuestionMark } from "../../../common/QuestionMark.js";
+import BigNumber from "bignumber.js";
+BigNumber.config({ EXPONENTIAL_AT: [-1e9, 1e9] });
 
 function TriggerContract({contract,intl}){
     const defaultImg = require("../../../../images/logo_default.png");
-
     return (
       <Fragment>
         <TransationTitle contractType={contract.contractType}></TransationTitle>
@@ -236,6 +237,19 @@ function TriggerContract({contract,intl}){
                 </div>
               </div>
             </div>
+            {
+              (!contract.tokenTransferInfo && contract.contract_note) && <div className="d-flex border-bottom">
+                <div className="content_box_name">
+                  {tu("note")}:
+                </div>
+                <div className="flex1">
+                  <div className="d-flex content_item">
+                    {contract.contract_note || ""}
+                  </div>
+                </div>
+            </div>
+            }
+            
             {contract.tokenTransferInfo &&
               contract.tokenTransferInfo.decimals !==
                 undefined &&
@@ -326,24 +340,23 @@ function TriggerContract({contract,intl}){
                         </AddressLink>
                       </div>
                     </div>
+                    
                     <div className="d-flex content_item trans-item-padding">
                       <div className="content_name">
                         {tu("amount")}
                       </div>
                       <div className="flex1">
-                        {toThousands(Number(
-                          contract.tokenTransferInfo[
-                            "amount_str"
-                          ]
-                        ) /
-                          Math.pow(
-                            10,
-                            contract.tokenTransferInfo[
-                              "decimals"
-                            ]
-                          ))}
+                        {
+                          toThousands(
+                            new BigNumber(Number(contract.tokenTransferInfo["amount_str"])).dividedBy(
+                            Math.pow(10, contract.tokenTransferInfo["decimals"])
+                            )
+                          )  
+                        }
                       </div>
                     </div>
+
+                    
                     <div className="d-flex content_item trans-item-padding">
                       <div className="content_name">
                         {tu("token_txs_info")}
@@ -427,6 +440,14 @@ function TriggerContract({contract,intl}){
                         />
                       </div>
                     </div>
+                    {contract.contract_note && <div className="d-flex content_item trans-item-padding">
+                      <div className="content_name">
+                        {tu("note")}
+                      </div>
+                      <div className="flex1">
+                        {contract.contract_note || ""}
+                      </div>
+                    </div>}      
                   </div>
                 </div>
               )}
