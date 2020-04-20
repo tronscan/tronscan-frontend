@@ -1127,7 +1127,7 @@ class Navigation extends React.Component {
                   <nav className="top-bar navbar navbar-expand-md navbar-dark" style={{padding:0}}> 
                   {/*  pc nav */}
                     <div className="collapse navbar-collapse" id="navbar-top">
-                      <ul className="navbar-nav">
+                      <ul className={activeLanguage==='ru' || activeLanguage==='es' || activeLanguage==='en'? 'single-language-navbar-nav navbar-nav':'navbar-nav'}>
                         {filter(routes, r => r.showInMenu !== false).map(route => (
                             <li key={route.path}  className={IS_MAINNET? 'nav-item dropdown': 'nav-item dropdown pr-3'}>
                               {

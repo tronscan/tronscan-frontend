@@ -64,6 +64,17 @@ class NavTRXPrice extends React.Component {
         }
       })
       .catch(function (error) {
+        myTime++;
+        if (myTime > 2) {
+          this.setState({
+            timeoutState: true,
+          });
+          window.clearTimeout(myClear);
+        }else{
+          myClear = setTimeout(() => {
+            this.requestUsdPrice();
+          }, 3000);
+        }
         console.log(error);
       });
   }
