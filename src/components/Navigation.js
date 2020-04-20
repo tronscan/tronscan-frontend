@@ -512,7 +512,6 @@ class Navigation extends React.Component {
       {desc: 'Contract', value: "TVethjgashn8t4cwKWfGA3VvSgMwVmHKNM"},
       {desc: 'TxHash', value: "9073aca5dfacd63c8e61f6174c98ab3f350bc9365df6ffc3bc7a70a252711d6f"}
     ];*/
-    console.log(results,'results')
     this.setState({searchResults: results});
     if (results.length) {
       $('#_searchBox').css({display: 'block'});
