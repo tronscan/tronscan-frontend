@@ -143,8 +143,7 @@ class Accounts extends Component {
                 </div>
                 :
                 <div className="card table_pos">
-                  {total ? <div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo} &nbsp;&nbsp;
-                    <a href={intl.locale == 'zh'?"https://tron.network/donation?lng=zh":"https://tron.network/donation?lng=en"} target="_blank" style={{color:'#C23631'}}>{tu('tronics_support_plan')}></a></div> : ''}
+                  {total ? <div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo}</div> : ''}
                     <Table bordered={true} columns={column} dataSource={accounts} rowClassName={(record, index) => { return  record.isPlan ?  'ant_table_plan' :'' }}
                            onChange={(pagination) => {
                                this.loadAccounts(pagination.current, pagination.pageSize)
@@ -176,20 +175,18 @@ class Accounts extends Component {
             </div>
 
             <div className="col-md-3 mt-3 mt-md-0 position-relative pr-0">
-                <a href={intl.locale == 'zh'?"https://tron.network/donation?lng=zh":"https://tron.network/donation?lng=en"} target="_blank" className="tronics_plan_link">
-                    <div className="card h-100 widget-icon">
-                        <div className="card-body pl-4">
-                            <h3>
-                                <span className="tronics_plan_title">
-                                    <FormattedNumber value={tronicsPlanTRX}/>
-                                </span>
-                            </h3>
-                            <span className="tronics_plan_dec">
-                                {tu("tronics_support_planTRX")}
-                            </span>
-                        </div>
-                    </div>
-                </a>
+              <div className="card h-100 widget-icon">
+                  <div className="card-body pl-4">
+                      <h3>
+                          <span className="tronics_plan_title">
+                              <FormattedNumber value={tronicsPlanTRX}/>
+                          </span>
+                      </h3>
+                      <span >
+                          {tu("tronics_support_planTRX")}
+                      </span>
+                  </div>
+              </div>
             </div>
             <div className="col-md-3 mt-3 mt-md-0 pr-0">
               <div className="card h-100 widget-icon">
