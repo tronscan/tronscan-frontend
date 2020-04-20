@@ -162,13 +162,12 @@ class Accounts extends Component {
     return (
         <main className="container header-overlap pb-3 token_black">
           <div className="row foundation_title">
-
             <div className="col-md-3 mt-3 mt-md-0 pr-0">
               <div className="card h-100 widget-icon">
                 <div className="card-body pl-4 bg-image_book">
-                  <h3>
+                  <p>
                     <FormattedNumber value={total}/>
-                  </h3>
+                  </p>
                   {tu("total_number_frozenTRX")}
                 </div>
               </div>
@@ -177,11 +176,11 @@ class Accounts extends Component {
             <div className="col-md-3 mt-3 mt-md-0 position-relative pr-0">
               <div className="card h-100 widget-icon">
                   <div className="card-body pl-4">
-                      <h3>
+                      <p>
                           <span className="tronics_plan_title">
                               <FormattedNumber value={tronicsPlanTRX}/>
                           </span>
-                      </h3>
+                      </p>
                       <span >
                           {tu("tronics_support_planTRX")}
                       </span>
@@ -191,9 +190,9 @@ class Accounts extends Component {
             <div className="col-md-3 mt-3 mt-md-0 pr-0">
               <div className="card h-100 widget-icon">
                 <div className="card-body pl-4 bg-image_home" >
-                  <h3>
+                  <p>
                     <FormattedNumber value={foundationTRX}/>
-                  </h3>
+                  </p>
                   {tu("frozen_by_the_foundationTRX")}
                 </div>
               </div>
@@ -201,9 +200,9 @@ class Accounts extends Component {
             <div className="col-md-3 mt-3 mt-md-0">
               <div className="card h-100 widget-icon bg-line_green">
                 <div className="card-body pl-4 bg-image_frozen">
-                  <h3>
+                  <p>
                     2020/01/01
-                  </h3>
+                  </p>
                   {tu("unfreeze_time")}
                 </div>
               </div>
