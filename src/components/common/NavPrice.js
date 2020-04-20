@@ -60,7 +60,6 @@ class NavTRXPrice extends React.Component {
               timeoutState: false,
             });
           }
-          console.log(myTime, "myTime");
         }
       })
       .catch(function (error) {
@@ -68,6 +67,7 @@ class NavTRXPrice extends React.Component {
         if (myTime > 2) {
           this.setState({
             timeoutState: true,
+            isLoading: false,
           });
           window.clearTimeout(myClear);
         }else{
