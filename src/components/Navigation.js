@@ -1155,23 +1155,37 @@ class Navigation extends React.Component {
                                     </HrefLink>
                                     :
                                     <span className={route.routes ? (route.label == 'nav_network' ? 'nav-network-hot' : "") : ""}> 
-                                    <NavLink
-                                        className={route.routes ? (route.label == 'nav_network' ? 'nav-link text-capitalize' : "nav-link") : "nav-link"}
+                                      {
+                                        route.label == 'home_page' || route.label == 'Poloni DEX'?
+                                        <NavLink
+                                            className={route.routes ? (route.label == 'nav_network' ? 'nav-link text-capitalize' : "nav-link") : "nav-link"}
+                                            {...((route.routes && route.routes.length > 0) ? {'data-toggle': 'dropdown'} : {})}
+                                            activeClassName="active"
+                                            to={route.redirect? route.redirect: route.path}
+                                        >
+                                          <span  className={
+                                            (currentRouter.slice(1).split('/').indexOf(route.path.slice(1)) !== -1 || (currentRouter==='/exchange/trc20' && route.path ==="/exchange/trc20") || (route.path==='/more' && currentRouter.slice(1,5)==='help') || (route.path==='/more' && currentRouter.slice(1,6)==='tools')) || (route.path==='/newblock' && currentRouter.slice(1,11)==='blockchain') || (route.path==='/newblock' && currentRouter.slice(1,10)==='contracts') || (route.path==='/newblock' && currentRouter.slice(1,7)==='tokens') ? "menu-active-tilte-pc": ""}>
+                                          {route.icon &&
+                                            <i className={route.icon + " d-none d-lg-inline-block mr-1"}/>}
+                                            {tu(route.label)}
+                                            {route.label !== 'home_page' && route.label !== 'Poloni DEX'?<Icon type="caret-down" style={{color: 'rgba(51,51,51,0.50)',marginLeft:"4px",fontSize:'8px'}} /> : null}
+                                          
+                                          </span>
+                                          {/* <i className="hot-nav"></i> */}
+                                        </NavLink>
+                                        :
+                                        <span className={route.routes ? (route.label == 'nav_network' ? 'nav-link text-capitalize' : "nav-link") : "nav-link"}
                                         {...((route.routes && route.routes.length > 0) ? {'data-toggle': 'dropdown'} : {})}
-                                        activeClassName="active"
-                                        to={route.redirect? route.redirect: route.path}
-                                    >
-                                      <span  className={
-                                        (currentRouter.slice(1).split('/').indexOf(route.path.slice(1)) !== -1 || (currentRouter==='/exchange/trc20' && route.path ==="/exchange/trc20") || (route.path==='/more' && currentRouter.slice(1,5)==='help') || (route.path==='/more' && currentRouter.slice(1,6)==='tools')) || (route.path==='/newblock' && currentRouter.slice(1,11)==='blockchain') || (route.path==='/newblock' && currentRouter.slice(1,10)==='contracts') || (route.path==='/newblock' && currentRouter.slice(1,7)==='tokens') ? "menu-active-tilte-pc": ""}>
-                                      {route.icon &&
-                                      <i className={route.icon + " d-none d-lg-inline-block mr-1"}/>}
-                                      {tu(route.label)}
-                                      {route.label !== 'home_page' && route.label !== 'Poloni DEX'?<Icon type="caret-down" style={{color: 'rgba(51,51,51,0.50)',marginLeft:"4px",fontSize:'8px'}} /> : null}
-                                    
-                                      </span>
-                                      {/* <i className="hot-nav"></i> */}
-                                    </NavLink>
-                                  
+                                        >
+                                          <span  className={
+                                            (currentRouter.slice(1).split('/').indexOf(route.path.slice(1)) !== -1 || (currentRouter==='/exchange/trc20' && route.path ==="/exchange/trc20") || (route.path==='/more' && currentRouter.slice(1,5)==='help') || (route.path==='/more' && currentRouter.slice(1,6)==='tools')) || (route.path==='/newblock' && currentRouter.slice(1,11)==='blockchain') || (route.path==='/newblock' && currentRouter.slice(1,10)==='contracts') || (route.path==='/newblock' && currentRouter.slice(1,7)==='tokens') ? "menu-active-tilte-pc": ""}>
+                                          {route.icon &&
+                                            <i className={route.icon + " d-none d-lg-inline-block mr-1"}/>}
+                                            {tu(route.label)}
+                                            {route.label !== 'home_page' && route.label !== 'Poloni DEX'?<Icon type="caret-down" style={{color: 'rgba(51,51,51,0.50)',marginLeft:"4px",fontSize:'8px'}} /> : null}
+                                          </span>
+                                        </span>
+                                      }
                                     </span>
                                     
                               }
