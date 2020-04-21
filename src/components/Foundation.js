@@ -3,7 +3,8 @@ import {connect} from "react-redux";
 import {loadAccounts} from "../actions/app";
 import {tu} from "../utils/i18n";
 import {FormattedNumber, injectIntl} from "react-intl";
-import {AddressLink} from "./common/Links";
+// import {AddressLink} from "./common/Links";
+import {Truncate} from "./common/text";
 import {TronLoader} from "./common/loaders";
 import {Table, Input, Button, Icon} from 'antd';
 import xhr from "axios/index";
@@ -111,10 +112,13 @@ class Accounts extends Component {
                                         onMouseOver={(prevS,props) => this.setState({[record.key]: true})}
                                         onMouseOut={() => this.setState({[record.key]: false})}>
                                         <i className="fas fa-heart" style={{color:'#C23631', marginTop:3,marginRight:5}}></i>
-                                        <AddressLink address={text} truncate={false}/>
+                                        {/* <AddressLink address={text} truncate={false}/> */}
+                                        <Truncate>{text}</Truncate>
                                     </div>
                                     <Tooltip placement="top" target={"Tronics-Support-Plan_"+record.key} isOpen={this.state[record.key]}> <span className="text-capitalize">{tu("tronics_support_plan_recipient_address")}</span></Tooltip>
-                              </div>:<AddressLink address={text}/>
+                              </div>:
+                              // <AddressLink address={text}/>
+                              <Truncate>{text}</Truncate>
           )
         }
 
@@ -172,7 +176,6 @@ class Accounts extends Component {
                 </div>
               </div>
             </div>
-
             <div className="col-md-3 mt-3 mt-md-0 position-relative pr-0">
               <div className="card h-100 widget-icon">
                   <div className="card-body pl-4">
