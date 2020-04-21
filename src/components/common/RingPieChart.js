@@ -221,7 +221,7 @@ export class SupplyTypesTRXPieChart extends React.Component {
             let temp = [];
             for (let index in data) {
                 if (temp.indexOf(data[index].name) < 0) {
-                    _config.series[0].data.push({name: intl.formatMessage({id: data[index].name}), y: parseInt(data[index].value), selected:data[index].selected,sliced:data[index].sliced});
+                    _config.series[0].data.push({name: intl.formatMessage({id: data[index].name}), y: data[index].value, selected:data[index].selected,sliced:data[index].sliced});
                 }
             }
         }
