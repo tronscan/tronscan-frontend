@@ -30,6 +30,7 @@ class Accounts extends Component {
 
   componentDidMount() {
     this.loadAccounts();
+    document.oncontextmenu=function(){ return false }
   }
   handleHover(key) {
     this.setState((prevS,props)=>({
@@ -113,12 +114,16 @@ class Accounts extends Component {
                                         onMouseOut={() => this.setState({[record.key]: false})}>
                                         <i className="fas fa-heart" style={{color:'#C23631', marginTop:3,marginRight:5}}></i>
                                         {/* <AddressLink address={text} truncate={false}/> */}
-                                        <Truncate>{text}</Truncate>
+                                        <span style={{color: '#c23631',fontFamily: 'Helvetica-Bold',userSelect: 'none'}}>
+                                          <Truncate>{text}</Truncate>
+                                        </span>    
                                     </div>
                                     <Tooltip placement="top" target={"Tronics-Support-Plan_"+record.key} isOpen={this.state[record.key]}> <span className="text-capitalize">{tu("tronics_support_plan_recipient_address")}</span></Tooltip>
                               </div>:
                               // <AddressLink address={text}/>
-                              <Truncate>{text}</Truncate>
+                              <span style={{color: '#c23631',fontFamily: 'Helvetica-Bold',userSelect: 'none'}}>
+                                <Truncate>{text}</Truncate>
+                              </span>    
           )
         }
 
@@ -166,7 +171,7 @@ class Accounts extends Component {
     return (
         <main className="container header-overlap pb-3 token_black">
           <div className="row foundation_title" style={{position:"relative"}}>
-            <div className="col-md-3 mt-3 mt-md-0 pr-0">
+            <div className="col-md-6 mt-3 mt-md-0 pr-0">
               <div className="card h-100 widget-icon">
                 <div className="card-body pl-4 bg-image_book">
                   <p>
@@ -200,7 +205,7 @@ class Accounts extends Component {
                 </div>
               </div>
             </div> */}
-            <div className="col-md-3 mt-3 mt-md-0" >
+            <div className="col-md-6 mt-3 mt-md-0" >
               <div className="card h-100 widget-icon bg-line_green">
                 <div className="card-body pl-4 bg-image_frozen">
                   <p>
@@ -210,9 +215,9 @@ class Accounts extends Component {
                 </div>
               </div>
             </div>
-            <div style={{position:"absolute",right:'1rem', top: '-30px','fontSize':'16px',color:'#666'}}>
+            {/* <div style={{position:"absolute",right:'1rem', top: '-30px','fontSize':'16px',color:'#666'}}>
               {tu("foundation_address_update_date")}
-            </div>
+            </div> */}
           </div>
 
 
