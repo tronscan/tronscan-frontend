@@ -257,7 +257,15 @@
         font-size: 12px;
         color: #333333;
         display: inline-block;
-        vertical-align:text-top;;
+      }
+      .nav-price-wrapper{
+        vertical-align:middle;
+      }
+      .trxTitle{
+        display: inline-block;
+      }
+      .currentTrxPirceNoTimeout{
+        display: inline-block;
       }
       .logoTrxPrice{
         .currentTRXInfo{

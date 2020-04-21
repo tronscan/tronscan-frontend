@@ -117,6 +117,10 @@ class NavTRXPrice extends React.Component {
   }
 
   refreshPrice() {
+    this.setState({
+      isLoading: true,
+      timeoutState: false,
+    });
     this.requestUsdPrice();
   }
 
@@ -129,11 +133,11 @@ class NavTRXPrice extends React.Component {
       USD_Price,
     } = this.state;
     return (
-      <span>
+      <span className="nav-price-wrapper">
         <span className="trxTitle">TRX:</span>
         {timeoutState ? (
           <span className="currentTrxPirce currentTrxPirceNoResult">
-            <span style={{ margin: "0 4px 0 6px"}}>
+            <span style={{ margin: "0 4px"}}>
               {tu("index_page_price_time_out")}
             </span>
             <img
@@ -144,7 +148,7 @@ class NavTRXPrice extends React.Component {
             />
           </span>
         ) : (
-          <span>
+          <span className="currentTrxPirceNoTimeout">
             {isLoading ? (
               <span className="currentTrxPirce currentTrxPirceNoResult">
                 <span style={{ margin: "0 4px 0 6px"}}>
