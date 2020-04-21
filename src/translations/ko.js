@@ -5,6 +5,9 @@ import {
 import {
   lang20Q1
 } from './versionLang/lang20Q1/ko.js'; /* 2020Q1 */
+import {
+  lang20Q2
+} from './versionLang/lang20Q2/ko';
 export const messages = {
     /*
   ##################################################################################
@@ -2477,5 +2480,6 @@ export const messages = {
    "address_freeze_owner":"자신에게 동결",
    "address_freeze_other":"타인에게 동결",
    ...lang19Q4,
-   ...lang20Q1
+   ...lang20Q1,
+   ...lang20Q2
 };

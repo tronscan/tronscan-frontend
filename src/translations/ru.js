@@ -5,6 +5,9 @@ import {
 import {
   lang20Q1
 } from './versionLang/lang20Q1/ru.js'; /* 2020Q1 */
+import {
+  lang20Q2
+} from './versionLang/lang20Q2/ru';
 export const messages = {
     /*
   ##################################################################################
@@ -2482,5 +2485,6 @@ export const messages = {
 "address_freeze_owner":"Для вашего аккаунта ",
 "address_freeze_other":"Для другого аккаунта(ов)",
 ...lang19Q4,
-...lang20Q1
+...lang20Q1,
+...lang20Q2
 };

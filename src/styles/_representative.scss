@@ -14,3 +14,123 @@
     background: rgba(0, 0, 0, 0.05);
   }
 }
+
+.representatives-list-wrap{
+  .representatives-intro{
+    padding: 25px 40px;
+    margin: 10px 0 20px;
+    border: 1px solid #D8D8D8;
+    background: rgba(255,255,255,0.60);
+    font-size: 16px;
+    color: #8D8D8D;
+    img{
+      // width: 53px;
+      height: 70px;
+      padding-right: 40px;
+      margin-right: 40px;
+      border-right: 1px solid rgba(151,151,151,0.30);
+    }
+  }
+  .representatives-data-wrap{
+    .representatives-data{
+      margin: 0 25px;
+      span{
+        color: #333333;
+        font-family: PingFangSC-Medium;
+      }
+      h2{
+        flex: .9;
+        margin-bottom: 0;
+        font-size: 16px;
+      }
+      >div{
+        flex: 1;
+      }
+      .num{
+        margin-bottom: 5px;
+        font-size: 24px;
+      }
+      .desc{
+        font-size: 14px;
+        .txt{
+          margin-right: 5px;
+          white-space: nowrap;
+          >span{
+            color: #999999;
+          }
+        }
+        .dropdown-menu{
+          a{
+            color: #C23631;
+            span{
+              color: #C23631;
+            }
+          }
+        }
+      }
+    }
+  }
+  .represent-filter-wrap{
+    padding: 12px 20px;
+    background-color: #fff;
+    font-family: PingFangSC-Regular;
+    color: #FFFFFF;
+    border: 1px solid #D8D8D8;
+    border-bottom: 0;
+    a{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 137px;
+      padding: 7px 13px;
+      border-radius: 2px;
+      font-size: 14px;
+      background: #69C265;
+      color: #fff;
+      &:hover{
+        color: #fff!important;
+      }
+    }
+    .left{
+      a{
+        margin-right: 10px;
+        font-size: 16px;
+        background: #CBCBCB;
+        &.active,&:hover{
+          background: #D0021B;
+          transition: background-color 0.5s ease;
+        }
+      }
+    }
+  }
+  table{
+    tbody{
+      tr{
+        td:first-child:before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          bottom: 0;
+          width: 2px;
+          background: $main-red;
+        }
+        &:nth-child(4n+2){
+          td:first-child:before{
+            background: #E0AE5C;
+          }
+        }
+        &:nth-child(4n+3){
+          td:first-child:before{
+            background: #69C265;
+          }
+        }
+        &:nth-child(4n){
+          td:first-child:before{
+            background: #4A90E2;
+          }
+        }
+      }
+    }
+  }
+}

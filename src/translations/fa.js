@@ -5,6 +5,9 @@ import {
 import {
   lang20Q1
 } from './versionLang/lang20Q1/fa'; /* 2020Q1 */
+import {
+  lang20Q2
+} from './versionLang/lang20Q2/fa';
 export const messages = {
    /*
     ##################################################################################
@@ -2476,5 +2479,6 @@ export const messages = {
 "address_freeze_owner":"به حساب خودم .",
 "address_freeze_other":"به حساب (های) دیگران",
 ...lang19Q4,
-...lang20Q1
+...lang20Q1,
+...lang20Q2
 };

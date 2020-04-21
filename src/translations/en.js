@@ -1,7 +1,9 @@
 /* eslint-disable */
 import { lang19Q4 } from "./versionLang/lang19Q4/en19Q4";
 import { lang20Q1 } from "./versionLang/lang20Q1/en";
-
+import {
+  lang20Q2
+} from './versionLang/lang20Q2/en';
 export const messages = {
   /*
   ##################################################################################
@@ -2789,5 +2791,6 @@ export const messages = {
   address_freeze_owner: "To your account",
   address_freeze_other: "To others' account(s)",
   ...lang19Q4,
-  ...lang20Q1
+  ...lang20Q1,
+  ...lang20Q2
 };

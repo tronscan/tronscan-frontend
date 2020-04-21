@@ -3,6 +3,9 @@ import {
     lang19Q4
 } from './versionLang/lang19Q4/ar19Q4'; /* 2019Q4 */
 import {lang20Q1} from './versionLang/lang20Q1/ar';/* 2020Q1 */
+import {
+  lang20Q2
+} from './versionLang/lang20Q2/ar';
 export const messages = {
     /*
   ##################################################################################
@@ -2459,4 +2462,5 @@ export const messages = {
    "address_freeze_other":"تجميد إلى حسابات الآخرين",
    ...lang19Q4,
    ...lang20Q1,
+   ...lang20Q2
 };

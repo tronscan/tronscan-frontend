@@ -380,7 +380,7 @@ body .token_black {
       font-size: 0.75rem;
     }
     span {
-      color: $text-block-dark;
+      // color: $text-block-dark;
       position: relative;
     }
     h3,
@@ -389,7 +389,7 @@ body .token_black {
     }
   }
   .represent_title {
-    @each $number, $color, $image in (1, $main-red, sr), (2, $green, heightst),
+    @each $number, $color, $image in (1, $main-red, sr), (2, $green, block),
       (3, $yellow, lowst)
     {
       & > div:nth-child(#{$number}) .card-body {
@@ -429,15 +429,15 @@ body .token_black {
     }
     &__content,
     &__lighter {
-      td:first-child:before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        width: 4px;
-        background-color: $main-red;
-      }
+      // td:first-child:before {
+      //   content: "";
+      //   position: absolute;
+      //   top: 0;
+      //   left: 0;
+      //   bottom: 0;
+      //   width: 4px;
+      //   background-color: $main-red;
+      // }
     }
     &__lighter {
       td:first-child:before {

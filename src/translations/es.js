@@ -5,6 +5,9 @@ import {
 import {
   lang20Q1
 } from './versionLang/lang20Q1/es';
+import {
+  lang20Q2
+} from './versionLang/lang20Q2/es';
 export const messages = {
   /*
   ##################################################################################
@@ -2480,5 +2483,6 @@ export const messages = {
 "address_freeze_owner":"A tu cuenta",
 "address_freeze_other":"A la (s) cuenta (s) de otros",
   ...lang19Q4,
-  ...lang20Q1
+  ...lang20Q1,
+  ...lang20Q2
 };
