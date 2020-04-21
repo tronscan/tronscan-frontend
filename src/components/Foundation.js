@@ -30,7 +30,6 @@ class Accounts extends Component {
 
   componentDidMount() {
     this.loadAccounts();
-    document.oncontextmenu=function(){ return false }
   }
   handleHover(key) {
     this.setState((prevS,props)=>({
@@ -152,7 +151,7 @@ class Accounts extends Component {
                 </div>
                 :
                 <div className="card table_pos">
-                  {total ? <div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo}  <span style={{fontSize:'0.775rem'}}>{tu("foundation_address_deadline_date")}</span></div> : ''}
+                  {total ? <div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo}  <span style={{fontSize:'0.675rem'}}>{tu("foundation_address_deadline_date")}</span></div> : ''}
                     <Table bordered={true} columns={column} dataSource={accounts} rowClassName={(record, index) => { return  record.isPlan ?  'ant_table_plan' :'' }}
                            onChange={(pagination) => {
                                this.loadAccounts(pagination.current, pagination.pageSize)
