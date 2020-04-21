@@ -358,4 +358,6 @@ export const lang20Q1 = {
 
   // foundation address
   foundation_address_update_date:'更新时间：2019/12/31',
+  foundation_address_deadline_date:'统计截止到2020年4月15日',
+
 };

@@ -349,4 +349,6 @@ account_piechart_title:'資産配分',
 
   // foundation address
   foundation_address_update_date:'Updated time: 2019/12/31',
+  foundation_address_deadline_date:'by 2020.4.15',
+  
 };

@@ -147,7 +147,7 @@ class Accounts extends Component {
                 </div>
                 :
                 <div className="card table_pos">
-                  {total ? <div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo}</div> : ''}
+                  {total ? <div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo}  <span style={{fontSize:'0.775rem'}}>{tu("foundation_address_deadline_date")}</span></div> : ''}
                     <Table bordered={true} columns={column} dataSource={accounts} rowClassName={(record, index) => { return  record.isPlan ?  'ant_table_plan' :'' }}
                            onChange={(pagination) => {
                                this.loadAccounts(pagination.current, pagination.pageSize)
@@ -165,7 +165,7 @@ class Accounts extends Component {
     let {total, tronicsPlanTRX,foundationTRX,loading,planAddress} = this.state;
     return (
         <main className="container header-overlap pb-3 token_black">
-          <div className="row foundation_title">
+          <div className="row foundation_title" style={{position:"relative"}}>
             <div className="col-md-3 mt-3 mt-md-0 pr-0">
               <div className="card h-100 widget-icon">
                 <div className="card-body pl-4 bg-image_book">
@@ -176,7 +176,7 @@ class Accounts extends Component {
                 </div>
               </div>
             </div>
-            <div className="col-md-3 mt-3 mt-md-0 position-relative pr-0">
+            {/* <div className="col-md-3 mt-3 mt-md-0 position-relative pr-0">
               <div className="card h-100 widget-icon">
                   <div className="card-body pl-4">
                       <p>
@@ -189,8 +189,8 @@ class Accounts extends Component {
                       </span>
                   </div>
               </div>
-            </div>
-            <div className="col-md-3 mt-3 mt-md-0 pr-0">
+            </div> */}
+            {/* <div className="col-md-3 mt-3 mt-md-0 pr-0">
               <div className="card h-100 widget-icon">
                 <div className="card-body pl-4 bg-image_home" >
                   <p>
@@ -199,8 +199,8 @@ class Accounts extends Component {
                   {tu("frozen_by_the_foundationTRX")}
                 </div>
               </div>
-            </div>
-            <div className="col-md-3 mt-3 mt-md-0" style={{position:"relative"}}>
+            </div> */}
+            <div className="col-md-3 mt-3 mt-md-0" >
               <div className="card h-100 widget-icon bg-line_green">
                 <div className="card-body pl-4 bg-image_frozen">
                   <p>
@@ -209,9 +209,9 @@ class Accounts extends Component {
                   {tu("unfreeze_time")}
                 </div>
               </div>
-              <div style={{position:"absolute",right:'1rem', top: '-30px','fontSize':'16px',color:'#666'}}>
-                {tu("foundation_address_update_date")}
-              </div>
+            </div>
+            <div style={{position:"absolute",right:'1rem', top: '-30px','fontSize':'16px',color:'#666'}}>
+              {tu("foundation_address_update_date")}
             </div>
           </div>
 
