@@ -165,7 +165,7 @@ class NavTRXPrice extends React.Component {
                 />
               </span>
             ) : (
-              <span >
+              <span className='normalCurrentTrxPirce'>
                 <Tooltip
                   placement="bottom"
                   title={intl.formatMessage({
@@ -175,9 +175,8 @@ class NavTRXPrice extends React.Component {
                   <HrefLink
                     href="https://coinmarketcap.com/currencies/tron/"
                     target="_blank"
-                    className="hvr-underline-from-center hvr-underline-white text-muted"
+                    className="erhvr-underline-white text-muted"
                   >
-                  <span className='normalPriceShow '>
                     <span className="currentTrxPirce showPirce">
                       <FormattedNumber value={USD_Price}></FormattedNumber>
                     </span>
@@ -190,7 +189,6 @@ class NavTRXPrice extends React.Component {
                           ? "greenPrice currentCurrencyMobile "
                           : "redPrice currentCurrencyMobile "
                       }
-                      style={{ display: "inline-block" }}
                     >
                       {Number(percent_change_24h) === 0 ? (
                         <span>({percent_change_24h}%)</span>
@@ -201,7 +199,6 @@ class NavTRXPrice extends React.Component {
                         </span>
                       )}
                     </span>
-                  </span>
                   </HrefLink>
                 </Tooltip>
               </span>

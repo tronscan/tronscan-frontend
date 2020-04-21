@@ -252,6 +252,7 @@
       overflow: hidden;
     }
     @media screen and (max-width: 768px) {
+      // 
       .currentTrxPirce {
         font-family: HelveticaNeue;
         font-size: 12px;
@@ -259,16 +260,10 @@
         display: inline-block;
       }
       .normalPriceShow{
+        height:16px;
         vertical-align:middle;
       }
-      .showPirce{
-        display: inline-block;
-        height:14px;
-        vertical-align:middle;
-        span{
-          display: inline-block;
-        }
-      }
+     
       .currentCurrency{
         margin:0 4px 0 4px;
       }
@@ -280,22 +275,42 @@
       }
       .currentTrxPirceNoTimeout{
         display: inline-block;
+        height:16px;
+        .normalCurrentTrxPirce{
+          height:16px;
+          a{
+            display: inline-block;
+            height:16px;
+            vertical-align:middle;
+          }
+        }
       }
     
       .logoTrxPrice{
         .currentTRXInfo{
           .trxTitle{
-            height:18px;
+            height:16px;
           }
         }
       }
-      .currentCurrencyMobile{
-        vertical-align: text-top;
+      .currentTrxPirceNoResult{
+        vertical-align:middle;
+      }
+      .currentCurrencyMobile,.showPirce{
         display: inline-block;
-        transform: perspective(1px) translateZ(0);
-        box-shadow: 0 0 1px transparent;
-        position: relative;
-        overflow: hidden
+      }
+      .showPirce{
+        vertical-align:middle;
+        span{
+          // height:16px;
+          display: inline-block;
+        }
+      }
+      .currentCurrencyMobile{
+        vertical-align:middle;
+        span{
+          display: inline-block;
+        }
       }
 
     }
