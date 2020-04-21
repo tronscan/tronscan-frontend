@@ -355,4 +355,9 @@ export const lang20Q1 = {
   address_total_tron_power: "总投票权",
   address_total_tron_power_remain: "可用投票权",
   address_total_tron_power_used: "已用投票权",
+
+  // foundation address
+  foundation_address_update_date:'更新时间：2019/12/31',
+  foundation_address_deadline_date:'统计截止到2020年4月15日',
+
 };
