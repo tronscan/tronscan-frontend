@@ -1172,7 +1172,6 @@ export default {
             title: {
                 enabled: false
             },
-
         },
         yAxis: [
 
@@ -1190,6 +1189,147 @@ export default {
 
         },
         series: []
-    }
+    },
+    activeAccountChartConfig: {
+        chart: {
+            zoomType: '',
+            spacingTop: 5,
+            spacingBottom: 0,
+            spacingLeft: 0,
+            spacingRight: 0,
+            resetZoomButton: {
+                position: {
+                    align: 'right', // right by default
+                    verticalAlign: 'top',
+                    x: -55,
+                    y: 0
+                },
+                relativeTo: 'chart',
+                theme: {
+                    fill: 'white',
+                    stroke: 'silver',
+                    r: 0,
+                    states: {
+                        hover: {
+                            fill: '#eeeeee',
+                            style: {
+                                color: 'red'
+                            }
+                        }
+                    }
+                }
+
+            }
+        },
+        title: {
+            text: '',
+            style:{
+                color: '#c23631',
+                fontSize:"16px"
+            }
+        },
+        credits: {
+            enabled: false
+        },
+        colors: [
+            '#c84a45',
+            '#e7afad'
+        ],
+        exporting: {
+            enabled: true,
+            sourceWidth: 1072,
+            sourceHeight: 500,
+            filename: ''
+        },
+        rangeSelector: {
+            enabled: false
+        },
+        subtitle: {
+            text: ''
+        },
+        navigator: {
+            maskFill: 'rgba(198,72,68, 0.3)',
+            xAxis: {
+                labels: {
+                    format: '{value:%Y-%m-%d}',
+                },
+            },
+           
+        },
+        xAxis: {
+            // type: 'datetime',
+            ordinal: false,
+            dateTimeLabelFormats: {
+                millisecond: '%H:%M:%S.%L',
+                second: '%H:%M:%S',
+                minute: '%H:%M',
+                hour: '%H:%M',
+                day: '%m-%d',
+                week: '%m-%d',
+                month: '%Y-%m',
+                year: '%Y'
+            },
+            gridLineColor: '#eeeeee',
+            labels: {
+                style: {
+                    color: "#999999"
+                },
+                autoRotation: [-10, -20, -30, -40, -50, -60, -70, -80, -90]
+            }
+        },
+        tooltip: {
+            dateTimeLabelFormats: {
+                millisecond: '%H:%M:%S.%L',
+                second: '%H:%M:%S',
+                minute: '%H:%M',
+                hour: '%H:%M',
+                day: '%Y-%m-%d',
+                week: '%m-%d',
+                month: '%Y-%m',
+                year: '%Y'
+            }
+        },
+        yAxis: {
+            title: {
+                // align: 'high',
+                // offset: 0,
+                text: '',
+                // rotation: 0,
+                // x:100,
+                // y: -10
+            },
+            // min: 0,
+            //minTickInterval:5
+            tickPixelInterval: 30,
+            labels: {
+                style: {
+                    color: "#999999"
+                }
+            }
+        },
+        legend: {
+            enabled: false
+        },
+        plotOptions: {
+
+        },
+        series: [{
+            type: 'line',
+            name: '',
+            data: [],
+            zoneAxis: 'y',
+            zones: [{
+                value:250000000,
+            },{
+                color:'#000'
+            }],
+            //turboThreshold: 7000,
+            //allowPointSelect: false,
+            marker: {
+                enabled: true,
+                //enabledThreshold: '7'
+            }
+        }]
+    },
 
 };

@@ -15,12 +15,13 @@ import {tu} from "../../../utils/i18n";
 import CountUp from 'react-countup';
 import {Link} from "react-router-dom"
 import {API_URL} from "../../../constants";
-import { DatePicker, Select } from 'antd';
+import { DatePicker, Select,Button,Tabs, Radio } from 'antd';
 import SmartTable from "../../common/SmartTable.js"
 import moment from 'moment';
 import { upperFirst } from 'lodash'
 import {AddressLink} from "../../common/Links";
 import {Truncate} from "../../common/text";
+import { CsvExport } from "../../common/CsvExport";
 
 import isMobile from "../../../utils/isMobile";
 import {
@@ -37,6 +38,7 @@ import {
     EnergyConsumeDistributionChart,
     OverallFreezingRateChart,
     LineTxOverviewStatsType,
+    ActiveAccountsChart
 } from "../../common/LineCharts";
 
 import {
@@ -46,8 +48,11 @@ import {
 
 import {loadPriceData} from "../../../actions/markets";
 import {t} from "../../../utils/i18n";
-
+import '../../../styles/chart.scss'
+import ActiveAccount from './ActiveAccount'
+import ApiClientChart from '../../../services/chartApi.js'
 const Option = Select.Option;
+const { TabPane } = Tabs;
 
 // const API_URL = 'http://52.15.68.74:10000'
 
@@ -103,7 +108,13 @@ class Statistics extends React.Component {
                 freezingEnergy:0,
                 burningEnergy:0,
                 userBurningEnergy:0
-            }
+            },
+            activeAccountParams:{
+                start_day:'2020-04-01',
+                end_day: moment().format("YYYY-MM-DD"),
+                type:'month'
+            },
+            activeAccountData:null
         };
     }
 
@@ -151,6 +162,9 @@ class Statistics extends React.Component {
             case 'txOverviewStats':
                 this.loadTxOverviewStats();
                 break;
+            case 'activeAccounts':
+                this.loadActiveAccountData();
+                break;   
             default:
                 this.loadTxOverviewStats();
                 break;
@@ -168,6 +182,73 @@ class Statistics extends React.Component {
                 return 0;
             }
         }
+    }
+
+    async loadActiveAccountData(){
+        let { txOverviewStats } = await Client.getTxOverviewStatsAll();
+        let temp = [];
+        for (let txs in txOverviewStats) {
+            let tx = parseInt(txs);
+            if (tx === 0) {
+                temp.push({
+                    proportion: txOverviewStats[tx].avgBlockSize,
+                    mom: txOverviewStats[tx].avgBlockTime,
+                    blockchainSize: txOverviewStats[tx].blockchainSize,
+                    date: txOverviewStats[tx].date,
+                    newAddressSeen: txOverviewStats[tx].newAddressSeen,
+                    newBlockSeen: txOverviewStats[tx].newBlockSeen,
+                    newTransactionSeen: txOverviewStats[tx].newTransactionSeen,
+                    totalAddress: txOverviewStats[tx].totalAddress,
+                    totalBlockCount: txOverviewStats[tx].totalBlockCount,
+                    totalTransaction: txOverviewStats[tx].totalTransaction,
+                    newtotalTransaction:txOverviewStats[tx].totalTransaction,
+                    newtotalAddress:txOverviewStats[tx].totalAddress,
+                    amount:txOverviewStats[tx].totalBlockCount,
+                }) 
+            }
+            else {
+                temp.push({
+                    date: txOverviewStats[tx].date,
+                    totalTransaction: (txOverviewStats[tx].totalTransaction - txOverviewStats[tx - 1].totalTransaction),
+                    mom: txOverviewStats[tx].avgBlockTime,
+                    proportion: txOverviewStats[tx].avgBlockSize,
+                    totalBlockCount: (txOverviewStats[tx].totalBlockCount - txOverviewStats[tx - 1].totalBlockCount),
+                    newAddressSeen: txOverviewStats[tx].newAddressSeen,
+                    newtotalTransaction:txOverviewStats[tx].totalTransaction,
+                    newtotalAddress:txOverviewStats[tx].totalAddress,
+                    amount:txOverviewStats[tx].totalBlockCount,
+                });
+            }
+            // let {day_time,transactions,proportion,mom,amount} = txOverviewStats[tx]
+
+            // temp.push({
+                //  totalTransaction:transactions,
+                // date:day_time,
+            //     proportion,mom,amount
+            // });
+            
+        }
+
+        this.setState({
+            activeAccountData:  temp.slice(0, temp.length), 
+        });
+
+       
+        let tx = cloneDeep(temp).sort(this.compare('transactions'));
+
+        this.setState({
+            summit: {
+                activeAccounts_sort: [
+                    {
+                        date: tx[tx.length - 1].date,
+                        increment: tx[tx.length - 1].totalTransaction
+                    },
+                    {
+                        date: tx[0].date,
+                        increment: tx[0].totalTransaction
+                    }]
+            }
+        });
     }
 
     async loadAccounts() {
@@ -1105,7 +1186,7 @@ class Statistics extends React.Component {
             priceUSD,priceBTC,marketCapitalization,foundationFreeze,
             circulatingNum, energyConsumeData, ContractInvocation,
             ContractInvocationDistribution, ContractInvocationDistributionParams,
-            EnergyConsumeDistribution,OverallFreezingRate,energyConsumeDataTop } = this.state;
+            EnergyConsumeDistribution,OverallFreezingRate,energyConsumeDataTop,activeAccountParams,activeAccountData } = this.state;
 
         let unit;
         let uploadURL = API_URL + "/api/v2/node/overview_upload";
@@ -1121,6 +1202,8 @@ class Statistics extends React.Component {
         } else {
             unit = 'number';
         }
+
+        let activeAccountCsvurl = API_URL + "/api/freezeresource?start_day=" + activeAccountParams.start_day +"&end_day="+activeAccountParams.end_day + "&format=csv";
 
         return (
             <main className="container header-overlap">
@@ -1630,13 +1713,37 @@ class Statistics extends React.Component {
                             </div>
 
                         }
+{
+                            match.params.chartName === 'activeAccounts' &&
+                            <div style={{height: chartHeight}}>
+                            {
+                                activeAccountData === null ?
+                                <TronLoader/> :
+                                <div className="active-account-chart">
+                                    <Radio.Group size="small" onChange={this.handleModeChange} value={activeAccountParams.type} style={{ marginBottom: 8 }}>
+                                        <Radio.Button value="month">{tu('chart_active_button_1')}</Radio.Button>
+                                        <Radio.Button value="week">{tu('chart_active_button_2')}</Radio.Button>
+                                        <Radio.Button value="day">{tu('chart_active_button_3')}</Radio.Button>
+                                    </Radio.Group>
+                                    <ActiveAccountsChart source='singleChart' style={{height: chartHeight}}
+                                    data={activeAccountData} intl={intl}/>
+                                </div> 
+                                
+                            }
                     </div>
+                        }
 
+                    </div>
+                    
                   </div>
                     {
                         match.params.chartName === 'txOverviewStats' &&
                         <div style={{marginTop:20,float:'right'}}><i size="1" style={{fontStyle: 'normal'}}>[ Download <a href={uploadURL} style={{color: '#C23631'}}><b>CSV Export</b></a>&nbsp;<span className="glyphicon glyphicon-download-alt"></span> ]</i>&nbsp;</div>
                     }
+                   {
+                        match.params.chartName === 'activeAccounts' && <ActiveAccount chartHeight={chartHeight} data={activeAccountData} activeAccountParams={activeAccountParams} intl={intl} activeAccountCsvurl={activeAccountCsvurl}/>
+
+                   }
 
                 </div>
               </div>

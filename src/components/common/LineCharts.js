@@ -2278,8 +2278,6 @@ export class OverallFreezingRateChart extends React.Component {
                     title: {
                         enabled: false
                     },
-                  
-                
                 },
                 yAxis: [
                     { // Primary yAxis
@@ -3498,6 +3496,100 @@ export class HoldTrxAccountChart extends React.Component {
         this.initLine(this.state.lineId);
     }
 
+    componentDidUpdate() {
+        this.initLine(this.state.lineId);
+    }
+
+    render() {
+        return (
+            <div>
+                <div id={this.state.lineId} style={this.props.style}></div>
+            </div>
+        )
+    }
+}
+
+/**
+ * activeAccountsChart
+ */
+export class ActiveAccountsChart extends React.Component {
+    constructor(props) {
+        super(props)
+        this.myChart = null;
+        let id = ('_' + Math.random()).replace('.', '_');
+        this.state = {
+            lineId: 'activeAccountsChart' + id
+        }
+    }
+    initLine(id) {
+        let _config = cloneDeep(config.activeAccountChartConfig);
+        let {intl, data, source} = this.props;
+            if (data && data.length === 0) {
+                _config.title.text = "No data";
+            }
+            if (data && data.length > 0) {
+                data.map((val) => {
+                    let temp;
+                    temp = {...val, y: val.totalTransaction};
+                    _config.series[0].data.push(temp);
+                })
+            }
+            _config.chart.zoomType = 'x';
+            _config.chart.marginTop = 50;
+            _config.title.text = intl.formatMessage({id: 'chart_active_account'});
+            _config.exporting.filename = intl.formatMessage({id: 'charts_total_transactions'});
+            _config.xAxis.tickPixelInterval = 100;
+            _config.yAxis.title.text = intl.formatMessage({id: 'totle_transactions_per_day'});
+            _config.yAxis.tickAmount = 6;
+            _config.yAxis.min = 0;
+            
+            _config.series[0].marker.enabled = false;
+            _config.series[0].pointInterval = 24 * 3600 * 1000;
+            _config.series[0].pointStart = Date.UTC(2018, 5, 25);
+            _config.series[0].zoneAxis = 'y'
+            _config.series[0].zones = [{
+                value:250000000,
+            },{
+                color:'#000'
+            }]
+            _config.tooltip = {
+                useHTML: true,
+                shadow: true,
+                split: false,
+                shared: true,
+                formatter: function () {
+                    var s;
+                    var points = this.points;
+                    var pointsLength = points.length;
+                    if(pointsLength > 0){
+                    
+                        let {totalTransaction,date,proportion,mom,amount} = points && points[0].point
+                        s = '<table class="tableformat" style="border: 0px;" min-width="100%"><tr style="border-bottom:1px solid #D5D8DC;"><td colspan=2><span style="font-size: 10px;"> ' + moment(points[0].point.date).format("YYYY-MM-DD") + '</span><br></td><td></td></tr>'
+                        s += '<tr style="border-bottom:1px solid #D5D8DC;"><td>'+intl.formatMessage({id:'chart_active_table_2'})+'</td><td style="text-align:right;padding:4px 6px;">'+totalTransaction+'</td></tr>' 
+                        s += '<tr style="border-bottom:1px solid #D5D8DC;"><td>'+intl.formatMessage({id:'chart_active_table_3'})+'</td><td style="text-align:right;padding:4px 6px;">'+proportion+'</td></tr>' 
+                        s += '<tr style="border-bottom:1px solid #D5D8DC;"><td>'+intl.formatMessage({id:'chart_active_table_4'})+'</td><td style="text-align:right;padding:4px 6px;">'+mom+'</td></tr>' 
+                        s += '<tr style="border-bottom:1px solid #D5D8DC;"><td>'+intl.formatMessage({id:'chart_active_table_5'})+'</td><td style="text-align:right;padding:4px 6px;">'+totalTransaction+'</td></tr>' 
+                        s += '<tr style="border-bottom:1px solid #D5D8DC;"><td>'+intl.formatMessage({id:'chart_active_table_6'})+'</td><td style="text-align:right;padding:4px 6px;">'+amount+'</td></tr>'              
+                        s += '</table>';
+                        return s;
+                    }
+                   
+                },
+            }
+
+            Highcharts.StockChart(id, _config);
+            // Highcharts.chart(document.getElementById(id),_config);
+
+    }
+    shouldComponentUpdate(nextProps)  {
+        if(nextProps.intl.locale !== this.props.intl.locale){
+            return true
+        }
+        return  false
+    }
+    componentDidMount() {
+        this.initLine(this.state.lineId);
+    }
     componentDidUpdate() {
         this.initLine(this.state.lineId);
     }

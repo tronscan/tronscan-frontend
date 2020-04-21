@@ -355,4 +355,18 @@ export const lang20Q1 = {
   address_total_tron_power: "总投票权",
   address_total_tron_power_remain: "可用投票权",
   address_total_tron_power_used: "已用投票权",
+
+  // active account
+  chart_active_account:'活跃账户分布',
+  chart_active_button_1:'月活',
+  chart_active_button_2:'周活',
+  chart_active_button_3:'日活',
+  chart_active_total:'账户月活跃数据共{total}条',
+  chart_active_table_1:'日期 (UTC)',
+  chart_active_table_2:'活跃账户数',
+  chart_active_table_3:'占比',
+  chart_active_table_4:'环比',
+  chart_active_table_5:'交易笔数',
+  chart_active_table_6:'交易额',
+
 };

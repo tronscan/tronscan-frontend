@@ -1,0 +1,9 @@
+.active-account-chart{
+    position: relative;
+    .ant-radio-group{
+        position: absolute;
+        right:35px;
+        z-index: 5;
+        top: 5px;
+    }
+}
