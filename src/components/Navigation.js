@@ -145,6 +145,7 @@ class Navigation extends React.Component {
     setWebsocket();
     $(document).click(() => {
       $('#_searchBox').css({display: 'none'});
+      document.getElementById("mobile_searchBox").style.display = 'none'
     });
 
     this.setState({
@@ -484,6 +485,7 @@ class Navigation extends React.Component {
     if (ev.keyCode === 13) {
       this.doSearch();
       $('#_searchBox').css({display: 'none'});
+      document.getElementById("mobile_searchBox").style.display = 'none'
     }
   };
 
@@ -500,6 +502,7 @@ class Navigation extends React.Component {
     if (search === "") {
       this.setState({searchResults: []});
       $('#_searchBox').css({display: 'none'});
+      document.getElementById("mobile_searchBox").style.display = 'none'
       return;
     } 
 
@@ -517,12 +520,13 @@ class Navigation extends React.Component {
       {desc: 'Contract', value: "TVethjgashn8t4cwKWfGA3VvSgMwVmHKNM"},
       {desc: 'TxHash', value: "9073aca5dfacd63c8e61f6174c98ab3f350bc9365df6ffc3bc7a70a252711d6f"}
     ];*/
-
     this.setState({searchResults: results});
     if (results.length) {
       $('#_searchBox').css({display: 'block'});
+      document.getElementById("mobile_searchBox").style.display = 'block';
     } else {
       $('#_searchBox').css({display: 'none'});
+      document.getElementById("mobile_searchBox").style.display = 'none'
     }
   }
 
@@ -1142,23 +1146,37 @@ class Navigation extends React.Component {
                                     </HrefLink>
                                     :
                                     <span className={route.routes ? (route.label == 'nav_network' ? 'nav-network-hot' : "") : ""}> 
-                                    <NavLink
-                                        className={route.routes ? (route.label == 'nav_network' ? 'nav-link text-capitalize' : "nav-link") : "nav-link"}
+                                      {
+                                        route.label == 'home_page' || route.label == 'Poloni DEX'?
+                                        <NavLink
+                                            className={route.routes ? (route.label == 'nav_network' ? 'nav-link text-capitalize' : "nav-link") : "nav-link"}
+                                            {...((route.routes && route.routes.length > 0) ? {'data-toggle': 'dropdown'} : {})}
+                                            activeClassName="active"
+                                            to={route.redirect? route.redirect: route.path}
+                                        >
+                                          <span  className={
+                                            (currentRouter.slice(1).split('/').indexOf(route.path.slice(1)) !== -1 || (currentRouter==='/exchange/trc20' && route.path ==="/exchange/trc20") || (route.path==='/more' && currentRouter.slice(1,5)==='help') || (route.path==='/more' && currentRouter.slice(1,6)==='tools')) || (route.path==='/newblock' && currentRouter.slice(1,11)==='blockchain') || (route.path==='/newblock' && currentRouter.slice(1,10)==='contracts') || (route.path==='/newblock' && currentRouter.slice(1,7)==='tokens') ? "menu-active-tilte-pc": ""}>
+                                          {route.icon &&
+                                            <i className={route.icon + " d-none d-lg-inline-block mr-1"}/>}
+                                            {tu(route.label)}
+                                            {route.label !== 'home_page' && route.label !== 'Poloni DEX'?<Icon type="caret-down" style={{color: 'rgba(51,51,51,0.50)',marginLeft:"4px",fontSize:'8px'}} /> : null}
+                                          
+                                          </span>
+                                          {/* <i className="hot-nav"></i> */}
+                                        </NavLink>
+                                        :
+                                        <span className={route.routes ? (route.label == 'nav_network' ? 'nav-link text-capitalize' : "nav-link") : "nav-link"}
                                         {...((route.routes && route.routes.length > 0) ? {'data-toggle': 'dropdown'} : {})}
-                                        activeClassName="active"
-                                        to={route.redirect? route.redirect: route.path}
-                                    >
-                                      <span  className={
-                                        (currentRouter.slice(1).split('/').indexOf(route.path.slice(1)) !== -1 || (currentRouter==='/exchange/trc20' && route.path ==="/exchange/trc20") || (route.path==='/more' && currentRouter.slice(1,5)==='help') || (route.path==='/more' && currentRouter.slice(1,6)==='tools')) || (route.path==='/newblock' && currentRouter.slice(1,11)==='blockchain') || (route.path==='/newblock' && currentRouter.slice(1,10)==='contracts') || (route.path==='/newblock' && currentRouter.slice(1,7)==='tokens') ? "menu-active-tilte-pc": ""}>
-                                      {route.icon &&
-                                      <i className={route.icon + " d-none d-lg-inline-block mr-1"}/>}
-                                      {tu(route.label)}
-                                      {route.label !== 'home_page' && route.label !== 'Poloni DEX'?<Icon type="caret-down" style={{color: 'rgba(51,51,51,0.50)',marginLeft:"4px",fontSize:'8px'}} /> : null}
-                                    
-                                      </span>
-                                      {/* <i className="hot-nav"></i> */}
-                                    </NavLink>
-                                  
+                                        >
+                                          <span  className={
+                                            (currentRouter.slice(1).split('/').indexOf(route.path.slice(1)) !== -1 || (currentRouter==='/exchange/trc20' && route.path ==="/exchange/trc20") || (route.path==='/more' && currentRouter.slice(1,5)==='help') || (route.path==='/more' && currentRouter.slice(1,6)==='tools')) || (route.path==='/newblock' && currentRouter.slice(1,11)==='blockchain') || (route.path==='/newblock' && currentRouter.slice(1,10)==='contracts') || (route.path==='/newblock' && currentRouter.slice(1,7)==='tokens') ? "menu-active-tilte-pc": ""}>
+                                          {route.icon &&
+                                            <i className={route.icon + " d-none d-lg-inline-block mr-1"}/>}
+                                            {tu(route.label)}
+                                            {route.label !== 'home_page' && route.label !== 'Poloni DEX'?<Icon type="caret-down" style={{color: 'rgba(51,51,51,0.50)',marginLeft:"4px",fontSize:'8px'}} /> : null}
+                                          </span>
+                                        </span>
+                                      }
                                     </span>
                                     
                               }
@@ -1464,7 +1482,7 @@ class Navigation extends React.Component {
                   <i className="fa fa-search"/>
                 </button>
               </div>
-              <div className="dropdown-menu" id="_searchBox" style={{width: '100%',maxHeight:'300px', overflow:'auto'}}>
+              <div className="dropdown-menu" id="mobile_searchBox" style={{width: '100%',maxHeight:'300px', overflow:'auto'}}>
                 {
                   searchResults && searchResults.map((result, index) => {
                         if (result.desc === 'Block') {
