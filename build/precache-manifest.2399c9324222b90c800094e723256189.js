@@ -20,12 +20,19 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "https://static.tronscan.io:5577/editor.worker.js.gz"
   },
   {
-    "revision": "77e63552ffb117ea920206b4efc549d6",
+    "revision": "5bb196246965d20b6aab95a13381dd99",
     "url": "https://static.tronscan.io:5577/index.html"
   },
   {
-    "revision": "cb101d88f45d9c473bcbbb01a2d71480",
+    "revision": "fe4188b25c913cba82d7c83a0bf8d9fe",
     "url": "https://static.tronscan.io:5577/index.html.gz"
+  },
+  {
+    "url": "https://static.tronscan.io:5577/precache-manifest.eec7f2b3cde18173e27bc01a3e06c977.js"
+  },
+  {
+    "revision": "c49972f2d7bac5e17d33a8ac2b690d9f",
+    "url": "https://static.tronscan.io:5577/service-worker.js"
   },
   {
     "revision": "6deffc77f38f4c9e981b",
