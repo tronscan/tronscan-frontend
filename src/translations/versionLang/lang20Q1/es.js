@@ -346,5 +346,8 @@ export const lang20Q1 = {
   address_token_less_than_10:'tokens with a value less than 10 TRX',
   address_total_tron_power:'Total TRON Power',
   address_total_tron_power_remain:'Available TORN Power',
-  address_total_tron_power_used:'Used TRON Power'
+  address_total_tron_power_used:'Used TRON Power',
+
+  // foundation address
+  foundation_address_update_date:'Updated time: 2019/12/31',
 };

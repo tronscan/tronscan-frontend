@@ -200,7 +200,7 @@ class Accounts extends Component {
                 </div>
               </div>
             </div>
-            <div className="col-md-3 mt-3 mt-md-0">
+            <div className="col-md-3 mt-3 mt-md-0" style={{position:"relative"}}>
               <div className="card h-100 widget-icon bg-line_green">
                 <div className="card-body pl-4 bg-image_frozen">
                   <p>
@@ -208,6 +208,9 @@ class Accounts extends Component {
                   </p>
                   {tu("unfreeze_time")}
                 </div>
+              </div>
+              <div style={{position:"absolute",right:'1rem', top: '-30px','fontSize':'16px',color:'#666'}}>
+                {tu("foundation_address_update_date")}
               </div>
             </div>
           </div>
