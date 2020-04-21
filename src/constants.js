@@ -11,12 +11,12 @@ export const IS_DESKTOP = process.env.DESKTOP === "true";
 export const NETURL = {
 NEWMAINNET: "https://tronscan.io",
   NEWSUNNET: "https://dappchain.tronscan.io",
-  MAINNET: "https://tronscan.org",
-  SUNNET: "https://dappchain.tronscan.org",
+  // MAINNET: "https://tronscan.org",
+  // SUNNET: "https://dappchain.tronscan.org",
   // MAINNET: "http://18.217.215.94:69",
   // SUNNET: "http://18.217.215.94:70",
-  // MAINNET: "https://debug.tronscan.org",
-  // SUNNET: "https://debugdappchain.tronscan.org",
+  MAINNET: "https://debug.tronscan.org",
+  SUNNET: "https://debugdappchain.tronscan.org",
 };
 
 export const TOKENINFO_UPDATE = "TOKENINFO_UPDATE";
