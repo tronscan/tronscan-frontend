@@ -151,7 +151,7 @@ class NavTRXPrice extends React.Component {
           <span className="currentTrxPirceNoTimeout">
             {isLoading ? (
               <span className="currentTrxPirce currentTrxPirceNoResult">
-                <span style={{ margin: "0 4px 0 6px"}}>
+                <span style={{ margin: "0 4px 0 6px",}}>
                   {tu("index_page_price_loading")}
                 </span>
                 <img
@@ -165,7 +165,7 @@ class NavTRXPrice extends React.Component {
                 />
               </span>
             ) : (
-              <span>
+              <span >
                 <Tooltip
                   placement="bottom"
                   title={intl.formatMessage({
@@ -177,12 +177,12 @@ class NavTRXPrice extends React.Component {
                     target="_blank"
                     className="hvr-underline-from-center hvr-underline-white text-muted"
                   >
-                    
-                    <span className="currentTrxPirce">
+                  <span className='normalPriceShow '>
+                    <span className="currentTrxPirce showPirce">
                       <FormattedNumber value={USD_Price}></FormattedNumber>
                     </span>
                     <span className="currentCurrency currentCurrencyMobile">
-                    {" "}{showCurreny && (currency.toUpperCase())}{" "}
+                      {"  "}{showCurreny && (currency.toUpperCase())}{"  "}
                     </span>
                     <span
                       className={
@@ -201,6 +201,7 @@ class NavTRXPrice extends React.Component {
                         </span>
                       )}
                     </span>
+                  </span>
                   </HrefLink>
                 </Tooltip>
               </span>

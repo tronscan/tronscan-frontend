@@ -258,6 +258,20 @@
         color: #333333;
         display: inline-block;
       }
+      .normalPriceShow{
+        vertical-align:middle;
+      }
+      .showPirce{
+        display: inline-block;
+        height:14px;
+        vertical-align:middle;
+        span{
+          display: inline-block;
+        }
+      }
+      .currentCurrency{
+        margin:0 4px 0 4px;
+      }
       .nav-price-wrapper{
         vertical-align:middle;
       }
@@ -267,6 +281,7 @@
       .currentTrxPirceNoTimeout{
         display: inline-block;
       }
+    
       .logoTrxPrice{
         .currentTRXInfo{
           .trxTitle{
@@ -275,7 +290,8 @@
         }
       }
       .currentCurrencyMobile{
-        vertical-align: text-top;;
+        vertical-align: text-top;
+        display: inline-block;
         transform: perspective(1px) translateZ(0);
         box-shadow: 0 0 1px transparent;
         position: relative;
