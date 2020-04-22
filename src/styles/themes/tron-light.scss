@@ -240,17 +240,45 @@
         cursor: pointer;
       }
     }
-    .currentTrxPirce {
-      font-family: HelveticaNeue;
-      font-size: 12px;
-      color: #333333;
-      display: inline-block;
-      vertical-align: middle;
-      transform: perspective(1px) translateZ(0);
-      box-shadow: 0 0 1px transparent;
-      position: relative;
-      overflow: hidden;
+    .nav-price-wrapper{
+      vertical-align:middle;
+      .trxTitle{
+        display: inline-block;
+        overflow: hidden;
+      }
+      .currentTrxPirceNoTimeout{
+        display: inline-block;
+        .currentTrxPirceNoResult{
+          vertical-align:middle;
+        }
+        .currentCurrencyMobile,.showPirce{
+          display: inline-block;
+        }
+        .currentCurrencyMobile{
+          height:16px;
+          vertical-align:middle;
+          span{
+            display: inline-block;
+          }
+        }
+        .currentCurrency{
+          margin:0 4px 0 4px;
+        }
+      }
+      .currentTrxPirce {
+        font-family: HelveticaNeue;
+        font-size: 12px;
+        color: #333333;
+        display: inline-block;
+        vertical-align: middle;
+        height:16px;
+        overflow: hidden;
+        // transform: perspective(1px) translateZ(0);
+        // box-shadow: 0 0 1px transparent;
+        // position: relative;
+      }
     }
+   
     @media screen and (max-width: 768px) {
       // 
       .currentTrxPirce {
@@ -264,27 +292,27 @@
         vertical-align:middle;
       }
      
-      .currentCurrency{
-        margin:0 4px 0 4px;
-      }
+     
       .nav-price-wrapper{
         vertical-align:middle;
-      }
-      .trxTitle{
-        display: inline-block;
-      }
-      .currentTrxPirceNoTimeout{
-        display: inline-block;
-        height:16px;
-        .normalCurrentTrxPirce{
+        .trxTitle{
+          display: inline-block;
+        }
+        .currentTrxPirceNoTimeout{
+          display: inline-block;
           height:16px;
-          a{
+          .normalCurrentTrxPirce{
             display: inline-block;
             height:16px;
-            vertical-align:middle;
+            a{
+              display: inline-block;
+              height:16px;
+              vertical-align:middle;
+            }
           }
         }
       }
+     
     
       .logoTrxPrice{
         .currentTRXInfo{
