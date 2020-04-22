@@ -17,7 +17,6 @@ NEWMAINNET: "https://tronscan.io",
   // SUNNET: "http://18.217.215.94:66",
   // MAINNET: "https://debug.tronscan.org",
   // SUNNET: "https://debugdappchain.tronscan.org",
-
 };
 
 export const TOKENINFO_UPDATE = "TOKENINFO_UPDATE";
