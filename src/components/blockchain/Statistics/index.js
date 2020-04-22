@@ -406,7 +406,7 @@ class StatsCharts extends React.Component {
               </div>
 
               <div className="row mb-4 mt-4">
-                <div className="col-md-4">
+                {/* <div className="col-md-4">
                   <div className="card-chart">
                     <Link className="card-title" to="/data/stats/priceStats">
                       <span className="ml-5">
@@ -418,7 +418,7 @@ class StatsCharts extends React.Component {
                       />
                     </Link>
                   </div>
-                </div>
+                </div> */}
                 <div className="col-md-4">
                   <div className="card-chart">
                     <Link className="card-title" to="/data/stats/supply">
