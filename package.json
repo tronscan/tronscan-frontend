@@ -2,10 +2,7 @@
     "name": "tronscan-frontend",
     "version": "0.1.0",
     "private": true,
-    "sideEffects": [
-        "./src/some-side-effectful-file.js",
-        "*.css"
-    ],
+
     "dependencies": {
         "@babel/core": "7.4.3",
         "@fortawesome/fontawesome": "^1.1.7",
@@ -260,6 +257,7 @@
     "devDependencies": {
         "@babel/plugin-proposal-decorators": "^7.4.4",
         "babel-plugin-add-module-exports": "^1.0.2",
+        "cache-loader": "^4.1.0",
         "extract-text-webpack-plugin": "^3.0.2",
         "glob": "^7.1.6",
         "glob-all": "^3.2.1",
