@@ -728,11 +728,11 @@ module.exports = function(webpackEnv) {
       }),
 
 
-      new CompressionPlugin({
-        asset:  '[path].gz[query]',
-        algorithm:  'gzip',
-        test:  /\.js$|\.css$|\.html$/
-      }),
+  //     new CompressionPlugin({
+  //       asset:  '[path].gz[query]',
+  //       algorithm:  'gzip',
+  //       test:  /\.js$|\.css$|\.html$/
+  //     }),
 
       new WorkboxPlugin.GenerateSW({
         // These options help ServiceWorkers quickly enable
