@@ -79,7 +79,7 @@ class NavTRXPrice extends React.Component {
       .get(`${API_URL}/api/token/price?token=trx`)
       .then((res) => {
         console.log(res)
-        if (res && res.data) {
+        if (res && res.data && res.data.price_in_usd) {
           USD_Price = parseFloat(res.data.price_in_usd);
           let percent_change_24h =
           parseFloat(res.data.percent_change_24h).toFixed(2) || 0;
@@ -95,7 +95,7 @@ class NavTRXPrice extends React.Component {
           this.setState({
             percent_change_24h: 0,
           });
-          if (myTime > 2) {
+          if (myTime > 3) {
             window.clearTimeout(myClear);
             this.setState({
               timeoutState: true,

@@ -105,7 +105,6 @@ class PriceProviderCmp extends React.PureComponent {
       }
     ).then(res=>{
       if(res&&res.data&&res.data.data){
-        console.log(res.data)
         BTC_Price = parseFloat(res.data.data.TRX.quote.BTC.price); 
       }else{
         BTC_Price = 0
@@ -122,7 +121,6 @@ class PriceProviderCmp extends React.PureComponent {
       }
     ).then(res=>{
       if(res&&res.data&&res.data.data){
-        console.log(res.data)
         USD_Price = parseFloat(res.data.data.TRX.quote.USD.price)
         let percent_change_24h = res.data.data.TRX.quote.USD.percent_change_24h.toFixed(2) || 0;
         this.setState({
