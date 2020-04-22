@@ -5,6 +5,9 @@ import {
 import {
   lang20Q1
 } from './versionLang/lang20Q1/fa'; /* 2020Q1 */
+import {
+  lang20Q2
+} from './versionLang/lang20Q2/fa'; /* 2020Q2 */
 export const messages = {
    /*
     ##################################################################################
@@ -2012,7 +2015,7 @@ export const messages = {
    "footer_fellow_us": "Follow Us",
    "footer_developer_resources": "Developer Resources",
    "footer_support_center": "Support Center",
-   "footer_tron_network": "TRON",
+   "footer_tron_network": "Tron.network",
    "login_privatekey_warn": "برای اطمینان از امنیت حساب خود، لطفا از کلید خصوصی خود مراقبت کنید ، برای جلوگیری از از دست دادن دارایی. توصیه می شود از ",
    "login_privatekey_warn_safe": "  برای ورود امن استفاده کنید.",
    "token_does_not_support_exchange": "Token doesn't support trading now",
@@ -2476,5 +2479,7 @@ export const messages = {
 "address_freeze_owner":"به حساب خودم .",
 "address_freeze_other":"به حساب (های) دیگران",
 ...lang19Q4,
-...lang20Q1
+...lang20Q1,
+...lang20Q2
+ 
 };

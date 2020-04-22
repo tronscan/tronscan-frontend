@@ -205,6 +205,7 @@ class HolderDistribution extends React.Component {
           {tu("distributionTitle")}
         </section>
         <section
+          className="mobile-distribution-title"
           style={{
             margin: "10px 20px 0",
             display: "flex"

@@ -5,6 +5,9 @@ import {
 import {
   lang20Q1
 } from './versionLang/lang20Q1/ru.js'; /* 2020Q1 */
+import {
+  lang20Q2
+} from './versionLang/lang20Q2/ru.js'; /* 2020Q2 */
 export const messages = {
     /*
   ##################################################################################
@@ -982,7 +985,7 @@ export const messages = {
   "burned_trx": "TRX сожжено",
   "supply_notes": "Краудсейл и предварительная продажа доступны по всему миру, за исключением США, Китая и Японии.",
   "14_day_transaction_history": "История транзакций за 14 дней",
-  "14_day_address_growth": "",
+  "14_day_address_growth": "14 days Accounts Growth",
   /*
   ##################################################################################
   #                                                                                #
@@ -2021,7 +2024,7 @@ export const messages = {
   "footer_fellow_us": "Follow Us",
   "footer_developer_resources": "Developer Resources",
   "footer_support_center": "Support Center",
-  "footer_tron_network": "TRON",
+  "footer_tron_network": "Tron.network",
   "login_privatekey_warn": "Чтобы обеспечить безопасность учетной записи и избежать потери активов, пожалуйста сохраните и хорошо следите за своим приватным ключом и никогда никому не отдавайте его. Для входа рекомендуется Tronlink",
   "login_privatekey_warn_safe": " использовать",
   "token_does_not_support_exchange": "Token doesn't support trading now",
@@ -2482,5 +2485,6 @@ export const messages = {
 "address_freeze_owner":"Для вашего аккаунта ",
 "address_freeze_other":"Для другого аккаунта(ов)",
 ...lang19Q4,
-...lang20Q1
+...lang20Q1,
+...lang20Q2
 };
