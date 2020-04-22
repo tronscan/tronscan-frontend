@@ -2842,6 +2842,7 @@ h5 {
   height: 40px;
 
   .token20-search {
+    height:36px;
     display: flex;
     position: absolute;
     right: 22px;
@@ -2850,6 +2851,7 @@ h5 {
       font-size: 13px;
       width: 260px;
       min-width: 260px;
+      height: 100%
     }
     .padding20 {
       padding: 0px 20px 0px 14px !important;
@@ -2858,22 +2860,28 @@ h5 {
 
   @media only screen and (max-width: 768px) {
     height: 40px;
-
+   
     .token20-search {
       display: flex;
       position: absolute;
       right: 22px;
 
       input {
-        fontsize: 13px;
+        font-size: 13px;
         width: 220px;
         min-width: 200px;
-      }
-      .padding20 {
       }
     }
   }
 }
+.tonken20DetailMain,.tonken10DetailMain{
+  @media only screen and (max-width: 768px) {
+    .mobile-distribution-title{
+      flex-direction: column;
+    }
+  }
+}
+ 
 
 .exchange-title {
   display: flex;
@@ -3178,6 +3186,11 @@ h5 {
         display: flex;
       }
     }
+  }
+}
+.single-language-navbar-nav{
+  .more-menu{
+    left:-350px !important;
   }
 }
 
