@@ -240,10 +240,107 @@
         cursor: pointer;
       }
     }
-    .currentTrxPirce {
-      font-family: HelveticaNeue;
-      font-size: 12px;
-      color: #333333;
+    .nav-price-wrapper{
+      vertical-align:middle;
+      .trxTitle{
+        display: inline-block;
+        overflow: hidden;
+      }
+      .currentTrxPirceNoTimeout{
+        display: inline-block;
+        .currentTrxPirceNoResult{
+          vertical-align:middle;
+        }
+        .currentCurrencyMobile,.showPirce{
+          display: inline-block;
+        }
+        .currentCurrencyMobile{
+          height:16px;
+          vertical-align:middle;
+          span{
+            display: inline-block;
+          }
+        }
+        .currentCurrency{
+          margin:0 4px 0 4px;
+        }
+      }
+      .currentTrxPirce {
+        font-family: HelveticaNeue;
+        font-size: 12px;
+        color: #333333;
+        display: inline-block;
+        vertical-align: middle;
+        height:16px;
+        overflow: hidden;
+        // transform: perspective(1px) translateZ(0);
+        // box-shadow: 0 0 1px transparent;
+        // position: relative;
+      }
+    }
+   
+    @media screen and (max-width: 768px) {
+      // 
+      .currentTrxPirce {
+        font-family: HelveticaNeue;
+        font-size: 12px;
+        color: #333333;
+        display: inline-block;
+      }
+      .normalPriceShow{
+        height:16px;
+        vertical-align:middle;
+      }
+     
+     
+      .nav-price-wrapper{
+        vertical-align:middle;
+        .trxTitle{
+          display: inline-block;
+        }
+        .currentTrxPirceNoTimeout{
+          display: inline-block;
+          height:16px;
+          .normalCurrentTrxPirce{
+            display: inline-block;
+            height:16px;
+            a{
+              display: inline-block;
+              height:16px;
+              vertical-align:middle;
+            }
+          }
+        }
+      }
+     
+    
+      .logoTrxPrice{
+        .currentTRXInfo{
+          .trxTitle{
+            height:16px;
+          }
+        }
+      }
+      .currentTrxPirceNoResult{
+        vertical-align:middle;
+      }
+      .currentCurrencyMobile,.showPirce{
+        display: inline-block;
+      }
+      .showPirce{
+        vertical-align:middle;
+        span{
+          // height:16px;
+          display: inline-block;
+        }
+      }
+      .currentCurrencyMobile{
+        vertical-align:middle;
+        span{
+          display: inline-block;
+        }
+      }
+
     }
     .greenPrice {
       font-family: HelveticaNeue;
@@ -260,6 +357,19 @@
       font-family: HelveticaNeue;
       font-size: 12px;
       color: #333333;
+    }
+    .trxTitle{
+      display: inline-block;
+      vertical-align: middle;
+      transform: perspective(1px) translateZ(0);
+      box-shadow: 0 0 1px transparent;
+      position: relative;
+      overflow: hidden;
+      height: 16px;
+      margin-right: 4px;
+    }
+    .currentTrxPirceNoResult{
+      height:16px;
     }
   }
   .header-top {

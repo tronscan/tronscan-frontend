@@ -46,8 +46,8 @@ import {toastr} from 'react-redux-toastr'
 import Lockr from "lockr";
 import {BarLoader} from "./common/loaders";
 import {Truncate} from "./common/text";
-import { TRXPrice } from "./common/Price";
-import { Icon,Tooltip,Drawer,Collapse,Divider } from 'antd';
+import NavPrice from "./common/NavPrice";
+import { Icon,Drawer,Collapse,Divider } from 'antd';
 import isMobile from '../utils/isMobile';
 import {Client} from '../services/api';
 import $ from 'jquery';
@@ -85,6 +85,7 @@ class Navigation extends React.Component {
       drawerVisible:false,//draw is visible
       currentActive:3,
       percent_change_24h:0,
+      USD_Price:0,
       testNetAry: [
         "testnet",
         {
@@ -151,8 +152,8 @@ class Navigation extends React.Component {
         selectedNet: IS_MAINNET?'mainnet':'sunnet'
     });
     Lockr.set("NET", IS_MAINNET?'mainnet':'sunnet')
-    this.loadTrxPrices()
-    this.oTimer = setInterval(() => this.loadTrxPrices(), 1000*60*10);
+    // this.loadTrxPrices()
+    // this.oTimer = setInterval(() => this.loadTrxPrices(), 1000*60*10);
 
   }
 
@@ -169,12 +170,16 @@ class Navigation extends React.Component {
       );
       if (dataEurObj) {
         let percent_change_24h = dataEurObj.TRX.quote.USD.percent_change_24h.toFixed(2) || 0;
+        let USD_Price = parseFloat(dataEurObj.TRX.quote.USD.price)
         this.setState({
-          percent_change_24h
+          percent_change_24h,
+          USD_Price
         });
       } else{
+       
         this.setState({
-          percent_change_24h:0
+          percent_change_24h:0,
+          USD_Price:0
         });
       }
      
@@ -1075,7 +1080,7 @@ class Navigation extends React.Component {
       syncStatus,
       walletType: { type },
     } = this.props;
-    let {search, popup, notifications, announcement, announId, annountime, searchResults, selectedNet,drawerVisible,currentActive,percent_change_24h,testNetAry } = this.state;
+    let {search, popup, notifications, announcement, announId, annountime, searchResults, selectedNet,drawerVisible,currentActive,percent_change_24h,USD_Price,testNetAry } = this.state;
     let activeComponent = this.getActiveComponent();
     const isShowSideChain = !type || (type && IS_SUNNET);
     let IsRepresentative = localStorage.getItem('representative')
@@ -1090,35 +1095,21 @@ class Navigation extends React.Component {
                 <div className="mobileFlexible">
                   <Link to="/">
                     <img  src={this.getLogo()} className="logo" alt="Tron"/>
-                 
                   </Link>
                   {
                     IS_MAINNET?
                     <div className="currentTRXInfo">
-                      <Tooltip
-                        placement="bottom"
-                        title={intl.formatMessage({
-                          id: "tooltip_trxPrice"
-                        })}
-                      >
-                        <HrefLink
-                          href="https://coinmarketcap.com/currencies/tron/"
-                          target="_blank"
-                          className="hvr-underline-from-center hvr-underline-white text-muted"
-                        >
-                          <span className="TRXPrice">
-                            <span className="trxTitle">TRX: </span> 
-                            <TRXPrice
-                              showPopup={false}
-                              amount={1}
-                              currency="USD"
-                              source="home"
-                              showCurreny={true}
-                              priceChage={percent_change_24h}
-                            />
-                          </span>
-                        </HrefLink>
-                      </Tooltip>
+                      <span className="TRXPrice">
+                        <NavPrice
+                          showPopup={false}
+                          amount={1}
+                          currency="USD"
+                          source="home"
+                          showCurreny={true}
+                          currentPrice={USD_Price}
+                          priceChage={percent_change_24h}
+                          />
+                      </span>
                     </div>
                     :null
                   }
@@ -1140,7 +1131,7 @@ class Navigation extends React.Component {
                   <nav className="top-bar navbar navbar-expand-md navbar-dark" style={{padding:0}}> 
                   {/*  pc nav */}
                     <div className="collapse navbar-collapse" id="navbar-top">
-                      <ul className="navbar-nav">
+                      <ul className={activeLanguage==='ru' || activeLanguage==='es' || activeLanguage==='en'? 'single-language-navbar-nav navbar-nav':'navbar-nav'}>
                         {filter(routes, r => r.showInMenu !== false).map(route => (
                             <li key={route.path}  className={IS_MAINNET? 'nav-item dropdown': 'nav-item dropdown pr-3'}>
                               {
