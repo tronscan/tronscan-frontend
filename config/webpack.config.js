@@ -40,6 +40,7 @@ const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
 //const PurifyCSS = require('purifycss-webpack')
 //const glob = require('glob-all')
 const PrerenderSpaPlugin = require('prerender-spa-plugin')
+const Renderer = PrerenderSpaPlugin.PuppeteerRenderer
 
 
 
@@ -824,13 +825,46 @@ module.exports = function(webpackEnv) {
       //     path.resolve(__dirname, './src/*.js')
       //   ])
       // }),
-      new PrerenderSpaPlugin(
-        // Absolute path to compiled SPA
-        path.join(__dirname, 'build'),
-        // List of routes to prerender
-        [ '/']
+      // new PrerenderSpaPlugin(
+      //   // Absolute path to compiled SPA
+      //   path.join(__dirname, 'build'),
+      //   // List of routes to prerender
+      //   [ '/']
 
-      ),
+      // ),
+      new PrerenderSpaPlugin({
+        staticDir: path.join(__dirname, 'build'),
+        routes: ['/'],
+
+
+        // renderer: new Renderer({
+        //   // Optional - The name of the property to add to the window object with the contents of `inject`.
+        //   injectProperty: '__PRERENDER_INJECTED',
+        //   // Optional - Any values you'd like your app to have access to via `window.injectProperty`.
+        //   inject: {
+        //     foo: 'bar'
+        //   },
+  
+        //   // Optional - defaults to 0, no limit.
+        //   // Routes are rendered asynchronously.
+        //   // Use this to limit the number of routes rendered in parallel.
+        //   //maxConcurrentRoutes: 4,
+  
+        //   // Optional - Wait to render until the specified event is dispatched on the document.
+        //   // eg, with `document.dispatchEvent(new Event('custom-render-trigger'))`
+  
+        //   // Optional - Wait to render until the specified element is detected using `document.querySelector`
+  
+        //   // Optional - Wait to render until a certain amount of time has passed.
+        //   // NOT RECOMMENDED
+        //   renderAfterTime: 5000, // Wait 5 seconds.
+  
+        //   // Other puppeteer options.
+        //   // (See here: https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#puppeteerlaunchoptions)
+        //   headless: false // Display the browser window when rendering. Useful for debugging.
+        // }),
+      }),
+
 
       isDesktop && 
         new webpack.optimize.LimitChunkCountPlugin({
