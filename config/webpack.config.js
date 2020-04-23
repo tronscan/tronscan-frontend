@@ -37,9 +37,9 @@ const HappyPack = require('happypack');
 const os = require('os');
 const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
 
-const PurifyCSS = require('purifycss-webpack')
-const glob = require('glob-all')
-const PrerenderSpaPlugin = require('prerender-spa-plugin')
+//const PurifyCSS = require('purifycss-webpack')
+//const glob = require('glob-all')
+//const PrerenderSpaPlugin = require('prerender-spa-plugin')
 
 
 
@@ -818,18 +818,18 @@ module.exports = function(webpackEnv) {
           threadPool: happyThreadPool,
           verbose: true,
       }),
-      new PurifyCSS({
-        paths: glob.sync([
-          path.resolve(__dirname, './src/*.html'), 
-          path.resolve(__dirname, './src/*.js')
-        ])
-      }),
-      new PrerenderSpaPlugin(
-        // Absolute path to compiled SPA
-        path.join(__dirname, '../build'),
-        // List of routes to prerender
-        [ '/']
-      ),
+      // new PurifyCSS({
+      //   paths: glob.sync([
+      //     path.resolve(__dirname, './src/*.html'), 
+      //     path.resolve(__dirname, './src/*.js')
+      //   ])
+      // }),
+      // new PrerenderSpaPlugin(
+      //   // Absolute path to compiled SPA
+      //   path.join(__dirname, '../build'),
+      //   // List of routes to prerender
+      //   [ '/']
+      // ),
 
       isDesktop && 
         new webpack.optimize.LimitChunkCountPlugin({
