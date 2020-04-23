@@ -12,7 +12,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "https://static.tronscan.io:5577/editor.worker.js.LICENSE"
   },
   {
-    "revision": "451438674d937ebf4f33497b2f79ccf1",
+    "revision": "4b208db47c63da530a2263646eb67cbd",
     "url": "https://static.tronscan.io:5577/index.html"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "https://static.tronscan.io:5577/static/css/74.b903dd66.chunk.css"
   },
   {
-    "revision": "ae5993587910811fd843",
-    "url": "https://static.tronscan.io:5577/static/css/79.bd022918.chunk.css"
+    "revision": "64cff0010eb4a7d65659",
+    "url": "https://static.tronscan.io:5577/static/css/79.8344ec49.chunk.css"
   },
   {
     "revision": "73ea295da540e51154c1",
@@ -140,8 +140,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "https://static.tronscan.io:5577/static/js/78.899617d1.chunk.js"
   },
   {
-    "revision": "ae5993587910811fd843",
-    "url": "https://static.tronscan.io:5577/static/js/79.2966ba04.chunk.js"
+    "revision": "64cff0010eb4a7d65659",
+    "url": "https://static.tronscan.io:5577/static/js/79.e3dd5882.chunk.js"
+  },
+  {
+    "revision": "e983af788ac7208eff80b619230de6f5",
+    "url": "https://static.tronscan.io:5577/static/js/79.e3dd5882.chunk.js.LICENSE"
   },
   {
     "revision": "0b390b3d3a13d647abb4",
@@ -492,8 +496,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "https://static.tronscan.io:5577/static/js/main.bb59e892.chunk.js"
   },
   {
-    "revision": "eaca4fe2504ef44914e5",
-    "url": "https://static.tronscan.io:5577/static/js/runtime~main.539508ea.js"
+    "revision": "c91a9cfb145a74f0d793",
+    "url": "https://static.tronscan.io:5577/static/js/runtime~main.f57948d7.js"
   },
   {
     "revision": "8ad2ef29191592ceb7b4bafbeac0e4cc",
