@@ -423,6 +423,11 @@ module.exports = function(webpackEnv) {
     module: {
       strictExportPresence: true,
       rules: [
+        {
+          test: /\.js$/,
+          use: ["cache-loader", "babel-loader"],
+          include: path.resolve("src"),
+        },
         // Disable require.ensure as it's not a standard language feature.
         { parser: { requireEnsure: false } },
 

@@ -28,3 +28,4 @@ update-to-*
 /web.tar*
 
 .history
+.cache-loader 
