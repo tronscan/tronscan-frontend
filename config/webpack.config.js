@@ -33,6 +33,9 @@ const CompressionPlugin = require('compression-webpack-plugin');
 //const PurgecssPlugin = require('purgecss-webpack-plugin');
 //const glob = require('glob');
 //const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const HappyPack = require('happypack');
+const os = require('os');
+const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
 
 
 
@@ -739,14 +742,14 @@ module.exports = function(webpackEnv) {
   //       test:  /\.js$|\.css$|\.html$/
   //     }),
 
-      new WorkboxPlugin.GenerateSW({
-        // These options help ServiceWorkers quickly enable
-        clientsClaim: true,
-        skipWaiting: true,
-        importWorkboxFrom: 'local',  //Packed locally, the default value is 'cdn'. Access to foreign cdn needs to over the wall
-        // include: [/\.html$/, /\.js$/, /\.css$/],
-        // exclude: [/\.(png|jpg|gif|svg)/]
-      }),
+      // new WorkboxPlugin.GenerateSW({
+      //   // These options help ServiceWorkers quickly enable
+      //   clientsClaim: true,
+      //   skipWaiting: true,
+      //   importWorkboxFrom: 'local',  //Packed locally, the default value is 'cdn'. Access to foreign cdn needs to over the wall
+      //   // include: [/\.html$/, /\.js$/, /\.css$/],
+      //   // exclude: [/\.(png|jpg|gif|svg)/]
+      // }),
       // Moment.js is an extremely popular library that bundles large locale files
       // by default due to how Webpack interprets its code. This is a practical
       // solution that requires the user to opt into importing specific locales.
@@ -802,6 +805,15 @@ module.exports = function(webpackEnv) {
           // The formatter is invoked directly in WebpackDevServerUtils during development
           formatter: isEnvProduction ? typescriptFormatter : undefined,
         }),
+
+        new HappyPack({
+          id: 'happyBabel',
+          loaders: [{
+              loader: 'babel-loader?cacheDirectory=true',
+          }],
+          threadPool: happyThreadPool,
+          verbose: true,
+      }),
 
       isDesktop && 
         new webpack.optimize.LimitChunkCountPlugin({
