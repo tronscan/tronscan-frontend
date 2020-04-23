@@ -192,7 +192,8 @@ module.exports = function(webpackEnv) {
 
       // We inferred the "public path" (such as / or /my-project) from homepage.
       // We use "/" in development.
-      publicPath: "https://static.tronscan.io:5577/",
+      //publicPath: "https://static.tronscan.io:5577/",
+      publicPath: publicPath,
       // Point sourcemap entries to original disk location (format as URL on Windows)
       devtoolModuleFilenameTemplate: isEnvProduction
         ? info =>
