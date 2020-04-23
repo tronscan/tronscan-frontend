@@ -68,6 +68,7 @@
         "injectpromise": "^1.0.0",
         "instascan": "^1.0.0",
         "instascan-v2": "^1.0.2",
+        "intl": "^1.2.5",
         "is-wsl": "^1.1.0",
         "jdenticon": "^2.1.0",
         "jest": "24.7.1",
@@ -100,6 +101,7 @@
         "postcss-normalize": "7.0.1",
         "postcss-preset-env": "6.6.0",
         "postcss-safe-parser": "4.0.1",
+        "prerender-spa-plugin": "^2.1.0",
         "progress-bar-webpack-plugin": "^1.12.1",
         "promise": "^8.0.3",
         "prop-types": "^15.6.1",
@@ -175,8 +177,7 @@
         "webpack-merge": "^4.2.1",
         "whatwg-fetch": "2.0.3",
         "workbox-webpack-plugin": "4.2.0",
-        "yargs-parser": "^13.1.1",
-        "prerender-spa-plugin": "^2.1.0"
+        "yargs-parser": "^13.1.1"
     },
     "scripts": {
         "start": "node scripts/start.js",
