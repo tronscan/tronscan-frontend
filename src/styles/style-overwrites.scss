@@ -833,6 +833,9 @@ body .token_black {
   }
   .singleTimeRange {
     margin-top: 15px !important;
+    .mobileTimeRangeWrapper{
+      width:auto !important;
+    }
   }
   .tonken10DetailMain,
   .tonken20DetailMain {

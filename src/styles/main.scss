@@ -4579,13 +4579,14 @@ h5 {
 @media only screen and (max-width: 768px) {
   .transfers-Container {
     .address-transfers-radio {
-      position: absolute;
-      top: 0px;
-      left: -4px;
+      position: static;
+      top: auto;
+      left: auto;
+      margin-top:10px;
       z-index: 999;
     }
     .single-transferall-container {
-      top: 40px !important;
+      top: 60px !important;
     }
   }
 }
