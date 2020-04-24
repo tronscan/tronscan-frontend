@@ -29,7 +29,7 @@ const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
-const CompressionPlugin = require('compression-webpack-plugin');
+//const CompressionPlugin = require('compression-webpack-plugin');
 //const PurgecssPlugin = require('purgecss-webpack-plugin');
 //const glob = require('glob');
 //const ExtractTextPlugin = require("extract-text-webpack-plugin");
