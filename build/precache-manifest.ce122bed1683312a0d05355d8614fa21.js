@@ -12,7 +12,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/editor.worker.js.LICENSE"
   },
   {
-    "revision": "af895dcb03a66fce771cdf47e5af319d",
+    "revision": "e54a75ef663d32889bbebe50f44e0de1",
     "url": "/index.html"
   },
   {
@@ -52,7 +52,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/css/Token20Detail.e41670ec.chunk.css"
   },
   {
-    "revision": "d821c1ba77a617fc867f",
+    "revision": "98ba00b20b28c2138a28",
     "url": "/static/css/main.4dc40166.chunk.css"
   },
   {
@@ -60,7 +60,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/css/vendors~NodeMap.8344ec49.chunk.css"
   },
   {
-    "revision": "4068a9c684db46c99299",
+    "revision": "7fb33ca1f576dc69b8d5",
     "url": "/static/css/vendors~main.b903dd66.chunk.css"
   },
   {
@@ -392,8 +392,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/domloadsh.b74928c5.chunk.js.LICENSE"
   },
   {
-    "revision": "d821c1ba77a617fc867f",
-    "url": "/static/js/main.d162f753.chunk.js"
+    "revision": "98ba00b20b28c2138a28",
+    "url": "/static/js/main.51b6467f.chunk.js"
   },
   {
     "revision": "c9dccfcb23fa6ab9548c",
@@ -492,12 +492,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/vendors~WalletWizard.5aaeffa8.chunk.js.LICENSE"
   },
   {
-    "revision": "4068a9c684db46c99299",
-    "url": "/static/js/vendors~main.ffb05ba6.chunk.js"
+    "revision": "7fb33ca1f576dc69b8d5",
+    "url": "/static/js/vendors~main.3a3f6ad7.chunk.js"
   },
   {
     "revision": "de2b7aea8bad138a34793e69e2489547",
-    "url": "/static/js/vendors~main.ffb05ba6.chunk.js.LICENSE"
+    "url": "/static/js/vendors~main.3a3f6ad7.chunk.js.LICENSE"
   },
   {
     "revision": "8ad2ef29191592ceb7b4bafbeac0e4cc",

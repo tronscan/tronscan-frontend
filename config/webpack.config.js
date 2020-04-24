@@ -41,10 +41,8 @@ const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
 //const glob = require('glob-all')
 //const PrerenderSpaPlugin = require('prerender-spa-plugin')
 //const Renderer = PrerenderSpaPlugin.PuppeteerRenderer
-const DllLinkPlugin = require('dll-link-webpack-plugin')
-
-
-
+//const DllLinkPlugin = require('dll-link-webpack-plugin')
+const AutoDllPlugin = require('autodll-webpack-plugin');
 
 // Source maps are resource heavy and can cause out of memory issue for large source files.
 const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
@@ -875,14 +873,30 @@ module.exports = function(webpackEnv) {
       //   // }),
       // }),
 
-      new DllLinkPlugin({
-        config: require("./webpack.dll.config"),
-        htmlMode: true
+      // new DllLinkPlugin({
+      //   config: require("./webpack.dll.config"),
+      //   htmlMode: true
+      // }),
+      // isDesktop && 
+      //   new webpack.optimize.LimitChunkCountPlugin({
+      //     maxChunks: 1,
+      //   }),
+
+      new AutoDllPlugin({
+        inject: true, // will inject the DLL bundle to index.html
+        debug: true,
+        filename: '[name]_[hash].js',
+        path: './dll',
+        entry: {
+          vendor: [
+            'react',
+            'react-dom',
+            'lodash',
+            'react-router',
+            'ethers'
+          ]
+        }
       }),
-      isDesktop && 
-        new webpack.optimize.LimitChunkCountPlugin({
-          maxChunks: 1,
-        }),
       
       // isEnvProduction &&
        new BundleAnalyzerPlugin({ analyzerPort: 8919 })
