@@ -29,7 +29,9 @@ export const lang20Q2 = {
     index_page_nav_more_service:'周边服务',
     index_page_price_loading:'加载中',
     index_page_price_time_out:'请求超时',
-
-
+    
+    //2020-04-24  transfer optimization
+    transfer_address_not_activated:'地址未激活，将额外消耗 0.1 TRX 用于激活该地址（0.1 TRX 不包含在转账数量内）',
+    
 
 }
