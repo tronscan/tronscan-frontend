@@ -169,6 +169,8 @@ export const AboutAsync = loadable(() =>
   import(/* webpackChunkName: "About" */ "./Pages/About")
 );
 
+
+
 export const HomeAsync = loadable(() =>
   import(/* webpackChunkName: "Home" */ "./Home")
 );
@@ -278,3 +280,8 @@ export const RatingRule = loadable(() =>
     /* webpackChunkName: "ContractSourceCode" */ "./tokens/RatingRule"
   )
 );
+
+export const AwardListAsync = loadable(() =>
+  import(/* webpackChunkName: "AwardList" */ "./Pages/AwardList")
+);
+

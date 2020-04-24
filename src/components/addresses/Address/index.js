@@ -21,7 +21,7 @@ import _ from "lodash";
 import Blocks from "../../common/Blocks";
 import rebuildList from "../../../utils/rebuildList";
 import rebuildToken20List from "../../../utils/rebuildToken20List";
-import { ONE_TRX, API_URL, ADDRESS_TAG_ICON } from "../../../constants.js";
+import { ONE_TRX, API_URL, ADDRESS_TAG_ICON,IS_MAINNET } from "../../../constants.js";
 import { updateAccountTabInfo } from "../../../actions/blockchain";
 import {
   FormatNumberByDecimals,
@@ -42,8 +42,10 @@ import Representative from "./Representative";
 import FreezeDetail from './FreezeDetail';
 import { Piechart } from "../components/Piechart";
 import SweetAlert from "react-bootstrap-sweetalert";
+import ApiClientAccount from "../../../services/accountApi";
 import {transactionResultManager, transactionResultManagerSun} from "../../../utils/tron";
 import { loadUsdPrice } from "../../../actions/blockchain";
+import AddTag from "../../account/components/AddTag";
 import '../../../styles/account.scss'
 
 
@@ -59,7 +61,7 @@ function setTagIcon(tag){
   })
   return name && <img src={require(`../../../images/address/tag/${name}.svg`)}/>
 }
-
+let tagInter = null;
 class Address extends React.Component {
   constructor({ match }) {
     super();
@@ -121,6 +123,8 @@ class Address extends React.Component {
       transfersSearchAddress:'',
       transactionsSearchAddress:'',
       internalSearchAddress:'',
+      tagData:[], //tag info 
+      modal:null,
     };
   }
 
@@ -129,6 +133,9 @@ class Address extends React.Component {
     this.loadAddress(match.params.id);
     this.loadWitness(match.params.id);
     this.loadWalletReward(match.params.id);
+    if(IS_MAINNET){
+      this.loadTag(match.params.id)
+    }
     !priceUSD && (await this.props.loadUsdPrice());
 
   }
@@ -139,12 +146,22 @@ class Address extends React.Component {
       this.loadAddress(match.params.id);
       this.loadWitness(match.params.id);
       this.loadWalletReward(match.params.id);
+      if(IS_MAINNET){
+        this.loadTag(match.params.id)
+      }
+    }
+    let {walletType} = this.props;
+    if(walletType.address !== prevProps.walletType.address){
+      if(IS_MAINNET){
+        this.loadTag(match.params.id)
+      }
     }
   }
 
   componentWillUnmount() {
     // this.live && this.live.close();
-    localStorage.removeItem('representative')
+    localStorage.removeItem('representative');
+    window.clearInterval(tagInter)
   }
 
   async loadWalletReward(addressT) {
@@ -193,7 +210,6 @@ class Address extends React.Component {
       localStorage.setItem('representative',true)
     }else{
       localStorage.removeItem('representative')
-
     }
 
     this.setState(prevProps => ({
@@ -380,7 +396,11 @@ class Address extends React.Component {
     //   console.log(err);
     // });
     
-    
+    // tags
+   
+   
+   
+   
     this.setState({
       totalPower: totalPower,
       TRXBalanceTotal: TRXBalance,
@@ -661,6 +681,28 @@ class Address extends React.Component {
 
   }
 
+  async loadTag(id){
+    let tagData;
+      let { account } = this.props;
+      if(account.isLoggedIn){
+        const {walletType} = this.props
+        const params = {
+          user_address:walletType.address,
+          target_address:id,
+          start:0,
+          limit:20
+        };
+        let { data:{user_tags: tagList} } = await ApiClientAccount.getTagsList(params);
+        tagData = tagList;
+        this.setState({
+          tagData
+        })
+        window.clearInterval(tagInter)
+      }
+  }
+
+
+
   async loadWitness(id) {
     /* 需要总票数，实时排名俩个参数*/
     let { data } = await Client.getVoteWitness(id);
@@ -750,6 +792,7 @@ class Address extends React.Component {
       </div>
     );
   }
+
   pieChart() {
     let { intl,priceUSD } = this.props;
     let chartHeight = "300px";
@@ -901,6 +944,53 @@ class Address extends React.Component {
     }
   };
 
+  addTagsModal = () => {
+    let { match } = this.props;
+    this.setState({
+      popup: <AddTag onClose={this.hideModal} defaultAddress={match.params.id} onloadTableP={this.onloadTable} />
+    });
+  };
+
+  editTagModal = (record) => {
+    this.setState({
+      popup: <AddTag onClose={this.hideModal} targetAddress={record.targetAddress} onloadTableP={this.onloadTable} />
+    });
+  };
+
+
+  hideModal = () => {
+    this.setState({ popup: null });
+  };
+
+  onloadTable = () =>{
+    let { match} = this.props;
+    this.loadTag(match.params.id)
+  }
+
+  onloadAddTable = () =>{
+    let { match} = this.props;
+    setTimeout(() => {
+      this.loadTag(match.params.id);
+    }, 2000);
+  }
+
+
+  isLoggedIn = () => {
+    let { account, intl } = this.props;
+    if (!account.isLoggedIn){
+        this.setState({
+            modal: <SweetAlert
+                warning
+                title={tu('not_signed_in')}
+                confirmBtnText={intl.formatMessage({ id: 'confirm' })}
+                confirmBtnBsStyle="danger"
+                onConfirm={() => { this.setState({ modal: null });  }}
+            >
+            </SweetAlert>
+        });
+    }
+  };
+
   render() {
     let {
       totalPower,
@@ -933,7 +1023,9 @@ class Address extends React.Component {
       changeRank,
       popup,
       searchAddress,
-      searchAddressClose
+      searchAddressClose,
+      tagData,
+      modal
     } = this.state;
     let { match, intl, account, walletType,activeLanguage,priceUSD } = this.props;
     let addr = match.params.id;
@@ -955,7 +1047,7 @@ class Address extends React.Component {
       <main className="container header-overlap account-new address-container">
         {popup}
         <div className="row">
-          <div className="col-md-12 ">
+          <div className="col-md-12">
             {loading ? (
               <div className="card">
                 <TronLoader>
@@ -992,10 +1084,53 @@ class Address extends React.Component {
                   <div className="row info-wrap">
                     <div className="col-md-7 address-info">
                       {address.representative.enabled ? (
-                        <Representative data={this.state} url={match.url} account={account} walletType={walletType} priceToUSd={priceUSD}/>
+                        <Representative  
+                         data={this.state}
+                         tagData={tagData} 
+                         url={match.url} 
+                         account={account} 
+                         walletType={walletType} 
+                         priceToUSd={priceUSD}
+                         match={match}
+                         onloadTable={this.onloadTable}
+                         />
                       ) : (
                         <table className="table m-0">
                           <tbody>
+                            {
+                              IS_MAINNET ?
+                              <tr>
+                                <th>{tu("account_tags_my_tag")}:</th>
+                                <td>
+                                  <span>    
+                                      {
+                                        account.isLoggedIn && walletType.isOpen?
+                                        <span>
+                                          {tagData&&tagData.length>0?
+                                            <span>
+                                              {tagData[0].tag}
+                                              <span style={{color: "#C23631",marginLeft:'8px',cursor:'pointer'}} onClick={()=>this.editTagModal(tagData[0])}>
+                                                {tu("account_tags_my_tag_update")}
+                                              </span>
+                                            </span> 
+                                            :
+                                            <span>
+                                              {tu("account_tags_my_tag_not_available")}
+                                              <span style={{color: "#C23631",marginLeft:'8px',cursor:'pointer'}}  onClick={this.addTagsModal}>
+                                                {tu("account_tags_add")}
+                                              </span>
+                                            </span>
+                                          }
+                                        </span>:
+                                        <span >
+                                          <span>{tu("account_tags_my_tag_login_show")}</span>
+                                        </span> 
+                                      }
+                                  </span>
+                                </td>
+                              </tr>
+                              :null
+                            }
                             <tr>
                               <th>{tu("name")}:</th>
                               <td>
@@ -1435,6 +1570,7 @@ class Address extends React.Component {
             )}
           </div>
         </div>
+        {modal}
       </main>
     );
   }

@@ -433,11 +433,9 @@ class Code extends React.Component {
             let retValue = false;
             if(!broadcast.result){
               retValue = false;
-            
             }else{
               retValue = await this.getTxResult(signedTransaction.txID);
             }
-           
             this.setState({
               result: this.formatOutputs(retValue)
             });
@@ -525,7 +523,6 @@ class Code extends React.Component {
             output
           });
         }
-
 
         if (contractItem.outputs == undefined) {
           return reslove(0);

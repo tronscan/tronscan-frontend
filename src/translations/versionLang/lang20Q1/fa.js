@@ -310,6 +310,48 @@ export const lang20Q1 = {
   account_address_total_balance_tip:"مبلغ ارزش تمام نشانه های موجود در حساب",
   get_usdj:'به دست آوردن USDJ',
   pledge_to_get_USDJ:'Pledge to get USDJ',
+  get_usdj_guide: "نحوه به دست آوردن USDJ",
+  fill_a_valid_ledger_note:'Please confirm that the Transactions Data option in the ledger settings is allowed, otherwise you cannot send notes',
+  enter_up_to_50_characters:'Enter up to 50 characters',
+  address_token_less_than_10:'tokens with a value less than 10 TRX',
+  address_total_tron_power:'Total TRON Power',
+  address_total_tron_power_remain:'Available TORN Power',
+  address_total_tron_power_used:'Used TRON Power',
+
+  // 03-26 tag 
+  account_tags_list:'لیست برچسب ها ',
+  account_tags_add:'اضافه کنید',
+  account_tags_desc:'عملکرد برچسب ، می توانید حساب خود را به صورت خصوصی برای مشخص کردن حساب خود برچسب گذاری کنید',
+  account_tags_number:'مجموع حساب {total}',
+  account_tags_table_1:'برچسب زدن',
+  account_tags_table_2:'سخنان',
+  account_tags_add_title:'برچسب ها را اضافه کنید',
+  account_tags_edit_title:'edit tag',
+  account_tags_add_success:'The tag has been successfully added',
+  account_tags_edit_success:'The tag has been successfully edited',
+  account_tags_number_rec:'{number} accounts mark',
+  account_tags_tip:'برچسب خصوصی ، فقط برای شما قابل مشاهده است',
+
+  account_tags_edit: "edit",
+  account_tags_delete: "remove",
+  account_tags_delete_is: "آیا شما برای حذف برچسب مطمئن هستید؟",
+  account_tags_delete_succss: "با موفقیت حذف شد",
+  account_address_name_tag:'(بستر های نرم افزاری برچسب صدور گواهینامه)',
+  account_tags_address_placehold:'请输入正确的地址',
+  account_tags_tag_placehold:'لطفاً یک برچسب ، شامل 20 کاراکتر وارد کنید',
+  account_tags_note_placehold:'اختیاری، شامل 100 کاراکتر',
+  account_tags_tag_valid:'Only Chinese, English or Arabic numbers can be entered',
+  account_tags_rec:"بستر های نرم افزاری برچسب صدور گواهینامه",
+  account_tags_my_tag:'برچسب های من',
+  account_tags_my_tag_update:'بروزرسانی کنید',
+  account_tags_my_tag_login_show:'نمایش پس از ورود به سیستم',
+  account_tags_my_tag_not_available:'Not Available',
+
+
+  // foundation address
+  foundation_address_update_date:'Updated time: 2019/12/31',
+  foundation_address_deadline_date:'by 2020.4.15',
+
 
 
 };

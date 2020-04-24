@@ -328,5 +328,48 @@ export const lang20Q1 = {
   use_TRONlink_or_private_key :"Please login to use this function via TRONlink or private key",
   get_usdj:'получать USDJ',
   pledge_to_get_USDJ:'Pledge to get USDJ',
+  get_usdj_guide: "Как получить USDJ",
+
+  // 03-26 tag 
+  account_tags_list:'Список вкладок',
+  account_tags_add:'Добавить',
+  account_tags_desc:'Функция тегов: вы можете прикрепить личные теги к аккаунтам, чтобы их было легче идентифицировать',
+  account_tags_number:'{total} всего аккаунтов',
+  account_tags_table_1:'тег',
+  account_tags_table_2:'Заметка',
+  account_tags_add_title:'Добавить тег',
+  account_tags_edit_title:'edit tag',
+  account_tags_add_success:'The tag has been successfully added',
+  account_tags_edit_success:'The tag has been successfully edited',
+  account_tags_number_rec:'{number} accounts mark',
+  account_tags_tip:'Приватный тег. Виден только мне',
+
+  account_tags_edit: "edit",
+  account_tags_delete: "remove",
+  account_tags_delete_is: "Вы уверены, что хотите удалить тег?",
+  account_tags_delete_succss: "Тег был удален.",
+  account_address_name_tag:'(Верефицированый тег)',
+  account_tags_address_placehold:'请输入正确的地址',
+  account_tags_tag_placehold:'Пожалуйста, введите тег (не более 20 символов).',
+  account_tags_note_placehold:'Необязательно, не более 100 символов.',
+  account_tags_tag_valid:'Only Chinese, English or Arabic numbers can be entered',
+  account_tags_rec:"Рекомендуемый тег",
+  account_tags_my_tag:'Мои теги',
+  account_tags_my_tag_update:'Обновления',
+  account_tags_my_tag_login_show:'Содержание будет отображаться после входа.',
+  account_tags_my_tag_not_available:'Not Available',
+
+
+
+  fill_a_valid_ledger_note:'Please confirm that the Transactions Data option in the ledger settings is allowed, otherwise you cannot send notes',
+  enter_up_to_50_characters:'Enter up to 50 characters',
+  address_token_less_than_10:'tokens with a value less than 10 TRX',
+  address_total_tron_power:'Total TRON Power',
+  address_total_tron_power_remain:'Available TORN Power',
+  address_total_tron_power_used:'Used TRON Power',
+
+  // foundation address
+  foundation_address_update_date:'Updated time: 2019/12/31',
+  foundation_address_deadline_date:'by 2020.4.15',
 
 };

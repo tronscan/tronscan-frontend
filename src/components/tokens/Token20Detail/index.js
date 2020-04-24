@@ -123,6 +123,10 @@ class Token20Detail extends React.Component {
     let winkSupply = await ApiClientToken.getWinkFund();
     return winkSupply;
   }
+  async getJstFund() {
+    const {data: funds} = await xhr.get(`${API_URL}/api/jst/fund`);
+    return funds;
+  }
 
   async getTransferNum(address) {
     let params = {
@@ -218,17 +222,17 @@ class Token20Detail extends React.Component {
           winkTotalSupply = await this.getWinkFund();
         }
 
-        // let jstTotalSupply = {};
-        // if (address === "TCFLL5dx5ZJdKnWuesXxi1VPwjLVmWZZy9") {
-        //   tabs.push({
-        //     id: "JstSupply",
-        //     icon: "",
-        //     path: "/supply",
-        //     label: <span>{tu("JST_supply")}</span>,
-        //     cmp: () => <JstSupply token={token} />
-        //   });
-        //   // jstTotalSupply = await this.getWinkFund();
-        // }
+        let jstTotalSupply = {};
+        if (address === "TCFLL5dx5ZJdKnWuesXxi1VPwjLVmWZZy9") {
+          tabs.push({
+            id: "JstSupply",
+            icon: "",
+            path: "/supply",
+            label: <span>{tu("JST_supply")}</span>,
+            cmp: () => <JstSupply token={token} />
+          });
+          jstTotalSupply = await this.getJstFund();
+        }
 
         let transferNumber = await this.getTransferNum(address);
 
@@ -239,7 +243,7 @@ class Token20Detail extends React.Component {
             : 0;
 
         token.winkTotalSupply = winkTotalSupply;
-        // token.jstTotalSupply = jstTotalSupply;
+        token.jstTotalSupply = jstTotalSupply;
         token.transferNumber = transferNumber.rangeTotal || 0;
         this.setState({
           loading: false,
@@ -867,7 +871,8 @@ class Token20Detail extends React.Component {
                           {token.name} ({token.symbol})
                           { (token.contract_address == CONTRACT_ADDRESS_USDJ || token.contract_address == CONTRACT_ADDRESS_USDJ_TESTNET) && <section className="to-USDj"><HrefLink href="https://www.just.network"><i className="fas fa-coins ml-2 mr-1"></i>{intl.formatMessage({id:'get_usdj'})}</HrefLink></section>}
                         </h5>
-                        <p className="card-text">{token.token_desc}</p>
+                        <p className="card-text" style={{marginBottom: 0}}>{token.token_desc}</p>
+                        { token.contract_address == CONTRACT_ADDRESS_USDJ && <div className="to-USDj" style={{marginTop: '.5rem'}}><HrefLink href="https://tronscanorg.zendesk.com/hc/en-us/articles/360041737852-Step-by-step-instructions-on-how-to-generate-USDJ-on-JUST-CDP"><i className="fas fa-book mx-1"></i>{intl.formatMessage({id:'get_usdj_guide'})}</HrefLink></div>}
                       </div>
                       <div className="token-sign">TRC20</div>
                       {/*<div className="ml-auto">*/}
@@ -1080,7 +1085,7 @@ class Token20Detail extends React.Component {
                       shelllod:time.domContentLoadedEventEnd - time.domContentLoadedEventStart,
                       measure5:parseInt(measure5),
                       blankTime:time.domLoading - time.fetchStart,
-                      v:'v4',
+                      v:'v5',
                       entryList:getPerformanceTimingEntry(),
                       udid:uuidv4
                       

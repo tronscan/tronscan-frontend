@@ -43,6 +43,7 @@ export default class LedgerBridge {
   async signTransaction(transaction) {
     return new Promise(async (resolve, reject) => {
       const transport = await Transport.create();
+     
       try {
         const trx = new AppTrx(transport);
         const response = await trx.signTransaction(

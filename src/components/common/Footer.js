@@ -174,6 +174,11 @@ class Footer extends Component {
                       </HrefLink>
                     </li>
                     <li>
+                      <HrefLink href="https://tronlending.org/?utm_source=TS">
+                        TRONLENDING
+                      </HrefLink>
+                    </li>
+                    <li>
                       <HrefLink href="https://tron.app">DApp House</HrefLink>
                     </li>
                   </ul>
@@ -284,7 +289,7 @@ class Footer extends Component {
                     </div>
 
                     <div className="text mr-3 text-cnter mobileCopyright">
-                      Copyright© 2017-2020 tronscan.org
+                      Copyright© 2017-2020 tronscan.io
                     </div>
                   </div>
                 </div>
@@ -314,6 +319,9 @@ class Footer extends Component {
                           <HrefLink href="https://poloniex.org">
                             {tu("exchange")}
                           </HrefLink>
+                        </li>
+                        <li className="p-2">
+                          <HrefLink href="https://tronlending.org/?utm_source=TS">TRONLENDING</HrefLink>
                         </li>
                         <li className="p-2">
                           <HrefLink href="https://tron.app">DApp House</HrefLink>
@@ -458,7 +466,7 @@ class Footer extends Component {
                   <div className="col-xs-6 col-sm-6 col-md-6 text-center">
                     <div className="d-flex">
                       <span className="text mr-3">
-                        Copyright© 2017-2020 tronscan.org
+                        Copyright© 2017-2020 tronscan.io
                       </span>
                     </div>
                   </div>

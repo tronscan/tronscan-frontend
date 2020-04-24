@@ -942,7 +942,7 @@ export default class Home extends Component {
                       shelllod:time.domContentLoadedEventEnd - time.domContentLoadedEventStart,
                       measure5:parseInt(measure5),
                       blankTime:time.domLoading - time.fetchStart,
-                      v:'v4',
+                      v:'v5',
                       entryList:getPerformanceTimingEntry(),
                       udid:uuidv4
 

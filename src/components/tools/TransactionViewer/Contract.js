@@ -79,6 +79,7 @@ export default function Contract({contract}) {
         }
 
     }
+  
 
     let TokenIDList = [];
     let tokenIdData;

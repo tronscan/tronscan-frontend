@@ -119,7 +119,7 @@ class TransferAssetContract extends React.Component {
                 />
               </Field>
               {contract.contract_note && <Field label="note">
-                {decodeURIComponent(contract.contract_note || "")}
+                {contract.contract_note || ""}
               </Field>}
               {JSON.stringify(contract.cost) != "{}" && (
                 <Field label="consume_bandwidth">

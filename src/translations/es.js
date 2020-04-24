@@ -5,6 +5,9 @@ import {
 import {
   lang20Q1
 } from './versionLang/lang20Q1/es';
+import {
+  lang20Q2
+} from './versionLang/lang20Q2/es'; /* 2020Q2 */
 export const messages = {
   /*
   ##################################################################################
@@ -2018,7 +2021,7 @@ export const messages = {
   "footer_fellow_us":"Follow Us",
   "footer_developer_resources":"Developer Resources",
   "footer_support_center":"Support Center",
-  "footer_tron_network":"TRON",
+  "footer_tron_network":"Tron.network",
   "login_privatekey_warn":"Para garantizar la seguridad de su cuenta y evitar la pérdida de activos, cuide su private key y nunca se la entregue a nadie. Se recomienda utilizar ",
   "login_privatekey_warn_safe":" para iniciar sesión.",
   "token_does_not_support_exchange":"Token doesn't support trading now",
@@ -2480,5 +2483,6 @@ export const messages = {
 "address_freeze_owner":"A tu cuenta",
 "address_freeze_other":"A la (s) cuenta (s) de otros",
   ...lang19Q4,
-  ...lang20Q1
+  ...lang20Q1,
+  ...lang20Q2
 };
