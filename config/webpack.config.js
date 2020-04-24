@@ -23,7 +23,7 @@ const getClientEnvironment = require('./env');
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const ForkTsCheckerWebpackPlugin = require('react-dev-utils/ForkTsCheckerWebpackPlugin');
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
-// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const postcssNormalize = require('postcss-normalize');
 const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
@@ -145,11 +145,11 @@ module.exports = function(webpackEnv) {
     mode: isEnvProduction ? 'production' : isEnvDevelopment && 'development',
     // Stop compilation early in production
     bail: isEnvProduction,
-    devtool: isEnvProduction
-      ? shouldUseSourceMap
-        ? 'source-map'
-        : false
-      : isEnvDevelopment && 'cheap-module-source-map',
+    // devtool: isEnvProduction
+    //   ? shouldUseSourceMap
+    //     ? 'source-map'
+    //     : false
+    //   : isEnvDevelopment && 'cheap-module-source-map',
     //  devtool:false,
     // These are the "entry points" to our application.
     // This means they will be the "root" imports that are included in JS bundle.
@@ -432,9 +432,10 @@ module.exports = function(webpackEnv) {
     externals: {
       'react': 'React',
       'react-dom': 'ReactDOM',
-      'react-router': 'ReactRouter',
-      'redux': 'Redux',
-      'history': 'History'
+      // 'react-router': 'ReactRouter',
+      // 'redux': 'Redux',
+      // 'history': 'History',
+      'google-protobuf':'google-protobuf'
   },
     module: {
       strictExportPresence: true,
@@ -880,7 +881,7 @@ module.exports = function(webpackEnv) {
         }),
       
       // isEnvProduction &&
-      // new BundleAnalyzerPlugin({ analyzerPort: 8919 })
+       new BundleAnalyzerPlugin({ analyzerPort: 8919 })
     ].filter(Boolean),
     // Some libraries import Node modules but don't use them in the browser.
     // Tell Webpack to provide empty mocks for them so importing them works.
