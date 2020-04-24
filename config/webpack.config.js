@@ -41,6 +41,7 @@ const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
 //const glob = require('glob-all')
 //const PrerenderSpaPlugin = require('prerender-spa-plugin')
 //const Renderer = PrerenderSpaPlugin.PuppeteerRenderer
+const DllLinkPlugin = require('dll-link-webpack-plugin')
 
 
 
@@ -430,12 +431,12 @@ module.exports = function(webpackEnv) {
       ],
     },
     externals: {
-      'react': 'React',
-      'react-dom': 'ReactDOM',
+      //'react': 'React',
+      //'react-dom': 'ReactDOM',
       // 'react-router': 'ReactRouter',
       // 'redux': 'Redux',
       // 'history': 'History',
-       'google-protobuf':'google-protobuf'
+      // 'google-protobuf':'google-protobuf'
   },
     module: {
       strictExportPresence: true,
@@ -874,7 +875,10 @@ module.exports = function(webpackEnv) {
       //   // }),
       // }),
 
-
+      new DllLinkPlugin({
+        config: require("./webpack.dll.config"),
+        htmlMode: true
+      }),
       isDesktop && 
         new webpack.optimize.LimitChunkCountPlugin({
           maxChunks: 1,
