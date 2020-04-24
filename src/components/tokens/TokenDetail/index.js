@@ -738,7 +738,7 @@ class TokenDetail extends React.Component {
                       shelllod:time.domContentLoadedEventEnd - time.domContentLoadedEventStart,
                       measure5:parseInt(measure5),
                       blankTime:time.domLoading - time.fetchStart,
-                      v:'v5',
+                      v:'v7',
                       entryList:getPerformanceTimingEntry(),
                       udid:uuidv4
                   };
