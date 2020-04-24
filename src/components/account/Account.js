@@ -391,7 +391,6 @@ export default class Account extends Component {
   }
 
   changeMySignatureType(value){
-    // console.log('mySignatureType=====',value)
     this.setState({
       mySignatureType:value
     })

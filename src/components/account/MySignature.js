@@ -47,7 +47,6 @@ import {withTronWeb} from "../../utils/tronWeb";
 @withTronWeb
 class MySignature extends React.Component {
   constructor(props) {
-    console.log('props.type=======111',props.type)
     super(props);
     this.state = {
       modal: null,
@@ -68,8 +67,7 @@ class MySignature extends React.Component {
 
   componentDidMount() {
     let { type } = this.props;
-    console.log('componentDidMount======data=====111111')
-    this.load(1,20,'componentDidMount');
+    this.load();
     // if (type !== 10) {
     //   this.load();
     // }
@@ -78,7 +76,6 @@ class MySignature extends React.Component {
   async componentDidUpdate(prevProps) {
     let { type, wallet } = this.props;
     let { lock } = this.state;
-    console.log('lock=====',lock)
     if (prevProps.type !== type && type === 10 && lock) {
       this.setState(
         {
@@ -88,18 +85,16 @@ class MySignature extends React.Component {
           },
         },
         () => {
-          console.log('componentDidUpdate======data=====222222')
-          this.load(1,20,'componentDidUpdate');
+          this.load();
         }
       );
     }
   }
 
-  load = async (page = 1, pageSize = 20,status='status===') => {
+  load = async (page = 1, pageSize = 20) => {
     this.setState({ loading: true });
     let { wallet } = this.props;
     let { filter } = this.state;
-   console.log('status============',status)
     let {
       data: { data }
     } = await xhr.get(
@@ -132,7 +127,6 @@ class MySignature extends React.Component {
       }
     });
     let list;
-    console.log('filter.multiState====',filter.multiState )
     if (filter.multiState !== 255) {
       list = _(signatureList)
         .filter(signTx => signTx.multiState == filter.multiState)
@@ -140,7 +134,6 @@ class MySignature extends React.Component {
     } else {
       list = signatureList;
     }
-    console.log('list====',list)
     this.setState({
       page,
       data: list,
@@ -192,8 +185,6 @@ class MySignature extends React.Component {
    * Change Type
    */
   onRadioChange = (type, str) => {
-    console.log('type=====',type)
-    console.log('str=====',str)
     let multiState;
     if (type == 0 && str == "to_be_sign") {
       multiState = 10;
@@ -573,7 +564,6 @@ class MySignature extends React.Component {
       details,
       modal
     } = this.state;
-    console.log('data=====',data)
     let column = this.customizedColumn();
     return (
       <Fragment>
