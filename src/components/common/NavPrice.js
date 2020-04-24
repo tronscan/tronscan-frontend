@@ -22,7 +22,7 @@ class NavTRXPrice extends React.Component {
   }
 
   componentDidMount() {
-    this.axiosHandlerError()
+    this.axiosHandlerError() 
     this.requestUsdPrice();
   }
 
