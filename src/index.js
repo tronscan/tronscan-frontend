@@ -9,8 +9,7 @@ import AppCmp from './components/AppCmp';
 import {IS_DESKTOP} from "./constants";
 import "./app";
 import * as serviceWorker from './serviceWorker';
-import 'intl';
-import 'intl/locale-data/jsonp/en';
+
 
 // eslint-disable-next-line
 const consoleError = console.error.bind(console);

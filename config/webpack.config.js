@@ -23,7 +23,7 @@ const getClientEnvironment = require('./env');
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const ForkTsCheckerWebpackPlugin = require('react-dev-utils/ForkTsCheckerWebpackPlugin');
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
- //const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const postcssNormalize = require('postcss-normalize');
 const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
@@ -39,8 +39,8 @@ const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
 
 //const PurifyCSS = require('purifycss-webpack')
 //const glob = require('glob-all')
-const PrerenderSpaPlugin = require('prerender-spa-plugin')
-const Renderer = PrerenderSpaPlugin.PuppeteerRenderer
+//const PrerenderSpaPlugin = require('prerender-spa-plugin')
+//const Renderer = PrerenderSpaPlugin.PuppeteerRenderer
 
 
 
@@ -429,6 +429,13 @@ module.exports = function(webpackEnv) {
         PnpWebpackPlugin.moduleLoader(module),
       ],
     },
+    externals: {
+      'react': 'React',
+      'react-dom': 'ReactDOM',
+      'react-router': 'ReactRouter',
+      'redux': 'Redux',
+      'history': 'History'
+  },
     module: {
       strictExportPresence: true,
       rules: [
@@ -833,38 +840,38 @@ module.exports = function(webpackEnv) {
       //   [ '/']
 
       // ),
-      new PrerenderSpaPlugin({
-        staticDir: path.join(__dirname, 'build'),
-        routes: ['/'],
+      // new PrerenderSpaPlugin({
+      //   staticDir: path.join(__dirname, 'build'),
+      //   routes: ['/'],
 
 
-        // renderer: new Renderer({
-        //   // Optional - The name of the property to add to the window object with the contents of `inject`.
-        //   injectProperty: '__PRERENDER_INJECTED',
-        //   // Optional - Any values you'd like your app to have access to via `window.injectProperty`.
-        //   inject: {
-        //     foo: 'bar'
-        //   },
+      //   // renderer: new Renderer({
+      //   //   // Optional - The name of the property to add to the window object with the contents of `inject`.
+      //   //   injectProperty: '__PRERENDER_INJECTED',
+      //   //   // Optional - Any values you'd like your app to have access to via `window.injectProperty`.
+      //   //   inject: {
+      //   //     foo: 'bar'
+      //   //   },
   
-        //   // Optional - defaults to 0, no limit.
-        //   // Routes are rendered asynchronously.
-        //   // Use this to limit the number of routes rendered in parallel.
-        //   //maxConcurrentRoutes: 4,
+      //   //   // Optional - defaults to 0, no limit.
+      //   //   // Routes are rendered asynchronously.
+      //   //   // Use this to limit the number of routes rendered in parallel.
+      //   //   //maxConcurrentRoutes: 4,
   
-        //   // Optional - Wait to render until the specified event is dispatched on the document.
-        //   // eg, with `document.dispatchEvent(new Event('custom-render-trigger'))`
+      //   //   // Optional - Wait to render until the specified event is dispatched on the document.
+      //   //   // eg, with `document.dispatchEvent(new Event('custom-render-trigger'))`
   
-        //   // Optional - Wait to render until the specified element is detected using `document.querySelector`
+      //   //   // Optional - Wait to render until the specified element is detected using `document.querySelector`
   
-        //   // Optional - Wait to render until a certain amount of time has passed.
-        //   // NOT RECOMMENDED
-        //   renderAfterTime: 5000, // Wait 5 seconds.
+      //   //   // Optional - Wait to render until a certain amount of time has passed.
+      //   //   // NOT RECOMMENDED
+      //   //   renderAfterTime: 5000, // Wait 5 seconds.
   
-        //   // Other puppeteer options.
-        //   // (See here: https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#puppeteerlaunchoptions)
-        //   headless: false // Display the browser window when rendering. Useful for debugging.
-        // }),
-      }),
+      //   //   // Other puppeteer options.
+      //   //   // (See here: https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#puppeteerlaunchoptions)
+      //   //   headless: false // Display the browser window when rendering. Useful for debugging.
+      //   // }),
+      // }),
 
 
       isDesktop && 
