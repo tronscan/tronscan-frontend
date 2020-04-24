@@ -1956,7 +1956,7 @@ export const messages = {
   */
   "ledger_user_guide": "دليل المستخدم لليدجر",
   "latest_version_chrome": "ننصحك باستخدام أحدث نسخة من الكروم",
-  "ledger_support_version": "نسخة ليدجر المدعومة: 0.1.6 ، دعم كروم لنسخة الإصدار 80.0",
+  "ledger_support_version": "نسخة ليدجر المدعومة: 0.2.0 ، دعم كروم لنسخة الإصدار 80.0",
   "ledger_you_can": "يمكنك الذهاب ",
   "ledger_website": "يقوم موقع Ledger",
   "ledger_website_download": "قم بتنزيل وتحديث نسخة دفتر الأستاذ",
