@@ -27,47 +27,46 @@ class NavTRXPrice extends React.Component {
   }
 
   axiosHandlerError(){
-    //请求时的拦截
+    //request 
     xhr.interceptors.request.use(config => {
       return config;
       }, err => {
-          console.log('请求超时!' );
+          console.log('Request timed out!' );
           return Promise.resolve(err);
       })
-      //响应时的拦截
+      //Interception in response
       xhr.interceptors.response.use(data => {
-          // 返回响应时做一些处理
-          // 第二种方式，我采取的
-          if (data.status && data.status == 200 && data.data.status == 'error') {
+          // response deal with 
+          if (data&&data.status && data.status == 200 && data.data.status == 'error') {
               console.log(data.data.msg);
               return data;
           }
           return data;
       },err => {
-          // 当响应异常时做一些处理
+          // response error handle 
           if (err && err.response) {
               
           } else {
-            err.message = '连接服务器失败!'
+            err.message = 'Connection failure!'
           }
-       
-          if(err){
-            errorMyTime++;
-            if (errorMyTime > 2) {
-              window.clearTimeout(errortMyClear);
-              this.setState({
-                timeoutState: true,
-              });
-            } else {
-              errortMyClear = setTimeout(() => {
-                this.requestUsdPrice();
-              }, 3000);
-              this.setState({
-                timeoutState: false,
-              });
-            }
-          }
-          console.log(err.message);
+          // can not handle this situation in common request
+          // if(err){
+          //   errorMyTime++;
+          //   if (errorMyTime > 2) {
+          //     window.clearTimeout(errortMyClear);
+          //     // this.setState({
+          //     //   timeoutState: true,
+          //     // });
+          //   } else {
+          //     errortMyClear = setTimeout(() => {
+          //       this.requestUsdPrice();
+          //     }, 3000);
+          //     this.setState({
+          //       timeoutState: false,
+          //     });
+          //   }
+          // }
+          console.log(err,err.message);
           return Promise.resolve(err);
       })
   }
@@ -78,7 +77,6 @@ class NavTRXPrice extends React.Component {
     await xhr
       .get(`${API_URL}/api/token/price?token=trx`)
       .then((res) => {
-        console.log(res)
         if (res && res.data && res.data.price_in_usd) {
           USD_Price = parseFloat(res.data.price_in_usd);
           let percent_change_24h =
@@ -111,7 +109,7 @@ class NavTRXPrice extends React.Component {
         }
       })
       .catch(function (error) {
-        console.log(error);
+        console.log(error,'error');
        
       });
   }
