@@ -30,3 +30,4 @@ update-to-*
 .history
 .cache-loader 
 .cache
+/.dll-link-plugin

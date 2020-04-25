@@ -21,14 +21,14 @@ module.exports = {
         ],
     r5: [
         'tronweb'
-        ],    
+        ],
 
   },
 
   output: {
     filename:  'dll.[name].js',
     path: 'dist/',
-    library: '[name]'
+    library
   },
 
   plugins: [
