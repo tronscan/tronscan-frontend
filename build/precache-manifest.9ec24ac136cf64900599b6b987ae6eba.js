@@ -12,16 +12,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "https://static.tronscan.io:5577/editor.worker.js.LICENSE"
   },
   {
-    "revision": "dce32779077e45aff8fac616a25f0753",
+    "revision": "3526e2e050a82fac1bde78ac939b46b4",
     "url": "https://static.tronscan.io:5577/index.html"
   },
   {
-    "revision": "4296d433a77e55987eae",
+    "revision": "bbe958499ef4933e96a4",
     "url": "https://static.tronscan.io:5577/static/css/75.b903dd66.chunk.css"
   },
   {
-    "revision": "ca64fb474b7542a3ccd4",
-    "url": "https://static.tronscan.io:5577/static/css/80.bd022918.chunk.css"
+    "revision": "c573a144f716253ceb78",
+    "url": "https://static.tronscan.io:5577/static/css/80.8344ec49.chunk.css"
   },
   {
     "revision": "5be570d0897fcb68f3cc",
@@ -44,7 +44,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "https://static.tronscan.io:5577/static/css/Exchangetrc.849a7a81.chunk.css"
   },
   {
-    "revision": "d2ab78f6bbdfe2e12506",
+    "revision": "fab21b5ae739bd39952e",
     "url": "https://static.tronscan.io:5577/static/css/Home.849a7a81.chunk.css"
   },
   {
@@ -60,7 +60,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "https://static.tronscan.io:5577/static/css/SmartContract.e41670ec.chunk.css"
   },
   {
-    "revision": "8b60df7e94876f1cddfc",
+    "revision": "15c5caf715f64acccc1e",
     "url": "https://static.tronscan.io:5577/static/css/Token20Detail.e41670ec.chunk.css"
   },
   {
@@ -108,12 +108,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "https://static.tronscan.io:5577/static/js/7.22fb18ce.chunk.js"
   },
   {
-    "revision": "4296d433a77e55987eae",
-    "url": "https://static.tronscan.io:5577/static/js/75.9c0f8e73.chunk.js"
+    "revision": "bbe958499ef4933e96a4",
+    "url": "https://static.tronscan.io:5577/static/js/75.92b11979.chunk.js"
   },
   {
     "revision": "432be4079998f4f23cfee6b238c69580",
-    "url": "https://static.tronscan.io:5577/static/js/75.9c0f8e73.chunk.js.LICENSE"
+    "url": "https://static.tronscan.io:5577/static/js/75.92b11979.chunk.js.LICENSE"
   },
   {
     "revision": "89bb3e35807faac2ae11",
@@ -148,8 +148,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "https://static.tronscan.io:5577/static/js/8.c464914a.chunk.js"
   },
   {
-    "revision": "ca64fb474b7542a3ccd4",
-    "url": "https://static.tronscan.io:5577/static/js/80.a0126ea9.chunk.js"
+    "revision": "c573a144f716253ceb78",
+    "url": "https://static.tronscan.io:5577/static/js/80.362d3b85.chunk.js"
+  },
+  {
+    "revision": "e983af788ac7208eff80b619230de6f5",
+    "url": "https://static.tronscan.io:5577/static/js/80.362d3b85.chunk.js.LICENSE"
   },
   {
     "revision": "ba2e979681bdaaa9c052",
@@ -288,12 +292,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "https://static.tronscan.io:5577/static/js/Foundation.51b35fc1.chunk.js"
   },
   {
-    "revision": "d2ab78f6bbdfe2e12506",
-    "url": "https://static.tronscan.io:5577/static/js/Home.518cc898.chunk.js"
+    "revision": "fab21b5ae739bd39952e",
+    "url": "https://static.tronscan.io:5577/static/js/Home.bb1805f6.chunk.js"
   },
   {
     "revision": "bd3e4272b5add5245b17b2b265d84c45",
-    "url": "https://static.tronscan.io:5577/static/js/Home.518cc898.chunk.js.LICENSE"
+    "url": "https://static.tronscan.io:5577/static/js/Home.bb1805f6.chunk.js.LICENSE"
   },
   {
     "revision": "62207fb5b13cef6342f7",
@@ -408,20 +412,20 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "https://static.tronscan.io:5577/static/js/TRONRating.4aeaa882.chunk.js"
   },
   {
-    "revision": "8b60df7e94876f1cddfc",
-    "url": "https://static.tronscan.io:5577/static/js/Token20Detail.f9317d97.chunk.js"
+    "revision": "15c5caf715f64acccc1e",
+    "url": "https://static.tronscan.io:5577/static/js/Token20Detail.a111e55e.chunk.js"
   },
   {
     "revision": "c6d5829aef944feb1adbdcf4cf464ab3",
-    "url": "https://static.tronscan.io:5577/static/js/Token20Detail.f9317d97.chunk.js.LICENSE"
+    "url": "https://static.tronscan.io:5577/static/js/Token20Detail.a111e55e.chunk.js.LICENSE"
   },
   {
-    "revision": "6d7e1d128dce5de7a75c",
-    "url": "https://static.tronscan.io:5577/static/js/TokenDetail.91203656.chunk.js"
+    "revision": "4f9cf6cb43f7f6b62741",
+    "url": "https://static.tronscan.io:5577/static/js/TokenDetail.5b917e53.chunk.js"
   },
   {
     "revision": "fb2f141fff23d666ae698d12427d8fe6",
-    "url": "https://static.tronscan.io:5577/static/js/TokenDetail.91203656.chunk.js.LICENSE"
+    "url": "https://static.tronscan.io:5577/static/js/TokenDetail.5b917e53.chunk.js.LICENSE"
   },
   {
     "revision": "1f0b302943a97d6cf62f",
@@ -500,8 +504,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "https://static.tronscan.io:5577/static/js/main.471df599.chunk.js"
   },
   {
-    "revision": "c11dced786b5e6a30f2b",
-    "url": "https://static.tronscan.io:5577/static/js/runtime~main.953d39a4.js"
+    "revision": "e053617d12898b3cd77d",
+    "url": "https://static.tronscan.io:5577/static/js/runtime~main.b5a21402.js"
   },
   {
     "revision": "8ad2ef29191592ceb7b4bafbeac0e4cc",
