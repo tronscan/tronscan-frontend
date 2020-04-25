@@ -7,8 +7,8 @@ module.exports = {
     vendors: ['react',
     'react-dom',
     'react-router',
-    'antd',
-    'lodash'
+    'lodash',
+    'google-protobuf'
     ]
   },
 
