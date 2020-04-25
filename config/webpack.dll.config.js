@@ -8,7 +8,9 @@ module.exports = {
     'react-dom',
     'react-router',
     'lodash',
-    'google-protobuf'
+    'google-protobuf',
+    'moment'
+
     ]
   },
 
