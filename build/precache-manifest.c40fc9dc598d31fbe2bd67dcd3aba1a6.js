@@ -12,7 +12,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/editor.worker.js.LICENSE"
   },
   {
-    "revision": "b016bc9979bdda6f7022dbbbd80cdfec",
+    "revision": "2e0e572a8d1e8fbb1a688653cb3c8dd8",
     "url": "/index.html"
   },
   {
