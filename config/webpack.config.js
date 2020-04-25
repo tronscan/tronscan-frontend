@@ -26,7 +26,7 @@ const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
  const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const postcssNormalize = require('postcss-normalize');
 const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
-const WorkboxPlugin = require('workbox-webpack-plugin');
+//const WorkboxPlugin = require('workbox-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 //const CompressionPlugin = require('compression-webpack-plugin');
@@ -645,7 +645,13 @@ module.exports = function(webpackEnv) {
 
       new HtmlWebpackPlugin(
         Object.assign(
-          {},
+          {        
+          template: './index.html',
+          r1: './r1.js',
+          r2: './r2.js',
+          r3: './r3.js',
+          r4: './r4.js',
+          r5: './r5.js',},
           {
             inject: true,
             template: paths.appHtml,
@@ -666,7 +672,8 @@ module.exports = function(webpackEnv) {
                 },
               }
             : undefined
-        )
+        ),
+
       ),
     //   new MiniCssExtractPlugin({
     //     filename: '[name].[hash].css',
@@ -884,7 +891,8 @@ module.exports = function(webpackEnv) {
 
       new DllLinkPlugin({
         config: require("./webpack.dll.config"),
-        htmlMode: true
+        htmlMode: true,
+        appendVersion: true,
       }),
 
       new HardSourceWebpackPlugin({

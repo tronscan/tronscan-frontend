@@ -1,6 +1,8 @@
 const webpack = require('webpack')
 const library = '[name]'
 const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 
 module.exports = {
   entry: {
@@ -26,7 +28,7 @@ module.exports = {
   },
 
   output: {
-    filename:  'dll.[name].js',
+    filename:  'dll.[name]-[contenthash].js',
     path: 'dist/',
     library
   },
@@ -37,5 +39,14 @@ module.exports = {
       // This must match the output.library option above
       name: library
     }),
+     new HtmlWebpackPlugin({
+      template: './public/index.html',
+      r1: './dll.[name]-[contenthash].js',
+      r2: './dll.[name]-[contenthash].js',
+      r3: './dll.[name]-[contenthash].js',
+      r4: './dll.[name]-[contenthash].js',
+      r5: './dll.[name]-[contenthash].js',
+  })
+  
   ],
 }
