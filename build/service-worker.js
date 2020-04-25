@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "https://static.tronscan.io:5577/precache-manifest.9ec24ac136cf64900599b6b987ae6eba.js"
+  "https://static.tronscan.io:5577/precache-manifest.d7eafc6b672ec96df4dd50fca0247c60.js"
 );
 
 self.addEventListener('message', (event) => {

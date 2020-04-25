@@ -12,7 +12,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "https://static.tronscan.io:5577/editor.worker.js.LICENSE"
   },
   {
-    "revision": "3526e2e050a82fac1bde78ac939b46b4",
+    "revision": "c6bf829373011ae8373afd54a1cc4975",
     "url": "https://static.tronscan.io:5577/index.html"
   },
   {
@@ -64,7 +64,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "https://static.tronscan.io:5577/static/css/Token20Detail.e41670ec.chunk.css"
   },
   {
-    "revision": "b35e42b62ebe195e25bb",
+    "revision": "b72a175b21c2b5c36c51",
     "url": "https://static.tronscan.io:5577/static/css/main.c713407d.chunk.css"
   },
   {
@@ -500,8 +500,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "https://static.tronscan.io:5577/static/js/domloadsh.53225924.chunk.js.LICENSE"
   },
   {
-    "revision": "b35e42b62ebe195e25bb",
-    "url": "https://static.tronscan.io:5577/static/js/main.471df599.chunk.js"
+    "revision": "b72a175b21c2b5c36c51",
+    "url": "https://static.tronscan.io:5577/static/js/main.d460cc78.chunk.js"
   },
   {
     "revision": "e053617d12898b3cd77d",
