@@ -41,7 +41,7 @@ const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
 //const glob = require('glob-all')
 //const PrerenderSpaPlugin = require('prerender-spa-plugin')
 //const Renderer = PrerenderSpaPlugin.PuppeteerRenderer
-//const DllLinkPlugin = require('dll-link-webpack-plugin')
+const DllLinkPlugin = require('dll-link-webpack-plugin')
 
 // Source maps are resource heavy and can cause out of memory issue for large source files.
 const shouldUseSourceMap = false;
@@ -880,14 +880,15 @@ module.exports = function(webpackEnv) {
       //   // }),
       // }),
 
-      // new DllLinkPlugin({
-      //   config: require("./webpack.dll.config"),
-      //   htmlMode: true
-      // }),
-      // isDesktop && 
-      //   new webpack.optimize.LimitChunkCountPlugin({
-      //     maxChunks: 1,
-      //   }),
+      new DllLinkPlugin({
+        config: require("./webpack.dll.config"),
+        htmlMode: true
+      }),
+      
+      isDesktop && 
+        new webpack.optimize.LimitChunkCountPlugin({
+          maxChunks: 1,
+        }),
 
       
       // isEnvProduction &&
