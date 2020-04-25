@@ -39,14 +39,14 @@ module.exports = {
       // This must match the output.library option above
       name: library
     }),
-     new HtmlWebpackPlugin({
-      template: './public/index.html',
-      r1: './dll.[name]-[contenthash].js',
-      r2: './dll.[name]-[contenthash].js',
-      r3: './dll.[name]-[contenthash].js',
-      r4: './dll.[name]-[contenthash].js',
-      r5: './dll.[name]-[contenthash].js',
-  })
+  //    new HtmlWebpackPlugin({
+  //     template: './public/index.html',
+  //     r1: './dll.[name]-[contenthash].js',
+  //     r2: './dll.[name]-[contenthash].js',
+  //     r3: './dll.[name]-[contenthash].js',
+  //     r4: './dll.[name]-[contenthash].js',
+  //     r5: './dll.[name]-[contenthash].js',
+  // })
   
   ],
 }

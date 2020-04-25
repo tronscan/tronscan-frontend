@@ -646,12 +646,7 @@ module.exports = function(webpackEnv) {
       new HtmlWebpackPlugin(
         Object.assign(
           {        
-          template: './index.html',
-          r1: './r1.js',
-          r2: './r2.js',
-          r3: './r3.js',
-          r4: './r4.js',
-          r5: './r5.js',},
+          },
           {
             inject: true,
             template: paths.appHtml,
