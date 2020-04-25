@@ -256,7 +256,6 @@
     },
     "devDependencies": {
         "@babel/plugin-proposal-decorators": "^7.4.4",
-        "autodll-webpack-plugin": "^0.4.2",
         "babel-plugin-add-module-exports": "^1.0.2",
         "cache-loader": "^4.1.0",
         "extract-text-webpack-plugin": "^3.0.2",

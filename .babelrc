@@ -9,7 +9,7 @@
   "plugins": [
     ["@babel/plugin-proposal-decorators", {"legacy": true}],
     "add-module-exports",
-    ["import", { "libraryName": "antd" }, "antd"],
+    ["import", { "libraryName": "antd","libraryDirectory": "es", "style": "css"}, "antd"],
     ["import", {
       "libraryName": "lodash",
       "libraryDirectory": "",

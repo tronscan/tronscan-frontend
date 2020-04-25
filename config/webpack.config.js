@@ -42,10 +42,9 @@ const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
 //const PrerenderSpaPlugin = require('prerender-spa-plugin')
 //const Renderer = PrerenderSpaPlugin.PuppeteerRenderer
 //const DllLinkPlugin = require('dll-link-webpack-plugin')
-const AutoDllPlugin = require('autodll-webpack-plugin');
 
 // Source maps are resource heavy and can cause out of memory issue for large source files.
-const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
+const shouldUseSourceMap = false;
 // Some apps do not need the benefits of saving a web request, so not inlining the chunk
 // makes for a smoother build process.
 const shouldInlineRuntimeChunk = process.env.INLINE_RUNTIME_CHUNK !== 'false';
@@ -149,7 +148,7 @@ module.exports = function(webpackEnv) {
     //     ? 'source-map'
     //     : false
     //   : isEnvDevelopment && 'cheap-module-source-map',
-    //  devtool:false,
+     devtool:false,
     // These are the "entry points" to our application.
     // This means they will be the "root" imports that are included in JS bundle.
     entry: [
@@ -361,6 +360,14 @@ module.exports = function(webpackEnv) {
           priority: 10,
           minChunks:1
         },
+
+        // protobuf:{ 
+        //   name:'protobuf', 
+        //   chunks:'all', 
+        //   priority:11, 
+        //   test:/(google-protobuf)/, //  
+        //   minChunks:1 //  
+        // },
 
         // vendors: {
         //   test: /[\\/]node_modules[\\/]/,
@@ -882,21 +889,6 @@ module.exports = function(webpackEnv) {
       //     maxChunks: 1,
       //   }),
 
-      new AutoDllPlugin({
-        inject: true, // will inject the DLL bundle to index.html
-        debug: true,
-        filename: '[name]_[hash].js',
-        path: './dll',
-        entry: {
-          vendor: [
-            'react',
-            'react-dom',
-            'lodash',
-            'react-router',
-            'ethers'
-          ]
-        }
-      }),
       
       // isEnvProduction &&
        new BundleAnalyzerPlugin({ analyzerPort: 8919 })
