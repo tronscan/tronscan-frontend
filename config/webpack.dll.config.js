@@ -4,20 +4,31 @@ const path = require('path')
 
 module.exports = {
   entry: {
-    vendors: ['react',
+    r1: ['react',
     'react-dom',
+    ],
+    r2: [
     'react-router',
     'lodash',
+
+    ],
+    r3: [
     'google-protobuf',
     'moment'
+    ],
+    r4: [
+        'ethers'
+        ],
+    r5: [
+        'tronweb'
+        ],    
 
-    ]
   },
 
   output: {
-    filename: '[name].dll.js',
+    filename:  'dll.[name].js',
     path: 'dist/',
-    library
+    library: '[name]'
   },
 
   plugins: [
