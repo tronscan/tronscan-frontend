@@ -1,5 +1,5 @@
 const webpack = require('webpack')
-const library = '[name]_lib'
+const library = '[name]'
 const path = require('path')
 
 module.exports = {
