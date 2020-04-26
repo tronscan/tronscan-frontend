@@ -561,10 +561,12 @@ class SendForm extends React.Component {
     let list = token.split('-');
     let TokenName = list[1];
     let selectedTokenBalance = balance;
+    console.log('amount====',amount)
     if(isAddressActivedValid){
       if(amount == 0 || amount == ''){
         this.setState({
           isAmountValid: true,
+          exceededMaxnum:false,
         });
       }else {
         if(selectedTokenBalance < amount){
@@ -586,6 +588,7 @@ class SendForm extends React.Component {
         if(amount == 0 || amount == ''){
           this.setState({
             isAmountValid: true,
+            exceededMaxnum:false,
           });
         }else {
           if((selectedTokenBalance - ACTIVE_FEE_TRX) < amount){
@@ -605,6 +608,7 @@ class SendForm extends React.Component {
         if(amount == 0 || amount == ''){
           this.setState({
             isAmountValid: true,
+            exceededMaxnum:false,
           });
         }else {
           if(selectedTokenBalance < amount){
@@ -735,7 +739,7 @@ class SendForm extends React.Component {
     });
   };
 
-   setAddress = async(address) => {
+  setAddress = async(address) => {
     let {intl, tokenBalances } = this.props;
     let TRXBalances = _(tokenBalances)
         .filter(tb => tb.map_token_id == '_')
@@ -962,10 +966,10 @@ class SendForm extends React.Component {
               </Select>
             </div>
             {
-                  transferTRC20Tip?<div className="ledger-note-invalid">
-                  {tu("transfer_trc20_tip")}
-                </div>:''
-              }
+                transferTRC20Tip?<div className="ledger-note-invalid">
+                {tu("transfer_trc20_tip")}
+              </div>:''
+            }
           </div>
           <div className="form-group">
             <label>{tu("amount")}</label>
@@ -985,7 +989,6 @@ class SendForm extends React.Component {
               </div>
               <div className="invalid-feedback">
                 {exceededMaxnum?tu("transfer_maximum_amount_exceeded"):tu("fill_a_valid_number")}
-
               </div>
             </div>
           </div>

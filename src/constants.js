@@ -4,6 +4,7 @@ import uuidv4w from "uuid/v4";
  * 1000000 sun = 1 TRX
  */
 export const ONE_TRX = 1000000;
+export const ACTIVE_FEE_TRX = 0.1;
 
 export const IS_TESTNET = process.env.NET === "testnet";
 export const IS_DESKTOP = process.env.DESKTOP === "true";
