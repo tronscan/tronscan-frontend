@@ -28,3 +28,5 @@ update-to-*
 /web.tar*
 
 .history
+.dll-link-plugin/
+.cache
