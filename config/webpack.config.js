@@ -43,6 +43,7 @@ const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
 //const Renderer = PrerenderSpaPlugin.PuppeteerRenderer
 const DllLinkPlugin = require('dll-link-webpack-plugin')
 var HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
+const HtmlCriticalWebpackPlugin = require('html-critical-webpack-plugin');
 
 
 // Source maps are resource heavy and can cause out of memory issue for large source files.
@@ -923,6 +924,21 @@ module.exports = function(webpackEnv) {
         },
       }),
       
+      new HtmlCriticalWebpackPlugin({
+        base: path.resolve(__dirname, '../build'),
+        src: 'index.html',
+        dest: 'index.html',
+        inline: true,
+        minify: true,
+        extract: true,
+        width: 375,
+        height: 565,
+        // 确保调用打包后的JS文件
+        penthouse: {
+            blockJSRequests: false
+        }
+    }),
+
       isDesktop && 
         new webpack.optimize.LimitChunkCountPlugin({
           maxChunks: 1,
