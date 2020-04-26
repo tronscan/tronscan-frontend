@@ -1970,7 +1970,7 @@ export const messages = {
   */
   "ledger_user_guide": "Ledgerご利用のガイド",
   "latest_version_chrome": "最新バージョンのChromeご利用をお薦めします",
-  "ledger_support_version": "Ledgerサポートできるバージョン:0.1.6、Chromeサポートできるバージョン80.0",
+  "ledger_support_version": "Ledgerサポートできるバージョン:0.2.0、Chromeサポートできるバージョン80.0",
   "ledger_you_can": "あなたは行くことができます",
   "ledger_website": "Ledgerの公式サイト",
   "ledger_website_download": "最新の元帳バージョンをダウンロードして更新する",
