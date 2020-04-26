@@ -347,7 +347,29 @@ export const lang20Q1 = {
   account_tags_my_tag_login_show:'نمایش پس از ورود به سیستم',
   account_tags_my_tag_not_available:'Not Available',
 
-
+// active account
+chart_active_account:'توزیع حساب فعال.',
+chart_active_button_1:'کار ماهانه',
+chart_active_button_2:'کار هفتگی',
+chart_active_button_3:'کار روزانه',
+chart_active_total_month:'ماهانه{total}حساب داده فعال وجود دارد.',
+chart_active_total_week:'هفتگی {total}حساب داده فعال وجود دارد.',
+chart_active_total_day:'روزانه {total}حساب داده فعال وجود دارد.',
+chart_active_table_1:'ناریخ (UTC)',
+chart_active_table_2:'حسابهای فعال',
+chart_active_table_3:'نسبت',
+chart_active_table_4:'تبدیل',
+chart_active_table_5:'تعداد معاملات',
+chart_active_table_6:'مقدار معامله',
+chart_active_per_tip_month:'حسابهای فعال ماهانه / ماه با تعداد کل حسابهای روز گذشته مطابقت دارد',
+chart_active_per_tip_week:'حسابهای فعال هفتگی / کل حسابهای روز آخر هفته',
+chart_active_per_tip_day:'حساب های فعال روزانه / کل حساب های روز',
+chart_account_add_total:'تعداد کل حسابها',
+chart_account_add_per:'رشد روزانه ',
+chart_per_price_open:'قیمت افتتاحیه',
+chart_per_price_close:'قیمت بسته شده',
+chart_per_price_high:'بالاترین قیمت',
+chart_per_price_low:'پایین ترین قیمت',
 
 
 };

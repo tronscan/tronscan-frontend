@@ -110,12 +110,14 @@ class Statistics extends React.Component {
                 userBurningEnergy:0
             },
             activeAccountParams:{
-                start_day:'2020-04-01',
-                end_day: moment().format("YYYY-MM-DD"),
+                start_day:moment('2019-01-01').valueOf(),
+                end_day: moment().valueOf(),
                 type:'month'
             },
             activeAccountData:null
         };
+
+        this.handleModeChange = this.handleModeChange.bind(this)
     }
 
     componentDidMount() {
@@ -185,71 +187,84 @@ class Statistics extends React.Component {
     }
 
     async loadActiveAccountData(){
-        let { txOverviewStats } = await Client.getTxOverviewStatsAll();
+        let {activeAccountParams} = this.state;
+        let {type,start_day} = activeAccountParams
+        let params = {
+            type,
+            start_timestamp:start_day
+        }
+        let { data } = await ApiClientChart.getActiveAccount(params);
+        let usdPrice = await this.getUsdPrice()
         let temp = [];
-        for (let txs in txOverviewStats) {
+        for (let txs in data) {
             let tx = parseInt(txs);
-            if (tx === 0) {
-                temp.push({
-                    proportion: txOverviewStats[tx].avgBlockSize,
-                    mom: txOverviewStats[tx].avgBlockTime,
-                    blockchainSize: txOverviewStats[tx].blockchainSize,
-                    date: txOverviewStats[tx].date,
-                    newAddressSeen: txOverviewStats[tx].newAddressSeen,
-                    newBlockSeen: txOverviewStats[tx].newBlockSeen,
-                    newTransactionSeen: txOverviewStats[tx].newTransactionSeen,
-                    totalAddress: txOverviewStats[tx].totalAddress,
-                    totalBlockCount: txOverviewStats[tx].totalBlockCount,
-                    totalTransaction: txOverviewStats[tx].totalTransaction,
-                    newtotalTransaction:txOverviewStats[tx].totalTransaction,
-                    newtotalAddress:txOverviewStats[tx].totalAddress,
-                    amount:txOverviewStats[tx].totalBlockCount,
-                }) 
-            }
-            else {
-                temp.push({
-                    date: txOverviewStats[tx].date,
-                    totalTransaction: (txOverviewStats[tx].totalTransaction - txOverviewStats[tx - 1].totalTransaction),
-                    mom: txOverviewStats[tx].avgBlockTime,
-                    proportion: txOverviewStats[tx].avgBlockSize,
-                    totalBlockCount: (txOverviewStats[tx].totalBlockCount - txOverviewStats[tx - 1].totalBlockCount),
-                    newAddressSeen: txOverviewStats[tx].newAddressSeen,
-                    newtotalTransaction:txOverviewStats[tx].totalTransaction,
-                    newtotalAddress:txOverviewStats[tx].totalAddress,
-                    amount:txOverviewStats[tx].totalBlockCount,
-                });
-            }
-            // let {day_time,transactions,proportion,mom,amount} = txOverviewStats[tx]
-
-            // temp.push({
-                //  totalTransaction:transactions,
-                // date:day_time,
-            //     proportion,mom,amount
-            // });
-            
+            let {day_string,day_time,transactions,proportion,mom,amount,active_count} = data[tx]
+            temp.push({
+                transactions,
+                date:day_time,
+                proportion:Number(proportion).toFixed(2),
+                mom:Number(mom).toFixed(2),
+                amount:Number(amount).toFixed(6),
+                usdAmount:Number(amount)*(usdPrice || 0).toFixed(3),
+                active_count,
+                day_string
+            }); 
         }
 
+        let timeSortData = cloneDeep(temp).sort(this.compare('date'));
+        
         this.setState({
-            activeAccountData:  temp.slice(0, temp.length), 
+            activeAccountData:  temp.slice(0, temp.length),
+            activeTableData:timeSortData.reverse()
         });
+        let tx = cloneDeep(temp).sort(this.compare('active_count'));
 
-       
-        let tx = cloneDeep(temp).sort(this.compare('transactions'));
-
-        this.setState({
+        tx.length > 0 && this.setState({
             summit: {
                 activeAccounts_sort: [
                     {
                         date: tx[tx.length - 1].date,
-                        increment: tx[tx.length - 1].totalTransaction
+                        increment: tx[tx.length - 1].active_count
                     },
                     {
                         date: tx[0].date,
-                        increment: tx[0].totalTransaction
+                        increment: tx[0].active_count
                     }]
             }
         });
     }
+    
+     //get trx/usd price
+  async getUsdPrice(){
+    // let eurWinkTronbetURL = encodeURI(`https://api.coinmarketcap.com/v1/ticker/tronix/?convert=EUR`);
+    // let trxPriceData = await xhr.get(`${API_URL}/api/system/proxy?url=${eurWinkTronbetURL}`);
+    // let priceUSD = trxPriceData && trxPriceData.data && trxPriceData.data[0] && trxPriceData.data[0].price_usd;
+    const url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=TRX&convert=USD'
+    let { data } = await xhr({
+      method: "post",
+      url: `${API_URL}/api/system/proxy`,
+      data: {
+        url
+      }
+    });
+    let priceUSD = data.data &&
+                    data.data.TRX &&
+                    data.data.TRX.quote &&
+                    data.data.TRX.quote['USD'] && 
+                    data.data.TRX.quote['USD'].price
+    return priceUSD
+  }
+
+  handleModeChange(e){
+      let type = e.target.value
+      let {activeAccountParams} = this.state;
+        this.setState({
+            activeAccountParams:{...activeAccountParams,type},
+            activeAccountData:null
+        },()=>{
+            this.loadActiveAccountData()  
+        })
+  }
 
     async loadAccounts() {
         // let {accounts} = await Client.getAccounts({
@@ -267,6 +282,7 @@ class Statistics extends React.Component {
                 }))
         });
     }
+
     loadTotalTRXSupply = async() =>{
         let {intl} = this.props;
         const {funds} = await Client.getFundsSupply();
@@ -351,53 +367,79 @@ class Statistics extends React.Component {
 
     async loadVolume(){
         let {intl} = this.props;
-        let TRXURL = encodeURI(`https://graphs2.coinmarketcap.com/currencies/tron/`)
-        let volumeData = await xhr.get(
-            `${API_URL}/api/system/proxy?url=${TRXURL}`
-        );
-    
-        let volumeUSD = volumeData.data.market_cap_by_available_supply
+        // let TRXURL = encodeURI(`https://graphs2.coinmarketcap.com/currencies/tron/`)
+        // let volumeData = await xhr.get(
+        //     `${API_URL}/api/system/proxy?url=${TRXURL}`
+        // );
+        
+        // let volumeUSD = volumeData.data.market_cap_by_available_supply
 
-        let volume = volumeUSD.map(function (v, i) {
+        // let volume = volumeUSD.map(function (v, i) {
+        //     return {
+        //         time: v[0],
+        //         volume_billion: v[1] / Math.pow(10, 9),
+        //         volume_usd: intl.formatNumber(v[1]) + ' USD',
+        //         volume_usd_num: v[1]
+        //     }
+        // })
+        let params = {
+            limit:1000
+        }
+
+        let {data} = await ApiClientChart.getTrxPrice(params)
+        
+        let volumes = data.map(function (v, i) {
             return {
-                time: v[0],
-                volume_billion: v[1] / Math.pow(10, 9),
-                volume_usd: intl.formatNumber(v[1]) + ' USD',
-                volume_usd_num: v[1]
+                time: v.time,
+                volume_billion: v.volume / Math.pow(10, 9),
+                volume:v.volume
             }
         })
         this.setState({
-            volumeStats: volume.slice(27, volume.length - 1),
+            volumeStats: volumes,
         });
         let higest = {date: '', increment: ''};
         let lowest = {date: '', increment: ''};
-        let vo = cloneDeep(volume).sort(this.compare('volume_usd_num'));
+        let vo = cloneDeep(volumes).sort(this.compare('volume_billion'));
+        
         for (let v in vo) {
             vo[v] = {date: vo[v].time, ...vo[v]};
         }
+
+   
         this.setState({
             summit: {
                 volumeStats_sort: [
                     {
-                        date: vo[vo.length - 1].time,
-                        increment: vo[vo.length - 1].volume_usd_num
+                        date: vo[vo.length - 1] && vo[vo.length - 1].time,
+                        increment: vo[vo.length - 1] && vo[vo.length - 1].volume
                     },
                     {
-                        date: vo[0].time,
-                        increment: vo[0].volume_usd_num
+                        date: vo[0] && vo[0].time,
+                        increment: vo[0] && vo[0].volume
                     }],
             }
         });
     }
     async loadPriceStats(){
         let {intl} = this.props;
+
         let today = new Date();
         let timerToday = today.getTime();
         let birthday = new Date("2017/10/10");
         let timerBirthday = birthday.getTime();
+        
         let dayNum = Math.floor((timerToday - timerBirthday) / 1000 / 3600 / 24);
-        let {data} = await xhr.get("https://min-api.cryptocompare.com/data/histoday?fsym=TRX&tsym=USD&limit=" + dayNum);
-        let priceStatsTemp = data['Data'];
+  
+        // let {data} = await xhr.get("https://min-api.cryptocompare.com/data/histoday?fsym=TRX&tsym=USD&limit=" + dayNum);
+        let params = {
+            start_timestamp:timerBirthday,
+            limit:dayNum,
+            end_timestamp:timerToday
+        }
+        let {data} = await ApiClientChart.getTrxPrice(params)
+
+        let priceStatsTemp = data;
         this.setState({
             priceStats: priceStatsTemp
         });
@@ -411,12 +453,12 @@ class Statistics extends React.Component {
             summit: {
                 priceStats_sort: [
                     {
-                        date: pr[pr.length - 1].time * 1000,
-                        increment: pr[pr.length - 1].close
+                        date: pr[pr.length - 1] && pr[pr.length - 1].time,
+                        increment: pr[pr.length - 1] && pr[pr.length - 1].close
                     },
                     {
-                        date: pr[0].time * 1000,
-                        increment: pr[0].close
+                        date: pr[0] && pr[0].time,
+                        increment: pr[0] && pr[0].close
                     }],
             }
         });
@@ -1186,7 +1228,7 @@ class Statistics extends React.Component {
             priceUSD,priceBTC,marketCapitalization,foundationFreeze,
             circulatingNum, energyConsumeData, ContractInvocation,
             ContractInvocationDistribution, ContractInvocationDistributionParams,
-            EnergyConsumeDistribution,OverallFreezingRate,energyConsumeDataTop,activeAccountParams,activeAccountData } = this.state;
+            EnergyConsumeDistribution,OverallFreezingRate,energyConsumeDataTop,activeAccountParams,activeAccountData,activeTableData } = this.state;
 
         let unit;
         let uploadURL = API_URL + "/api/v2/node/overview_upload";
@@ -1195,7 +1237,7 @@ class Statistics extends React.Component {
         let freezing_column = this.freezingCustomizedColumn();
 
         let chartHeight = isMobile? 240: 500
-       
+        let addressesStatsURl = API_URL + '/api/account/increase?format=csv&days=100'
 
         if (match.params.chartName === 'blockchainSizeStats' || match.params.chartName === 'addressesStats') {
             unit = 'increase';
@@ -1203,7 +1245,6 @@ class Statistics extends React.Component {
             unit = 'number';
         }
 
-        let activeAccountCsvurl = API_URL + "/api/freezeresource?start_day=" + activeAccountParams.start_day +"&end_day="+activeAccountParams.end_day + "&format=csv";
 
         return (
             <main className="container header-overlap">
@@ -1715,21 +1756,17 @@ class Statistics extends React.Component {
                         }
 {
                             match.params.chartName === 'activeAccounts' &&
-                            <div style={{height: chartHeight}}>
-                            {
-                                activeAccountData === null ?
-                                <TronLoader/> :
-                                <div className="active-account-chart">
-                                    <Radio.Group size="small" onChange={this.handleModeChange} value={activeAccountParams.type} style={{ marginBottom: 8 }}>
-                                        <Radio.Button value="month">{tu('chart_active_button_1')}</Radio.Button>
-                                        <Radio.Button value="week">{tu('chart_active_button_2')}</Radio.Button>
-                                        <Radio.Button value="day">{tu('chart_active_button_3')}</Radio.Button>
-                                    </Radio.Group>
-                                    <ActiveAccountsChart source='singleChart' style={{height: chartHeight}}
-                                    data={activeAccountData} intl={intl}/>
-                                </div> 
-                                
-                            }
+                            <div style={{height: chartHeight}}>         
+                            <div className="active-account-chart">
+                                <Radio.Group size="small" onChange={this.handleModeChange} value={activeAccountParams.type} style={{ marginBottom: 8 }}>
+                                    <Radio.Button value="month">{tu('chart_active_button_1')}</Radio.Button>
+                                    <Radio.Button value="week">{tu('chart_active_button_2')}</Radio.Button>
+                                    <Radio.Button value="day">{tu('chart_active_button_3')}</Radio.Button>
+                                </Radio.Group>
+                                {activeAccountData === null ?
+                                <TronLoader/> : <ActiveAccountsChart source='singleChart' style={{height: chartHeight}}
+                                data={activeAccountData} intl={intl}/>}
+                            </div>     
                     </div>
                         }
 
@@ -1741,8 +1778,22 @@ class Statistics extends React.Component {
                         <div style={{marginTop:20,float:'right'}}><i size="1" style={{fontStyle: 'normal'}}>[ Download <a href={uploadURL} style={{color: '#C23631'}}><b>CSV Export</b></a>&nbsp;<span className="glyphicon glyphicon-download-alt"></span> ]</i>&nbsp;</div>
                     }
                    {
-                        match.params.chartName === 'activeAccounts' && <ActiveAccount chartHeight={chartHeight} data={activeAccountData} activeAccountParams={activeAccountParams} intl={intl} activeAccountCsvurl={activeAccountCsvurl}/>
-
+                        match.params.chartName === 'activeAccounts' && <ActiveAccount chartHeight={chartHeight} data={activeTableData} intl={intl} activeAccountParams={activeAccountParams}/>
+                   }
+                   {
+                       match.params.chartName === 'addressesStats' &&
+                       <div className="pb-2">
+                            <div style={{ float: 'right',marginTop:20}}>
+                                    [
+                                    <span style={{fontWeight:'bold'}}>&nbsp;<Link to="/blockchain/accounts">{tu('chart_hold_trx_more')}</Link>&nbsp;</span>
+                                    ]
+                            </div>  
+                            <div style={{}}>
+                            <CsvExport downloadURL={addressesStatsURl} />
+                            </div>
+                                
+                        </div>
+                        
                    }
 
                 </div>

@@ -321,47 +321,218 @@ export class LineReactHighChartAdd extends React.Component {
                     return s;
                 },
             }
+            Highcharts.chart(document.getElementById(id),_config);
+
         }else{
             if (data && data.length === 0) {
                 _config.title.text = "No data";
             }
+            let totals = []
+            let increments = []
+            let timestamp = []
+           
             if (data && data.length > 0) {
                 data.map((val) => {
-                    let temp;
-                    temp = {...val, y: val.total};
-                    _config.series[0].data.push(temp);
+                    // let temp;
+                    // temp = {...val, y: val.total};
+                    // _config.series[0].data.push(temp);
+                    totals.push(val['total'])
+                    increments.push(val['increment'])
+                    timestamp.push(val['date'])
                 })
             }
-            _config.chart.zoomType = 'x';
-            _config.chart.marginTop = 80;
-            _config.title.text = intl.formatMessage({id: 'charts_new_addresses'});
-            _config.subtitle.text = intl.formatMessage({id: 'HighChart_tip'});
-            _config.exporting.filename = intl.formatMessage({id: 'charts_new_addresses'});
-            _config.xAxis.tickPixelInterval = 100;
-            _config.xAxis.minRange=24 * 3600 * 1000;
-            _config.yAxis.title.text = intl.formatMessage({id: 'addresses_amount'});
-            _config.yAxis.tickAmount = 5;
-            _config.yAxis.min = 0;
-            _config.yAxis.labels.formatter = function() {
-                if(this.value < 1000000){
-                    return this.value/1000 + 'k'
-                }else if(this.value >= 1000000){
-                    return this.value/1000000 + 'M'
+            let pointStart = timestamp && timestamp[0]
+            let pointInterval = 24*3600*1000
+            if (data && data.length > 0) {
+                let options =  {
+                    title: {
+                        text: intl.formatMessage({id: 'charts_new_addresses'})
+                    },
+                    exporting: {
+                        enabled: true,
+                        sourceWidth: 1072,
+                        sourceHeight: 580,
+                        filename:intl.formatMessage({id: 'charts_new_addresses'})
+                    },
+                    rangeSelector: {
+                        inputDateFormat: '%Y-%m-%d',
+                        //allButtonsEnabled: true,
+                        buttons: [
+                        {
+                            type: 'all',
+                            text: intl.formatMessage({id: 'all'})
+                        },
+                        {
+                            type: 'year',
+                            count: 1,
+                            text: intl.formatMessage({id: 'freezing_rangeSelector_botton_text_1y'})
+                        },
+                        {
+                            type: 'month',
+                            count: 6,
+                            text: intl.formatMessage({id: 'freezing_rangeSelector_botton_text_6m'})
+                        },
+                        {
+                            type: 'month',
+                            count: 3,
+                            text: intl.formatMessage({id: 'freezing_rangeSelector_botton_text_3m'})
+                        },
+                        {
+                            type: 'month',
+                            count: 1,
+                            text: intl.formatMessage({id: 'freezing_rangeSelector_botton_text_1m'})
+                        }],
+                        selected: 0,
+                        buttonTheme: {
+                            width: 50
+                        },
+                    },
+                    navigator: {
+                        maskFill: 'rgba(198,72,68, 0.3)',
+                        xAxis: {
+                            labels: {
+                                format: '{value:%Y-%m-%d}',
+                                // enabled:false
+                            },
+                        },
+                       
+                    },
+                    scrollbar: {
+                       // enabled: false
+                    },
+                    xAxis: {
+                        //type: 'datetime',
+                        ordinal: false,
+                        categories:timestamp,
+                        dateTimeLabelFormats: {
+                            millisecond: '%H:%M:%S.%L',
+                            second: '%H:%M:%S',
+                            minute: '%H:%M',
+                            hour: '%H:%M',
+                            day: '%Y-%m-%d',
+                            week: '%m-%d',
+                            month: '%Y-%m',
+                            year: '%Y'
+                        },
+                        gridLineColor: '#eeeeee',
+                        labels: {
+                            style: {
+                                color: "#999999"
+                            },
+                            autoRotation: [-10, -20, -30, -40, -50, -60, -70, -80, -90],
+                        },
+                        title: {
+                            enabled: false
+                        },
+                    },
+                    yAxis: [
+                        { // Primary yAxis
+                          labels: {
+                            style: {
+                              color: "#434343"
+                            }
+                          },
+                          title: {
+                            text: intl.formatMessage({id: 'chart_account_add_total'}),
+                            style: {
+                                color: "#434343"
+                            }
+                          },
+                          opposite: false,
+                        }, { // Secondary yAxis
+                          title: {
+                            text: intl.formatMessage({id: 'chart_account_add_per'}),
+                            style: {
+                              color: "#C64844"
+                            }
+                          },
+                          labels: {
+                            style: {
+                                color: "#C64844"
+                            }
+                          },
+                        }
+                    ],
+                    plotOptions: {
+                        column: {
+                            grouping: false,
+                            shadow: false,
+                            borderWidth: 0
+                        },
+                        spline: {
+                            marker: {
+                                fillColor:"#5A5A5A",
+                                width: 8,
+                                height: 8,
+                                lineWidth: 0,  //线条宽度
+                                radius: 4,    //半径宽度
+                            }
+                        }
+                    },
+                    tooltip: {
+                        useHTML: true,
+                        shadow: true,
+                        split: false,
+                        shared: true,
+                        borderColor: '#7F8C8D',
+                        borderRadius: 2,
+                        backgroundColor: 'white',
+                        formatter: function () {
+                            var s;
+                            var points = this.points;
+                            var pointsLength = points.length;
+                          
+                            s = '<table class="tableformat" style="border: 0px;padding-left:10px;padding-right:10px" min-width="100%"><tr><td colspan=2 style="padding-bottom:5px;"><span style="font-size: 10px;"> ' + moment(points[0].x).format("YYYY-MM-DD") + ' (UTC)</span><br></td></tr>'
+                            for (let index = 0; index < pointsLength; index += 1) {
+                            
+                                s += '<tr style="border-bottom:1px solid #D5D8DC;"><td><span style="color:'+points[index].series.color+'">\u25A0</span>'+points[index].series.name+'</td><td style="text-align:right;padding:4px 6px;">'+toThousands((new BigNumber(points[index].y)).decimalPlaces(6))+'</td></tr>' 
+
+                            }
+                            s += '</table>';
+                            return s;
+                        },
+    
+                    },
+                    series: [{
+                        name: intl.formatMessage({id: 'chart_account_add_total'}),
+                        type: 'spline',
+                        // yAxis: 1,
+                        color: "#5A5A5A",
+                        data:totals,
+                        pointStart: pointStart,
+                        pointInterval: pointInterval , 
+                        tooltip: {
+                            valueSuffix: ' '
+                        },
+                        showInNavigator: false,
+                        dataGrouping: { // 针对highstock,将指定数量的数据合并展现为一个点
+                            enabled: false
+                        }
+                    }, {
+                        name: intl.formatMessage({id: 'chart_account_add_per'}),
+                        type: 'column',
+                        yAxis: 1,
+                        color: "#C64844",
+                        data:increments,
+                        pointStart: pointStart,
+                        pointInterval: pointInterval, // one day
+                        tooltip: {
+                            valueSuffix: ' '
+                        },
+                        showInNavigator: false,
+                        dataGrouping: { // 针对highstock,将指定数量的数据合并展现为一个点
+                            enabled: false
+                        }
+                    }]
                 }
+                Object.keys(options).map(item => {
+                    _config[item] = options[item]
+                })
             }
-            _config.series[0].marker.enabled = false;
-            _config.series[0].pointInterval = 24 * 3600 * 1000;
-            _config.series[0].pointStart = Date.UTC(2018, 5, 25);
-            _config.tooltip.formatter = function () {
-                let date = intl.formatDate(this.point.x);
-                return (
-                    intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
-                    intl.formatMessage({id: 'daily_increment'}) + ' : ' + this.point.increment + '<br/>' +
-                    intl.formatMessage({id: 'total_addresses'}) + ' : ' + this.point.total
-                )
-            }
+            Highcharts.StockChart(id, _config);
         }
-        Highcharts.chart(document.getElementById(id),_config);
+        // Highcharts.chart(document.getElementById(id),_config);
+        
 
     }
     shouldComponentUpdate(nextProps)  {
@@ -720,6 +891,7 @@ export class LineReactHighChartTotalTxns extends React.Component {
                     _config.series[0].data.push(temp);
                 })
             }
+      
             _config.chart.zoomType = 'x';
             _config.chart.marginTop = 80;
             _config.title.text = intl.formatMessage({id: 'charts_total_transactions'});
@@ -968,15 +1140,16 @@ export class LineReactHighChartPrice extends React.Component {
                     intl.formatMessage({id: 'charts_average_price'}) + ' : ' + this.point.y
                 )
             }
+            Highcharts.chart(document.getElementById(id),_config);
+
         }else{
             if (data && data.length > 0) {
                 data.map((val) => {
-                    let temp;
-                    //temp = {...val, y: val.close};
-                    temp = [val.time*1000,val.close]
+                    let temp = {...val,y:(val.close*100)/100}
                     _config.series[0].data.push(temp);
                 })
             }
+           
             _config.chart.zoomType = 'x';
             _config.chart.marginTop = 80;
             _config.chart.type= 'area';
@@ -984,24 +1157,53 @@ export class LineReactHighChartPrice extends React.Component {
             _config.subtitle.text = intl.formatMessage({id: 'HighChart_tip'});
             _config.exporting.filename = intl.formatMessage({id: 'charts_average_price'});
             _config.xAxis.tickPixelInterval = 100;
-            // _config.xAxis.minRange=24 * 3600 * 1000
+            _config.xAxis.minRange=24 * 3600 * 1000
             _config.yAxis.title.text = intl.formatMessage({id: 'usd'});
             _config.yAxis.tickAmount = 5;
             _config.yAxis.min = 0;
+            _config.yAxis.opposite = false
 
             _config.series[0].marker.enabled = false;
-            //_config.series[0].pointInterval = 24 * 3600 * 1000;
-            //_config.series[0].pointStart = Date.UTC(2017, 9, 10);
+            _config.series[0].pointInterval = 24 * 3600 * 1000;
+            _config.series[0].pointStart = data[0] && data[0].time
+            _config.navigator = {
+                maskFill: 'rgba(198,72,68, 0.3)',
+                xAxis: {
+                    labels: {
+                        format: '{value:%Y-%m-%d}',
+                        // enabled:false
+                    },
+                },
+               
+            },
+            _config.tooltip.useHTML = true;
             _config.tooltip.formatter = function () {
-                let date = intl.formatDate(this.point.x);
-                return (
-                    intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
-                    intl.formatMessage({id: 'charts_average_price'}) + ' : ' + this.point.y
-                )
+                var s;
+                    var points = this.points;
+                    var pointsLength = points.length;
+                    if(pointsLength > 0){
+                        let {close,open,high,low} = points && points[0].point
+                        s = '<table class="tableformat" style="border: 0px;" min-width="100%"><tr style="border-bottom:1px solid #D5D8DC;"><td colspan=2><span style="font-size: 10px;"> ' + moment(points[0].point.date).format("YYYY-MM-DD") + ' (UTC)</span><br></td><td></td></tr>'
+                        s += '<tr style="border-bottom:1px solid #D5D8DC;"><td>'+intl.formatMessage({id:'chart_per_price_open'})+'</td><td style="text-align:right;padding:4px 6px;">'+open+' USD</td></tr>' 
+                        s += '<tr style="border-bottom:1px solid #D5D8DC;"><td>'+intl.formatMessage({id:'chart_per_price_close'})+'</td><td style="text-align:right;padding:4px 6px;">'+close+' USD</td></tr>' 
+                        s += '<tr style="border-bottom:1px solid #D5D8DC;"><td>'+intl.formatMessage({id:'chart_per_price_high'})+'</td><td style="text-align:right;padding:4px 6px;">'+high+' USD</td></tr>' 
+                        s += '<tr style="border-bottom:1px solid #D5D8DC;"><td>'+intl.formatMessage({id:'chart_per_price_low'})+'</td><td style="text-align:right;padding:4px 6px;">'+low+' USD</td></tr>' 
+                        s += '</table>';
+                        return s;
+                    }
+                // let date = intl.formatDate(this.point.x);
+                
+                // return (
+                //     intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
+                //     intl.formatMessage({id: 'charts_average_price'}) + ' : ' + this.point.y
+                // )
             }
+            _config.rangeSelector = {
+                enabled:false
+            }
+            Highcharts.StockChart(id, _config);
         }
          
-        Highcharts.chart(document.getElementById(id),_config);
     }
     shouldComponentUpdate(nextProps)  {
         if(nextProps.intl.locale !== this.props.intl.locale){
@@ -1067,30 +1269,29 @@ export class LineReactHighChartVolumeUsd extends React.Component {
         }else{
             if (data && data.length > 0) {
                 data.map((val) => {
-                    let temp;
-                    temp = [val.time,val.volume_billion]
                     // temp = {...val, y: val.volume_billion};
-                    _config.series[0].data.push(temp);
+                    _config.series[0].data.push(Number(val.volume));
                 })
             }
+           
             _config.chart.zoomType = 'x';
             _config.chart.marginTop = 80;
             _config.title.text = intl.formatMessage({id: 'charts_volume_24'});
             _config.subtitle.text = intl.formatMessage({id: 'HighChart_tip'});
             _config.exporting.filename = intl.formatMessage({id: 'charts_volume_24'});
             _config.xAxis.tickPixelInterval = 100;
-            // _config.xAxis.minRange=24 * 3600 * 1000
-            _config.yAxis.title.text = intl.formatMessage({id: 'billion_usd'});
+            _config.xAxis.minRange=24 * 3600 * 1000
+            _config.yAxis.title.text = intl.formatMessage({id:'usd'});
             _config.yAxis.tickAmount = 6;
             _config.yAxis.min = 0;
             _config.series[0].marker.enabled = false;
-            //_config.series[0].pointInterval = 24 * 3600 * 1000;
-            // _config.series[0].pointStart = Date.UTC(2018, 5, 25);
+            _config.series[0].pointInterval = 24 * 3600 * 1000;
+            _config.series[0].pointStart = data[0] && data[0].time
             _config.tooltip.formatter = function () {
                 let date = intl.formatDate((parseInt(this.point.x)));
                 return (
                     intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
-                    intl.formatMessage({id: 'volume'}) + ' : ' + this.point.y +'<br>'
+                    intl.formatMessage({id: 'volume'}) + ' : ' + Highcharts.numberFormat(this.point.y, 3, '.', ',') +' USD<br>'
                 )
             }
         }
@@ -2843,7 +3044,7 @@ export class LineTRXSupplyChart extends React.Component {
                         for (let index = 0; index < pointsLength; index += 1) {
                             s += '<tr><td style="padding-top:4px;padding-bottom:4px;border-top:1px solid #D5D8DC;color:' + points[index].series.color + ';" valign="top">' + '<span style="color:' + points[index].series.color + ';font-size: 15px !important;">\u25A0</span> ' + intl.formatMessage({id: points[index].series.name })+ '</td>' +
                                 '<td align="right" style="padding-top:5px;padding-left:10px;padding-bottom:4px;border-top:1px solid #D5D8DC;"><span ><b style="color:' + points[index].series.color + ';">' +
-                                (points[index].series.name == intl.formatMessage({id: 'Supply_TRX_total'}) || points[index].series.name ==  intl.formatMessage({id: 'Supply_amount_net_new'}) ? toThousands((new BigNumber(points[index].y)).decimalPlaces(6)) + '</b>' : (points[index].series.name ==  intl.formatMessage({id: 'Supply_amount_TRX_burned'})) ?  ("-" + toThousands((new BigNumber((Math.abs(points[index].y)))).decimalPlaces(6))) + '</b>':Highcharts.numberFormat(points[index].y, 0, '.', ',') + '</b>')
+                                (points[index].series.name == intl.formatMessage({id: 'Supply_TRX_total'}) || points[index].series.name ==  intl.formatMessage({id: 'Supply_amount_net_new'}) ? toThousands((new BigNumber(points[index].y)).decimalPlaces(6)) + '</b>' : (points[index].series.name ==  intl.formatMessage({id: 'Supply_amount_TRX_burned'})) ?  ("-" + toThousands((new BigNumber((Math.abs(points[index].y)))).decimalPlaces(6))) + '</br>':Highcharts.numberFormat(points[index].y, 0, '.', ',') + '</b>')
                                 + '</span>'
                                 + (points[index].series.name == intl.formatMessage({id: 'Supply_amount_TRX_produced'})? '<br/><span>'+ intl.formatMessage({id: 'Supply_block_rewards'})+'（'+toThousands(points[index].point.node)+'） + '+ intl.formatMessage({id: 'Supply_voting_rewards'})+'（'+toThousands(points[index].point.vote)+'）</span>':"")
                                 + (points[index].series.name == intl.formatMessage({id: 'Supply_amount_net_new'})? '<br/><span>'+ intl.formatMessage({id: 'Supply_amount_net_new_tip'})+'</span>':"")
@@ -3530,7 +3731,7 @@ export class ActiveAccountsChart extends React.Component {
             if (data && data.length > 0) {
                 data.map((val) => {
                     let temp;
-                    temp = {...val, y: val.totalTransaction};
+                    temp = {...val, y: val.active_count};
                     _config.series[0].data.push(temp);
                 })
             }
@@ -3545,7 +3746,7 @@ export class ActiveAccountsChart extends React.Component {
             
             _config.series[0].marker.enabled = false;
             _config.series[0].pointInterval = 24 * 3600 * 1000;
-            _config.series[0].pointStart = Date.UTC(2018, 5, 25);
+            _config.series[0].pointStart = data[0].date || '';
             _config.series[0].zoneAxis = 'y'
             _config.series[0].zones = [{
                 value:250000000,
@@ -3562,14 +3763,13 @@ export class ActiveAccountsChart extends React.Component {
                     var points = this.points;
                     var pointsLength = points.length;
                     if(pointsLength > 0){
-                    
-                        let {totalTransaction,date,proportion,mom,amount} = points && points[0].point
-                        s = '<table class="tableformat" style="border: 0px;" min-width="100%"><tr style="border-bottom:1px solid #D5D8DC;"><td colspan=2><span style="font-size: 10px;"> ' + moment(points[0].point.date).format("YYYY-MM-DD") + '</span><br></td><td></td></tr>'
-                        s += '<tr style="border-bottom:1px solid #D5D8DC;"><td>'+intl.formatMessage({id:'chart_active_table_2'})+'</td><td style="text-align:right;padding:4px 6px;">'+totalTransaction+'</td></tr>' 
-                        s += '<tr style="border-bottom:1px solid #D5D8DC;"><td>'+intl.formatMessage({id:'chart_active_table_3'})+'</td><td style="text-align:right;padding:4px 6px;">'+proportion+'</td></tr>' 
-                        s += '<tr style="border-bottom:1px solid #D5D8DC;"><td>'+intl.formatMessage({id:'chart_active_table_4'})+'</td><td style="text-align:right;padding:4px 6px;">'+mom+'</td></tr>' 
-                        s += '<tr style="border-bottom:1px solid #D5D8DC;"><td>'+intl.formatMessage({id:'chart_active_table_5'})+'</td><td style="text-align:right;padding:4px 6px;">'+totalTransaction+'</td></tr>' 
-                        s += '<tr style="border-bottom:1px solid #D5D8DC;"><td>'+intl.formatMessage({id:'chart_active_table_6'})+'</td><td style="text-align:right;padding:4px 6px;">'+amount+'</td></tr>'              
+                        let {transactions,proportion,mom,amount,active_count,usdAmount} = points && points[0].point
+                        s = '<table class="tableformat" style="border: 0px;" min-width="100%"><tr style="border-bottom:1px solid #D5D8DC;"><td colspan=2><span style="font-size: 10px;"> ' + moment(points[0].point.date).format("YYYY-MM-DD") + ' (UTC)</span><br></td><td></td></tr>'
+                        s += '<tr style="border-bottom:1px solid #D5D8DC;"><td>'+intl.formatMessage({id:'chart_active_table_2'})+'</td><td style="text-align:right;padding:4px 6px;">'+Highcharts.numberFormat(active_count, 2, '.', ',')+'</td></tr>' 
+                        s += '<tr style="border-bottom:1px solid #D5D8DC;"><td>'+intl.formatMessage({id:'chart_active_table_3'})+'</td><td style="text-align:right;padding:4px 6px;">'+proportion+' %</td></tr>' 
+                        s += '<tr style="border-bottom:1px solid #D5D8DC;"><td>'+intl.formatMessage({id:'chart_active_table_4'})+'</td><td style="text-align:right;padding:4px 6px;">'+mom+' %</td></tr>' 
+                        s += '<tr style="border-bottom:1px solid #D5D8DC;"><td>'+intl.formatMessage({id:'chart_active_table_5'})+'</td><td style="text-align:right;padding:4px 6px;">'+Highcharts.numberFormat(transactions,0,'.',',')+' Txns</td></tr>' 
+                        s += '<tr style="border-bottom:1px solid #D5D8DC;"><td>'+intl.formatMessage({id:'chart_active_table_6'})+'</td><td style="text-align:right;padding:4px 6px;">'+Highcharts.numberFormat(amount,6,'.',',')+' TRX<br/> ≈'+Highcharts.numberFormat(usdAmount,3,'.',',')+' USD</td></tr>'              
                         s += '</table>';
                         return s;
                     }

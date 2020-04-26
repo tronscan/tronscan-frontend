@@ -1,8 +1,4 @@
 import React,{Fragment} from "react";
-import xhr from "axios/index";
-import {Client} from "../../../services/api";
-import {ONE_TRX} from "../../../constants";
-import {connect} from "react-redux";
 import {FormattedNumber, injectIntl} from "react-intl";
 import {filter, includes} from "lodash";
 import {tronAddresses} from "../../../utils/tron";
@@ -22,9 +18,8 @@ import { upperFirst } from 'lodash'
 import { CsvExport } from "../../common/CsvExport";
 
 import isMobile from "../../../utils/isMobile";
-import {
-    ActiveAccountsChart
-} from "../../common/LineCharts";
+
+import {QuestionMark} from "../../common/QuestionMark";
 
 
 import {loadPriceData} from "../../../actions/markets";
@@ -42,13 +37,14 @@ class ActiveAccount extends React.Component {
     }
 
     column = ()=>{
-        let {intl} = this.props;
+        let {intl,activeAccountParams} = this.props;
+        let {type} = activeAccountParams;
+        
         let column = [
             {
                 title: upperFirst(intl.formatMessage({id: 'chart_active_table_1'})),
-                dataIndex: 'date',
-                key: 'date',
-                width: '60px',
+                dataIndex: 'day_string',
+                key: 'day_string',
                 align: 'center',
                 render: (text, record, index) => {
                   return <span>{text}</span>
@@ -56,18 +52,28 @@ class ActiveAccount extends React.Component {
             },
           {
             title: upperFirst(intl.formatMessage({id: 'chart_active_table_2'})),
-            dataIndex: 'totalTransaction',
-            key: 'totalTransaction',
+            dataIndex: 'active_count',
+            key: 'active_count',
             render: (text, record, index) => {
               return <FormattedNumber value={text}/>
             }
           },
           {
-            title: upperFirst(intl.formatMessage({id: 'chart_active_table_3'})),
+            // title: upperFirst(intl.formatMessage({id: 'chart_active_table_3'})),
+            title: (
+                <div>
+                  {upperFirst(intl.formatMessage({ id: "chart_active_table_3" }))}
+                  <span className="ml-2">
+                    <QuestionMark placement="top" text={`chart_active_per_tip_${type}`} />
+                  </span>
+                </div>
+              ),
             dataIndex: 'proportion',
             key: 'proportion',
             render: (text, record, index) => {
-              return <FormattedNumber value={text}/>
+              return <span>
+                     {text} %
+                </span>
             }
           },
           {
@@ -75,21 +81,18 @@ class ActiveAccount extends React.Component {
             dataIndex: 'mom',
             key: 'mom',
             render: (text, record, index) => {
-                return <span>
-                    {text} %
-                </span>
-
-
+                return (<span className={text > 0 ? 'text-success': text == 0 ? '' :'text-danger'}>
+                    {text > 0 ? '+'+text : text} %
+                </span>)
             }
           },
           {
             title: upperFirst(intl.formatMessage({id: 'chart_active_table_5'})),
-            dataIndex: 'totalTransaction',
-            key: 'totalTransaction',
+            dataIndex: 'transactions',
+            key: 'transactions',
             render: (text, record, index) => {
                 return <span>
-                    {text} %
-
+                    {text} Txns
                 </span>
             }
           },
@@ -98,9 +101,12 @@ class ActiveAccount extends React.Component {
             dataIndex: 'amount',
             key: 'amount',
             render: (text, record, index) => {
-                return <span>
-                    
+                return (
+                <span>
+                    {text} TRX <br/>
+                    ≈ {record.usdAmount} USD
                 </span>
+                )
             }
           }
         ];
@@ -108,7 +114,9 @@ class ActiveAccount extends React.Component {
     }
 
     render(){
-        let {data,chartHeight,intl,activeAccountParams,activeAccountCsvurl} = this.props;
+        let {data,chartHeight,intl,activeAccountParams} = this.props;
+        let activeAccountCsvurl = activeAccountParams && API_URL + "/api/account/active_statistic?start_day=" + activeAccountParams.start_day +"&end_day="+activeAccountParams.end_day + "&type="+activeAccountParams.type+'&format=scv';
+        
         return (
             <Fragment>
                 
@@ -118,7 +126,7 @@ class ActiveAccount extends React.Component {
                             <div className="pt-4 pb-2 d-flex justify-content-between">
                                 <div>
                                     {
-                                    intl.formatMessage({id:'chart_active_total'},{total:100})
+                                    intl.formatMessage({id:'chart_active_total_'+activeAccountParams.type},{total:data&&data.length})
                                     }
                                 </div>
                                 <div style={{marginTop:-20}}>

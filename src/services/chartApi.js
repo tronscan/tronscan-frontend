@@ -16,6 +16,14 @@ class ApiClientChart {
     return res && res.data;
   }
 
+  // trx price
+  async getTrxPrice(params) {
+    let res = await xhr.get(`${this.apiUrl["mainnet"]}/api/trx/volume`, {
+      params
+    });
+    return res && res.data;
+  }
+
 }
 
 export default new ApiClientChart();

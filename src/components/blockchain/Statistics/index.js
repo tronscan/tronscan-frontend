@@ -317,6 +317,7 @@ class StatsCharts extends React.Component {
               zIndex: 10,
               background: "#f3f3f3",
               borderBottom: "none",
+              overflow:'scroll'
             }}
           >
             <ul className="nav nav-tabs card-header-tabs navbar-nav">
@@ -397,7 +398,7 @@ class StatsCharts extends React.Component {
                     </Link>
                   </div>
                 </div>
-                {/* <div className="col-md-4">
+                <div className="col-md-4">
                   <div className="card-chart">
                     <Link className="card-title" to="/data/stats/volumeStats">
                       <span className="ml-5">
@@ -409,7 +410,7 @@ class StatsCharts extends React.Component {
                     </Link>
                   </div>
                 </div>
-              */}
+             
               </div>
             </div>
             {/* currency */}
