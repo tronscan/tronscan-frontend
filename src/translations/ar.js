@@ -2,6 +2,10 @@
 import {
     lang19Q4
 } from './versionLang/lang19Q4/ar19Q4'; /* 2019Q4 */
+import {lang20Q1} from './versionLang/lang20Q1/ar';/* 2020Q1 */
+import {
+  lang20Q2
+} from './versionLang/lang20Q2/ar'; /* 2020Q2 */
 export const messages = {
     /*
   ##################################################################################
@@ -748,7 +752,7 @@ export const messages = {
   "what_is_tron": "TRON whitepaper V2.0",
   "tron_explorer_api": "TRONSCAN API",
   "tron_architechure": "TRON Architecture",
-  "tron_protobuf_doc": "TRON Protobuf Doc",
+  "tron_protobuf_doc": "Protobuf Doc",
   "report_an_error": "عرض الخطأ / تقديم اقتراح",
   "frequently_asked_questions": "الأسئلة المتداولة",
   "telegram_updates": "Telegram تحديث ",
@@ -962,7 +966,7 @@ export const messages = {
   "total_TRX_supply": "إجمالي السيولة في ترون",
   "market_capitalization": "القيمة السوقية",
   "circulating_supply": "العرض المتداول",
-  "list_trx": "قائمة ترون",
+  "list_trx": "قائمة إدراج TRX في المنصات ",
   "burned_trx": "ترون حرق",
   "supply_notes": "التمويل الجماعي ومبيعات ما قبل البيع في جميع أنحاء العالم ، باستثناء الولايات المتحدة والصين واليابان",
   "14_day_transaction_history": " عدد المعاملات في الـ 14 يومًا الماضية",
@@ -1171,7 +1175,7 @@ export const messages = {
    "contract_create_msg":"إنشاء معلومات",
    "contract_create_time":"إنشاء الوقت",
    "contract_enery":"نسبة استهلاك الطاقة",
-   "contract_enery_tip":"استدعاء عقد ذكي يستهلك قدرا معينا من الطاقة",
+   "contract_enery_tip":"The energy consumed by calling the smart contract is borne by the contract and the user in proportion",
    "contract_init_assets":"الأصول الأولية",
    "contract_init_assets_tip":"الأصول المنقولة من قِبل مُنشئ العقد إلى عنوان العقد عند نشر العقد",
    "contract_editor_bug": "توجيهات ضعف المترجم",
@@ -1534,17 +1538,27 @@ export const messages = {
   "propose_18": "اقتراح لتعديل الحد الكلي للطاقة",
   "propose_18_1": "اقتراح لتعديل الحد الكلي للطاقة",
   "propose_19": "TRC-10 اقتراح السماح في العقود الذكية بنقل ",
-  "propose_20": "الحد الحالي للطاقة ",
+  "propose_20": "اقتراح لتعديل الحد الحالي لإجمالي الطاقة",
   "propose_21": "اقتراح للسماح بتمكين وظيفة التوقيع المتعدد",
   "propose_22": "مقترح للسماح بضبط الطاقة التكييفية بشكل كلي",
   "propose_23": "الحد الأعلى لاستخدام الطاقة المستهدفة",
   "propose_24": "الحد الأعلى لمتوسط الطاقة",
   "propose_25": "رسوم ضبط تحديث إمتيازات الحساب",
   "propose_26": "يوصى بتعديل تكلفة التوقيعات المتعددة",
-  "propose_27": "Propose to enable protocol optimization",
-  "propose_28": "Propose to support the new features of TRON Virtual Machine 0.5.4",
-  "propose_30":"Propose to support the decentralized vote dividend",
-  "propose_31": "Propose to modify the block voting rewards given to the top 27 SRs and the following 100 partners",
+  "propose_27": "اقتراح تمكين تحسين البروتوكول",
+  "propose_28": "اقتراح يسمح لـ TVM بدعم تحديث القسطنطينية",
+  "propose_28_1": "اقتراح لتعديل رسوم المعاملات المحمية",
+  "propose_29": "اقتراح يسمح بالمعاملة المحمية",
+  "propose_29_1": "اقتراح لتعديل الطاقة الحيوية القصوى",
+  "propose_30":"اقتراح لدعم توزيع الأصوات اللامركزية",
+  "propose_31": "اقتراح تعديل مكافآت تصويت الكتلة الممنوحة لأفضل 127 ممثلًا وشريكًا",
+  "propose_32":"اقتراح السماح للجهاز الظاهري TVM بدعم إصدار مترجم Solidity 0.5.9",
+  "propose_33": "اقتراح لتعديل النسبة المستهدفة للحد من الموارد",
+  "propose_34": "إقتراح لتعديل رسوم التداول لإنشاء عناوين عامة عند نقل العناوين مجهولة المصدر إلى العناوين العامة في المعاملات المجهولة",
+  "propose_35": "اقتراح حظر نقل الأصول TRX و TRC10 إلى العقود الذكية من خلال نقل العقد وعقد نقل الأصول",
+  "propose_prohibit":"المنع",
+  "propose_not_prohibit":"ليس الحظر",
+  "propose_unprohibit":"ليس الحظر",
   "propose_minute": "دقيقة",
   "propose_unactivate": "غير مفتوح",
   "propose_not_allowed": "غير مسموح",
@@ -1942,7 +1956,7 @@ export const messages = {
   */
   "ledger_user_guide": "دليل المستخدم لليدجر",
   "latest_version_chrome": "ننصحك باستخدام أحدث نسخة من الكروم",
-  "ledger_support_version": "نسخة ليدجر المدعومة: 0.1.1 ، دعم كروم لنسخة الإصدار 73.0",
+  "ledger_support_version": "نسخة ليدجر المدعومة: 0.2.0 ، دعم كروم لنسخة الإصدار 80.0",
   "ledger_you_can": "يمكنك الذهاب ",
   "ledger_website": "يقوم موقع Ledger",
   "ledger_website_download": "قم بتنزيل وتحديث نسخة دفتر الأستاذ",
@@ -1992,7 +2006,7 @@ export const messages = {
   "footer_fellow_us": "Follow Us",
   "footer_developer_resources": "Developer Resources",
   "footer_support_center": "Support Center",
-  "footer_tron_network": "TRON",
+  "footer_tron_network": "Tron.network",
   "login_privatekey_warn": "للحفاظ على أمان حسابك يرجى الاحتفاظ بمفتاحك الخاص في حالة فقد الأصول الخاصة بك ، ويوصى باستخدام ",
   "login_privatekey_warn_safe": "  لتسجيل الدخول الآمن.",
   "updata_token_info": "تحديث بيانات الرموز",
@@ -2228,6 +2242,11 @@ export const messages = {
   "Side_Chain":"DAppChain",
   "Main_Chain":"MainChain",
 
+  "JST_distribution_overview": "JST DISTRIBUTION OVERVIEW",
+  "JST_supply": "JST Supply",
+  "JST_Token_Release_Schedule": "JST Token Release Schedule",
+  "source_JST_team": "Source: JST Management Team",
+
 
   "7day": "7 أيام",
   "14day": "14 يوما",
@@ -2243,13 +2262,14 @@ export const messages = {
   "sun_propose_6": "إدارة إذا كان مفتاح الحوافز لـ witness على السلسلة الجانبية هو فعال / مغلق",
   "sun_propose_7": "مقاييس التوزيع لمجموعة حوافز السلسلة الجانبية",
   "sun_propose_8": "نسبة إيرادات witness على السلسلة الجانبية",
+  sun_propose_12: "Propose to allow DAppChain 1.0.2 upgrade",
   "day":"يوم",
 
 
   "developers_username": "username",
-  "developers_current_year":"total points",
-  "developers_current_quarter": "quarter's points",
-  "developers_current_month":"month's points",
+  "developers_current_year":"Total points",
+  "developers_current_quarter": "Last quarter points",
+  "developers_current_month":"Last month points",
   "developers_view_points":"View Points Details",
   "developers_points_details": "Points details",
   "developers_contribution_link":"Contribution content corresponding link",
@@ -2338,7 +2358,7 @@ export const messages = {
   "tooltip_accounts":"عدد الحسابات في الوقت الحقيقي على السلسلة الرئيسية",
   "tooltip_accounts_mainnet":"عدد الحسابات في الوقت الحقيقي على السلسلة الرئيسية",
   "tooltip_accounts_sunnet":"عدد الحسابات في الوقت الحقيقي على شبكة SUN",
-  "tooltip_trxPrice":"مقارنة سعر TRX في الدولار مع التقلبات المرتقبة في الوقت الحقيقي",
+  "tooltip_trxPrice":"TRX مقابل سعر الدولار",
   "tooltip_trxPrice_mainnet":"مقارنة سعر TRX في الدولار مع التقلبات المرتقبة في الوقت الحقيقي",
   "tooltip_trxPrice_sunnet":"مقارنة سعر TRX في الدولار مع التقلبات المرتقبة في الوقت الحقيقي",
   "nav_network":"SUN Network",
@@ -2441,4 +2461,6 @@ export const messages = {
    "address_freeze_owner":"تجميد إلى حسابك",
    "address_freeze_other":"تجميد إلى حسابات الآخرين",
    ...lang19Q4,
+   ...lang20Q1,
+   ...lang20Q2
 };

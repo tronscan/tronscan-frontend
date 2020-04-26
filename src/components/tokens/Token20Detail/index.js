@@ -3,21 +3,21 @@ import { Client } from "../../../services/api";
 import { t, tu } from "../../../utils/i18n";
 import { trim } from "lodash";
 import {
-  FormattedDate,
-  FormattedNumber,
-  FormattedRelative,
-  FormattedTime,
+  //FormattedDate,
+  //FormattedNumber,
+  //FormattedRelative,
+  //FormattedTime,
   injectIntl
 } from "react-intl";
 import TokenHolders from "./TokenHolders";
 import { Icon } from "antd";
 import { NavLink, Route, Switch } from "react-router-dom";
-import { AddressLink, ExternalLink } from "../../common/Links";
+//import { AddressLink, ExternalLink } from "../../common/Links";
 import { TronLoader } from "../../common/loaders";
 import Transfers from "./Transfers.js";
-import TokenInfo from "./TokenInfo.js";
+//import TokenInfo from "./TokenInfo.js";
 import { Information } from "./Information.js";
-import qs from "qs";
+//import qs from "qs";
 import { toastr } from "react-redux-toastr";
 import { isAddressValid } from "@tronscan/client/src/utils/crypto";
 import {
@@ -26,7 +26,10 @@ import {
   CONTRACT_ADDRESS_USDT,
   CONTRACT_ADDRESS_WIN,
   CONTRACT_ADDRESS_GGC,
-  IS_MAINNET
+  IS_MAINNET,
+  uuidv4,
+  CONTRACT_ADDRESS_USDJ,
+  CONTRACT_ADDRESS_USDJ_TESTNET
 } from "../../../constants";
 import { login } from "../../../actions/app";
 import { reloadWallet } from "../../../actions/wallet";
@@ -39,17 +42,25 @@ import { some, toLower } from "lodash";
 import xhr from "axios/index";
 import _ from "lodash";
 import WinkSupply from "./winkSupply.js";
+import JstSupply from "./jstSupply.js";
 import { CsvExport } from "../../common/CsvExport";
 import { loadUsdPrice } from "../../../actions/blockchain";
 import Code from "../../blockchain/Contract/Code";
 import ExchangeQuotes from "../ExchangeQuotes";
 import ApiClientToken from "../../../services/tokenApi";
 import BigNumber from "bignumber.js";
+import {
+  getPerformanceTiming,
+  getPerformanceTimingEntry
+} from "../../../utils/DateTime";
+import isMobile from "../../../utils/isMobile";
+import ApiClientMonitor from '../../../services/monitor'
+import { HrefLink } from "../../common/Links";
 
 class Token20Detail extends React.Component {
   constructor() {
+    window.performance.mark("start2");
     super();
-
     this.state = {
       privateKey: "",
       loading: true,
@@ -63,10 +74,30 @@ class Token20Detail extends React.Component {
     };
   }
 
+  async componentWillMount() {
+    window.performance.mark("start2");
+
+    //console.log('Component WILL MOUNT!')
+    var measure5  =-1;
+    if (performance.navigation.type == 1) {
+      performance.measure(
+        "mySetTimeout5",
+        "start",
+        "start2"
+      );
+      var measures5 = window.performance.getEntriesByName("mySetTimeout5");
+      measure5 = measures5[0].duration;
+      this.MonitoringParameters3(measure5);
+    } 
+
+}
+
   async componentDidMount() {
     let { match, priceUSD } = this.props;
     !priceUSD && (await this.props.loadUsdPrice());
     this.loadToken(decodeURI(match.params.address));
+    this.MonitoringParameters();
+
   }
 
   componentDidUpdate(prevProps, nextProps) {
@@ -91,6 +122,10 @@ class Token20Detail extends React.Component {
   async getWinkFund() {
     let winkSupply = await ApiClientToken.getWinkFund();
     return winkSupply;
+  }
+  async getJstFund() {
+    const {data: funds} = await xhr.get(`${API_URL}/api/jst/fund`);
+    return funds;
   }
 
   async getTransferNum(address) {
@@ -187,6 +222,18 @@ class Token20Detail extends React.Component {
           winkTotalSupply = await this.getWinkFund();
         }
 
+        let jstTotalSupply = {};
+        if (address === "TCFLL5dx5ZJdKnWuesXxi1VPwjLVmWZZy9") {
+          tabs.push({
+            id: "JstSupply",
+            icon: "",
+            path: "/supply",
+            label: <span>{tu("JST_supply")}</span>,
+            cmp: () => <JstSupply token={token} />
+          });
+          jstTotalSupply = await this.getJstFund();
+        }
+
         let transferNumber = await this.getTransferNum(address);
 
         this.setState({ loading: true });
@@ -196,6 +243,7 @@ class Token20Detail extends React.Component {
             : 0;
 
         token.winkTotalSupply = winkTotalSupply;
+        token.jstTotalSupply = jstTotalSupply;
         token.transferNumber = transferNumber.rangeTotal || 0;
         this.setState({
           loading: false,
@@ -598,7 +646,7 @@ class Token20Detail extends React.Component {
     } = this.props.tokensInfo.tokenDetail;
     await xhr
       .get(
-        `${API_URL}/api/token_trc20/holders?holder_address=${serchInputVal}&contract_address=${contract_address}`
+        `${API_URL}/api/token_trc20/holders?uuid=${uuidv4}&holder_address=${serchInputVal}&contract_address=${contract_address}`
       )
       .then(res => {
         if (res.data) {
@@ -821,8 +869,10 @@ class Token20Detail extends React.Component {
                       <div className="token-description">
                         <h5 className="card-title">
                           {token.name} ({token.symbol})
+                          { (token.contract_address == CONTRACT_ADDRESS_USDJ || token.contract_address == CONTRACT_ADDRESS_USDJ_TESTNET) && <section className="to-USDj"><HrefLink href="https://www.just.network"><i className="fas fa-coins ml-2 mr-1"></i>{intl.formatMessage({id:'get_usdj'})}</HrefLink></section>}
                         </h5>
-                        <p className="card-text">{token.token_desc}</p>
+                        <p className="card-text" style={{marginBottom: 0}}>{token.token_desc}</p>
+                        { token.contract_address == CONTRACT_ADDRESS_USDJ && <div className="to-USDj" style={{marginTop: '.5rem'}}><HrefLink href="https://tronscanorg.zendesk.com/hc/en-us/articles/360041737852-Step-by-step-instructions-on-how-to-generate-USDJ-on-JUST-CDP"><i className="fas fa-book mx-1"></i>{intl.formatMessage({id:'get_usdj_guide'})}</HrefLink></div>}
                       </div>
                       <div className="token-sign">TRC20</div>
                       {/*<div className="ml-auto">*/}
@@ -834,7 +884,7 @@ class Token20Detail extends React.Component {
                       {/*</div>*/}
                     </div>
                   </div>
-                  <Information token={token} priceUSD={priceUSD}></Information>
+                  <Information token={token} priceUSD={priceUSD} intl={intl}></Information>
                 </div>
 
                 <div
@@ -974,6 +1024,143 @@ class Token20Detail extends React.Component {
       </main>
     );
   }
+
+  MonitoringParameters(){
+      if (window.performance || window.webkitPerformance) {
+          var perf = window.performance || window.webkitPerformance;
+          var timing = perf.timing;
+          var navi = perf.navigation;
+          window.performance.mark("mySetTimeout-end2");
+
+          window.performance.measure(
+            "mySetTimeout",
+            "start2",
+            "mySetTimeout-end2"
+          );
+          var measure5  =-1;
+          if (performance.navigation.type == 1 ) {
+            performance.measure(
+              "mySetTimeout5",
+              "start",
+              "start2"
+            );
+            var measures5 = window.performance.getEntriesByName("mySetTimeout5");
+            measure5 = measures5[0].duration;
+          }
+          
+          var measures = window.performance.getEntriesByName("mySetTimeout");
+          var measure = measures[0];
+
+          // var measures6 = window.performance.getEntriesByName("mySetTimeout6");
+          // var measure6 = measures6[0];
+
+          var timer = setInterval(function() {
+              if (0 !== timing.loadEventEnd) {
+                  timing = perf.timing;
+                  let {loadPage,domReady,redirect,lookupDomain,ttfb,request,loadEvent,unloadEvent,connect} = getPerformanceTiming()
+                  clearInterval(timer);
+                  var time = performance.timing;
+                  if (measure5 == -1) {
+                    measure5 = domReady;
+                  }
+                  var data = {
+                      url: window.location.href,
+                      timezone: new Date().getTimezoneOffset()/60,
+                      browser:window.navigator.userAgent,
+                      pageLoadTime:loadPage,
+                      contentLoadTime:request,
+                      dnsSearchTime:lookupDomain,
+                      domAnalyzeTime:domReady,
+                      ttfbReadTime:ttfb,
+                      tcpBuildTime:connect,
+                      redirectTime:redirect,
+                      onloadCallbackTime:loadEvent,
+                      uninstallPageTime: unloadEvent,
+                      isMobile:isMobile && isMobile[0],
+                      navigationtype:performance.navigation.type,
+                      measure:parseInt(measure.duration),
+                      dompreload: time.responseEnd - time.navigationStart,
+                      domloadend:time.domComplete - time.domLoading,
+                      domative:time.domInteractive - time.domLoading,
+                      shelllod:time.domContentLoadedEventEnd - time.domContentLoadedEventStart,
+                      measure5:parseInt(measure5),
+                      blankTime:time.domLoading - time.fetchStart,
+                      v:'v4',
+                      entryList:getPerformanceTimingEntry(),
+                      udid:uuidv4
+                      
+                  };
+                  window.performance.clearMarks();
+                  window.performance.clearMeasures();
+                 
+
+                  ApiClientMonitor.setMonitor(data)
+                  return data;
+                }
+              })
+            }
+         
+      }
+
+      MonitoringParameters3(measure5){
+        let _this = this;
+          if (window.performance || window.webkitPerformance) {
+              var perf = window.performance || window.webkitPerformance;
+              var timing = perf.timing;
+              var navi = perf.navigation;
+    
+              window.performance.mark("mySetTimeout-end2");
+    
+              performance.measure(
+                "mySetTimeout",
+                "start2",
+                "mySetTimeout-end2"
+              ); 
+  
+              var measures = window.performance.getEntriesByName("mySetTimeout");
+              var measure = measures[0];
+
+              var timer = setInterval(function() {
+                   {
+                      timing = perf.timing;
+                      let {loadPage,domReady,redirect,lookupDomain,ttfb,request,loadEvent,unloadEvent,connect} = getPerformanceTiming()
+                      clearInterval(timer);
+                      var time = performance.timing;
+                      var data = {
+                          url: window.location.href,
+                          timezone: new Date().getTimezoneOffset()/60,
+                          browser:window.navigator.userAgent,
+                          pageLoadTime:loadPage,
+                          contentLoadTime:request,
+                          dnsSearchTime:lookupDomain,
+                          domAnalyzeTime:domReady,
+                          ttfbReadTime:ttfb,
+                          tcpBuildTime:connect,
+                          redirectTime:redirect,
+                          onloadCallbackTime:loadEvent,
+                          uninstallPageTime: unloadEvent,
+                          isMobile:isMobile && isMobile[0],
+                          navigationtype:performance.navigation.type,
+                          measure:parseInt(measure.duration),
+                          dompreload: time.responseEnd - time.navigationStart,
+                          domloadend:time.domComplete - time.domLoading,
+                          domative:time.domInteractive - time.domLoading,
+                          shelllod:time.domContentLoadedEventEnd - time.domContentLoadedEventStart,
+                          measure5:parseInt(measure5),
+                          blankTime:time.domLoading - time.fetchStart,
+                          v:'v3'
+                      };
+    
+                    // window.performance.clearMarks();
+                    // window.performance.clearMeasures();
+
+                    ApiClientMonitor.setMonitor(data)
+                      return data;
+                    }
+                  })
+                }         
+          }      
+
 }
 
 function mapStateToProps(state) {

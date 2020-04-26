@@ -65,7 +65,7 @@ export const lang19Q4 = {
     "token_rating_rule_title_p1_title": "Unknown",
     "token_rating_rule_title_p1": "Unknown is set as the default reputation for a newly added token. A token will be classified as unknown if no updates but mandatory information is provided after a successful token issuance. Mandatory information includes the token name, token abbreviation, token overview, total supply, decimals and issuer; for TRC20 tokens, information on the contract, time of contract creation and contract creator should also be provided.     ",
     "token_rating_rule_title_p2_title": "Neutral",
-    "token_rating_rule_title_p2": "Tokens assessed as neutral have their information added or updated after a successful token issuance. The information includes: official website, logo, email address, GitHub address, white paper address and social profile link(s).   ",
+    "token_rating_rule_title_p2": "Tokens assessed as neutral have their information added or updated after a successful token issuance. The information includes: official website, logo, white paper address and social profile link(s).",
     "token_rating_rule_title_p3_title": "OK",
     "token_rating_rule_title_p3": "Tokens listed and openly traded on POLONIDEX will be given the OK reputation.   ",
     "token_rating_rule_title_p3_1": "Please apply through TRONSCAN for listing tokens on POLONIDEX. Before you submit the request, note:   ",
@@ -161,6 +161,84 @@ export const lang19Q4 = {
     "TRX_historical_data":"TRX balance historical data in the contract",
     "TRX_historical_data_y_text":"Amount（TRX）",
     "TRX_historical_data_tip":"TRX Amount",
+    "transaction_rewards_distribution_ratio":"投票者シェア",
+    "transaction_energy_cap":"エネルギーの上限",
+    "transaction_enrgy_cap_tip":"契約デプロイヤが提供する最大エネルギー値",
+    "signature_list":"署名リスト",
+
+    // 2019-12-25 xyy
+    "transaction_hash":"ハッシュ値",
+    "transaction_status_tip":'19以上のSRによって確認されたトランザクションは、「確認済み」とマークされます。',
+    "transaction_type": "取引タイプ",
+    "transaction_owner_address":"発信アドレス",
+    "transaction_receiver_address":"リソース受信アドレス",
+    "transaction_freeze_num":"冷凍量",
+    "transaction_get_resourse":"受け取ったリソース",
+    "transaction_recycling_address":"資源循環アドレス",
+    "transaction_unfreeze_num":"凍結されていない量",
+    "transaction_fee":"費用",
+    "transaction_consumed_bandwidth_cap_per":"個人が消費する帯域幅の上限",
+    "transaction_consumed_bandwidth_cap_all":"すべてが消費する帯域幅の上限",
+    "transaction_frozen_day":"ロックアップの日",
+    "transaction_frozen_number":"ロックアップ量",
+    "transaction_unfreeze_time":"凍結を解除できる時間",
+    "transaction_consumed_bandwidth_cap_per_tip":"TRC10転送が発生したときに、1人のユーザーのトークンホルダーが消費する最大帯域幅",
+    "transaction_consumed_bandwidth_cap_all_tip":"TRC10転送が発生したときにトークンホルダーを使用するすべてのユーザーの帯域幅の上限",
+    "transaction_activate_account":"アクティブアドレス",
+    "transaction_TRANSFERCONTRACT":"TRX転送",
+    "transaction_FREEZEBALANCECONTRACT":"TRXフリーズ",
+    "transaction_UNFREEZEBALANCECONTRACT":"TRX凍結解除",
+    "transaction_TRANSFERASSETCONTRACT":"TRC10転送",
+    "transaction_ASSETISSUECONTRACT":"TRC10の問題",
+    "transaction_PARTICIPATEASSETISSUECONTRACT":"TRC10発行参加",
+    "transaction_UNFREEZEASSETCONTRACT":"TRC10凍結解除",
+    "transaction_UPDATEASSETCONTRACT":"TRC10パラメーターの更新",
+    "transaction_ACCOUNTCREATECONTRACT":"アカウント作成",
+    "transaction_WITHDRAWBALANCECONTRACT":"報酬の引き出し",
+    "transaction_TRIGGERSMARTCONTRACT":"スマートコントラクトトリガー",
+    "transaction_VOTEWITNESSCONTRACT":"投票",
+    "transaction_WITNESSCREATECONTRACT":"代表者作成",
+    "transaction_WITNESSUPDATECONTRACT":"担当者情報の更新",
+    "transaction_ACCOUNTUPDATECONTRACT":"アカウント名の更新",
+    "transaction_PROPOSALCREATECONTRACT":"プロポーザル作成",
+    "transaction_PROPOSALAPPROVECONTRACT":"提案の承認",
+    "transaction_PROPOSALDELETECONTRACT":"プロポーザルのキャンセル",
+    "transaction_SETACCOUNTIDCONTRACT":"アカウントIDを設定",
+    "transaction_CREATESMARTCONTRACT":"スマートコントラクト作成",
+    "transaction_UPDATESETTINGCONTRACT":"契約設定の更新",
+    "transaction_EXCHANGECREATECONTRACT":"Bancor取引の作成",
+    "transaction_EXCHANGEINJECTCONTRACT":"Bancor取引を注入する",
+    "transaction_EXCHANGEWITHDRAWCONTRACT":"Bancor取引の撤退",
+    "transaction_EXCHANGETRANSACTIONCONTRACT":"Bancorのトランザクション",
+    "transaction_ACCOUNTPERMISSIONUPDATECONTRACT":"アカウント権限の更新",
+    "transaction_UPDATEENERGYLIMITCONTRACT":"契約エネルギー制限の更新",
+    "transaction_UPDATEBROKERAGECONTRACT":"代表ブローカーの更新",
+    "transaction_CLEARABICONTRACT":"契約ABIクリア",
+    "transaction_token_holder_address":"トークン保有者の住所",
+    "transaction_issue_address":"発行者の住所",
+    "only_show_sinatures":"署名を残すアドレスのみを表示する",
+       /*
+    ##################################################################################
+    #                                                                                #
+    # 191230     page index optimization                                             #
+    #                                                                                #
+    ##################################################################################
+    */
+   "index_page_menu_more_dev_resources":"開発資源",
+   "index_page_search_placeholder":"アドレス/ハッシュ/トークン/ブロックする",
+   "index_page_footer_team_info":"グループ紹介",
+   "index_page_footer_feedback":"フィードバック",
+   "index_page_footer_expand":"展開",
+   "index_page_footer_donate_address":"このアドレスはTRONによって保持されており、寄付はTRONがより良いエコロジーを構築するのに役立ちます。",
+   "index_page_confirmed_blocks":"確認済みブロック",
+   "index_page_confirmed_blocks_tips":"19以上のスーパーノードによって確認されたブロック",
+   "index_page_switch_tokens":"トークンスイッチ",
+   "index_page_tronscan_info":"TRONSCANはTRONに最適なブロックチェーンブラウザーです",
+   "index_page_down_excel_tips":"Excelを使用してダウンロードしたドキュメントを開く場合、セルの小数点以下の桁数を手動で調整する必要があります。",
+   "index_page_pane_current":"現在のTPS",
+   "index_page_pane_MaxTPS":"ピークTPS",
+   "index_page_idebar_expand":"展開",
+   "index_page_search_input": "サーチ",
     /*
         ##################################################################################
         #                                                                                #
@@ -168,7 +246,69 @@ export const lang19Q4 = {
         #                                                                                #
         ##################################################################################
     */
-   "account_details_contracts":"Contracts Published",
-   "account_details_contracts_no":"No contracts found",
 
+     // transaction info  2019-12-25  leon
+     "consume_bandwidth":"帯域幅を消費する",
+     "consume_energy":"エネルギー消費",
+     "net_free":"凍結/空き帯域幅の消費",
+     "net_burn":"帯域幅のために {num} TRX を焼く",
+     "energy_burn":"エネルギーのために {num} TRX を焼く",
+     "initiate_address":"発信アドレス",
+     "candidate_address":"投票アドレス",
+     "votes_count":"投票数",
+     "sr_fee":"費用",
+     "sr_url":"アドレス",
+     "proposal_ID":"プロポーザルID",
+     "proposal_content":"内容",
+     "vote_proposal":"プロポーザルに賛成しますか",
+     "vote_yes":"承認する",
+     "vote_no":"不承認",
+     "account_id":"アカウントID",
+     "trans_ticket":"票",
+     "trans_tickets":"票",
+   "account_details_contracts":"公開された契約",
+   "account_details_contracts_no":"契約が見つかりません",
+   "Supply_TRX_total_chart":"総合TRX供給",
+   "Supply_total_y_title":"総合供給",
+   "Supply_amount_TRX":"TRX数量",
+   "Supply_TRX_supply_records":"流通中のTRX、合計",
+   "Supply_TRX_supply_records_total":"レコード",
+   "Supply_TRX_total":"TRX総合供給",
+   "Supply_TRX_total_tip":"1日の累積純資産+ジェネシスブロック循環（100,000,000,000 TRX）",
+   "Supply_amount_TRX_produced":"TRX生産量",
+   "Supply_amount_TRX_produced_tip":"ブロック生産の報酬 + 投票報酬",
+   "Supply_voting_rewards":"投票報酬",     
+   "Supply_block_rewards":"ブロック生産の報酬", 
+   "Supply_amount_TRX_burned":"（量）TRX破棄",
+   "Supply_amount_TRX_burned_y_title":"破壊量（TRX）",
+   "Supply_amount_TRX_burned_tip1":"非独立記念日：TRXの破壊額=手数料の破壊。",    
+   "Supply_amount_TRX_burned_tip2":"独立記念日：TRXの破壊額=処理手数料の破壊+独立記念日の破壊量（1,000,000,000 TRX）",    
+   "Supply_amount_net_new":"ネットトータル",
+   "Supply_amount_net_new_highest":"ネットトータル",
+   "Supply_amount_net_new_y_title":"利回り/純価値（TRX）",
+   "Supply_amount_net_new_tip":"TRX生成 + TRX破壊",
+   "votes_num":"投票",
+
+   /*
+        ##################################################################################
+        #                                                                                #
+        # txns type chart  2020-01-09                           #
+        #                                                                                #
+        ##################################################################################
+    */
+   "txns_contract_calls":"コントラクト調達数",
+   "txns_TRX_transfers":"TRXの振替数",
+   "txns_TRC10_transfers":"TRC10の振替数",
+   "txns_frozen_transactions":"凍結した取引数",
+   "txns_votes_transactions":"投票数",
+   "txns_other_transactions":"その他の取引数",
+   "txns_shielded_transactions":"匿名取引",
+   "chart_network_resources":"ネットワークリソース",
+   "chart_active_accounts":"ネットワーク",
+   "chart_network":"ネットワーク",
+
+    // account tab transfers transactions  internal-transactions
+    "account_tab_transactions_token_info":"如果交易中不包含通证信息，则展示“—”"
+
+  
 }

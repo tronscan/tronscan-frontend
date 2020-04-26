@@ -2,6 +2,12 @@
 import {
     lang19Q4
 } from './versionLang/lang19Q4/ru19Q4'; /* 2019Q4 */
+import {
+  lang20Q1
+} from './versionLang/lang20Q1/ru.js'; /* 2020Q1 */
+import {
+  lang20Q2
+} from './versionLang/lang20Q2/ru.js'; /* 2020Q2 */
 export const messages = {
     /*
   ##################################################################################
@@ -118,6 +124,7 @@ export const messages = {
   ##################################################################################
   */
   "blockchain": "Блокчейн",
+  "newblock":"Блокчейн",
   "wallet": "Кошелек",
   "home": "Главная",
   "transfers": "Переводы",
@@ -240,7 +247,7 @@ export const messages = {
   "do_not_send_2": "Не отправляйте TRX со своего собственного кошелька и не обменивайте его по указанному выше адресу учетной записи на тестнете!",
   "bandwidth": "пропускная способность",
   "balance": "Баланс",
-  "tron_power": "Право голоса",
+  "tron_power": "Права голосования ",
   "transactions": "транзакции",
   "no_transfers": "Нет переводов",
   "no_tokens": "Нет токенов",
@@ -751,7 +758,7 @@ export const messages = {
   "what_is_tron": "TRON whitepaper V2.0",
   "tron_explorer_api": "TRONSCAN API",
   "tron_architechure": "Архитектура TRON",
-  "tron_protobuf_doc": "Документация Protobuf TRON",
+  "tron_protobuf_doc": "Документация Protobuf",
   "report_an_error": "Отправить сообщение об ошибке / предложение",
   "frequently_asked_questions": "FAQ",
   "telegram": "Telegram",
@@ -974,11 +981,11 @@ export const messages = {
   "total_TRX_supply": "Общий объем TRX",
   "market_capitalization": "Рыночная капитализация",
   "circulating_supply": "циркулирующий",
-  "list_trx": "Залистить TRX",
+  "list_trx": "Список бирж указан TRX",
   "burned_trx": "TRX сожжено",
   "supply_notes": "Краудсейл и предварительная продажа доступны по всему миру, за исключением США, Китая и Японии.",
   "14_day_transaction_history": "История транзакций за 14 дней",
-  "14_day_address_growth": "",
+  "14_day_address_growth": "14 days Accounts Growth",
   /*
   ##################################################################################
   #                                                                                #
@@ -1181,7 +1188,7 @@ export const messages = {
    "contract_create_msg":"Информация",
    "contract_create_time":"Время",
    "contract_enery":"Коэффициент энергопотребления",
-   "contract_enery_tip":"Вызов смарт контрактов потребляет энергию",
+   "contract_enery_tip":"The energy consumed by calling the smart contract is borne by the contract and the user in proportion",
    "contract_init_assets":"Начальный актив",
    "contract_init_assets_tip":"Создатель контракта переводит средства на адрес контракта при выпуске контрактов",
    "contract_editor_bug": "Предупреждение о уязвимости compiler",
@@ -1547,17 +1554,27 @@ export const messages = {
   "propose_18": "Предлагается изменить общий предел энергии",
   "propose_18_1": "Предлагается изменить общий предел энергии",
   "propose_19": "Предлагается разрешить передачу токена TRC-10 в смарт-контрактах",
-  "propose_20": "Текущий предел энергии",
+  "propose_20": "Предложение изменить общий предел энергии",
   "propose_21": "Предлагаем разрешить инициирование мульти-подписи",
   "propose_22": "Предложить адаптивную корректировку общей энергии",
   "propose_23": "Целевой предел энергии",
   "propose_24": "Средний предел энергии",
   "propose_25": "Плата за обновление разрешения учетной записи",
   "propose_26": "Предлагаю изменить плату за мультиподпись",
-  "propose_27": "Propose to enable protocol optimization",
-  "propose_28": "Propose to support the new features of TRON Virtual Machine 0.5.4",
-  "propose_30":"Propose to support the decentralized vote dividend",
-  "propose_31": "Propose to modify the block voting rewards given to the top 27 SRs and the following 100 partners",
+  "propose_27": "Предложение включить оптимизацию протокола",
+  "propose_28": "Предложение разрешить TVM поддерживать Константинополь обновление",
+  "propose_28_1":"Предложение изменить комиссию за анонимную транзакцию",
+  "propose_29": "Предложение разрешить анонимные транзакции",
+  "propose_29_1":"Предложение изменить адаптивный множитель лимита ресурса",
+  "propose_30":"Предложение поддержать децентрализованное голосование дивидендов",
+  "propose_31": "Предложение изменить награды за голосование за блок, которые получили топ 27 SR и следующие 100 партнеров",
+  "propose_32": "Предложение разрешить TVM поддержку Solidity 0.5.9",
+  "propose_33": "Предложение изменить лимит целевого коэффициента адаптивных ресурсов",
+  "propose_34": "Предложение изменить комиссию за транзакцию при создании публичного адреса при переводе средств с анонимных адресов на публичные адреса в анонимных транзакцих",
+  "propose_35": "Предложение запретить передачу токенов TRX и TRC10 в смарт-контракты через TransferContract  или TransferAssetContract",
+  "propose_prohibit":"запрет",
+  "propose_not_prohibit":"не бан",
+  "propose_unprohibit":"не бан",
   "propose_minute": "мин",
   "propose_unactivate": "Не активирован",
   "propose_not_allowed": "Не разрешено",
@@ -1957,7 +1974,7 @@ export const messages = {
  */
   "ledger_user_guide": "Руководство по использованию Ledger",
   "latest_version_chrome": "Обновите Сhrome до последней версии",
-  "ledger_support_version": "Поддерживаемая версия Ledger: 0.1.1., Поддерживаемая версия Chrome 73.0",
+  "ledger_support_version": "Поддерживаемая версия Ledger: 0.2.0, Поддерживаемая версия Chrome 80.0",
   "ledger_you_can": "Вы можете посетить",
   "ledger_website": " Ledger веб-сайт ",
   "ledger_website_download": "Загрузите и обновите последнюю версию Ledger",
@@ -2007,7 +2024,7 @@ export const messages = {
   "footer_fellow_us": "Follow Us",
   "footer_developer_resources": "Developer Resources",
   "footer_support_center": "Support Center",
-  "footer_tron_network": "TRON",
+  "footer_tron_network": "Tron.network",
   "login_privatekey_warn": "Чтобы обеспечить безопасность учетной записи и избежать потери активов, пожалуйста сохраните и хорошо следите за своим приватным ключом и никогда никому не отдавайте его. Для входа рекомендуется Tronlink",
   "login_privatekey_warn_safe": " использовать",
   "token_does_not_support_exchange": "Token doesn't support trading now",
@@ -2246,6 +2263,11 @@ export const messages = {
   "Side_Chain":"DAppChain",
   "Main_Chain":"MainChain",
 
+  "JST_distribution_overview": "JST DISTRIBUTION OVERVIEW",
+  "JST_supply": "JST Supply",
+  "JST_Token_Release_Schedule": "JST Token Release Schedule",
+  "source_JST_team": "Source: JST Management Team",
+
   "7day": "7 дней",
   "14day": "14 дней",
   "30day": "1 месяц",
@@ -2261,13 +2283,14 @@ export const messages = {
   "sun_propose_6": "Управлять включением/выключением стимула для witness на сайдчейн",
   "sun_propose_7": "Метрики распределения стимулирующего пула сайдчейн",
   "sun_propose_8": "Коэффициент прибыли witness на сайдчейн",
+  sun_propose_12: "Propose to allow DAppChain 1.0.2 upgrade",
   "day":"день",
 
 
   "developers_username": "username",
-  "developers_current_year":"total points",
-  "developers_current_quarter": "quarter's points",
-  "developers_current_month":"month's points",
+  "developers_current_year":"Total points",
+  "developers_current_quarter": "Last quarter points",
+  "developers_current_month":"Last month points",
   "developers_view_points":"View Points Details",
   "developers_points_details": "Points details",
   "developers_contribution_link":"Contribution content corresponding link",
@@ -2324,7 +2347,7 @@ export const messages = {
   "SR_rank": "ранжирование",
   "SR_blocksMissed": "Пропущено блоков",
   "SR_votes": "Голоса",
-  "SR_voteRatio": "Соотношение голосов",
+  "SR_voteRatio": "Voting sharing ratio",
   "SR_normal":"Обычный",
   "SR_avnormal":"ненормальный",
   /*
@@ -2356,7 +2379,7 @@ export const messages = {
  "tooltip_accounts":"Аккаунты в настоящем времени в главной цепи",
  "tooltip_accounts_mainnet":"Аккаунты в настоящем времени в главной цепи",
  "tooltip_accounts_sunnet":"Аккаунты в настоящем времени в SUN Network",
- "tooltip_trxPrice":"Цена TRX в USD, котировка в настоящем времени",
+ "tooltip_trxPrice":"Цена TRX в USD",
  "tooltip_trxPrice_mainnet":"Цена TRX в USD, котировка в настоящем времени",
  "tooltip_trxPrice_sunnet":"Цена TRX в USD, котировка в настоящем времени",
  "nav_network":"SUN Network",
@@ -2461,5 +2484,7 @@ export const messages = {
 "address_get_bandwith":"Для Пропускной Способности",
 "address_freeze_owner":"Для вашего аккаунта ",
 "address_freeze_other":"Для другого аккаунта(ов)",
-...lang19Q4
+...lang19Q4,
+...lang20Q1,
+...lang20Q2
 };

@@ -133,6 +133,9 @@ export const DevelopersRewardAsync = loadable(() =>
 export const FoundationAsync = loadable(() =>
   import(/* webpackChunkName: "Foundation" */ "./Foundation")
 );
+export const TopDataAsync = loadable(() =>
+  import(/* webpackChunkName: "Foundation" */ "./Data/TopData/index")
+);
 
 export const NodesAsync = loadable(() =>
   import(/* webpackChunkName: "Nodes" */ "./network/Nodes")
@@ -165,6 +168,8 @@ export const ContractCompilerAsync = loadable(() =>
 export const AboutAsync = loadable(() =>
   import(/* webpackChunkName: "About" */ "./Pages/About")
 );
+
+
 
 export const HomeAsync = loadable(() =>
   import(/* webpackChunkName: "Home" */ "./Home")
@@ -233,6 +238,17 @@ export const Committee = loadable(() =>
 export const Proposals = loadable(() =>
   import(/* webpackChunkName: "Proposals" */ "./committee/Proposals")
 );
+export const MyProposals = loadable(() =>
+  import(/* webpackChunkName: "MyProposals" */ "./committee/MyProposals")
+);
+export const myParticipated = loadable(() =>
+  import(/* webpackChunkName: "ParticipateProposals" */ "./committee/MyProposals/MyParticipated")
+);
+
+
+export const ProposalsCreateAsync = loadable(() =>
+  import(/* webpackChunkName: "ProposalsCreate" */ "./committee/ProposalCreate/index")
+);
 
 export const ErrorAsync = loadable(() =>
   import(/* webpackChunkName: "ErrorAsync" */ "./Error")
@@ -264,3 +280,8 @@ export const RatingRule = loadable(() =>
     /* webpackChunkName: "ContractSourceCode" */ "./tokens/RatingRule"
   )
 );
+
+export const AwardListAsync = loadable(() =>
+  import(/* webpackChunkName: "AwardList" */ "./Pages/AwardList")
+);
+

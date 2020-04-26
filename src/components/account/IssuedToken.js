@@ -74,7 +74,7 @@ class IssuedToken extends React.Component{
       const {data: {data, retCode}} = await xhr.get(CONTRACT_MAINNET_API_URL+'/external/trc20tokens?issuer_addr='+ address)
       if(retCode == 0){
         let arr = []
-
+        
         for (let i = 0; i < data.tokens.length; i++) {
           let element = data.tokens[i];
           const holder = await this.getToken20Holder(element.contract_address)
@@ -83,7 +83,10 @@ class IssuedToken extends React.Component{
           arr.push(element)
         }
         this.getMarketInfoToken20(arr);
-        this.setState({token20List: arr})
+        
+        this.setState({token20List: arr},()=>{
+          this.props.hasToken20List(arr.length)
+        })
 
       }
     }

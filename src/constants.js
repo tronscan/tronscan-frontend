@@ -1,4 +1,5 @@
 import Lockr from "lockr";
+import uuidv4w from "uuid/v4";
 /**
  * 1000000 sun = 1 TRX
  */
@@ -21,16 +22,12 @@ export const NETURL = {
     SUNNET: "https://dappchain.tronscan.org",
     NEWMAINNET: "https://tronscan.io",
     NEWSUNNET: "https://dappchain.tronscan.io",
+
 };
 
-export const TOKENINFO_UPDATE = 'TOKENINFO_UPDATE'
+export const TOKENINFO_UPDATE = "TOKENINFO_UPDATE";
 
-
-
-let {
-    NET,
-    NODE_ENV
-} = process.env;
+let { NET, NODE_ENV } = process.env;
 let MAINNET;
 let SUNNET;
 let NODEAPI;
@@ -55,6 +52,7 @@ let NODEAPI;
 //NODEAPI = "http://52.15.126.154:9017";
 NODEAPI="https://nileapi.tronscan.org";
 
+
 export const BLOCK_REWARD = 32;
 export const SR_MAX_COUNT = 27;
 export const WITNESS_CREATE_COST = 9999;
@@ -68,14 +66,18 @@ export const PUBLIC_URL = process.env.PUBLIC_URL || window.location.origin;
 
 //export const API_URL_SUNNET = 'http://3.15.181.169:9000';
 //test pro
-//export const API_URL_SUNNET = "http://52.15.68.74:10001";
+// export const API_URL_SUNNET = "http://52.15.68.74:10001";
+// export const API_URL_SUNNET = "http://52.15.68.74:8898";
+
 
 export const API_URL_SUNNET = "https://dappchainapi.tronscan.org";
-// export const API_URL_MAINNET = 'https://apilist.tronscan.org';
+
+// export const API_URL_SUNNET = "https://debugdappchainapilist.tronscan.org";
+
 export const API_URL = IS_SUNNET ? API_URL_SUNNET : process.env.API_URL;
 export const CONTRACT_MAINNET_API_URL = process.env.API_URL;
-export const CONTRACT_NODE_API = NODEAPI;
-
+export const CONTRACT_NODE_API = API_URL;
+// export const CONTRACT_NODE_API = API_URL;
 //Token issued
 export const MARKET_API_URL = "https://platform.tron.network";
 
@@ -87,10 +89,21 @@ export const ACCOUNT_ADDRESS = "ACCOUNT_ADDRESS";
 export const ACCOUNT_LEDGER = "ACCOUNT_LEDGER";
 export const ACCOUNT_TRONLINK = "ACCOUNT_TRONLINK";
 
+/**
+ * USDJ = 1 USD
+ */
+export const ONE_USDJ = 1;
+export const ONE_JST = 0.003;
 export const TOKEN_ID_BTT = "1002000";
 export const CONTRACT_ADDRESS_USDT = "TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t";
 export const CONTRACT_ADDRESS_WIN = "TLa2f6VPqDgRE67v1736s7bJ8Ray5wYjU7";
 export const CONTRACT_ADDRESS_GGC = "TB95FFYRJMLY6mWZqv4JUMqAqsHF4JCXga";
+export const CONTRACT_ADDRESS_USDJ_TESTNET = "TCkkpmnY38nsXAtideWzHTybvbMozzXUot";
+export const CONTRACT_ADDRESS_JED_TESTNET = "TTpozmSKuK5jbigUXtQn6fdxh6ivwKtGo5";
+export const CONTRACT_ADDRESS_USDJ = "TMwFHYXLJaRUPeW6421aqXL4ZEzPRFGkGT";
+export const CONTRACT_ADDRESS_JED = "TCFLL5dx5ZJdKnWuesXxi1VPwjLVmWZZy9";
+export const CONTRACT_ADDRESS_JST = "TCFLL5dx5ZJdKnWuesXxi1VPwjLVmWZZy9";
+
 
 // Deployment to compile
 export const FILE_MAX_SIZE = 5 * 1024 * 1024;
@@ -98,9 +111,9 @@ export const FILE_MAX_NUM = 10;
 
 // currency type
 export const CURRENCYTYPE = {
-    TRX: "TRX",
-    TRX10: "TRX10",
-    TRX20: "TRX20"
+  TRX: "TRX",
+  TRX10: "TRX10",
+  TRX20: "TRX20",
 };
 
 // mapping energy
@@ -124,10 +137,10 @@ export const TRCWITHDRAWMIN = 1;
 
 // trading type
 export const TRADINGMAP = {
-    MAPPING: "mapping",
-    WITHDRAW: "withdraw",
-    DEPOSIT: "deposit",
-    APPROVE: "approve"
+  MAPPING: "mapping",
+  WITHDRAW: "withdraw",
+  DEPOSIT: "deposit",
+  APPROVE: "approve",
 };
 
 // SunWeb config
@@ -141,18 +154,21 @@ export const SUNWEBCONFIG = {
   MAINSOLIDITYNODE: "https://httpapi.nileex.io",
   MAINEVENTSERVER: "https://eventtest.nileex.io",
 
+
   SUNFULLNODE: "https://sun.tronex.io",
   SUNSOLIDITYNODE: "https://sun.tronex.io",
   SUNEVENTSERVER: "https://sun.tronex.io",
   MAINNET: "TWaPZru6PR5VjgT4sJrrZ481Zgp3iJ8Rfo",
   SIDECHAIN: "TGKotco6YoULzbYisTBuP6DWXDjEgJSpYz",
   SIDEID: "41E209E4DE650F0150788E8EC5CAFA240A23EB8EB7"
+
 };
 
 //Socket config
 export const TORNSOCKET = {
     WSSURLMAIN: "wss://nileapi.tronscan.org/api/tronsocket",
     WSSURLSUN: "wss://dappchainapi.tronscan.org/api/tronsocket"
+
 };
 
 // export const TORNSOCKET = {
@@ -162,30 +178,30 @@ export const TORNSOCKET = {
 
 // token type
 export const TOKENTYPE = {
-    TOKEN10: "trc10",
-    TOKEN20: "trc20"
+  TOKEN10: "trc10",
+  TOKEN20: "trc20",
 };
 
 // market basic page
 export const MARKETPAGE = {
-    CREATE: "create",
-    UPDATE: "update"
+  CREATE: "create",
+  UPDATE: "update",
 };
 
 // market token verify status
 export const VERIFYSTATUS = {
-    HASBEENSUBMITTEDTHREE: -3,
-    NOTRECORDED: -2, // No recorded
-    HASBEENRECORDED: -1, // Has been recorded
-    HASBEENSUBMITTED: 0, // Has been submitted
-    NOTRECOMMENDED: 1, // not recommended
-    TOAUDIT: 2, // to audit
-    APPROVED: 3, // reviewed for recommendation
-    RECOMMENDED: 4, // reviewed and recommended
-    REJECTED: 5, // rejected
-    SHELVES: 6, // Has been off the shelves
-    CONFIRMED: 7, // Have been confirmed
-    RECOMMENDEDFAILED: 8 // Review recommendation failed
+  HASBEENSUBMITTEDTHREE: -3,
+  NOTRECORDED: -2, // No recorded
+  HASBEENRECORDED: -1, // Has been recorded
+  HASBEENSUBMITTED: 0, // Has been submitted
+  NOTRECOMMENDED: 1, // not recommended
+  TOAUDIT: 2, // to audit
+  APPROVED: 3, // reviewed for recommendation
+  RECOMMENDED: 4, // reviewed and recommended
+  REJECTED: 5, // rejected
+  SHELVES: 6, // Has been off the shelves
+  CONFIRMED: 7, // Have been confirmed
+  RECOMMENDEDFAILED: 8, // Review recommendation failed
 };
 
 // JSEncrypt key
@@ -198,8 +214,6 @@ export const FROMID = 1;
 /* eslint-disable */
 export const URLREGEXP = /^((ht|f)tps?):\/\/[\w\-]+(\.[\w\-]+)+([\w\-.,@?^=%&:\\/~+#]*[\w\-@?^=%&\\/~+#])?$/;
 
-
-
 export const ADDRESS_SIZE = 34;
 export const ADDRESS_PREFIX = "41";
 export const ADDRESS_PREFIX_BYTE = 0x41;
@@ -207,19 +221,31 @@ export const ADDRESS_PREFIX_REGEX = /^(41)/;
 
 // contract
 export const CONTRACT_LICENSES = [
-    "--",
-    "None",
-    "Unlicense",
-    "MIT",
-    "GNU GPLv2",
-    "GNU GPLv3",
-    "GNU LGPLv2.1",
-    "GNU LGPLv3",
-    "BSD-2-Clause",
-    "BSD-3-Clause",
-    "MPL-2.0",
-    "OSL-3.0",
-    "Apache-2.0"
+  "--",
+  "None",
+  "Unlicense",
+  "MIT",
+  "GNU GPLv2",
+  "GNU GPLv3",
+  "GNU LGPLv2.1",
+  "GNU LGPLv3",
+  "BSD-2-Clause",
+  "BSD-3-Clause",
+  "MPL-2.0",
+  "OSL-3.0",
+  "Apache-2.0",
 ];
 
-export const WARNING_VERSIONS = []
+export const WARNING_VERSIONS = [];
+export const uuidv4 = uuidv4w();
+
+export const ADDRESS_TAG_ICON = [
+  "Binance",
+  "Bittrex",
+  "Gate",
+  "Huobi",
+  "Kucoin",
+  "Okex",
+  "Poloniex",
+  "Bitfinex",
+];

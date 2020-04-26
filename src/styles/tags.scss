@@ -1,0 +1,89 @@
+.tags {
+  .ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .tag-len {
+    width: 200px;
+  }
+  .desc-len {
+    width: 340px;
+  }
+  .btn-default {
+    background: #fff;
+    border: 1px solid #999999;
+    span {
+      color: #999999;
+    }
+    &:hover {
+      span {
+        color: #999999 !important;
+      }
+    }
+  }
+  .btn-danger {
+    background: #fff;
+    border: 1px solid #c23631;
+    span {
+      color: #c23631;
+    }
+  }
+  .sweet-alert {
+    h2 {
+      padding-top: 20px;
+    }
+    .btn-default {
+      background: #d2d2d2;
+      border-color: #d2d2d2;
+      font-size: 14px;
+      span {
+        color: #ffffff;
+      }
+    }
+    .btn {
+      height: 38px !important;
+      line-height: 38px;
+      padding-top: 0 !important;
+    }
+  }
+  .ant-table-bordered.ant-table-empty .ant-table-placeholder {
+    border: none;
+  }
+  .no-data {
+    margin: 0 auto;
+    text-align: center;
+  }
+}
+
+.tag-form {
+  .rec-tags {
+    color: #666;
+    cursor: pointer;
+    b {
+      font-weight: normal !important;
+      color: #c8c8c8;
+    }
+    .tag-name {
+      max-width: 100px;
+      display: inline-block;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+  }
+  .tag-flex-wrap {
+    flex-wrap: wrap;
+  }
+}
+
+@media only screen and (max-width: 765px) {
+  .tags {
+    .tag-len {
+      width: 100px;
+    }
+    .desc-len{
+      width: 200px;
+    }
+  }
+}

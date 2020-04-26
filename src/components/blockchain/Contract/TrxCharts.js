@@ -1,7 +1,7 @@
 import React from "react";
 import {tu} from "../../../utils/i18n";
 import xhr from "axios";
-import {API_URL,ONE_TRX} from "../../../constants";
+import {API_URL,ONE_TRX,uuidv4} from "../../../constants";
 import { AddressLink} from "../../common/Links";
 import {FormattedNumber, injectIntl} from "react-intl";
 import { TronLoader } from "../../common/loaders";
@@ -36,10 +36,9 @@ class TRXBalancesChart extends React.Component {
     let {filter: {address},intl} = this.props
 
     let volumeData = await xhr.get(
-        `${API_URL}/api/contract_account_history?address=${address}`
+        `${API_URL}/api/contract_account_history?uuid=${uuidv4}&address=${address}`
     );
     let volumeUSD = volumeData.data.data;
-    console.log("volumeUSD",volumeUSD)
     let volume = volumeUSD.map(function (v, i) {
         return {
             time: moment(v['time']).valueOf(),

@@ -146,7 +146,6 @@ export default class FreezeBalanceModal extends React.PureComponent {
               }
               if(this.props.wallet.type==="ACCOUNT_TRONLINK"){
                   let unSignTransaction;
-                  console.log('tronWeb',tronWeb)
                   if(receiver==="") {
                       unSignTransaction = await tronWeb.transactionBuilder.freezeBalance(amount * ONE_TRX, 3, type, tronWeb.defaultAddress.base58).catch(e => false);
                   }else{

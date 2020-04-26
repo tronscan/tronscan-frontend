@@ -287,7 +287,7 @@ const AutoCompleteOption = AutoComplete.Option;
                 <Col span={24}>
                   <Form.Item label={tu('token_price')}  required className="m-0">
                     <div className="d-md-flex">
-                      <span className="mr-3">trx{tu('trc20_last_price')}: <TRXPrice amount={1} currency="USD" source="home"/></span>
+                      <span className="mr-3">trx{tu('trc20_last_price')}: <TRXPrice amount={1} currency="USD"/></span>
                       <div className="d-flex">
                         <Form.Item  className="d-flex align-items-center">
                           {getFieldDecorator(first.name, {

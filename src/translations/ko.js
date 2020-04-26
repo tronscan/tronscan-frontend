@@ -2,6 +2,12 @@
 import {
     lang19Q4
 } from './versionLang/lang19Q4/ko19Q4'; /* 2019Q4 */
+import {
+  lang20Q1
+} from './versionLang/lang20Q1/ko.js'; /* 2020Q1 */
+import {
+  lang20Q2
+} from './versionLang/lang20Q2/ko.js'; /* 2020Q2 */
 export const messages = {
     /*
   ##################################################################################
@@ -117,6 +123,7 @@ export const messages = {
   ##################################################################################
   */
   "blockchain": "블록체인",
+  "newblock":"블록체인",
   "wallet": "지갑",
   "home": "홈",
   "transfers": "전송",
@@ -741,7 +748,7 @@ export const messages = {
   "what_is_tron": "TRON 백서V2.0",
   "tron_explorer_api": "TRONSCAN API",
   "tron_architechure": "TRON 구조",
-  "tron_protobuf_doc": "TRON Protobuf문서",
+  "tron_protobuf_doc": "Protobuf문서",
   "report_an_error": "BUG제출/건의",
   "frequently_asked_questions": "자주 묻는 질문",
   "telegram_updates": "Telegram 업데이트",
@@ -960,7 +967,7 @@ export const messages = {
   "total_TRX_supply": "TRX 총 유통량",
   "market_capitalization": "시장 가치",
   "circulating_supply": "유통량",
-  "list_trx": "상장되 거래소",
+  "list_trx": "거래소에서 TRX 상장",
   "burned_trx": "TRX 소각 수",
   "supply_notes": "미국, 중국, 일본을 제외한 전세계 크라우드 펀딩 및 사전 판매",
   "14_day_transaction_history": "지난 14일간 거래 수",
@@ -1169,7 +1176,7 @@ export const messages = {
    "contract_create_msg":"가입 정보",
    "contract_create_time":"가입 시간",
    "contract_enery":"어너지 소비 비율",
-   "contract_enery_tip":"스마트 계약을 호출하면 일정 양의 에저지를 소비합니다",
+   "contract_enery_tip":"The energy consumed by calling the smart contract is borne by the contract and the user in proportion",
    "contract_init_assets":"초기 자산",
    "contract_init_assets_tip":"계약이 생성 될 때 계약 작성자가 계약 주소로 입금 한 자산",
    "contract_editor_bug": "컴파일러 취약점 프롬프트",
@@ -1532,17 +1539,27 @@ export const messages = {
   "propose_18": "총 에너지 한도 수정 제안",
   "propose_18_1": "総エネルギー上限の編集を提議します",
   "propose_19": "스마트 컨트랙트에서 TRC-10 토큰 전송을 허용 제안",
-  "propose_20": "현재 에너지 한도",
+  "propose_20": "총 에너지 전류 제한 수정 제안",
   "propose_21": "다중 서명을 허용할것을 제안합니다",
   "propose_22": "총 ENERGY 조정 허용을 제안합니다",
   "propose_23": "목표 에너지 사용 상한선",
   "propose_24": "평균 에너지 상한선",
   "propose_25": "계정 권한 업데이트 비용",
   "propose_26": "다중 서명 비용 수정 제안",
-  "propose_27": "Propose to enable protocol optimization",
-  "propose_28": "Propose to support the new features of TRON Virtual Machine 0.5.4",
-  "propose_30":"Propose to support the decentralized vote dividend",
-  "propose_31": "Propose to modify the block voting rewards given to the top 27 SRs and the following 100 partners",
+  "propose_27": "프로토콜 최적화 활성화 제안",
+  "propose_28": "TVM이 콘스탄티노플의 업그레이드를 지원할 수 있도록 제안",
+  "propose_28_1":"차폐 거래 수수료 수정 제안",
+  "propose_29": "차폐 거래 허용 제안",
+  "propose_29_1":"적응 형 자원 제한 승수 수정 제안",
+  "propose_30":"탈 중앙화 투표 배당 지원 제안",
+  "propose_31": "상위 27 개 SR 및 그 뒤 100명의 파트너에게 제공되는 블록 투표 보상 수정 제안",
+  "propose_32": "0.5.9 버전의 TVM이 견고성을 지원할 수 있도록 제안",
+  "propose_33": "적응 형 자원 제한 목표 비율 수정 제안",
+  "propose_34": "익명 거래에서 익명 주소를 공개 주소로 이전 할 때 공개 주소를 만들기 위한 처리 수수료 수정 제안",
+  "propose_35": "TransferContract 및 TransferAssetContract 를통해 TRX 및 TRC10 자산이 스마트 계약으로 이전되는 것을 금지하도록 제안",
+  "propose_prohibit":"반",
+  "propose_not_prohibit":"금지하지 않음",
+  "propose_unprohibit":"금지하지 않음",
   "propose_minute": "분",
   "propose_unactivate": "열리지 않음",
   "propose_not_allowed": "허락되지 않음",
@@ -1942,7 +1959,7 @@ export const messages = {
  */
   "ledger_user_guide": "Ledger사용 가이드",
   "latest_version_chrome": "최신 버전 Chrome 사용 추천",
-  "ledger_support_version": "Ledger지원 버전: 0.1.1, Chrome버전 73.0",
+  "ledger_support_version": "Ledger지원 버전: 0.2.0, Chrome버전 80.0",
   "ledger_you_can": "너는 할 수있다",
   "ledger_website": "Ledger 공식 웹 사이트",
   "ledger_website_download": "원장의 최신 버전을 다운로드하여 업데이트하십시오",
@@ -1990,7 +2007,7 @@ export const messages = {
   "footer_fellow_us": "Follow Us",
   "footer_developer_resources": "Developer Resources",
   "footer_support_center": "Support Center",
-  "footer_tron_network": "TRON",
+  "footer_tron_network": "Tron.network",
   "login_privatekey_warn": "계정 보안을 유지 및 자산 손실을 방지하기 위해서는 개인 키 (private key)를 잘 보관하고 다른 사람에게 절대 제공하지 마십시오. 또한 ",
   "login_privatekey_warn_safe": "를 사용하여 로그인하는 것을 권장합니다.",
   "token_does_not_support_exchange": "Token doesn't support trading now",
@@ -2241,6 +2258,11 @@ export const messages = {
   "Side_Chain":"DAppChain",
   "Main_Chain":"MainChain",
 
+  "JST_distribution_overview": "JST DISTRIBUTION OVERVIEW",
+  "JST_supply": "JST Supply",
+  "JST_Token_Release_Schedule": "JST Token Release Schedule",
+  "source_JST_team": "Source: JST Management Team",
+
   "7day": "7 일",
   "14day": "14 일",
   "30day": "1 개월",
@@ -2257,12 +2279,13 @@ export const messages = {
   "sun_propose_6": "사이드 체인 인센티브 스위치는 닫힌 것으로 묵인합니다",
   "sun_propose_7": "사이드체인 인센티브 풀 분배 계수",
   "sun_propose_8": "사이드 체인 수익이 인센티브 풀로 누적되는 비율",
+  sun_propose_12: "Propose to allow DAppChain 1.0.2 upgrade",
   "day":"일",
 
   "developers_username": "username",
-  "developers_current_year":"total points",
-  "developers_current_quarter": "quarter's points",
-  "developers_current_month":"month's points",
+  "developers_current_year":"Total points",
+  "developers_current_quarter": "Last quarter points",
+  "developers_current_month":"Last month points",
   "developers_view_points":"View Points Details",
   "developers_points_details": "Points details",
   "developers_contribution_link":"Contribution content corresponding link",
@@ -2351,7 +2374,7 @@ export const messages = {
  "tooltip_accounts":"메인 체인의 실시간 계정 수",
  "tooltip_accounts_mainnet":"메인 체인의 실시간 계정 수",
  "tooltip_accounts_sunnet":"SUN Network의 실시간 계정 수",
- "tooltip_trxPrice":"USD 대비한 TRX 시세, 실시간 변동",
+ "tooltip_trxPrice":"USD 대비한 TRX 시세",
  "tooltip_trxPrice_mainnet":"USD 대비한 TRX 시세, 실시간 변동",
  "tooltip_trxPrice_sunnet":"USD 대비한 TRX 시세, 실시간 변동",
  "nav_network":"SUN Network",
@@ -2456,5 +2479,7 @@ export const messages = {
    "address_get_bandwith":"대역폭 획득하려면",
    "address_freeze_owner":"자신에게 동결",
    "address_freeze_other":"타인에게 동결",
-   ...lang19Q4
+   ...lang19Q4,
+   ...lang20Q1,
+   ...lang20Q2
 };

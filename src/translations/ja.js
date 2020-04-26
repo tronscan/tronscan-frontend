@@ -2,6 +2,13 @@
 import {
     lang19Q4
 } from './versionLang/lang19Q4/ja19Q4'; /* 2019Q4 */
+import {
+  lang20Q1
+} from './versionLang/lang20Q1/ja'; /* 2020Q1 */
+import {
+  lang20Q2
+} from './versionLang/lang20Q2/ja'; /* 2020Q2 */
+
 export const messages = {
     /*
   ##################################################################################
@@ -118,6 +125,7 @@ export const messages = {
   ##################################################################################
   */
   "blockchain": "ブロックチェーン",
+  "newblock":"ブロックチェーン",
   "wallet": "ウォレット",
   "home": "ホーム",
   "transfers": "振替",
@@ -741,7 +749,7 @@ export const messages = {
   "what_is_tron": "TRONホワイトペーパーV2.0",
   "tron_explorer_api": "TRONSCAN API",
   "tron_architechure": "TRONストラクチャー",
-  "tron_protobuf_doc": "TRON PROTOBUFドキュメント",
+  "tron_protobuf_doc": "PROTOBUFドキュメント",
   "report_an_error": "バグ・意見を提出する",
   "frequently_asked_questions": "よくある質問",
   "telegram_updates": "Telegramを更新する",
@@ -959,7 +967,7 @@ export const messages = {
   "total_TRX_supply": "TRXの総ボリューム",
   "market_capitalization": "市場価値",
   "circulating_supply": "ボリューム",
-  "list_trx": "取引所でコインを発行する",
+  "list_trx": "取引所オンラインTRX",
   "burned_trx": "TRXの焼却数",
   "supply_notes": "米国、中国、日本を除き、世界中でクラウドファンドとプリセールスができます",
   "14_day_transaction_history": " 過去14日間の取引数",
@@ -1168,7 +1176,7 @@ export const messages = {
    "contract_create_msg":"情報を作成する",
   "contract_create_time":"作成時間",
   "contract_enery":"エネルギー消費率",
-  "contract_enery_tip":"スマートコントラクトを呼び出すと、一定量のエネルギーが消費されます",
+  "contract_enery_tip":"The energy consumed by calling the smart contract is borne by the contract and the user in proportion",
   "contract_init_assets":"初期資産",
   "contract_init_assets_tip":"契約の展開時に契約作成者が契約アドレスに転送した資産",
   "contract_editor_bug": "コンパイラの脆弱性のヒント",
@@ -1532,18 +1540,28 @@ export const messages = {
   "propose_18": "総エネルギー上限の編集を提議します",
   "propose_18_1": "総エネルギー上限の編集を提議します",
   "propose_19": "スマート・コントラクトをTRC10トークンに切り替えようと提議します",
-  "propose_20": "現在のエネルギー上限",
+  "propose_20": "総エネルギー電流制限の変更を提案する",
   "propose_21": "複数署名機能を許可することを提案する",
   "propose_22": "エネルギー総額を自動的に調整することを提案する",
   "propose_23": "目標エネルギーの使用上限",
   "propose_24": "平均エネルギー上限",
   "propose_25": "アカウント権限を更新する費用",
   "propose_26": "複数署名を変更することを提案する",
-  "propose_27": "Propose to enable protocol optimization",
-  "propose_28": "Propose to support the new features of TRON Virtual Machine 0.5.4",
-  "propose_30":"Propose to support the decentralized vote dividend",
-  "propose_31": "Propose to modify the block voting rewards given to the top 27 SRs and the following 100 partners",
-  "propose_minute": "min",
+  "propose_27": "プロトコルの最適化を有効にすることを提案する",
+  "propose_28": "TVMがコンスタンチノープルのアップグレードをサポートできるようにすることを提案する",
+  "propose_28_1":"シールドされた取引手数料の変更を提案する",
+  "propose_29": "シールドされたトランザクションを許可することを提案する",
+  "propose_29_1": "適応リソース制限乗数の変更を提案する",
+  "propose_30": "分散投票の配当をサポートすることを提案する",
+  "propose_31": "上位27のSRと次の100のパートナーに与えられたブロック投票の報酬を変更することを提案する",
+  "propose_32": "TVMが堅牢性0.5.9をサポートできるようにすることを提案する",
+  "propose_33": "適応リソース制限の目標比率の変更を提案する",
+  "propose_34": "シールドトランザクションでシールドアドレスからパブリックアドレスに資金を移動する際にパブリックアドレスを作成する際のトランザクション料金を変更することを提案する",
+  "propose_35": "TransferContractまたはTransferAssetContractを介したTRXおよびTRC10トークンのスマートコントラクトへの転送を禁止することを提案する",
+  "propose_prohibit":"禁止",
+  "propose_not_prohibit":"禁止しない",
+  "propose_unprohibit":"禁止しない",
+  "propose_minute": "分",
   "propose_unactivate": "開かない",
   "propose_not_allowed": "不許可です",
   "propose_allowed": "許可する",
@@ -1952,7 +1970,7 @@ export const messages = {
   */
   "ledger_user_guide": "Ledgerご利用のガイド",
   "latest_version_chrome": "最新バージョンのChromeご利用をお薦めします",
-  "ledger_support_version": "Ledgerサポートできるバージョン:0.1.1、Chromeサポートできるバージョン73.0",
+  "ledger_support_version": "Ledgerサポートできるバージョン:0.2.0、Chromeサポートできるバージョン80.0",
   "ledger_you_can": "あなたは行くことができます",
   "ledger_website": "Ledgerの公式サイト",
   "ledger_website_download": "最新の元帳バージョンをダウンロードして更新する",
@@ -2002,7 +2020,7 @@ export const messages = {
   "footer_fellow_us": "Follow Us",
   "footer_developer_resources": "Developer Resources",
   "footer_support_center": "Support Center",
-  "footer_tron_network": "TRON",
+  "footer_tron_network": "Tron.network",
   "login_privatekey_warn": "アカウントアセットの安全を守るため、紛失しないように、秘密鍵を大事に保存してください。",
   "login_privatekey_warn_safe": "でログインをお薦めします。",
   "token_does_not_support_exchange": "Token doesn't support trading now",
@@ -2237,6 +2255,11 @@ export const messages = {
   "Side_Chain":"DAppChain",
   "Main_Chain":"MainChain",
 
+  "JST_distribution_overview": "JST DISTRIBUTION OVERVIEW",
+  "JST_supply": "JST Supply",
+  "JST_Token_Release_Schedule": "JST Token Release Schedule",
+  "source_JST_team": "Source: JST Management Team",
+
   "7day": "7日",
   "14day": "14日間",
   "30day": "1ヶ月",
@@ -2253,12 +2276,13 @@ export const messages = {
   "sun_propose_6": "サイドチェーン witnessインセンティブスイッチがデフォルトではオフとなります",
   "sun_propose_7": "サイドチェーンインセンティブ奨金プールの分配パラメーター",
   "sun_propose_8": "サイドチェーンの収益はインセンティブ奨金プールで蓄積された割合",
+  sun_propose_12: "Propose to allow DAppChain 1.0.2 upgrade",
   "day":"日",
 
   "developers_username": "username",
-  "developers_current_year":"total points",
-  "developers_current_quarter": "quarter's points",
-  "developers_current_month":"month's points",
+  "developers_current_year":"Total points",
+  "developers_current_quarter": "Last quarter points",
+  "developers_current_month":"Last month points",
   "developers_view_points":"View Points Details",
   "developers_points_details": "Points details",
   "developers_contribution_link":"Contribution content corresponding link",
@@ -2347,7 +2371,7 @@ export const messages = {
  "tooltip_accounts":"メインチェーンでリアルタイムアカウント数",
  "tooltip_accounts_mainnet":"メインチェーンでリアルタイムアカウント数",
  "tooltip_accounts_sunnet":"SUNネットワークトでリアルタイムアカウント数",
- "tooltip_trxPrice":"TRXはUSDの価格対比、リアルタイム変動",
+ "tooltip_trxPrice":"TRXはUSDの価格対比",
  "tooltip_trxPrice_mainnet":"TRXはUSDの価格対比、リアルタイム変動",
  "tooltip_trxPrice_sunnet":"TRXはUSDの価格対比、リアルタイム変動",
  "nav_network":"SUN Network",
@@ -2452,5 +2476,7 @@ export const messages = {
 "address_get_bandwith":"帯域幅を取得するには",
 "address_freeze_owner":"自分に固定する",
 "address_freeze_other":"他人に固定する",
-...lang19Q4
+...lang19Q4,
+...lang20Q1,
+...lang20Q2
 }

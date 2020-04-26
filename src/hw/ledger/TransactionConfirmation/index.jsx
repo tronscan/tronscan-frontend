@@ -11,6 +11,8 @@ import {Truncate} from "../../../components/common/text";
 import TronWeb from "tronweb";
 
 export default function Contract({ contract, extra }) {
+  console.log('contract======',contract)
+  console.log('contract.type======',contract.type.toUpperCase())
   const contractParams = contract.parameter.value;
   let tokenInfo = '';
   let tokenList = [{"token_id":"","amount":""}];
@@ -21,7 +23,7 @@ export default function Contract({ contract, extra }) {
   }
 
 
-
+  console.log('extra===',extra)
   switch (contract.type.toUpperCase()) {
     case "TRANSFERCONTRACT":
       return (
@@ -46,6 +48,11 @@ export default function Contract({ contract, extra }) {
               <Field label="Amount">
                 <FormattedTRX value={contractParams.amount / ONE_TRX}/> TRX
               </Field>
+              {
+                (extra.note &&  <Field label="Note">
+                {TronWeb.toUtf8(extra.note)}
+                </Field>)
+              }
               {(extra && extra.hash && 
                 <Field label="Hash">
                     <Truncate>
@@ -81,6 +88,11 @@ export default function Contract({ contract, extra }) {
               <FormattedNumber maximumFractionDigits={tokenInfo.map_token_precision} minimunFractionDigits={tokenInfo.map_token_precision}
                     value={tokenInfo.map_amount}/>&nbsp;{tokenInfo.map_token_name}&nbsp;<font size="-2">[{TronWeb.toUtf8(contractParams.asset_name)}]</font>
             </Field>
+            {
+              (extra.note &&  <Field label="Note">
+              {TronWeb.toUtf8(extra.note)}
+              </Field>)
+            }
             {(extra && extra.hash && 
                 <Field label="Hash">
                     <Truncate>
@@ -332,10 +344,11 @@ export default function Contract({ contract, extra }) {
                     <Field label="From">
                         {TronWeb.address.fromHex(contractParams.owner_address)}
                     </Field>
-
-                    <Field label="To">
+                    {
+                      extra.to?<Field label="To">
                         {extra.to}
-                    </Field>
+                      </Field>:''
+                    }
                     {(extra && extra.to_name &&
                         <Field label="To Name">
                             {extra.to_name}
@@ -349,11 +362,19 @@ export default function Contract({ contract, extra }) {
                             {extra.to_name}
                         </Field>
                     )}
-                    <Field label="Amount">
-                        <FormattedNumber maximumFractionDigits={extra.decimals} minimunFractionDigits={extra.decimals}
-                                         value={extra.amount}/>&nbsp;
-                        {extra.token_name}
-                    </Field>
+                    {(extra && extra.to && extra.note && 
+                      <Field label="Note">
+                        {extra.note}
+                      </Field>
+                    )}
+                    {
+                      extra.to?<Field label="Amount">
+                      <FormattedNumber maximumFractionDigits={extra.decimals} minimunFractionDigits={extra.decimals}
+                                       value={extra.amount}/>&nbsp;
+                      {extra.token_name}
+                      </Field>:''
+                    }
+                    
                     {(extra && extra.hash &&
                         <Field label="Hash">
                             <Truncate>
@@ -485,7 +506,7 @@ export default function Contract({ contract, extra }) {
           return (
             <Fragment>
               <div className="card-body">
-                <h5 className="card-title text-center">Claim Rewards</h5>
+                <h5 className="card-title text-center">Update Account Permission</h5>
               </div>
               <table className="table">
                 <tbody>
@@ -500,6 +521,63 @@ export default function Contract({ contract, extra }) {
               </table>
             </Fragment>
           );
+        case "PROPOSALCREATECONTRACT":
+          return (
+            <Fragment>
+              <div className="card-body">
+                <h5 className="card-title text-center">Raise Proposal</h5>
+              </div>
+              <table className="table">
+                <tbody>
+                {(extra && extra.hash && 
+                      <Field label="Hash">
+                          <Truncate>
+                            #{extra.hash}
+                          </Truncate>
+                      </Field>
+                  )}
+                  </tbody>
+              </table>
+            </Fragment>
+          );  
+        case "PROPOSALAPPROVECONTRACT":
+          return (
+            <Fragment>
+              <div className="card-body">
+                <h5 className="card-title text-center">Vote For Proposal</h5>
+              </div>
+              <table className="table">
+                <tbody>
+                {(extra && extra.hash && 
+                      <Field label="Hash">
+                          <Truncate>
+                            #{extra.hash}
+                          </Truncate>
+                      </Field>
+                  )}
+                  </tbody>
+              </table>
+            </Fragment>
+          );
+        case "PROPOSALDELETECONTRACT":
+          return (
+            <Fragment>
+              <div className="card-body">
+                <h5 className="card-title text-center">Delete Proposal</h5>
+              </div>
+              <table className="table">
+                <tbody>
+                {(extra && extra.hash && 
+                      <Field label="Hash">
+                          <Truncate>
+                            #{extra.hash}
+                          </Truncate>
+                      </Field>
+                  )}
+                  </tbody>
+              </table>
+            </Fragment>
+          );   
         case "EXCHANGEINJECTCONTRACT":
         return (
           <Fragment>
@@ -531,6 +609,7 @@ export default function Contract({ contract, extra }) {
             </table>
           </Fragment>
         );
+
 
     default:
       return (

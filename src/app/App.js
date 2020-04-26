@@ -1,14 +1,21 @@
 import {
-  API_URL
+  API_URL,uuidv4
 } from "../constants";
 import xhr from "axios/index";
 import {
   tokensMap,
   tokens20Map
 } from "../utils/tokensMap.js";
-import {
-  store
-} from "./../store";
+// import {
+//   store
+// } from "./../store";
+//import ApiClientMonitor from './../services/monitor'
+//import isMobile from "./../utils/isMobile";
+//import {
+//  getPerformanceTiming
+//} from "../utils/DateTime";
+//import System from "../components/tools/System";
+
 // import { setToken20Map, setTokenMap } from './../actions/account';
 
 export default class App {
@@ -18,13 +25,34 @@ export default class App {
     this.getTokensMap();
     this.getTokens20Map();
     this.setExternalLinkHandler(null);
+    // this.MonitoringParameters();
   }
 
   async getTokensMap() {
-
     let {
       data
-    } = await xhr.get(`${API_URL}/api/token?showAll=1&limit=5000&id_gt=1000000&fields=id,name,precision,abbr,imgUrl`);
+
+    } = await xhr.get(`${API_URL}/api/token?uuid=${uuidv4}&showAll=1&limit=5000&id_gt=1002828&fields=id,name,precision,abbr,imgUrl`);
+    //var beginTime = +new Date();
+
+      for (let k of Object.keys(tokensMap))  {
+        //k,obj[k]
+        //https://coin.top/production/js/20190509074813.png   _-_
+        //https://coin.top/production/logo/  |_|
+        //https://coin.top/tokenLogo/tokenLogo  !_!
+        //https://coin.top/production/upload/logo/ #_#
+        var value=tokensMap[k];
+        if (value.indexOf("_-_") >-1) {
+          value=value.replace("_-_","https://coin.top/production/js/20190509074813.png");
+        } else if (value.indexOf("|_|") >-1) {
+          value=value.replace("|_|","https://coin.top/production/logo/");
+        } else if (value.indexOf("!_!") >-1) {
+          value=value.replace("!_!","https://coin.top/tokenLogo/tokenLogo");
+        } else if (value.indexOf("#_#")>-1) {
+          value=value.replace("#_#","https://coin.top/production/upload/logo/");
+        }
+        tokensMap[k]=value;
+      }
 
     let imgUrl;
     for (var i = 0; i < data.data.length; i++) {
@@ -46,6 +74,7 @@ export default class App {
           imgUrl;
       }
     }
+
     localStorage.setItem("tokensMap", JSON.stringify(tokensMap));
     // store.dispatch(setTokenMap(tokensMap));
   }
@@ -54,7 +83,7 @@ export default class App {
     let {
       data
     } = await xhr.get(
-      `${API_URL}/api/tokens/overview?start=0&limit=1000&filter=trc20&sort=priceInTrx`
+      `${API_URL}/api/tokens/overview?uuid=${uuidv4}&start=0&limit=1000&filter=trc20&sort=priceInTrx`
     );
     let imgUrl;
     if(data.tokens && data.tokens.length){
@@ -90,7 +119,8 @@ export default class App {
   getExternalLinkHandler() {
     return this.externalLinkHandler;
   }
-}
+
+} 
 
 // if ('serviceWorker' in navigator) {
 //     let version = '1.0.2'

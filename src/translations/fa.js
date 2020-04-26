@@ -2,6 +2,12 @@
 import {
     lang19Q4
 } from './versionLang/lang19Q4/fa19Q4'; /* 2019Q4 */
+import {
+  lang20Q1
+} from './versionLang/lang20Q1/fa'; /* 2020Q1 */
+import {
+  lang20Q2
+} from './versionLang/lang20Q2/fa'; /* 2020Q2 */
 export const messages = {
    /*
     ##################################################################################
@@ -118,6 +124,7 @@ export const messages = {
    ##################################################################################
    */
    "blockchain": "بلاکچین",
+   "newblock":"بلاکچین",
    "wallet": "کیف پول",
    "home": "صفحه اصلی",
    "transfers": "انتقال",
@@ -964,7 +971,7 @@ export const messages = {
    "total_TRX_supply": "مجموع تی آرایکس تامین شده",
    "market_capitalization": "ارزش بازار",
    "circulating_supply": "گردش موجودی",
-   "list_trx": "لیست تی آرایکس",
+   "list_trx": "فهرست TRX در مبادلات.",
    "burned_trx": "تی آر ایکس سوخته",
    "supply_notes": "پیش فروش موجود در سطح جهانی، به جز در ایالات متحده، چین و ژاپن",
    "14_day_transaction_history": "معاملات ۱۴ روز گذشته",
@@ -1171,7 +1178,7 @@ export const messages = {
    "contract_create_msg":"اطلاعات",
    "contract_create_time":"زمان",
    "contract_enery":"نسبت مصرف انرژی.",
-   "contract_enery_tip":"تماس با قراردادهای هوشمند انرژی مصرف می کند.",
+   "contract_enery_tip":"The energy consumed by calling the smart contract is borne by the contract and the user in proportion",
    "contract_init_assets":"دارایی اولیه",
    "contract_init_assets_tip":"سازنده  قرارداد هنگام استقرار قراردادها وجوه را به آدرس قرارداد منتقل می کند.",
    "contract_editor_bug": "هشدار راه گریز برای کامپایلر",
@@ -1537,17 +1544,27 @@ export const messages = {
    "propose_18": "پیشنهاد برای تغییر کل محدودیت انرژی",
    "propose_18_1": "پیشنهاد برای تغییر کل محدودیت انرژی",
    "propose_19": "پیشنهاد انتقال TRC-10 Token در قراردادهای هوشمند",
-   "propose_20": "محدودیت های انرژی",
+   "propose_20": "پیشنهاد اصلاح  کل انرژی",
    "propose_21": "توصیه می شود چندین امضا را فعال کنید",
    "propose_22": "پیشنهاد به اجازه تنظیم تطبیقی برای انرژی کل",
    "propose_23": "هدف محدودیت انرژی",
    "propose_24": "میانگین حد انرژی",
    "propose_25": "هزینه برای به روز رسانی مجوز های حساب",
    "propose_26": "پیشنهاد برای تغییر هزینه برای چند امضایی",
-   "propose_27": "Propose to enable protocol optimization",
-   "propose_28": "Propose to support the new features of TRON Virtual Machine 0.5.4",
-   "propose_30":"Propose to support the decentralized vote dividend",
-   "propose_31": "Propose to modify the block voting rewards given to the top 27 SRs and the following 100 partners",
+   "propose_27": "پیشنهادی برای فعال سازی بهینه سازی پروتکل",
+   "propose_28": "این پیشنهاد به TVM اجازه می دهد تا از بروزرسانی قسطنطنیه پشتیبانی کند",
+   "propose_28_1":"اصلاح پیشنهادی مبلغ معامله ناشناس",
+   "propose_29": "پیشنهاد به اجازه معامله محافظت شده",
+   "propose_29_1":"اصلاح پیشنهادی حداکثر انرژی پویا",
+   "propose_30":"پيشنهاد شده است كه يك مكانيسم سود تقسيم بندي رأي دهي باز شود",
+   "propose_31": "پیشنهاداصلاح درآمد رای گیری بلوک را که به 127 نماینده برتر و شرکای برتر اختصاص یافته است ",
+   "propose_32": "پیشنهاد می کنیم ماشینهای مجازی اجازه دهند از کامپایلر Solid نسخه 0.5.9 پشتیبانی کنند",
+   "propose_33": "پیشنهاد برای تغییر نسبت حد هدف منابع تطبیقی",
+   "propose_34": "پیشنهاد برای تغییر هزینه معامله در ایجاد آدرس عمومی هنگام انتقال وجوه از آدرسهای محافظت شده به آدرسهای عمومی در معامله محافظت شده",
+   "propose_35": "پیشنهاد منع انتقال علائم TRX و TRC10 به قراردادهای هوشمند از طریق قرارداد انتقال یا قرارداد دارایی انتقال.",
+   "propose_prohibit":"ممنوع",
+   "propose_not_prohibit":"ممنوع نیست",
+   "propose_unprohibit":"ممنوع نیست",
    "propose_minute": "دقیقه",
    "propose_unactivate": "فعال نشده است",
    "propose_not_allowed": "مجاز نیست",
@@ -1949,7 +1966,7 @@ export const messages = {
   */
    "ledger_user_guide": "راهنمای کاربر Ledger",
    "latest_version_chrome": "ما توصیه می کنیم از آخرین نسخه از کروم استفاده کنید",
-   "ledger_support_version": "نسخه پشتیبانی لدجر:0.1.1، نسخه پشتیبانی از کروم 73.0",
+   "ledger_support_version": "نسخه پشتیبانی لدجر:0.2.0، نسخه پشتیبانی از کروم 80.0",
    "ledger_you_can": "شما می توانید بازدید کنید",
    "ledger_website": "وب سایت Ledger",
    "ledger_website_download": "نسخه لوگر به روز شده را دانلود کنید",
@@ -1998,7 +2015,7 @@ export const messages = {
    "footer_fellow_us": "Follow Us",
    "footer_developer_resources": "Developer Resources",
    "footer_support_center": "Support Center",
-   "footer_tron_network": "TRON",
+   "footer_tron_network": "Tron.network",
    "login_privatekey_warn": "برای اطمینان از امنیت حساب خود، لطفا از کلید خصوصی خود مراقبت کنید ، برای جلوگیری از از دست دادن دارایی. توصیه می شود از ",
    "login_privatekey_warn_safe": "  برای ورود امن استفاده کنید.",
    "token_does_not_support_exchange": "Token doesn't support trading now",
@@ -2241,6 +2258,11 @@ export const messages = {
    "Side_Chain":"DAppChain",
    "Main_Chain":"MainChain",
 
+   "JST_distribution_overview": "JST DISTRIBUTION OVERVIEW",
+   "JST_supply": "JST Supply",
+   "JST_Token_Release_Schedule": "JST Token Release Schedule",
+   "source_JST_team": "Source: JST Management Team",
+
 
    "7day": "7 روز",
    "14day": "14 روز",
@@ -2257,12 +2279,12 @@ export const messages = {
    "sun_propose_6": "مدیریت سوئیچ تشویقی برای شاهد در زنجیره جانبی روشن یا خاموش ",
    "sun_propose_7": "معیارهای توزیع استخر تشویقی زنجیره جانبی را وارد کنید .",
    "sun_propose_8": "نسبت درآمد حاصل از شاهد در زنجیره جانبی.",
-
+   sun_propose_12: "Propose to allow DAppChain 1.0.2 upgrade",
 
    "developers_username": "username",
-   "developers_current_year":"total points",
-   "developers_current_quarter": "quarter's points",
-   "developers_current_month":"month's points",
+   "developers_current_year":"Total points",
+   "developers_current_quarter": "Last quarter points",
+   "developers_current_month":"Last month points",
    "developers_view_points":"View Points Details",
    "developers_points_details": "Points details",
    "developers_contribution_link":"Contribution content corresponding link",
@@ -2350,7 +2372,7 @@ export const messages = {
 "tooltip_transactionPerDay_sunnet":"معاملات انجام شده  روز قبل در شبکه سان .",
  "tooltip_accounts_mainnet":"تعداد حسابهای واقعی در زنجیره اصلی",
  "tooltip_accounts_sunnet":"تعداد حسابهای واقعی در شبکه سان ",
- "tooltip_trxPrice":"TRX قیمت USD را با نوسانات زمان واقعی مقایسه می کند.",
+ "tooltip_trxPrice":"TRX در مقابل قیمت USD",
  "tooltip_trxPrice_mainnet":"TRX قیمت USD را با نوسانات زمان واقعی مقایسه می کند.",
  "tooltip_trxPrice_sunnet":"TRX قیمت USD را با نوسانات زمان واقعی مقایسه می کند.",
  "nav_network":"SUN Network",
@@ -2454,5 +2476,8 @@ export const messages = {
 "address_get_bandwith":"برای به دست آوردن پهنای باند .",
 "address_freeze_owner":"به حساب خودم .",
 "address_freeze_other":"به حساب (های) دیگران",
-...lang19Q4
+...lang19Q4,
+...lang20Q1,
+...lang20Q2
+ 
 };

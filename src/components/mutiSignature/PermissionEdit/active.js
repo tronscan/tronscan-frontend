@@ -1,11 +1,12 @@
 import React, { Component, PureComponent, Children } from "react";
 import { getContractTypesByHex, getContractTypesByGroup, getOperationsHexStrByContractIdArr } from '../../../utils/mutiSignHelper';
-import { Input, Checkbox, Row, Col, Modal, Form, InputNumber } from 'antd';
+import { Input, Checkbox, Row, Col, Modal, Form, InputNumber, Tooltip as AntdTip } from 'antd';
 import SweetAlert from "react-bootstrap-sweetalert";
 import { toNumber } from '../../../utils/number'
 import { cloneDeep } from 'lodash'
 import { tu } from "../../../utils/i18n"
 import { injectIntl } from "react-intl";
+
 
 @injectIntl
 export default class ActiveEdit extends Component {
@@ -41,7 +42,6 @@ export default class ActiveEdit extends Component {
     getOperationsByHex(hex) {
         if (!hex) { return '' }
         const operations = getContractTypesByHex(hex);
-        // console.log('operations',operations)
         return operations.map(item => {
             return <li key={item.id}>{tu(item.value)}</li>
         })
@@ -465,7 +465,6 @@ export default class ActiveEdit extends Component {
         }
         if (modifyIndex != undefined) {
             activePermissions[modifyIndex].operations = getOperationsHexStrByContractIdArr(hasContractIds).toLowerCase();
-            //console.log(modifyIndex,activePermissions,hasContractIds);
             this.setState({
                 activePermissions: activePermissions,
             }, () => {
@@ -488,14 +487,21 @@ export default class ActiveEdit extends Component {
     }
     render() {
         const { activePermissions, modal, permissionModal, allPermissions, hasContractIds, addActiveModal, willAddActive, errorMsgModal } = this.state;
-        const { tronWeb, intl } = this.props;
+        const { tronWeb, intl, walletType } = this.props;
         //  以下表单中的
         return (
             <div>
                 <div className='permission'>
                     <div className='permission-title'>
                         <span className='permission-title-active'>{tu('signature_active_permissions')}</span><i>({activePermissions.length + '/' + 8})</i>
-                        <a className={activePermissions.length < 8 ? 'btn btn-danger ac-permission-add-btn' : 'btn btn-danger ac-permission-add-btn disabled-btn'} size='small'  onClick={() => { this.openAddActiveModal() }}><span>+</span><span>{tu('signature_add_permissions')}</span></a>
+                        {
+                           walletType.type ==  'ACCOUNT_LEDGER'?
+                            <AntdTip title={<span>{tu('use_TRONlink_or_private_key')}</span>}>
+                                <a className='btn btn-danger ac-permission-add-btn disabled-btn' size='small'><span>+</span><span>{tu('signature_add_permissions')}</span></a>
+                            </AntdTip>
+                            :
+                            <a className={activePermissions.length < 8 ? 'btn btn-danger ac-permission-add-btn' : 'btn btn-danger ac-permission-add-btn disabled-btn'} size='small'  onClick={() => { this.openAddActiveModal() }}><span>+</span><span>{tu('signature_add_permissions')}</span></a>
+                        }
                     </div>
                     <div className='permission-desc'>
                         {tu('signature_active_permissions_desc')} 

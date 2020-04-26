@@ -7,6 +7,10 @@ export const SET_TOTAL_TRANSACTIONS = 'SET_TOTAL_TRANSACTIONS';
 export const SET_BLOCKS = 'SET_BLOCKS';
 export const SET_USD_PRICE = 'SET_USD_PRICE';
 
+export const SET_ACCOUNT_TAB = 'SET_ACCOUNT_TAB'; // account tab info
+
+
+
 export const setUsdPrice = (price = 0) => ({
   type: SET_USD_PRICE,
   price
@@ -34,6 +38,9 @@ export const loadBlocks = () => async (dispatch) => {
     dispatch(setBlocks(blocks));
 };
 
+
+
+
 export const loadTransactions = () => async (dispatch) => {
   let {transfers: list} = await Client.getTransfers({
     order: '-timestamp',
@@ -54,3 +61,9 @@ export const loadUsdPrice = () => async (dispatch) => {
   let price = await ClientToken.getUsdPrice();
   dispatch(setUsdPrice(price));
 };
+
+
+export const updateAccountTabInfo = (data) => ({
+  type: SET_ACCOUNT_TAB,
+  payload: data
+})

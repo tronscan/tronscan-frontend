@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { tu } from "./../../utils/i18n";
 import { Client } from "./../../services/api";
 import { Table, Input, Button, Icon } from "antd";
+import isMobile from "../../utils/isMobile";
 
 export default class SmartTable extends Component {
   constructor(props) {
@@ -103,7 +104,7 @@ export default class SmartTable extends Component {
     );
   };
   onSearch = () => {
-    let { tableData } = this.props;
+    let { tableData,filterDropdownVisible } = this.props;
     const { searchText } = this.state;
     const reg = new RegExp(searchText, "gi");
     this.setState({
@@ -154,46 +155,8 @@ export default class SmartTable extends Component {
         }
       };
     }
-
     let filter = {
-      filterDropdown: (
-        <div className="custom-filter-dropdown">
-          <Input
-            ref={ele => (this.searchInput = ele)}
-            placeholder="Search name"
-            value={this.state.searchText}
-            onChange={this.onInputChange}
-            onPressEnter={this.onSearch}
-          />{" "}
-          <Button type="primary" onClick={this.onSearch}>
-            {" "}
-            {tu("search")}{" "}
-          </Button>{" "}
-          <Button className="btn-secondary ml-1" onClick={this.onReset}>
-            {" "}
-            {tu("reset")}{" "}
-          </Button>{" "}
-        </div>
-      ),
-      filterIcon: (
-        <Icon
-          type="filter"
-          style={{
-            color: this.state.filtered ? "#108ee9" : "#aaa"
-          }}
-        />
-      ),
-      filterDropdownVisible: this.state.filterDropdownVisible,
-      onFilterDropdownVisibleChange: visible => {
-        this.setState(
-          {
-            filterDropdownVisible: visible
-          },
-          () => {
-            this.searchInput && this.searchInput.focus();
-          }
-        );
-      }
+     
     };
 
     let columns = [];
@@ -241,11 +204,13 @@ export default class SmartTable extends Component {
       bordered,
       pagination = true,
       scroll,
+      Footer,
       locale,
       addr,
       transfers,
+      nopadding,
       contractAddress,
-      isPaddingTop
+      isPaddingTop,
     } = this.props;
     let columns = this.setColumn(column);
     const paginationStatus = pagination
@@ -263,7 +228,9 @@ export default class SmartTable extends Component {
             className={
               "card table_pos table_pos_addr " +
               (data.length == 0 ? "table_pos_addr_data" : "") +
-              (transfers == "address" ? " transfer-mt-100" : " transfer-pt-100")
+              (transfers == "address" ? " transfer-mt-100" : " transfer-pt-100") +
+              (nopadding ? " transfer-mp-0" :'')
+
             }
           >
             <Table
@@ -275,6 +242,7 @@ export default class SmartTable extends Component {
               dataSource={data}
               locale={locale}
               scroll={scroll}
+              footer={Footer}
               pagination={paginationStatus}
               loading={loading}
               onChange={this.handleTableChange}
@@ -285,6 +253,7 @@ export default class SmartTable extends Component {
             <Table
               bordered={bordered}
               columns={columns}
+              footer={Footer}
               rowKey={(record, index) => {
                 return index;
               }}

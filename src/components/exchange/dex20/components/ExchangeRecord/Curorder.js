@@ -20,7 +20,7 @@ import {
 import { TronLoader } from "../../../../common/loaders";
 import { withTronWeb } from "../../../../../utils/tronWeb";
 import { Popover, Icon } from "antd";
-import { compare } from "../../../../../utils/exchanges";
+import { compare } from "../../../../../utils/compare";
 import { precisions } from "../../TokenPre";
 import Lockr from "lockr";
 

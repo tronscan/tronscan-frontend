@@ -9,18 +9,28 @@ import { toLower } from "lodash";
 import { Popover } from "antd";
 import { cloneDeep } from "lodash";
 import { connect } from "react-redux";
+import { Tooltip,Icon } from 'antd';
+import {upperFirst} from "lodash";
+
 import {
   API_URL,
   ONE_TRX,
+  ONE_USDJ,
+  ONE_JST,
   CONTRACT_ADDRESS_USDT,
   CONTRACT_ADDRESS_WIN,
   CONTRACT_ADDRESS_GGC,
+  CONTRACT_ADDRESS_USDJ,
+  CONTRACT_ADDRESS_USDJ_TESTNET,
+  CONTRACT_ADDRESS_JED,
+  CONTRACT_ADDRESS_JED_TESTNET,
+  CONTRACT_ADDRESS_JST,
   IS_MAINNET
 } from "../../../constants";
 import BigNumber from "bignumber.js";
 BigNumber.config({ EXPONENTIAL_AT: [-1e9, 1e9] });
 
-export function Information({ token: tokens, priceUSD }) {
+export function Information({ token: tokens, priceUSD,intl }) {
   let token = cloneDeep(tokens);
   let social_display = 0;
   let lowerText = token.reputation
@@ -59,7 +69,12 @@ export function Information({ token: tokens, priceUSD }) {
   // if wink
   if (token.contract_address === "TLa2f6VPqDgRE67v1736s7bJ8Ray5wYjU7") {
     currentTotal = token.winkTotalSupply.totalTurnOver || 0;
-    currentTotalSupplyUsd = token.winkTotalSupply.marketValue || 0;
+    currentTotalSupplyUsd = parseInt(token.winkTotalSupply.marketValue) || 0;
+  }
+  // if jst
+  if (token.contract_address === "TCFLL5dx5ZJdKnWuesXxi1VPwjLVmWZZy9") {
+    currentTotal = Number(token.jstTotalSupply.totalTurnOver) > 0 ? Number(token.jstTotalSupply.totalTurnOver).toFixed(token.decimals) : '0';
+    currentTotalSupplyUsd = parseInt(token.jstTotalSupply.marketValue) || 0;
   }
 
   const defaultContent = "-";
@@ -99,8 +114,9 @@ export function Information({ token: tokens, priceUSD }) {
       content: (
         <div>
           {token.transferNumber
-            ? toThousands(token.transferNumber)
-            : defaultContent}
+            ?
+            <span> { toThousands(token.transferNumber)} Txns</span>  
+            : defaultContent} 
         </div>
       )
     },
@@ -108,9 +124,29 @@ export function Information({ token: tokens, priceUSD }) {
       name: "token_price_new",
       content: (
         <div className="d-flex ">
-          {token["market_info"] ? (
+          {
+            (token.contract_address == CONTRACT_ADDRESS_USDJ || token.contract_address == CONTRACT_ADDRESS_USDJ_TESTNET) &&
             <div className="d-flex price-info">
-              ${token["priceToUsd"].toFixed(6)}
+            { ONE_USDJ.toFixed(6)} USD&nbsp;
+            <span className="token-price-trx">
+              ≈ {(ONE_USDJ/priceUSD).toFixed(6)} TRX
+            </span>
+          </div> 
+          }
+          {
+           (token.contract_address == CONTRACT_ADDRESS_JED || token.contract_address == CONTRACT_ADDRESS_JED_TESTNET )&&
+            <div className="d-flex price-info">
+            { ONE_JST.toFixed(6)} USD&nbsp;
+            <span className="token-price-trx">
+              ≈ {(ONE_JST/priceUSD).toFixed(6)} TRX
+            </span>
+          </div> 
+          }
+
+
+          { ((token.contract_address != CONTRACT_ADDRESS_USDJ || token.contract_address != CONTRACT_ADDRESS_JED || token.contract_address != CONTRACT_ADDRESS_USDJ_TESTNET || token.contract_address != CONTRACT_ADDRESS_JED_TESTNET )  && token["market_info"]) ? (
+            <div className="d-flex price-info">
+              {token["priceToUsd"].toFixed(6)} USD&nbsp;
               <span className="token-price-trx">
                 ≈ {token["market_info"].priceInTrx} TRX
               </span>
@@ -143,9 +179,17 @@ export function Information({ token: tokens, priceUSD }) {
                 {tu("token_trade")}
               </Link>
             </div>
-          ) : (
-            defaultContent
-          )}
+          
+            ) : (
+                <div>
+                  {
+                    (token.contract_address == CONTRACT_ADDRESS_USDJ || token.contract_address == CONTRACT_ADDRESS_JED ||  token.contract_address != CONTRACT_ADDRESS_USDJ_TESTNET || token.contract_address != CONTRACT_ADDRESS_JED_TESTNET) ?
+                    ""
+                    :defaultContent
+                  }
+                </div>
+              )
+          }
         </div>
       )
     },
@@ -155,7 +199,7 @@ export function Information({ token: tokens, priceUSD }) {
         <div>
           {currentTotalSupplyUsd != 0 ? (
             <span>
-              $<FormattedNumber value={currentTotalSupplyUsd}></FormattedNumber>{" "}
+              <FormattedNumber value={currentTotalSupplyUsd}></FormattedNumber>{" "} USD
               
             </span>
           ) : (
@@ -164,7 +208,7 @@ export function Information({ token: tokens, priceUSD }) {
           /{" "}
           {totalSupplyUsd != 0 ? (
             <span>
-              $<FormattedNumber value={totalSupplyUsd}></FormattedNumber>
+              <FormattedNumber value={totalSupplyUsd}></FormattedNumber> {" "} USD
             </span>
           ) : (
             defaultContent
@@ -191,7 +235,27 @@ export function Information({ token: tokens, priceUSD }) {
 
       name: "token_contract",
       content: token.contract_address ? (
-        <AddressLink address={token.contract_address} isContract={true} />
+        <span className="d-flex">
+          <Tooltip
+            placement="top"
+            title={upperFirst(
+                intl.formatMessage({
+                id: "transfersDetailContractAddress"
+                })
+            )}
+          >
+            <Icon
+              type="file-text"
+              style={{
+              verticalAlign: 0,
+              color: "#77838f",
+              lineHeight: 1.2
+              }}
+            />
+          </Tooltip>
+          <AddressLink address={token.contract_address} isContract={true}></AddressLink>
+        </span>
+        // <AddressLink address={token.contract_address} isContract={true} />
       ) : (
         defaultContent
       )
@@ -229,7 +293,8 @@ export function Information({ token: tokens, priceUSD }) {
         <div>
           {token.home_page ? (
             token.contract_address === CONTRACT_ADDRESS_USDT ||
-            token.contract_address === CONTRACT_ADDRESS_WIN ? (
+            token.contract_address === CONTRACT_ADDRESS_WIN ||
+            token.contract_address === CONTRACT_ADDRESS_JST ? (
               <HrefLink href={token.home_page}>{token.home_page}</HrefLink>
             ) : (
               <ExternalLink url={token.home_page} />
@@ -246,7 +311,8 @@ export function Information({ token: tokens, priceUSD }) {
         <div>
           {token.white_paper ? (
             token.contract_address === CONTRACT_ADDRESS_USDT ||
-            token.contract_address === CONTRACT_ADDRESS_WIN ? (
+            token.contract_address === CONTRACT_ADDRESS_WIN ||
+            token.contract_address === CONTRACT_ADDRESS_JST? (
               <HrefLink
                 style={{
                   whiteSpace: "nowrap",
@@ -317,3 +383,6 @@ export function Information({ token: tokens, priceUSD }) {
     </div>
   );
 }
+
+
+

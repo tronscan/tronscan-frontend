@@ -7,14 +7,11 @@ import { PulseLoader } from "react-spinners";
 import { loginWithLedger } from "../../actions/app";
 import { tu, t } from "../../utils/i18n";
 import { withTronWeb } from "../../utils/tronWeb";
+import xhr from "axios/index";
+import {API_URL} from "../../constants";
+import Lockr from "lockr";
 
-export default
-@connect(null, {
-  loginWithLedger
-})
-@withRouter
-@withTronWeb
-class LedgerAccess extends Component {
+ class LedgerAccess extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -55,24 +52,33 @@ class LedgerAccess extends Component {
     this.setState({ loading: false });
   };
 
-  openWallet = () => {
+  openWallet = async () => {
     let { address } = this.state;
     let { history, onClose } = this.props;
+    
     const tronWebLedger = this.props.tronWeb();
     const defaultAddress = {
       hex: tronWebLedger.address.toHex(address),
       base58: address
     };
     tronWebLedger.defaultAddress = defaultAddress;
-    this.props.loginWithLedger(address, tronWebLedger);
+    this.props.loginWithLedger(address, tronWebLedger);    
     history.push("/account");
-    window.gtag("event", "login", {
-      event_category: "Ledger",
-      event_label: this.props.account.address,
+    window.gtag("event", "Ledger", {
+      event_category: "Login",
+      event_label: address,
       referrer: window.location.origin,
-      value: this.props.account.address
+      value: address
     });
     onClose && onClose();
+    if(!Lockr.get("ledgerTokenList")){
+      let { data } = await xhr.get(`${API_URL}/api/ledger?type=token10&start=0&limit=5000`);
+      Lockr.set("ledgerTokenList", data.data);
+    }
+    if(!Lockr.get("ledgerExchangeList")){
+      let { data }  = await xhr.get(`${API_URL}/api/ledger?type=exchange&start=0&limit=1000`);
+      Lockr.set("ledgerExchangeList", data.data);
+    }
   };
   render() {
     let { loading, connected, address, type } = this.state;
@@ -90,14 +96,14 @@ class LedgerAccess extends Component {
                 </a>
                 {t("ledger_website_download")}
               </div>
-              <div>
+              { <div>
                 <a
                   target="_blank"
                   href="https://support.tronscan.org/hc/en-us/articles/360025936472-LEDGER-GUIDE"
                 >
                   {tu("ledger_click_help")}>
                 </a>
-              </div>
+              </div> }
             </div>
             <div className="text-center pt-5 mx-5">
               <img
@@ -181,3 +187,7 @@ class LedgerAccess extends Component {
     );
   }
 }
+
+export default connect(null, { 
+    loginWithLedger
+  })(withRouter(withTronWeb(LedgerAccess)))

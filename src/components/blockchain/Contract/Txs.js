@@ -17,7 +17,7 @@ import {TRXPrice} from "../../common/Price";
 import {ONE_TRX} from "../../../constants";
 import TotalInfo from "../../common/TableTotal";
 import DateSelect from "../../common/dateSelect";
-import {Tooltip} from 'antd'
+import {Tooltip,Icon} from 'antd'
 import moment from 'moment';
 import {DatePicker} from "antd/lib/index";
 import qs from 'qs'
@@ -85,10 +85,16 @@ class Transactions extends React.Component {
         console.log('error:' + e);
     });
 
-    const [transactions, { count } ] = allData;
+    let [transactions, { count } ] = allData;
 
     transactions.data.map(item => {
       item.tip = item.ownAddress == filter.contract ? 'out' : 'in'
+    })
+    transactions.data.forEach(item=>{
+      if(transactions.contractMap){
+        transactions.contractMap[item.ownAddress]? (item.ownerIsContract = true) :  (item.ownerIsContract = false)
+        transactions.contractMap[item.toAddress]? (item.toIsContract = true) :  (item.toIsContract = false)
+      }
     })
     this.setState({
       transactions: transactions.data,
@@ -150,15 +156,59 @@ class Transactions extends React.Component {
         className: 'ant_table address_max_width',
         render: (text, record, index) => {
           return record.tip == 'in' ?
-              <span className="d-flex">
-            {record.ownAddressType == 2 &&
-            <Tooltip placement="top" title={intl.formatMessage({id: 'contracts'})}>
-              <span><i className="far fa-file mr-1"></i></span>
-            </Tooltip>}
-
-                  <AddressLink address={text} isContract={record.ownAddressType == 2}>{text}</AddressLink>
-          </span> :
-              <TruncateAddress>{text}</TruncateAddress>
+            <span>
+              {/*  Distinguish between contract and ordinary address */}
+              {record.ownerIsContract? (
+                <span className="d-flex">
+                  <Tooltip
+                    placement="top"
+                    title={upperFirst(
+                        intl.formatMessage({
+                        id: "transfersDetailContractAddress"
+                        })
+                    )}
+                  >
+                    <Icon
+                      type="file-text"
+                      style={{
+                      verticalAlign: 0,
+                      color: "#77838f",
+                      lineHeight: 1.4
+                      }}
+                    />
+                  </Tooltip>
+                  <AddressLink address={text} isContract={true}>{text}</AddressLink>
+                </span>
+                ) : <AddressLink address={text}>{text}</AddressLink>
+              }
+            </span>
+            :
+            <span>
+              {/*  Distinguish between contract and ordinary address */}
+              {record.toIsContract? (
+                <span className="d-flex">
+                  <Tooltip
+                    placement="top"
+                    title={upperFirst(
+                        intl.formatMessage({
+                        id: "transfersDetailContractAddress"
+                        })
+                    )}
+                  >
+                    <Icon
+                      type="file-text"
+                      style={{
+                      verticalAlign: 0,
+                      color: "#77838f",
+                      lineHeight: 1.4
+                      }}
+                    />
+                  </Tooltip>
+                  <TruncateAddress address={text}>{text}</TruncateAddress>
+                </span>
+                ) : <TruncateAddress address={text}>{text}</TruncateAddress>
+              }
+            </span>
         }
       },
       // {
@@ -178,15 +228,59 @@ class Transactions extends React.Component {
         className: 'ant_table address_max_width',
         render: (text, record, index) => {
           return record.tip == 'out' ?
-              <span className="d-flex">
-            {record.toAddressType == 2 &&
-            <Tooltip placement="top" title={intl.formatMessage({id: 'contracts'})}>
-              <span><i className="far fa-file mr-1"></i></span>
-            </Tooltip>}
-
-                  <AddressLink address={text} isContract={record.toAddressType == 2}>{text}</AddressLink>
-          </span> :
-              <TruncateAddress>{text}</TruncateAddress>
+            <span>
+              {/*  Distinguish between contract and ordinary address */}
+              {record.toIsContract? (
+                <span className="d-flex">
+                  <Tooltip
+                    placement="top"
+                    title={upperFirst(
+                        intl.formatMessage({
+                        id: "transfersDetailContractAddress"
+                        })
+                    )}
+                  >
+                    <Icon
+                      type="file-text"
+                      style={{
+                      verticalAlign: 0,
+                      color: "#77838f",
+                      lineHeight: 1.4
+                      }}
+                    />
+                  </Tooltip>
+                  <AddressLink address={text} isContract={true}>{text}</AddressLink>
+                </span>
+                ) : <AddressLink address={text}>{text}</AddressLink>
+              }
+            </span>
+            :
+            <span>
+              {/*  Distinguish between contract and ordinary address */}
+              {record.toIsContract? (
+                <span className="d-flex">
+                  <Tooltip
+                    placement="top"
+                    title={upperFirst(
+                        intl.formatMessage({
+                        id: "transfersDetailContractAddress"
+                        })
+                    )}
+                  >
+                    <Icon
+                      type="file-text"
+                      style={{
+                      verticalAlign: 0,
+                      color: "#77838f",
+                      lineHeight: 1.4
+                      }}
+                    />
+                  </Tooltip>
+                  <TruncateAddress address={text}>{text}</TruncateAddress>
+                </span>
+                ) : <TruncateAddress address={text}>{text}</TruncateAddress>
+              }
+            </span>
         }
       },
       {
@@ -198,10 +292,13 @@ class Transactions extends React.Component {
         render: (text, record, index) => {
             return (
                 <div>
-                    {
+                    {/* {
                         record.confirmed ?
                             <span className="badge badge-success text-uppercase">{tu("Confirmed")}</span> :
                             <span className="badge badge-danger text-uppercase">{tu("Unconfirmed")}</span>
+                    } */}
+                    {
+                      record.confirmed ? <span><img style={{ width: "20px", height: "20px" }} src={require("../../../images/contract/Verified.png")}/> {tu('full_node_version_confirmed')}</span> : <span><img style={{ width: "20px", height: "20px" }} src={require("../../../images/contract/Unverified.png")}/> {tu('full_node_version_unconfirmed')}</span>
                     }
                 </div>
 

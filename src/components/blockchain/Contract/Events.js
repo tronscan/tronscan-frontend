@@ -16,7 +16,7 @@ import xhr from "axios/index";
 import tronWeb from "tronweb";
 import { Select } from "antd";
 import BlockTime from "../../common/blockTime";
-import { API_URL, SUNWEBCONFIG } from "../../../constants";
+import { API_URL, SUNWEBCONFIG ,uuidv4} from "../../../constants";
 const Option = Select.Option;
 
 class Transactions extends React.Component {
@@ -114,7 +114,7 @@ class Transactions extends React.Component {
     let {
       data
     } = await xhr.post(
-      `${API_URL}/api/contracts/smart-contract-triggers-batch?fields=hash,method`,
+      `${API_URL}/api/contracts/smart-contract-triggers-batch?uuid=${uuidv4}&fields=hash,method`,
       { hashList }
     ).catch(err=>{
       return []

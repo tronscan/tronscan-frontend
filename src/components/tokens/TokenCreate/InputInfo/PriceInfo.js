@@ -83,7 +83,7 @@ export class PriceInfo extends Component {
                         {last.abbr}
                         </Form.Item>
                         <span className={isNaN(abbrAmount)? 'd-none': ''} style={{color: '#9e9e9e'}}>(1 {first.abbr} = {`${abbrAmount} ${last.abbr}`})</span>
-                        <span className="mr-3">TRX{tu('trc20_last_price')}: <TRXPrice amount={1} currency="USD" source="home"/></span>
+                        <span className="mr-3">TRX{tu('trc20_last_price')}: <TRXPrice amount={1} currency="USD"/></span>
                     </div>
                  </Form.Item>
                 </Col>

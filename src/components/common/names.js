@@ -3,7 +3,7 @@ import {TRXPrice} from "./Price";
 import { FormattedNumber } from "react-intl";
 import {Link} from "react-router-dom";
 
-export const NameWithId = ({value,type, notamount=false, totoken=false, br=false, page='' }) => {
+export const NameWithId = ({value,type, notamount=false, totoken=false, br=false, page='',tokenid=true }) => {
   return (
     value.map_token_name === "TRX" ?
     <TRXPrice amount={value.map_amount}/> :
@@ -25,7 +25,7 @@ export const NameWithId = ({value,type, notamount=false, totoken=false, br=false
         totoken?
         <Link to={`/token/${value.map_token_id}`}>
           {
-              type == 'abbr'?<span className={page == ''?'mr-1':''}>
+              type == 'abbr'?<span>
                   {
                     value.map_token_name_abbr?value.map_token_name_abbr:value.map_token_name
                   }
@@ -41,7 +41,7 @@ export const NameWithId = ({value,type, notamount=false, totoken=false, br=false
         
       }
 
-      {(value.map_token_id != 0 && page == '') && <span style={{color: '#808080', fontSize: '12px'}}>[ID:{value.map_token_id}]</span>}
+      {(value.map_token_id != 0 && page == '' && tokenid) && <p style={{color: '#808080', fontSize: '12px', height: 'auto'}}>[ID:{value.map_token_id}]</p>}
     </span>
   );
 }
