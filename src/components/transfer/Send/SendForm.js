@@ -6,7 +6,7 @@ import {tu} from "../../../utils/i18n";
 import {Client} from "../../../services/api";
 import {isAddressValid} from "@tronscan/client/src/utils/crypto";
 import _, {find, round} from "lodash";
-import { ACCOUNT_TRONLINK, API_URL, ONE_TRX, IS_MAINNET ,uuidv4} from "../../../constants";
+import { ACCOUNT_TRONLINK, API_URL, ONE_TRX, IS_MAINNET, uuidv4, ACTIVE_FEE_TRX} from "../../../constants";
 import {Alert} from "reactstrap";
 import {reloadWallet} from "../../../actions/wallet";
 import SweetAlert from "react-bootstrap-sweetalert";
@@ -44,6 +44,11 @@ class SendForm extends React.Component {
       decimals:'',
       balance:'',
       isAddressActivedValid:true,
+      AddressActivedFeeNotWorth:false,
+      isAmountValid: false,
+      exceededMaxnum:false,
+      transferTRC20Tip:false,
+
     };
   }
 
@@ -52,7 +57,7 @@ class SendForm extends React.Component {
    * @returns {*|boolean}
    */
   isValid = () => {
-    let {to, token, amount, privateKey,balance} = this.state;
+    let {to, token, amount, privateKey, balance, exceededMaxnum} = this.state;
     let {account} = this.props;
     /*
        if (!privateKey || privateKey.length !== 64) {
@@ -63,7 +68,7 @@ class SendForm extends React.Component {
          return false;
        }
     */
-    return isAddressValid(to) && token !== "" && balance >= amount && amount > 0 && to !== account.address;
+    return isAddressValid(to) && token !== "" && balance >= amount && amount > 0 && to !== account.address && !exceededMaxnum;
   };
 
   /**
@@ -507,10 +512,10 @@ class SendForm extends React.Component {
         }
       }
     }
-
-
     this.setState({
       amount,
+    },()=>{
+      this.isAmountValid()
     });
   };
 
@@ -526,12 +531,14 @@ class SendForm extends React.Component {
         if(TokenName == 'TRX'){
             this.setState({
                 decimals: 6,
-                balance:balance
+                balance:balance,
+                transferTRC20Tip:false,
             })
         }else{
             this.setState({
                 decimals: TokenDecimals,
-                balance:balance
+                balance:balance,
+                transferTRC20Tip:false,
             })
         }
     }else if(token && TokenType == 'TRC20'){
@@ -540,17 +547,81 @@ class SendForm extends React.Component {
         let TokenDecimals = parseFloat(find(tokens20, t => t.name === TokenName).decimals);
         this.setState({
             decimals: TokenDecimals,
-            balance:balance
+            balance:balance,
+            transferTRC20Tip:true,
         })
     }
 
     return 0;
   };
 
+ 
   isAmountValid = () => {
-    let {amount,balance} = this.state;
+    let {amount, balance, token, isAddressActivedValid} = this.state;
+    let list = token.split('-');
+    let TokenName = list[1];
     let selectedTokenBalance = balance;
-    return amount !== 0 && amount !== '' && selectedTokenBalance >= amount;
+    if(isAddressActivedValid){
+      if(amount == 0 || amount == ''){
+        this.setState({
+          isAmountValid: true,
+        });
+      }else {
+        if(selectedTokenBalance < amount){
+          this.setState({
+            isAmountValid: true,
+            exceededMaxnum:true,
+          });
+        }else if(selectedTokenBalance >= amount){
+          this.setState({
+            isAmountValid: false,
+            exceededMaxnum:false,
+          });
+        }
+      }
+    }else{
+      console.log('TokenName',TokenName)
+      if(TokenName ==  '_'){
+        console.log('amount=====',amount)
+        if(amount == 0 || amount == ''){
+          this.setState({
+            isAmountValid: true,
+          });
+        }else {
+          if((selectedTokenBalance - ACTIVE_FEE_TRX) < amount){
+            this.setState({
+              isAmountValid: true,
+              exceededMaxnum:true,
+            });
+          }else if((selectedTokenBalance - ACTIVE_FEE_TRX) >= amount){
+            this.setState({
+              isAmountValid: false,
+              exceededMaxnum:false,
+            });
+          }
+        }
+        
+      }else{
+        if(amount == 0 || amount == ''){
+          this.setState({
+            isAmountValid: true,
+          });
+        }else {
+          if(selectedTokenBalance < amount){
+            this.setState({
+              isAmountValid: true,
+              exceededMaxnum:true,
+            });
+          }else if(selectedTokenBalance >= amount){
+            this.setState({
+              isAmountValid: false,
+              exceededMaxnum:false,
+            });
+          }
+        }
+      }
+        
+    }
   };
 
   componentDidMount() {
@@ -625,10 +696,34 @@ class SendForm extends React.Component {
   }
 
   setMaxAmount = () => {
-    let {balance} = this.state;
-    this.setState({
-      amount: balance,
-    });
+    let {balance, token, isAddressActivedValid} = this.state;
+    let list = token.split('-');
+    let TokenName =  list[1];
+    console.log('balance=======',balance)
+    console.log('token=======',token)
+    console.log('TokenName=======',TokenName)
+    if(isAddressActivedValid){
+      this.setState({
+        amount: balance,
+      },()=>{
+        this.isAmountValid()
+      });
+    }else{
+      if (TokenName === '_') {
+        let trxAmount= new BigNumber(balance);
+        this.setState({
+          amount: trxAmount.minus(ACTIVE_FEE_TRX) > 0 ? trxAmount.minus(ACTIVE_FEE_TRX): 0, 
+        },()=>{
+          this.isAmountValid()
+        });
+      }else{
+        this.setState({
+          amount: balance,
+        },()=>{
+          this.isAmountValid()
+        });
+      }
+    }
   };
 
   resetForm = () => {
@@ -641,6 +736,11 @@ class SendForm extends React.Component {
   };
 
    setAddress = async(address) => {
+    let {intl, tokenBalances } = this.props;
+    let TRXBalances = _(tokenBalances)
+        .filter(tb => tb.map_token_id == '_')
+        .value();
+    console.log('TRXBalances====',TRXBalances)    
     this.setState({to: address});
     Client.getAddress(address).then(data => {
       this.setState({
@@ -653,18 +753,26 @@ class SendForm extends React.Component {
     }else{
       tronWeb = this.props.account.tronWeb;
     }
+    console.log('address=====',address)
+    console.log('isAddressValid(address)=====',isAddressValid(address))
     if(isAddressValid(address)){
-      let data = await tronWeb.trx.getAccount('address');
+      let data = await tronWeb.trx.getAccount(address);
       if(JSON.stringify(data) == "{}"){
-        this.setState({isAddressActivedValid: true});
-      }else{
+        // not address actived
+        let trxAmount= new BigNumber(TRXBalances[0]['map_amount'])
+        console.log('trxAmount===',trxAmount)
+        console.log('trxAmount.minus(ACTIVE_FEE_TRX) ===',trxAmount.minus(ACTIVE_FEE_TRX) )
+        if(trxAmount.minus(ACTIVE_FEE_TRX) <= 0){
+          this.setState({AddressActivedFeeNotWorth: true});
+        }else{
+          this.setState({AddressActivedFeeNotWorth: false});
+        }
         this.setState({isAddressActivedValid: false});
+      }else{
+        // address actived
+        this.setState({isAddressActivedValid: true});
       }
     }
-   
-
-   
-
   };
 
   setNote = (note) => {
@@ -672,10 +780,10 @@ class SendForm extends React.Component {
   };
 
   handleTokenChange = (value) => {
+      console.log('value-=====999',value)
       this.setState({ token: value },() =>{
           this.getSelectedTokenBalance();
       });
-
   }
 
   async getTRC20Tokens(){
@@ -737,7 +845,8 @@ class SendForm extends React.Component {
   render() {
 
     let {intl, tokenBalances, account, tokens20 } = this.props;
-    let {isLoading, sendStatus, modal, to, note, toAccount, token, amount, privateKey,decimals} = this.state;
+    let {isLoading, sendStatus, modal, to, note, toAccount, token, amount, privateKey, decimals, isAddressActivedValid, AddressActivedFeeNotWorth, isAmountValid, exceededMaxnum,transferTRC20Tip} = this.state;
+    console.log('AddressActivedFeeNotWorth=====',AddressActivedFeeNotWorth)
     tokenBalances = _(tokenBalances)
         .filter(tb => tb.balance > 0)
         .filter(tb => tb.map_token_id > 0 || tb.map_token_id == '_')
@@ -758,8 +867,9 @@ class SendForm extends React.Component {
 
     let isToValid = to.length !== 0 && isAddressValid(to);
    // let isPrivateKeyValid = privateKey && privateKey.length === 64 && pkToAddress(privateKey) === account.address;
-    let isAmountValid = this.isAmountValid();
-
+    // let isAmountValid = this.isAmountValid();
+    console.log('isAmountValid========',isAmountValid)
+    console.log('exceededMaxnum========',exceededMaxnum)
     if (sendStatus === 'success') {
       return (
           <Fragment>
@@ -791,7 +901,7 @@ class SendForm extends React.Component {
                 {/* tu("invalid_address") */}
               </div>
               {
-                  this.isAddressActivedValid()?<div className="ledger-note-invalid">
+                  !isAddressActivedValid?<div className="ledger-note-invalid">
                   {tu("transfer_address_not_activated")}
                 </div>:''
               }
@@ -804,7 +914,7 @@ class SendForm extends React.Component {
           }
           <div className="form-group">
             <label>{tu("token")}</label>
-            <div className="input-group mb-3"  style={{height:36}}>
+            <div className="input-group mb-2"  style={{height:36}}>
               {/*<select*/}
                   {/*className="form-control"*/}
                   {/*onChange={(ev) => this.setState({token: ev.target.value})}*/}
@@ -820,7 +930,6 @@ class SendForm extends React.Component {
               <Select
                   onChange={this.handleTokenChange}
                   value={token}
-
               >
                 <OptGroup label={tu('TRC10_token')} key="TRC10">
                     {
@@ -852,13 +961,18 @@ class SendForm extends React.Component {
                 </OptGroup>
               </Select>
             </div>
+            {
+                  transferTRC20Tip?<div className="ledger-note-invalid">
+                  {tu("transfer_trc20_tip")}
+                </div>:''
+              }
           </div>
           <div className="form-group">
             <label>{tu("amount")}</label>
             <div className="input-group mb-3">
               <input type="number"
                      onChange={(ev) => this.setAmount(ev.target.value)}
-                     className={"form-control " + (!isAmountValid ? "is-invalid" : "")}
+                     className={"form-control " + (isAmountValid ? "is-invalid" : "")}
                      value={amount}
                      placeholder={placeholder}
               />
@@ -870,8 +984,8 @@ class SendForm extends React.Component {
                 </button>
               </div>
               <div className="invalid-feedback">
-                {tu("fill_a_valid_number")}
-                {/* tu("insufficient_tokens") */}
+                {exceededMaxnum?tu("transfer_maximum_amount_exceeded"):tu("fill_a_valid_number")}
+
               </div>
             </div>
           </div>
@@ -881,7 +995,7 @@ class SendForm extends React.Component {
                 <div className="input-group mb-3">
                 <textarea
                     onChange={(ev) => this.setNote(ev.target.value)}
-                    className={"form-control"}
+                    className={"form-control " + (AddressActivedFeeNotWorth ? "is-invalid" : "")}
                     value={note}
                     placeholder={this.props.wallet.type === "ACCOUNT_LEDGER"?intl.formatMessage({id: "enter_up_to_50_characters"}):''}
                     maxLength={this.props.wallet.type === "ACCOUNT_LEDGER"?50:1000000}
@@ -889,9 +1003,16 @@ class SendForm extends React.Component {
                 {
                   this.props.wallet.type === "ACCOUNT_LEDGER"?<div className="ledger-note-invalid">
                   {tu("fill_a_valid_ledger_note")}
-                </div>:''
+                  </div>:''
                 }
-                
+                {
+                  !isAddressActivedValid?<div className="ledger-note-invalid">
+                  {tu("transfer_address_activation_fee")}
+                  </div>:''
+                }
+                <div className="invalid-feedback">
+                   {AddressActivedFeeNotWorth ? tu("transfer_insufficient_handling_fee"):''}
+                </div>
               </div>
             </div> 
           }         
