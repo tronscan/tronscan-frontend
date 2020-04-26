@@ -16,7 +16,9 @@ import {Modal, ModalBody, ModalHeader} from "reactstrap";
 import ApplyForDelegate from "./common/ApplyForDelegate";
 import Lockr from "lockr";
 import {transactionResultManager, transactionResultManagerSun} from "../../utils/tron";
+import {withTronWeb} from "../../utils/tronWeb";
 
+@withTronWeb
 class Proposal extends React.Component {
 
     constructor() {

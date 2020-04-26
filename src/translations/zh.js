@@ -5,6 +5,10 @@ import {
 import {
   lang20Q1
 } from './versionLang/lang20Q1/zh'; // 20Q1
+import {
+  lang20Q2
+} from './versionLang/lang20Q2/zh'; // 20Q1
+
 export const messages = {
     /*
     ##################################################################################
@@ -1994,7 +1998,7 @@ export const messages = {
      */
     "ledger_user_guide": "Ledger使用指南",
     "latest_version_chrome": "推荐使用最新版Chrome",
-    "ledger_support_version": "Ledger支持版本：0.1.0，chrome支持版本 73.0",
+    "ledger_support_version": "Ledger支持版本：0.2.0，chrome支持版本 80.0",
     "ledger_you_can": "您可以去",
     "ledger_website": "Ledger官网",
     "ledger_website_download": "下载更新最新的Ledger版本",
@@ -2283,8 +2287,16 @@ export const messages = {
     "WIN_supply": "WIN 流通量",
     "WIN_Token_Release_Schedule": "WIN 代币解锁时间表",
     "source_WIN_team": "信息来源：WIN管理团队",
+
+    "JST_distribution_overview": "JST分布概览",
+    "JST_supply": "JST 流通量",
+    "JST_Token_Release_Schedule": "JST 代币解锁时间表",
+    "source_JST_team": "信息来源：JST管理团队",
+
     "Side_Chain": "侧链浏览器",
     "Main_Chain": "主链浏览器",
+
+    
 
     "7day": "7天",
     "14day": "14天",
@@ -2307,9 +2319,9 @@ export const messages = {
 
 
     "developers_username": "用户名",
-    "developers_current_year": "本年度积分",
-    "developers_current_quarter": "本季度积分",
-    "developers_current_month": "本月度积分",
+    "developers_current_year": "总积分",
+    "developers_current_quarter": "上季度积分",
+    "developers_current_month": "上月度积分",
     "developers_view_points": "查看积分明细",
     "developers_points_details": "积分明细",
     "developers_contribution_link": "贡献内容对应链接",
@@ -2536,5 +2548,6 @@ export const messages = {
     "address_freeze_owner": "冻结给自己",
     "address_freeze_other": "冻结给他人",
     ...lang19Q4,
-    ...lang20Q1
+    ...lang20Q1,
+    ...lang20Q2
 };

@@ -12,10 +12,11 @@ import {TransationTitle} from './common/Title'
 import {injectIntl} from "react-intl";
 import {toThousands} from '../../../../utils/number'
 import { QuestionMark } from "../../../common/QuestionMark.js";
+import BigNumber from "bignumber.js";
+BigNumber.config({ EXPONENTIAL_AT: [-1e9, 1e9] });
 
 function TriggerContract({contract,intl}){
     const defaultImg = require("../../../../images/logo_default.png");
-
     return (
       <Fragment>
         <TransationTitle contractType={contract.contractType}></TransationTitle>
@@ -27,11 +28,38 @@ function TriggerContract({contract,intl}){
               </div>
               <div className="flex1">
                 <div className="d-flex border-bottom content_item">
-                  <AddressLink
-                    address={contract["owner_address"]}
-                  >
-                    {contract["owner_address"]}
-                  </AddressLink>
+                  {/*  Distinguish between contract and ordinary address */}
+                  <span className="d-flex">
+                    {/*  Distinguish between contract and ordinary address */}
+                    {contract.contract_map[contract["owner_address"]]? (
+                      <span className="d-flex">
+                        <Tooltip
+                          placement="top"
+                          title={upperFirst(
+                            intl.formatMessage({
+                              id: "transfersDetailContractAddress"
+                            })
+                          )}
+                        >
+                          <Icon
+                            type="file-text"
+                            style={{
+                              verticalAlign: 0,
+                              color: "#77838f",
+                              lineHeight: 1.4
+                            }}
+                          />
+                        </Tooltip>
+                        <AddressLink address={contract["owner_address"]} isContract={true}>
+                          {contract["owner_address"]}
+                        </AddressLink>
+                      </span>
+                    ) :
+                    <AddressLink address={contract["owner_address"]}>
+                      {contract["owner_address"]}
+                    </AddressLink>
+                    }
+                  </span>
                 </div>
               </div>
             </div>
@@ -41,30 +69,30 @@ function TriggerContract({contract,intl}){
               </div>
               <div className="flex1">
                 <div className="d-flex content_item">
-                  <AddressLink
-                    address={contract["contract_address"]}
-                    isContract={true}
-                  >
-                    {/* <Tooltip
-                      placement="top"
-                      title={upperFirst(
-                        intl.formatMessage({
-                          id: "transfersDetailContractAddress"
-                        })
-                      )}
-                    >
-                      <Icon
-                        type="file-text"
-                        style={{
-                          fontSize: 12,
-                          verticalAlign: 2,
-                          marginRight: 4,
-                          color: "#333"
-                        }}
-                      />
-                    </Tooltip> */}
-                    {contract["contract_address"]}
-                  </AddressLink>
+                   {/*  Distinguish between contract and ordinary address */}
+                   <span className="d-flex">
+                    {/*  Distinguish between contract and ordinary address */}
+                      <Tooltip
+                        placement="top"
+                        title={upperFirst(
+                          intl.formatMessage({
+                            id: "transfersDetailContractAddress"
+                          })
+                        )}
+                      >
+                        <Icon
+                          type="file-text"
+                          style={{
+                            verticalAlign: 0,
+                            color: "#77838f",
+                            lineHeight: 1.4
+                          }}
+                        />
+                      </Tooltip>
+                      <AddressLink address={contract["contract_address"]} isContract={true}>
+                        {contract["contract_address"]}
+                      </AddressLink>
+                  </span>
                 </div>
                 <div className="d-flex">
                 {JSON.stringify(contract.internal_transactions) !=
@@ -86,7 +114,6 @@ function TriggerContract({contract,intl}){
                                 "token_id",
                                 "call_value"
                               )
-                              // console.log(tokenList)
                               let vnode = []
                               tokenList.map(v=>{
                                 vnode.push(
@@ -104,6 +131,26 @@ function TriggerContract({contract,intl}){
                                     <div className="mr-2">
                                       {tu("from")}
                                     </div>
+                                    {/*  Distinguish between contract and ordinary address */}
+                                    {contract.contract_map[item["caller_address"]]? (
+                                      <Tooltip
+                                        placement="top"
+                                        title={upperFirst(
+                                          intl.formatMessage({
+                                            id: "transfersDetailContractAddress"
+                                          })
+                                        )}
+                                      >
+                                        <Icon
+                                          type="file-text"
+                                          style={{
+                                            verticalAlign: 0,
+                                            color: "#77838f",
+                                            lineHeight: 1.4
+                                          }}
+                                        />
+                                      </Tooltip>
+                                    ) :null}
                                     <div
                                       className="mr-2"
                                       style={{ width: "169px" }}
@@ -120,6 +167,26 @@ function TriggerContract({contract,intl}){
                                     <div className="mr-2">
                                       {tu("to")}
                                     </div>
+                                    {/*  Distinguish between contract and ordinary address */}
+                                    {contract.contract_map[item["transfer_to_address"]]? (
+                                        <Tooltip
+                                          placement="top"
+                                          title={upperFirst(
+                                            intl.formatMessage({
+                                              id: "transfersDetailContractAddress"
+                                            })
+                                          )}
+                                        >
+                                          <Icon
+                                            type="file-text"
+                                            style={{
+                                              verticalAlign: 0,
+                                              color: "#77838f",
+                                              lineHeight: 1.4
+                                            }}
+                                          />
+                                        </Tooltip>
+                                      ) :null}
                                     <div
                                       className="mr-2"
                                       style={{ width: "169px" }}
@@ -170,6 +237,19 @@ function TriggerContract({contract,intl}){
                 </div>
               </div>
             </div>
+            {
+              (!contract.tokenTransferInfo && contract.contract_note) && <div className="d-flex border-bottom">
+                <div className="content_box_name">
+                  {tu("note")}:
+                </div>
+                <div className="flex1">
+                  <div className="d-flex content_item">
+                    {contract.contract_note || ""}
+                  </div>
+                </div>
+            </div>
+            }
+            
             {contract.tokenTransferInfo &&
               contract.tokenTransferInfo.decimals !==
                 undefined &&
@@ -184,7 +264,26 @@ function TriggerContract({contract,intl}){
                       <div className="content_name">
                         {tu("from")}
                       </div>
-                      <div className="flex1">
+                      <div className="flex1 d-flex">
+                        {contract.contract_map[contract.tokenTransferInfo["from_address"]]? (
+                          <Tooltip
+                            placement="top"
+                            title={upperFirst(
+                              intl.formatMessage({
+                                id: "transfersDetailContractAddress"
+                              })
+                            )}
+                          >
+                            <Icon
+                              type="file-text"
+                              style={{
+                                verticalAlign: 0,
+                                color: "#77838f",
+                                lineHeight: 1.4
+                              }}
+                            />
+                          </Tooltip>
+                        ) :null}
                         <AddressLink
                           address={
                             contract.tokenTransferInfo[
@@ -205,7 +304,26 @@ function TriggerContract({contract,intl}){
                       <div className="content_name">
                         {tu("to")}
                       </div>
-                      <div className="flex1">
+                      <div className="flex1 d-flex">
+                        {contract.contract_map[contract.tokenTransferInfo["to_address"]]? (
+                          <Tooltip
+                            placement="top"
+                            title={upperFirst(
+                              intl.formatMessage({
+                                id: "transfersDetailContractAddress"
+                              })
+                            )}
+                          >
+                            <Icon
+                              type="file-text"
+                              style={{
+                                verticalAlign: 0,
+                                color: "#77838f",
+                                lineHeight: 1.4
+                              }}
+                            />
+                          </Tooltip>
+                        ) :null}
                         <AddressLink
                           address={
                             contract.tokenTransferInfo[
@@ -222,24 +340,23 @@ function TriggerContract({contract,intl}){
                         </AddressLink>
                       </div>
                     </div>
+                    
                     <div className="d-flex content_item trans-item-padding">
                       <div className="content_name">
                         {tu("amount")}
                       </div>
                       <div className="flex1">
-                        {toThousands(Number(
-                          contract.tokenTransferInfo[
-                            "amount_str"
-                          ]
-                        ) /
-                          Math.pow(
-                            10,
-                            contract.tokenTransferInfo[
-                              "decimals"
-                            ]
-                          ))}
+                        {
+                          toThousands(
+                            new BigNumber(Number(contract.tokenTransferInfo["amount_str"])).dividedBy(
+                            Math.pow(10, contract.tokenTransferInfo["decimals"])
+                            )
+                          )  
+                        }
                       </div>
                     </div>
+
+                    
                     <div className="d-flex content_item trans-item-padding">
                       <div className="content_name">
                         {tu("token_txs_info")}
@@ -323,6 +440,14 @@ function TriggerContract({contract,intl}){
                         />
                       </div>
                     </div>
+                    {contract.contract_note && <div className="d-flex content_item trans-item-padding">
+                      <div className="content_name">
+                        {tu("note")}
+                      </div>
+                      <div className="flex1">
+                        {contract.contract_note || ""}
+                      </div>
+                    </div>}      
                   </div>
                 </div>
               )}

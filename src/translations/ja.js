@@ -5,6 +5,10 @@ import {
 import {
   lang20Q1
 } from './versionLang/lang20Q1/ja'; /* 2020Q1 */
+import {
+  lang20Q2
+} from './versionLang/lang20Q2/ja'; /* 2020Q2 */
+
 export const messages = {
     /*
   ##################################################################################
@@ -1966,7 +1970,7 @@ export const messages = {
   */
   "ledger_user_guide": "Ledgerご利用のガイド",
   "latest_version_chrome": "最新バージョンのChromeご利用をお薦めします",
-  "ledger_support_version": "Ledgerサポートできるバージョン:0.1.1、Chromeサポートできるバージョン73.0",
+  "ledger_support_version": "Ledgerサポートできるバージョン:0.2.0、Chromeサポートできるバージョン80.0",
   "ledger_you_can": "あなたは行くことができます",
   "ledger_website": "Ledgerの公式サイト",
   "ledger_website_download": "最新の元帳バージョンをダウンロードして更新する",
@@ -2016,7 +2020,7 @@ export const messages = {
   "footer_fellow_us": "Follow Us",
   "footer_developer_resources": "Developer Resources",
   "footer_support_center": "Support Center",
-  "footer_tron_network": "TRON",
+  "footer_tron_network": "Tron.network",
   "login_privatekey_warn": "アカウントアセットの安全を守るため、紛失しないように、秘密鍵を大事に保存してください。",
   "login_privatekey_warn_safe": "でログインをお薦めします。",
   "token_does_not_support_exchange": "Token doesn't support trading now",
@@ -2251,6 +2255,11 @@ export const messages = {
   "Side_Chain":"DAppChain",
   "Main_Chain":"MainChain",
 
+  "JST_distribution_overview": "JST DISTRIBUTION OVERVIEW",
+  "JST_supply": "JST Supply",
+  "JST_Token_Release_Schedule": "JST Token Release Schedule",
+  "source_JST_team": "Source: JST Management Team",
+
   "7day": "7日",
   "14day": "14日間",
   "30day": "1ヶ月",
@@ -2271,9 +2280,9 @@ export const messages = {
   "day":"日",
 
   "developers_username": "username",
-  "developers_current_year":"year's points",
-  "developers_current_quarter": "quarter's points",
-  "developers_current_month":"month's points",
+  "developers_current_year":"Total points",
+  "developers_current_quarter": "Last quarter points",
+  "developers_current_month":"Last month points",
   "developers_view_points":"View Points Details",
   "developers_points_details": "Points details",
   "developers_contribution_link":"Contribution content corresponding link",
@@ -2468,5 +2477,6 @@ export const messages = {
 "address_freeze_owner":"自分に固定する",
 "address_freeze_other":"他人に固定する",
 ...lang19Q4,
-...lang20Q1
+...lang20Q1,
+...lang20Q2
 }

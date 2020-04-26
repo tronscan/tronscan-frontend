@@ -13,15 +13,16 @@ import SmartTable from "../common/SmartTable.js"
 import {TronLoader} from "../common/loaders";
 import TotalInfo from "../common/TableTotal";
 import DateRange from "../common/DateRange";
-import {TRXPrice} from "../common/Price";
-import {ONE_TRX} from "../../constants";
+//import {TRXPrice} from "../common/Price";
+//import {ONE_TRX} from "../../constants";
 import {DatePicker} from 'antd';
 import moment from 'moment';
-import xhr from "axios/index";
+//import xhr from "axios/index";
 import {NameWithId} from "../common/names";
 import rebuildList from "../../utils/rebuildList";
 import BlockTime from '../common/blockTime'
 import { tu } from "../../utils/i18n";
+import { Tooltip,Icon } from 'antd';
 
 
 const RangePicker = DatePicker.RangePicker;
@@ -70,7 +71,7 @@ class Transfers extends React.Component {
       }
     }
 
-    let {transfers, total, rangeTotal} = await Client.getTransfers({
+    let {transfers, total, rangeTotal,contractMap} = await Client.getTransfers({
       sort: '-timestamp',
       limit: pageSize,
       start: (page - 1) * pageSize,
@@ -78,7 +79,14 @@ class Transfers extends React.Component {
       end_timestamp: this.end,
       ...searchParams,
     });
-    const transfersList = rebuildList(transfers, 'tokenName', 'amount');
+    let transfersList = rebuildList(transfers, 'tokenName', 'amount');
+    transfersList.forEach(item=>{
+      if(contractMap){
+          contractMap[item.transferFromAddress]? (item.ownerIsContract = true) :  (item.ownerIsContract = false)
+          contractMap[item.transferToAddress]? (item.toIsContract = true) :  (item.toIsContract = false)
+      }
+    })
+
     this.setState({
       transfers: transfersList,
       loading: false,
@@ -132,7 +140,32 @@ class Transfers extends React.Component {
         align: 'left',
         className: 'ant_table',
         render: (text, record, index) => {
-          return <AddressLink address={text}>{text}</AddressLink>
+          return <span>
+            {/*  Distinguish between contract and ordinary address */}
+            {record.ownerIsContract? (
+              <span className="d-flex">
+                <Tooltip
+                  placement="top"
+                  title={upperFirst(
+                      intl.formatMessage({
+                      id: "transfersDetailContractAddress"
+                      })
+                  )}
+                >
+                  <Icon
+                    type="file-text"
+                    style={{
+                    verticalAlign: 0,
+                    color: "#77838f",
+                    lineHeight: 1.4
+                    }}
+                  />
+                </Tooltip>
+                <AddressLink address={text} isContract={true}>{text}</AddressLink>
+              </span>
+              ) : <AddressLink address={text}>{text}</AddressLink>
+            }
+          </span>
         }
       },
       {
@@ -142,8 +175,34 @@ class Transfers extends React.Component {
         align: 'left',
         className: 'ant_table',
         render: (text, record, index) => {
-          return  <AddressLink address={text}>{text}</AddressLink>
+          return <span>
+            {/*  Distinguish between contract and ordinary address */}
+            {record.toIsContract? (
+              <span className="d-flex">
+                <Tooltip
+                  placement="top"
+                  title={upperFirst(
+                      intl.formatMessage({
+                      id: "transfersDetailContractAddress"
+                      })
+                  )}
+                >
+                  <Icon
+                    type="file-text"
+                    style={{
+                      verticalAlign: 0,
+                      color: "#77838f",
+                      lineHeight: 1.4
+                    }}
+                  />
+                </Tooltip>
+                <AddressLink address={text} isContract={true}>{text}</AddressLink>
+              </span>
+              ) : <AddressLink address={text}>{text}</AddressLink>
+            }
+          </span>
         }
+
       },
       {
         title: upperFirst(intl.formatMessage({id: 'status'})),

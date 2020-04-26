@@ -5,6 +5,9 @@ import {
 import {
   lang20Q1
 } from './versionLang/lang20Q1/ko.js'; /* 2020Q1 */
+import {
+  lang20Q2
+} from './versionLang/lang20Q2/ko.js'; /* 2020Q2 */
 export const messages = {
     /*
   ##################################################################################
@@ -1956,7 +1959,7 @@ export const messages = {
  */
   "ledger_user_guide": "Ledger사용 가이드",
   "latest_version_chrome": "최신 버전 Chrome 사용 추천",
-  "ledger_support_version": "Ledger지원 버전: 0.1.1, Chrome버전 73.0",
+  "ledger_support_version": "Ledger지원 버전: 0.2.0, Chrome버전 80.0",
   "ledger_you_can": "너는 할 수있다",
   "ledger_website": "Ledger 공식 웹 사이트",
   "ledger_website_download": "원장의 최신 버전을 다운로드하여 업데이트하십시오",
@@ -2004,7 +2007,7 @@ export const messages = {
   "footer_fellow_us": "Follow Us",
   "footer_developer_resources": "Developer Resources",
   "footer_support_center": "Support Center",
-  "footer_tron_network": "TRON",
+  "footer_tron_network": "Tron.network",
   "login_privatekey_warn": "계정 보안을 유지 및 자산 손실을 방지하기 위해서는 개인 키 (private key)를 잘 보관하고 다른 사람에게 절대 제공하지 마십시오. 또한 ",
   "login_privatekey_warn_safe": "를 사용하여 로그인하는 것을 권장합니다.",
   "token_does_not_support_exchange": "Token doesn't support trading now",
@@ -2255,6 +2258,11 @@ export const messages = {
   "Side_Chain":"DAppChain",
   "Main_Chain":"MainChain",
 
+  "JST_distribution_overview": "JST DISTRIBUTION OVERVIEW",
+  "JST_supply": "JST Supply",
+  "JST_Token_Release_Schedule": "JST Token Release Schedule",
+  "source_JST_team": "Source: JST Management Team",
+
   "7day": "7 일",
   "14day": "14 일",
   "30day": "1 개월",
@@ -2275,9 +2283,9 @@ export const messages = {
   "day":"일",
 
   "developers_username": "username",
-  "developers_current_year":"year's points",
-  "developers_current_quarter": "quarter's points",
-  "developers_current_month":"month's points",
+  "developers_current_year":"Total points",
+  "developers_current_quarter": "Last quarter points",
+  "developers_current_month":"Last month points",
   "developers_view_points":"View Points Details",
   "developers_points_details": "Points details",
   "developers_contribution_link":"Contribution content corresponding link",
@@ -2472,5 +2480,6 @@ export const messages = {
    "address_freeze_owner":"자신에게 동결",
    "address_freeze_other":"타인에게 동결",
    ...lang19Q4,
-   ...lang20Q1
+   ...lang20Q1,
+   ...lang20Q2
 };

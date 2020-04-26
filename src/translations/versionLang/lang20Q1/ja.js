@@ -230,6 +230,9 @@ export const lang20Q1 = {
   freeze_TRX_error:"Something went wrong while trying to freeze TRX, please try again later.",
   votes_cannot_exceed_5_SRs:"Votes cannot exceed 5 SRs",
 
+  too_many_bytes_to_encode:"Too many bytes to encode",
+  use_TRONlink_or_private_key :"Please login to use this function via TRONlink or private key",
+
   // 2020-03-03 leon
   account_total_tip: "上位10000レコードのみが表示され、デフォルトでTRXバランスを減らしてソートされます。",
   account_rank: "ナンバー",
@@ -282,7 +285,7 @@ account_representative_owner: "スーパー代表報酬",
 account_representative_block_table_res: "消費資源",
 account_representative_block_table_prize: "ブロック報酬",
 account_representative_block_desc:
-  "生成された{block}ブロックから獲得した{trx} TRX",
+  "生成された{block} ブロックから獲得した{trx} TRX",
 account_representative_voters_per_tip: "投票者による投票/総投票数",
 account_representative_transfer_tip: "このアカウントに関連するTRX / TRC10 / TRC20トークン転送の数",
 account_representative_unit:'{number}投票者による{votes}票',
@@ -303,6 +306,49 @@ account_piechart_title:'資産配分',
   address_account_table_filter_token_tips: "The token is not included in TRONSCAN",
   current_version:'最新バージョン',
   account_block:'ブロック',
-  account_address_total_balance_tip:"アカウント内のすべてのトークンの価値の合計"
+  account_address_total_balance_tip:"アカウント内のすべてのトークンの価値の合計",
+  get_usdj:'得る USDJ',
+  pledge_to_get_USDJ:'Pledge to get USDJ',
+  get_usdj_guide: "USDJの入手方法",
+  fill_a_valid_ledger_note:'Please confirm that the Transactions Data option in the ledger settings is allowed, otherwise you cannot send notes',
+  enter_up_to_50_characters:'Enter up to 50 characters',
+  address_token_less_than_10:'tokens with a value less than 10 TRX',
+  address_total_tron_power:'Total TRON Power',
+  address_total_tron_power_remain:'Available TORN Power',
+  address_total_tron_power_used:'Used TRON Power',
 
+  // 03-26 tag 
+  account_tags_list:'タグのリスト',
+  account_tags_add:'追加',
+  account_tags_desc:'タグ機能により、アカウントに非公開でタグを付けることができ、アカウントをより簡単に識別できます',
+  account_tags_number:'全部で{total}個のアカウント',
+  account_tags_table_1:'ラベル',
+  account_tags_table_2:'備考',
+  account_tags_add_title:'タグを追加',
+  account_tags_edit_title:'edit tag',
+  account_tags_add_success:'The tag has been successfully added',
+  account_tags_edit_success:'The tag has been successfully edited',
+  account_tags_number_rec:'{number} accounts mark',
+  account_tags_tip:'プライベートタグ、あなただけが閲覧できます',
+
+  account_tags_edit: "edit",
+  account_tags_delete: "remove",
+  account_tags_delete_is: "タグを削除してもよろしいですか？",
+  account_tags_delete_succss: "正常に削除されました",
+  account_address_name_tag:'(プラットフォーム認証タグ)',
+  account_tags_address_placehold:'请输入正确的地址',
+  account_tags_tag_placehold:'20文字の長さのタグを入力してください',
+  account_tags_note_placehold:'オプション、長さ100文字',
+  account_tags_tag_valid:'Only Chinese, English or Arabic numbers can be entered',
+  account_tags_rec:"おすすめのタグ",
+  account_tags_my_tag:'私のタグ',
+  account_tags_my_tag_update:'更新',
+  account_tags_my_tag_login_show:'ログイン後に表示',
+  account_tags_my_tag_not_available:'Not Available',
+
+
+  // foundation address
+  foundation_address_update_date:'Updated time: 2019/12/31',
+  foundation_address_deadline_date:'by 2020.4.15',
+  
 };

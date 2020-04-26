@@ -6,7 +6,7 @@ import {connect} from "react-redux";
 import {Client} from "../../services/api";
 import {TransactionHashLink, AddressLink, BlockNumberLink,TokenLink, TokenTRC20Link} from "./Links";
 import {tu} from "../../utils/i18n";
-import { Icon,Checkbox,Tooltip } from "antd";
+import {DatePicker,Icon,Checkbox,Tooltip} from 'antd';
 // import TimeAgo from "react-timeago";
 import {TronLoader} from "./loaders";
 import {Truncate,TruncateAddress} from "./text";
@@ -16,29 +16,31 @@ import {upperFirst} from "lodash";
 import _ from "lodash";
 import {QuestionMark} from "./QuestionMark";
 import {isAddressValid} from "@tronscan/client/src/utils/crypto";
+
 import TotalInfo from "./../../components/addresses/components/TableTotal";
 import DateSelect from './../../components/addresses/components/dateSelect';
-import { CONTRACT_ADDRESS_USDT, CONTRACT_ADDRESS_WIN, CONTRACT_ADDRESS_GGC } from "../../constants";
+import { API_URL,CONTRACT_ADDRESS_USDT, CONTRACT_ADDRESS_WIN, CONTRACT_ADDRESS_GGC } from "../../constants";
+
 import moment from 'moment';
 import {NameWithId} from "./names";
 import isMobile from "../../utils/isMobile";
 import rebuildList from "../../utils/rebuildList";
 import rebuildToken20List from "../../utils/rebuildToken20List";
 import xhr from "axios/index";
-import {API_URL} from '../../constants.js'
 import qs from 'qs'
-import BlockTime from '../common/blockTime'
+import BlockTime from '../common/blockTime'
 
 
+const RangePicker = DatePicker.RangePicker;
 const CheckboxGroup = Checkbox.Group;
-
 class NewTransactions extends React.Component {
 
     constructor(props) {
         super(props);
-        let intl = props.intl;
+
         this.start = moment([2018,5,25]).startOf('day').valueOf();
         this.end = moment().valueOf();
+        let intl = props.intl;
         this.state = {
             filter: {},
             transactions: [],
@@ -89,10 +91,10 @@ class NewTransactions extends React.Component {
             ],
             tokenOptionsAry: this.props.tokenList
         };
-        
     }
 
     componentDidMount() {
+        // this.loadTransactions();
         this.props.routerResetSearchFun()
     }
 
@@ -101,7 +103,6 @@ class NewTransactions extends React.Component {
         if (prevProps.filter.address !== filter.address && page.router == 'account') {
             this.loadTransactions();
         }
-      
         if (this.props.blockchain.accountSearchAddress !== prevProps.blockchain.accountSearchAddress) {
             console.log(this.props.blockchain.accountSearchAddress);
             console.log(prevProps.blockchain.accountSearchAddress);
@@ -161,8 +162,6 @@ class NewTransactions extends React.Component {
                 tokens:tokenFilter.checkedList.join(','),
             }
         }
-        
-
         let transactions, total,rangeTotal = 0;
 
         if(!isinternal ){
@@ -195,7 +194,6 @@ class NewTransactions extends React.Component {
                         keyword: accountSearchAddress
                     };
                 }
-               
                 let data = {}
                 let countData = {}
                 let totalData = {}
@@ -244,7 +242,6 @@ class NewTransactions extends React.Component {
                         console.log('error:' + e);
                     });
                     [data, totalData, countData] = allData;
-
                     transactions = data.transactions;
                     total = countData.rangeTotal;
                     rangeTotal = totalData.rangeTotal;
@@ -285,9 +282,6 @@ class NewTransactions extends React.Component {
                         start: (page - 1) * pageSize,
                         total: this.state.total,
                         ...filter,
-                        ...typeFilterObj,
-                        ...statusFilterObj,
-                        ...resultFilterObj
                     }),
                     Client.getTransactions({
                         limit: 0,
@@ -508,14 +502,14 @@ class NewTransactions extends React.Component {
             </div>
         )
 
-       
         let column = [
+
             {
-                title: upperFirst(intl.formatMessage({id: 'transaction_hash'})),
+                title: upperFirst(intl.formatMessage({id: 'hash'})),
                 dataIndex: 'hash',
                 key: 'hash',
                 align: 'left',
-                width: activeLanguage ==='ja' ? '7%' :'8%',
+                width:'8%',
                 className: 'ant_table',
                 render: (text, record, index) => {
                     return <Truncate>
@@ -531,7 +525,7 @@ class NewTransactions extends React.Component {
                 key: 'block',
                 align: 'left',
                 className: 'ant_table',
-                width: '9%',
+                width: '10%',
                 render: (text, record, index) => {
                     return <BlockNumberLink number={record.block}/>
                 }
@@ -581,7 +575,7 @@ class NewTransactions extends React.Component {
                         </div>
                     ) 
                         
-                    // <BlockTime time={text}></BlockTime>
+                    // <BlockTime time={text}></BlockTime>
                     // <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
                 }
             },
@@ -718,26 +712,25 @@ class NewTransactions extends React.Component {
                   return <FormattedNumber value={text / Math.pow(10,6)}></FormattedNumber>;
                 }
             },
+            // {
+            //     title: upperFirst(intl.formatMessage({id: 'contract_type'})),
+            //     dataIndex: 'contractType',
+            //     key: 'contractType',
+            //     align: 'left',
+            //     width: '20%',
+            //     className: 'ant_table _text_nowrap',
+            //     render: (text, record, index) => {
+            //         return <span>{ContractTypes[text]}</span>
+            //     }
+            // },
+            
             {
-                title: (
-                    <span>
-                        {
-                            upperFirst(
-                                intl.formatMessage({
-                                    id: "tokens"
-                                })
-                            )
-                        }
-                        <span style={{position:'absolute',right:0,left:'92%'}}>
-                            <QuestionMark
-                                placement="top"
-                                text="account_tab_transactions_token_info"
-                            />
-                        </span>
-                       
-                    </span>
+                dataIndex:
+                upperFirst(
+                    intl.formatMessage({
+                        id: "tokens"
+                    })
                 ),
-                dataIndex: "tokens",
                 align: "left",
                 key: "tokens",
                 className: "ant_table",
@@ -757,7 +750,7 @@ class NewTransactions extends React.Component {
                 },
                 render: (text, record, index) => {
                     return (
-                        <div >
+                        <div>
                             {   record.map_token_id == 1002000 ||
                                 record.map_token_id == CONTRACT_ADDRESS_USDT ||
                                 record.map_token_id == CONTRACT_ADDRESS_WIN ||
@@ -869,14 +862,14 @@ class NewTransactions extends React.Component {
                     )
                 }
             }
-       
+           
         ];
         return column;
     }
 
     trc20CustomizedColumn = () => {
         let {intl} = this.props;
-        
+       
         let column = [
 
             {
@@ -1000,7 +993,7 @@ class NewTransactions extends React.Component {
         // }
 
         return (
-          <div className={"token_black " + (address ? "mt-5" : "")} style={{padding:'30px 0'}}>
+          <div className={"token_black  " + (address ? "mt-5" : "")} style={{padding:'30px 0'}}>
             {loading && (
               <div className="loading-style">
                 <TronLoader />
@@ -1028,29 +1021,26 @@ class NewTransactions extends React.Component {
                     />
                 )}
             </div>
-         
             {!loading && transactions.length === 0 ? (
               <div className="p-3 text-center no-data">
                 {tu("no_transactions")}
               </div>
             ) : (
-                <div className={isMobile ? "pt-5":null}>
-                    <SmartTable
-                        bordered={true}
-                        loading={loading}
-                        position="bottom"
-                        column={column}
-                        data={transactions}
-                        total={rangeTotal > 2000 ? 2000 : rangeTotal}
-                        current={this.state.page}
-                        onPageChange={(page, pageSize) => {
-                            this.loadTransactions(page, pageSize);
-                        }}
-                        locale={{
-                            filterTitle: filterTitleKey || 'default', // prevent console error ，remove result => filterTitle ''fail；
-                        }}
-                    />
-                </div>
+              <SmartTable
+                bordered={true}
+                loading={loading}
+                position="bottom"
+                column={column}
+                data={transactions}
+                total={rangeTotal > 2000 ? 2000 : rangeTotal}
+                current={this.state.page}
+                onPageChange={(page, pageSize) => {
+                  this.loadTransactions(page, pageSize);
+                }}
+                locale={{
+                    filterTitle: filterTitleKey || 'default', // prevent console error ，remove result => filterTitle ''fail；
+                }}
+              />
             )}
           </div>
         );

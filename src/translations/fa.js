@@ -5,6 +5,9 @@ import {
 import {
   lang20Q1
 } from './versionLang/lang20Q1/fa'; /* 2020Q1 */
+import {
+  lang20Q2
+} from './versionLang/lang20Q2/fa'; /* 2020Q2 */
 export const messages = {
    /*
     ##################################################################################
@@ -1963,7 +1966,7 @@ export const messages = {
   */
    "ledger_user_guide": "راهنمای کاربر Ledger",
    "latest_version_chrome": "ما توصیه می کنیم از آخرین نسخه از کروم استفاده کنید",
-   "ledger_support_version": "نسخه پشتیبانی لدجر:0.1.1، نسخه پشتیبانی از کروم 73.0",
+   "ledger_support_version": "نسخه پشتیبانی لدجر:0.2.0، نسخه پشتیبانی از کروم 80.0",
    "ledger_you_can": "شما می توانید بازدید کنید",
    "ledger_website": "وب سایت Ledger",
    "ledger_website_download": "نسخه لوگر به روز شده را دانلود کنید",
@@ -2012,7 +2015,7 @@ export const messages = {
    "footer_fellow_us": "Follow Us",
    "footer_developer_resources": "Developer Resources",
    "footer_support_center": "Support Center",
-   "footer_tron_network": "TRON",
+   "footer_tron_network": "Tron.network",
    "login_privatekey_warn": "برای اطمینان از امنیت حساب خود، لطفا از کلید خصوصی خود مراقبت کنید ، برای جلوگیری از از دست دادن دارایی. توصیه می شود از ",
    "login_privatekey_warn_safe": "  برای ورود امن استفاده کنید.",
    "token_does_not_support_exchange": "Token doesn't support trading now",
@@ -2255,6 +2258,11 @@ export const messages = {
    "Side_Chain":"DAppChain",
    "Main_Chain":"MainChain",
 
+   "JST_distribution_overview": "JST DISTRIBUTION OVERVIEW",
+   "JST_supply": "JST Supply",
+   "JST_Token_Release_Schedule": "JST Token Release Schedule",
+   "source_JST_team": "Source: JST Management Team",
+
 
    "7day": "7 روز",
    "14day": "14 روز",
@@ -2274,9 +2282,9 @@ export const messages = {
    sun_propose_12: "Propose to allow DAppChain 1.0.2 upgrade",
 
    "developers_username": "username",
-   "developers_current_year":"year's points",
-   "developers_current_quarter": "quarter's points",
-   "developers_current_month":"month's points",
+   "developers_current_year":"Total points",
+   "developers_current_quarter": "Last quarter points",
+   "developers_current_month":"Last month points",
    "developers_view_points":"View Points Details",
    "developers_points_details": "Points details",
    "developers_contribution_link":"Contribution content corresponding link",
@@ -2471,5 +2479,7 @@ export const messages = {
 "address_freeze_owner":"به حساب خودم .",
 "address_freeze_other":"به حساب (های) دیگران",
 ...lang19Q4,
-...lang20Q1
+...lang20Q1,
+...lang20Q2
+ 
 };

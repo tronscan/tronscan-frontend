@@ -3,21 +3,21 @@ import { Client } from "../../../services/api";
 import { t, tu } from "../../../utils/i18n";
 import { trim } from "lodash";
 import {
-  FormattedDate,
-  FormattedNumber,
-  FormattedRelative,
-  FormattedTime,
+  //FormattedDate,
+  //FormattedNumber,
+  //FormattedRelative,
+  //FormattedTime,
   injectIntl
 } from "react-intl";
 import TokenHolders from "./TokenHolders";
 import { Icon } from "antd";
 import { NavLink, Route, Switch } from "react-router-dom";
-import { AddressLink, ExternalLink } from "../../common/Links";
+//import { AddressLink, ExternalLink } from "../../common/Links";
 import { TronLoader } from "../../common/loaders";
 import Transfers from "./Transfers.js";
-import TokenInfo from "./TokenInfo.js";
+//import TokenInfo from "./TokenInfo.js";
 import { Information } from "./Information.js";
-import qs from "qs";
+//import qs from "qs";
 import { toastr } from "react-redux-toastr";
 import { isAddressValid } from "@tronscan/client/src/utils/crypto";
 import {
@@ -27,7 +27,9 @@ import {
   CONTRACT_ADDRESS_WIN,
   CONTRACT_ADDRESS_GGC,
   IS_MAINNET,
-  uuidv4
+  uuidv4,
+  CONTRACT_ADDRESS_USDJ,
+  CONTRACT_ADDRESS_USDJ_TESTNET
 } from "../../../constants";
 import { login } from "../../../actions/app";
 import { reloadWallet } from "../../../actions/wallet";
@@ -40,6 +42,7 @@ import { some, toLower } from "lodash";
 import xhr from "axios/index";
 import _ from "lodash";
 import WinkSupply from "./winkSupply.js";
+import JstSupply from "./jstSupply.js";
 import { CsvExport } from "../../common/CsvExport";
 import { loadUsdPrice } from "../../../actions/blockchain";
 import Code from "../../blockchain/Contract/Code";
@@ -52,6 +55,8 @@ import {
 } from "../../../utils/DateTime";
 import isMobile from "../../../utils/isMobile";
 import ApiClientMonitor from '../../../services/monitor'
+import { HrefLink } from "../../common/Links";
+
 class Token20Detail extends React.Component {
   constructor() {
     window.performance.mark("start2");
@@ -117,6 +122,10 @@ class Token20Detail extends React.Component {
   async getWinkFund() {
     let winkSupply = await ApiClientToken.getWinkFund();
     return winkSupply;
+  }
+  async getJstFund() {
+    const {data: funds} = await xhr.get(`${API_URL}/api/jst/fund`);
+    return funds;
   }
 
   async getTransferNum(address) {
@@ -213,6 +222,18 @@ class Token20Detail extends React.Component {
           winkTotalSupply = await this.getWinkFund();
         }
 
+        let jstTotalSupply = {};
+        if (address === "TCFLL5dx5ZJdKnWuesXxi1VPwjLVmWZZy9") {
+          tabs.push({
+            id: "JstSupply",
+            icon: "",
+            path: "/supply",
+            label: <span>{tu("JST_supply")}</span>,
+            cmp: () => <JstSupply token={token} />
+          });
+          jstTotalSupply = await this.getJstFund();
+        }
+
         let transferNumber = await this.getTransferNum(address);
 
         this.setState({ loading: true });
@@ -222,6 +243,7 @@ class Token20Detail extends React.Component {
             : 0;
 
         token.winkTotalSupply = winkTotalSupply;
+        token.jstTotalSupply = jstTotalSupply;
         token.transferNumber = transferNumber.rangeTotal || 0;
         this.setState({
           loading: false,
@@ -847,8 +869,10 @@ class Token20Detail extends React.Component {
                       <div className="token-description">
                         <h5 className="card-title">
                           {token.name} ({token.symbol})
+                          { (token.contract_address == CONTRACT_ADDRESS_USDJ || token.contract_address == CONTRACT_ADDRESS_USDJ_TESTNET) && <section className="to-USDj"><HrefLink href="https://www.just.network"><i className="fas fa-coins ml-2 mr-1"></i>{intl.formatMessage({id:'get_usdj'})}</HrefLink></section>}
                         </h5>
-                        <p className="card-text">{token.token_desc}</p>
+                        <p className="card-text" style={{marginBottom: 0}}>{token.token_desc}</p>
+                        { token.contract_address == CONTRACT_ADDRESS_USDJ && <div className="to-USDj" style={{marginTop: '.5rem'}}><HrefLink href="https://tronscanorg.zendesk.com/hc/en-us/articles/360041737852-Step-by-step-instructions-on-how-to-generate-USDJ-on-JUST-CDP"><i className="fas fa-book mx-1"></i>{intl.formatMessage({id:'get_usdj_guide'})}</HrefLink></div>}
                       </div>
                       <div className="token-sign">TRC20</div>
                       {/*<div className="ml-auto">*/}
@@ -860,7 +884,7 @@ class Token20Detail extends React.Component {
                       {/*</div>*/}
                     </div>
                   </div>
-                  <Information token={token} priceUSD={priceUSD}></Information>
+                  <Information token={token} priceUSD={priceUSD} intl={intl}></Information>
                 </div>
 
                 <div
@@ -1061,7 +1085,7 @@ class Token20Detail extends React.Component {
                       shelllod:time.domContentLoadedEventEnd - time.domContentLoadedEventStart,
                       measure5:parseInt(measure5),
                       blankTime:time.domLoading - time.fetchStart,
-                      v:'v1',
+                      v:'v4',
                       entryList:getPerformanceTimingEntry(),
                       udid:uuidv4
                       

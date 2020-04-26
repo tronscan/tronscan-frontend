@@ -5,6 +5,9 @@ import {
 import {
   lang20Q1
 } from './versionLang/lang20Q1/ru.js'; /* 2020Q1 */
+import {
+  lang20Q2
+} from './versionLang/lang20Q2/ru.js'; /* 2020Q2 */
 export const messages = {
     /*
   ##################################################################################
@@ -982,7 +985,7 @@ export const messages = {
   "burned_trx": "TRX сожжено",
   "supply_notes": "Краудсейл и предварительная продажа доступны по всему миру, за исключением США, Китая и Японии.",
   "14_day_transaction_history": "История транзакций за 14 дней",
-  "14_day_address_growth": "",
+  "14_day_address_growth": "14 days Accounts Growth",
   /*
   ##################################################################################
   #                                                                                #
@@ -1971,7 +1974,7 @@ export const messages = {
  */
   "ledger_user_guide": "Руководство по использованию Ledger",
   "latest_version_chrome": "Обновите Сhrome до последней версии",
-  "ledger_support_version": "Поддерживаемая версия Ledger: 0.1.1., Поддерживаемая версия Chrome 73.0",
+  "ledger_support_version": "Поддерживаемая версия Ledger: 0.2.0, Поддерживаемая версия Chrome 80.0",
   "ledger_you_can": "Вы можете посетить",
   "ledger_website": " Ledger веб-сайт ",
   "ledger_website_download": "Загрузите и обновите последнюю версию Ledger",
@@ -2021,7 +2024,7 @@ export const messages = {
   "footer_fellow_us": "Follow Us",
   "footer_developer_resources": "Developer Resources",
   "footer_support_center": "Support Center",
-  "footer_tron_network": "TRON",
+  "footer_tron_network": "Tron.network",
   "login_privatekey_warn": "Чтобы обеспечить безопасность учетной записи и избежать потери активов, пожалуйста сохраните и хорошо следите за своим приватным ключом и никогда никому не отдавайте его. Для входа рекомендуется Tronlink",
   "login_privatekey_warn_safe": " использовать",
   "token_does_not_support_exchange": "Token doesn't support trading now",
@@ -2260,6 +2263,11 @@ export const messages = {
   "Side_Chain":"DAppChain",
   "Main_Chain":"MainChain",
 
+  "JST_distribution_overview": "JST DISTRIBUTION OVERVIEW",
+  "JST_supply": "JST Supply",
+  "JST_Token_Release_Schedule": "JST Token Release Schedule",
+  "source_JST_team": "Source: JST Management Team",
+
   "7day": "7 дней",
   "14day": "14 дней",
   "30day": "1 месяц",
@@ -2280,9 +2288,9 @@ export const messages = {
 
 
   "developers_username": "username",
-  "developers_current_year":"year's points",
-  "developers_current_quarter": "quarter's points",
-  "developers_current_month":"month's points",
+  "developers_current_year":"Total points",
+  "developers_current_quarter": "Last quarter points",
+  "developers_current_month":"Last month points",
   "developers_view_points":"View Points Details",
   "developers_points_details": "Points details",
   "developers_contribution_link":"Contribution content corresponding link",
@@ -2477,5 +2485,6 @@ export const messages = {
 "address_freeze_owner":"Для вашего аккаунта ",
 "address_freeze_other":"Для другого аккаунта(ов)",
 ...lang19Q4,
-...lang20Q1
+...lang20Q1,
+...lang20Q2
 };

@@ -1,4 +1,5 @@
 .account-new {
+  position: relative;
   .list-style-header{
     padding: 0;
   }
@@ -21,22 +22,23 @@
     padding: 20px 2.6%;
     background: #F4F4F2;
     font-size: 16px;
+    border-left:1px solid #D8D8D8;
+    border-right:1px solid #D8D8D8;
     .fa{
       color: #666;
     }
   }
   .address-info{
-    padding-right: 60px;
+    padding-right: 36px;
     border-right: 1px solid #eee;
   }
   .address-circle {
-    padding-left: 60px;
-
+    padding-left: 26px;
     font-size: 14px;
     color: #999999;
     font-family: PingFangSC-Medium;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     flex-direction: column;
     & > div {
       width: 100%;
@@ -62,6 +64,9 @@
       &:last-child{
         margin-bottom: 0;
       }
+      @media screen and (max-width: 768px) {
+         margin-bottom:20px;
+      }
     }
   }
   .resource-item {
@@ -80,7 +85,7 @@
   .representive {
     justify-content: space-between;
     section{
-      min-width: 45%;
+      min-width: 38%;
     }
     h6 {
       font-size: 15px;
@@ -104,7 +109,7 @@
     .color333 {
       color: #333 !important;
       font-size: 14px;
-      padding: 0 10px;
+      padding: 0 5px;
     }
   }
 
@@ -118,6 +123,10 @@
       border-bottom: 1px solid #eee;
       // white-space: normal;
       // max-width:50%;
+      @media screen and (max-width: 768px) {
+        white-space: normal;
+        min-width: 88px;
+      }
     }
     td {
       font-family: PingFangSC-Regular;
@@ -125,6 +134,9 @@
       color: #333333;
       border: 0;
       border-bottom: 1px solid #eee;
+      @media screen and (max-width: 768px) {
+        word-break: break-word;
+      }
     }
     .href-link {
       a {
@@ -166,4 +178,12 @@
       display: block !important;
     }
   }
+
+  .ant-table-header-column .ant-table-column-sorters{
+    &:hover{
+      
+    }
+  }
+
+  
 }

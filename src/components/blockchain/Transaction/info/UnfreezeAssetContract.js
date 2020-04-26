@@ -13,6 +13,9 @@ import { NameWithId } from "../../../common/names";
 import BandwidthUsage from "./common/BandwidthUsage";
 import SignList from "./common/SignList";
 import { Link } from "react-router-dom";
+import {injectIntl} from "react-intl";
+import { upperFirst } from "lodash";
+import { Tooltip,Icon } from 'antd';
 
 class UnfreezeAssetContract extends React.Component {
   constructor(props) {
@@ -20,7 +23,7 @@ class UnfreezeAssetContract extends React.Component {
     this.state = {};
   }
   render() {
-    let { contract } = this.props;
+    let { contract,intl } = this.props;
     let signList = contract.signature_addresses || [];
 
     return (
@@ -30,9 +33,37 @@ class UnfreezeAssetContract extends React.Component {
           <table className="table">
             <tbody>
               <Field label="transaction_owner_address">
-                <AddressLink address={contract["owner_address"]}>
-                  {contract["owner_address"]}
-                </AddressLink>
+                <span className="d-flex">
+                  {/*  Distinguish between contract and ordinary address */}
+                  {contract.contract_map[contract["owner_address"]]? (
+                    <span className="d-flex">
+                      <Tooltip
+                        placement="top"
+                        title={upperFirst(
+                          intl.formatMessage({
+                            id: "transfersDetailContractAddress"
+                          })
+                        )}
+                      >
+                        <Icon
+                          type="file-text"
+                          style={{
+                            verticalAlign: 0,
+                            color: "#77838f",
+                            lineHeight: 1.4
+                          }}
+                        />
+                      </Tooltip>
+                      <AddressLink address={contract["owner_address"]} isContract={true}>
+                        {contract["owner_address"]}
+                      </AddressLink>
+                    </span>
+                  ) :
+                  <AddressLink address={contract["owner_address"]}>
+                    {contract["owner_address"]}
+                  </AddressLink>
+                  }
+                </span>
               </Field>
               {/* <Field label="amount">{contract.amount / ONE_TRX || 0}</Field> */}
               <Field label="trc20_token_id">{contract.token_id}</Field>
@@ -57,4 +88,4 @@ class UnfreezeAssetContract extends React.Component {
   }
 }
 
-export default UnfreezeAssetContract;
+export default injectIntl(UnfreezeAssetContract);

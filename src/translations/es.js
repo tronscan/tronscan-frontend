@@ -5,6 +5,9 @@ import {
 import {
   lang20Q1
 } from './versionLang/lang20Q1/es';
+import {
+  lang20Q2
+} from './versionLang/lang20Q2/es'; /* 2020Q2 */
 export const messages = {
   /*
   ##################################################################################
@@ -1968,7 +1971,7 @@ export const messages = {
    */
   "ledger_user_guide": "Ledger User Guide",
   "latest_version_chrome": "we recommend the latest version of chrome",
-  "ledger_support_version": "Ledger support version: 0.1.1, chrome support version 73.0",
+  "ledger_support_version": "Ledger support version: 0.2.0, chrome support version 80.0",
   "ledger_you_can": "You can go to the ",
   "ledger_website": "Ledger Website",
   "ledger_website_download": "to download and update the latest version of Ledger",
@@ -2018,7 +2021,7 @@ export const messages = {
   "footer_fellow_us":"Follow Us",
   "footer_developer_resources":"Developer Resources",
   "footer_support_center":"Support Center",
-  "footer_tron_network":"TRON",
+  "footer_tron_network":"Tron.network",
   "login_privatekey_warn":"Para garantizar la seguridad de su cuenta y evitar la pérdida de activos, cuide su private key y nunca se la entregue a nadie. Se recomienda utilizar ",
   "login_privatekey_warn_safe":" para iniciar sesión.",
   "token_does_not_support_exchange":"Token doesn't support trading now",
@@ -2256,6 +2259,11 @@ export const messages = {
   "WIN_Token_Release_Schedule": "WIN Token Release Schedule",
   "source_WIN_team": "Source: WIN Management Team",
 
+  "JST_distribution_overview": "JST DISTRIBUTION OVERVIEW",
+  "JST_supply": "JST Supply",
+  "JST_Token_Release_Schedule": "JST Token Release Schedule",
+  "source_JST_team": "Source: JST Management Team",
+
   "Side_Chain":"DAppChain",
   "Main_Chain":"MainChain",
   "7day": "7 días",
@@ -2277,9 +2285,9 @@ export const messages = {
   "day":"día",
 
   "developers_username": "username",
-  "developers_current_year":"year's points",
-  "developers_current_quarter": "quarter's points",
-  "developers_current_month":"month's points",
+  "developers_current_year":"Total points",
+  "developers_current_quarter": "Last quarter points",
+  "developers_current_month":"Last month points",
   "developers_view_points":"View Points Details",
   "developers_points_details": "Points details",
   "developers_contribution_link":"Contribution content corresponding link",
@@ -2475,5 +2483,6 @@ export const messages = {
 "address_freeze_owner":"A tu cuenta",
 "address_freeze_other":"A la (s) cuenta (s) de otros",
   ...lang19Q4,
-  ...lang20Q1
+  ...lang20Q1,
+  ...lang20Q2
 };

@@ -14,7 +14,7 @@ import {TronLoader} from "./loaders";
 import rebuildList from "../../utils/rebuildList";
 import rebuildToken20List from "../../utils/rebuildToken20List";
 // import {SwitchToken} from "./Switch";
-// import DateRange from "./DateRange";
+import DateRange from "./DateRange";
 import TotalInfo from "./../../components/addresses/components/TableTotal";
 import DateSelect from "./../../components/addresses/components/dateSelect";
 import moment from 'moment';
@@ -23,13 +23,11 @@ import _ from "lodash";
 import {isAddressValid} from "@tronscan/client/src/utils/crypto";
 import { CONTRACT_ADDRESS_USDT, CONTRACT_ADDRESS_WIN, CONTRACT_ADDRESS_GGC } from "../../constants";
 import qs from 'qs'
-import isMobile from "../../utils/isMobile";
-
-import { Icon,Checkbox,Radio } from 'antd';
-
 import {API_URL} from "../../constants";
-import BlockTime from '../common/blockTime'
+import BlockTime from '../common/blockTime';
+import { Icon,Checkbox,Radio,Tooltip } from 'antd';
 const CheckboxGroup = Checkbox.Group;
+
 
 
 class TransfersAll extends React.Component {
@@ -40,7 +38,7 @@ class TransfersAll extends React.Component {
         this.end = moment().valueOf();
         this.state = {
             filter: {
-                // direction:'all'
+                direction:'all'
             },
             transfers: [],
             page: 1,
@@ -51,7 +49,6 @@ class TransfersAll extends React.Component {
             autoRefresh: props.autoRefresh || false,
             hideSmallCurrency:false,
             tokenName:"",
-            timeType:true,
             inoutFilter:{
                 checkedList:[],
                 indeterminate:'',
@@ -92,18 +89,9 @@ class TransfersAll extends React.Component {
     componentDidMount() {
         let {page, pageSize} = this.state;
         // this.load(page,pageSize);
-        this.props.routerResetSearchFun();
-        const { tokenList } = this.props;
-        console.log(tokenList,'tokenAry')
+
         if (this.state.autoRefresh !== false) {
             this.props.setInterval(() => this.load(page,pageSize), this.state.autoRefresh);
-        }
-
-    }
-
-    componentDidUpdate(prevProps) {
-        if (this.props.blockchain.accountSearchAddress !== prevProps.blockchain.accountSearchAddress) {
-            this.load(1);
         }
     }
 
@@ -116,81 +104,20 @@ class TransfersAll extends React.Component {
         });
 
     };
+
     load = async (page = 1, pageSize = 20) => {
         let transfersTRX;
         let {id,istrc20=false, getCsvUrl} = this.props;
-       
-        let {showTotal,hideSmallCurrency,tokenNam,filter,inoutFilter,statusFilter,resultFilter,tokenFilter} = this.state;
-        let inoutFilterObj = {};
-        if(inoutFilter.checkedList.join(',')!==''){
-            if(inoutFilter.checkedList.length == 2){
-                inoutFilterObj = {
-                    direction:'all',
-                }
-            }else{
-                inoutFilterObj = {
-                    direction:inoutFilter.checkedList.join(','),
-                }
-            }
-          
+        let {showTotal,hideSmallCurrency,tokenNam,filter} = this.state;
+        const params = {
+            sort: '-timestamp',
+            count: showTotal ? true : null,
+            total: this.state.total,
+            start_timestamp:this.start,
+            end_timestamp:this.end,
+            ...filter,
+            ...id,
         }
-        let statusFilterObj = {};
-        if(statusFilter.checkedList.join(',')!==''){
-            statusFilterObj = {
-                confirm:statusFilter.checkedList.join(','),
-            }
-        }
-        let resultFilterObj = {};
-        if(resultFilter.checkedList.join(',')!==''){
-            if(resultFilter.checkedList.length == 2){
-                resultFilterObj = {
-                    ret:'all',
-                }
-            }else{
-                resultFilterObj = {
-                    ret:resultFilter.checkedList.join(','),
-                }
-            }
-        }
-        let tokenFilterObj = {};
-        if(tokenFilter.checkedList.join(',')!==''){
-            tokenFilterObj = {
-                tokens:tokenFilter.checkedList.join(','),
-            }
-        }
-        const { accountSearchAddress } = this.props.blockchain;
-        let params
-        if (accountSearchAddress === "") {
-            params = {
-                sort: '-timestamp',
-                count: showTotal ? true : null,
-                total: this.state.total,
-                start_timestamp:this.start,
-                end_timestamp:this.end,
-                ...filter,
-                ...id,
-                ...inoutFilterObj,
-                ...statusFilterObj,
-                ...resultFilterObj,
-                ...tokenFilterObj
-            };
-            } else {
-            params = {
-                sort: '-timestamp',
-                count: showTotal ? true : null,
-                total: this.state.total,
-                start_timestamp:this.start,
-                end_timestamp:this.end,
-                ...filter,
-                ...id,
-                ...inoutFilterObj,
-                ...statusFilterObj,
-                ...resultFilterObj,
-                ...tokenFilterObj,
-                keyword: accountSearchAddress
-            };
-        }
-        
         this.setState({
             loading: true,
             page: page,
@@ -214,7 +141,7 @@ class TransfersAll extends React.Component {
             console.log('error:' + e);
         });
 
-        const [{ transfers, total:totaldata, rangeTotal }, { count } ] = allData;
+        const [{ transfers, total:totaldata, rangeTotal,contractMap }, { count } ] = allData;
 
         list = transfers;
         total = count || totaldata;
@@ -250,6 +177,17 @@ class TransfersAll extends React.Component {
                 item.totip = true
             }
         })
+        rebuildRransfers.forEach(item=>{
+            if(contractMap){
+                if(item.type == 'trc10'){
+                    contractMap[item.owner_address]? (item.ownerIsContract = true) :  (item.ownerIsContract = false)
+                }else{
+                    contractMap[item.from_address]? (item.ownerIsContract = true) :  (item.ownerIsContract = false)
+                }
+                contractMap[item.to_address]? (item.toIsContract = true) :  (item.toIsContract = false)
+            }
+        })
+        // console.log(rebuildRransfers)
         this.setState({
             page,
             transfers:rebuildRransfers,
@@ -472,10 +410,9 @@ class TransfersAll extends React.Component {
             </div>
         )
 
-
         let column = [
             {
-                title: upperFirst(intl.formatMessage({id: 'transaction_hash'})),
+                title: upperFirst(intl.formatMessage({id: 'hash'})),
                 dataIndex: 'hash',
                 key: 'hash',
                 align: 'left',
@@ -554,15 +491,39 @@ class TransfersAll extends React.Component {
                 className: 'ant_table address_max_width',
                 width: '9%',
                 render: (text, record, index) => {
-                    return <div>
-                        {
-                            record.fromtip ?
-                                <AddressLink address={record.type == 'trc10'?text:record.from_address}>{record.type == 'trc10'?text:record.from_address}</AddressLink>:
-                                <TruncateAddress>{record.type == 'trc10'?text:record.from_address}</TruncateAddress>
+                    return  <span>
+                        {/*  Distinguish between contract and ordinary address */}
+                        {record.ownerIsContract? (
+                            <span className="d-flex">
+                                <Tooltip
+                                    placement="top"
+                                    title={upperFirst(
+                                        intl.formatMessage({
+                                        id: "transfersDetailContractAddress"
+                                        })
+                                    )}
+                                >
+                                    <Icon
+                                        type="file-text"
+                                        style={{
+                                        verticalAlign: 0,
+                                        color: "#77838f",
+                                        lineHeight: 1.4
+                                        }}
+                                    />
+                                </Tooltip>
+                                {record.fromtip ?
+                                    <AddressLink address={record.type == 'trc10'?text:record.from_address} isContract={true}>{record.type == 'trc10'?text:record.from_address}</AddressLink>
+                                    :
+                                    <TruncateAddress address={record.type == 'trc10'?text:record.from_address}>{record.type == 'trc10'?text:record.from_address}</TruncateAddress>}
+                            </span>
+                            ) : (
+                                record.fromtip ?
+                                    <AddressLink address={record.type == 'trc10'?text:record.from_address}>{record.type == 'trc10'?text:record.from_address}</AddressLink>:
+                                    <TruncateAddress address={record.type == 'trc10'?text:record.from_address}>{record.type == 'trc10'?text:record.from_address}</TruncateAddress>
+                            )
                         }
-
-                    </div>
-
+                    </span>
                 }
             },
             {
@@ -601,9 +562,39 @@ class TransfersAll extends React.Component {
                 className: 'ant_table address_max_width',
                 width: '9%',
                 render: (text, record, index) => {
-                    return record.totip?
-                        <AddressLink address={text}>{text}</AddressLink>:
-                        <TruncateAddress>{text}</TruncateAddress>
+                    return <span>
+                        {/*  Distinguish between contract and ordinary address */}
+                        {record.toIsContract? (
+                            <span className="d-flex">
+                                <Tooltip
+                                    placement="top"
+                                    title={upperFirst(
+                                        intl.formatMessage({
+                                        id: "transfersDetailContractAddress"
+                                        })
+                                    )}
+                                >
+                                    <Icon
+                                        type="file-text"
+                                        style={{
+                                        verticalAlign: 0,
+                                        color: "#77838f",
+                                        lineHeight: 1.4
+                                        }}
+                                    />
+                                </Tooltip>
+                                {record.totip ?
+                                    <AddressLink address={text} isContract={true}>{text}</AddressLink>
+                                    :
+                                    <TruncateAddress address={text}>{text}</TruncateAddress>}
+                            </span>
+                            ) : (
+                                record.totip ?
+                                    <AddressLink address={text}>{text}</AddressLink>:
+                                    <TruncateAddress address={text}>{text}</TruncateAddress>
+                            )
+                        }
+                    </span>
                 }
             },
             {
@@ -673,13 +664,23 @@ class TransfersAll extends React.Component {
                         </span>
                     )
                 },
-                
             },
+          
+
+            // {
+            //     title: '',
+            //     className: 'ant_table',
+            //     width: '5%',
+            //     render: (text, record, index) => {
+            //         return record.fromtip?<img width={40} height={22} src={require("../../images/address/in.png")}/>:<img  width={40} height={22} src={require("../../images/address/out.png")}/>
+            //     }
+            // },
+           
             {
                 title: upperFirst(intl.formatMessage({id: 'amount'})),
                 dataIndex: 'amount',
                 key: 'amount',
-                align: 'left',
+                align: 'center',
                 className: 'ant_table _text_nowrap',
                 render: (text, record, index) => {
                     return <span className="d-inline-block text-truncate"  style={{maxWidth: '200px'}}>{toThousands(record.map_amount)}</span>
@@ -845,7 +846,13 @@ class TransfersAll extends React.Component {
         
     }
 
-
+    onRadioChange = (e) => {
+        this.setState({
+            filter: {
+                direction: e.target.value,
+            }
+        }, () =>  this.load())
+    };
 
     render() {
 
@@ -865,7 +872,7 @@ class TransfersAll extends React.Component {
         // }
 
         return (
-            <div className="token_black transfersAll-container" style={{padding:'30px 0'}}>
+            <div className="token_black transfersAll-container transfers-Container" style={{padding:'30px 0'}}>
                 {loading && <div className="loading-style"><TronLoader/></div>}
                 <div className="d-flex justify-content-between" style={{right: 'auto'}}>
                     
@@ -884,23 +891,21 @@ class TransfersAll extends React.Component {
                     (!loading && transfers.length === 0)?
                         <div className="p-3 text-center no-data">{tu("no_transfers")}</div>
                         :
-                        <div className={isMobile ? "pt-5":null}>
-                            <SmartTable  
-                                position="bottom" 
-                                bordered={true} 
-                                loading={loading} 
-                                column={column} 
-                                data={transfers} 
-                                total={rangeTotal > 2000 ? 2000 : rangeTotal} 
-                                locale={locale} 
-                                addr="address" 
-                                nopadding={true}
-                                current={this.state.page}
-                                onPageChange={(page, pageSize) => {
-                                    this.onChange(page, pageSize)
-                                }}/>
-                        </div>
-                       
+                        <SmartTable 
+                            position="bottom" 
+                            bordered={true} 
+                            loading={loading} 
+                            column={column} 
+                            data={transfers} 
+                            total={rangeTotal > 2000 ? 2000 : rangeTotal} 
+                            locale={locale} addr="address" 
+                            transfers="address"
+                            nopadding={true}
+                            current={this.state.page}
+                            onPageChange={(page, pageSize) => {
+                                this.onChange(page, pageSize)
+                            }}/>
+                           
                 }
             </div>
         )
@@ -910,7 +915,6 @@ class TransfersAll extends React.Component {
 function mapStateToProps(state) {
     return {
       activeLanguage: state.app.activeLanguage,
-      blockchain: state.blockchain
     };
 }
 

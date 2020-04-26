@@ -16,10 +16,11 @@ import TotalInfo from "../common/TableTotal";
 import DateRange from "../common/DateRange";
 import {DatePicker} from 'antd';
 import moment from 'moment';
-import xhr from "axios/index";
+//import xhr from "axios/index";
 import queryString from 'query-string';
 import BlockTime from '../common/blockTime'
-import {tu} from '../../utils/i18n'
+import {tu} from '../../utils/i18n';
+import { Tooltip,Icon } from 'antd';
 
 
 const RangePicker = DatePicker.RangePicker;
@@ -34,6 +35,7 @@ class Transactions extends React.Component {
         this.state = {
             transactions: [],
             total: 0,
+            contractMap:{}
         };
         this.addressLock = false
     }
@@ -114,9 +116,13 @@ class Transactions extends React.Component {
                 ]).catch(e => {
                     console.log('error:' + e);
                 });
-
-                let [{ transactions }, { rangeTotal, total }] = allData;
-
+                let [{ transactions,contractMap }, { rangeTotal, total }] = allData;
+                transactions.forEach(item=>{
+                    if(contractMap){
+                        contractMap[item.ownerAddress]? (item.ownerIsContract = true) :  (item.ownerIsContract = false)
+                        contractMap[item.toAddress]? (item.toIsContract = true) :  (item.toIsContract = false)
+                    }
+                })
                 this.setState({
                     total: total,
                     transactions: transactions,
@@ -140,8 +146,14 @@ class Transactions extends React.Component {
                 ]).catch(e => {
                     console.log('error:' + e);
                 });
-                let [{ transactions }, { wholeChainTxCount, total }] = allData;
-
+                let [{ transactions,contractMap }, { wholeChainTxCount, total }] = allData;
+                transactions.forEach(item=>{
+                    if(contractMap){
+                        contractMap[item.ownerAddress]? (item.ownerIsContract = true) :  (item.ownerIsContract = false)
+                        contractMap[item.toAddress]? (item.toIsContract = true) :  (item.toIsContract = false)
+                    }
+                })
+              
                 this.setState({
                     total: total,
                     transactions: transactions,
@@ -149,6 +161,7 @@ class Transactions extends React.Component {
                     rangeTotal: wholeChainTxCount
                 })
             }
+
         }
         this.setState({
             loading: false,
@@ -210,7 +223,32 @@ class Transactions extends React.Component {
                 width: '30%',
                 className: 'ant_table',
                 render: (text, record, index) => {
-                    return <AddressLink address={text}/>
+                    return <span>
+                        {/*  Distinguish between contract and ordinary address */}
+                        {record.ownerIsContract? (
+                            <span className="d-flex">
+                                <Tooltip
+                                placement="top"
+                                title={upperFirst(
+                                    intl.formatMessage({
+                                    id: "transfersDetailContractAddress"
+                                    })
+                                )}
+                                >
+                                <Icon
+                                    type="file-text"
+                                    style={{
+                                    verticalAlign: 0,
+                                    color: "#77838f",
+                                    lineHeight: 1.4
+                                    }}
+                                />
+                                </Tooltip>
+                                <AddressLink address={text} isContract={true}/>
+                            </span>
+                            ) : <AddressLink address={text}/>
+                        }
+                    </span>
                 }
             },
             {

@@ -23,7 +23,6 @@ export class CsvExport extends React.Component {
     handleCaptchaCode = async (val) => {
         let {downloadURL} = this.props;
         // const {data} = await xhr.get(`${downloadURL}&g-recaptcha-response=${val}`)
-        // console.log(data);
         if(val){
             window.location.href = `${downloadURL}&g-recaptcha-response=${val}`
             setTimeout(() => {

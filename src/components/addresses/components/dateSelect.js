@@ -155,7 +155,7 @@ class DateSelect extends React.Component {
             </Radio.Group>
           </div>
           <div className="col-xs-4 col-sm-6 singleTimeRange">
-            <div className={`position-absolute`}  style={isMobile? { width: "auto" }:{right:"1rem",width: "auto"}}>
+            <div className={`position-absolute mobileTimeRangeWrapper`}  style={isMobile? { width: "auto" }:{right:"1rem",width: "auto"}}>
               <DatePicker
                     disabledDate={this.disabledStartDate}
                     showTime

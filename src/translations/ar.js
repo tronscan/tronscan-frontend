@@ -3,6 +3,9 @@ import {
     lang19Q4
 } from './versionLang/lang19Q4/ar19Q4'; /* 2019Q4 */
 import {lang20Q1} from './versionLang/lang20Q1/ar';/* 2020Q1 */
+import {
+  lang20Q2
+} from './versionLang/lang20Q2/ar'; /* 2020Q2 */
 export const messages = {
     /*
   ##################################################################################
@@ -1953,7 +1956,7 @@ export const messages = {
   */
   "ledger_user_guide": "دليل المستخدم لليدجر",
   "latest_version_chrome": "ننصحك باستخدام أحدث نسخة من الكروم",
-  "ledger_support_version": "نسخة ليدجر المدعومة: 0.1.1 ، دعم كروم لنسخة الإصدار 73.0",
+  "ledger_support_version": "نسخة ليدجر المدعومة: 0.2.0 ، دعم كروم لنسخة الإصدار 80.0",
   "ledger_you_can": "يمكنك الذهاب ",
   "ledger_website": "يقوم موقع Ledger",
   "ledger_website_download": "قم بتنزيل وتحديث نسخة دفتر الأستاذ",
@@ -2003,7 +2006,7 @@ export const messages = {
   "footer_fellow_us": "Follow Us",
   "footer_developer_resources": "Developer Resources",
   "footer_support_center": "Support Center",
-  "footer_tron_network": "TRON",
+  "footer_tron_network": "Tron.network",
   "login_privatekey_warn": "للحفاظ على أمان حسابك يرجى الاحتفاظ بمفتاحك الخاص في حالة فقد الأصول الخاصة بك ، ويوصى باستخدام ",
   "login_privatekey_warn_safe": "  لتسجيل الدخول الآمن.",
   "updata_token_info": "تحديث بيانات الرموز",
@@ -2239,6 +2242,11 @@ export const messages = {
   "Side_Chain":"DAppChain",
   "Main_Chain":"MainChain",
 
+  "JST_distribution_overview": "JST DISTRIBUTION OVERVIEW",
+  "JST_supply": "JST Supply",
+  "JST_Token_Release_Schedule": "JST Token Release Schedule",
+  "source_JST_team": "Source: JST Management Team",
+
 
   "7day": "7 أيام",
   "14day": "14 يوما",
@@ -2259,9 +2267,9 @@ export const messages = {
 
 
   "developers_username": "username",
-  "developers_current_year":"year's points",
-  "developers_current_quarter": "quarter's points",
-  "developers_current_month":"month's points",
+  "developers_current_year":"Total points",
+  "developers_current_quarter": "Last quarter points",
+  "developers_current_month":"Last month points",
   "developers_view_points":"View Points Details",
   "developers_points_details": "Points details",
   "developers_contribution_link":"Contribution content corresponding link",
@@ -2454,4 +2462,5 @@ export const messages = {
    "address_freeze_other":"تجميد إلى حسابات الآخرين",
    ...lang19Q4,
    ...lang20Q1,
+   ...lang20Q2
 };

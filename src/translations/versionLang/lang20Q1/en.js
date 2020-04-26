@@ -233,6 +233,9 @@ export const lang20Q1 = {
   freeze_TRX_error:"Something went wrong while trying to freeze TRX, please try again later.",
   votes_cannot_exceed_5_SRs:"Votes cannot exceed 5 SRs",
 
+  too_many_bytes_to_encode:"Too many bytes to encode",
+  use_TRONlink_or_private_key :"Please login to use this function via TRONlink or private key",
+
   // 2020-03-03 leon
   account_total_tip: "Only the top 10000 records are displayed, sorted by decreasing TRX balance by default.",
   account_rank: "No.",
@@ -254,7 +257,7 @@ export const lang20Q1 = {
   account_vote_total_percent_tip: "Votes for the SR from this account / total votes received by the SR",
   account_vote_reward_tip: "Accumulative voter rewards from the SR",
   account_get_reward: "Accept",
-  account_freeze_detail: "Token-freeze details",
+  account_freeze_detail: "freeze details",
   account_freeze_self: "For personal use",
   account_freeze_to_other: "For other user(s)",
   account_freeze_other_to: "From other user(s)",
@@ -305,5 +308,53 @@ export const lang20Q1 = {
   address_account_table_filter_token_tips: "The token is not included in TRONSCAN",
   current_version:'Current Version',
   account_block:'Blocks',
-  account_address_total_balance_tip:"Sum of the value of all tokens in the account"
+  account_address_total_balance_tip:"Sum of the value of all tokens in the account",
+  get_usdj:'Obtain USDJ',
+  pledge_to_get_USDJ:'Pledge to get USDJ',
+  get_usdj_guide: "How to obtain USDJ",
+
+  // 03-26 tag 
+  account_tags_list:'tags list',
+  account_tags_add:'Add',
+  account_tags_desc:'Tag feature: you can attach private tags to accounts so as to identify them more easily',
+  account_tags_number:'{total} accounts in total',
+  account_tags_number_one:'{total} account in total',
+  account_tags_table_1:'tag',
+  account_tags_table_2:'Note',
+  account_tags_add_title:'Add a tag',
+  account_tags_edit_title:'edit tag',
+  account_tags_add_success:'The tag has been successfully added',
+  account_tags_edit_success:'The tag has been successfully edited',
+  account_tags_number_rec:'{number} accounts mark',
+  account_tags_number_rec_one:'{number} account mark',
+  account_tags_tip:'Private tag. Only visible to yourself.',
+
+  account_tags_edit: "edit",
+  account_tags_delete: "remove",
+  account_tags_delete_is: "Are you sure to remove the tag?",
+  account_tags_delete_succss: "The tag has been removed.",
+  account_address_name_tag:'(Verified tag)',
+  account_tags_address_placehold:'请输入正确的地址',
+  account_tags_tag_placehold:'Please enter a tag (no more than 20 characters).',
+  account_tags_note_placehold:'Optional, no more than 100 characters.',
+  account_tags_tag_valid:'Only Chinese, English or Arabic numbers can be entered',
+  account_tags_rec:"Recommended tag",
+  account_tags_my_tag:'My tags',
+  account_tags_my_tag_update:'Update',
+  account_tags_my_tag_login_show:'The content will show after login.',
+  account_tags_my_tag_not_available:'Not Available',
+
+
+  fill_a_valid_ledger_note:'Please confirm that the Transactions Data option in the ledger settings is allowed, otherwise you cannot send notes',
+  enter_up_to_50_characters:'Enter up to 50 characters',
+  address_token_less_than_10:'tokens with a value less than 10 TRX',
+  address_total_tron_power:'Total TRON Power',
+  address_total_tron_power_remain:'Available TORN Power',
+  address_total_tron_power_used:'Used TRON Power',
+
+  // foundation address
+  foundation_address_update_date:'Updated time: 2019/12/31',
+  foundation_address_deadline_date:'by 2020.4.15',
+
+
 };

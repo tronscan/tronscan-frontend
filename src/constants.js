@@ -1,5 +1,5 @@
 import Lockr from "lockr";
-import uuidv4w  from "uuid/v4";
+import uuidv4w from "uuid/v4";
 /**
  * 1000000 sun = 1 TRX
  */
@@ -9,13 +9,13 @@ export const IS_TESTNET = process.env.NET === "testnet";
 export const IS_DESKTOP = process.env.DESKTOP === "true";
 
 export const NETURL = {
-  NEWMAINNET: "https://tronscan.io",
+NEWMAINNET: "https://tronscan.io",
   NEWSUNNET: "https://dappchain.tronscan.io",
   // MAINNET: "https://tronscan.org",
   // SUNNET: "https://dappchain.tronscan.org",
-  MAINNET: "http://18.217.215.94:69",
-  SUNNET: "http://18.217.215.94:70",
-  //MAINNET: "https://testhttps.tronscan.org",
+  MAINNET: "http://18.217.215.94:65",
+  SUNNET: "http://18.217.215.94:66",
+  // MAINNET: "https://debug.tronscan.org",
   // SUNNET: "https://debugdappchain.tronscan.org",
 };
 
@@ -57,12 +57,14 @@ export const PUBLIC_URL = process.env.PUBLIC_URL || window.location.origin;
 //test
 //export const API_URL_SUNNET = 'http://3.15.181.169:9000';
 //test pro
-//export const API_URL_SUNNET = "http://52.15.68.74:10001";
+// export const API_URL_SUNNET = "http://52.15.68.74:10001";
+// export const API_URL_SUNNET = "http://52.15.68.74:8898";
+
 
 export const API_URL_SUNNET = "https://dappchainapi.tronscan.org";
 
 // export const API_URL_SUNNET = "https://debugdappchainapilist.tronscan.org";
-// export const API_URL_MAINNET = 'https://apilist.tronscan.org';
+
 export const API_URL = IS_SUNNET ? API_URL_SUNNET : process.env.API_URL;
 export const CONTRACT_MAINNET_API_URL = process.env.API_URL;
 export const CONTRACT_NODE_API = API_URL;
@@ -78,10 +80,21 @@ export const ACCOUNT_ADDRESS = "ACCOUNT_ADDRESS";
 export const ACCOUNT_LEDGER = "ACCOUNT_LEDGER";
 export const ACCOUNT_TRONLINK = "ACCOUNT_TRONLINK";
 
+/**
+ * USDJ = 1 USD
+ */
+export const ONE_USDJ = 1;
+export const ONE_JST = 0.003;
 export const TOKEN_ID_BTT = "1002000";
 export const CONTRACT_ADDRESS_USDT = "TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t";
 export const CONTRACT_ADDRESS_WIN = "TLa2f6VPqDgRE67v1736s7bJ8Ray5wYjU7";
 export const CONTRACT_ADDRESS_GGC = "TB95FFYRJMLY6mWZqv4JUMqAqsHF4JCXga";
+export const CONTRACT_ADDRESS_USDJ_TESTNET = "TCkkpmnY38nsXAtideWzHTybvbMozzXUot";
+export const CONTRACT_ADDRESS_JED_TESTNET = "TTpozmSKuK5jbigUXtQn6fdxh6ivwKtGo5";
+export const CONTRACT_ADDRESS_USDJ = "TMwFHYXLJaRUPeW6421aqXL4ZEzPRFGkGT";
+export const CONTRACT_ADDRESS_JED = "TCFLL5dx5ZJdKnWuesXxi1VPwjLVmWZZy9";
+export const CONTRACT_ADDRESS_JST = "TCFLL5dx5ZJdKnWuesXxi1VPwjLVmWZZy9";
+
 
 // Deployment to compile
 export const FILE_MAX_SIZE = 5 * 1024 * 1024;
@@ -91,7 +104,7 @@ export const FILE_MAX_NUM = 10;
 export const CURRENCYTYPE = {
   TRX: "TRX",
   TRX10: "TRX10",
-  TRX20: "TRX20"
+  TRX20: "TRX20",
 };
 
 // mapping energy
@@ -118,25 +131,26 @@ export const TRADINGMAP = {
   MAPPING: "mapping",
   WITHDRAW: "withdraw",
   DEPOSIT: "deposit",
-  APPROVE: "approve"
+  APPROVE: "approve",
 };
 
 // SunWeb config
 export const SUNWEBCONFIG = {
-  // MAINFULLNODE: "https://api.trongrid.io",
-  // MAINSOLIDITYNODE: "https://api.trongrid.io",
-  // MAINEVENTSERVER: "https://api.trongrid.io",
+  // for main
+  MAINFULLNODE: "https://api.trongrid.io",
+  MAINSOLIDITYNODE: "https://api.trongrid.io",
+  MAINEVENTSERVER: "https://api.trongrid.io",
 
-  // // MAINFULLNODE: "https://api.nileex.io",
-  // // MAINSOLIDITYNODE: "https://api.nileex.io",
-  // // MAINEVENTSERVER: "https://event.nileex.io",
+  // MAINFULLNODE: "https://api.nileex.io",
+  // MAINSOLIDITYNODE: "https://api.nileex.io",
+  // MAINEVENTSERVER: "https://event.nileex.io",
 
-  // SUNFULLNODE: "https://sun.tronex.io",
-  // SUNSOLIDITYNODE: "https://sun.tronex.io",
-  // SUNEVENTSERVER: "https://sun.tronex.io",
-  // MAINNET: "TWaPZru6PR5VjgT4sJrrZ481Zgp3iJ8Rfo",
-  // SIDECHAIN: "TGKotco6YoULzbYisTBuP6DWXDjEgJSpYz",
-  // SIDEID: "41E209E4DE650F0150788E8EC5CAFA240A23EB8EB7"
+  SUNFULLNODE: "https://sun.tronex.io",
+  SUNSOLIDITYNODE: "https://sun.tronex.io",
+  SUNEVENTSERVER: "https://sun.tronex.io",
+  MAINNET: "TWaPZru6PR5VjgT4sJrrZ481Zgp3iJ8Rfo",
+  SIDECHAIN: "TGKotco6YoULzbYisTBuP6DWXDjEgJSpYz",
+  SIDEID: "41E209E4DE650F0150788E8EC5CAFA240A23EB8EB7",
 
   // for shasta
   // MAINFULLNODE: 'http://47.252.84.158:8070',
@@ -149,36 +163,26 @@ export const SUNWEBCONFIG = {
   // SIDECHAIN: 'TRDepx5KoQ8oNbFVZ5sogwUxtdYmATDRgX',
   // SIDEID: '413AF23F37DA0D48234FDD43D89931E98E1144481B',
 
-  //for nile
-  // MAINFULLNODE: "https://httpapi.nileex.io",
-  // MAINSOLIDITYNODE: "https://httpapi.nileex.io",
-  // MAINEVENTSERVER: "https://eventtest.nileex.io",
+  
 
-  // SUNFULLNODE: "https://sun.tronex.io",
-  // SUNSOLIDITYNODE: "https://sun.tronex.io",
-  // SUNEVENTSERVER: "https://sun.tronex.io",
+  // for tronex
+  // MAINFULLNODE: "https://testhttpapi.tronex.io",
+  // MAINSOLIDITYNODE: "https://testhttpapi.tronex.io",
+  // MAINEVENTSERVER: "https://testapi.tronex.io",
+
+  // SUNFULLNODE: "https://suntest.tronex.io",
+  // SUNSOLIDITYNODE: "https://suntest.tronex.io",
+  // SUNEVENTSERVER: "https://suntest.tronex.io",
+
   // MAINNET: "TWaPZru6PR5VjgT4sJrrZ481Zgp3iJ8Rfo",
   // SIDECHAIN: "TGKotco6YoULzbYisTBuP6DWXDjEgJSpYz",
   // SIDEID: "41E209E4DE650F0150788E8EC5CAFA240A23EB8EB7"
-
-  // for tronex 
-  MAINFULLNODE: "https://testhttpapi.tronex.io",
-  MAINSOLIDITYNODE: "https://testhttpapi.tronex.io",
-  MAINEVENTSERVER: "https://testapi.tronex.io",
-
-  SUNFULLNODE: "https://suntest.tronex.io",
-  SUNSOLIDITYNODE: "https://suntest.tronex.io",
-  SUNEVENTSERVER: "https://suntest.tronex.io",
-  
-  MAINNET: "TWaPZru6PR5VjgT4sJrrZ481Zgp3iJ8Rfo",
-  SIDECHAIN: "TGKotco6YoULzbYisTBuP6DWXDjEgJSpYz",
-  SIDEID: "41E209E4DE650F0150788E8EC5CAFA240A23EB8EB7"
 };
 
 //Socket config
 export const TORNSOCKET = {
   WSSURLMAIN: "wss://apilist.tronscan.org/api/tronsocket",
-  WSSURLSUN: "wss://dappchainapi.tronscan.org/api/tronsocket"
+  WSSURLSUN: "wss://dappchainapi.tronscan.org/api/tronsocket",
 };
 
 // export const TORNSOCKET = {
@@ -189,13 +193,13 @@ export const TORNSOCKET = {
 // token type
 export const TOKENTYPE = {
   TOKEN10: "trc10",
-  TOKEN20: "trc20"
+  TOKEN20: "trc20",
 };
 
 // market basic page
 export const MARKETPAGE = {
   CREATE: "create",
-  UPDATE: "update"
+  UPDATE: "update",
 };
 
 // market token verify status
@@ -211,7 +215,7 @@ export const VERIFYSTATUS = {
   REJECTED: 5, // rejected
   SHELVES: 6, // Has been off the shelves
   CONFIRMED: 7, // Have been confirmed
-  RECOMMENDEDFAILED: 8 // Review recommendation failed
+  RECOMMENDEDFAILED: 8, // Review recommendation failed
 };
 
 // JSEncrypt key
@@ -243,10 +247,19 @@ export const CONTRACT_LICENSES = [
   "BSD-3-Clause",
   "MPL-2.0",
   "OSL-3.0",
-  "Apache-2.0"
+  "Apache-2.0",
 ];
 
 export const WARNING_VERSIONS = [];
 export const uuidv4 = uuidv4w();
 
-export const ADDRESS_TAG_ICON = ['Binance','Bittrex','Gate','Huobi','Kucoin','Okex','Poloniex']
+export const ADDRESS_TAG_ICON = [
+  "Binance",
+  "Bittrex",
+  "Gate",
+  "Huobi",
+  "Kucoin",
+  "Okex",
+  "Poloniex",
+  "Bitfinex",
+];

@@ -6,17 +6,21 @@ import { QuestionMark } from "../../common/QuestionMark";
 import { TRXPrice } from "../../common/Price";
 import { HrefLink } from "../../common/Links";
 import { FormattedNumber } from "react-intl";
-import { ONE_TRX } from "../../../constants";
+import { ONE_TRX,IS_MAINNET } from "../../../constants";
 import { Tooltip, Icon } from "antd";
 import { ExternalLink } from "../../common/Links";
 import { NavLink, Route, Switch } from "react-router-dom";
 import SweetAlert from "react-bootstrap-sweetalert";
+import ApiClientAccount from "../../../services/accountApi";
 import {
   transactionResultManager,
   transactionResultManagerSun
 } from "../../../utils/tron";
 import { connect } from "react-redux";
 import { Piechart } from "../components/Piechart";
+import AddTag from "../../account/components/AddTag";
+
+let superTagInter = null
 @connect(state => {
   return {
     account: state.app.account,
@@ -28,11 +32,40 @@ class Representative extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      votingEnabled: false
+      votingEnabled: false,
+      popup:null
     };
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+  }
+
+  addTagsModal = () => {
+    let { match } = this.props;
+    this.setState({
+      popup: <AddTag onClose={this.hideModal} defaultAddress={match.params.id} onloadTableP={this.onloadAddTable} />
+    });
+  };
+
+  editTagModal = (record) => {
+    this.setState({
+      popup: <AddTag onClose={this.hideModal} targetAddress={record.targetAddress} onloadTableP={this.onloadAddTable} />
+    });
+  };
+
+
+  hideModal = () => {
+    this.setState({ popup: null });
+  };
+
+  onloadAddTable = () =>{
+    // let { match} = this.props;
+    // setTimeout(() => {
+      this.props.onloadTable();
+    // }, 2000);
+  }
+
+  
 
   render() {
     let {
@@ -50,8 +83,9 @@ class Representative extends React.Component {
       version,
       witnessType
     } = this.props.data;
-    let { intl, url, account, walletType } = this.props;
-    let { votingEnabled, popup } = this.state;
+    let { intl, url, account, walletType,tagData } = this.props;
+    console.log(tagData)
+    let { votingEnabled, popup, } = this.state;
     let type = "-";
     switch (witnessType) {
       case 1:
@@ -66,13 +100,43 @@ class Representative extends React.Component {
     }
 
     return (
-      <Fragment>
+      <div>
         {popup}
         <table className="table m-0 table-style">
           <tbody>
             <tr>
-              <th>{tu("type")}:</th>
-              <td>{type}</td>
+              <th>{tu("account_tags_my_tag")}:</th>
+              {
+                IS_MAINNET?
+                <td>
+                  <span>
+                      {
+                        account.isLoggedIn && walletType.isOpen?
+                        <span>
+                          {tagData&&tagData.length>0?
+                            <span>
+                              {tagData[0].tag}
+                              <span style={{color: "#C23631",marginLeft:'8px',cursor:'pointer'}} onClick={()=>this.editTagModal(tagData[0])}>
+                                {tu("account_tags_my_tag_update")}
+                              </span>
+                            </span> 
+                            :
+                            <span>
+                              {tu("account_tags_my_tag_not_available")}
+                              <span style={{color: "#C23631",marginLeft:'8px',cursor:'pointer'}}  onClick={this.addTagsModal}>
+                                {tu("account_tags_add")}
+                              </span>
+                            </span>
+                          }
+                        </span>:
+                        <span >
+                          <span>{tu("account_tags_my_tag_login_show")}</span>
+                        </span> 
+                      }
+                  </span>
+                </td>
+                :null
+              }
             </tr>
             <tr>
               <th>{tu("name")}:</th>
@@ -166,7 +230,7 @@ class Representative extends React.Component {
               </th>
               <td>
                 <ul className="list-unstyled m-0">
-                  <li className="d-flex">
+                  <li className="d-flex flex-wrap">
                     <TRXPrice
                       amount={walletReward / ONE_TRX}
                       showPopup={false}
@@ -199,7 +263,8 @@ class Representative extends React.Component {
                     className="colorYellow"
                     onClick={this.scrollToAnchor.bind(this)}
                   >
-                    {address.totalTransactionCount} Txns
+                    <FormattedNumber value={address.totalTransactionCount} />{" "}
+                    Txns
                   </span>
                 </NavLink>
               </td>
@@ -220,18 +285,25 @@ class Representative extends React.Component {
                       className="colorYellow"
                       onClick={this.scrollToAnchor.bind(this)}
                     >
-                      {stats.transactions_in + stats.transactions_out} Txns
+                      <FormattedNumber
+                        value={stats.transactions_in + stats.transactions_out}
+                      />{" "}
+                      Txns
                     </div>
                   </NavLink>
                   <div>
                     <span className="ml-1">(</span>
                     <i className="fa fa-arrow-down text-success" />
                     &nbsp;
-                    <span>{stats.transactions_in} Txns</span>
+                    <span>
+                      <FormattedNumber value={stats.transactions_in} /> Txns
+                    </span>
                     &nbsp;
                     <i className="fa fa-arrow-up  text-danger" />
                     &nbsp;
-                    <span>{stats.transactions_out} Txns</span>
+                    <span>
+                      <FormattedNumber value={stats.transactions_out} /> Txns
+                    </span>
                     &nbsp;
                     <span>)</span>
                   </div>
@@ -333,7 +405,7 @@ class Representative extends React.Component {
             <tr>
               <th className="line36">{tu("website")}:</th>
               <td>
-                <div className="d-flex">
+                <div className="d-flex flex-wrap">
                   <span className="line36">
                     {address.representative.url ? (
                       <ExternalLink url={address.representative.url} />
@@ -357,7 +429,7 @@ class Representative extends React.Component {
             </tr>
           </tbody>
         </table>
-      </Fragment>
+      </div>
     );
   }
   renderFrozenTokens() {
@@ -527,6 +599,7 @@ class Representative extends React.Component {
       )
     });
   }
+
   hideModal = () => {
     this.setState({ popup: null });
   };

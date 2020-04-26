@@ -12,7 +12,7 @@ import {TronLoader} from "./common/loaders";
 import {QuestionMark} from "./common/QuestionMark";
 import xhr from "axios/index";
 import {Client, AccountApi} from "../services/api";
-import {Tooltip, Table} from 'antd'
+import {Tooltip, Table,Icon} from 'antd'
 import { Link } from "react-router-dom";
 
 function setTagIcon(tag){
@@ -67,12 +67,18 @@ class Accounts extends Component {
 
     this.setState({loading: true});
 
-    let {accounts, total, rangeTotal} = await Client.getAccounts({
+
+ 
+    let {accounts, total, rangeTotal,contractMap} = await Client.getAccounts({
       sort: sort,
       limit: pageSize,
       start: (page - 1) * pageSize
     }).catch(e => console.log(e))
-
+    accounts.forEach(item=>{
+      if(contractMap){
+          contractMap[item.address]? (item.ownerIsContract = true) :  (item.ownerIsContract = false)
+      }
+    })
     let { data } = await AccountApi.getAccountOverviewStats({
       days: 1
     }).catch(e => console.log(e))
@@ -101,7 +107,7 @@ class Accounts extends Component {
 
 
      // let {txOverviewStats} = await Client.getTxOverviewStats();
-     let count = 0;
+    let count = 0;
     accounts.map((item,index) => {
       item.index = count + 1 + (page-1)*pageSize
       count++
@@ -205,6 +211,7 @@ class Accounts extends Component {
         dataIndex: 'index',
         key: 'index',
         align: 'center',
+        width: '8%',
         render: (text, record, index) => {
             return text
         }
@@ -215,20 +222,35 @@ class Accounts extends Component {
         key: 'address',
         align: 'left',
         className: 'ant_table',
-        width: '40%',
+        width: '35%',
         render: (text, record, index) => {
           return (
-                <div  className="d-flex">
-                  <div style={{width: record.addressTag ? "200px" : 'auto'}}>
-                    {
-                      record.accountType == 2 ?
-                      <span className="d-flex">
-                        <Tooltip placement="top" title={intl.formatMessage({id: 'contracts'})}>
-                          <span><i className="far fa-file mr-1"></i></span>
-                        </Tooltip>
-                        <AddressLink address={text} truncate={false} isContract={record.toAddressType == 2}>{text}</AddressLink>
-                      </span> :
-                      <AddressLink address={text} truncate={false}>{text}</AddressLink>
+                <div className="d-flex">
+                  <div style={{width: '240px'}}>
+                    {/*  Distinguish between contract and ordinary address */}
+                    {record.ownerIsContract? (
+                      <span className="d-flex"> 
+                        <Tooltip
+                          placement="top"
+                          title={upperFirst(
+                              intl.formatMessage({
+                              id: "transfersDetailContractAddress"
+                              })
+                          )}
+                          >
+                          <Icon
+                              type="file-text"
+                              style={{
+                              verticalAlign: 0,
+                              color: "#77838f",
+                              lineHeight: 1.4
+                              }}
+                          />
+                          </Tooltip>
+                          <AddressLink address={text} isContract={true}>{text}</AddressLink>
+                      </span>
+                    ) :
+                      <AddressLink address={text}>{text}</AddressLink>
                     }
                   </div>
                   <div style={{marginLeft: '10px'}}>
@@ -255,7 +277,7 @@ class Accounts extends Component {
         sortDirections: ["descend", "ascend"],
         align: 'left',
         className: 'ant_table',
-        // width: '15%',
+        // width: '10%',
         render: (text, record, index) => {
           return <TRXPrice amount={parseInt(text) / ONE_TRX}/>
         }
@@ -277,7 +299,7 @@ class Accounts extends Component {
         sortDirections: ["descend", "ascend"],
         align: 'left',
         className: 'ant_table',
-        width: '15%',
+        width: '12%',
         render: (text, record, index) => {
           return <div><FormattedNumber
               value={(((parseInt(text) / ONE_TRX) / CIRCULATING_SUPPLY) * 100)}
@@ -296,7 +318,11 @@ class Accounts extends Component {
         align: 'left',
         // width: '15%',
         render: (text, record, index) => {
-          return <FormattedNumber value={parseInt(text) / ONE_TRX}/>
+          return (
+            <span>
+              {text ? <FormattedNumber value={parseInt(text) / ONE_TRX} /> : (text == 0 ? 0 : '-')}
+            </span>
+          );
         }
       },
       {
@@ -315,7 +341,9 @@ class Accounts extends Component {
         sortDirections: ["descend", "ascend"],
         align: 'left',
         render: (text, record, index) => {
-            return <span> {record.totalTransactionCount} </span>
+            return (<span>
+              {record.totalTransactionCount ? <FormattedNumber value={record.totalTransactionCount} /> : (record.totalTransactionCount == 0 ? 0 : '-')}
+            </span>)
         }
       }
     ];
@@ -352,17 +380,17 @@ class Accounts extends Component {
     let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + rangeTotal + ' ' + intl.formatMessage({id: 'account_unit'}) + '<br/>(' + intl.formatMessage({id: 'table_info_big'}) + ')';
     let tableInfoTip = intl.formatMessage({id: 'view_total'}) + ' ' + rangeTotal + ' ' + intl.formatMessage({id: 'table_info_account_tip2'});
       return (
-        <main className="container header-overlap pb-3 token_black">
+        <main className="container header-overlap pb-3 token_black account_main">
           <div className="row">
             <div className="d-flex col-md-12 justify-content-end my-2">
               <Link to="/data/stats#address">{tu('account_more')}></Link>
             </div>
-            <div className="d-flex col-md-12">
+            <div className="d-flex col-md-12 panel">
               <div className="card h-100 widget-icon accout_unit">
                 {/* <WidgetIcon className="fa fa-users text-secondary"/> */}
                 <div className="card-body">
                   <h3 className="text-primary">
-                    <FormattedNumber value={newAddressSeen}/>
+                    {newAddressSeen ? <FormattedNumber value={newAddressSeen}/> : '-'}
                   </h3>
                   {tu("account_lastDay_count")}
                 </div>
@@ -371,7 +399,7 @@ class Accounts extends Component {
                 {/* <WidgetIcon className="fa fa-users text-secondary"/> */}
                 <div className="card-body">
                   <h3 className="text-primary">
-                    <FormattedNumber value={rangeTotal}/>
+                  {rangeTotal ? <FormattedNumber value={rangeTotal}/> : '-'}
                   </h3>
                   {tu("account_realTime_count")}
                 </div>
@@ -382,7 +410,7 @@ class Accounts extends Component {
           {loading && <div className="loading-style"><TronLoader/></div>}
           <div className="row mt-2">
             <div className="col-md-12 table_pos">
-              {total ?<div className="d-none d-md-block mt-2 mb-1"  style={{color: '#999',fontSize: '16px'}}>
+              {total ?<div className="d-none d-md-block mt-2 mb-2"  style={{color: '#999',fontSize: '16px'}}>
                       <div>
                         {tu('account_total_tip')}
                         {/* {tu('view_total')} {rangeTotal} {tu('account_unit')}  */}

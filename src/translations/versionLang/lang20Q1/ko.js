@@ -228,8 +228,7 @@ export const lang20Q1 = {
   block_detail_confirmed_over_show: "confirmed by over 200 blocks",
   block_detail_rolled_back: "ROLLED BACK",
 
-  freeze_TRX_error:
-    "Something went wrong while trying to freeze TRX, please try again later.",
+  freeze_TRX_error: "Something went wrong while trying to freeze TRX, please try again later.",
   votes_cannot_exceed_5_SRs: "Votes cannot exceed 5 SRs",
 
   // 2020-03-03 leon
@@ -286,12 +285,15 @@ export const lang20Q1 = {
   account_representative_owner: "슈퍼대표 리워드",
   account_representative_block_table_res: "자원소비",
   account_representative_block_table_prize: "블록보상",
-  account_representative_block_desc: "누적 {block}블록 생성으로 {trx} TRX 획득",
+  account_representative_block_desc: "누적 {block} 블록 생성으로 {trx} TRX 획득",
   account_representative_voters_per_tip: "투표자의 투표수 / 총 투표 수",
   account_representative_transfer_tip: "본 계정의 TRX/TRX10/TRX20 거래횟수 ",
   account_representative_unit: "{number} 명에 의해 {votes} 표를 받음",
   account_piechart_title: "자산 분배",
 
+  too_many_bytes_to_encode:"Too many bytes to encode",
+  use_TRONlink_or_private_key :"Please login to use this function via TRONlink or private key",
+  
   // 03-09 tron account  transfers transactions internal-transactions
   address_account_tab_search_tips: "주소 / 거래 해시 / 토큰",
 
@@ -307,6 +309,51 @@ export const lang20Q1 = {
     "The token is not included in TRONSCAN",
   current_version: "최신 버전",
   account_block: "블록",
-  account_address_total_balance_tip:"계정에있는 모든 토큰의 가치 합계"
+  account_address_total_balance_tip:"계정에있는 모든 토큰의 가치 합계",
+  get_usdj:'얻다 USDJ',
+  pledge_to_get_USDJ:'Pledge to get USDJ',
+  get_usdj_guide: "USDJ 를 얻는 방법",
+
+  // 03-26 tag 
+  account_tags_list:'태그 목록',
+  account_tags_add:'추가',
+  account_tags_desc:'태그 기능 : 개인 태그를 계정에 연결하여 더 쉽게 식별 할 수 있습니다.',
+  account_tags_number:'총 {total} 개 계정',
+  account_tags_table_1:'꼬리표',
+  account_tags_table_2:'비고',
+  account_tags_add_title:'태그 추가',
+  account_tags_edit_title:'edit tag',
+  account_tags_add_success:'The tag has been successfully added',
+  account_tags_edit_success:'The tag has been successfully edited',
+  account_tags_number_rec:'{number} accounts mark',
+  account_tags_tip:'개인태그. 나에게만 보입니다.',
+
+  account_tags_edit: "edit",
+  account_tags_delete: "remove",
+  account_tags_delete_is: "태그를 제거하시겟습니까?",
+  account_tags_delete_succss: "태그 제거 완료",
+  account_address_name_tag:'(플랫폼 인증 태그)',
+  account_tags_address_placehold:'请输入正确的地址',
+  account_tags_tag_placehold:'태그를 입력하세요.(20자 제한)',
+  account_tags_note_placehold:'선택사항 (100자 제한)',
+  account_tags_tag_valid:'Only Chinese, English or Arabic numbers can be entered',
+  account_tags_rec:"추천 태그",
+  account_tags_my_tag:'私のタグ',
+  account_tags_my_tag_update:'업데이트',
+  account_tags_my_tag_login_show:'로그인 후 표시됨',
+  account_tags_my_tag_not_available:'Not Available',
+
+
+
+  fill_a_valid_ledger_note:'Please confirm that the Transactions Data option in the ledger settings is allowed, otherwise you cannot send notes',
+  enter_up_to_50_characters:'Enter up to 50 characters',
+  address_token_less_than_10:'tokens with a value less than 10 TRX',
+  address_total_tron_power:'Total TRON Power',
+  address_total_tron_power_remain:'Available TORN Power',
+  address_total_tron_power_used:'Used TRON Power',
+
+  // foundation address
+  foundation_address_update_date:'Updated time: 2019/12/31',
+  foundation_address_deadline_date:'by 2020.4.15',
 
 };

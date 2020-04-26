@@ -10,7 +10,7 @@ import {upperFirst} from "lodash";
 import _ from "lodash";
 import { CONTRACT_ADDRESS_USDT, CONTRACT_ADDRESS_WIN, CONTRACT_ADDRESS_GGC } from "../../../constants";
 import {TRXPrice} from "../../common/Price";
-import {Table, Menu, Dropdown, Button} from 'antd'
+import {Table, Menu, Dropdown,Tooltip,Icon} from 'antd'
 import { ONE_TRX } from "../../../constants";
 import { recoverAddress } from "ethers/utils";
 
@@ -50,7 +50,7 @@ class TokenBalances extends React.Component {
         let tokenHasTRXValue =  _(tokenBalances).filter(tb => tb.TRXBalance > 0).sortBy(tb => -tb.TRXBalance).value();
         let tokenNotTRXValue =  _(tokenBalances).filter(tb => tb.TRXBalance <= 0).sortBy(tb => toUpper(tb.map_token_name)).value();
         let tokens = tokenHasTRXValue.concat(tokenNotTRXValue);
-        console.log(tokens)
+        
         if(hideSmallCurrency){
             tokens = _(tokens)
                 .filter(tb => (tb.TRXBalance).toString() >= 10)
@@ -196,7 +196,26 @@ class TokenBalances extends React.Component {
                     return <div>
                         {
                             record.tokenType == 'TRC20' ? 
-                            <AddressLink address={record.contract_address} isContract={true}>{record.contract_address}</AddressLink>
+                                <span className="d-flex">
+                                    <Tooltip
+                                        placement="top"
+                                        title={upperFirst(
+                                            intl.formatMessage({
+                                            id: "transfersDetailContractAddress"
+                                            })
+                                        )}
+                                    >
+                                        <Icon
+                                            type="file-text"
+                                            style={{
+                                            verticalAlign: 0,
+                                            color: "#77838f",
+                                            lineHeight: 1.4
+                                            }}
+                                        />
+                                    </Tooltip>
+                                <AddressLink address={record.contract_address} isContract={true}>{record.contract_address}</AddressLink>
+                                </span>
                             : (isNaN(text)?'-':text)
                         }
                     </div>
@@ -365,7 +384,7 @@ class TokenBalances extends React.Component {
                       {tableInfo}
                   </div>
                   <div className={" d-md-block " + (balances.length ? "table_pos_switch_addr4" : "")}>
-                    <SwitchToken  handleSwitch={this.handleSwitch} text="hide_small_currency" hoverText="tokens_less_than_10"/>
+                    <SwitchToken  handleSwitch={this.handleSwitch} text="hide_small_currency" hoverText="address_token_less_than_10"/>
                   </div>
                 </div>
                 {/*<div className={"account-token-tab address-token-tab " + (balances.length ? '' : "address-token-tab-mobile")}>*/}

@@ -13,10 +13,12 @@ import {TronLoader} from "../../common/loaders";
 import TotalInfo from "../../common/TableTotal";
 // import DateRange from "../../common/DateRange";
 import DateSelect from "../../common/newDateSelect";
-import xhr from "axios/index";
-import {API_URL} from '../../../constants.js'
+//import xhr from "axios/index";
+//import {API_URL} from '../../../constants.js'
 import { FormatNumberByDecimals } from '../../../utils/number'
 import BlockTime from '../../common/blockTime'
+import { Tooltip,Icon } from 'antd';
+
 
 
 class Transfers extends React.Component {
@@ -118,7 +120,33 @@ class Transfers extends React.Component {
                 key: 'transferFromAddress',
                 className: 'ant_table',
                 render: (text, record, index) => {
-                    return <AddressLink address={record.from_address}>{record.from_address}</AddressLink>
+                    return  <span>
+                    {/*  Distinguish between contract and ordinary address */}
+                    {record.fromAddressIsContract? (
+                      <span className="d-flex">
+                        <Tooltip
+                          placement="top"
+                          title={upperFirst(
+                              intl.formatMessage({
+                              id: "transfersDetailContractAddress"
+                              })
+                          )}
+                        >
+                          <Icon
+                            type="file-text"
+                            style={{
+                            verticalAlign: 0,
+                            color: "#77838f",
+                            lineHeight: 1.4
+                            }}
+                          />
+                        </Tooltip>
+                        <AddressLink address={record.from_address} isContract={true}>{record.from_address}</AddressLink>
+                      </span>
+                      ) : <AddressLink address={record.from_address}>{record.from_address}</AddressLink>
+                    }
+                  </span>
+                   
                 }
             },
             {
@@ -135,7 +163,32 @@ class Transfers extends React.Component {
                 key: 'transferToAddress',
                 className: 'ant_table',
                 render: (text, record, index) => {
-                    return <AddressLink address={record.to_address}>{record.to_address}</AddressLink>
+                    return <span>
+                    {/*  Distinguish between contract and ordinary address */}
+                    {record.toAddressIsContract? (
+                      <span className="d-flex">
+                        <Tooltip
+                          placement="top"
+                          title={upperFirst(
+                              intl.formatMessage({
+                              id: "transfersDetailContractAddress"
+                              })
+                          )}
+                        >
+                          <Icon
+                            type="file-text"
+                            style={{
+                            verticalAlign: 0,
+                            color: "#77838f",
+                            lineHeight: 1.4
+                            }}
+                          />
+                        </Tooltip>
+                        <AddressLink address={record.to_address} isContract={true}>{record.to_address}</AddressLink>
+                      </span>
+                      ) : <AddressLink address={record.to_address}>{record.to_address}</AddressLink>
+                    }
+                  </span>
                 },
             },
             {

@@ -140,13 +140,13 @@ class Resource extends React.Component {
               </span>
               {changeRank != 0 &&
                 (changeRank < 0 ? (
-                  <span className="text-danger">
-                    <i className="fa fa-arrow-down"></i>
+                  <span className="text-success">
+                    <i className="fa fa-arrow-up"></i>
                     <FormattedNumber value={Math.abs(changeRank)} />
                   </span>
                 ) : (
-                  <span className="text-success">
-                    <i className="fa fa-arrow-up"></i>
+                  <span className="text-danger">
+                    <i className="fa fa-arrow-down"></i>
                     <FormattedNumber value={Math.abs(changeRank)} />
                   </span>
                 ))}
@@ -182,7 +182,8 @@ class Resource extends React.Component {
     for (let i = 0; i < num; i++) {
       items.push(i);
     }
-    let activeNum = percent * num;
+    let activeNum = percent * num/100;
+  
     return (
       <div className="d-flex resource-item">
         {items.map(i => (
@@ -286,11 +287,11 @@ class Resource extends React.Component {
     return (
       <div>
         <div>
-          {intl.formatMessage({ id: "address_netLimit" }) + " : " + totalPower}
+          {intl.formatMessage({ id: "address_total_tron_power" }) + " : " + totalPower}
         </div>
         <div>
           <span>
-            {intl.formatMessage({ id: "address_netRemaining" }) +
+            {intl.formatMessage({ id: "address_total_tron_power_remain" }) +
               " : " +
               powerRemaining}
           </span>
@@ -298,7 +299,7 @@ class Resource extends React.Component {
         </div>
         <div>
           <span>
-            {intl.formatMessage({ id: "address_netUsed" }) + " : " + usedPower}
+            {intl.formatMessage({ id: "address_total_tron_power_used" }) + " : " + usedPower}
           </span>
           &nbsp; ({usedPowerPercentage + " %"})
         </div>
