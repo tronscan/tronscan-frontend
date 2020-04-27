@@ -189,7 +189,8 @@ export function withTronWeb(InnerComponent) {
 
                 const ledgerBridge = new LedgerBridge();
                 let signedResponse;
-                signedResponse = await ledgerBridge.signTransaction({
+                console.log('this.props.account.pathIndex',this.props.account.pathIndex)
+                signedResponse = await ledgerBridge.signTransaction(this.props.account.pathIndex,{
                   hex: rawDataHex,
                   info: tokenInfo,
                 })

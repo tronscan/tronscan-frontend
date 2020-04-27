@@ -5461,3 +5461,22 @@ h5 {
     margin-top: 0.25rem;
     font-size: 80%;
 }
+
+.choose-ledger-account{
+  .ant-radio-group{
+    width: 100%;
+    .ant-radio-wrapper{
+      width: 100%;
+      margin-right: 0;
+      border-top: 1px solid #666;
+      line-height: 42px;
+      .ant-radio-inner{
+        border-color:#c23631
+      }
+      .ant-radio-inner::after{
+        background-color: #c23631;
+      }
+    }
+  }
+  
+}
