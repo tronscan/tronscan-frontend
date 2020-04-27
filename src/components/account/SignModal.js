@@ -90,8 +90,9 @@ class SignModal extends Component {
         validateFields(async(err, values) => {
             if (!err && !errorMess && isSubmit) {
                 try {
-                    const fee = mul(withdrawFee, ONE_TRX);
+                    const fee = mul(withdrawFee, ONE_TRX,FEELIMIT);
                     const num = mul(numValue,  Math.pow(10, Number(precision)));
+                    console.log(fee,num)
                     let data;
                     // trc10
                     if (CURRENCYTYPE.TRX10 === type) {
