@@ -83,10 +83,9 @@ class SignModal extends Component {
         const { form: { validateFields }, account: { sunWeb },
             option: { id, address, precision, type }, fees: { withdrawFee } } = this.props;
         const { numValue, errorMess } = this.state;
-        console.log('this.props',this.props,'withdrawFee',withdrawFee)
+        // console.log('this.props',this.props,'withdrawFee',withdrawFee)
         this.setState({ isDisabled: true });
         const isSubmit = this.validateNum();
-
         validateFields(async(err, values) => {
             if (!err && !errorMess && isSubmit) {
                 try {
