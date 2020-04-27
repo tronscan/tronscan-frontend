@@ -706,7 +706,7 @@ class NewTransactions extends React.Component {
                 ),
                 dataIndex: "amount",
                 key: "amount",
-                align: "left",
+                align: "center",
                 className: "ant_table",
                 render: (text, record, index) => {
                   return <FormattedNumber value={text / Math.pow(10,6)}></FormattedNumber>;

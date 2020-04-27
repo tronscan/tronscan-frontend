@@ -58,11 +58,6 @@ class Transactions extends React.Component {
           indeterminate:'',
           checkAll:false,
       },
-      statusOptionsAry: [
-          { label:  upperFirst(intl.formatMessage({id: 'full_node_version_unconfirmed'})), value: 1 },
-          { label:  upperFirst(intl.formatMessage({id: 'full_node_version_confirmed'})), value: 0 },
-          { label:  upperFirst(intl.formatMessage({id: 'block_detail_rolled_back'})), value: 2 },
-      ],
       resultOptionsAry: [
           { label:  'SUCCESS', value: 'SUCCESS' },
           { label:  'FAIL', value: 'FAIL' },
@@ -193,6 +188,7 @@ class Transactions extends React.Component {
           console.log("error:" + e);
         });
         [{ transactions }, { total, rangeTotal }] = allData;
+
       }
     } else {
       const { accountSearchAddress } = this.props.blockchain;
@@ -238,8 +234,13 @@ class Transactions extends React.Component {
       });
 
       const [data, { count }] = allData;
-
-
+      let internalTransactionList = data.list;
+      internalTransactionList.forEach(item=>{
+        if(data.contractMap){
+          data.contractMap[item.from]? (item.ownerIsContract = true) :  (item.ownerIsContract = false)
+          data.contractMap[item.to]? (item.toIsContract = true) :  (item.toIsContract = false)
+        }
+      })
       let newdata = rebuildList(
         data.list,
         "tokenId",
@@ -256,6 +257,9 @@ class Transactions extends React.Component {
           })
         }
       })
+    
+     
+
       transactions = newdata;
       total = count || data.total;
       rangeTotal = data.rangeTotal;
@@ -364,10 +368,16 @@ class Transactions extends React.Component {
     let { intl,filter,allSelectedTokenAry } = this.props;
     const { 
       timeType,
-      statusFilter,statusOptionsAry,
+      statusFilter,
       resultFilter,resultOptionsAry,
       tokenFilter,tokenOptionsAry,
     } = this.state;
+    // fix change language dont show statusOptionsAry language
+    const statusOptionsAry =[
+      { label:  upperFirst(intl.formatMessage({id: 'full_node_version_unconfirmed'})), value: 1 },
+      { label:  upperFirst(intl.formatMessage({id: 'full_node_version_confirmed'})), value: 0 },
+      { label:  upperFirst(intl.formatMessage({id: 'block_detail_rolled_back'})), value: 2 },
+    ]
     const statusFilterDropdown =  ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
         <div>
             <div style={{padding: "5px 12px"}}>
@@ -570,15 +580,40 @@ class Transactions extends React.Component {
         width:"12%",
         className: 'ant_table address_max_width',
         render: (text, record, index) => {
-          return (
-            <span>
-              {
-                record.from == filter.address ?   
-                <TruncateAddress>{text}</TruncateAddress>
-                :<AddressLink address={text}>{text}</AddressLink>
+          return <span>
+              {/*  Distinguish between contract and ordinary address */}
+              {record.ownerIsContract? (
+                <span className="d-flex">
+                  <Tooltip
+                    placement="top"
+                    title={upperFirst(
+                        intl.formatMessage({
+                        id: "transfersDetailContractAddress"
+                        })
+                    )}
+                  >
+                    <Icon
+                      type="file-text"
+                      style={{
+                      verticalAlign: 0,
+                      color: "#77838f",
+                      lineHeight: 1.4
+                      }}
+                    />
+                  </Tooltip>
+                  {
+                    text == filter.address ?   
+                    <TruncateAddress  isContract={true}>{text}</TruncateAddress>
+                    :<AddressLink address={text}  isContract={true}>{text}</AddressLink>
+                  }
+                </span>
+                ) : (
+                    text == filter.address ?   
+                    <TruncateAddress  isContract={true}>{text}</TruncateAddress>
+                    :<AddressLink address={text}  isContract={true}>{text}</AddressLink>
+                )
               }
             </span>
-          )
         }
       },
       {
@@ -589,15 +624,41 @@ class Transactions extends React.Component {
         width:"12%",
         className: 'ant_table address_max_width',
         render: (text, record, index) => {
-          return (
-            <span>
-              {
-                record.to == filter.address ?   
-                <TruncateAddress>{text}</TruncateAddress>
-                :<AddressLink address={text}>{text}</AddressLink>
+          return <span>
+              {/*  Distinguish between contract and ordinary address */}
+              {record.toIsContract? (
+                <span className="d-flex">
+                  <Tooltip
+                    placement="top"
+                    title={upperFirst(
+                        intl.formatMessage({
+                        id: "transfersDetailContractAddress"
+                        })
+                    )}
+                  >
+                    <Icon
+                      type="file-text"
+                      style={{
+                      verticalAlign: 0,
+                      color: "#77838f",
+                      lineHeight: 1.4
+                      }}
+                    />
+                  </Tooltip>
+                  {
+                    text == filter.address ?   
+                    <TruncateAddress  isContract={true}>{text}</TruncateAddress>
+                    :<AddressLink address={text}  isContract={true}>{text}</AddressLink>
+                  }
+                </span>
+                ) : 
+                (
+                  record.to == filter.address ?   
+                  <TruncateAddress>{text}</TruncateAddress>
+                  :<AddressLink address={text}>{text}</AddressLink>
+                )
               }
             </span>
-          )
         }
       },
       {
@@ -605,7 +666,7 @@ class Transactions extends React.Component {
         dataIndex: 'status',
         key: 'status',
         align: 'left',
-        width: activeLanguage ==='ru' ? '34%' :'16%',
+        width: activeLanguage ==='ru' || activeLanguage ==='ja' ? '18%' :(activeLanguage ==='zh'? '10%':'16%'),
         className: 'ant_table',
         filterIcon: () => {
           return (
@@ -672,7 +733,7 @@ class Transactions extends React.Component {
         title: upperFirst(intl.formatMessage({ id: "amount" })),
         dataIndex: "valueInfoList",
         key: "valueInfoList",
-        align: "left",
+        align: "center",
         className: "ant_table _text_nowrap",
         render: (text, record, index) => {
           return record.valueInfoList.length

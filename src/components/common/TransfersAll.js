@@ -49,6 +49,7 @@ class TransfersAll extends React.Component {
             autoRefresh: props.autoRefresh || false,
             hideSmallCurrency:false,
             tokenName:"",
+            timeType:true,
             inoutFilter:{
                 checkedList:[],
                 indeterminate:'',
@@ -69,15 +70,7 @@ class TransfersAll extends React.Component {
                 indeterminate:'',
                 checkAll:false,
             },
-            inoutOptionsAry:[
-                { label:  upperFirst(intl.formatMessage({id: 'address_transfer_in'})), value: 'in' },
-                { label:  upperFirst(intl.formatMessage({id: 'address_transfer_out'})), value: 'out' },
-            ],
-            statusOptionsAry: [
-                { label:  upperFirst(intl.formatMessage({id: 'full_node_version_unconfirmed'})), value: 1 },
-                { label:  upperFirst(intl.formatMessage({id: 'full_node_version_confirmed'})), value: 0 },
-                { label:  upperFirst(intl.formatMessage({id: 'block_detail_rolled_back'})), value: 2 },
-            ],
+           
             resultOptionsAry: [
                 { label:  'SUCCESS', value: 'SUCCESS' },
                 { label:  'FAIL', value: 'FAIL' },
@@ -89,11 +82,19 @@ class TransfersAll extends React.Component {
     componentDidMount() {
         let {page, pageSize} = this.state;
         // this.load(page,pageSize);
-
+        this.props.routerResetSearchFun();
         if (this.state.autoRefresh !== false) {
             this.props.setInterval(() => this.load(page,pageSize), this.state.autoRefresh);
         }
     }
+
+
+    componentDidUpdate(prevProps) {
+        if (this.props.blockchain.accountSearchAddress !== prevProps.blockchain.accountSearchAddress) {
+            this.load(1);
+        }
+    }
+
 
     onChange = (page, pageSize) => {
         this.setState({
@@ -108,16 +109,77 @@ class TransfersAll extends React.Component {
     load = async (page = 1, pageSize = 20) => {
         let transfersTRX;
         let {id,istrc20=false, getCsvUrl} = this.props;
-        let {showTotal,hideSmallCurrency,tokenNam,filter} = this.state;
-        const params = {
-            sort: '-timestamp',
-            count: showTotal ? true : null,
-            total: this.state.total,
-            start_timestamp:this.start,
-            end_timestamp:this.end,
-            ...filter,
-            ...id,
+        let {showTotal,hideSmallCurrency,tokenNam,filter,inoutFilter,statusFilter,resultFilter,tokenFilter} = this.state;
+        let inoutFilterObj = {};
+        if(inoutFilter.checkedList.join(',')!==''){
+            if(inoutFilter.checkedList.length == 2){
+                inoutFilterObj = {
+                    direction:'all',
+                }
+            }else{
+                inoutFilterObj = {
+                    direction:inoutFilter.checkedList.join(','),
+                }
+            }
+          
         }
+        let statusFilterObj = {};
+        if(statusFilter.checkedList.join(',')!==''){
+            statusFilterObj = {
+                confirm:statusFilter.checkedList.join(','),
+            }
+        }
+        let resultFilterObj = {};
+        if(resultFilter.checkedList.join(',')!==''){
+            if(resultFilter.checkedList.length == 2){
+                resultFilterObj = {
+                    ret:'all',
+                }
+            }else{
+                resultFilterObj = {
+                    ret:resultFilter.checkedList.join(','),
+                }
+            }
+        }
+        let tokenFilterObj = {};
+        if(tokenFilter.checkedList.join(',')!==''){
+            tokenFilterObj = {
+                tokens:tokenFilter.checkedList.join(','),
+            }
+        }
+        const { accountSearchAddress } = this.props.blockchain;
+        let params
+        if (accountSearchAddress === "") {
+            params = {
+                sort: '-timestamp',
+                count: showTotal ? true : null,
+                total: this.state.total,
+                start_timestamp:this.start,
+                end_timestamp:this.end,
+                ...filter,
+                ...id,
+                ...inoutFilterObj,
+                ...statusFilterObj,
+                ...resultFilterObj,
+                ...tokenFilterObj
+            };
+            } else {
+            params = {
+                sort: '-timestamp',
+                count: showTotal ? true : null,
+                total: this.state.total,
+                start_timestamp:this.start,
+                end_timestamp:this.end,
+                ...filter,
+                ...id,
+                ...inoutFilterObj,
+                ...statusFilterObj,
+                ...resultFilterObj,
+                ...tokenFilterObj,
+                keyword: accountSearchAddress
+            };
+        }
+       
         this.setState({
             loading: true,
             page: page,
@@ -243,11 +305,20 @@ class TransfersAll extends React.Component {
         const defaultImg = require("../../images/logo_default.png");
         const { 
             timeType,
-            inoutOptionsAry,inoutFilter,
-            statusFilter,statusOptionsAry,
+            inoutFilter,
+            statusFilter,
             resultFilter,resultOptionsAry,
             tokenFilter,tokenOptionsAry,
         } = this.state;
+        const inoutOptionsAry = [
+            { label:  upperFirst(intl.formatMessage({id: 'address_transfer_in'})), value: 'in' },
+            { label:  upperFirst(intl.formatMessage({id: 'address_transfer_out'})), value: 'out' },
+        ]
+        const statusOptionsAry = [
+            { label:  upperFirst(intl.formatMessage({id: 'full_node_version_unconfirmed'})), value: 1 },
+            { label:  upperFirst(intl.formatMessage({id: 'full_node_version_confirmed'})), value: 0 },
+            { label:  upperFirst(intl.formatMessage({id: 'block_detail_rolled_back'})), value: 2 },
+        ]
         const inoutFilterDropdown = ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
             <div>
                 <div style={{padding: "5px 12px"}}>
@@ -412,7 +483,7 @@ class TransfersAll extends React.Component {
 
         let column = [
             {
-                title: upperFirst(intl.formatMessage({id: 'hash'})),
+                title: upperFirst(intl.formatMessage({id: 'transaction_hash'})),
                 dataIndex: 'hash',
                 key: 'hash',
                 align: 'left',
@@ -915,6 +986,7 @@ class TransfersAll extends React.Component {
 function mapStateToProps(state) {
     return {
       activeLanguage: state.app.activeLanguage,
+      blockchain: state.blockchain
     };
 }
 
