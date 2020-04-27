@@ -72,19 +72,6 @@ class NewTransactions extends React.Component {
                 indeterminate:'',
                 checkAll:false,
             },
-            typeOptionsAry:[
-                { label: upperFirst(intl.formatMessage({id: 'address_account_table_filter_transfers'})), value: 1 },
-                { label: upperFirst(intl.formatMessage({id: 'address_account_table_filter_freeze'})), value: 2 },
-                { label: upperFirst(intl.formatMessage({id: 'address_account_table_filter_unfreeze'})), value: 3 },
-                { label: upperFirst(intl.formatMessage({id: 'address_account_table_filter_trigger_smartContracts'})), value: 5 },
-                { label: upperFirst(intl.formatMessage({id: 'address_account_table_filter_vote'})), value: 4 },
-                { label: upperFirst(intl.formatMessage({id: 'address_account_table_filter_other'})), value: 999 },
-            ],
-            statusOptionsAry: [
-                { label:  upperFirst(intl.formatMessage({id: 'full_node_version_unconfirmed'})), value: 1 },
-                { label:  upperFirst(intl.formatMessage({id: 'full_node_version_confirmed'})), value: 0 },
-                { label:  upperFirst(intl.formatMessage({id: 'block_detail_rolled_back'})), value: 2 },
-            ],
             resultOptionsAry: [
                 { label:  'SUCCESS', value: 'SUCCESS' },
                 { label:  'FAIL', value: 'FAIL' },
@@ -127,7 +114,7 @@ class NewTransactions extends React.Component {
         );
         let typeFilterObj = {};
         if(typeFilter.checkedList.join(',')!==''){
-            if(typeFilter.checkedList.length == 6){
+            if(typeFilter.checkedList.length == 7){
                 typeFilterObj = {
                     type:0,
                 }
@@ -335,11 +322,25 @@ class NewTransactions extends React.Component {
         let {intl,filter,allSelectedTokenAry} = this.props;
         const { 
             timeType,
-            typeOptionsAry,typeFilter,
-            statusFilter,statusOptionsAry,
+            typeFilter,
+            statusFilter,
             resultFilter,resultOptionsAry,
             tokenFilter,tokenOptionsAry,
         } = this.state;
+        const typeOptionsAry = [
+            { label: upperFirst(intl.formatMessage({id: 'address_account_table_filter_transfers'})), value: 1 },
+            { label: upperFirst(intl.formatMessage({id: 'TRC10 Transfer'})), value: 6 },
+            { label: upperFirst(intl.formatMessage({id: 'address_account_table_filter_freeze'})), value: 2 },
+            { label: upperFirst(intl.formatMessage({id: 'address_account_table_filter_unfreeze'})), value: 3 },
+            { label: upperFirst(intl.formatMessage({id: 'address_account_table_filter_trigger_smartContracts'})), value: 5 },
+            { label: upperFirst(intl.formatMessage({id: 'address_account_table_filter_vote'})), value: 4 },
+            { label: upperFirst(intl.formatMessage({id: 'address_account_table_filter_other'})), value: 999 },
+        ]
+        const statusOptionsAry= [
+            { label:  upperFirst(intl.formatMessage({id: 'full_node_version_unconfirmed'})), value: 1 },
+            { label:  upperFirst(intl.formatMessage({id: 'full_node_version_confirmed'})), value: 0 },
+            { label:  upperFirst(intl.formatMessage({id: 'block_detail_rolled_back'})), value: 2 },
+        ]
         const defaultImg = require("../../images/logo_default.png");
         const typeFilterDropdown = ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
             <div>
@@ -349,7 +350,7 @@ class NewTransactions extends React.Component {
                         onChange={
                             e => {
                                 let obj = {
-                                  checkedList: e.target.checked ? [1,2,3,4,5,999] : [],
+                                  checkedList: e.target.checked ? [1,2,3,4,5,6,999] : [],
                                   indeterminate: false,
                                   checkAll: e.target.checked,
                                 }
@@ -505,11 +506,11 @@ class NewTransactions extends React.Component {
         let column = [
 
             {
-                title: upperFirst(intl.formatMessage({id: 'hash'})),
+                title: upperFirst(intl.formatMessage({id: 'transaction_hash'})),
                 dataIndex: 'hash',
                 key: 'hash',
                 align: 'left',
-                width:'8%',
+                width: activeLanguage ==='ja' ? '7%' :'8%',
                 className: 'ant_table',
                 render: (text, record, index) => {
                     return <Truncate>
@@ -525,7 +526,7 @@ class NewTransactions extends React.Component {
                 key: 'block',
                 align: 'left',
                 className: 'ant_table',
-                width: '10%',
+                width: '9%',
                 render: (text, record, index) => {
                     return <BlockNumberLink number={record.block}/>
                 }
@@ -554,7 +555,6 @@ class NewTransactions extends React.Component {
                 key: 'timestamp',
                 align: 'left',
                 className: 'ant_table',
-                width: activeLanguage ==='ru' ? '12%' : '19%',
                 render: (text, record, index) => {
                     return(
                         <div>
@@ -574,17 +574,13 @@ class NewTransactions extends React.Component {
                             )}
                         </div>
                     ) 
-                        
-                    // <BlockTime time={text}></BlockTime>
-                    // <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
                 }
             },
             {
-                title: upperFirst(intl.formatMessage({id: 'initiate_address'})),
+                title: upperFirst(intl.formatMessage({id: 'from'})),
                 dataIndex: 'ownerAddress',
                 key: 'ownerAddress',
                 align: 'left',
-                width:'5%',
                 className: 'ant_table address_max_width',
                 render: (text, record, index) => {
                     return (
@@ -600,11 +596,29 @@ class NewTransactions extends React.Component {
                 }
             },
             {
+                title: upperFirst(intl.formatMessage({id: 'to'})),
+                dataIndex: 'toAddress',
+                key: 'toAddress',
+                align: 'left',
+                className: 'ant_table address_max_width',
+                render: (text, record, index) => {
+                    return (
+                       <span>
+                        {
+                            record.toAddress == filter.address ?   
+                            <TruncateAddress>{text}</TruncateAddress>
+                            :<AddressLink address={text}>{text}</AddressLink>
+                        }
+                       </span>
+                          
+                    )
+                }
+            },
+            {
                 title: upperFirst(intl.formatMessage({id: 'transaction_type'})),
                 dataIndex: 'contractType',
                 key: 'contractType',
                 align: 'left',
-                width: '20%',
                 filterIcon: () => {
                     return (
                         <Icon type="caret-down" style={{fontSize:12,color:'#999'}}  theme="outlined" />
@@ -622,7 +636,10 @@ class NewTransactions extends React.Component {
                 },
                 className: 'ant_table _text_nowrap',
                 render: (text, record, index) => {
-                    return <span>{ContractTypes[text]}</span>
+                    return <span>
+                        {ContractTypes[text] && tu(`transaction_${ContractTypes[text]}`)}
+                        {/* {ContractTypes[text]} */}
+                        </span>
                 }
             },
             {
@@ -630,7 +647,7 @@ class NewTransactions extends React.Component {
                 dataIndex: 'status',
                 key: 'status',
                 align: 'left',
-                width: activeLanguage ==='ru' ? '24%' :(activeLanguage === 'zh' ? "10%" : (activeLanguage === 'ar' || activeLanguage === 'ko'? "18%" :'20%') ),
+                // width: activeLanguage ==='ru' ? '24%' :(activeLanguage === 'zh' ? "10%" : (activeLanguage === 'ar' || activeLanguage === 'ko'? "18%" :'20%') ),
                 filterIcon: () => {
                     return (
                         <Icon type="caret-down" style={{fontSize:12,color:'#999'}}  theme="outlined" />
@@ -712,29 +729,29 @@ class NewTransactions extends React.Component {
                   return <FormattedNumber value={text / Math.pow(10,6)}></FormattedNumber>;
                 }
             },
-            // {
-            //     title: upperFirst(intl.formatMessage({id: 'contract_type'})),
-            //     dataIndex: 'contractType',
-            //     key: 'contractType',
-            //     align: 'left',
-            //     width: '20%',
-            //     className: 'ant_table _text_nowrap',
-            //     render: (text, record, index) => {
-            //         return <span>{ContractTypes[text]}</span>
-            //     }
-            // },
-            
             {
-                dataIndex:
-                upperFirst(
-                    intl.formatMessage({
-                        id: "tokens"
-                    })
+                title: (
+                    <span>
+                        {
+                            upperFirst(
+                                intl.formatMessage({
+                                    id: "tokens"
+                                })
+                            )
+                        }
+                        <span style={{position:'absolute',right:0,left:'92%'}}>
+                            <QuestionMark
+                                placement="top"
+                                text="account_tab_transactions_token_info"
+                            />
+                        </span>
+                       
+                    </span>
                 ),
+                dataIndex:"tokens",
                 align: "left",
                 key: "tokens",
                 className: "ant_table",
-                width: activeLanguage ==='ar' || activeLanguage ==='ko'  ? '12%': "10%",
                 filterIcon: () => {
                     return (
                         <Icon type="caret-down" style={{fontSize:12,color:'#999'}}  theme="outlined" />
@@ -873,7 +890,7 @@ class NewTransactions extends React.Component {
         let column = [
 
             {
-                title: upperFirst(intl.formatMessage({id: 'hash'})),
+                title: upperFirst(intl.formatMessage({id: 'transaction_hash'})),
                 dataIndex: 'hash',
                 key: 'hash',
                 align: 'left',
@@ -886,17 +903,7 @@ class NewTransactions extends React.Component {
                     </Truncate>
                 }
             },
-            // {
-            //   title: upperFirst(intl.formatMessage({id: 'age'})),
-            //   dataIndex: 'timestamp',
-            //   key: 'timestamp',
-            //   align: 'left',
-            //   className: 'ant_table',
-            //   width: '14%',
-            //   render: (text, record, index) => {
-            //     return <TimeAgo date={text}/>
-            //   }
-            // },
+         
             {
                 title: upperFirst(intl.formatMessage({id: 'from'})),
                 dataIndex: 'from',
@@ -952,17 +959,7 @@ class NewTransactions extends React.Component {
                     })
                 }
             },
-            // {
-            //   title: upperFirst(intl.formatMessage({id: 'contract_type'})),
-            //   dataIndex: 'contractType',
-            //   key: 'contractType',
-            //   align: 'right',
-            //   width: '20%',
-            //   className: 'ant_table _text_nowrap',
-            //   render: (text, record, index) => {
-            //     return <span>{ContractTypes[text]}</span>
-            //   }
-            // },
+        
         ];
         return column;
     }

@@ -736,17 +736,6 @@ class TransfersAll extends React.Component {
                     )
                 },
             },
-          
-
-            // {
-            //     title: '',
-            //     className: 'ant_table',
-            //     width: '5%',
-            //     render: (text, record, index) => {
-            //         return record.fromtip?<img width={40} height={22} src={require("../../images/address/in.png")}/>:<img  width={40} height={22} src={require("../../images/address/out.png")}/>
-            //     }
-            // },
-           
             {
                 title: upperFirst(intl.formatMessage({id: 'amount'})),
                 dataIndex: 'amount',
