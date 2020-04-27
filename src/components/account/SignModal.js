@@ -78,11 +78,12 @@ class SignModal extends Component {
      * Form confirm
      */
     confirm = () => {
-
+        
 
         const { form: { validateFields }, account: { sunWeb },
             option: { id, address, precision, type }, fees: { withdrawFee } } = this.props;
         const { numValue, errorMess } = this.state;
+        console.log('this.props',this.props,'withdrawFee',withdrawFee)
         this.setState({ isDisabled: true });
         const isSubmit = this.validateNum();
 
@@ -225,7 +226,12 @@ class SignModal extends Component {
 
         // pledgeTextItem
         const pledgeTextItem = (
-            <p className="mt-5">{tu('sign_text')}{withdrawFee} TRX</p>
+            <p className="mt-5">
+               {
+                withdrawFee === 0 ?null:
+                <span>{tu('sign_text')}{withdrawFee} TRX</span>
+               }
+            </p>
         );
 
         // feeError
