@@ -22,7 +22,6 @@ export default class LedgerBridge {
         address:this.address2hex(address)
       }
     );
-    console.log('data====',data)
     if(JSON.stringify(data.data) == "{}"){
       return false
     }
@@ -31,8 +30,6 @@ export default class LedgerBridge {
 
   getAddressTRXBalances = async(addressStr) => {
     let address = await Client.getAddress(addressStr);
-    console.log('address===1111',address)
-
     let sentDelegateBandwidth = 0;
     if (address.delegated && address.delegated.sentDelegatedBandwidth) {
       for (
@@ -75,15 +72,11 @@ export default class LedgerBridge {
       frozenBandwidth +
       sentDelegateResource +
       frozenEnergy;
-
-    console.log('totalPower====',totalPower)    
+ 
     return (address.balance + totalPower)
   } 
 
   address2hex (address){
-    console.log('byteArray2hexStr(decode58Check(address)).toLowerCase()',byteArray2hexStr(
-      decode58Check(address)
-    ).toLowerCase())
     return byteArray2hexStr(
       decode58Check(address)
     ).toLowerCase();
@@ -95,10 +88,8 @@ export default class LedgerBridge {
       const transport = await Transport.create();
       try {
         let path = this.getPathForIndex(index);
-        console.log('path====',path)
         const trx = new AppTrx(transport);
         let {address} = await trx.getAddress(path, confirm);
-        console.log('address6666',address)
         resolve({
           address,
           connected: true,
@@ -132,7 +123,6 @@ export default class LedgerBridge {
       const transport = await Transport.create();
       try {
         let path = this.getPathForIndex(pathIndex);
-        console.log('path',path)
         const trx = new AppTrx(transport);
         const response = await trx.signTransaction(
           path,

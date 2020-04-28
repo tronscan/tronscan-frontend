@@ -65,20 +65,13 @@ function addressFormat(addr) {
         return 'error';
       }
       for (let i = from; i < to; i++) {
-        console.log('i====',i)
         const path = this.ledger.getPathForIndex(i);
-        console.log('path=====1123',path)
         const address = await this.ledger.getAddress(path).catch(e => console.log('e=======',e));
-        console.log('address=====1123',address)
-       
         const valid =  await this.ledger.isActivedAddress(address);
-        console.log('valid=====1123',valid)
         if(valid){
            balance = await this.ledger.getAddressTRXBalances(address);
-           console.log('balance=====1123',balance)
         }
        
-        console.log('address=====1123',address)
         accounts.push({
           path:path,
           address: address,
@@ -96,9 +89,8 @@ function addressFormat(addr) {
         loading: false,
         accounts
        });
-      console.log('accounts',accounts)
+      console.log('actived accounts',accounts)
     }catch (error){
-      console.log('retryMax',retryMax)
       await delay(1000);
       return this.getAccounts(retryMax - 1);
     }
@@ -111,7 +103,6 @@ function addressFormat(addr) {
     let { pathIndex } = this.state;
     while (this._isMounted) {
       let { connected, address } = await this.ledger.checkForConnection(pathIndex,true);
-      console.log('address=====5555',address)
       if (connected) {
         this.setState({
           connected,
@@ -127,8 +118,6 @@ function addressFormat(addr) {
 
   openWallet = async () => {
     let { address, pathIndex} = this.state;
-    console.log('address=====777',address)
-    console.log('pathIndex=====7777',pathIndex)
     let { history, onClose } = this.props;
     
     const tronWebLedger = this.props.tronWeb();
@@ -157,14 +146,12 @@ function addressFormat(addr) {
   };
 
   onChange = e => {
-    console.log('radio1 checked', e.target.value);
     this.setState({
       pathIndex: e.target.value,
     });
   };
   render() {
     let { loading, connected, address, type, accounts, pathIndex, verifyAddress} = this.state;
-    console.log('accounts====',accounts)
     const radioStyle = {
       display: 'block',
       height: '30px',
