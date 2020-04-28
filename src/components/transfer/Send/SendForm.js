@@ -203,10 +203,10 @@ class SendForm extends React.Component {
             success = false;
         }
     }
-    if (success) {
+    if (!success) {
       this.refreshTokenBalances();
 
-      onSend && onSend();
+      onSend && onSend('success');
       //two work flows!
 
       this.setState({
@@ -214,6 +214,7 @@ class SendForm extends React.Component {
         isLoading: false,
       });
     } else {
+      onSend && onSend('failure');
       this.setState({
         sendStatus: 'failure',
         isLoading: false,
@@ -676,25 +677,21 @@ class SendForm extends React.Component {
       )
     }
 
-    if (sendStatus === 'failure') {
-      return (
-          <Alert color="danger" className="text-center">
-            Something went wrong while submitting the transaction
-          </Alert>
-      )
-    }
+    // if (sendStatus === 'failure') {
+    //   return (
+    //       <Alert color="danger" className="text-center">
+    //         Something went wrong while submitting the transaction
+    //       </Alert>
+    //   )
+    // }
 
     return (
         <Fragment>
-
-          {/*<Alert color="warning" className="text-center">*/}
-          {/*{tu("address_warning")}*/}
-          {/*</Alert>*/}
           <button
               type="button"
               disabled={!this.isValid() || isLoading}
               className="btn btn-primary btn-block btn-lg"
-              onClick={this.confirmSend}>{tu("send")}</button>
+              onClick={this.send}>{tu("send")}</button>
         </Fragment>
     )
   }

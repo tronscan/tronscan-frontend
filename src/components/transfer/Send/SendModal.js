@@ -39,16 +39,31 @@ class SendModal extends React.PureComponent {
     onClose && onClose();
   };
 
-  onSend = () => {
-    this.setState({
-      modal: (
-        <SweetAlert
-          success
-          title="Successful Transaction"
-          onConfirm={this.hideModal}
-        />
-      )
-    });
+  onSend = (type) => {
+    if(type == 'success'){
+      this.setState({
+        modal: (
+          <SweetAlert
+            success
+            title={tu("successful_send")}
+            confirmBtnText={tu("confirm")}
+            onConfirm={this.hideModal}
+          />
+        )
+      });
+    }else if(type == 'failure'){
+      this.setState({
+        modal: (
+          <SweetAlert
+            error
+            title={tu("转账失败")}
+            confirmBtnText={tu("confirm")}
+            onConfirm={this.hideModal}
+          />
+        )
+      });
+    }
+   
   };
 
   render() {
