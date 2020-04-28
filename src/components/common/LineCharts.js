@@ -491,7 +491,7 @@ export class LineReactHighChartAdd extends React.Component {
                             s = '<table class="tableformat" style="border: 0px;padding-left:10px;padding-right:10px" min-width="100%"><tr><td colspan=2 style="padding-bottom:5px;"><span style="font-size: 10px;"> ' + moment(points[0].x).format("YYYY-MM-DD") + ' (UTC)</span><br></td></tr>'
                             for (let index = 0; index < pointsLength; index += 1) {
                             
-                                s += '<tr style="border-bottom:1px solid #D5D8DC;"><td><span style="color:'+points[index].series.color+'">\u25A0</span>'+points[index].series.name+'</td><td style="text-align:right;padding:4px 6px;">'+toThousands((new BigNumber(points[index].y)).decimalPlaces(6))+'</td></tr>' 
+                                s += '<tr style="border-bottom:1px solid #D5D8DC;color:'+points[index].series.color+'"><td><span style="margin-right:5px">\u25A0</span>'+points[index].series.name+'</td><td style="text-align:right;padding:4px 6px;color:'+points[index].series.color+'">'+toThousands((new BigNumber(points[index].y)).decimalPlaces(6))+'</td></tr>' 
 
                             }
                             s += '</table>';
@@ -1158,7 +1158,7 @@ export class LineReactHighChartPrice extends React.Component {
            
             _config.chart.zoomType = 'x';
             _config.chart.marginTop = 80;
-            _config.chart.type= 'area';
+            _config.chart.type= '';
             _config.title.text = intl.formatMessage({id: 'charts_average_price'});
             _config.subtitle.text = intl.formatMessage({id: 'HighChart_tip'});
             _config.exporting.filename = intl.formatMessage({id: 'charts_average_price'});
@@ -1168,7 +1168,8 @@ export class LineReactHighChartPrice extends React.Component {
             _config.yAxis.tickAmount = 5;
             _config.yAxis.min = 0;
             _config.yAxis.opposite = false
-
+            _config.plotOptions = {}
+            _config.series[0].type = ''
             _config.series[0].marker.enabled = false;
             _config.series[0].pointInterval = 24 * 3600 * 1000;
             _config.series[0].pointStart = data[0] && data[0].time
