@@ -48,7 +48,6 @@ function addressFormat(addr) {
     let { to } = this.state;
     this._isMounted = true;
     this.getAccounts(to);
-    //this.checkForConnection();
   }
 
   componentWillUnmount() {
@@ -98,8 +97,9 @@ function addressFormat(addr) {
         accounts
        });
       console.log('accounts',accounts)
-      // return accounts
     }catch (error){
+      console.log('retryMax',retryMax)
+      await delay(1000);
       return this.getAccounts(retryMax - 1);
     }
    

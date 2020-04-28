@@ -5463,6 +5463,8 @@ h5 {
 }
 
 .choose-ledger-account{
+  max-height: 215px;
+  overflow-y: auto;
   .ant-radio-group{
     width: 100%;
     .ant-radio-wrapper{
