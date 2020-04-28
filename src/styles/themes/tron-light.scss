@@ -1082,13 +1082,45 @@
         border-radius: 100%;
         font-weight: normal;
         text-align: center;
-        font-size: 10px;
         line-height: 14px;
         cursor:pointer;
         font-family: PingFangSC-Regular;
         color: #FFFFFF;
         text-align: center;
         background: #C23631;
+        .bageFont{
+          font-size: 12px;
+          transform: scale(0.8);
+        }
+        .bage-menu{
+          padding:15px;
+          max-width: 13.3rem;
+          top:20px;
+          left:-6rem;
+          z-index: 999;
+          .bage-list{
+            line-height: 22px;
+            margin-bottom: 2px;
+            display: flex;
+            justify-content: space-between;
+            span{
+              font-family: PingFangSC-Regular;
+              font-size: 14px;
+              line-height: 22px;
+            }
+            .title{
+              display: inline-block;
+              min-width: 62px;
+              color: #666666;
+            }
+          }
+        }
+      
+        &:hover{
+          .bage-menu{
+            display: block;
+          }
+        }
       }
     }
     // .transfersAll-container{

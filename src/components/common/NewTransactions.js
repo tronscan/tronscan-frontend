@@ -614,14 +614,14 @@ class NewTransactions extends React.Component {
                                 </Tooltip>
                                 {
                                     text == filter.address ?   
-                                    <TruncateAddress>{text}</TruncateAddress>
+                                    <TruncateAddress address={text}>{text}</TruncateAddress>
                                     :<AddressLink address={text}>{text}</AddressLink>
                                 }
                             </span>
                             )
                             : (
                                 text == filter.address ?   
-                                    <TruncateAddress>{text}</TruncateAddress>
+                                    <TruncateAddress address={text}>{text}</TruncateAddress>
                                     :<AddressLink address={text}>{text}</AddressLink>
                             )
                         }
@@ -659,19 +659,37 @@ class NewTransactions extends React.Component {
                                     </Tooltip>
                                     {
                                         text == filter.address ?   
-                                        <TruncateAddress>{text}</TruncateAddress>
+                                        <TruncateAddress address={text}>{text}</TruncateAddress>
                                         :<AddressLink address={text}>{text}</AddressLink>
                                     }
                                 </span>
                                 )
                                 : (
-                                    text == filter.address ? <TruncateAddress>{text}</TruncateAddress>
+                                    text == filter.address ? <TruncateAddress address={text}>{text}</TruncateAddress>
                                     : <AddressLink address={text}>{text}</AddressLink>
                                 )
                             }
                             {
-                                record.contractType === 4 && record.toAddressList&&record.toAddressList.length>0?
-                                <span className='bage'>{record.toAddressList.length}</span>:null
+                                record.contractType === 4 && record.toAddressList&&record.toAddressList.length>1?
+                                <span className='bage dropdown'>
+                                    <span className='bageFont' id="bageFont" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        {record.toAddressList.length}
+                                    </span>
+                                    <div className="dropdown-menu bage-menu" aria-labelledby="bageFont">
+                                        {
+                                            record.toAddressList.map(bage => (
+                                           <span className='bage-list'>
+                                               <span className='title'>{upperFirst(intl.formatMessage({id: 'to'}))}</span>
+                                                {
+                                                    bage == filter.address ? <TruncateAddress address={bage}>{bage}</TruncateAddress>
+                                                     : <AddressLink address={bage}>{bage}</AddressLink>
+                                                }
+                                           </span>
+                                        ))
+                                        }
+                                    </div>
+                                </span>
+                                :null
                             }
                         </span>
                     )

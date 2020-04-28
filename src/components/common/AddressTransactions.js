@@ -603,13 +603,13 @@ class Transactions extends React.Component {
                   </Tooltip>
                   {
                     text == filter.address ?   
-                    <TruncateAddress  isContract={true}>{text}</TruncateAddress>
+                    <TruncateAddress  address={text} isContract={true}>{text}</TruncateAddress>
                     :<AddressLink address={text}  isContract={true}>{text}</AddressLink>
                   }
                 </span>
                 ) : (
                     text == filter.address ?   
-                    <TruncateAddress  isContract={true}>{text}</TruncateAddress>
+                    <TruncateAddress  address={text} isContract={true}>{text}</TruncateAddress>
                     :<AddressLink address={text}  isContract={true}>{text}</AddressLink>
                 )
               }
@@ -647,14 +647,14 @@ class Transactions extends React.Component {
                   </Tooltip>
                   {
                     text == filter.address ?   
-                    <TruncateAddress  isContract={true}>{text}</TruncateAddress>
+                    <TruncateAddress  address={text} isContract={true}>{text}</TruncateAddress>
                     :<AddressLink address={text}  isContract={true}>{text}</AddressLink>
                   }
                 </span>
                 ) : 
                 (
                   record.to == filter.address ?   
-                  <TruncateAddress>{text}</TruncateAddress>
+                  <TruncateAddress  address={text}>{text}</TruncateAddress>
                   :<AddressLink address={text}>{text}</AddressLink>
                 )
               }

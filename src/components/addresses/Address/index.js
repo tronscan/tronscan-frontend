@@ -1436,7 +1436,7 @@ class Address extends React.Component {
                         className="addressSearch"
                         style={
                           Object.keys(tabs).length > 7 ? 
-                          activeLanguage == "en" ||   activeLanguage == "ru" ||  activeLanguage == "es" ?
+                           activeLanguage == "ru" ||  activeLanguage == "es" ?
                           {
                             position: "absolute",
                             right: "1rem",
