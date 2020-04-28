@@ -378,6 +378,8 @@ export const lang20Q1 = {
   chart_account_title_week:'Active accounts of the week',
   chart_account_title_day:'Active accounts of the day',
   chart_add_daily_title:'Daily new accounts',
+  chart_single_title_max:'{title} was peaked at <strong> {number} </strong> (recorded on {date})',
+  chart_single_title_min:'{title} was lowest at <strong> {number} </strong> (recorded on {date})',
 
   // foundation address
   foundation_address_update_date:'Updated time: 2019/12/31',

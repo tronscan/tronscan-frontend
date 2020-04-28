@@ -384,8 +384,8 @@ export const lang20Q1 = {
   chart_account_title_week:'周活跃账户数',
   chart_account_title_day:'日活跃账户数',
   chart_add_daily_title:'日新增账户数',
-
-
+  chart_single_title_max:'{title}最大值是<strong> {number} </strong>记录于{date}',
+  chart_single_title_min:'{title}最小值是<strong> {number} </strong>记录于{date}',
 
   // foundation address
   foundation_address_update_date:'更新时间：2019/12/31',

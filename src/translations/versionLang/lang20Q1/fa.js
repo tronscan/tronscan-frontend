@@ -374,7 +374,8 @@ chart_account_title_month:'حسابهای فعال ماه',
   chart_account_title_week:'حسابهای فعال هفته',
   chart_account_title_day:'حسابهای فعال روز',
   chart_add_daily_title:'تعداد حسابهای جدید روزانه',
-
+  chart_single_title_max:' حداکثر مقدار {title} برابر <strong> {number} </strong> است که در تاریخ {date} ثبت شده است.',
+  chart_single_title_min:'حداقل مقدار {title} <strong> {number} </strong> است که در تاریخ {date} ثبت شده است.',
   // foundation address
   foundation_address_update_date:'Updated time: 2019/12/31',
   foundation_address_deadline_date:'by 2020.4.15',

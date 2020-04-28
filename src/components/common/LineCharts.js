@@ -1189,8 +1189,9 @@ export class LineReactHighChartPrice extends React.Component {
                     var points = this.points;
                     var pointsLength = points.length;
                     if(pointsLength > 0){
-                        let {close,open,high,low} = points && points[0].point
-                        s = '<table class="tableformat" style="border: 0px;" min-width="100%"><tr style="border-bottom:1px solid #D5D8DC;"><td colspan=2><span style="font-size: 10px;"> ' + moment(points[0].point.date).format("YYYY-MM-DD") + ' (UTC)</span><br></td><td></td></tr>'
+                        let {close,open,high,low,time} = points && points[0].point
+                        
+                        s = '<table class="tableformat" style="border: 0px;" min-width="100%"><tr style="border-bottom:1px solid #D5D8DC;"><td colspan=2><span style="font-size: 10px;"> ' + moment(time).format("YYYY-MM-DD") + ' (UTC)</span><br></td><td></td></tr>'
                         s += '<tr style="border-bottom:1px solid #D5D8DC;"><td>'+intl.formatMessage({id:'chart_per_price_open'})+'</td><td style="text-align:right;padding:4px 6px;">'+Highcharts.numberFormat(open, 6, '.', ',')+' USD</td></tr>' 
                         s += '<tr style="border-bottom:1px solid #D5D8DC;"><td>'+intl.formatMessage({id:'chart_per_price_close'})+'</td><td style="text-align:right;padding:4px 6px;">'+Highcharts.numberFormat(close, 6, '.', ',')+' USD</td></tr>' 
                         s += '<tr style="border-bottom:1px solid #D5D8DC;"><td>'+intl.formatMessage({id:'chart_per_price_high'})+'</td><td style="text-align:right;padding:4px 6px;">'+Highcharts.numberFormat(high, 6, '.', ',')+' USD</td></tr>' 

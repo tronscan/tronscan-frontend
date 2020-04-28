@@ -433,6 +433,7 @@ class Statistics extends React.Component {
    
         this.setState({
             summit: {
+                volumeStats_title:'charts_volume_24',
                 volumeStats_sort: [
                     {
                         date: vo[vo.length - 1] && vo[vo.length - 1].time,
@@ -475,6 +476,7 @@ class Statistics extends React.Component {
         }
         this.setState({
             summit: {
+                priceStats_title:'chart_per_price_close',
                 priceStats_sort: [
                     {
                         date: pr[pr.length - 1] && pr[pr.length - 1].time,
@@ -1272,10 +1274,11 @@ class Statistics extends React.Component {
             unit = 'number';
         }
 
+        let chart_title = summit && summit[match.params.chartName + '_title'] && intl.formatMessage({id:summit[match.params.chartName + '_title']})
 
         return (
             <main className="container header-overlap">
-                {
+                {/* {
                     match.params.chartName != 'pieChart' && match.params.chartName != 'supply' && match.params.chartName != 'ContractInvocationDistribution' && match.params.chartName !='EnergyConsumeDistribution' ?
                         <div className="alert alert-light" role="alert">
                           <div className="row">
@@ -1303,7 +1306,35 @@ class Statistics extends React.Component {
                           </div>
                         </div>
                         : null
-                }
+                } */}
+                {
+                    match.params.chartName != 'pieChart' && match.params.chartName != 'supply' && match.params.chartName != 'ContractInvocationDistribution' && match.params.chartName !='EnergyConsumeDistribution' ?
+                        <div className="alert alert-light" role="alert">
+                          <div className="row">
+                            <div className="col-md-6 text-center"
+                                dangerouslySetInnerHTML={{
+                                    __html: intl.formatMessage({id:'chart_single_title_max'},
+                                    {title:chart_title,
+                                    number:summit && summit[match.params.chartName + '_sort'] && toThousands(summit[match.params.chartName + '_sort'][0].increment),
+                                    date:summit && summit[match.params.chartName + '_sort'] && intl.formatDate(summit[match.params.chartName + '_sort'][0].date)
+                                 })
+                                }}
+                            >
+                            </div>
+                            <div className="col-md-6 text-center"
+                                dangerouslySetInnerHTML={{
+                                    __html: intl.formatMessage({id:'chart_single_title_min'},
+                                    {title:chart_title,
+                                    number:summit && summit[match.params.chartName + '_sort'] && toThousands(summit[match.params.chartName + '_sort'][1].increment),
+                                    date:summit && summit[match.params.chartName + '_sort'] && intl.formatDate(summit[match.params.chartName + '_sort'][1].date)
+                                })
+                            }}
+                            >   
+                            </div>
+                          </div>
+                        </div>
+                        : null
+                } 
               <div className="row">
                 <div className="col-md-12">
                   <div className="card">

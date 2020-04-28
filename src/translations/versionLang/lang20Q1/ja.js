@@ -373,6 +373,8 @@ chart_account_title_month:'毎月のアクティブなアカウント',
   chart_account_title_week:'毎週アクティブなアカウント',
   chart_account_title_day:'1日のアクティブアカウント',
   chart_add_daily_title:'日増加アカウント',
+  chart_single_title_max:'{title}の最大値は{date}に記録された<strong> {number} </strong>です',
+  chart_single_title_min:'{title}の最小値は{date}に記録された<strong> {number} </strong>です',
 
 
   // foundation address

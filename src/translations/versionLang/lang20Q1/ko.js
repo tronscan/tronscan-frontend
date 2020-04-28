@@ -378,6 +378,8 @@ export const lang20Q1 = {
   chart_account_title_week:'주간 활성계정수',
   chart_account_title_day:'일 활성계정수',
   chart_add_daily_title:'일일 신규계정 수',
+  chart_single_title_max:'{title} 최대 <strong> {number} </strong> (recorded on {date})',
+  chart_single_title_min:'{title} 최소 <strong> {number} </strong> (recorded on {date})',
 
   // foundation address
   foundation_address_update_date:'Updated time: 2019/12/31',

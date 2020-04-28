@@ -371,6 +371,8 @@ export const lang20Q1 = {
   chart_account_title_week:'حسابات نشطة للأسبوع ',
   chart_account_title_day:'حسابات نشطة اليوم',
   chart_add_daily_title:'الحسابات اليومية الجديدة',
+  chart_single_title_max:'بلغت ذروة {title} عند <strong> {number} </strong> (مسجّل في {date})',
+  chart_single_title_min:'كان الحد الأدنى في {title} عند <strong> {number} </strong> (مسجّل في {date})',
 
   // foundation address
   foundation_address_update_date:'Updated time: 2019/12/31',
