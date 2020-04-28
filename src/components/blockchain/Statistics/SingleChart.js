@@ -211,7 +211,7 @@ class Statistics extends React.Component {
         for (let txs in data) {
             let tx = parseInt(txs);
             let {day_string,day_time,transactions,proportion,mom,amount,active_count} = data[tx]
-            let day_string_type = this.setActiveAccountTimeString(day_time,day_string)
+            let day_string_type = this.setActiveAccountTimeString(type,day_time,day_string)
             
             temp.push({
                 transactions,
@@ -219,7 +219,7 @@ class Statistics extends React.Component {
                 proportion:Number(proportion).toFixed(2),
                 mom:Number(mom).toFixed(2),
                 amount:Number(amount).toFixed(6),
-                usdAmount:Number(amount*usdPrice).toFixed(3),
+                usdAmount:Number(amount*usdPrice).toFixed(6),
                 active_count,
                 day_string,
                 day_string_type:day_string_type
@@ -477,11 +477,11 @@ class Statistics extends React.Component {
                 priceStats_sort: [
                     {
                         date: pr[pr.length - 1] && pr[pr.length - 1].time,
-                        increment: pr[pr.length - 1] && pr[pr.length - 1].close
+                        increment: pr[pr.length - 1] && Number(pr[pr.length - 1].close).toFixed(6)
                     },
                     {
                         date: pr[0] && pr[0].time,
-                        increment: pr[0] && pr[0].close
+                        increment: pr[0] && Number(pr[0].close).toFixed(6)
                     }],
             }
         });

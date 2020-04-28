@@ -1190,10 +1190,10 @@ export class LineReactHighChartPrice extends React.Component {
                     if(pointsLength > 0){
                         let {close,open,high,low} = points && points[0].point
                         s = '<table class="tableformat" style="border: 0px;" min-width="100%"><tr style="border-bottom:1px solid #D5D8DC;"><td colspan=2><span style="font-size: 10px;"> ' + moment(points[0].point.date).format("YYYY-MM-DD") + ' (UTC)</span><br></td><td></td></tr>'
-                        s += '<tr style="border-bottom:1px solid #D5D8DC;"><td>'+intl.formatMessage({id:'chart_per_price_open'})+'</td><td style="text-align:right;padding:4px 6px;">'+open+' USD</td></tr>' 
-                        s += '<tr style="border-bottom:1px solid #D5D8DC;"><td>'+intl.formatMessage({id:'chart_per_price_close'})+'</td><td style="text-align:right;padding:4px 6px;">'+close+' USD</td></tr>' 
-                        s += '<tr style="border-bottom:1px solid #D5D8DC;"><td>'+intl.formatMessage({id:'chart_per_price_high'})+'</td><td style="text-align:right;padding:4px 6px;">'+high+' USD</td></tr>' 
-                        s += '<tr style="border-bottom:1px solid #D5D8DC;"><td>'+intl.formatMessage({id:'chart_per_price_low'})+'</td><td style="text-align:right;padding:4px 6px;">'+low+' USD</td></tr>' 
+                        s += '<tr style="border-bottom:1px solid #D5D8DC;"><td>'+intl.formatMessage({id:'chart_per_price_open'})+'</td><td style="text-align:right;padding:4px 6px;">'+Highcharts.numberFormat(open, 6, '.', ',')+' USD</td></tr>' 
+                        s += '<tr style="border-bottom:1px solid #D5D8DC;"><td>'+intl.formatMessage({id:'chart_per_price_close'})+'</td><td style="text-align:right;padding:4px 6px;">'+Highcharts.numberFormat(close, 6, '.', ',')+' USD</td></tr>' 
+                        s += '<tr style="border-bottom:1px solid #D5D8DC;"><td>'+intl.formatMessage({id:'chart_per_price_high'})+'</td><td style="text-align:right;padding:4px 6px;">'+Highcharts.numberFormat(high, 6, '.', ',')+' USD</td></tr>' 
+                        s += '<tr style="border-bottom:1px solid #D5D8DC;"><td>'+intl.formatMessage({id:'chart_per_price_low'})+'</td><td style="text-align:right;padding:4px 6px;">'+Highcharts.numberFormat(low, 6, '.', ',')+' USD</td></tr>' 
                         s += '</table>';
                         return s;
                     }
@@ -1297,7 +1297,7 @@ export class LineReactHighChartVolumeUsd extends React.Component {
                 let date = intl.formatDate((parseInt(this.point.x)));
                 return (
                     intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
-                    intl.formatMessage({id: 'volume'}) + ' : ' + Highcharts.numberFormat(this.point.y, 3, '.', ',') +' USD<br>'
+                    intl.formatMessage({id: 'volume'}) + ' : ' + Highcharts.numberFormat(this.point.y, 6, '.', ',') +' USD<br>'
                 )
             }
         }
@@ -3773,14 +3773,14 @@ export class ActiveAccountsChart extends React.Component {
                     var points = this.points;
                     var pointsLength = points.length;
                     if(pointsLength > 0){
-                        let {transactions,proportion,mom,amount,active_count,usdAmount,day_string_type} = points && points[0].point
+                        let {transactions,proportion,mom,amount,active_count,usdAmount,day_string_type,day_string} = points && points[0].point
                         mom = mom > 0 ? '+'+mom : mom 
-                        s = '<table class="tableformat" style="border: 0px;" min-width="100%"><tr style="border-bottom:1px solid #D5D8DC;"><td colspan=2><span style="font-size: 10px;"> ' + day_string_type + ' (UTC)</span><br></td><td></td></tr>'
+                        s = '<table class="tableformat" style="border: 0px;" min-width="100%"><tr style="border-bottom:1px solid #D5D8DC;"><td colspan=2><span style="font-size: 10px;"> ' + day_string_type +' (UTC)</span><br></td><td></td></tr>'
                         s += '<tr style="border-bottom:1px solid #D5D8DC;"><td>'+intl.formatMessage({id:'chart_active_table_2'})+'</td><td style="text-align:right;padding:4px 6px;">'+Highcharts.numberFormat(active_count, 2, '.', ',')+'</td></tr>' 
                         s += '<tr style="border-bottom:1px solid #D5D8DC;"><td>'+intl.formatMessage({id:'chart_active_table_3'})+'</td><td style="text-align:right;padding:4px 6px;">'+proportion+' %</td></tr>' 
                         s += '<tr style="border-bottom:1px solid #D5D8DC;"><td>'+intl.formatMessage({id:'chart_active_table_4'})+'</td><td style="text-align:right;padding:4px 6px;">'+mom+' %</td></tr>' 
                         s += '<tr style="border-bottom:1px solid #D5D8DC;"><td>'+intl.formatMessage({id:'chart_active_table_5'})+'</td><td style="text-align:right;padding:4px 6px;">'+Highcharts.numberFormat(transactions,0,'.',',')+' Txns</td></tr>' 
-                        s += '<tr style="border-bottom:1px solid #D5D8DC;"><td>'+intl.formatMessage({id:'chart_active_table_6'})+'</td><td style="text-align:right;padding:4px 6px;">'+Highcharts.numberFormat(amount,6,'.',',')+' TRX<br/> ≈'+Highcharts.numberFormat(usdAmount,3,'.',',')+' USD</td></tr>'              
+                        s += '<tr style="border-bottom:1px solid #D5D8DC;"><td>'+intl.formatMessage({id:'chart_active_table_6'})+'</td><td style="text-align:right;padding:4px 6px;">'+Highcharts.numberFormat(amount,6,'.',',')+' TRX<br/> ≈'+Highcharts.numberFormat(usdAmount,6,'.',',')+' USD</td></tr>'              
                         s += '</table>';
                         return s;
                     }
