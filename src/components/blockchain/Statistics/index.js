@@ -540,7 +540,7 @@ class StatsCharts extends React.Component {
                         {tu("chart_active_account")}
                       </span>
                       <img
-                        src={require("../../../images/chart/Accounts_holding_TRX.png")}
+                        src={require("../../../images/chart/Active_accout.png")}
                         style={{ width: 240, filter: "grayscale(100%)" }}
                         className="ml-5 mt-2"
                       />

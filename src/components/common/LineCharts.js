@@ -3753,18 +3753,19 @@ export class ActiveAccountsChart extends React.Component {
             _config.chart.zoomType = 'x';
             _config.chart.marginTop = 80;
             _config.title.text = intl.formatMessage({id: 'chart_active_account'});
-            _config.exporting.filename = intl.formatMessage({id: 'charts_total_transactions'});
+            _config.exporting.filename = intl.formatMessage({id: 'chart_active_account'});
             // _config.xAxis.tickPixelInterval = 100;
-            _config.yAxis.title.text = intl.formatMessage({id: 'totle_transactions_per_day'});
+            _config.yAxis.title.text = intl.formatMessage({id: 'chart_active_table_2'});
             _config.yAxis.tickAmount = 6;
             _config.yAxis.min = 0;
-            
+            _config.yAxis.opposite=false;
             _config.series[0].marker.enabled = false;
             _config.series[0].pointInterval = pointInterval;
             _config.series[0].pointStart = data[0].date || '';
             _config.series[0].zoneAxis = 'y'
             
             _config.series[0].zones = newRange
+            
             _config.tooltip = {
                 useHTML: true,
                 shadow: true,
