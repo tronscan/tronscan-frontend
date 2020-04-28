@@ -17,6 +17,7 @@ import ApplyForDelegate from "./common/ApplyForDelegate";
 import Lockr from "lockr";
 import {transactionResultManager, transactionResultManagerSun} from "../../utils/tron";
 import {withTronWeb} from "../../utils/tronWeb";
+import CommitteeHeader from "./common/CommitteeHeader"
 
 @withTronWeb
 class Proposal extends React.Component {
@@ -242,7 +243,7 @@ class Proposal extends React.Component {
                         confirmBtnText={intl.formatMessage({ id: 'confirm' })}
                         confirmBtnBsStyle="danger"
                         onConfirm={() => this.setState({ modal: null })}
-                        style={{ marginLeft: '-240px', marginTop: '-195px' }}
+                        // style={{ marginLeft: '-240px', marginTop: '-195px' }}
                     >
                     </SweetAlert>
                 });
@@ -1066,6 +1067,7 @@ class Proposal extends React.Component {
         return (
             <main className="container header-overlap committee">
                 {modal}
+                <CommitteeHeader type={1}></CommitteeHeader>
                 <div className="token_black table_pos proposal-table">
                     {IS_MAINNET && <div className="proposal-header">
                         <a href="javascript:;" onClick={()=>this.pageHandle(1)}>{tu("proposal_create")}</a>

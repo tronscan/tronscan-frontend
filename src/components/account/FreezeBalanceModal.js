@@ -19,7 +19,8 @@ import { Tooltip } from 'antd';
     account: state.app.account,
     wallet: state.app.wallet,
     tokenBalances: state.account.tokens,
-    trxBalance: state.account.trxBalance || state.account.balance
+    trxBalance: state.account.trxBalance || state.account.balance,
+    currentWallet: state.wallet.current
   }),
   {
     reloadWallet
@@ -38,15 +39,15 @@ export default class FreezeBalanceModal extends React.PureComponent {
       amount: "",
       resources: [
         {
-          label:"gain_bandwith",
-          value:0
+          label:"freeze_modal_get_energy",
+          value:1
         },
         {
-          label:"gain_energy",
-          value:1
+          label:"freeze_modal_get_bandwidth",
+          value:0
         }
       ],
-      selectedResource:0,
+      selectedResource:1,
       receiver:'',
       oneEnergy: 0,
       oneBandwidth: 0,
@@ -229,7 +230,7 @@ export default class FreezeBalanceModal extends React.PureComponent {
   render() {
 
     let {receiver, amount, confirmed, loading, resources, selectedResource, oneEnergy, oneBandwidth, getcalculate, freezeError} = this.state;
-    let {trxBalance, frozenTrx, intl} = this.props;
+    let {trxBalance, frozenTrx, intl, currentWallet} = this.props;
     trxBalance = !trxBalance ? 0 :  trxBalance;
     let isValid =  (amount > 0 && trxBalance >= amount && confirmed);
     // freezeError
@@ -237,89 +238,102 @@ export default class FreezeBalanceModal extends React.PureComponent {
       <span className="pt-2 text-left" style={{ color: 'red', display: 'block' }}>{freezeError}</span>
     );
     return (
-        <Modal isOpen={true} toggle={this.hideModal} fade={false} className="modal-dialog-centered _freezeContent">
-          <ModalHeader className="text-center _freezeHeader" toggle={this.hideModal}>
-            {tu("freeze")}
+        <Modal isOpen={true} toggle={this.hideModal} fade={false} className="modal-dialog-centered freeze-modal-wrap">
+          <ModalHeader className="text-center freeze-modal-header" toggle={this.hideModal}>
+            {tu("freeze_modal_title")}
           </ModalHeader>
-          <ModalBody className="text-center _freezeBody">
-
-              <div className="form-group">
-                <div className="text-left _power">{tu("current_power")}: <span
-                    style={{fontWeight: 800}}>{frozenTrx / ONE_TRX}</span>
-                </div>
+          <ModalBody className="text-center freeze-modal-body">
+            <div className="freeze-tip d-flex justify-content-between">
+              <div className="d-flex flex-wrap justify-content-center"><span>{tu('freeze_modal_tip1')}:</span> <span>{frozenTrx / ONE_TRX}</span> </div>
+              <div className="d-flex flex-wrap justify-content-center"><span>{tu('freeze_modal_tip2')}:</span> <span><FormattedNumber value={currentWallet.bandwidth.energyRemaining<0?0:currentWallet.bandwidth.energyRemaining}/></span> </div>
+              <div className="d-flex flex-wrap justify-content-center"><span>{tu('freeze_modal_tip3')}:</span> 
+                <span><FormattedNumber value={currentWallet.bandwidth.netRemaining + currentWallet.bandwidth.freeNetRemaining}/></span> 
               </div>
-            <div className="form-group">
-            <input type="text"
-                   placeholder={intl.formatMessage({id: 'receive_address'})}
-                   onChange={(ev) => this.setReceiverAddress(ev.target.value)}
-                   className="form-control"
-                   value={receiver}/>
             </div>
+            {/* <div className="form-group">
+              <div className="text-left _power">{tu("current_power")}: <span
+                  style={{fontWeight: 800}}>{frozenTrx / ONE_TRX}</span>
+              </div>
+            </div> */}
             <div className="form-group">
-                <div style={{position:'relative'}}>
-                  <button type="button" onClick={ ()=>{
-                    this.setState({ amount: Math.floor(trxBalance) })
-                  }} style={styles.maxButton}>MAX</button>
-                  <NumberField
-                      min={1}
-                      decimals={0}
-                      value={amount}
-                      placeholder={intl.formatMessage({id: 'trx_amount'})}
-                      className="form-control text-left"
-                      style={{marginTop: '12px', background: "#F3F3F3", border: "1px solid #EEEEEE"}}
-                      onChange={this.onAmountChanged}/>
-                </div>
-                {freezeError && freezeErrorItem}
+              <div className="freeze_label">{tu('freeze_modal_get_resource')}:</div>
+              <select className="custom-select"
+                value={selectedResource}
+                style={{border: "1px solid #979797"}}
+                onChange={(e) => {this.resourceSelectChange(e.target.value)}}>
+                  {
+                      resources.map((resource, index) => {
+                          return (
+                              <option key={index} value={resource.value}>{intl.formatMessage({id: resource.label})}</option>
+                          )
+                      })
+                  }
+              </select>
+            </div>
+            
+            <div className="form-group">
+              <div className="freeze_label">{tu('freeze_modal_get_amount')}(TRX):</div>
+              <div style={{position:'relative'}}>
+                {/* <button type="button" onClick={ ()=>{
+                  this.setState({ amount: Math.floor(trxBalance) })
+                }} style={styles.maxButton}>MAX</button> */}
+                <NumberField
+                    min={1}
+                    decimals={0}
+                    value={amount}
+                    // placeholder={intl.formatMessage({id: 'trx_amount'})}
+                    className="form-control text-left"
+                    style={{marginTop: '12px', border: "1px solid #979797"}}
+                    onChange={this.onAmountChanged}/>
               </div>
-              <div className="form-group">
-                <select className="custom-select"
-                  value={selectedResource}
-                  onChange={(e) => {this.resourceSelectChange(e.target.value)}}>
-                    {
-                        resources.map((resource, index) => {
-                            return (
-                                <option key={index} value={resource.value}>{intl.formatMessage({id: resource.label})}</option>
-
-                            )
-                        })
-                    }
-                </select>
-              </div>
-              {Boolean(selectedResource == 0 && getcalculate) &&
-                <div className="text-left d-flex align-items-center">
-                  <span className="col-red mr-2">1TRX ≈ <FormattedNumber value={oneBandwidth}/>{tu('bandwidth')}, {tu('Expected_acquisition')}  &nbsp; <FormattedNumber value={getcalculate}/> &nbsp;{tu('bandwidth')} </span>
+              {freezeError && freezeErrorItem}
+              {Boolean(selectedResource == 0 && getcalculate) && !freezeError &&
+                <div className="text-left d-flex align-items-center pt-2 ">
+                  <span className="col-red mr-2">{tu('Expected_acquisition')} &nbsp;<FormattedNumber value={amount}/>{tu('freeze_modal_tron_power')}, {tu('freeze_modal_and')}<FormattedNumber value={getcalculate}/> &nbsp;{tu('bandwidth')} </span>
                   <Tooltip placement="top" title={tu('energy_more')} overlayStyle={{ maxWidth: '320px'}}>
                     <div className="question-mark"><i>?</i></div>
                   </Tooltip>
                 </div>
               }
-              {Boolean(selectedResource == 1&& getcalculate) &&
-                <div className="text-left d-flex align-items-center">
-                  <span className="col-red mr-2">1TRX ≈ <FormattedNumber value={oneEnergy}/>{tu('energy')}, {tu('Expected_acquisition')} &nbsp; <FormattedNumber value={getcalculate}/>  &nbsp;{tu('energy')}</span>
+              {Boolean(selectedResource == 1&& getcalculate) && !freezeError &&
+                <div className="text-left d-flex align-items-center pt-2 ">
+                  <span className="col-red mr-2">{tu('Expected_acquisition')} &nbsp;<FormattedNumber value={amount}/>{tu('freeze_modal_tron_power')}, {tu('freeze_modal_and')}<FormattedNumber value={getcalculate}/>  &nbsp;{tu('energy')}</span>
                   <Tooltip placement="top" title={tu('bandwidth_more')} overlayStyle={{maxWidth: '320px'}}>
                     <div className="question-mark"><i>?</i></div>
                   </Tooltip>
                 </div>
               }
-              <div className="form-check">
+            </div>
+            
+            <div className="form-group">
+              <div className="freeze_label">{tu('freeze_modal_receive')}:</div>
+              <input type="text"
+                  //  placeholder={intl.formatMessage({id: 'receive_address'})}
+                   onChange={(ev) => this.setReceiverAddress(ev.target.value)}
+                   className="form-control"
+                   style={{border: "1px solid #979797"}}
+                   value={receiver}/>
+            </div>
+            
+            <div className="form-check text-left">
+              <label className="form-check-label _freeze" style={{color: '#666666'}}>
                 <input type="checkbox"
-                       className="form-check-input"
-                       onChange={(ev) => this.setState({confirmed: ev.target.checked})}/>
-                <label className="form-check-label _freeze">
-                  {tu("token_freeze_confirm_message_0")} <b><FormattedNumber
-                    value={amount}/> TRX</b> {t("token_freeze_confirm_message_1")}
-                </label>
-              </div>
-              <p className="mt-3">
-                <button className="btn btn-primary col-sm"
-                        disabled={!isValid}
-                        onClick={this.freeze}
-                        style={{background: '#4A90E2', borderRadius: '0px', border: '0px'}}
-                >
-                  <i className="fa fa-snowflake mr-2"/>
-                  {tu("freeze")}
-                </button>
-              </p>
+                  className="form-check-input"
+                  onChange={(ev) => this.setState({confirmed: ev.target.checked})}/>
+                {tu("token_freeze_confirm_message_0")} <FormattedNumber
+                  value={amount}/> TRX {t("freeze_modal_confirm_days")}
+              </label>
+            </div>
+            <p className="mt-4">
+              <button className="btn btn-primary col-sm"
+                      disabled={!isValid}
+                      onClick={this.freeze}
+                      style={{background: '#69C265',width: '40%', fontSize: '0.875rem', height: '2.375rem', borderRadius: '0px', border: '0px'}}
+              >
+                <i className="fa fa-snowflake mr-2"/>
+                {tu("freeze")}
+              </button>
+            </p>
           </ModalBody>
         </Modal>
     )

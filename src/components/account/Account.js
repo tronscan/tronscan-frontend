@@ -1419,6 +1419,7 @@ export default class Account extends Component {
       modal: (
           <SweetAlert success title={tu("tokens_frozen")} onConfirm={this.hideModal}>
             {tu("successfully_frozen")} {amount} TRX
+            <p>{tu('freeze_modal_success_msg')}</p>
           </SweetAlert>
       )
     });

@@ -6,6 +6,7 @@ import _,{upperFirst} from 'lodash'
 import {Client} from "../../services/api";
 import {Link} from "react-router-dom";
 import {ONE_TRX,IS_MAINNET} from "../../constants";
+import CommitteeHeader from "./common/CommitteeHeader"
 
 class Committee extends React.Component {
 
@@ -646,7 +647,7 @@ class Committee extends React.Component {
         let { committee } = this.state;
         return (
             <main className="container header-overlap committee">
-                <div className="row">
+                {/* <div className="row">
                     <div className="col-12 committee-title">
                         <div className="col-md-3 col-sm-6 col-xs-12">
                             <img src={require("../../images/proposals/proposal_1.png")}  className="m-auto"/>
@@ -680,13 +681,14 @@ class Committee extends React.Component {
                         </Link>
                     </div>
                 </div>
-                <hr style={{marginTop:40,marginBottom:40}}/>
+                <hr style={{marginTop:40,marginBottom:40}}/> */}
+                <CommitteeHeader type={0}></CommitteeHeader>
                 <div className="network-parameters pb-4">
-                    <h4 className="pt-4">
+                    {/* <h4 className="pt-4">
                         <span className="text-uppercase">
                             <span>{tu('TRON_network_parameters')}</span>
                         </span> &nbsp;&nbsp;
-                    </h4>
+                    </h4> */}
                     <div className="mt-4">
                         {this.getColumns()}
                     </div>

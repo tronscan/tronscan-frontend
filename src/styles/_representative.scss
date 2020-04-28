@@ -17,23 +17,31 @@
 
 .representatives-list-wrap{
   .representatives-intro{
-    padding: 25px 40px;
-    margin: 10px 0 20px;
+    padding: 1.5625rem 2.5rem;
+    margin: 0.625rem 0 1.25rem;
     border: 1px solid #D8D8D8;
     background: rgba(255,255,255,0.60);
-    font-size: 16px;
+    font-size: 1rem;
     color: #8D8D8D;
     img{
       // width: 53px;
       height: 70px;
-      padding-right: 40px;
-      margin-right: 40px;
+      padding-right: 2.5rem;
+      margin-right: 2.5rem;
       border-right: 1px solid rgba(151,151,151,0.30);
+    }
+    @media only screen and (max-width: 768px) {
+      padding: 1rem;
+      font-size: 0.875rem;
+      img{
+        padding-right: 1rem;
+        margin-right: 1rem;
+      }
     }
   }
   .representatives-data-wrap{
     .representatives-data{
-      margin: 0 25px;
+      margin: 0 0 0 1.5625rem;
       span{
         color: #333333;
         font-family: PingFangSC-Medium;
@@ -41,19 +49,22 @@
       h2{
         flex: .9;
         margin-bottom: 0;
-        font-size: 16px;
+        margin-right: .5rem;
+        font-size: 1rem;
       }
       >div{
         flex: 1;
       }
       .num{
-        margin-bottom: 5px;
-        font-size: 24px;
+        margin-bottom: 0.3125rem;
+        font-size: 1.5rem;
       }
       .desc{
-        font-size: 14px;
+        max-width: 10.375rem;
+        margin-right: 0.3125rem;
+        font-size: .875rem;
         .txt{
-          margin-right: 5px;
+          margin-right: 0.3125rem;
           white-space: nowrap;
           >span{
             color: #999999;
@@ -68,10 +79,13 @@
           }
         }
       }
+      @media only screen and (max-width: 768px) {
+        margin: 0;
+      }
     }
   }
   .represent-filter-wrap{
-    padding: 12px 20px;
+    padding: 0.75rem 1.25rem;
     background-color: #fff;
     font-family: PingFangSC-Regular;
     color: #FFFFFF;
@@ -81,10 +95,10 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      min-width: 137px;
-      padding: 7px 13px;
+      min-width: 5.125rem;
+      padding: 0.4375rem 0.8125rem;
       border-radius: 2px;
-      font-size: 14px;
+      font-size: .875rem;
       background: #69C265;
       color: #fff;
       &:hover{
@@ -93,8 +107,9 @@
     }
     .left{
       a{
-        margin-right: 10px;
-        font-size: 16px;
+        min-width: 8.5625rem;
+        margin-right: .625rem;
+        font-size: 1rem;
         background: #CBCBCB;
         &.active,&:hover{
           background: #D0021B;

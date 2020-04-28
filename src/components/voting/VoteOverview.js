@@ -25,12 +25,13 @@ import {
 } from "../../utils/tron";
 import Lockr from "lockr";
 import { withTronWeb } from "../../utils/tronWeb";
+import FreezeBalanceModal from "../../components/account/FreezeBalanceModal";
 
 function VoteChange({ value, arrow = false }) {
   if (value > 0) {
     return (
-      <span className="text-success">
-        <span className="mr-1">+{value}</span>
+      <span style={{color: '#69c265'}}>
+        <span className="mr-1">+<FormattedNumber value={value} /></span>
         {arrow && <i className="fa fa-arrow-up" />}
       </span>
     );
@@ -39,7 +40,7 @@ function VoteChange({ value, arrow = false }) {
   if (value < 0) {
     return (
       <span className="text-danger">
-        <span className="mr-1">{value}</span>
+        <span className="mr-1"><FormattedNumber value={value} /></span>
         {arrow && <i className="fa fa-arrow-down" />}
       </span>
     );
@@ -69,7 +70,8 @@ function SortDom({type}){
     voteList: state.voting.voteList,
     voteTimer: state.voting.voteTimer,
     walletType: state.app.wallet,
-    isRightText: state.app.isRightText
+    isRightText: state.app.isRightText,
+    currentWallet: state.wallet.current,
   }),
   {
     login,
@@ -151,7 +153,7 @@ export default class VoteOverview extends React.Component {
       voteState = -1;
     }
 
-    if (trxBalance === 0) {
+    if (trxBalance === 0 || votesAvailable === 0) {
       voteState = -2;
     }
 
@@ -221,19 +223,19 @@ export default class VoteOverview extends React.Component {
 
   renderVoteStatus() {
     let { votesAvailable, voteState } = this.getVoteStatus();
-
+    const { isRightText } = this.props;
     switch (voteState) {
       case 0:
         return (
           <span className="text-success">
-            {tu("all_votes_are_used_message")}
+            {tu(" ")}
           </span>
         );
 
       case 1:
         return (
           <span>
-            {tu("votes_remaining_message")}:&nbsp;
+            {tu("vote_overview_available_votes")}:&nbsp;
             <b>
               <FormattedNumber value={votesAvailable} />
             </b>
@@ -247,8 +249,12 @@ export default class VoteOverview extends React.Component {
 
       case -2:
         return (
-          <span className="text-danger">
-            {tu("need_min_trx_to_vote_message")}
+          <span className={
+              (isRightText
+                ? "d-flex flex-row-reverse justify-content-end"
+                : "")}>
+            {tu("vote_overview_not_enough_votes")}
+            <a  className="text-danger" onClick={this.showFreezeBalance} href="javascript:;">{tu('vote_overview_to_freeze')}</a>
           </span>
         );
     }
@@ -262,14 +268,15 @@ export default class VoteOverview extends React.Component {
 
   renderVotingBar() {
     let { votingEnabled, votesSubmitted, submittingVotes } = this.state;
-    let { intl, account } = this.props;
+    let { intl, account, isRightText } = this.props;
     let { trxBalance } = this.getVoteStatus();
 
     if (!account.isLoggedIn) {
       return (
-        <div className="text-center">
-          {tu("open_wallet_start_voting_message")}
-        </div>
+        this.renderVotingBarFalse()
+        // <div className="text-center">
+        //   {tu("open_wallet_start_voting_message")}
+        // </div>
       );
     }
 
@@ -281,16 +288,16 @@ export default class VoteOverview extends React.Component {
       );
     }
 
-    if (votingEnabled && trxBalance <= 0) {
-      return (
-        <div className="text-center">
-          {tu("warning_votes")}{" "}
-          <Link to="/account" className="text-primary">
-            {tu("account_page")}
-          </Link>
-        </div>
-      );
-    }
+    // if (votingEnabled && trxBalance <= 0) {
+    //   return (
+    //     <div className="text-center">
+    //       {tu("warning_votes")}{" "}
+    //       <Link to="/account" className="text-primary">
+    //         {tu("account_page")}
+    //       </Link>
+    //     </div>
+    //   );
+    // }
 
     if (submittingVotes) {
       return (
@@ -304,11 +311,8 @@ export default class VoteOverview extends React.Component {
     }
     if (votingEnabled) {
       return (
-        <div
-          className="d-flex flex-wrap flex-sm-nowrap"
-          style={{ lineHeight: "36px" }}
-        >
-          <div className="d-flex">
+        <div className="d-flex justify-content-between vote-overview-action">
+          {/* <div className="d-flex">
             <div style={{ width: "35px", height: "35px", paddingLeft: "10px" }}>
               <i className="fa fa-search"></i>
             </div>
@@ -319,26 +323,28 @@ export default class VoteOverview extends React.Component {
               placeholder={intl.formatMessage({ id: "search" })}
               onChange={ev => this.onSearchChange(ev.target.value)}
             />
-          </div>
-          <div className="ml-auto">{this.renderVoteStatus()}</div>
-          <div className="ml-2 mt-2 ml-sm-auto mt-sm-0">
+          </div> */}
+          {this.searchRender()}
+          <div className={`vote-overview-action-status ${isRightText && 'is-right'}`}>{this.renderVoteStatus()}</div>
+          <div className="">
             <button
-              className="btn btn-danger ml-auto _cancel"
+              className="btn action-btn red"
               onClick={this.cancelVotes}
             >
               {tu("cancel")}
             </button>
             <button
-              className="btn btn-warning ml-1 _reset"
+              className="btn action-btn yellow"
               onClick={this.resetVotes}
             >
               {tu("reset")}
             </button>
             <button
-              className="btn btn-success ml-1 _submit"
+              className="btn action-btn green"
               onClick={this.submitVotes}
+              disabled={trxBalance <= 0 ? true : false}
             >
-              {tu("submit_votes")}
+              {tu("voting")}
             </button>
           </div>
         </div>
@@ -346,37 +352,137 @@ export default class VoteOverview extends React.Component {
     }
 
     return (
-      <div className="text-center">
-        <a
-          className=""
-          onClick={this.enableVoting}
-          style={{ color: "#C23631" }}
-        >
-          {tu("click_to_start_voting")}
-        </a>
-      </div>
+      // <div className="text-center">
+      //   <a
+      //     className=""
+      //     onClick={this.enableVoting}
+      //     style={{ color: "#C23631" }}
+      //   >
+      //     {tu("click_to_start_voting")}
+      //   </a>
+      // </div>
+      this.renderVotingBarFalse()
     );
   }
   renderVotingBarFalse() {
     let { intl, account } = this.props;
     let { goSignedIn } = this.state;
-    if (!account.isLoggedIn) {
+    // if (!account.isLoggedIn) {
       return (
-        <div className="text-center">
-          {goSignedIn ? (
+        <div className="text-center d-flex justify-content-between align-items-center ">
+          {this.searchRender()}
+          {/* {goSignedIn ? (
             <span style={{ color: "#333333" }}>{tu("not_signed_in")}</span>
           ) : (
             <a href="javascript:;" onClick={this.notSignedIn}>
               {tu("click_to_start_voting")}
             </a>
-          )}
+          )} */}
+          <button
+              className="btn action-btn green"
+              onClick={this.checkVote}
+            >
+              {tu("voting")}
+            </button>
         </div>
       );
-    }
+    // }
   }
-  notSignedIn = () => {
+  searchRender = () => {
+    let { intl } = this.props;
+    return(
+      <div className="d-flex vote-overview-search">
+        <input
+          type="text"
+          placeholder={intl.formatMessage({ id: "vote_overview_search_placeholder" })}
+          onChange={ev => this.onSearchChange(ev.target.value)}
+        /><button>
+          <i className="fa fa-search"></i>
+        </button>
+      </div>
+    )
+  }
+  isLoggedIn = (type) => {
+    let { account, intl } = this.props;
+    if (!account.isLoggedIn){
+        if(type != 1){
+            this.setState({
+                modal: <SweetAlert
+                    warning
+                    title={tu('proposal_not_sign_in')}
+                    confirmBtnText={intl.formatMessage({ id: 'confirm' })}
+                    confirmBtnBsStyle="danger"
+                    onConfirm={() => this.setState({ modal: null })}
+                    // style={{ marginLeft: '-240px', marginTop: '-195px' }}
+                >
+                </SweetAlert>
+            });
+        }
+        
+    }
+    return account.isLoggedIn;
+  };
+
+  showFreezeBalance = () => {
+
+    let {privateKey} = this.state;
+
+    let {currentWallet} = this.props;
+    if (currentWallet.balance === 0) {
+      this.setState({
+        modal: (
+            <SweetAlert warning title={tu("not_enough_trx")} onConfirm={this.hideModal}>
+              {tu("freeze_trx_least")}
+            </SweetAlert>
+        )
+      });
+      return;
+    }
+
+
     this.setState({
-      goSignedIn: true
+      modal: (
+          <FreezeBalanceModal
+              frozenTrx={currentWallet.frozenTrx}
+              privateKey={privateKey}
+              onHide={this.hideModal}
+              onError={() => {
+                this.setState({
+                  modal: (
+                      <SweetAlert warning title={tu("Error")} onConfirm={this.hideModal}>
+                          {tu('freeze_TRX_error')}
+                      </SweetAlert>
+                  )
+                });
+              }}
+              onConfirm={({amount}) => this.showFreezeConfirmation(amount)}
+          />
+      )
+    });
+  };
+
+  showFreezeConfirmation = (amount) => {
+    this.setState({
+      modal: (
+          <SweetAlert success title={tu("tokens_frozen")} onConfirm={this.hideModal}>
+            <p>{tu("successfully_frozen")} {amount} TRX</p>
+            <p>{tu('freeze_modal_success_msg')}</p>
+          </SweetAlert>
+      )
+    });
+
+    setTimeout(() => this.props.reloadWallet(), 1000);
+  };
+
+  checkVote = () => {
+    // this.setState({
+    //   goSignedIn: true
+    // });
+    if (!this.isLoggedIn()) {
+      return;
+    }
+    this.setState({
+      votingEnabled: true
     });
   };
   resetVotes = () => {
@@ -573,7 +679,11 @@ export default class VoteOverview extends React.Component {
           c.address &&
           trim(c.address.toLowerCase()).indexOf(
             searchCriteria.toLowerCase()
-          ) !== -1
+          ) !== -1 || trim(c.name.toLowerCase()).indexOf(
+            searchCriteria.toLowerCase()
+          ) !== -1 || trim(c.url.toLowerCase()).indexOf(
+            searchCriteria.toLowerCase()
+          ) !== -1 
         ) {
           return true;
         }
@@ -594,13 +704,13 @@ export default class VoteOverview extends React.Component {
     })
     let totalVotes = votesList.totalVotes || 0;
 
-    let biggestGainer = votesList.fastestRise || {};
+    let biggestGainer = votesList.maxVotesRise || {};
     let { trxBalance } = this.getVoteStatus();
 
     let voteSize = Math.ceil(trxBalance / 20);
 
     return (
-      <main className="container header-overlap _voteOverview">
+      <main className="container header-overlap _voteOverview vote-overview">
         {modal}
         <div className="row _badge">
           <div className="col-md-4 mt-3 mt-md-0">
@@ -616,7 +726,7 @@ export default class VoteOverview extends React.Component {
                     }}
                   />
                 </h3>
-                {tu("next_round")}
+                {tu("representatives_vote_next_round")}
               </div>
             </div>
           </div>
@@ -631,7 +741,7 @@ export default class VoteOverview extends React.Component {
                   <a href="javascript:"
                      onClick={() => this.setState(state => ({viewStats: !state.viewStats}))}>{tu("total_votes")}</a>
                 */}
-                {tu("total_votes")}
+                {tu("representatives_vote_total")}
               </div>
             </div>
           </div>
@@ -639,8 +749,8 @@ export default class VoteOverview extends React.Component {
           <div className="col-md-4 mt-3 mt-md-0">
             <div className="card h-100 widget-icon bg-line_yellow bg-image_mostRank">
               <div className="card-body text-left">
-                <h3 className="text-success">
-                  <VoteChange value={biggestGainer.change_cycle} arrow={true} />
+                <h3 >
+                  <VoteChange value={biggestGainer.changeVotes} arrow={true} />
                 </h3>
                 <div
                   className={
@@ -648,19 +758,19 @@ export default class VoteOverview extends React.Component {
                       ? "flex-row-reverse justify-content-end"
                       : "") + " d-flex"
                   }
-                  style={{flexWrap: 'wrap'}}
+                  style={{flexWrap: 'wrap', fontSize: '14px'}}
                 >
                   <div className="_ranks mr-2" style={{ whiteSpace: "nowrap" }}>
-                    {tu("most_ranks")}
+                    {tu("representatives_vote_realtime_votes")}
                   </div>
                   {/* <div>--</div> */}
                   <div
                     className=""
                     style={isRightText ? { maxWidth: "110px" } : {}}
                   >
-                    {Math.abs(biggestGainer.change_cycle) ? (
+                    {Math.abs(biggestGainer.changeVotes) ? (
                       <AddressLink address={biggestGainer.address} truncate={false}>
-                        {biggestGainer.name || biggestGainer.url}
+                        <div className="text-truncate">{biggestGainer.name || biggestGainer.url}</div>
                       </AddressLink>
                     ) : (
                       <span style={{ color: "#999999" }}>-</span>
@@ -681,38 +791,40 @@ export default class VoteOverview extends React.Component {
             <div className="col-md-12">
               <StickyContainer>
                 <div className="card mt-1">
-                  {wallet.isOpen && (
+                  <div className="vote-overview-action-wrap">
                     <Sticky>
                       {({ style }) => (
                         <div
                           style={{
                             borderBottom: "1px solid #D8D8D8",
                             zIndex: 100,
+                            padding: '0.75rem 1.25rem',
                             ...style
                           }}
-                          className="card-body bg-white p-3"
+                          className="card-body bg-white "
                         >
                           {this.renderVotingBar()}
                         </div>
                       )}
                     </Sticky>
-                  )}
-                  {!wallet.isOpen && (
-                    <Sticky>
-                      {({ style }) => (
-                        <div
-                          style={{
-                            borderBottom: "1px solid #D8D8D8",
-                            zIndex: 100,
-                            ...style
-                          }}
-                          className="card-body bg-white p-3"
-                        >
-                          {this.renderVotingBarFalse()}
-                        </div>
-                      )}
-                    </Sticky>
-                  )}
+                    {/* {!wallet.isOpen && (
+                      <Sticky>
+                        {({ style }) => (
+                          <div
+                            style={{
+                              borderBottom: "1px solid #D8D8D8",
+                              zIndex: 100,
+                              padding: '0.75rem 1.25rem',
+                              ...style
+                            }}
+                            className="card-body bg-white"
+                          >
+                            {this.renderVotingBarFalse()}
+                          </div>
+                        )}
+                      </Sticky>
+                    )} */}
+                  </div>
 
                   <div className="table-responsive table-scroll">
                     <table className="table vote-table table-hover m-0">

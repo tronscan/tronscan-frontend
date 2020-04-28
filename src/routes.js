@@ -814,7 +814,7 @@ export const routes = [
   },
   {
     path: "/proposals",
-    label: "commission_proposed",
+    label: "index_navigation_proposals",
     component: Proposals,
     showInMenu: false
   },

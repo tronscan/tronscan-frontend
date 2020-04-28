@@ -281,6 +281,16 @@ class ApiProposal{
     );
     return data;
   }
+  async getWitnessInfo(options = {},type) {
+    let url = this.apiUrl[type || "mainnet"];
+    let { data } = await xhr.get(
+      `${url}/api/witness/general-info`,
+      {
+        params: options
+      }
+    );
+    return data;
+  }
 }
 
 class ApiAccount{

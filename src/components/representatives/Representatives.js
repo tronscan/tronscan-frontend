@@ -10,20 +10,23 @@ import { AddressLink, BlockNumberLink } from "../common/Links";
 import { SR_MAX_COUNT, IS_MAINNET } from "../../constants";
 import { RepresentativesRingPieReact } from "../common/RingPieChart";
 import { Link } from "react-router-dom";
-import { Client } from "../../services/api";
+import { Client, proposalApi } from "../../services/api";
 import { Tooltip } from "antd";
 import { QuestionMark } from "../common/QuestionMark";
-
+import SweetAlert from 'react-bootstrap-sweetalert';
+import ApplyForDelegate from "../../components/committee/common/ApplyForDelegate";
 class Representatives extends Component {
   constructor() {
     super();
     this.state = {
       latestBlock: "",
-      curTab: 0
+      curTab: 0,
+      modal: null
     };
   }
 
   componentDidMount() {
+    this.getWitnessInfo()
     this.props.loadWitnesses();
     this.props.loadStatisticData();
     this.getLatestBlock();
@@ -51,11 +54,19 @@ class Representatives extends Component {
   }
 
   getLatestBlock = async () => {
-    let latestBlock = await Client.getLatestBlock();
+    let latestBlock = await Client.getLatestBlock().catch(e => console.log(e));
     this.setState({
       latestBlock: latestBlock.number
     });
   };
+
+  getWitnessInfo = async () => {
+    let data = await proposalApi.getWitnessInfo().catch(e => console.log(e));
+    this.setState({
+      witnessInfo: data
+    });
+  }
+
   renderWitnesses(witnesses, tab) {
     let { latestBlock } = this.state;
     let {intl} = this.props;
@@ -125,11 +136,11 @@ class Representatives extends Component {
       <div className={locale == 'ru' ? "card border-0 represent__table w-1000 represent__table-ru" : "card border-0 represent__table w-1000"} >
         <div className="represent-filter-wrap d-flex justify-content-between">
           <div className="d-flex left">
-            <a href="javascript:;" className={`${tab === 0 && "active"}`} onClick={()=>this.changeList(0)}>{tu("Super Representatives")}</a>
-            <a href="javascript:;" className={`${tab === 1 && "active"}`} onClick={()=>this.changeList(1)}>{tu("Super Representative Partners")}</a>
-            {IS_MAINNET && <a href="javascript:;" className={`${tab === 2 && "active"}`} onClick={()=>this.changeList(2)}>{tu("Super Representative Candidates")}</a>}
+            <a href="javascript:;" className={`${tab === 0 && "active"}`} onClick={()=>this.changeList(0)}>{tu("representatives_vote_sr")}</a>
+            <a href="javascript:;" className={`${tab === 1 && "active"}`} onClick={()=>this.changeList(1)}>{tu("representatives_vote_sr_p")}</a>
+            {IS_MAINNET && <a href="javascript:;" className={`${tab === 2 && "active"}`} onClick={()=>this.changeList(2)}>{tu("representatives_vote_sr_c")}</a>}
           </div>
-          <Link to="/sr/votes">{tu('representatives_data_to_vote')}</Link>
+          {IS_MAINNET && <Link to="/sr/votes">{tu('voting')}</Link>}
         </div>
         <table
           className="table table-hover table-striped bg-white m-0 sr"
@@ -178,7 +189,7 @@ class Representatives extends Component {
                 {tu("Super Representatives")}
               </td>
             </tr> */}
-            {list.map((account, index) => (
+            {list.length > 0 && list.map((account, index) => (
               <Row
                 index={setRank(index,tab)}
                 state={this.state}
@@ -188,6 +199,15 @@ class Representatives extends Component {
                 showSync={tab > 0 ? false : true}
               />
             ))}
+            {
+              list.length == 0 && <tr style={{ height: "72px" }}>
+                <td colSpan="10" className="font-weight-bold">
+                  <div style={{lineHeight: '100px',textAlign: 'center'}}>
+                    {tu('trc20_no_data')}
+                  </div>
+                </td>
+              </tr>
+            }
             {/* <tr style={{ height: "72px" }}>
               <td colSpan="10" className="font-weight-bold">
                 <i
@@ -255,10 +275,79 @@ class Representatives extends Component {
       curTab: id
     })
   }
+  /**
+   * isLoggedIn
+   */
+  isLoggedIn = (type) => {
+    let { account, intl } = this.props;
+    if (!account.isLoggedIn){
+        if(type != 1){
+            this.setState({
+                modal: <SweetAlert
+                    warning
+                    title={tu('proposal_not_sign_in')}
+                    confirmBtnText={intl.formatMessage({ id: 'confirm' })}
+                    confirmBtnBsStyle="danger"
+                    onConfirm={() => this.setState({ modal: null })}
+                    style={{ marginLeft: '-240px', marginTop: '-195px' }}
+                >
+                </SweetAlert>
+            });
+        }
+        
+    }
+    return account.isLoggedIn;
+  };
+  applyRepresentatives(){
+    if (!this.isLoggedIn()) {
+      return;
+    }
+    const { currentWallet } = this.props;
+    if(currentWallet.balance >= 9999000000){
+        this.applyForDelegate()
+    }else{
+      this.setState({
+        modal: (
+          <SweetAlert warning onConfirm={this.hideModal}>
+            {tu("proposal_balance_not_enough")}
+          </SweetAlert>
+        )
+      })
+    }
+  }
 
+  applyForDelegate = () => {
+    let {privateKey} = this.state;
+
+    this.setState({
+      modal: (
+          <ApplyForDelegate
+              isTronLink={this.state.isTronLink}
+              privateKey={privateKey}
+              onCancel={this.hideModal}
+              onConfirm={() => {
+                // setTimeout(() => this.props.reloadWallet(), 1200);
+                this.setState({
+                    modal: (
+                        <SweetAlert success timeout="3000" onConfirm={this.hideModal}>
+                          {tu("proposal_apply_super_success")}
+                        </SweetAlert>
+                    )
+                });
+              }}/>
+      )
+    })
+  }
+  hideModal = () => {
+    this.setState({
+      modal: null,
+      balanceTip: false,
+      isAction: false
+    });
+  };
   render() {
-    let { intl, witnesses } = this.props;
-    let { curTab } = this.state;
+    let { intl, witnesses, currentWallet, account } = this.props;
+    let { curTab, modal, witnessInfo } = this.state;
     let pieChart = this.getPiechart();
     let productivityWitnesses = witnesses.slice(0, SR_MAX_COUNT);
     let mostProductive = sortBy(
@@ -271,8 +360,10 @@ class Representatives extends Component {
       .value()[0];
       leastProductive = leastProductive ? leastProductive : {}
 
+    const empty = '-'
     return (
       <main className="container header-overlap pb-3 token_black representatives-list-wrap">
+        {modal}
         <div
           className={
             witnesses.length === 0 || pieChart.length === 0 ? "card" : ""
@@ -282,9 +373,9 @@ class Representatives extends Component {
             <TronLoader />
           ) : (
             <div>
-              <div className="d-flex justify-content-end">
-                <a href="javascript:'">{tu('representatives_s_apply')}</a>
-              </div>
+              {IS_MAINNET && (!account.isLoggedIn || (currentWallet && currentWallet.representative && !currentWallet.representative.enabled)) && <div className="d-flex justify-content-end">
+                <a href="javascript:;" onClick={() => this.applyRepresentatives()}>{tu('representatives_s_apply')}></a>
+              </div>}
               <div className="representatives-intro d-flex align-items-center">
                 <img src={require("../../images/representatives/info.png")} alt=""/>
                 <div>{tu('representatives_info')}</div>
@@ -297,13 +388,13 @@ class Representatives extends Component {
                         <div className="d-flex representatives-data align-items-center">
                           <h2>{t("Super Representatives")}</h2>
                           <div className="d-flex flex-column">
-                            <span className="num"><FormattedNumber value={witnesses.length} /></span>
+                            <span className="num"><FormattedNumber value={witnessInfo && witnessInfo.total} /></span>
                             <div className="d-flex desc">
                               <span className="txt">{t('representatives_data_total')}</span>
                             </div>
                           </div>
                           <div className="d-flex flex-column">
-                            <span className="num"><FormattedNumber value={witnesses.length} /></span>
+                            <span className="num">{witnessInfo && witnessInfo.increaseOf30Day && witnessInfo.increaseOf30Day > 0 ? '+' : ''}<FormattedNumber value={witnessInfo && witnessInfo.increaseOf30Day} /></span>
                             <div className="d-flex desc">
                               <span className="txt">{t('representatives_data_increase')}</span>
                             </div>
@@ -320,27 +411,41 @@ class Representatives extends Component {
                           <h2>{t("representatives_data_block_num")}</h2>
                           <div className="d-flex flex-column">
                             <span className="num">
-                              <FormattedNumber 
+                              
+                              { witnessInfo && witnessInfo.maxBlocksCount && witnessInfo.maxBlocksCount.producedTotal ? 
+                                <span>
+                                  <FormattedNumber 
                                 maximumFractionDigits={2}
-                                minimunFractionDigits={2} value={mostProductive.producePercentage} />
+                                minimunFractionDigits={2} value={witnessInfo && witnessInfo.maxBlocksCount && witnessInfo.maxBlocksCount.producedTotal} />
+                                </span>
+                                : empty}
+
                             </span>
                             <div className="d-flex desc">
                               <span className="txt">{t('representatives_data_most')}</span>
-                              <AddressLink address={mostProductive.address}>
-                                {mostProductive.name || mostProductive.url}
+                              <AddressLink address={witnessInfo && witnessInfo.maxBlocksCount && witnessInfo.maxBlocksCount.address}>
+                                {witnessInfo && witnessInfo.maxBlocksCount && (
+                                  <div className="text-truncate">{witnessInfo.maxBlocksCount.name || witnessInfo.maxBlocksCount.url}</div>
+                                )}
                               </AddressLink>
                             </div>
                           </div>
                           <div className="d-flex flex-column">
                             <span className="num">
-                              <FormattedNumber 
-                                maximumFractionDigits={2}
-                                minimunFractionDigits={2} value={mostProductive.producePercentage} />
+                              { witnessInfo && witnessInfo.minBlocksCount && witnessInfo.minBlocksCount.producedTotal ? 
+                                <span>
+                                  <FormattedNumber 
+                                    maximumFractionDigits={2}
+                                    minimunFractionDigits={2} value={witnessInfo && witnessInfo.minBlocksCount && witnessInfo.minBlocksCount.producedTotal} />
+                                </span>
+                                : empty}
+                              
                             </span>
                             <div className="d-flex desc">
                               <span className="txt">{t('representatives_data_least')}</span>
-                              <AddressLink address={mostProductive.address}>
-                                {mostProductive.name || mostProductive.url}
+                              <AddressLink address={witnessInfo && witnessInfo.minBlocksCount && witnessInfo.minBlocksCount.address}>
+                                {witnessInfo && witnessInfo.minBlocksCount && (
+                                  <div className="text-truncate">{witnessInfo.minBlocksCount.name || witnessInfo.minBlocksCount.url}</div>)}
                               </AddressLink>
                             </div>
                           </div>
@@ -382,27 +487,35 @@ class Representatives extends Component {
                           <h2>{t("representatives_data_block_efficiency")}</h2>
                           <div className="d-flex flex-column">
                             <span className="num">
-                              <FormattedNumber 
-                                maximumFractionDigits={2}
-                                minimunFractionDigits={2} value={mostProductive.producePercentage} />%
+                              { witnessInfo && witnessInfo.highestEfficiency && witnessInfo.highestEfficiency.producePercentage ? 
+                                <span>
+                                  <FormattedNumber 
+                                    maximumFractionDigits={2}
+                                    minimunFractionDigits={2} value={witnessInfo && witnessInfo.highestEfficiency && witnessInfo.highestEfficiency.producePercentage} />%
+                                </span>
+                                : empty}
                             </span>
                             <div className="d-flex desc">
                               <span className="txt">{t('representatives_data_highest')}</span>
-                              <AddressLink address={mostProductive.address}>
-                                {mostProductive.name || mostProductive.url}
+                              <AddressLink address={witnessInfo && witnessInfo.highestEfficiency && witnessInfo.highestEfficiency.address}>
+                                {witnessInfo && witnessInfo.highestEfficiency && (<div className="text-truncate">{witnessInfo.highestEfficiency.name || witnessInfo.highestEfficiency.url}</div>)}
                               </AddressLink>
                             </div>
                           </div>
                           <div className="d-flex flex-column">
                             <span className="num">
-                              <FormattedNumber 
-                                maximumFractionDigits={2}
-                                minimunFractionDigits={2} value={leastProductive.producePercentage} />%
+                              { witnessInfo && witnessInfo.lowestEfficiency && witnessInfo.lowestEfficiency.producePercentage ? 
+                                <span>
+                                  <FormattedNumber 
+                                    maximumFractionDigits={2}
+                                    minimunFractionDigits={2} value={witnessInfo && witnessInfo.lowestEfficiency && witnessInfo.lowestEfficiency.producePercentage} />%
+                                </span>
+                                : empty}
                             </span>
                             <div className="d-flex desc">
                               <span className="txt">{t('representatives_data_lowest')}</span>
-                              <AddressLink address={leastProductive.address}>
-                                {leastProductive.name || leastProductive.url}
+                              <AddressLink address={witnessInfo && witnessInfo.lowestEfficiency && witnessInfo.lowestEfficiency.address}>
+                                {witnessInfo && witnessInfo.lowestEfficiency && (<div className="text-truncate">{witnessInfo.lowestEfficiency.name || witnessInfo.lowestEfficiency.url}</div>)}
                               </AddressLink>
                             </div>
                           </div>
@@ -424,7 +537,7 @@ class Representatives extends Component {
                         <h6 className="m-0 lh-150" style={{ fontSize: 14, position: 'relative' }}>
                           {tu("produce_distribution")}
                           <Link to="/blockchain/stats/pieChart" style={{position: 'absolute',right: 0}}>
-                            {tu("representatives_data_details")}
+                            {tu("representatives_data_details")}>
                           </Link>
                         </h6>
                       </div>
@@ -585,7 +698,10 @@ function Row({ account, showSync = true, index, state, props }) {
 function mapStateToProps(state) {
   return {
     witnesses: state.network.witnesses,
-    statisticData: state.network.statisticData
+    statisticData: state.network.statisticData,
+    account: state.app.account,
+    currentWallet: state.wallet.current,
+    walletType: state.app.wallet,
   };
 }
 

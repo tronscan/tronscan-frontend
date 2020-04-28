@@ -130,7 +130,7 @@ class ApplyForDelegate extends Component {
                 {tu("invalid_url")}
               </div>
             </p> */}
-            <p className="text-left">
+            <div className="text-left mb-2">
               <label className="_applyTitle">{tu("proposal_apply_super_input_website")}</label>
               <input className={"form-control text-left " + (check && !this.isValidUrl() ? " is-invalid" : "")}
                      type="text"
@@ -141,9 +141,9 @@ class ApplyForDelegate extends Component {
               <div className="invalid-feedback text-left text-danger">
                 {tu("invalid_url")}
               </div>
-            </p>
-            <div className="text-center">
-              <div className="form-check">
+            </div>
+            <div className="text-left">
+              <div className="">
                 <label className="form-check-label _apply">
                   <input type="checkbox"
                        style={{verticalAlign: '1px',marginRight: '9px'}}
