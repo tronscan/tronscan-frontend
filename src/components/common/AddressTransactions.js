@@ -533,7 +533,7 @@ class Transactions extends React.Component {
           >
               {upperFirst(
               intl.formatMessage({
-                  id: timeType ? "age" : "trc20_cur_order_header_order_time"
+                  id: timeType ? "age" : "address_account_table_filter_time_local"
               })
               )}
               <Icon

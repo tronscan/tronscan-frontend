@@ -298,12 +298,15 @@ export const lang20Q1 = {
   address_account_tab_search_tips:  "Search by Address/Hash/Token",
 
   address_account_table_filter_all: "all",
-  address_account_table_filter_transfers: "Transfer",
+  address_account_table_filter_transfers: "Transfer TRX",
+  address_account_table_filter_trx10_transfers: "Transfer TRC10",
   address_account_table_filter_freeze: "Freeze TRX",
   address_account_table_filter_unfreeze: "Unfreeze TRX",
   address_account_table_filter_trigger_smartContracts: "Trigger Smart Contracts",
   address_account_table_filter_vote: "Vote",
   address_account_table_filter_other: "other",
+  address_account_table_filter_time_local: "Time (Local)",
+
 
   address_account_table_filter_token_tips: "The token is not included in TRONSCAN",
   current_version:'Current Version',

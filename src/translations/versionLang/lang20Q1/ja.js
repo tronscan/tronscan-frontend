@@ -296,12 +296,16 @@ account_piechart_title:'資産配分',
   address_account_tab_search_tips:"アドレス/ハッシュ/トークン",
 
   address_account_table_filter_all: "すべて",
-  address_account_table_filter_transfers: "転送",
+  address_account_table_filter_transfers: "TRX転送",
+  address_account_table_filter_trx10_transfers: "TRC10転送",
   address_account_table_filter_freeze: "TRXフリーズ",
   address_account_table_filter_unfreeze: "TRX凍結解除",
   address_account_table_filter_trigger_smartContracts: "スマートコントラクトトリガー",
   address_account_table_filter_vote: "投票",
   address_account_table_filter_other: "other",
+
+  address_account_table_filter_time_local: "時間（現地）",
+
 
   address_account_table_filter_token_tips: "The token is not included in TRONSCAN",
   current_version:'最新バージョン',

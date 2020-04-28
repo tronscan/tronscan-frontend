@@ -298,12 +298,16 @@ export const lang20Q1 = {
   address_account_tab_search_tips: "주소 / 거래 해시 / 토큰",
 
   address_account_table_filter_all: "모두",
-  address_account_table_filter_transfers: "전송",
+  address_account_table_filter_transfers: "TRX 전송",
+  address_account_table_filter_trx10_transfers: "TRC 10 전송",
   address_account_table_filter_freeze: "자산 동결",
   address_account_table_filter_unfreeze: "자산 동결 해제",
   address_account_table_filter_trigger_smartContracts: "스마트 계약 트리거",
   address_account_table_filter_vote: "투표",
   address_account_table_filter_other: "other",
+
+  address_account_table_filter_time_local: "시간 (현지)",
+
 
   address_account_table_filter_token_tips:
     "The token is not included in TRONSCAN",

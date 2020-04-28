@@ -302,12 +302,16 @@ export const lang20Q1 = {
   address_account_tab_search_tips: "请输入地址/哈希/通证",
 
   address_account_table_filter_all: "全选",
-  address_account_table_filter_transfers: "转账",
+  address_account_table_filter_transfers: "TRX转账",
+  address_account_table_filter_trx10_transfers: "TRC10转账",
   address_account_table_filter_freeze: "冻结资产",
   address_account_table_filter_unfreeze: "解冻资产",
   address_account_table_filter_trigger_smartContracts: "触发智能合约",
   address_account_table_filter_vote: "投票",
   address_account_table_filter_other: "其他",
+  
+  address_account_table_filter_time_local: "时间(本地)",
+
 
   address_account_table_filter_token_tips: "该通证未在TRONSCAN收录",
   account_block: "出块",

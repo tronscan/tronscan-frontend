@@ -337,7 +337,7 @@ class NewTransactions extends React.Component {
         } = this.state;
         const typeOptionsAry = [
             { label: upperFirst(intl.formatMessage({id: 'address_account_table_filter_transfers'})), value: 1 },
-            { label: upperFirst(intl.formatMessage({id: 'TRC10 Transfer'})), value: 6 },
+            { label: upperFirst(intl.formatMessage({id: 'address_account_table_filter_trx10_transfers'})), value: 6 },
             { label: upperFirst(intl.formatMessage({id: 'address_account_table_filter_freeze'})), value: 2 },
             { label: upperFirst(intl.formatMessage({id: 'address_account_table_filter_unfreeze'})), value: 3 },
             { label: upperFirst(intl.formatMessage({id: 'address_account_table_filter_trigger_smartContracts'})), value: 5 },
@@ -547,7 +547,7 @@ class NewTransactions extends React.Component {
                     >
                         {upperFirst(
                         intl.formatMessage({
-                            id: timeType ? "age" : "trc20_cur_order_header_order_time"
+                            id: timeType ? "age" : "address_account_table_filter_time_local"
                         })
                         )}
                             <Icon

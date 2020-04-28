@@ -310,13 +310,17 @@ export const lang20Q1 = {
   address_account_tab_search_tips: "Поиск по Адресу/Хэшу Транзакции/Токену",
 
   address_account_table_filter_all: "полный",
-  address_account_table_filter_transfers: "Перевод ",
+  address_account_table_filter_transfers: "Перевод TRX",
+  address_account_table_filter_trx10_transfers: "Перевод TRC10",
   address_account_table_filter_freeze: "Заморозить TRX",
   address_account_table_filter_unfreeze: "Разморозить TRX",
   address_account_table_filter_trigger_smartContracts:
     "Запустить Смарт Контракт",
   address_account_table_filter_vote: "Голосовать",
   address_account_table_filter_other: "other",
+
+  address_account_table_filter_time_local: "Время (местное)",
+
 
   address_account_table_filter_token_tips:
     "The token is not included in TRONSCAN",

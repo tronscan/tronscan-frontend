@@ -295,12 +295,15 @@ export const lang20Q1 = {
   address_account_tab_search_tips:  "معاملة التجزئة / الرمز المميز / كتلة",
 
   address_account_table_filter_all: "الكل",
-  address_account_table_filter_transfers: "تحويل ",
+  address_account_table_filter_transfers: "تحويل TRX",
+  address_account_table_filter_trx10_transfers: "تحويل TRC10",
   address_account_table_filter_freeze: "تجميد TRX",
   address_account_table_filter_unfreeze: "إلغاء تجميد TRX",
   address_account_table_filter_trigger_smartContracts: "مشغل  العقود الذكية",
   address_account_table_filter_vote: "تصويت",
   address_account_table_filter_other: "other",
+  address_account_table_filter_time_local: " الوقت (محلي)",
+
 
   address_account_table_filter_token_tips: "The token is not included in TRONSCAN",
   current_version:'أحدث إصدار',
