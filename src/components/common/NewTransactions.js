@@ -150,7 +150,6 @@ class NewTransactions extends React.Component {
             }
         }
         let transactions, total,rangeTotal = 0;
-
         if(!isinternal ){
             if(address){
                 const { accountSearchAddress } = this.props.blockchain;
@@ -185,6 +184,7 @@ class NewTransactions extends React.Component {
                 let countData = {}
                 let totalData = {}
                 let allData = [];
+                let contractMap = {}
                 const query = qs.stringify({ format: 'csv',...params})
                 if(isContract){
                     getCsvUrl(`${API_URL}/api/contracts/transaction?${query}`);
@@ -209,7 +209,6 @@ class NewTransactions extends React.Component {
 
                 }else{
                     getCsvUrl(`${API_URL}/api/transaction?${query}`);
-
                     allData = await Promise.all([
                         Client.getTransactions({
                             limit: pageSize,
@@ -228,8 +227,10 @@ class NewTransactions extends React.Component {
                     ]).catch(e => {
                         console.log('error:' + e);
                     });
+                 
                     [data, totalData, countData] = allData;
                     transactions = data.transactions;
+                    contractMap = data.contractMap;
                     total = countData.rangeTotal;
                     rangeTotal = totalData.rangeTotal;
 
@@ -238,6 +239,7 @@ class NewTransactions extends React.Component {
                             item.amount_str = item.amount;
                         }
                     })
+
                     let transfersTRC10 = _(transactions).filter(tb => tb.tokenType === "trc10" ).value();
                     let transfersTRC20 = _(transactions).filter(tb => tb.tokenType === "trc20" ).value();
                     let transfersOther = _(transactions).filter(tb => !tb.tokenType ).value();
@@ -252,8 +254,14 @@ class NewTransactions extends React.Component {
                             item.map_amount_logo = 'https://s2.coinmarketcap.com/static/img/coins/64x64/1958.png';
                         }
                     })
+                    transactions.forEach(item=>{
+                        if(contractMap){
+                            contractMap[item.ownerAddress]? (item.ownerIsContract = true) :  (item.ownerIsContract = false)
+                            contractMap[item.toAddress]? (item.toIsContract = true) :  (item.toIsContract = false)
+                        }
+                    })
                    
-                     
+                    console.log(contractMap,'contractMap',transactions,'transactions')
                     transactions = rebuildRransfers;
                 }
 
@@ -585,13 +593,39 @@ class NewTransactions extends React.Component {
                 render: (text, record, index) => {
                     return (
                        <span>
-                        {
-                            record.ownerAddress == filter.address ?   
-                            <TruncateAddress>{text}</TruncateAddress>
-                            :<AddressLink address={text}>{text}</AddressLink>
+                        {record.ownerIsContract? (
+                            <span className="d-flex">
+                                <Tooltip
+                                    placement="top"
+                                    title={upperFirst(
+                                        intl.formatMessage({
+                                        id: "transfersDetailContractAddress"
+                                        })
+                                    )}
+                                >
+                                    <Icon
+                                        type="file-text"
+                                        style={{
+                                        verticalAlign: 0,
+                                        color: "#77838f",
+                                        lineHeight: 1.4
+                                        }}
+                                    />
+                                </Tooltip>
+                                {
+                                    text == filter.address ?   
+                                    <TruncateAddress>{text}</TruncateAddress>
+                                    :<AddressLink address={text}>{text}</AddressLink>
+                                }
+                            </span>
+                            )
+                            : (
+                                text == filter.address ?   
+                                    <TruncateAddress>{text}</TruncateAddress>
+                                    :<AddressLink address={text}>{text}</AddressLink>
+                            )
                         }
-                       </span>
-                          
+                        </span>
                     )
                 }
             },
@@ -603,14 +637,40 @@ class NewTransactions extends React.Component {
                 className: 'ant_table address_max_width',
                 render: (text, record, index) => {
                     return (
-                       <span>
-                        {
-                            record.toAddress == filter.address ?   
-                            <TruncateAddress>{text}</TruncateAddress>
-                            :<AddressLink address={text}>{text}</AddressLink>
-                        }
-                       </span>
-                          
+                        <span>
+                            {record.toIsContract? (
+                                <span className="d-flex">
+                                    <Tooltip
+                                        placement="top"
+                                        title={upperFirst(
+                                            intl.formatMessage({
+                                            id: "transfersDetailContractAddress"
+                                            })
+                                        )}
+                                    >
+                                        <Icon
+                                            type="file-text"
+                                            style={{
+                                            verticalAlign: 0,
+                                            color: "#77838f",
+                                            lineHeight: 1.4
+                                            }}
+                                        />
+                                    </Tooltip>
+                                    {
+                                        text == filter.address ?   
+                                        <TruncateAddress>{text}</TruncateAddress>
+                                        :<AddressLink address={text}>{text}</AddressLink>
+                                    }
+                                </span>
+                                )
+                                : (
+                                    text == filter.address ?   
+                                        <TruncateAddress>{text}</TruncateAddress>
+                                        :<AddressLink address={text}>{text}</AddressLink>
+                                )
+                            }
+                        </span>
                     )
                 }
             },
@@ -683,7 +743,6 @@ class NewTransactions extends React.Component {
                 key: 'contractRet',
                 align: 'left',
                 className: 'ant_table',
-                width: '11%',
                 filterIcon: () => {
                     return (
                         <Icon type="caret-down" style={{fontSize:12,color:'#999'}}  theme="outlined" />
