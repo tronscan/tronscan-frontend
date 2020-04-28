@@ -30,6 +30,6 @@ export const lang20Q2 = {
     index_page_price_loading:'加载中',
     index_page_price_time_out:'请求超时',
 
-    open_tron_app_on_verify_address: "在TRON APP上确认登录账户",
-
+    open_tron_app_on_verify_address: "请在TRON APP上确认登录账户",
+    
 }
