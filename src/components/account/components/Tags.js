@@ -49,8 +49,7 @@ class Tags extends Component {
       random:parseInt(Math.random()*10000)
     };
 
-    let { data } = await ApiClientAccount.getTagsList(params);
-    console.log(1,data)
+    let { data={} } = await ApiClientAccount.getTagsList(params);
     let { user_tags, contract_map, total } = data || {};
     user_tags && user_tags.forEach((item) => {
       if (contract_map) {

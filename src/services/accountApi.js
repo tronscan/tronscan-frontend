@@ -13,7 +13,7 @@ class ApiClientAccount {
     let res = await xhr.get(`${this.apiUrl["mainnet"]}/external/tag`, {
       params
     });
-    return res && res.data;
+    return res && res.data ? res.data : {};
   }
 
   //remove tag
