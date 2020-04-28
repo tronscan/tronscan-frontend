@@ -7,7 +7,11 @@ import {
 } from './versionLang/lang20Q1/ko.js'; /* 2020Q1 */
 import {
   lang20Q2
+<<<<<<< HEAD
 } from './versionLang/lang20Q2/ko';
+=======
+} from './versionLang/lang20Q2/ko.js'; /* 2020Q2 */
+>>>>>>> origin/master
 export const messages = {
     /*
   ##################################################################################
@@ -1959,7 +1963,7 @@ export const messages = {
  */
   "ledger_user_guide": "Ledger사용 가이드",
   "latest_version_chrome": "최신 버전 Chrome 사용 추천",
-  "ledger_support_version": "Ledger지원 버전: 0.1.6, Chrome버전 80.0",
+  "ledger_support_version": "Ledger지원 버전: 0.2.0, Chrome버전 80.0",
   "ledger_you_can": "너는 할 수있다",
   "ledger_website": "Ledger 공식 웹 사이트",
   "ledger_website_download": "원장의 최신 버전을 다운로드하여 업데이트하십시오",
@@ -2007,7 +2011,7 @@ export const messages = {
   "footer_fellow_us": "Follow Us",
   "footer_developer_resources": "Developer Resources",
   "footer_support_center": "Support Center",
-  "footer_tron_network": "TRON",
+  "footer_tron_network": "Tron.network",
   "login_privatekey_warn": "계정 보안을 유지 및 자산 손실을 방지하기 위해서는 개인 키 (private key)를 잘 보관하고 다른 사람에게 절대 제공하지 마십시오. 또한 ",
   "login_privatekey_warn_safe": "를 사용하여 로그인하는 것을 권장합니다.",
   "token_does_not_support_exchange": "Token doesn't support trading now",

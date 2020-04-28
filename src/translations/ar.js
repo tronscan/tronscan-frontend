@@ -5,7 +5,11 @@ import {
 import {lang20Q1} from './versionLang/lang20Q1/ar';/* 2020Q1 */
 import {
   lang20Q2
+<<<<<<< HEAD
 } from './versionLang/lang20Q2/ar';
+=======
+} from './versionLang/lang20Q2/ar'; /* 2020Q2 */
+>>>>>>> origin/master
 export const messages = {
     /*
   ##################################################################################
@@ -1956,7 +1960,7 @@ export const messages = {
   */
   "ledger_user_guide": "دليل المستخدم لليدجر",
   "latest_version_chrome": "ننصحك باستخدام أحدث نسخة من الكروم",
-  "ledger_support_version": "نسخة ليدجر المدعومة: 0.1.6 ، دعم كروم لنسخة الإصدار 80.0",
+  "ledger_support_version": "نسخة ليدجر المدعومة: 0.2.0 ، دعم كروم لنسخة الإصدار 80.0",
   "ledger_you_can": "يمكنك الذهاب ",
   "ledger_website": "يقوم موقع Ledger",
   "ledger_website_download": "قم بتنزيل وتحديث نسخة دفتر الأستاذ",
@@ -2006,7 +2010,7 @@ export const messages = {
   "footer_fellow_us": "Follow Us",
   "footer_developer_resources": "Developer Resources",
   "footer_support_center": "Support Center",
-  "footer_tron_network": "TRON",
+  "footer_tron_network": "Tron.network",
   "login_privatekey_warn": "للحفاظ على أمان حسابك يرجى الاحتفاظ بمفتاحك الخاص في حالة فقد الأصول الخاصة بك ، ويوصى باستخدام ",
   "login_privatekey_warn_safe": "  لتسجيل الدخول الآمن.",
   "updata_token_info": "تحديث بيانات الرموز",

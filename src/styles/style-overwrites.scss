@@ -378,6 +378,18 @@ body .token_black {
       background: $white;
       height: 100px;
       font-size: 0.75rem;
+      p{
+        color: #333;
+        font-size: 1.4rem;
+        font-weight: 400;
+        line-height: 1.2;
+        margin-bottom:0.5rem;
+        span{
+          color: #333;
+          font-size: 1.4rem;
+          font-weight: 400;
+        }
+      }
     }
     span {
       // color: $text-block-dark;
@@ -821,6 +833,9 @@ body .token_black {
   }
   .singleTimeRange {
     margin-top: 15px !important;
+    .mobileTimeRangeWrapper{
+      width:auto !important;
+    }
   }
   .tonken10DetailMain,
   .tonken20DetailMain {

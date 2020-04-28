@@ -7,7 +7,11 @@ import {
 } from './versionLang/lang20Q1/fa'; /* 2020Q1 */
 import {
   lang20Q2
+<<<<<<< HEAD
 } from './versionLang/lang20Q2/fa';
+=======
+} from './versionLang/lang20Q2/fa'; /* 2020Q2 */
+>>>>>>> origin/master
 export const messages = {
    /*
     ##################################################################################
@@ -1966,7 +1970,7 @@ export const messages = {
   */
    "ledger_user_guide": "راهنمای کاربر Ledger",
    "latest_version_chrome": "ما توصیه می کنیم از آخرین نسخه از کروم استفاده کنید",
-   "ledger_support_version": "نسخه پشتیبانی لدجر:0.1.6، نسخه پشتیبانی از کروم 80.0",
+   "ledger_support_version": "نسخه پشتیبانی لدجر:0.2.0، نسخه پشتیبانی از کروم 80.0",
    "ledger_you_can": "شما می توانید بازدید کنید",
    "ledger_website": "وب سایت Ledger",
    "ledger_website_download": "نسخه لوگر به روز شده را دانلود کنید",
@@ -2015,7 +2019,7 @@ export const messages = {
    "footer_fellow_us": "Follow Us",
    "footer_developer_resources": "Developer Resources",
    "footer_support_center": "Support Center",
-   "footer_tron_network": "TRON",
+   "footer_tron_network": "Tron.network",
    "login_privatekey_warn": "برای اطمینان از امنیت حساب خود، لطفا از کلید خصوصی خود مراقبت کنید ، برای جلوگیری از از دست دادن دارایی. توصیه می شود از ",
    "login_privatekey_warn_safe": "  برای ورود امن استفاده کنید.",
    "token_does_not_support_exchange": "Token doesn't support trading now",
@@ -2481,4 +2485,8 @@ export const messages = {
 ...lang19Q4,
 ...lang20Q1,
 ...lang20Q2
+<<<<<<< HEAD
+=======
+ 
+>>>>>>> origin/master
 };

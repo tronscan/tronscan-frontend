@@ -22,6 +22,7 @@
     ##################################################################################
 */
 export const lang20Q2 = {
+<<<<<<< HEAD
     representatives_s_apply: "슈퍼대표 신청",
     representatives_info: "TRON 네트워크에서, 모든 TRX 보유자는 SR 후보가 될 수 있으며 SR 또는 슈퍼 파트너가 될 수 있습니다. 모든 TRX 보유자는 SR 후보자에게 투표 할 수 있으며 그 중 가장 많이 투표 된 상위 27 명의 후보자가 SR이되고 28 ~ 127 번째는 슈퍼 파트너가됩니다. SR은 블록을 생성하고 거래를 패킹합니다. 반면 슈퍼 파트너는 투표 보상만 받습니다. 모든 SR 후보, 슈퍼 파트너 및 SR은 TRON 네트워크에서 매개 변수를 수정하기위한 제안을 제기 할 권리가 있습니다.",
     representatives_data_total: "종합",
@@ -58,3 +59,12 @@ export const lang20Q2 = {
     freeze_modal_confirm_days: "적어도 72 시간",
     freeze_modal_success_msg: "데이터 업데이트 약 1분 소요",
 };
+=======
+    //well 20200414
+    index_page_nav_more_support:'도움 및 지원',
+    index_page_nav_more_guide:'초보자 가이드',
+    index_page_nav_more_service:'서비스',
+    index_page_price_loading:'Loading',
+    index_page_price_time_out:'Time out',
+}
+>>>>>>> origin/master

@@ -348,6 +348,10 @@ export const lang20Q1 = {
   account_tags_my_tag_not_available:'Not Available',
 
 
+  // foundation address
+  foundation_address_update_date:'Updated time: 2019/12/31',
+  foundation_address_deadline_date:'by 2020.4.15',
+
 
 
 };

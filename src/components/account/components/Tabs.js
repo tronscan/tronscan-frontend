@@ -1,5 +1,6 @@
 import React, { Component,Fragment } from "react";
 import { tu } from "../../../utils/i18n";
+import isMobile from "../../../utils/isMobile";
 import $ from "jquery";
 
 class Tabs extends Component {
@@ -30,7 +31,7 @@ class Tabs extends Component {
           background: "#fff",
           borderBottom: "none",
           marginBottom: "10px",
-          overflow:'scroll'
+          overflow:isMobile?'scroll':'hidden'
         }}
       >
         <div>

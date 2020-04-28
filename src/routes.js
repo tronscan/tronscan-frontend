@@ -694,46 +694,28 @@ export const routes = [
       }
     ]
   },
-  {
-    label: "DAPP",
-    path: "/dapp",
-    // icon: "fas fa-gamepad",
-    icon: false,
-    component: null,
-    pathKey: "/dapp",
-    showInMenu: IS_MAINNET ? true : false,
-    routes: [
-      // {
-      //     url: "https://www.tronace.com/?utm_source=TS",
-      //     icon: "fas fa-dollar-sign",
-      //     label: "TRONAce"
-      // },
-      // {
-      //     url: "https://www.tronbet.io/#/?utm_source=TS",
-      //     icon: "fas fa-dice-six",
-      //     label: "TRONbet"
-      // },
-      {
-        url: "https://tronlending.org/?utm_source=TS",
-        // icon: "fas fa-hand-holding-usd",
-        icon: false,
-        label: "TronLending"
-      },
-      {
-        url: "https://dappradar.com/rankings/protocol/tron",
-        // icon: "fab fa-dochub",
-        icon: false,
-        label: "DAppradar"
-      },
-      {
-        url:
-          "https://dapp.review/explore/tron?gclid=EAIaIQobChMIx-fB8KH04QIVlHZgCh0ybA1hEAAYASAAEgIad_D_BwE",
-        // icon: "fas fa-crop-alt",
-        icon: false,
-        label: "Dappreview"
-      }
-    ]
-  },
+  // {
+  //   label: "DAPP",
+  //   path: "/dapp",
+  //   // icon: "fas fa-gamepad",
+  //   icon: false,
+  //   component: null,
+  //   pathKey: "/dapp",
+  //   showInMenu: IS_MAINNET ? true : false,
+  //   routes: [
+  //     // {
+  //     //     url: "https://www.tronace.com/?utm_source=TS",
+  //     //     icon: "fas fa-dollar-sign",
+  //     //     label: "TRONAce"
+  //     // },
+  //     // {
+  //     //     url: "https://www.tronbet.io/#/?utm_source=TS",
+  //     //     icon: "fas fa-dice-six",
+  //     //     label: "TRONbet"
+  //     // },
+     
+  //   ]
+  // },
 
   {
     path: "/network",
@@ -1011,13 +993,6 @@ export const routes = [
           icon: false,
           label: "tron_explorer_api"
         },
-        {
-          url:
-            "https://dn-peiwo-web.qbox.me/TRON%20Protobuf%20Protocol%20Document.pdf",
-          icon: false,
-          label: "tron_protobuf_doc"
-        }
-
         // {
         //     label: "copyright",
         //     component: CopyrightAsync,
@@ -1053,12 +1028,6 @@ export const routes = [
       [
         "tools",
         {
-          path: "/tools/system",
-          icon: false,
-          label: "system",
-          component: SystemAsync
-        },
-        {
           label: "transaction_viewer",
           path: "/tools/transaction-viewer",
           icon: false,
@@ -1083,7 +1052,22 @@ export const routes = [
         // },
       ],
       [
-        "Other",
+        "index_page_nav_more_support",
+        {
+          label: "index_page_nav_more_guide",
+          icon: false,
+          enurl: "https://tronscanorg.zendesk.com/hc/en-us/categories/360002239431-New-User-Guide",
+          zhurl: "https://tronscanorg.zendesk.com/hc/zh-cn/categories/360002243971-%E6%96%B0%E6%89%8B%E6%8C%87%E5%AF%BC",
+        },
+        {
+          label: "frequently_asked_questions",
+          icon: false,
+          zhurl: "https://tronscanorg.zendesk.com/hc/zh-cn/categories/360001616871-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98",
+          enurl: "https://tronscanorg.zendesk.com/hc/en-us/categories/360001621712-FAQ"
+        },
+      ],
+      [
+        "index_page_nav_more_service",
         // {
         //   url: "https://shasta.tronscan.org",
         //   icon: "fa fa-link",
@@ -1118,16 +1102,29 @@ export const routes = [
           linkHref: true
         },
         {
-          label: "frequently_asked_questions",
+          url: "https://tronlending.org/?utm_source=TS",
+          // icon: "fas fa-hand-holding-usd",
           icon: false,
-          component: FaqAsync,
-          path: "/help/faq"
+          label: "TronLending"
         },
         {
-          label: "ledger_guide",
+          url: "https://dappradar.com/rankings/protocol/tron",
+          // icon: "fab fa-dochub",
           icon: false,
-          component: LedgerHelpAsync,
-          path: "/help/ledger"
+          label: "DAppradar"
+        },
+        {
+          url:
+            "https://dapp.review/explore/tron?gclid=EAIaIQobChMIx-fB8KH04QIVlHZgCh0ybA1hEAAYASAAEgIad_D_BwE",
+          // icon: "fas fa-crop-alt",
+          icon: false,
+          label: "Dappreview"
+        },
+        {
+          url:
+            "https://www.dapp.com/search/tron",
+          icon: false,
+          label: "DAPP.COM"
         },
         {
           label: "The first DApp competition",

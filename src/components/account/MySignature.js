@@ -6,6 +6,7 @@ import { alpha } from "../../utils/str";
 import { Client } from "../../services/api";
 import { upperFirst, cloneDeep } from "lodash";
 import { Tag, Radio } from "antd";
+import {TronLoader} from "../common/loaders";
 import {
   TokenLink,
   TokenTRC20Link,
@@ -58,7 +59,9 @@ class MySignature extends React.Component {
       },
       isShowSignDetailsModal: false,
       details: {},
-      now:Math.ceil(Date.now()/1000)
+      now:Math.ceil(Date.now()/1000),
+      loading:false,
+      lock:true,
     };
   }
 
@@ -72,13 +75,14 @@ class MySignature extends React.Component {
 
   async componentDidUpdate(prevProps) {
     let { type, wallet } = this.props;
-    if (prevProps.type !== type && type === 10) {
+    let { lock } = this.state;
+    if (prevProps.type !== type && type === 10 && lock) {
       this.setState(
         {
           filter: {
             direction: 255,
-            multiState: type
-          }
+            multiState: type,
+          },
         },
         () => {
           this.load();
@@ -88,6 +92,7 @@ class MySignature extends React.Component {
   }
 
   load = async (page = 1, pageSize = 20) => {
+    this.setState({ loading: true });
     let { wallet } = this.props;
     let { filter } = this.state;
     let {
@@ -122,7 +127,6 @@ class MySignature extends React.Component {
       }
     });
     let list;
-
     if (filter.multiState !== 255) {
       list = _(signatureList)
         .filter(signTx => signTx.multiState == filter.multiState)
@@ -189,7 +193,11 @@ class MySignature extends React.Component {
     } else {
       multiState = type;
     }
-
+    if(type == 0 && str == "to_be_sign"){
+      this.setState({ lock: false });
+    }else{
+      this.setState({ lock: true });
+    }
     this.props.handleType(multiState)
     this.setState(
       {
@@ -644,19 +652,19 @@ class MySignature extends React.Component {
                 </ul>
               </div>
               <div className="token_black pl-4 pr-4 position-relative">
-                {data.length !== 0 && (
+                {(!loading && data.length !== 0) && (
                   <TotalInfo
                     total={total}
                     rangeTotal={total}
                     typeText="transactions_unit"
                   />
                 )}
-
-                {!loading && data.length === 0 ? (
-                  <div className="p-3 text-center no-data">
-                    {tu("no_transactions")}
-                  </div>
-                ) : (
+                {loading?<TronLoader/>:(
+                  data.length === 0 ? (
+                    <div className="p-3 text-center no-data">
+                      {tu("no_transactions")}
+                    </div>
+                  ) :
                   <SmartTable
                     bordered={true}
                     loading={loading}

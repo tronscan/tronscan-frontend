@@ -7,7 +7,11 @@ import {
 } from './versionLang/lang20Q1/ru.js'; /* 2020Q1 */
 import {
   lang20Q2
+<<<<<<< HEAD
 } from './versionLang/lang20Q2/ru';
+=======
+} from './versionLang/lang20Q2/ru.js'; /* 2020Q2 */
+>>>>>>> origin/master
 export const messages = {
     /*
   ##################################################################################
@@ -985,7 +989,7 @@ export const messages = {
   "burned_trx": "TRX сожжено",
   "supply_notes": "Краудсейл и предварительная продажа доступны по всему миру, за исключением США, Китая и Японии.",
   "14_day_transaction_history": "История транзакций за 14 дней",
-  "14_day_address_growth": "",
+  "14_day_address_growth": "14 days Accounts Growth",
   /*
   ##################################################################################
   #                                                                                #
@@ -1974,7 +1978,7 @@ export const messages = {
  */
   "ledger_user_guide": "Руководство по использованию Ledger",
   "latest_version_chrome": "Обновите Сhrome до последней версии",
-  "ledger_support_version": "Поддерживаемая версия Ledger: 0.1.6, Поддерживаемая версия Chrome 80.0",
+  "ledger_support_version": "Поддерживаемая версия Ledger: 0.2.0, Поддерживаемая версия Chrome 80.0",
   "ledger_you_can": "Вы можете посетить",
   "ledger_website": " Ledger веб-сайт ",
   "ledger_website_download": "Загрузите и обновите последнюю версию Ledger",
@@ -2024,7 +2028,7 @@ export const messages = {
   "footer_fellow_us": "Follow Us",
   "footer_developer_resources": "Developer Resources",
   "footer_support_center": "Support Center",
-  "footer_tron_network": "TRON",
+  "footer_tron_network": "Tron.network",
   "login_privatekey_warn": "Чтобы обеспечить безопасность учетной записи и избежать потери активов, пожалуйста сохраните и хорошо следите за своим приватным ключом и никогда никому не отдавайте его. Для входа рекомендуется Tronlink",
   "login_privatekey_warn_safe": " использовать",
   "token_does_not_support_exchange": "Token doesn't support trading now",

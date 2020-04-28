@@ -7,7 +7,11 @@ import {
 } from './versionLang/lang20Q1/es';
 import {
   lang20Q2
+<<<<<<< HEAD
 } from './versionLang/lang20Q2/es';
+=======
+} from './versionLang/lang20Q2/es'; /* 2020Q2 */
+>>>>>>> origin/master
 export const messages = {
   /*
   ##################################################################################
@@ -1971,7 +1975,7 @@ export const messages = {
    */
   "ledger_user_guide": "Ledger User Guide",
   "latest_version_chrome": "we recommend the latest version of chrome",
-  "ledger_support_version": "Ledger support version: 0.1.6, chrome support version 80.0",
+  "ledger_support_version": "Ledger support version: 0.2.0, chrome support version 80.0",
   "ledger_you_can": "You can go to the ",
   "ledger_website": "Ledger Website",
   "ledger_website_download": "to download and update the latest version of Ledger",
@@ -2021,7 +2025,7 @@ export const messages = {
   "footer_fellow_us":"Follow Us",
   "footer_developer_resources":"Developer Resources",
   "footer_support_center":"Support Center",
-  "footer_tron_network":"TRON",
+  "footer_tron_network":"Tron.network",
   "login_privatekey_warn":"Para garantizar la seguridad de su cuenta y evitar la pérdida de activos, cuide su private key y nunca se la entregue a nadie. Se recomienda utilizar ",
   "login_privatekey_warn_safe":" para iniciar sesión.",
   "token_does_not_support_exchange":"Token doesn't support trading now",
