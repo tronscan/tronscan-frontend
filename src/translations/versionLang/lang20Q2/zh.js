@@ -15,17 +15,12 @@
     #         Template for translating the tronscan.org website                      #
     #         Version: 2020 Q2                                                       #
     #         Update Date: 04.2020                                                  #
-<<<<<<< HEAD
     #         Language:中文                                                          #
-=======
-    #         Language:  zh                                                            #
->>>>>>> origin/master
     #         Status: Approved Version                                               #
     #         Number of checks: 5                                                    #
     #                                                                                #
     ##################################################################################
 */
-<<<<<<< HEAD
 export const lang20Q2 = {
   representatives_s_apply: "申请成为超级代表",
   representatives_info: "在TRON网络中，任何TRX持有者都可以申请成为超级代表候选人，都有机会成为超级代表或者超级代表合伙人。每个TRX持有者都可以投票给超级代表候选人，获得投票数最高的前27名候选人将成为超级代表，第28～127名成为超级代表合伙人。超级代表有出块和打包交易的义务，同时也会获得相应的投票和出块奖励。超级代表合伙人不参与出块和打包交易，仅可以获得投票奖励。所有超级代表候选人、超级代表合伙人和超级代表，都有权利发起提议来修改TRON网络参数。",
@@ -62,18 +57,10 @@ export const lang20Q2 = {
   freeze_modal_and: "及",
   freeze_modal_confirm_days: "至少72小时",
   freeze_modal_success_msg: "数据更新大约需要1分钟。",
+  //well 20200414
+  index_page_nav_more_support:'支持与帮助',
+  index_page_nav_more_guide:'新手引导',
+  index_page_nav_more_service:'周边服务',
+  index_page_price_loading:'加载中',
+  index_page_price_time_out:'请求超时',
 };
-=======
-
-export const lang20Q2 = {
-    //well 20200414
-    index_page_nav_more_support:'支持与帮助',
-    index_page_nav_more_guide:'新手引导',
-    index_page_nav_more_service:'周边服务',
-    index_page_price_loading:'加载中',
-    index_page_price_time_out:'请求超时',
-
-
-
-}
->>>>>>> origin/master

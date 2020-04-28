@@ -13,11 +13,7 @@
     ##################################################################################
     #                                                                                #
     #         Template for translating the tronscan.org website                      #
-<<<<<<< HEAD
     #         Version: 2020 Q2                                                       #
-=======
-    #         Version: 2020 Q2                                                      #
->>>>>>> origin/master
     #         Update Date: 04.2020                                                #
     #         Language: Farsi 波斯语                                                  #
     #         Status: Approved Version                                               #
@@ -27,7 +23,6 @@
 */
 
 export const lang20Q2 = {
-<<<<<<< HEAD
   representatives_s_apply: "درخواست برای تبدیل به SR",
   representatives_info: "در شبکه ترون ، همه دارندگان TRX می توانند نامزد SR شوند و احتمالاً SR یا شرکای فوق العاده ای خواهند بود. هر دارنده TRX می تواند به کاندیداهای SR رأی دهد ، از این میان 27 نامزد برتر با بیشترین رأی به SR تبدیل می شوند ، در حالی که 28 تا 127 به شرکای فوق العاده تبدیل می شوند. SR ها مسئول تولید بلوک و بسته بندی معاملات هستند. از طرف دیگر سوپر شرکا فقط بدون انجام دو وظیفه فوق الذکر فقط پاداش رأی می گیرند. همه نامزدهای SR ، شرکای فوق العاده و SR حق دارند پیشنهاداتی را برای تغییر پارامترها در شبکه ترون ارائه دهند.",
   representatives_data_total: "مجموع",
@@ -63,8 +58,6 @@ export const lang20Q2 = {
   freeze_modal_and: "و",
   freeze_modal_confirm_days: "حداقل 72 ساعت",
   freeze_modal_success_msg: "بروزرسانی داده ها حدود 1 دقیقه طول می کشد",
-};
-=======
    //well 20200414
    index_page_nav_more_support:'کمک پشتیبانی کنید',
    index_page_nav_more_guide:'راهنمای تازه کار',
@@ -72,4 +65,3 @@ export const lang20Q2 = {
    index_page_price_loading:'Loading',
    index_page_price_time_out:'Time out',
 }
->>>>>>> origin/master

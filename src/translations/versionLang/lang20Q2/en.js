@@ -14,11 +14,7 @@
     #                                                                                #
     #         Template for translating the tronscan.org website                      #
     #         Version: 2020 Q2                                                      #
-<<<<<<< HEAD
     #         Update Date: 04.2020                                                   #
-=======
-    #         Update Date: 04.2019                                                   #
->>>>>>> origin/master
     #         Language: English                                                      #
     #         Status: Approved Version                                               #
     #         Number of checks: 5                                                    #
@@ -26,7 +22,6 @@
     ##################################################################################
 */
 export const lang20Q2 = {
-<<<<<<< HEAD
     representatives_s_apply: "Apply to be a SR",
     representatives_info: "On the TRON network, all TRX holders can apply to be SR candidates, and are likely to become SRs or super partners. Any TRX holder can vote for SR candidates, among which the top 27 most-voted candidates will become SRs, while the 28th to 127th will become super partners. SRs are responsible for producing blocks and packing transactions; super partners, on the other hand, only receive voting rewards without performing the aforementioned two tasks. All SR candidates, super partners and SRs have the right to raise proposals to modify parameters on the TRON network. ",
     representatives_data_total: "Total",
@@ -64,8 +59,6 @@ export const lang20Q2 = {
     freeze_modal_and: "and",
     freeze_modal_confirm_days: " at least 72 hours",
     freeze_modal_success_msg: " Data update takes about 1 minute",
-};
-=======
     //well 20200414
     index_page_nav_more_support:'SUPPORT&HELP',
     index_page_nav_more_guide:"BEGINNER'S GUIDE",
@@ -73,4 +66,3 @@ export const lang20Q2 = {
     index_page_price_loading:'Loading',
     index_page_price_time_out:'Time out',
 }
->>>>>>> origin/master

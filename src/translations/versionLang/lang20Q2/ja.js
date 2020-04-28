@@ -13,11 +13,7 @@
     ##################################################################################
     #                                                                                #
     #         Template for translating the tronscan.org website                      #
-<<<<<<< HEAD
     #         Version: 2020 Q2                                                       #
-=======
-    #         Version: 2020 Q2                                                      #
->>>>>>> origin/master
     #          Update Date: 04.2020                                               #
     #         Language: japanese 日语                                                 #
     #         Status: Approved Version                                               #
@@ -27,7 +23,6 @@
 */
 
 export const lang20Q2 = {
-<<<<<<< HEAD
     representatives_s_apply: "スーパー代表に申請",
     representatives_info: "TRONネットワークでは、どのTRX保有者も、スーパー代表の候補者になるために申請し、スーパー代表またはスーパー代表パートナーになる機会があります。各TRX保有者は超代表候補者に投票でき、投票数が最も多い上位27名の候補者が超代表者になり、28番目から127番目の候補者が超代表パートナーになります。スーパー担当者は、ブロックを生成してトランザクションをパッケージ化し、対応する投票とブロック報酬を受け取る義務があります。スーパー代表パートナーは、ブロック生成およびパッケージ化トランザクションには参加せず、投票報酬のみを取得できます。スーパー代表候補、スーパー代表パートナー、スーパー代表はすべて、TRONネットワークパラメーターを変更する提案を開始する権利を有します。",
     representatives_data_total: "総数",
@@ -63,8 +58,6 @@ export const lang20Q2 = {
     freeze_modal_and: "そして",
     freeze_modal_confirm_days: "少なくとも72時間",
     freeze_modal_success_msg: "データの更新には約1分かかります",
-};
-=======
     //well 20200414
     index_page_nav_more_support:'サポートヘルプ',
     index_page_nav_more_guide:'初心者ガイド',
@@ -72,4 +65,3 @@ export const lang20Q2 = {
     index_page_price_loading:'Loading',
     index_page_price_time_out:'Time out',
 }
->>>>>>> origin/master

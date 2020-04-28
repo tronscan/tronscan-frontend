@@ -21,8 +21,14 @@
     #                                                                                #
     ##################################################################################
 */
-<<<<<<< HEAD
 export const lang20Q2 = {
+    //well 20200414
+    index_page_nav_more_support:'Ayuda de apoyo',
+    index_page_nav_more_guide:'Guía novato',
+    index_page_nav_more_service:'Servicio',
+    index_page_price_loading:'Loading',
+    index_page_price_time_out:'Time out',
+
     representatives_s_apply: "Aplicarse para ser SR",
     representatives_info: "En la red de TRON, todos los poseedores de TRX pueden aplicarse para ser candidatos de SR y es probable que se conviertan en SR o súper socios. Cualquier holder de TRX puede votar por los candidatos de SR, entre los cuales los 27 candidatos más votados se convertirán en SR, mientras que los desde el 28 al 127 se convertirán en súper socios. Los SR son responsables de producir bloques y empacar transacciones; Los súper socios, por otro lado, solo reciben recompensas de votos que reciben sin realizar las dos tareas mencionadas anteriormente. Todos los candidatos de SR, súper socios y SR tienen derecho a presentar propuestas para modificar los parámetros en la red de TRON.",
     representatives_data_total: "Total",
@@ -59,15 +65,4 @@ export const lang20Q2 = {
     freeze_modal_confirm_days: "al menos 72 horas",
     freeze_modal_success_msg: "la actualización de datos tarda aproximadamente 1 minuto",
 };
-=======
 
-export const lang20Q2 = {
-    //well 20200414
-    index_page_nav_more_support:'Ayuda de apoyo',
-    index_page_nav_more_guide:'Guía novato',
-    index_page_nav_more_service:'Servicio',
-    index_page_price_loading:'Loading',
-    index_page_price_time_out:'Time out',
-
-}
->>>>>>> origin/master

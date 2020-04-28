@@ -13,11 +13,7 @@
     ##################################################################################
     #                                                                                #
     #         Template for translating the tronscan.org website                      #
-<<<<<<< HEAD
     #         Version: 2020 Q2                                                      #
-=======
-    #         Version: 2020 Q2                                                       #
->>>>>>> origin/master
     #         Update Date: 04.2020                                                #
     #         Language:  Russian 俄语                                                 #
     #         Status: Approved Version                                               #
@@ -27,7 +23,6 @@
 */
 
 export const lang20Q2 = {
-<<<<<<< HEAD
     representatives_s_apply: "Подать SR заявку",
     representatives_info: "В сети TRON, все владельцы TRX могут подать заявку на участие в качестве кандидатов в SR и могут стать SR или супер-партнерами. Любой обладатель TRX может голосовать за SR кандидатов, среди которых 27 самых популярных кандидатов станут SR, а 28–127 - супер-партнерами. SR отвечают за производство блоков и транзакций; Супер-партнеры, с другой стороны, получают только награды за голосование, не выполняя две вышеупомянутые задачи. Все кандидаты в SR, супер-партнеры и SR имеют право вносить предложения по изменению параметров в сети TRON.",
     representatives_data_total: "Общее кол-во",
@@ -63,8 +58,6 @@ export const lang20Q2 = {
     freeze_modal_and: "и",
     freeze_modal_confirm_days: "не менее 72 часов",
     freeze_modal_success_msg: "Обновление данных занимает около 1 минуты",
-};
-=======
     //well 20200414
     index_page_nav_more_support:'Поддержка помощь',
     index_page_nav_more_guide:'Начинающий гид',
@@ -72,4 +65,3 @@ export const lang20Q2 = {
     index_page_price_loading:'Loading',
     index_page_price_time_out:'Time out',
 }
->>>>>>> origin/master

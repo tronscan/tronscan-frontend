@@ -3,11 +3,7 @@ import { lang19Q4 } from "./versionLang/lang19Q4/en19Q4";
 import { lang20Q1 } from "./versionLang/lang20Q1/en";
 import {
   lang20Q2
-<<<<<<< HEAD
-} from './versionLang/lang20Q2/en';
-=======
 } from './versionLang/lang20Q2/en'; /* 2020Q2 */
->>>>>>> origin/master
 export const messages = {
   /*
   ##################################################################################

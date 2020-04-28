@@ -7,11 +7,7 @@ import {
 } from './versionLang/lang20Q1/fa'; /* 2020Q1 */
 import {
   lang20Q2
-<<<<<<< HEAD
-} from './versionLang/lang20Q2/fa';
-=======
 } from './versionLang/lang20Q2/fa'; /* 2020Q2 */
->>>>>>> origin/master
 export const messages = {
    /*
     ##################################################################################
@@ -2485,8 +2481,5 @@ export const messages = {
 ...lang19Q4,
 ...lang20Q1,
 ...lang20Q2
-<<<<<<< HEAD
-=======
  
->>>>>>> origin/master
 };
