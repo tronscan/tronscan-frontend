@@ -1,10 +1,12 @@
 
 let config = {
     curEnv:'production',
-    networkUrl : `https://api.trongrid.io`,
+    // networkUrl : `https://api.trongrid.io`,
+    networkUrl : `https://api.shasta.trongrid.io`,
     api:{
         mutiSign:{
-            apiPostMutiSignedTansaction:'https://list.tronlink.org/api/wallet/multi/transaction'
+            // apiPostMutiSignedTansaction:'https://list.tronlink.org/api/wallet/multi/transaction'
+            apiPostMutiSignedTansaction:'https://testlist.tronlink.org/api/wallet/multi/transaction'
         }
     }
 }
