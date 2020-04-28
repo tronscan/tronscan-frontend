@@ -10,6 +10,7 @@ import { tronAddresses } from "../../../utils/tron";
 import { Link } from "react-router-dom"
 import { loadPriceData } from "../../../actions/markets";
 import $ from 'jquery';
+import isMobile from "../../../utils/isMobile";
 
 class StatsCharts extends React.Component {
   constructor() {
@@ -311,13 +312,13 @@ class StatsCharts extends React.Component {
       <main className="container header-overlap">
         <div className="card mt-3 list-style-body-scroll">
           <nav
-            className="card-header list-style-body-scroll__header navbar navbar-expand-sm fixed-top"
+            className="card-header list-style-body-scroll__header navbar navbar-expand-sm fixed-top static-new"
             style={{
               position: "sticky",
               zIndex: 10,
               background: "#f3f3f3",
               borderBottom: "none",
-              overflow:'scroll'
+              overflow:isMobile?'scroll':'hidden'
             }}
           >
             <ul className="nav nav-tabs card-header-tabs navbar-nav">
@@ -426,7 +427,7 @@ class StatsCharts extends React.Component {
               </div>
 
               <div className="row mb-4 mt-4">
-                <div className="col-md-4">
+                {/* <div className="col-md-4">
                   <div className="card-chart">
                     <Link className="card-title" to="/data/stats/priceStats">
                       <span className="ml-5">{tu("charts_average_price")}</span>
@@ -437,7 +438,7 @@ class StatsCharts extends React.Component {
                       />
                     </Link>
                   </div>
-                </div>
+                </div> */}
                 <div className="col-md-4">
                   <div className="card-chart">
                     <Link className="card-title" to="/data/stats/supply">

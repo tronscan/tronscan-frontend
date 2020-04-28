@@ -51,6 +51,9 @@ import {t} from "../../../utils/i18n";
 import '../../../styles/chart.scss'
 import ActiveAccount from './ActiveAccount'
 import ApiClientChart from '../../../services/chartApi.js'
+import {
+    toThousands
+  } from "../../../utils/number";
 const Option = Select.Option;
 const { TabPane } = Tabs;
 
@@ -114,7 +117,16 @@ class Statistics extends React.Component {
                 end_day: moment().valueOf(),
                 type:'month'
             },
-            activeAccountData:null
+            activeAccountData:null,
+            activeAccountRange:[
+                {color:'#417505',text:'0-200',value:0},
+                {color:'#F99B00',text:'200-400',value:200},
+                {color:'#C23631',text:'400-600',value:400},
+                {color:'#374064',text:'600-800',value:600},
+                {color:'#8B572A',text:'800-1000',value:800},
+                {color:'#FF4B45',text:'>1000',value:1000},
+
+            ]
         };
 
         this.handleModeChange = this.handleModeChange.bind(this)
@@ -194,20 +206,23 @@ class Statistics extends React.Component {
             start_timestamp:start_day
         }
         let { data } = await ApiClientChart.getActiveAccount(params);
-        let usdPrice = await this.getUsdPrice()
+        let usdPrice = await this.getUsdPrice('trx')
         let temp = [];
         for (let txs in data) {
             let tx = parseInt(txs);
             let {day_string,day_time,transactions,proportion,mom,amount,active_count} = data[tx]
+            let day_string_type = this.setActiveAccountTimeString(day_time,day_string)
+            
             temp.push({
                 transactions,
                 date:day_time,
                 proportion:Number(proportion).toFixed(2),
                 mom:Number(mom).toFixed(2),
                 amount:Number(amount).toFixed(6),
-                usdAmount:Number(amount)*(usdPrice || 0).toFixed(3),
+                usdAmount:Number(amount*usdPrice).toFixed(3),
                 active_count,
-                day_string
+                day_string,
+                day_string_type:day_string_type
             }); 
         }
 
@@ -221,6 +236,7 @@ class Statistics extends React.Component {
 
         tx.length > 0 && this.setState({
             summit: {
+                activeAccounts_title:'chart_account_title_'+type,
                 activeAccounts_sort: [
                     {
                         date: tx[tx.length - 1].date,
@@ -234,26 +250,33 @@ class Statistics extends React.Component {
         });
     }
     
-     //get trx/usd price
-  async getUsdPrice(){
-    // let eurWinkTronbetURL = encodeURI(`https://api.coinmarketcap.com/v1/ticker/tronix/?convert=EUR`);
-    // let trxPriceData = await xhr.get(`${API_URL}/api/system/proxy?url=${eurWinkTronbetURL}`);
-    // let priceUSD = trxPriceData && trxPriceData.data && trxPriceData.data[0] && trxPriceData.data[0].price_usd;
-    const url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=TRX&convert=USD'
-    let { data } = await xhr({
-      method: "post",
-      url: `${API_URL}/api/system/proxy`,
-      data: {
-        url
-      }
-    });
-    let priceUSD = data.data &&
-                    data.data.TRX &&
-                    data.data.TRX.quote &&
-                    data.data.TRX.quote['USD'] && 
-                    data.data.TRX.quote['USD'].price
-    return priceUSD
-  }
+    //get trx/usd price
+    async getUsdPrice(token){
+        let { data } = await xhr({
+        method: "get",
+        url: `${API_URL}/api/token/price?token=${token}`
+        });
+        let priceUSD = (data && Number(data.price_in_usd)) || 0   
+        return priceUSD
+    }
+
+    // set title
+    setActiveAccountTimeString(type,day_time,day_string){
+        let day_string_type = ''
+        let title = ''
+        switch(type){
+            case 'month':
+                day_string_type = moment(day_time).format('YYYY-MM');
+                break;
+            case 'week':
+                day_string_type = moment(day_time).subtract('days', 6).format('YYYY-MM-DD') +'~'+ day_string
+                break;
+            default:
+                day_string_type = moment(day_time).format('YYYY-MM-DD')
+                break;        
+        }
+        return day_string_type;
+    }
 
   handleModeChange(e){
       let type = e.target.value
@@ -572,6 +595,7 @@ class Statistics extends React.Component {
 
         this.setState({
             summit: {
+                addressesStats_title:'chart_add_daily_title',
                 addressesStats_sort: [
                     {
                         date: addr[addr.length - 1].date,
@@ -1228,7 +1252,9 @@ class Statistics extends React.Component {
             priceUSD,priceBTC,marketCapitalization,foundationFreeze,
             circulatingNum, energyConsumeData, ContractInvocation,
             ContractInvocationDistribution, ContractInvocationDistributionParams,
-            EnergyConsumeDistribution,OverallFreezingRate,energyConsumeDataTop,activeAccountParams,activeAccountData,activeTableData } = this.state;
+            EnergyConsumeDistribution,OverallFreezingRate,energyConsumeDataTop,activeAccountParams,activeAccountData,activeTableData,
+            activeAccountRange
+         } = this.state;
 
         let unit;
         let uploadURL = API_URL + "/api/v2/node/overview_upload";
@@ -1236,7 +1262,7 @@ class Statistics extends React.Component {
         let call_colum = this.callCustomizedColumn();
         let freezing_column = this.freezingCustomizedColumn();
 
-        let chartHeight = isMobile? 240: 500
+        let chartHeight = isMobile ? 240: 500
         let addressesStatsURl = API_URL + '/api/account/increase?format=csv&days=100'
 
         if (match.params.chartName === 'blockchainSizeStats' || match.params.chartName === 'addressesStats') {
@@ -1253,19 +1279,22 @@ class Statistics extends React.Component {
                         <div className="alert alert-light" role="alert">
                           <div className="row">
                             <div className="col-md-6 text-center">
+                                {summit && summit[match.params.chartName + '_title'] && t(summit[match.params.chartName + '_title'])}
                                 {
                                     summit && summit[match.params.chartName + '_sort'] &&
-                                    <span>{t('highest')}{t(unit)}{t('_of')}
-                                      <strong>{' ' + summit[match.params.chartName + '_sort'][0].increment + ' '}</strong>
+                                    <span> {t('highest')}{t(unit)}{t('_of')}
+                                      <strong>{' ' + toThousands(summit[match.params.chartName + '_sort'][0].increment) + ' '}</strong>
                                         {t('was_recorded_on')} {intl.formatDate(summit[match.params.chartName + '_sort'][0].date)}
+
                             </span>
                                 }
                             </div>
                             <div className="col-md-6 text-center">
+                                {summit && summit[match.params.chartName + '_title'] && t(summit[match.params.chartName + '_title'])}
                                 {
                                     summit && summit[match.params.chartName + '_sort'] &&
-                                    <span>{t('lowest')}{t(unit)}{t('_of')}
-                                      <strong>{' ' + summit[match.params.chartName + '_sort'][1].increment + ' '}</strong>
+                                    <span> {t('lowest')}{t(unit)}{t('_of')}
+                                      <strong>{' ' + toThousands(summit[match.params.chartName + '_sort'][1].increment) + ' '}</strong>
                                         {t('was_recorded_on')} {intl.formatDate(summit[match.params.chartName + '_sort'][1].date)}
                             </span>
                                 }
@@ -1315,11 +1344,11 @@ class Statistics extends React.Component {
                         }
                         {
                             match.params.chartName === 'addressesStats' &&
-                            <div style={{height: chartHeight}}>
+                            <div style={{height: isMobile ? '350' : chartHeight}}>
                                 {
                                     addressesStats === null ?
                                         <TronLoader/> :
-                                        <LineReactHighChartAdd source='singleChart' style={{height: chartHeight}} data={addressesStats} intl={intl}/>
+                                        <LineReactHighChartAdd source='singleChart' style={{height: isMobile ? '350' : chartHeight}} data={addressesStats} intl={intl}/>
                                 }
                             </div>
                         }
@@ -1756,7 +1785,7 @@ class Statistics extends React.Component {
                         }
 {
                             match.params.chartName === 'activeAccounts' &&
-                            <div style={{height: chartHeight}}>         
+                            <div style={{height: isMobile ? '400' : chartHeight}}>         
                             <div className="active-account-chart">
                                 <Radio.Group size="small" onChange={this.handleModeChange} value={activeAccountParams.type} style={{ marginBottom: 8 }}>
                                     <Radio.Button value="month">{tu('chart_active_button_1')}</Radio.Button>
@@ -1764,8 +1793,15 @@ class Statistics extends React.Component {
                                     <Radio.Button value="day">{tu('chart_active_button_3')}</Radio.Button>
                                 </Radio.Group>
                                 {activeAccountData === null ?
-                                <TronLoader/> : <ActiveAccountsChart source='singleChart' style={{height: chartHeight}}
-                                data={activeAccountData} intl={intl}/>}
+                                <TronLoader/> : <div>
+                                        <ul className="range">
+                                            {activeAccountRange.map((item,index)=>(
+                                                <li key={item.value}><span style={{background:item.color}}></span>{item.text}</li>  
+                                            ))}
+                                        </ul>
+                                        <ActiveAccountsChart source='singleChart' style={{height: isMobile ? '400' : chartHeight}}
+                                        data={activeAccountData} intl={intl} range={activeAccountRange}/>
+                                    </div>}
                             </div>     
                     </div>
                         }

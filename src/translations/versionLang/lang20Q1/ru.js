@@ -358,7 +358,7 @@ export const lang20Q1 = {
   account_tags_my_tag_update:'Обновления',
   account_tags_my_tag_login_show:'Содержание будет отображаться после входа.',
   account_tags_my_tag_not_available:'Not Available',
-
+  account_title:" ",
 
 
   fill_a_valid_ledger_note:'Please confirm that the Transactions Data option in the ledger settings is allowed, otherwise you cannot send notes',
@@ -390,4 +390,13 @@ export const lang20Q1 = {
   chart_per_price_close:'Закрытые',
   chart_per_price_high:'Высокие',
   chart_per_price_low:'Низкие',
+  chart_account_title_month:'Активные аккаунты месяца',
+  chart_account_title_week:'Активные аккаунты недели',
+  chart_account_title_day:'Активные аккаунты дня',
+  chart_add_daily_title:'Ежедневные новые аккаунты',
+
+  // foundation address
+  foundation_address_update_date:'Updated time: 2019/12/31',
+  foundation_address_deadline_date:'by 2020.4.15',
+
 };

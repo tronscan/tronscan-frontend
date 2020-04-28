@@ -2842,6 +2842,7 @@ h5 {
   height: 40px;
 
   .token20-search {
+    height:36px;
     display: flex;
     position: absolute;
     right: 22px;
@@ -2850,6 +2851,7 @@ h5 {
       font-size: 13px;
       width: 260px;
       min-width: 260px;
+      height: 100%
     }
     .padding20 {
       padding: 0px 20px 0px 14px !important;
@@ -2858,22 +2860,28 @@ h5 {
 
   @media only screen and (max-width: 768px) {
     height: 40px;
-
+   
     .token20-search {
       display: flex;
       position: absolute;
       right: 22px;
 
       input {
-        fontsize: 13px;
+        font-size: 13px;
         width: 220px;
         min-width: 200px;
-      }
-      .padding20 {
       }
     }
   }
 }
+.tonken20DetailMain,.tonken10DetailMain{
+  @media only screen and (max-width: 768px) {
+    .mobile-distribution-title{
+      flex-direction: column;
+    }
+  }
+}
+ 
 
 .exchange-title {
   display: flex;
@@ -3180,6 +3188,13 @@ h5 {
     }
   }
 }
+.single-language-navbar-nav{
+  li:last-child{
+    .more-menu{
+      left:-350px !important;
+    }
+  }
+}
 
 .more-menu {
   flex-direction: row;
@@ -3470,6 +3485,9 @@ h5 {
 }
 
 #_searchBox a {
+  padding-left: 10px !important;
+}
+#mobile_searchBox a {
   padding-left: 10px !important;
 }
 
@@ -4561,13 +4579,14 @@ h5 {
 @media only screen and (max-width: 768px) {
   .transfers-Container {
     .address-transfers-radio {
-      position: absolute;
-      top: 0px;
-      left: -4px;
+      position: static;
+      top: auto;
+      left: auto;
+      margin-top:10px;
       z-index: 999;
     }
     .single-transferall-container {
-      top: 40px !important;
+      top: 60px !important;
     }
   }
 }
@@ -5409,7 +5428,7 @@ h5 {
 }
 
 @media only screen and (max-width: 765px) {
-  .list-style-body-scroll__header.account-owner {
+  .list-style-body-scroll__header.account-owner,.list-style-body-scroll__header.static-new {
     ul{
       width:100%;
       display: flex;

@@ -346,6 +346,7 @@ export const lang20Q1 = {
   account_tags_my_tag_update: "更新",
   account_tags_my_tag_login_show: "登录后显示",
   account_tags_my_tag_not_available: "无标签",
+  account_title:" ",
 
   pledge_to_get_USDJ: "质押获取USDJ",
   fill_a_valid_ledger_note:
@@ -379,6 +380,15 @@ export const lang20Q1 = {
   chart_per_price_close:'收盘价',
   chart_per_price_high:'最高价',
   chart_per_price_low:'最低价',
+  chart_account_title_month:'月活跃账户数',
+  chart_account_title_week:'周活跃账户数',
+  chart_account_title_day:'日活跃账户数',
+  chart_add_daily_title:'日新增账户数',
 
+
+
+  // foundation address
+  foundation_address_update_date:'更新时间：2019/12/31',
+  foundation_address_deadline_date:'统计截止到2020年4月15日',
 
 };

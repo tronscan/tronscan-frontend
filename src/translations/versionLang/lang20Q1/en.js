@@ -334,7 +334,7 @@ export const lang20Q1 = {
   account_tags_delete_is: "Are you sure to remove the tag?",
   account_tags_delete_succss: "The tag has been removed.",
   account_address_name_tag:'(Verified tag)',
-  account_tags_address_placehold:'请输入正确的地址',
+  account_tags_address_placehold:'',
   account_tags_tag_placehold:'Please enter a tag (no more than 20 characters).',
   account_tags_note_placehold:'Optional, no more than 100 characters.',
   account_tags_tag_valid:'Only Chinese, English or Arabic numbers can be entered',
@@ -343,7 +343,7 @@ export const lang20Q1 = {
   account_tags_my_tag_update:'Update',
   account_tags_my_tag_login_show:'The content will show after login.',
   account_tags_my_tag_not_available:'Not Available',
-
+  account_title:" ",
 
   fill_a_valid_ledger_note:'Please confirm that the Transactions Data option in the ledger settings is allowed, otherwise you cannot send notes',
   enter_up_to_50_characters:'Enter up to 50 characters',
@@ -374,4 +374,14 @@ export const lang20Q1 = {
   chart_per_price_close:'Close',
   chart_per_price_high:'High',
   chart_per_price_low:'Low',
+  chart_account_title_month:'Active accounts of the month',
+  chart_account_title_week:'Active accounts of the week',
+  chart_account_title_day:'Active accounts of the day',
+  chart_add_daily_title:'Daily new accounts',
+
+  // foundation address
+  foundation_address_update_date:'Updated time: 2019/12/31',
+  foundation_address_deadline_date:'by 2020.4.15',
+
+
 };

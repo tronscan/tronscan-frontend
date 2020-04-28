@@ -2301,6 +2301,9 @@ export default class Account extends Component {
           </div> */}
         <Tabs tabs={tabs} scrollsId={scrollsId} changeScrollIds={this.changeScrollIds.bind(this)}/>
          <div id="account_title">
+         <h4 >
+              {tu('accounts')}
+          </h4>
            <div className="row" >
             <div className="col-md-3">
               <div className="card h-100 bg-line_red bg-image_band">

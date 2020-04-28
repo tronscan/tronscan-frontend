@@ -609,6 +609,9 @@ export default {
             }
         },
         legend: {
+            align: 'center',
+            verticalAlign: 'bottom',
+            symbolRadius: 0,
             enabled: false
         },
         plotOptions: {
@@ -1319,7 +1322,7 @@ export default {
             data: [],
             zoneAxis: 'y',
             zones: [{
-                value:250000000,
+                value:200,
             },{
                 color:'#000'
             }],

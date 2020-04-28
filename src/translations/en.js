@@ -1,7 +1,9 @@
 /* eslint-disable */
 import { lang19Q4 } from "./versionLang/lang19Q4/en19Q4";
 import { lang20Q1 } from "./versionLang/lang20Q1/en";
-
+import {
+  lang20Q2
+} from './versionLang/lang20Q2/en'; /* 2020Q2 */
 export const messages = {
   /*
   ##################################################################################
@@ -2215,7 +2217,7 @@ export const messages = {
   ledger_user_guide: "Ledger User Guide",
   latest_version_chrome: "we recommend the latest version of Chrome",
   ledger_support_version:
-    "Ledger support version: 0.1.6, Chrome support version 80.0",
+    "Ledger support version: 0.2.0, Chrome support version 80.0",
   ledger_you_can: "You can go to the",
   ledger_website: " Ledger Website ",
   ledger_website_download:
@@ -2265,7 +2267,7 @@ export const messages = {
   footer_fellow_us: "Follow Us",
   footer_developer_resources: "Developer Resources",
   footer_support_center: "Support Center",
-  footer_tron_network: "TRON",
+  footer_tron_network: "Tron.network",
   login_privatekey_warn:
     "In order to ensure account security and avoid asset loss, please take good care of your private key and never give it away to anyone. It is recommended to use ",
   login_privatekey_warn_safe: " to login",
@@ -2789,5 +2791,6 @@ export const messages = {
   address_freeze_owner: "To your account",
   address_freeze_other: "To others' account(s)",
   ...lang19Q4,
-  ...lang20Q1
+  ...lang20Q1,
+  ...lang20Q2
 };

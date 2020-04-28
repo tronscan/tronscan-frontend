@@ -342,7 +342,7 @@ export const lang20Q1 = {
   account_tags_my_tag_update:'업데이트',
   account_tags_my_tag_login_show:'로그인 후 표시됨',
   account_tags_my_tag_not_available:'Not Available',
-
+  account_title:" ",
 
 
   fill_a_valid_ledger_note:'Please confirm that the Transactions Data option in the ledger settings is allowed, otherwise you cannot send notes',
@@ -374,4 +374,13 @@ export const lang20Q1 = {
   chart_per_price_close:'종가',
   chart_per_price_high:'최고가',
   chart_per_price_low:'최저가',
+  chart_account_title_month:'월간 활성화계정수',
+  chart_account_title_week:'주간 활성계정수',
+  chart_account_title_day:'일 활성계정수',
+  chart_add_daily_title:'일일 신규계정 수',
+
+  // foundation address
+  foundation_address_update_date:'Updated time: 2019/12/31',
+  foundation_address_deadline_date:'by 2020.4.15',
+
 };

@@ -6,4 +6,41 @@
         z-index: 5;
         top: 5px;
     }
+    .range{
+        position: absolute;
+        z-index: 5;
+        top: 45px;
+        display: flex;
+        justify-content: space-between;
+        width:60%;
+        left: 0;
+        right:0;
+        margin:auto;
+        li{
+            list-style: none;
+            display: flex;
+            vertical-align: middle;
+            line-height:6px;
+            span{
+                display: inline-block;
+                width:6px;
+                height:6px;
+                margin-right:5px;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width:765px){
+    .active-account-chart{
+        .ant-radio-group{
+            top: 1.5rem;
+        }
+        .range{
+            height: 25px;
+            flex-flow: wrap;
+            padding-left: 0;
+            top: 3.3rem;
+        }
+    }
 }

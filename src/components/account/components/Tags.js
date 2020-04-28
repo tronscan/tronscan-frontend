@@ -50,8 +50,9 @@ class Tags extends Component {
     };
 
     let { data } = await ApiClientAccount.getTagsList(params);
-    let { user_tags, contract_map, total } = data;
-    user_tags.forEach((item) => {
+    console.log(1,data)
+    let { user_tags, contract_map, total } = data || {};
+    user_tags && user_tags.forEach((item) => {
       if (contract_map) {
         contract_map[item.targetAddress]
           ? (item.ownerIsContract = true)

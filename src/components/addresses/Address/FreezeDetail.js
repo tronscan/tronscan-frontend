@@ -6,26 +6,14 @@ import {
   FormattedNumber,
   injectIntl
 } from "react-intl";
-import { toUpper } from "lodash";
-import { TokenLink, TokenTRC20Link, AddressLink } from "../../common/Links";
-import { SwitchToken } from "../../common/Switch";
-import { Truncate } from "../../common/text";
-import SmartTable from "../../common/SmartTable.js";
+import { AddressLink } from "../../common/Links";
 import { upperFirst } from "lodash";
 import _ from "lodash";
-import {
-  CONTRACT_ADDRESS_USDT,
-  CONTRACT_ADDRESS_WIN,
-  CONTRACT_ADDRESS_GGC
-} from "../../../constants";
-import { TRXPrice } from "../../common/Price";
 import { Table, Menu, Dropdown, Button, Radio } from "antd";
 import { ONE_TRX } from "../../../constants";
-import { recoverAddress } from "ethers/utils";
 import { QuestionMark } from "../../common/QuestionMark";
 import { TronLoader } from "../../common/loaders";
-import { Client, AccountApi } from "../../../services/api";
-import { API_URL } from "../../../constants";
+import { AccountApi } from "../../../services/api";
 import { isAddressValid } from "@tronscan/client/src/utils/crypto";
 
 class FreezeDetail extends Component {

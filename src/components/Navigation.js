@@ -46,8 +46,8 @@ import {toastr} from 'react-redux-toastr'
 import Lockr from "lockr";
 import {BarLoader} from "./common/loaders";
 import {Truncate} from "./common/text";
-import { TRXPrice } from "./common/Price";
-import { Icon,Tooltip,Drawer,Collapse,Divider } from 'antd';
+import NavPrice from "./common/NavPrice";
+import { Icon,Drawer,Collapse,Divider } from 'antd';
 import isMobile from '../utils/isMobile';
 import {Client} from '../services/api';
 import $ from 'jquery';
@@ -85,6 +85,7 @@ class Navigation extends React.Component {
       drawerVisible:false,//draw is visible
       currentActive:3,
       percent_change_24h:0,
+      USD_Price:0,
       testNetAry: [
         "testnet",
         {
@@ -144,14 +145,15 @@ class Navigation extends React.Component {
     setWebsocket();
     $(document).click(() => {
       $('#_searchBox').css({display: 'none'});
+      document.getElementById("mobile_searchBox").style.display = 'none'
     });
 
     this.setState({
         selectedNet: IS_MAINNET?'mainnet':'sunnet'
     });
     Lockr.set("NET", IS_MAINNET?'mainnet':'sunnet')
-    this.loadTrxPrices()
-    this.oTimer = setInterval(() => this.loadTrxPrices(), 1000*60*10);
+    // this.loadTrxPrices()
+    // this.oTimer = setInterval(() => this.loadTrxPrices(), 1000*60*10);
 
   }
 
@@ -168,12 +170,16 @@ class Navigation extends React.Component {
       );
       if (dataEurObj) {
         let percent_change_24h = dataEurObj.TRX.quote.USD.percent_change_24h.toFixed(2) || 0;
+        let USD_Price = parseFloat(dataEurObj.TRX.quote.USD.price)
         this.setState({
-          percent_change_24h
+          percent_change_24h,
+          USD_Price
         });
       } else{
+       
         this.setState({
-          percent_change_24h:0
+          percent_change_24h:0,
+          USD_Price:0
         });
       }
      
@@ -479,6 +485,7 @@ class Navigation extends React.Component {
     if (ev.keyCode === 13) {
       this.doSearch();
       $('#_searchBox').css({display: 'none'});
+      document.getElementById("mobile_searchBox").style.display = 'none'
     }
   };
 
@@ -495,6 +502,7 @@ class Navigation extends React.Component {
     if (search === "") {
       this.setState({searchResults: []});
       $('#_searchBox').css({display: 'none'});
+      document.getElementById("mobile_searchBox").style.display = 'none'
       return;
     } 
 
@@ -512,12 +520,13 @@ class Navigation extends React.Component {
       {desc: 'Contract', value: "TVethjgashn8t4cwKWfGA3VvSgMwVmHKNM"},
       {desc: 'TxHash', value: "9073aca5dfacd63c8e61f6174c98ab3f350bc9365df6ffc3bc7a70a252711d6f"}
     ];*/
-
     this.setState({searchResults: results});
     if (results.length) {
       $('#_searchBox').css({display: 'block'});
+      document.getElementById("mobile_searchBox").style.display = 'block';
     } else {
       $('#_searchBox').css({display: 'none'});
+      document.getElementById("mobile_searchBox").style.display = 'none'
     }
   }
 
@@ -1071,7 +1080,7 @@ class Navigation extends React.Component {
       syncStatus,
       walletType: { type },
     } = this.props;
-    let {search, popup, notifications, announcement, announId, annountime, searchResults, selectedNet,drawerVisible,currentActive,percent_change_24h,testNetAry } = this.state;
+    let {search, popup, notifications, announcement, announId, annountime, searchResults, selectedNet,drawerVisible,currentActive,percent_change_24h,USD_Price,testNetAry } = this.state;
     let activeComponent = this.getActiveComponent();
     const isShowSideChain = !type || (type && IS_SUNNET);
     let IsRepresentative = localStorage.getItem('representative')
@@ -1086,35 +1095,21 @@ class Navigation extends React.Component {
                 <div className="mobileFlexible">
                   <Link to="/">
                     <img  src={this.getLogo()} className="logo" alt="Tron"/>
-                 
                   </Link>
                   {
                     IS_MAINNET?
                     <div className="currentTRXInfo">
-                      <Tooltip
-                        placement="bottom"
-                        title={intl.formatMessage({
-                          id: "tooltip_trxPrice"
-                        })}
-                      >
-                        <HrefLink
-                          href="https://coinmarketcap.com/currencies/tron/"
-                          target="_blank"
-                          className="hvr-underline-from-center hvr-underline-white text-muted"
-                        >
-                          <span className="TRXPrice">
-                            <span className="trxTitle">TRX: </span> 
-                            <TRXPrice
-                              showPopup={false}
-                              amount={1}
-                              currency="USD"
-                              source="home"
-                              showCurreny={true}
-                              priceChage={percent_change_24h}
-                            />
-                          </span>
-                        </HrefLink>
-                      </Tooltip>
+                      <span className="TRXPrice">
+                        <NavPrice
+                          showPopup={false}
+                          amount={1}
+                          currency="USD"
+                          source="home"
+                          showCurreny={true}
+                          currentPrice={USD_Price}
+                          priceChage={percent_change_24h}
+                          />
+                      </span>
                     </div>
                     :null
                   }
@@ -1136,7 +1131,7 @@ class Navigation extends React.Component {
                   <nav className="top-bar navbar navbar-expand-md navbar-dark" style={{padding:0}}> 
                   {/*  pc nav */}
                     <div className="collapse navbar-collapse" id="navbar-top">
-                      <ul className="navbar-nav">
+                      <ul className={activeLanguage==='ru' || activeLanguage==='es' || activeLanguage==='en'? 'single-language-navbar-nav navbar-nav':'navbar-nav'}>
                         {filter(routes, r => r.showInMenu !== false).map(route => (
                             <li key={route.path}  className={IS_MAINNET? 'nav-item dropdown': 'nav-item dropdown pr-3'}>
                               {
@@ -1151,23 +1146,37 @@ class Navigation extends React.Component {
                                     </HrefLink>
                                     :
                                     <span className={route.routes ? (route.label == 'nav_network' ? 'nav-network-hot' : "") : ""}> 
-                                    <NavLink
-                                        className={route.routes ? (route.label == 'nav_network' ? 'nav-link text-capitalize' : "nav-link") : "nav-link"}
+                                      {
+                                        route.label == 'home_page' || route.label == 'Poloni DEX'?
+                                        <NavLink
+                                            className={route.routes ? (route.label == 'nav_network' ? 'nav-link text-capitalize' : "nav-link") : "nav-link"}
+                                            {...((route.routes && route.routes.length > 0) ? {'data-toggle': 'dropdown'} : {})}
+                                            activeClassName="active"
+                                            to={route.redirect? route.redirect: route.path}
+                                        >
+                                          <span  className={
+                                            (currentRouter.slice(1).split('/').indexOf(route.path.slice(1)) !== -1 || (currentRouter==='/exchange/trc20' && route.path ==="/exchange/trc20") || (route.path==='/more' && currentRouter.slice(1,5)==='help') || (route.path==='/more' && currentRouter.slice(1,6)==='tools')) || (route.path==='/newblock' && currentRouter.slice(1,11)==='blockchain') || (route.path==='/newblock' && currentRouter.slice(1,10)==='contracts') || (route.path==='/newblock' && currentRouter.slice(1,7)==='tokens') ? "menu-active-tilte-pc": ""}>
+                                          {route.icon &&
+                                            <i className={route.icon + " d-none d-lg-inline-block mr-1"}/>}
+                                            {tu(route.label)}
+                                            {route.label !== 'home_page' && route.label !== 'Poloni DEX'?<Icon type="caret-down" style={{color: 'rgba(51,51,51,0.50)',marginLeft:"4px",fontSize:'8px'}} /> : null}
+                                          
+                                          </span>
+                                          {/* <i className="hot-nav"></i> */}
+                                        </NavLink>
+                                        :
+                                        <span className={route.routes ? (route.label == 'nav_network' ? 'nav-link text-capitalize' : "nav-link") : "nav-link"}
                                         {...((route.routes && route.routes.length > 0) ? {'data-toggle': 'dropdown'} : {})}
-                                        activeClassName="active"
-                                        to={route.redirect? route.redirect: route.path}
-                                    >
-                                      <span  className={
-                                        (currentRouter.slice(1).split('/').indexOf(route.path.slice(1)) !== -1 || (currentRouter==='/exchange/trc20' && route.path ==="/exchange/trc20") || (route.path==='/more' && currentRouter.slice(1,5)==='help') || (route.path==='/more' && currentRouter.slice(1,6)==='tools')) || (route.path==='/newblock' && currentRouter.slice(1,11)==='blockchain') || (route.path==='/newblock' && currentRouter.slice(1,10)==='contracts') || (route.path==='/newblock' && currentRouter.slice(1,7)==='tokens') ? "menu-active-tilte-pc": ""}>
-                                      {route.icon &&
-                                      <i className={route.icon + " d-none d-lg-inline-block mr-1"}/>}
-                                      {tu(route.label)}
-                                      {route.label !== 'home_page' && route.label !== 'Poloni DEX'?<Icon type="caret-down" style={{color: 'rgba(51,51,51,0.50)',marginLeft:"4px",fontSize:'8px'}} /> : null}
-                                    
-                                      </span>
-                                      {/* <i className="hot-nav"></i> */}
-                                    </NavLink>
-                                  
+                                        >
+                                          <span  className={
+                                            (currentRouter.slice(1).split('/').indexOf(route.path.slice(1)) !== -1 || (currentRouter==='/exchange/trc20' && route.path ==="/exchange/trc20") || (route.path==='/more' && currentRouter.slice(1,5)==='help') || (route.path==='/more' && currentRouter.slice(1,6)==='tools')) || (route.path==='/newblock' && currentRouter.slice(1,11)==='blockchain') || (route.path==='/newblock' && currentRouter.slice(1,10)==='contracts') || (route.path==='/newblock' && currentRouter.slice(1,7)==='tokens') ? "menu-active-tilte-pc": ""}>
+                                          {route.icon &&
+                                            <i className={route.icon + " d-none d-lg-inline-block mr-1"}/>}
+                                            {tu(route.label)}
+                                            {route.label !== 'home_page' && route.label !== 'Poloni DEX'?<Icon type="caret-down" style={{color: 'rgba(51,51,51,0.50)',marginLeft:"4px",fontSize:'8px'}} /> : null}
+                                          </span>
+                                        </span>
+                                      }
                                     </span>
                                     
                               }
@@ -1473,7 +1482,7 @@ class Navigation extends React.Component {
                   <i className="fa fa-search"/>
                 </button>
               </div>
-              <div className="dropdown-menu" id="_searchBox" style={{width: '100%',maxHeight:'300px', overflow:'auto'}}>
+              <div className="dropdown-menu" id="mobile_searchBox" style={{width: '100%',maxHeight:'300px', overflow:'auto'}}>
                 {
                   searchResults && searchResults.map((result, index) => {
                         if (result.desc === 'Block') {

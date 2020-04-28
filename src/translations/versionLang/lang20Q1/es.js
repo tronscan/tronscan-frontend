@@ -338,7 +338,7 @@ export const lang20Q1 = {
   account_tags_my_tag_update:'Actualización',
   account_tags_my_tag_login_show:'Mostrar después de iniciar sesión',
   account_tags_my_tag_not_available:'Not Available',
-
+  account_title:" ",
 
   fill_a_valid_ledger_note:'Please confirm that the Transactions Data option in the ledger settings is allowed, otherwise you cannot send notes',
   enter_up_to_50_characters:'Enter up to 50 characters',
@@ -370,4 +370,14 @@ export const lang20Q1 = {
   chart_per_price_close:'Cerrar',
   chart_per_price_high:'Más Alto',
   chart_per_price_low:'Más Bajo',
+  chart_account_title_month:'Cuentas activas del mes',
+  chart_account_title_week:'Cuentas activas de la semana',
+  chart_account_title_day:'Cuentas activas del día',
+  chart_add_daily_title:'Cuentas nuevas diarias',
+
+  // foundation address
+  foundation_address_update_date:'Updated time: 2019/12/31',
+  foundation_address_deadline_date:'by 2020.4.15',
+  
+
 };

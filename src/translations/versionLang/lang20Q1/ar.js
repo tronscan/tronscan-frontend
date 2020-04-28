@@ -335,7 +335,7 @@ export const lang20Q1 = {
   account_tags_my_tag_update:'تحديث',
   account_tags_my_tag_login_show:'سيظهر المحتوى بعد تسجيل الدخول',
   account_tags_my_tag_not_available:'Not Available',
-
+  account_title:" ",
 
   pledge_to_get_USDJ:'Pledge to get USDJ',
   fill_a_valid_ledger_note:'Please confirm that the Transactions Data option in the ledger settings is allowed, otherwise you cannot send notes',
@@ -367,5 +367,13 @@ export const lang20Q1 = {
   chart_per_price_close:'سعر الإغلاق',
   chart_per_price_high:'أعلى سعر',
   chart_per_price_low:'أقل سعر',
+  chart_account_title_month:'حسابات شهرية نشطة',
+  chart_account_title_week:'حسابات نشطة للأسبوع ',
+  chart_account_title_day:'حسابات نشطة اليوم',
+  chart_add_daily_title:'الحسابات اليومية الجديدة',
+
+  // foundation address
+  foundation_address_update_date:'Updated time: 2019/12/31',
+  foundation_address_deadline_date:'by 2020.4.15',
 
 };

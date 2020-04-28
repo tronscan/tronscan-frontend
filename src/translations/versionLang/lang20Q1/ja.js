@@ -345,7 +345,7 @@ account_piechart_title:'資産配分',
   account_tags_my_tag_update:'更新',
   account_tags_my_tag_login_show:'ログイン後に表示',
   account_tags_my_tag_not_available:'Not Available',
-
+  account_title:" ",
 // active account
 chart_active_account:'アクティブなアカウントの分配',
 chart_active_button_1:'MAU',
@@ -369,5 +369,14 @@ chart_per_price_open:'始値',
 chart_per_price_close:'終値',
 chart_per_price_high:'最高価格',
 chart_per_price_low:'最低価格',
+chart_account_title_month:'毎月のアクティブなアカウント',
+  chart_account_title_week:'毎週アクティブなアカウント',
+  chart_account_title_day:'1日のアクティブアカウント',
+  chart_add_daily_title:'日増加アカウント',
 
+
+  // foundation address
+  foundation_address_update_date:'Updated time: 2019/12/31',
+  foundation_address_deadline_date:'by 2020.4.15',
+  
 };

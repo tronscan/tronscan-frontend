@@ -43,8 +43,8 @@ class ActiveAccount extends React.Component {
         let column = [
             {
                 title: upperFirst(intl.formatMessage({id: 'chart_active_table_1'})),
-                dataIndex: 'day_string',
-                key: 'day_string',
+                dataIndex: 'day_string_type',
+                key: 'day_string_type',
                 align: 'center',
                 render: (text, record, index) => {
                   return <span>{text}</span>
@@ -92,7 +92,7 @@ class ActiveAccount extends React.Component {
             key: 'transactions',
             render: (text, record, index) => {
                 return <span>
-                    {text} Txns
+                    <FormattedNumber value={text}/> Txns
                 </span>
             }
           },

@@ -5,6 +5,10 @@ import {
 import {
   lang20Q1
 } from './versionLang/lang20Q1/zh'; // 20Q1
+import {
+  lang20Q2
+} from './versionLang/lang20Q2/zh'; // 20Q1
+
 export const messages = {
     /*
     ##################################################################################
@@ -1994,7 +1998,7 @@ export const messages = {
      */
     "ledger_user_guide": "Ledger使用指南",
     "latest_version_chrome": "推荐使用最新版Chrome",
-    "ledger_support_version": "Ledger支持版本：0.1.6，chrome支持版本 80.0",
+    "ledger_support_version": "Ledger支持版本：0.2.0，chrome支持版本 80.0",
     "ledger_you_can": "您可以去",
     "ledger_website": "Ledger官网",
     "ledger_website_download": "下载更新最新的Ledger版本",
@@ -2544,5 +2548,6 @@ export const messages = {
     "address_freeze_owner": "冻结给自己",
     "address_freeze_other": "冻结给他人",
     ...lang19Q4,
-    ...lang20Q1
+    ...lang20Q1,
+    ...lang20Q2
 };

@@ -346,7 +346,7 @@ export const lang20Q1 = {
   account_tags_my_tag_update:'بروزرسانی کنید',
   account_tags_my_tag_login_show:'نمایش پس از ورود به سیستم',
   account_tags_my_tag_not_available:'Not Available',
-
+  account_title:" ",
 // active account
 chart_active_account:'توزیع حساب فعال.',
 chart_active_button_1:'کار ماهانه',
@@ -370,6 +370,15 @@ chart_per_price_open:'قیمت افتتاحیه',
 chart_per_price_close:'قیمت بسته شده',
 chart_per_price_high:'بالاترین قیمت',
 chart_per_price_low:'پایین ترین قیمت',
+chart_account_title_month:'حسابهای فعال ماه',
+  chart_account_title_week:'حسابهای فعال هفته',
+  chart_account_title_day:'حسابهای فعال روز',
+  chart_add_daily_title:'تعداد حسابهای جدید روزانه',
+
+  // foundation address
+  foundation_address_update_date:'Updated time: 2019/12/31',
+  foundation_address_deadline_date:'by 2020.4.15',
+
 
 
 };
