@@ -58,7 +58,7 @@ class TagForm extends React.Component {
       limit: 2,
       start: 0,
     };
-    let { retCode, retMsg, data } = await ApiClientAccount.getTagsList(obj);
+    let { retCode, retMsg, data={} } = await ApiClientAccount.getTagsList(obj);
     let detail = data.user_tags[0];
     if (retCode == 0) {
       this.setState({
@@ -81,7 +81,7 @@ class TagForm extends React.Component {
 
     ApiClientAccount.recTag({ target_address: address,user_address:account.address }).then((res) => {
       this.setState({
-        recommendList: res.data.recommend_tags || [],
+        recommendList: (res && res.data && res.data.recommend_tags) || [],
       });
     });
   };
