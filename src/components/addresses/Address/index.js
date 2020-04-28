@@ -454,6 +454,22 @@ class Address extends React.Component {
               <TokenBalances tokenBalances={tokenBalances} frozen={totalPower} intl={intl} />
             )
           },
+          transactions: {
+            id: "transactions",
+            // icon: "fas fa-handshake",
+            path: "/transactions",
+            label: <span>{tu("transactions")}</span>,
+            cmp: () => (
+              <NewTransactions
+                getCsvUrl={csvurl => this.setState({ csvurl })}
+                filter={{ address: id}}
+                tokenList={tokenAry}
+                allSelectedTokenAry={selectIdAry}
+                routerResetSearchFun={()=>this.routerResetSearch()}
+                address
+              />
+            )
+          },
           transfers: {
             id: "transfers",
             // icon: "fa fa-exchange-alt",
@@ -477,22 +493,7 @@ class Address extends React.Component {
           //   label: <span>{tu("20_transfers")}</span>,
           //   cmp: () => <TransfersTrc20 filter={{address: id}}/>
           // },
-          transactions: {
-            id: "transactions",
-            // icon: "fas fa-handshake",
-            path: "/transactions",
-            label: <span>{tu("transactions")}</span>,
-            cmp: () => (
-              <NewTransactions
-                getCsvUrl={csvurl => this.setState({ csvurl })}
-                filter={{ address: id}}
-                tokenList={tokenAry}
-                allSelectedTokenAry={selectIdAry}
-                routerResetSearchFun={()=>this.routerResetSearch()}
-                address
-              />
-            )
-          },
+          
           intransactions: {
             id: "intransactions",
             // icon: "fas fa-handshake",
@@ -588,6 +589,23 @@ class Address extends React.Component {
               <TokenBalances tokenBalances={tokenBalances} frozen={totalPower} intl={intl} />
             )
           },
+          transactions: {
+            id: "transactions",
+            // icon: "fas fa-handshake",
+            path: "/transactions",
+            label: <span>{tu("transactions")}</span>,
+            isHidden: true,
+            cmp: () => (
+              <NewTransactions
+                getCsvUrl={csvurl => this.setState({ csvurl })}
+                filter={{ address: id }}
+                tokenList={tokenAry}
+                allSelectedTokenAry={selectIdAry}
+                routerResetSearchFun={()=>this.routerResetSearch()}
+                address
+              />
+            )
+          },
           transfers: {
             id: "transfers",
             // icon: "fa fa-exchange-alt",
@@ -611,23 +629,7 @@ class Address extends React.Component {
           //   label: <span>{tu("20_transfers")}</span>,
           //   cmp: () => <TransfersTrc20 filter={{address: id}}/>:
           // },
-          transactions: {
-            id: "transactions",
-            // icon: "fas fa-handshake",
-            path: "/transactions",
-            label: <span>{tu("transactions")}</span>,
-            isHidden: true,
-            cmp: () => (
-              <NewTransactions
-                getCsvUrl={csvurl => this.setState({ csvurl })}
-                filter={{ address: id }}
-                tokenList={tokenAry}
-                allSelectedTokenAry={selectIdAry}
-                routerResetSearchFun={()=>this.routerResetSearch()}
-                address
-              />
-            )
-          },
+          
           intransactions: {
             id: "intransactions",
             // icon: "fas fa-handshake",

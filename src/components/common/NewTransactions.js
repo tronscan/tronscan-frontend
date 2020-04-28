@@ -637,7 +637,7 @@ class NewTransactions extends React.Component {
                 className: 'ant_table address_max_width',
                 render: (text, record, index) => {
                     return (
-                        <span>
+                        <span className='transactionToAddressWrapper'>
                             {record.toIsContract? (
                                 <span className="d-flex">
                                     <Tooltip
@@ -665,10 +665,13 @@ class NewTransactions extends React.Component {
                                 </span>
                                 )
                                 : (
-                                    text == filter.address ?   
-                                        <TruncateAddress>{text}</TruncateAddress>
-                                        :<AddressLink address={text}>{text}</AddressLink>
+                                    text == filter.address ? <TruncateAddress>{text}</TruncateAddress>
+                                    : <AddressLink address={text}>{text}</AddressLink>
                                 )
+                            }
+                            {
+                                record.contractType === 4 && record.toAddressList&&record.toAddressList.length>0?
+                                <span className='bage'>{record.toAddressList.length}</span>:null
                             }
                         </span>
                     )
@@ -785,7 +788,7 @@ class NewTransactions extends React.Component {
                 align: "center",
                 className: "ant_table",
                 render: (text, record, index) => {
-                  return <FormattedNumber value={text / Math.pow(10,6)}></FormattedNumber>;
+                  return <FormattedNumber value={text}></FormattedNumber>;
                 }
             },
             {
@@ -1049,7 +1052,7 @@ class NewTransactions extends React.Component {
         // }
 
         return (
-          <div className={"token_black  " + (address ? "mt-5" : "")} style={{padding:'30px 0'}}>
+          <div className={"token_black new_transcations " + (address ? "mt-5" : "")} style={{padding:'30px 0'}}>
             {loading && (
               <div className="loading-style">
                 <TronLoader />
