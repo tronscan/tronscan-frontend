@@ -2831,7 +2831,7 @@ export default class Account extends Component {
 
 
           {
-          !IS_NILE && IS_MAINNET&&<div className="row mt-3" id="tronMultisign">
+          IS_MAINNET&&<div className="row mt-3" id="tronMultisign">
             <div className="col-md-12">
                 <div className="card">
                   <div className="card-body">

@@ -89,15 +89,15 @@ export const routes = [
     icon: false,
     routes: [
       [
-        {
-          label: "nodes",
-          // icon: "fa fa-server",
-          icon: false,
-          path: "/blockchain/nodes",
-          component: NodesAsync,
-          showInMenu: true
-          // showInMenu: IS_MAINNET?true:false,
-        },
+        // {
+        //   label: "nodes",
+        //   // icon: "fa fa-server",
+        //   icon: false,
+        //   path: "/blockchain/nodes",
+        //   component: NodesAsync,
+        //   showInMenu: true
+        //   // showInMenu: IS_MAINNET?true:false,
+        // },
         {
           path: "/blockchain/blocks",
           label: "blocks",
@@ -310,14 +310,14 @@ export const routes = [
         showInMenu: false,
         component: TopDataAsync
       },
-      {
-        path: "/data/foundation",
-        label: "foundation",
-        // icon: "fa fa-address-book",
-        icon: false,
-        showInMenu: IS_MAINNET ? true : false,
-        component: FoundationAsync
-      },
+      // {
+      //   path: "/data/foundation",
+      //   label: "foundation",
+      //   // icon: "fa fa-address-book",
+      //   icon: false,
+      //   showInMenu: IS_MAINNET ? true : false,
+      //   component: FoundationAsync
+      // },
       {
         label: "statistics",
         // icon: `fa fa-chart-pie`,
@@ -720,49 +720,49 @@ export const routes = [
   //   ]
   // },
 
-  {
-    path: "/network",
-    label: "nav_network",
-    // icon: "fas fa-project-diagram",
-    icon: false,
-    pathKey: "/network",
-    routes: [
-      [
-        "sun_network_product",
-        {
-          url:
-            window.location.origin === NETURL.MAINNET
-              ? NETURL.SUNNET
-              : NETURL.NEWSUNNET,
-          // icon: "fas fa-columns",
-          icon: false,
-          label: "sun_network_DAppChain"
-        }
-      ],
-      [
-        "sun_network_relevant_information",
-        {
-          url: "https://tron.network/sunnetwork/#/",
-          // icon: "fa fa-globe",
-          icon: false,
-          label: "sun_network_project_introduction"
-        },
-        {
-          url: "https://tron.network/sunnetwork/doc/guide/",
-          // icon: "fa fa-book",
-          icon: false,
-          label: "sun_network_development_document"
-        }
-        // {
-        //   url:
-        //     "https://support.tronscan.org/hc/en-us/articles/360035944072-SUN-Network-Developer-Challenge-Starts",
-        //   // icon: "fas fa-award",
-        //   icon: false,
-        //   label: "developer_challenge"
-        // }
-      ]
-    ]
-  },
+  // {
+  //   path: "/network",
+  //   label: "nav_network",
+  //   // icon: "fas fa-project-diagram",
+  //   icon: false,
+  //   pathKey: "/network",
+  //   routes: [
+  //     [
+  //       "sun_network_product",
+  //       {
+  //         url:
+  //           window.location.origin === NETURL.MAINNET
+  //             ? NETURL.SUNNET
+  //             : NETURL.NEWSUNNET,
+  //         // icon: "fas fa-columns",
+  //         icon: false,
+  //         label: "sun_network_DAppChain"
+  //       }
+  //     ],
+  //     [
+  //       "sun_network_relevant_information",
+  //       {
+  //         url: "https://tron.network/sunnetwork/#/",
+  //         // icon: "fa fa-globe",
+  //         icon: false,
+  //         label: "sun_network_project_introduction"
+  //       },
+  //       {
+  //         url: "https://tron.network/sunnetwork/doc/guide/",
+  //         // icon: "fa fa-book",
+  //         icon: false,
+  //         label: "sun_network_development_document"
+  //       }
+  //       // {
+  //       //   url:
+  //       //     "https://support.tronscan.org/hc/en-us/articles/360035944072-SUN-Network-Developer-Challenge-Starts",
+  //       //   // icon: "fas fa-award",
+  //       //   icon: false,
+  //       //   label: "developer_challenge"
+  //       // }
+  //     ]
+  //   ]
+  // },
   // {
   //   label: "Poloni DEX",
   //   path: "/exchange/trc20",

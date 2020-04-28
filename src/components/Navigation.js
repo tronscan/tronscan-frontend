@@ -863,7 +863,7 @@ class Navigation extends React.Component {
                               <i className="fa fa-angle-right float-right" ></i>
                             </Link>
                               {
-                                  !IS_NILE && IS_MAINNET && <a className="dropdown-item" href="javascript:;" onClick={this.goAccountWaitSign}>
+                                  IS_MAINNET && <a className="dropdown-item" href="javascript:;" onClick={this.goAccountWaitSign}>
                                     <i className="fa fa-server mr-2"/>
                                     <FormattedNumber value={wallet.current.signatureTotal}/> {tu("translations_wait_sign")}
 
@@ -877,7 +877,7 @@ class Navigation extends React.Component {
                               <i className="fa fa-angle-right float-right" ></i>
                             </a>
                               {
-                                  !IS_NILE && IS_MAINNET && <a className="dropdown-item" href="javascript:;" onClick={this.muitlTransfer}>
+                                  IS_MAINNET && <a className="dropdown-item" href="javascript:;" onClick={this.muitlTransfer}>
                                     <i className="far fa-paper-plane mr-2"/>
                                       {tu("transfer_multi_sign")}
                                     <i className="fa fa-angle-right float-right" ></i>
@@ -1130,10 +1130,13 @@ class Navigation extends React.Component {
 
                 </div>
                 {
-                  IS_TESTNET &&
-                  <div className="col text-center text-info font-weight-bold py-2">
-                    TESTNET
-                  </div>
+                  <span className="d-flex mt-2">
+                    <span className="ml-2 d-block" style={{borderLeft:'1px solid #999999',height:'75%'}}>
+                     </span>
+                     <span className="ml-2" style={{color:"#000000",marginTop:"9px"}}>
+                         NILE TESTNET
+                     </span>
+                 </span>
                 }
                 {
                   (syncStatus && syncStatus.sync && syncStatus.sync.progress < 95) &&
