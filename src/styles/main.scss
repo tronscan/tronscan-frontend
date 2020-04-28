@@ -298,6 +298,28 @@ tr a {
     padding-right: 10px !important;
   }
 }
+.sr-table{
+  tr{
+    td {
+      &.up {
+        // background: rgba(105, 194, 101, 0.03);
+        .text {
+          color: #69c265;
+        }
+      }
+      &.down {
+        // background: rgba(226, 93, 101, 0.03);
+        .text {
+          color: #c23631;
+        }
+      }
+      .text {
+        color: #999;
+      }
+    }
+  }
+  
+}
 
 // Shadow
 .box-shadow {

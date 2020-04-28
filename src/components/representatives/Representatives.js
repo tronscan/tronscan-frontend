@@ -143,7 +143,7 @@ class Representatives extends Component {
           {IS_MAINNET && <Link to="/sr/votes">{tu('voting')}</Link>}
         </div>
         <table
-          className="table table-hover table-striped bg-white m-0 sr"
+          className="table table-hover table-striped bg-white m-0 sr sr-table"
           style={{ border: "1px solid #DFD7CA" }}
         >
           <thead className="thead-dark">
@@ -663,19 +663,25 @@ function Row({ account, showSync = true, index, state, props }) {
           "-"
         )}
       </td>
-      <td className="text-left">
+      <td className={`text-left ${account.voteChange > 0 ? 'up' : ''} ${account.voteChange < 0 ? 'down' : ''}`}>
         {
           <Fragment>
             <FormattedNumber value={account.votes || 0} />
             <br />
-            <span style={{color: '#69C265'}}>
-              <FormattedNumber
-                minimumFractionDigits={2}
-                maximumFractionDigits={2}
-                value={account.votesPercentage}
-              />
-              %
-            </span>
+            {account.voteChange > 0 ? (
+              <span className="text">
+                +
+                <FormattedNumber
+                  value={account.voteChange}
+                />
+              </span>
+            ) : (
+              <span className="text">
+                <FormattedNumber
+                  value={account.voteChange}
+                />
+              </span>
+            )}
             
           </Fragment>
         }

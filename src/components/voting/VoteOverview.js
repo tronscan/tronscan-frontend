@@ -798,7 +798,7 @@ export default class VoteOverview extends React.Component {
                           style={{
                             borderBottom: "1px solid #D8D8D8",
                             zIndex: 100,
-                            padding: '0.75rem 1.25rem',
+                            padding: '0.75rem',
                             ...style
                           }}
                           className="card-body bg-white "

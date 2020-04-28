@@ -48,7 +48,7 @@ export default class FreezeBalanceModal extends React.PureComponent {
         }
       ],
       selectedResource:1,
-      receiver:'',
+      receiver: (this.props.currentWallet && this.props.currentWallet.address) || '',
       oneEnergy: 0,
       oneBandwidth: 0,
       getcalculate: 0,
@@ -289,7 +289,7 @@ export default class FreezeBalanceModal extends React.PureComponent {
               {freezeError && freezeErrorItem}
               {Boolean(selectedResource == 0 && getcalculate) && !freezeError &&
                 <div className="text-left d-flex align-items-center pt-2 ">
-                  <span className="col-red mr-2">{tu('Expected_acquisition')} &nbsp;<FormattedNumber value={amount}/>{tu('freeze_modal_tron_power')}, {tu('freeze_modal_and')}<FormattedNumber value={getcalculate}/> &nbsp;{tu('bandwidth')} </span>
+                  <span className="col-red mr-2">{tu('Expected_acquisition')} <FormattedNumber value={amount}/> {tu('freeze_modal_tron_power')}, {tu('freeze_modal_and')} <FormattedNumber value={getcalculate}/> {tu('bandwidth')} </span>
                   <Tooltip placement="top" title={tu('energy_more')} overlayStyle={{ maxWidth: '320px'}}>
                     <div className="question-mark"><i>?</i></div>
                   </Tooltip>
@@ -297,7 +297,7 @@ export default class FreezeBalanceModal extends React.PureComponent {
               }
               {Boolean(selectedResource == 1&& getcalculate) && !freezeError &&
                 <div className="text-left d-flex align-items-center pt-2 ">
-                  <span className="col-red mr-2">{tu('Expected_acquisition')} &nbsp;<FormattedNumber value={amount}/>{tu('freeze_modal_tron_power')}, {tu('freeze_modal_and')}<FormattedNumber value={getcalculate}/>  &nbsp;{tu('energy')}</span>
+                  <span className="col-red mr-2">{tu('Expected_acquisition')} <FormattedNumber value={amount}/> {tu('freeze_modal_tron_power')}, {tu('freeze_modal_and')} <FormattedNumber value={getcalculate}/> {tu('energy')}</span>
                   <Tooltip placement="top" title={tu('bandwidth_more')} overlayStyle={{maxWidth: '320px'}}>
                     <div className="question-mark"><i>?</i></div>
                   </Tooltip>
