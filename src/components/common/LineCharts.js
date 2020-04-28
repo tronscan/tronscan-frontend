@@ -3476,7 +3476,6 @@ export class HoldTrxAccountChart extends React.Component {
         let pointStart = newData[0].timestamp ||  Date.UTC(2020, 2, 4);
         let pointInterval = 24 * 3600 * 1000;
 
-       
         if (newData && newData.length > 0) {
             let options =  {
                 
@@ -3737,7 +3736,7 @@ export class ActiveAccountsChart extends React.Component {
             if (data && data.length > 0) {
                 data.map((val) => {
                     let temp;
-                    temp = {...val, y: val.active_count};
+                    temp = {...val, y: val.active_count,x:val.date};
                     _config.series[0].data.push(temp);
                 })
             }
@@ -3748,17 +3747,20 @@ export class ActiveAccountsChart extends React.Component {
                     newRange.push({color:val.color})
                 })
             }
+            let pointInterval = 24 * 3600 * 1000
+           
+
             _config.chart.zoomType = 'x';
             _config.chart.marginTop = 80;
             _config.title.text = intl.formatMessage({id: 'chart_active_account'});
             _config.exporting.filename = intl.formatMessage({id: 'charts_total_transactions'});
-            _config.xAxis.tickPixelInterval = 100;
+            // _config.xAxis.tickPixelInterval = 100;
             _config.yAxis.title.text = intl.formatMessage({id: 'totle_transactions_per_day'});
             _config.yAxis.tickAmount = 6;
             _config.yAxis.min = 0;
             
             _config.series[0].marker.enabled = false;
-            _config.series[0].pointInterval = 24 * 3600 * 1000;
+            _config.series[0].pointInterval = pointInterval;
             _config.series[0].pointStart = data[0].date || '';
             _config.series[0].zoneAxis = 'y'
             

@@ -222,7 +222,8 @@ class Statistics extends React.Component {
                 usdAmount:Number(amount*usdPrice).toFixed(6),
                 active_count,
                 day_string,
-                day_string_type:day_string_type
+                day_string_type:day_string_type,
+                type
             }); 
         }
 
