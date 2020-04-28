@@ -1,32 +1,13 @@
 import React,{Fragment} from "react";
-import {FormattedNumber, injectIntl} from "react-intl";
-import {filter, includes} from "lodash";
-import {tronAddresses} from "../../../utils/tron";
-import {TronLoader} from "../../common/loaders";
-import PieReact from "../../common/PieChart";
-import LineReact from "../../common/LineChart";
-import {BigNumber} from 'bignumber.js'
-import {cloneDeep} from "lodash";
+import {FormattedNumber} from "react-intl";
 import {tu} from "../../../utils/i18n";
-import CountUp from 'react-countup';
-import {Link} from "react-router-dom"
 import {API_URL} from "../../../constants";
-import { DatePicker, Select,Button,Tabs, Radio } from 'antd';
+import { Select,Tabs } from 'antd';
 import SmartTable from "../../common/SmartTable.js"
-import moment from 'moment';
 import { upperFirst } from 'lodash'
 import { CsvExport } from "../../common/CsvExport";
-
-import isMobile from "../../../utils/isMobile";
-
 import {QuestionMark} from "../../common/QuestionMark";
-
-
-import {loadPriceData} from "../../../actions/markets";
-import {t} from "../../../utils/i18n";
 import '../../../styles/chart.scss'
-const Option = Select.Option;
-const { TabPane } = Tabs;
 
 
 
