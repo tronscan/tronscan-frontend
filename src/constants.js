@@ -44,6 +44,8 @@ if (NODE_ENV == "development") {
   // NODEAPI = "http://52.15.126.154:9016";
 }
 
+MAINNET = true;
+SUNNET = false;
 export let IS_MAINNET = MAINNET;
 export let IS_SUNNET = SUNNET;
 
