@@ -491,7 +491,7 @@ class Representatives extends Component {
                                 <span>
                                   <FormattedNumber 
                                     maximumFractionDigits={2}
-                                    minimunFractionDigits={2} value={witnessInfo && witnessInfo.highestEfficiency && witnessInfo.highestEfficiency.producePercentage} />%
+                                    minimunFractionDigits={2} value={Math.floor(witnessInfo && witnessInfo.highestEfficiency && witnessInfo.highestEfficiency.producePercentage * 100) / 100} />%
                                 </span>
                                 : empty}
                             </span>
@@ -508,7 +508,7 @@ class Representatives extends Component {
                                 <span>
                                   <FormattedNumber 
                                     maximumFractionDigits={2}
-                                    minimunFractionDigits={2} value={witnessInfo && witnessInfo.lowestEfficiency && witnessInfo.lowestEfficiency.producePercentage} />%
+                                    minimunFractionDigits={2} value={Math.floor(witnessInfo && witnessInfo.lowestEfficiency && witnessInfo.lowestEfficiency.producePercentage * 100) / 100} />%
                                 </span>
                                 : empty}
                             </span>
