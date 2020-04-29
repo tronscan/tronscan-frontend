@@ -103,10 +103,6 @@ export default class Home extends Component {
       
     } 
   }
-
-  componentDidMount(){
-  //  document.dispatchEvent(new Event('custom-render-trigger'));
-  };
   
   async loadNodes() {
     // let {total} = await Client.getNodeLocations();

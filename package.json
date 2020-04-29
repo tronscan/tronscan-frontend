@@ -4,7 +4,6 @@
     "private": true,
     "dependencies": {
         "@babel/core": "7.4.3",
-        "dll-link-webpack-plugin": "^3.2.1",
         "@fortawesome/fontawesome": "^1.1.7",
         "@fortawesome/fontawesome-free-solid": "^5.0.12",
         "@fortawesome/react-fontawesome": "^0.0.19",
@@ -41,6 +40,7 @@
         "d3": "3.5.17",
         "date-fns": "^1.29.0",
         "decimal.js": "^10.2.0",
+        "dll-link-webpack-plugin": "^3.2.1",
         "dotenv": "6.2.0",
         "dotenv-expand": "4.2.0",
         "echarts": "^4.0.4",
@@ -196,7 +196,8 @@
         "desktop:build:full": "yarn desktop:build && yarn run desktop:prepare && yarn desktop:build:win && yarn desktop:build:linux && yarn desktop:build:mac",
         "test": "node scripts/test.js --env=jsdom",
         "deploy": "gh-pages -d build",
-        "analyz": "NODE_ENV=production npm_config_report=true npm run build"
+        "analyz": "NODE_ENV=production npm_config_report=true npm run build",
+        "postbuild": "react-snap"
     },
     "browserslist": {
         "production": [
@@ -268,7 +269,8 @@
         "preload-webpack-plugin": "^3.0.0-beta.4",
         "purgecss-webpack-plugin": "^2.1.0",
         "purify-css": "^1.2.5",
-        "purifycss-webpack": "^0.7.0"
+        "purifycss-webpack": "^0.7.0",
+        "react-snap": "^1.23.0"
     },
     "description": "<h1 align=\"center\">tronscan<br></h1>",
     "main": "desktop/main.js",
@@ -280,5 +282,8 @@
     "license": "ISC",
     "bugs": {
         "url": "https://github.com/tronscan/tronscan-frontend/issues"
-    }
+    },
+    "reactSnap": {
+        "inlineCss": true
+      }
 }

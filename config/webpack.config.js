@@ -39,11 +39,11 @@ const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
 
 //const PurifyCSS = require('purifycss-webpack')
 //const glob = require('glob-all')
-const PrerenderSpaPlugin = require('prerender-spa-plugin')
-const Renderer = PrerenderSpaPlugin.PuppeteerRenderer
+//const PrerenderSpaPlugin = require('prerender-spa-plugin')
+//const Renderer = PrerenderSpaPlugin.PuppeteerRenderer
 //const DllLinkPlugin = require('dll-link-webpack-plugin')
 var HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
-const HtmlCriticalWebpackPlugin = require('html-critical-webpack-plugin');
+//const HtmlCriticalWebpackPlugin = require('html-critical-webpack-plugin');
 
 
 // Source maps are resource heavy and can cause out of memory issue for large source files.
@@ -845,13 +845,14 @@ module.exports = function(webpackEnv) {
       //     path.resolve(__dirname, './src/*.js')
       //   ])
       // }),
-      new PrerenderSpaPlugin(
-        // Absolute path to compiled SPA
-        {
-        routes: ['/'],
-        staticDir: path.join(__dirname, 'build'),
-      }
-       ),
+      // new PrerenderSpaPlugin(
+      //   // Absolute path to compiled SPA
+      //   {
+      //   routes: ['/'],
+      //   staticDir: path.join(__dirname, 'build'),
+      // }
+      //  ),
+
       // new PrerenderSpaPlugin({
       //   staticDir: path.join(__dirname, 'build'),
       //   routes: ['/'],
@@ -924,20 +925,20 @@ module.exports = function(webpackEnv) {
         },
       }),
       
-      new HtmlCriticalWebpackPlugin({
-        base: path.resolve(__dirname, '../build'),
-        src: 'index.html',
-        dest: 'index.html',
-        inline: true,
-        minify: true,
-        extract: true,
-        width: 375,
-        height: 565,
-        // 确保调用打包后的JS文件
-        penthouse: {
-            blockJSRequests: false
-        }
-    }),
+    //   new HtmlCriticalWebpackPlugin({
+    //     base: path.resolve(__dirname, '../build'),
+    //     src: 'index.html',
+    //     dest: 'index.html',
+    //     inline: true,
+    //     minify: true,
+    //     extract: true,
+    //     width: 375,
+    //     height: 565,
+    //     // 确保调用打包后的JS文件
+    //     penthouse: {
+    //         blockJSRequests: false
+    //     }
+    // }),
 
       isDesktop && 
         new webpack.optimize.LimitChunkCountPlugin({

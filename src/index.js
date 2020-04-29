@@ -9,6 +9,8 @@ import AppCmp from './components/AppCmp';
 import {IS_DESKTOP} from "./constants";
 import "./app";
 import * as serviceWorker from './serviceWorker';
+import ReactDOM from 'react-dom';
+
 
 
 // eslint-disable-next-line
@@ -27,7 +29,14 @@ console.error = (message, ...args) => {
 };
 
 
-render(<AppCmp/>, document.getElementById('root'));
+//render(<AppCmp/>, document.getElementById('root'));
+const rootElement = document.getElementById("root");
+
+if (rootElement.hasChildNodes()) {
+  ReactDOM.hydrate(<AppCmp />, rootElement);
+} else {
+  ReactDOM.render(<AppCmp />, rootElement);
+}
 
 if (IS_DESKTOP) {
   require("./desktop/bootstrap");
