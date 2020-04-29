@@ -23,8 +23,8 @@ export const NETURL = {
 export const TOKENINFO_UPDATE = "TOKENINFO_UPDATE";
 
 let { NET, NODE_ENV } = process.env;
-let MAINNET;
-let SUNNET;
+let MAINNET = true;
+let SUNNET = false;
 let NODEAPI;
 
 if (NODE_ENV == "development") {
