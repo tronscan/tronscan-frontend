@@ -29,4 +29,6 @@ export const lang20Q2 = {
     index_page_nav_more_service:'サービス',
     index_page_price_loading:'Loading',
     index_page_price_time_out:'Time out',
+
+    open_tron_app_on_verify_address: "Please confirm login account on TRON APP",
 }
