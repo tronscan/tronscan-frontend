@@ -1095,6 +1095,8 @@
         .bage-menu{
           padding:15px;
           max-width: 13.3rem;
+          max-height: 165px;
+          overflow-y: scroll;
           top:20px;
           left:-6rem;
           z-index: 999;
