@@ -4,6 +4,7 @@
     "private": true,
     "dependencies": {
         "@babel/core": "7.4.3",
+        "dll-link-webpack-plugin": "^3.2.1",
         "@fortawesome/fontawesome": "^1.1.7",
         "@fortawesome/fontawesome-free-solid": "^5.0.12",
         "@fortawesome/react-fontawesome": "^0.0.19",
@@ -40,7 +41,6 @@
         "d3": "3.5.17",
         "date-fns": "^1.29.0",
         "decimal.js": "^10.2.0",
-        "dll-link-webpack-plugin": "^3.2.1",
         "dotenv": "6.2.0",
         "dotenv-expand": "4.2.0",
         "echarts": "^4.0.4",
@@ -269,8 +269,7 @@
         "preload-webpack-plugin": "^3.0.0-beta.4",
         "purgecss-webpack-plugin": "^2.1.0",
         "purify-css": "^1.2.5",
-        "purifycss-webpack": "^0.7.0",
-        "react-snap": "^1.23.0"
+        "purifycss-webpack": "^0.7.0"
     },
     "description": "<h1 align=\"center\">tronscan<br></h1>",
     "main": "desktop/main.js",
@@ -285,5 +284,7 @@
     },
     "reactSnap": {
         "inlineCss": true
-      }
+      },
+     "puppeteer": { "cache": false }
+
 }
