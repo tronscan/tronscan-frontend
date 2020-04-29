@@ -87,7 +87,7 @@ export default function Contract({contract}) {
         tokenIdData  = rebuildList(TokenIDList,'asset_name','amount')[0]
     }
     if(contract.contractType){
-
+      
         switch (contract.contractType.toUpperCase()) {
             case "TRANSFERCONTRACT":
 
@@ -913,8 +913,8 @@ export default function Contract({contract}) {
                       })}
                     
                     </tbody>
-                </table>
-                </Fragment>
+                    </table>
+                </Fragment> 
                 )
             }
               

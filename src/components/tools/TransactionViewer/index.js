@@ -223,6 +223,7 @@ class TransactionViewer extends Component {
                       <Contract key={index} contract={contract}/>
                   ))
                 }
+                {console.log(111,transactionData.contracts)}
               </div>
               <div className="card mt-3">
                 <div className="card-header text-center">
