@@ -14,6 +14,7 @@ import { Client, proposalApi } from "../../services/api";
 import { Tooltip } from "antd";
 import { QuestionMark } from "../common/QuestionMark";
 import SweetAlert from 'react-bootstrap-sweetalert';
+import Lockr from "lockr";
 import ApplyForDelegate from "../../components/committee/common/ApplyForDelegate";
 class Representatives extends Component {
   constructor() {
@@ -21,7 +22,8 @@ class Representatives extends Component {
     this.state = {
       latestBlock: "",
       curTab: 0,
-      modal: null
+      modal: null,
+      isTronLink: 0,
     };
   }
 
@@ -30,7 +32,22 @@ class Representatives extends Component {
     this.props.loadWitnesses();
     this.props.loadStatisticData();
     this.getLatestBlock();
+    let { account } = this.props;
+        if (account.isLoggedIn) {
+            this.setState({
+                isTronLink: Lockr.get("islogin"),
+            });
+        }
   }
+  componentDidUpdate(prevProps){
+    let { account } = this.props
+    if(prevProps.account.address != account.address){
+        this.setState({
+            isTronLink: Lockr.get("islogin"),
+        });
+    }
+    
+}
   getPiechart() {
     let { intl } = this.props;
     let { statisticData } = this.props;
