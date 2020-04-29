@@ -21,10 +21,11 @@ export const SET_SYNC_STATUS = "SET_SYNC_STATUS";
 export const SET_SIDECHAINS = 'SET_SIDECHAINS';
 export const SET_FEES = 'SET_FEES';
 
-export const setLoginWithLedger = (address, tronWeb) => ({
+export const setLoginWithLedger = (address, tronWeb, pathIndex) => ({
   type: LOGIN_LEDGER,
   address,
-  tronWeb
+  tronWeb,
+  pathIndex,
 });
 
 export const setLanguage = (language = "en") => ({
@@ -115,9 +116,9 @@ export const loginWithAddress = address => async (dispatch, getState) => {
   }, 50);
 };
 
-export const loginWithLedger = (address, tronWeb) => async (dispatch, getState) => {
+export const loginWithLedger = (address, tronWeb, pathIndex) => async (dispatch, getState) => {
 
-  dispatch(setLoginWithLedger(address, tronWeb));
+  dispatch(setLoginWithLedger(address, tronWeb, pathIndex));
 
   setTimeout(() => {
     dispatch(reloadWallet());
