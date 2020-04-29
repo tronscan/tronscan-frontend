@@ -41,7 +41,7 @@ const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
 //const glob = require('glob-all')
 const PrerenderSpaPlugin = require('prerender-spa-plugin')
 const Renderer = PrerenderSpaPlugin.PuppeteerRenderer
-const DllLinkPlugin = require('dll-link-webpack-plugin')
+//const DllLinkPlugin = require('dll-link-webpack-plugin')
 var HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 const HtmlCriticalWebpackPlugin = require('html-critical-webpack-plugin');
 
@@ -885,11 +885,11 @@ module.exports = function(webpackEnv) {
       //   // }),
       // }),
 
-      new DllLinkPlugin({
-        config: require("./webpack.dll.config"),
-        htmlMode: true,
-        appendVersion: true,
-      }),
+      // new DllLinkPlugin({
+      //   config: require("./webpack.dll.config"),
+      //   htmlMode: true,
+      //   appendVersion: true,
+      // }),
 
       new HardSourceWebpackPlugin({
         // Either an absolute path or relative to webpack's options.context.
