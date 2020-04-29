@@ -948,7 +948,7 @@ export default class VoteOverview extends React.Component {
                                   </Fragment>
                                 )}
                               </td>
-                              <td className="small text-right align-middle">
+                              <td className="small text-center align-middle">
                                 {totalVotes > 0 && (
                                   <Fragment>
                                     <FormattedNumber

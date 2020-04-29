@@ -150,26 +150,26 @@ class Representatives extends Component {
             <tr>
               <th className="text-center">{tu("SR_rank")}</th>
               <th>{tu("name")}</th>
-              <th>{tu("current_version")}</th>
-              <th className="text-left text-nowrap">{tu("status")}</th>
-              <th className="text-left text-nowrap d-none d-lg-table-cell">
+              <th className="text-center">{tu("current_version")}</th>
+              <th className="text-center text-nowrap">{tu("status")}</th>
+              <th className="text-center text-nowrap d-none d-lg-table-cell">
                 {tu("last_block")}
               </th>
-              <th className="text-left text-nowrap d-none d-lg-table-cell">
+              <th className="text-center text-nowrap d-none d-lg-table-cell">
                 {tu("blocks_produced")}
               </th>
-              <th className="text-left text-nowrap d-none d-lg-table-cell">
+              <th className="text-center text-nowrap d-none d-lg-table-cell">
                 {tu("SR_blocksMissed")}
               </th>
               {/* <th className="text-left text-nowrap">{tu("transactions")}</th> */}
-              <th className="text-left text-nowrap">{tu("productivity")}</th>
+              <th className="text-center text-nowrap">{tu("productivity")}</th>
               <th
-                className="text-left text-nowrap"
+                className="text-right text-nowrap"
               >
                 {tu("sr_vote_current_vote")}
               </th>
               <th
-                className="text-left text-nowrap"
+                className="text-right text-nowrap"
                 style={{ borderRight: "1px solid rgb(223, 215, 202)" }}
               >
                 {tu("SR_voteRatio")}
@@ -581,7 +581,7 @@ function Row({ account, showSync = true, index, state, props }) {
           : "represent__table__content"
       }
     >
-      <td className="text-left" style={{ paddingLeft: "14px" }}>
+      <td className="text-center" style={{ paddingLeft: "14px" }}>
         {index + 1}
       </td>
       <td>
@@ -602,9 +602,9 @@ function Row({ account, showSync = true, index, state, props }) {
           </div>
         )}
       </td>
-      <td className="text-left">{account.version || '-'}</td>
+      <td className="text-center">{account.version || '-'}</td>
       {showSync ? (
-        <td className="text-left">
+        <td className="text-center">
           {account.representerStatus ? (
             <Tooltip placement="top" title={tu("SR_normal")}>
               <span key="no" className="text-success">
@@ -622,21 +622,21 @@ function Row({ account, showSync = true, index, state, props }) {
       ) : (
         <td>&nbsp;</td>
       )}
-      <td className="text-left  d-none d-lg-table-cell">
+      <td className="text-center  d-none d-lg-table-cell">
         {account.latestBlockNumber ? (
           <BlockNumberLink number={account.latestBlockNumber} />
         ) : (
           "-"
         )}
       </td>
-      <td className="text-left d-none d-lg-table-cell">
+      <td className="text-center d-none d-lg-table-cell">
         {account.producedTotal ? (
           <FormattedNumber value={account.producedTotal} />
         ) : (
           "-"
         )}
       </td>
-      <td className="text-left d-none d-lg-table-cell">
+      <td className="text-center d-none d-lg-table-cell">
         {account.missedTotal !== 0 ? (
           <FormattedNumber value={account.missedTotal} />
         ) : (
@@ -650,7 +650,7 @@ function Row({ account, showSync = true, index, state, props }) {
                 '-'
           }
         </td> */}
-      <td className="text-left">
+      <td className="text-center">
         {account.producedTotal > 0 ? (
           <Fragment>
             {/*<FormattedNumber*/}
@@ -663,7 +663,7 @@ function Row({ account, showSync = true, index, state, props }) {
           "-"
         )}
       </td>
-      <td className={`text-left ${account.changeVotes > 0 ? 'up' : ''} ${account.changeVotes < 0 ? 'down' : ''}`}>
+      <td className={`text-right ${account.changeVotes > 0 ? 'up' : ''} ${account.changeVotes < 0 ? 'down' : ''}`}>
         {
           <Fragment>
             <FormattedNumber value={account.realTimeVotes || 0} />
@@ -686,7 +686,7 @@ function Row({ account, showSync = true, index, state, props }) {
           </Fragment>
         }
       </td>
-      <td className="text-left">
+      <td className="text-right">
         {
           <Fragment>
             <span>
