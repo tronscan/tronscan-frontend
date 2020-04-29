@@ -1298,7 +1298,7 @@ export class LineReactHighChartVolumeUsd extends React.Component {
             _config.tooltip.formatter = function () {
                 let date = intl.formatDate((parseInt(this.point.x)));
                 return (
-                    intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
+                    intl.formatMessage({id: 'date'}) + ' : ' + date + ' (UTC)<br/>' +
                     intl.formatMessage({id: 'volume'}) + ' : ' + Highcharts.numberFormat(this.point.y, 6, '.', ',') +' USD<br>'
                 )
             }
