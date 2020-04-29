@@ -39,8 +39,8 @@ const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
 
 //const PurifyCSS = require('purifycss-webpack')
 //const glob = require('glob-all')
-//const PrerenderSpaPlugin = require('prerender-spa-plugin')
-//const Renderer = PrerenderSpaPlugin.PuppeteerRenderer
+const PrerenderSpaPlugin = require('prerender-spa-plugin')
+const Renderer = PrerenderSpaPlugin.PuppeteerRenderer
 const DllLinkPlugin = require('dll-link-webpack-plugin')
 var HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 const HtmlCriticalWebpackPlugin = require('html-critical-webpack-plugin');
@@ -845,13 +845,13 @@ module.exports = function(webpackEnv) {
       //     path.resolve(__dirname, './src/*.js')
       //   ])
       // }),
-      // new PrerenderSpaPlugin(
-      //   // Absolute path to compiled SPA
-      //   path.join(__dirname, 'build'),
-      //   // List of routes to prerender
-      //   [ '/']
-
-      // ),
+      new PrerenderSpaPlugin(
+        // Absolute path to compiled SPA
+        {
+        routes: ['/'],
+        staticDir: path.join(__dirname, 'build'),
+      }
+       ),
       // new PrerenderSpaPlugin({
       //   staticDir: path.join(__dirname, 'build'),
       //   routes: ['/'],

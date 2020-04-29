@@ -26,6 +26,7 @@ console.error = (message, ...args) => {
   consoleError(message, ...args);
 };
 
+
 render(<AppCmp/>, document.getElementById('root'));
 
 if (IS_DESKTOP) {

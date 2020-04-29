@@ -98,12 +98,16 @@ export default class Home extends Component {
       measure5 = measures5[0].duration;
       this.MonitoringParameters3(measure5);
       //window.performance.getEntries();
-    
+      
 
       
     } 
   }
 
+  componentDidMount(){
+  //  document.dispatchEvent(new Event('custom-render-trigger'));
+  };
+  
   async loadNodes() {
     // let {total} = await Client.getNodeLocations();
     let { data } = await xhr.get(`${API_URL}/api/node`);

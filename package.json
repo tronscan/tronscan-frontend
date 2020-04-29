@@ -265,6 +265,7 @@
         "glob-all": "^3.2.1",
         "hard-source-webpack-plugin": "^0.13.1",
         "html-critical-webpack-plugin": "^2.1.0",
+        "preload-webpack-plugin": "^3.0.0-beta.4",
         "purgecss-webpack-plugin": "^2.1.0",
         "purify-css": "^1.2.5",
         "purifycss-webpack": "^0.7.0"
