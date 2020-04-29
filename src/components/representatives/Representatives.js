@@ -80,11 +80,11 @@ class Representatives extends Component {
 
     let superRepresentatives = sortBy(
       filter(witnesses, w => w.producer),
-      w => w.votes * -1
+      w => w.realTimeVotes * -1
     );
     let candidateRepresentativesArr = sortBy(
       filter(witnesses, w => !w.producer),
-      w => w.votes * -1
+      w => w.realTimeVotes * -1
     );
     let partnersRepresentatives = slice(candidateRepresentativesArr, 0, 100);
     let candidateRepresentatives = slice(candidateRepresentativesArr, 100);
@@ -388,13 +388,13 @@ class Representatives extends Component {
                         <div className="d-flex representatives-data align-items-center">
                           <h2>{t("Super Representatives")}</h2>
                           <div className="d-flex flex-column">
-                            <span className="num"><FormattedNumber value={witnessInfo && witnessInfo.total} /></span>
+                            <span className="num">{witnessInfo && witnessInfo.total ? <FormattedNumber value={witnessInfo && witnessInfo.total} /> : empty}</span>
                             <div className="d-flex desc">
                               <span className="txt">{t('representatives_data_total')}</span>
                             </div>
                           </div>
                           <div className="d-flex flex-column">
-                            <span className="num">{witnessInfo && witnessInfo.increaseOf30Day && witnessInfo.increaseOf30Day > 0 ? '+' : ''}<FormattedNumber value={witnessInfo && witnessInfo.increaseOf30Day} /></span>
+                            <span className="num">{witnessInfo && witnessInfo.increaseOf30Day && witnessInfo.increaseOf30Day  ? <FormattedNumber value={witnessInfo && witnessInfo.increaseOf30Day} /> : 0}</span>
                             <div className="d-flex desc">
                               <span className="txt">{t('representatives_data_increase')}</span>
                             </div>
@@ -663,22 +663,22 @@ function Row({ account, showSync = true, index, state, props }) {
           "-"
         )}
       </td>
-      <td className={`text-left ${account.voteChange > 0 ? 'up' : ''} ${account.voteChange < 0 ? 'down' : ''}`}>
+      <td className={`text-left ${account.changeVotes > 0 ? 'up' : ''} ${account.changeVotes < 0 ? 'down' : ''}`}>
         {
           <Fragment>
-            <FormattedNumber value={account.votes || 0} />
+            <FormattedNumber value={account.realTimeVotes || 0} />
             <br />
-            {account.voteChange > 0 ? (
+            {account.changeVotes > 0 ? (
               <span className="text">
                 +
                 <FormattedNumber
-                  value={account.voteChange}
+                  value={account.changeVotes}
                 />
               </span>
             ) : (
               <span className="text">
                 <FormattedNumber
-                  value={account.voteChange}
+                  value={account.changeVotes}
                 />
               </span>
             )}
