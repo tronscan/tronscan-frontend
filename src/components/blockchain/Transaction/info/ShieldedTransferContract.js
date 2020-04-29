@@ -46,10 +46,10 @@ function ShieldedTransferContract({ contract, intl }) {
             } else if (item == "receive_description") {
               let receive_description_arr = contract[item];
               return (
-                <Field label={item}>
+                <Field label={item} key={item}>
                   {receive_description_arr.map((subItem) => {
                     return (
-                      <ul className="mb-2">
+                      <ul className="mb-2" key={subItem}>
                         <li>
                           <span className="receive-item mr-2 text-muted">
                             value_commitment:
@@ -94,10 +94,10 @@ function ShieldedTransferContract({ contract, intl }) {
             } else if (item == "spend_description") {
               let spend_description_arr = contract[item];
               return (
-                <Field label={item}>
+                <Field label={item} key={item}>
                   {spend_description_arr.map((subItem) => {
                     return (
-                      <ul className="mb-2">
+                      <ul className="mb-2" key={subItem}>
                         <li>
                           <span className="receive-item mr-2 text-muted">
                             value_commitment:
@@ -141,9 +141,9 @@ function ShieldedTransferContract({ contract, intl }) {
               );
             } else {
               if (item == "to_amount" || item == "from_amount") {
-                return <Field label={item}>{contract[item] / ONE_TRX}</Field>;
+                return <Field label={item} key={item}>{contract[item] / ONE_TRX}</Field>;
               } else {
-                return <Field label={item}>{contract[item]}</Field>;
+                return <Field label={item} key={item}>{contract[item]}</Field>;
               }
             }
           })}
