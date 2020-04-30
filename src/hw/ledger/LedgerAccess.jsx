@@ -80,8 +80,10 @@ function addressFormat(addr) {
           value: i,
         })
         if (!valid) {
-          accounts.pop();
-          break
+          if(accounts.length !== 1){
+            accounts.pop();
+          }
+          break;
         }
       }
 
