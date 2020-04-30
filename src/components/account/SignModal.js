@@ -78,19 +78,20 @@ class SignModal extends Component {
      * Form confirm
      */
     confirm = () => {
-
+        
 
         const { form: { validateFields }, account: { sunWeb },
             option: { id, address, precision, type }, fees: { withdrawFee } } = this.props;
         const { numValue, errorMess } = this.state;
+        // console.log('this.props',this.props,'withdrawFee',withdrawFee)
         this.setState({ isDisabled: true });
         const isSubmit = this.validateNum();
-
         validateFields(async(err, values) => {
             if (!err && !errorMess && isSubmit) {
                 try {
-                    const fee = mul(withdrawFee, ONE_TRX);
+                    const fee = mul(withdrawFee, ONE_TRX,FEELIMIT);
                     const num = mul(numValue,  Math.pow(10, Number(precision)));
+                    console.log(fee,num)
                     let data;
                     // trc10
                     if (CURRENCYTYPE.TRX10 === type) {
@@ -225,7 +226,12 @@ class SignModal extends Component {
 
         // pledgeTextItem
         const pledgeTextItem = (
-            <p className="mt-5">{tu('sign_text')}{withdrawFee} TRX</p>
+            <p className="mt-5">
+               {
+                withdrawFee === 0 ?null:
+                <span>{tu('sign_text')}{withdrawFee} TRX</span>
+               }
+            </p>
         );
 
         // feeError
