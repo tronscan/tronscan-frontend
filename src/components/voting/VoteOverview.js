@@ -712,7 +712,7 @@ export default class VoteOverview extends React.Component {
     return (
       <main className="container header-overlap _voteOverview vote-overview">
         {modal}
-        <div className="row _badge">
+        <div className="row _badge" style={{zIndex: 101, position: 'relative'}}>
           <div className="col-md-4 mt-3 mt-md-0">
             <div className="card h-100 text-left widget-icon bg-line_red bg-image_nextRound">
               <div className="card-body">
