@@ -430,7 +430,7 @@ class StatsCharts extends React.Component {
                 <div className="col-md-4">
                   <div className="card-chart">
                     <Link className="card-title" to="/data/stats/priceStats">
-                      <span className="ml-5">{tu("charts_average_price")}</span>
+                      <span className="ml-5">{tu("chart_per_price")}</span>
                       <img
                         src={require("../../../images/chart/Average-TRX-Price.png")}
                         style={{ width: 240, filter: "grayscale(100%)" }}

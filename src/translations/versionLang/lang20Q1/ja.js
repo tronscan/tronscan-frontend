@@ -375,6 +375,7 @@ chart_account_title_month:'毎月のアクティブなアカウント',
   chart_add_daily_title:'日増加アカウント',
   chart_single_title_max:'{title}の最大値は{date}に記録された<strong> {number} </strong>です',
   chart_single_title_min:'{title}の最小値は{date}に記録された<strong> {number} </strong>です',
+  chart_per_price:'TRX過去の価格',
 
 
   // foundation address

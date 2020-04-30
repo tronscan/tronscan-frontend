@@ -374,8 +374,9 @@ export const lang20Q1 = {
   chart_account_title_week:'Cuentas activas de la semana',
   chart_account_title_day:'Cuentas activas del día',
   chart_add_daily_title:'Cuentas nuevas diarias',
-  chart_single_title_max:'{title} was peaked at <strong> {number} </strong> (recorded on {date})',
-  chart_single_title_min:'{title} was lowest at <strong> {number} </strong> (recorded on {date})',
+  chart_single_title_max:'El número máximo de {title} es <strong>{number}</strong>. Fecha de registración {date}',
+  chart_single_title_min:'El número mínimo de {title} es <strong>{number}</strong>.  Fecha de registración {date}',
+  chart_per_price:'Historia de Precio de TRX',
 // foundation address
   foundation_address_update_date:'Updated time: 2019/12/31',
   foundation_address_deadline_date:'by 2020.4.15',

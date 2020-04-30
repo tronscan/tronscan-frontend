@@ -396,7 +396,7 @@ export const lang20Q1 = {
   chart_add_daily_title:'Ежедневные новые аккаунты',
   chart_single_title_max:'{title} достиг максимума в <strong> {number} </strong> (записано в {date})',
   chart_single_title_min:'{title} достиг минимума в <strong> {number} </strong> (записано в {date})',
-
+  chart_per_price:'История цены TRX',
   // foundation address
   foundation_address_update_date:'Updated time: 2019/12/31',
   foundation_address_deadline_date:'by 2020.4.15',

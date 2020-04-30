@@ -380,7 +380,7 @@ export const lang20Q1 = {
   chart_add_daily_title:'일일 신규계정 수',
   chart_single_title_max:'{title} 최대 <strong> {number} </strong> (recorded on {date})',
   chart_single_title_min:'{title} 최소 <strong> {number} </strong> (recorded on {date})',
-
+  chart_per_price:'TRX 지난 가격',
   // foundation address
   foundation_address_update_date:'Updated time: 2019/12/31',
   foundation_address_deadline_date:'by 2020.4.15',

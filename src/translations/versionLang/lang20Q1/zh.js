@@ -386,6 +386,7 @@ export const lang20Q1 = {
   chart_add_daily_title:'日新增账户数',
   chart_single_title_max:'{title}最大值是<strong> {number} </strong>记录于{date}',
   chart_single_title_min:'{title}最小值是<strong> {number} </strong>记录于{date}',
+  chart_per_price:'TRX历史价格',
 
   // foundation address
   foundation_address_update_date:'更新时间：2019/12/31',

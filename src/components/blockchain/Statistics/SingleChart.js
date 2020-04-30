@@ -1338,7 +1338,7 @@ class Statistics extends React.Component {
               <div className="row">
                 <div className="col-md-12">
                   <div className="card">
-                    <div className="card-body p-3 p-md-5">
+                    <div className="card-body p-3">
                         {
                             match.params.chartName === 'txOverviewStats' &&
                             <div style={{height: chartHeight}}>

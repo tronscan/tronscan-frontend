@@ -1143,7 +1143,7 @@ export class LineReactHighChartPrice extends React.Component {
                 let date = intl.formatDate(this.point.x);
                 return (
                     intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
-                    intl.formatMessage({id: 'charts_average_price'}) + ' : ' + this.point.y
+                    intl.formatMessage({id: 'chart_per_price'}) + ' : ' + this.point.y
                 )
             }
             Highcharts.chart(document.getElementById(id),_config);
@@ -1159,9 +1159,10 @@ export class LineReactHighChartPrice extends React.Component {
             _config.chart.zoomType = 'x';
             _config.chart.marginTop = 80;
             _config.chart.type= '';
-            _config.title.text = intl.formatMessage({id: 'charts_average_price'});
+            _config.title.text = intl.formatMessage({id: 'chart_per_price'});
+            _config.title.style.color = '#333'
             _config.subtitle.text = intl.formatMessage({id: 'HighChart_tip'});
-            _config.exporting.filename = intl.formatMessage({id: 'charts_average_price'});
+            _config.exporting.filename = intl.formatMessage({id: 'chart_per_price'});
             _config.xAxis.tickPixelInterval = 100;
             _config.xAxis.minRange=24 * 3600 * 1000
             _config.yAxis.title.text = intl.formatMessage({id: 'usd'});
@@ -1285,6 +1286,8 @@ export class LineReactHighChartVolumeUsd extends React.Component {
             _config.chart.zoomType = 'x';
             _config.chart.marginTop = 80;
             _config.title.text = intl.formatMessage({id: 'charts_volume_24'});
+            _config.title.style.color = '#333';
+
             _config.subtitle.text = intl.formatMessage({id: 'HighChart_tip'});
             _config.exporting.filename = intl.formatMessage({id: 'charts_volume_24'});
             _config.xAxis.tickPixelInterval = 100;
@@ -3755,6 +3758,7 @@ export class ActiveAccountsChart extends React.Component {
             _config.chart.zoomType = 'x';
             _config.chart.marginTop = 80;
             _config.title.text = intl.formatMessage({id: 'chart_active_account'});
+            _config.title.style.color = '#333'
             _config.exporting.filename = intl.formatMessage({id: 'chart_active_account'});
             // _config.xAxis.tickPixelInterval = 100;
             _config.yAxis.title.text = intl.formatMessage({id: 'chart_active_table_2'});

@@ -373,7 +373,7 @@ export const lang20Q1 = {
   chart_add_daily_title:'الحسابات اليومية الجديدة',
   chart_single_title_max:'بلغت ذروة {title} عند <strong> {number} </strong> (مسجّل في {date})',
   chart_single_title_min:'كان الحد الأدنى في {title} عند <strong> {number} </strong> (مسجّل في {date})',
-
+  chart_per_price:'سجل سعر TRX',
   // foundation address
   foundation_address_update_date:'Updated time: 2019/12/31',
   foundation_address_deadline_date:'by 2020.4.15',

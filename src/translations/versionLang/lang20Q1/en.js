@@ -380,7 +380,7 @@ export const lang20Q1 = {
   chart_add_daily_title:'Daily new accounts',
   chart_single_title_max:'{title} was peaked at <strong> {number} </strong> (recorded on {date})',
   chart_single_title_min:'{title} was lowest at <strong> {number} </strong> (recorded on {date})',
-
+  chart_per_price:'TRX history price',
   // foundation address
   foundation_address_update_date:'Updated time: 2019/12/31',
   foundation_address_deadline_date:'by 2020.4.15',
