@@ -11,12 +11,12 @@ export const IS_DESKTOP = process.env.DESKTOP === "true";
 export const NETURL = {
 NEWMAINNET: "https://tronscan.io",
   NEWSUNNET: "https://dappchain.tronscan.io",
-  MAINNET: "https://tronscan.org",
-  SUNNET: "https://dappchain.tronscan.org",
   // MAINNET: "http://18.217.215.94:65",
   // SUNNET: "http://18.217.215.94:66",
   // MAINNET: "https://debug.tronscan.org",
   // SUNNET: "https://debugdappchain.tronscan.org",
+  MAINNET: "https://tronscan.org",
+  SUNNET: "https://dappchain.tronscan.org",
 };
 
 export const TOKENINFO_UPDATE = "TOKENINFO_UPDATE";
@@ -62,7 +62,7 @@ export const PUBLIC_URL = process.env.PUBLIC_URL || window.location.origin;
 
 
 export const API_URL_SUNNET = "https://dappchainapi.tronscan.org";
-
+// export const API_URL_SUNNET =  "http://3.15.181.169:9000"  //dappchain tronex
 // export const API_URL_SUNNET = "https://debugdappchainapilist.tronscan.org";
 
 export const API_URL = IS_SUNNET ? API_URL_SUNNET : process.env.API_URL;
@@ -148,7 +148,7 @@ export const SUNWEBCONFIG = {
   SUNFULLNODE: "https://sun.tronex.io",
   SUNSOLIDITYNODE: "https://sun.tronex.io",
   SUNEVENTSERVER: "https://sun.tronex.io",
-  MAINNET: "TWaPZru6PR5VjgT4sJrrZ481Zgp3iJ8Rfo",
+  MAINNET: "TL9q7aDAHYbW5KdPCwk8oJR3bCDhRwegFf",
   SIDECHAIN: "TGKotco6YoULzbYisTBuP6DWXDjEgJSpYz",
   SIDEID: "41E209E4DE650F0150788E8EC5CAFA240A23EB8EB7",
 
@@ -159,7 +159,7 @@ export const SUNWEBCONFIG = {
   // SUNFULLNODE: 'http://47.252.85.90:8070',
   // SUNSOLIDITYNODE: 'http://47.252.85.90:8071',
   // SUNEVENTSERVER: 'http://47.252.87.129:8070',
-  // MAINNET: 'TFLtPoEtVJBMcj6kZPrQrwEdM3W3shxsBU',
+  // MAINNET: 'TTskLhrM19keG57PK51s65yEUvgw3GvSbr',
   // SIDECHAIN: 'TRDepx5KoQ8oNbFVZ5sogwUxtdYmATDRgX',
   // SIDEID: '413AF23F37DA0D48234FDD43D89931E98E1144481B',
 
