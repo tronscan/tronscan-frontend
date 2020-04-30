@@ -294,6 +294,7 @@ export function Information({ token: tokens, priceUSD,intl }) {
           {token.home_page ? (
             token.contract_address === CONTRACT_ADDRESS_USDT ||
             token.contract_address === CONTRACT_ADDRESS_WIN ||
+            token.contract_address === CONTRACT_ADDRESS_USDJ ||
             token.contract_address === CONTRACT_ADDRESS_JST ? (
               <HrefLink href={token.home_page}>{token.home_page}</HrefLink>
             ) : (
@@ -312,6 +313,7 @@ export function Information({ token: tokens, priceUSD,intl }) {
           {token.white_paper ? (
             token.contract_address === CONTRACT_ADDRESS_USDT ||
             token.contract_address === CONTRACT_ADDRESS_WIN ||
+            token.contract_address === CONTRACT_ADDRESS_USDJ ||
             token.contract_address === CONTRACT_ADDRESS_JST? (
               <HrefLink
                 style={{
