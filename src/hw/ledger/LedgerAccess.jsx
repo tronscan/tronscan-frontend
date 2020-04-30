@@ -71,7 +71,6 @@ function addressFormat(addr) {
         if(valid){
            balance = await this.ledger.getAddressTRXBalances(address);
         }
-       
         accounts.push({
           path:path,
           address: address,
@@ -79,8 +78,11 @@ function addressFormat(addr) {
           index: i,
           value: i,
         })
+        console.log('accounts======1111',accounts)
         if (!valid) {
-          accounts.pop();
+          if(accounts.length !== 1){
+            accounts.pop();
+          }
           break
         }
       }
