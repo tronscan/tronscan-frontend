@@ -37,7 +37,7 @@ import SetAccountIdContract from './SetAccountIdContract'
 import CreateSmartContract from './CreateSmartContract'
 import ClearABIContract from './ClearABIContract'
 import TriggerContract from './TriggerContract'
-
+import ShieldedTransferContract from './ShieldedTransferContract'
 /**
  * Get the title
  * @param {*} contract 
@@ -161,6 +161,8 @@ export default function Info({contract}) {
                 return <CreateSmartContract contract={contract}></CreateSmartContract> 
             case "CLEARABICONTRACT":
                 return <ClearABIContract contract={contract}/>
+            case 'SHIELDEDTRANSFERCONTRACT' :
+                return <ShieldedTransferContract contract={contract}></ShieldedTransferContract>    
             default:
                 return (
                     <Fragment>
