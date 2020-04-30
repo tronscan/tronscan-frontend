@@ -18,7 +18,7 @@ import {Select} from 'antd';
 import isMobile from '../../../utils/isMobile';
 import {withTronWeb} from "../../../utils/tronWeb";
 import { FormatNumberByDecimals } from '../../../utils/number'
-import { transactionResultManager, transactionResultManagerSun} from "../../../utils/tron"
+import { transactionResultManager, transactionResultManagerSun, transactionResultManagerWithErrorInfo} from "../../../utils/tron"
 import BigNumber from "bignumber.js"
 BigNumber.config({ EXPONENTIAL_AT: [-1e9, 1e9] });
 
@@ -116,18 +116,20 @@ class SendForm extends React.Component {
                 const transactionWithNote = await this.props.tronWeb().transactionBuilder.addUpdateData(unSignTransaction, note, 'utf8');
                 result = await transactionResultManager(transactionWithNote, this.props.tronWeb());
             }
+
             if(this.props.wallet.type==="ACCOUNT_TRONLINK"){
                 const unSignTransaction = await this.props.account.tronWeb.transactionBuilder.sendTrx(to, amount, wallet.address).catch(function (e) {
                   
                 });
                 //set transaction note
                 const transactionWithNote = await this.props.account.tronWeb.transactionBuilder.addUpdateData(unSignTransaction, note, 'utf8');
-                result = await transactionResultManager(transactionWithNote, this.props.account.tronWeb);
-
+                result = await transactionResultManagerWithErrorInfo(transactionWithNote, this.props.account.tronWeb);
+                console.log('result===',result)
                 // result = await this.props.account.tronWeb.trx.sendTransaction(to, amount, {address: wallet.address}, false).catch(function (e) {
                 //     
                 // });
             }
+
             if (result) {
                 success = result.result;
             } else {
