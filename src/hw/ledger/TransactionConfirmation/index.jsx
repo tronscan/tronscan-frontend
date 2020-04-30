@@ -11,8 +11,6 @@ import {Truncate} from "../../../components/common/text";
 import TronWeb from "tronweb";
 
 export default function Contract({ contract, extra }) {
-  console.log('contract======',contract)
-  console.log('contract.type======',contract.type.toUpperCase())
   const contractParams = contract.parameter.value;
   let tokenInfo = '';
   let tokenList = [{"token_id":"","amount":""}];
@@ -22,8 +20,6 @@ export default function Contract({ contract, extra }) {
       tokenInfo = rebuildList(tokenList, 'token_id', 'amount')[0];
   }
 
-
-  console.log('extra===',extra)
   switch (contract.type.toUpperCase()) {
     case "TRANSFERCONTRACT":
       return (

@@ -309,6 +309,7 @@ export function appReducer(state = initialState, action) {
           address: action.address,
           tronWeb: action.tronWeb,
           sunWeb: action.sunWeb,
+          pathIndex: action.pathIndex,
           tronStationSDK: new TronStationSDK(action.tronWeb, true)
         },
         wallet: {
