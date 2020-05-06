@@ -177,7 +177,7 @@ export const lang20Q1 = {
   proposal_select: "Select network parameters",
   proposal_value: "Propose a new value", 
   proposal_confirm: "Confirm", 
-  proposal_result: "Result",
+  proposal_result: "Ergebnis",
   proposal_create_info: "A proposal is initiated to modify TRON network parameters. Each SR has the right to initiate and vote for proposals. Upon receiving votes from 19 or more SRs before the expiry date, a proposal is deemed pass and according network parameters will be modified in the following maintenance period.",
   proposal_select_table: "Select",
   proposal_selected_network_parameters:"Selected network parameters",
@@ -346,10 +346,10 @@ export const lang20Q1 = {
 
 
   fill_a_valid_ledger_note:'Please confirm that the Transactions Data option in the ledger settings is allowed, otherwise you cannot send notes',
-  enter_up_to_50_characters:'Enter up to 50 characters',
-  address_token_less_than_10:'tokens with a value less than 10 TRX',
+  enter_up_to_50_characters:'Geben sie bis zu 50 Zeichen ein',
+  address_token_less_than_10:'Token mit einem geringeren Wert als 10 TRX',
   address_total_tron_power:'Gesamte TRON Power',
-  address_total_tron_power_remain:'Verfügbare TORN Power',
+  address_total_tron_power_remain:'Verfügbare TRON Power',
   address_total_tron_power_used:'Verbrauchte TRON Power',
 
   // foundation address
