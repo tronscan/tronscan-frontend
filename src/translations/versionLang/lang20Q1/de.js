@@ -17,7 +17,7 @@
     #         Update Date: 01-03.2019                                                #
     #         Language: German                                                       #
     #         Status: Approved Version                                               #
-    #         Number of checks: 5                                                    #
+    #         Number of checks: 0                                                    #
     #                                                                                #
     ##################################################################################
 */
@@ -33,16 +33,16 @@ export const lang20Q1 = {
   data_time3: "1 Woche",
   data_check: "Zeige Top10",
   data_account_top: "最佳账户",
-  data_account_send_Trx: "Top Konten--Total TRX gesendet",
-  data_account_send_Trx_items: "Top Konten--Txn Count Sent",
-  data_account_receive_Trx: "Top Accounts--Total TRX Received",
-  data_account_receive_Trx_items: "Top Accounts--Txn Count Received",
-  data_account_freeze: "Top Accounts--TRX Frozen",
-  data_account_vote: "Top Accounts--Votes",
+  data_account_send_Trx: "Top Konten--Gesamt TRX gesendet",
+  data_account_send_Trx_items: "Top Konten--Txn Anzahl gesendet",
+  data_account_receive_Trx: "Top Konten--Gesamt TRX empfangen",
+  data_account_receive_Trx_items: "Top Konten--Txn Anzahl empfangen",
+  data_account_freeze: "Top Konten--TRX gefroren",
+  data_account_vote: "Top Konten--Votes",
   data_range: "Rang",
   data_number: "Menge",
   data_per: "Prozent",
-  data_total: "Total",
+  data_total: "Gesamt",
   data_items: "Txn Anzahl",
   data_piao: "Votes",
   data_token_holders: "Top Token--Halter",
