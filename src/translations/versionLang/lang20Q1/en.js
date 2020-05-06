@@ -76,7 +76,7 @@ export const lang20Q1 = {
   // 2020-01-17
   data_token_transcation_number: "Txn Amount",
   data_token_mark_7:
-    "(Number of holders last period - numebr of holders this period)/number of holders last period*100%",
+    "(Number of holders last period - number of holders this period)/number of holders last period*100%",
   data_token_mark_8:
     "(Number of Txn accounts last period - numebr of Txn accounts this period)/number of Txn accounts last period*100%",
   data_token_mark_9:
@@ -90,7 +90,7 @@ export const lang20Q1 = {
   data_TRX_transfer_count: "TRX Transfer Count",
   data_TRX_frozen_total: "Total TRX Frozen",
   data_votes_total: "Total Votes",
-  data_TRON_tokens_total: "Toal TRON Tokens",
+  data_TRON_tokens_total: "Total TRON Tokens",
   data_TRC10_tokens_total: "TRC10 Tokens",
   data_TRC20_tokens_total: "TRC20 Tokens",
   data_TRONSCAN_tokens_entered: "Tokens Entered on TRONSCAN",
@@ -349,7 +349,7 @@ export const lang20Q1 = {
   enter_up_to_50_characters:'Enter up to 50 characters',
   address_token_less_than_10:'tokens with a value less than 10 TRX',
   address_total_tron_power:'Total TRON Power',
-  address_total_tron_power_remain:'Available TORN Power',
+  address_total_tron_power_remain:'Available TRON Power',
   address_total_tron_power_used:'Used TRON Power',
 
   // foundation address
