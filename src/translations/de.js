@@ -25,7 +25,7 @@ export const messages = {
   #         Language: Deutsch                                                      #
   #         Status: Approved Version                                               #
   #         Number of checks: 0                                                    #
-  #         Participants: Rovak,PMD3VSolution,DrKaradenizli                        #
+  #         Participants: TRON-Family                                              #
   #                                                                                #
   ##################################################################################
   #                                                                                #
@@ -110,7 +110,7 @@ export const messages = {
   wallet_address: "Wallet Adresse",
   confirm: "Bestätigen",
   _percentage: "Prozentual",
-  language_support: "Only support English input currently",
+  language_support: "Unterstützt derzeit nur englische Eingaben",
   note: "Notiz",
   /*
   ##################################################################################
@@ -215,7 +215,7 @@ export const messages = {
   */
   addresses: "Adressen",
   trx_transferred_past_hour: "TRX transferiert in der letzten Stunde",
-  transactions_past_hour: "Transaktions in der letzten Stunde",
+  transactions_past_hour: "Transaktionen in der letzten Stunde",
   average_blocksize: "durchschnittliche Blockgröße",
   rich_list: "Reichenliste",
   tron_transaction_chart: "TRON Transaktionen Chart",
@@ -233,27 +233,27 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  set_name: "Set Name",
-  unique_account_message: "You may only set your account name once!",
-  name_to_short: "Name is to short",
-  name_to_long: "Name is to long",
-  permitted_characters_message: "Name may only contain a-z A-Z 0-9",
-  change_name: "Change Name",
-  account_name: "Account name",
-  show_qr_code: "Show QR Code",
+  set_name: "Setze Namen",
+  unique_account_message: "Sie können den Namen nur einmal setzen!",
+  name_to_short: "Name ist zu kurz",
+  name_to_long: "Name ist zu lang",
+  permitted_characters_message: "Der Name darf nur a-z A-Z 0-9 enthalten.",
+  change_name: "Ändere Name",
+  account_name: "Account Name",
+  show_qr_code: "Zeige QR Code",
   do_not_send_2:
-    "Do not send TRX from your own wallet or exchange to the above account address of testnet!",
-  bandwidth: "bandwidth",
+    "Schicken Sie keine TRX oder Token aus Ihrer eigenen Wallet oder Exchange an die oben genannte Walletadresse des testnet!",
+  bandwidth: "Bandbreite",
   balance: "Balance",
   tron_power: "TRON Power",
-  transactions: "transactions",
-  no_transfers: "No Transfers",
-  no_tokens: "No Tokens",
-  free_bandwidth: "Free Bandwidth",
-  expires: "expires",
-  have_been_added_to_your_account: "have been added to your account!",
+  transactions: "Transaktionen",
+  no_transfers: "Keine Transfers",
+  no_tokens: "Keine Token",
+  free_bandwidth: "Freie Bandbreite",
+  expires: "läuft aus",
+  have_been_added_to_your_account: "wurden Ihrem Account hinzugefügt!",
   information_message_1:
-    "Mainnet cannot request testing trx, please contact TRON to get test trx.",
+    "Mainnet kann keine Test TRX anfordern, bitte kontaktieren Sie TRON, um Test TRX zu erhalten.",
   information_message_2: "You may only request TRX 10 times per account.",
   request_trx_for_testing: "Request TRX for testing",
   token_balances: "token balances",
