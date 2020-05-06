@@ -348,9 +348,9 @@ export const lang20Q1 = {
   fill_a_valid_ledger_note:'Please confirm that the Transactions Data option in the ledger settings is allowed, otherwise you cannot send notes',
   enter_up_to_50_characters:'Enter up to 50 characters',
   address_token_less_than_10:'tokens with a value less than 10 TRX',
-  address_total_tron_power:'Total TRON Power',
-  address_total_tron_power_remain:'Available TORN Power',
-  address_total_tron_power_used:'Used TRON Power',
+  address_total_tron_power:'Gesamte TRON Power',
+  address_total_tron_power_remain:'Verfügbare TORN Power',
+  address_total_tron_power_used:'Verbrauchte TRON Power',
 
   // foundation address
   foundation_address_update_date:'Updated time: 2019/12/31',
