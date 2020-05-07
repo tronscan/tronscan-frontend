@@ -562,8 +562,7 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  address_warning:
-    "Geben Sie nur gültige TRON-Walletadressen ein. Falsche Adressen können zum Verlust von TRX führen.",
+  address_warning: "Geben Sie nur gültige TRON-Walletadressen ein. Falsche Adressen können zum Verlust von TRX führen.",
   search_address_or_url: "Suche nach Adresse oder URL",
   the_lunch_test:
     "Die Einführung von Testnet zielt darauf ab, alle Funktionen unseres Blockchain-Explorers und Wallet zu testen.",
@@ -572,31 +571,31 @@ export const messages = {
   tron_foundation: "TRON Foundation",
   trx_for_testing:
     "TRX zum Testen wird an ihr Testaccount geschickt, sobald Sie sich erfolgreich über die Accountverwaltung angemeldet haben.",
-  dear_users: "Dear users,",
-  finished: "Finished",
-  token: "token",
+  dear_users: "Sehr geehrte Benutzer,",
+  finished: "Beendet",
+  token: "Token",
   url: "url",
-  need_to_login: "You must be logged in to access to account page",
-  thanks_for_applying: "Thanks for applying!",
-  to_much_votes: "To many votes",
-  no_trx_remaining: "No TRX remaining",
-  show_more: "Show {countriesLength} More",
-  vote_guide_message: `Use your TRX to vote for Super Representatives.
-   For every TRX you hold in your account you have one vote to spend.
-   TRX will not be consumed. You can vote as many times for the several representatives as you like.
-   The number of votes will be updated at 02:00,08:00,14:00,20:00(GMT+8）every day and the list of delegates will be updated.`,
-  search_address: "Search for address",
-  token_transactions: "Token Transactions",
-  token_holders: "Token Holders",
+  need_to_login: "Sie müssen eingeloggt sein, um auf die Account-Seite zugreifen zu können.",
+  thanks_for_applying: "Vielen Dank für Ihre Bewerbung!",
+  to_much_votes: "Zuviele Stimmen",
+  no_trx_remaining: "Keine TRX übrig",
+  show_more: "Zeige {countriesLength} mehr",
+  vote_guide_message: `Benutzen Sie Ihren TRX, um die Super Repräsentanten zu wählen.
+   Für jeden TRX, den Sie auf Ihrem Konto haben, haben Sie eine Stimme, die Sie ausgeben können.
+   TRX wird nicht verbraucht. Sie können so viele Stimmen für die verschiedenen Vertreter abgeben, wie Sie möchten.
+   Die Anzahl der Stimmen wird um 02:00,08:00,14:00,20:00(GMT+8）jeden Tag aktualisiert und die Liste der Delegierten wird aktualisiert.`,
+  search_address: "Suche nach Adresse",
+  token_transactions: "Token Transaktionen",
+  token_holders: "Token Halter",
   nr_of_Transfers: "Transfers",
-  not_signed_in: "You will need to log in to make use of this functionality",
-  loading_map: "Loading Map",
-  loading_accounts: "loading Accounts",
-  quantity: "quantity",
-  percentage: "Percentage",
-  loading_token: "Loading Token",
-  voter_percentage: "Voter Percentage",
-  total_balance: "Total Balance",
+  not_signed_in: "Um diese Funktionalität nutzen zu können, müssen Sie sich anmelden",
+  loading_map: "Lade Karte",
+  loading_accounts: "lade Accounts",
+  quantity: "Menge",
+  percentage: "Prozentual",
+  loading_token: "Lade Token",
+  voter_percentage: "Voter prozentual",
+  total_balance: "Gesamt Balance",
   /*
   ##################################################################################
   #                                                                                #
@@ -604,13 +603,13 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  no_transactions_found: "No transactions found",
-  no_tokens_found: "No tokens found",
-  no_blocks_found: "No blocks found",
-  no_votes_found: "No votes found",
-  no_voters_found: "No voters found",
-  waiting_for_transactions: "Waiting for transactions",
-  loading_address: "Loading Address",
+  no_transactions_found: "Keine Transaktionen gefunden",
+  no_tokens_found: "Keine Token gefunden",
+  no_blocks_found: "Keine Blöcke gefunden",
+  no_votes_found: "Keine Stimmen gefunden",
+  no_voters_found: "Keine Voter gefunden",
+  waiting_for_transactions: "Warten auf Transaktionen",
+  loading_address: "Lade Adresse",
   /*
   ##################################################################################
   #                                                                                #
@@ -619,41 +618,41 @@ export const messages = {
   ##################################################################################
   */
   details: "details",
-  issue_a_token: "Issue a Token",
-  issue_token: "Issue Token",
-  token_name: "token name",
-  total_issued: "Total issued",
-  registered: "Registered",
-  abbreviation: "Abbreviations",
-  exchange_rate: "Issuing Exchange Rate",
-  token_price: "Token Price",
-  supply_message: "Total token issuance(without precision)",
-  description_message: "A short description of the purpose of the token",
-  url_message: "A website address that shows more information about the token",
+  issue_a_token: "Token herausgeben",
+  issue_token: "Token ausgeben",
+  token_name: "Token Name",
+  total_issued: "Gesamt herausgegeben",
+  registered: "Registriert",
+  abbreviation: "Abkürzung",
+  exchange_rate: "Ausgabe-Wechselkurs",
+  token_price: "Token Preis",
+  supply_message: "Gesamtausgabe von Token (ohne Nachkommastellen)",
+  description_message: "Eine kurze Beschreibung des Zwecks des Tokens",
+  url_message: "Eine Website-Adresse, die weitere Informationen über den Token zeigt",
   exchange_rate_message_0:
-    "Specify the price of a single token by defining how many tokens a participant will receive for every TRX they spend.",
-  exchange_rate_message_1: "Participants will receive",
-  exchange_rate_message_2: "for every",
+    "Legen Sie den Preis für einen einzelnen Token fest, indem Sie definieren, wie viele Token ein Teilnehmer für jeden TRX erhält, den er ausgibt.",
+  exchange_rate_message_1: "Die Teilnehmer erhalten",
+  exchange_rate_message_2: "für jeden",
   exchange_rate_message_3: "TRX",
   participation_message_0:
-    "Specify the participation period in which tokens will be issued. During the participation period users can exchange TRX for ",
-  participation_message_1: " tokens.",
-  frozen_supply_message_0: `A part of the supply can be frozen. The amount of supply can be specified and must be frozen
-   for a minimum of 1 day. The frozen supply can manually be unfrozen after start date and frozen
-   days has been reached. Freezing supply is not required.`,
-  token_issued_successfully: "Token successfully issued",
-  participation: "Issuing Time",
-  start_date: "Start Date",
-  end_date: "End Date",
+    "Geben Sie den Teilnahmezeitraum an, in dem Token ausgegeben werden sollen. Während der Teilnahmeperiode können Benutzer TRX eintauschen gegen ",
+  participation_message_1: " Token.",
+  frozen_supply_message_0: `Ein Teil des Angebots kann eingefroren werden. Die Menge des Angebots kann festgelegt werden und muss eingefroren werden.
+   für mindestens 1 Tag. Der eingefrorene Vorrat kann nach dem Startdatum manuell aufgetaut und eingefroren werden
+   Tage erreicht ist. Einfrieren ist nicht erforderlich.`,
+  token_issued_successfully: "Token erfolgreich ausgegeben",
+  participation: "Ausgabe-Zeit",
+  start_date: "Startdatum",
+  end_date: "Enddatum",
   token_spend_confirm:
-    "I confirm that creating the total supply of the token costs a one time total fee of 1024 TRX.",
-  token_issue_guide_message_1: `Issuing a token on the TRON Protocol can be done
-    by anyone who has at least 1024 TRX in their account.`,
-  token_issue_guide_message_2: `When a token is issued it will be shown on the token overview page.
-    Users can then participate within the issuing time and exchange their TRX for tokens.`,
-  token_issue_guide_message_3: `After issuing the token your account will receive the amount of tokens equal to the total supply.
-    When other users exchange their TRX for tokens then the tokens will be withdrawn from your account and you will
-    receive TRX equal to the specified exchange rate.`,
+    "Ich bestätige, dass die Erstellung der gesamten Token eine einmalige Gesamtgebühr von 1024 TRX kostet.",
+  token_issue_guide_message_1: `Die Ausgabe eines Tokens zum TRON-Protokoll kann erfolgen
+    von jedem, der mindestens 1024 TRX auf seinem Konto hat.`,
+  token_issue_guide_message_2: `Wenn ein Token ausgegeben wird, wird es auf der Token-Übersichtsseite angezeigt.
+    Benutzer können dann innerhalb der Ausgabezeit teilnehmen und ihren TRX gegen Token eintauschen.`,
+  token_issue_guide_message_3: `Nach der Ausgabe der Token erhält Ihr Account den Betrag der Token, der dem Gesamtangebot entspricht.
+    Wenn andere Benutzer ihren TRX gegen Token eintauschen, werden die Token von Ihrem Konto abgehoben und Sie erhalten
+    TRX erhalten, der dem angegebenen Wechselkurs entspricht.`,
   /*
   ##################################################################################
   #                                                                                #
