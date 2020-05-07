@@ -532,13 +532,13 @@ export const messages = {
   not_entry_tip: "Sie haben kein Handelspaar erstellt",
   not_entry_list_tip: "Sie haben keine offizielle Listung beantragt",
   type_pass_market_tip: "Handelspaar erfolgreich erstellt",
-  to_audit_tip: "Official listing request pending for review",
-  not_through_tip: "Official listing request declined",
-  not_through_entry_tip: "Trading pair creation unaproved",
-  type_pass_tip: "Official listing request approved",
-  shelves_market_tip: "The token was delisted",
-  removed_tip: "The trading pair was removed",
-  in_progress_tip: "Create trading pair is processing",
+  to_audit_tip: "Offizielle Anfrage auf Listung wird überprüft",
+  not_through_tip: "Antrag auf offizielle Listung abgelehnt",
+  not_through_entry_tip: "Erstellung eines Handelspaars nicht genehmigt",
+  type_pass_tip: "Antrag auf offizielle Listung genehmigt",
+  shelves_market_tip: "Der Token wurde delistet",
+  removed_tip: "Das Handelspaar wurde entfernt",
+  in_progress_tip: "Erstellung des Handelspaar ist in Bearbeitung",
   /*
   ##################################################################################
   #                                                                                #
@@ -546,15 +546,15 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  buy_confirm_message_0: "Are you sure?",
-  how_much_buy_message: "How much tokens do you want to buy?",
-  buy_confirm_message_1: "Are you sure you want to buy",
-  for: "for",
-  insufficient_trx: "Insufficient TRX",
-  not_enough_trx_message: "You do not have enough TRX to buy so many tokens",
-  ends: "ends",
-  starts: "starts",
-  can_be_unlocked: "can be unlocked",
+  buy_confirm_message_0: "Sind sie sicher?",
+  how_much_buy_message: "Wieviele Token wollen sie kaufen?",
+  buy_confirm_message_1: "Sind sie sicher, dass sie kaufen wollen?",
+  for: "für",
+  insufficient_trx: "Unzureichende TRX",
+  not_enough_trx_message: "Sie haben nicht genug TRX um soviele Token zu kaufen",
+  ends: "Endet",
+  starts: "Startet",
+  can_be_unlocked: "kann entsperrt werden",
   /*
   ##################################################################################
   #                                                                                #
@@ -563,15 +563,15 @@ export const messages = {
   ##################################################################################
   */
   address_warning:
-    "Only enter valid TRON wallet address. Incorrect addresses can lead to TRX loss.",
-  search_address_or_url: "Search for address or URL",
+    "Geben Sie nur gültige TRON-Walletadressen ein. Falsche Adressen können zum Verlust von TRX führen.",
+  search_address_or_url: "Suche nach Adresse oder URL",
   the_lunch_test:
-    "The launch of testnet aims to test all the features of our blockchain explorer and wallet.",
+    "Die Einführung von Testnet zielt darauf ab, alle Funktionen unseres Blockchain-Explorers und Wallet zu testen.",
   please_keep_in_mind:
-    "Please keep in mind, that since your registered account address is only used for testnet, do not send TRX from your own wallet or exchange to the account address of testnet.",
+    "Bitte denken Sie daran, dass ihre registrierte Walletadresse nur für Testnet verwendet wird. Senden sie keine TRX aus ihrer eigenen Wallet oder Exchange an die Walletadresse des Testnet.",
   tron_foundation: "TRON Foundation",
   trx_for_testing:
-    "TRX for testing will be sent to your testing account once you successfully apply through account management.",
+    "TRX zum Testen wird an ihr Testaccount geschickt, sobald Sie sich erfolgreich über die Accountverwaltung angemeldet haben.",
   dear_users: "Dear users,",
   finished: "Finished",
   token: "token",
