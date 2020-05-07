@@ -650,8 +650,8 @@ export const messages = {
     von jedem, der mindestens 1024 TRX auf seinem Konto hat.`,
   token_issue_guide_message_2: `Wenn ein Token ausgegeben wird, wird es auf der Token-Übersichtsseite angezeigt.
     Benutzer können dann innerhalb der Ausgabezeit teilnehmen und ihren TRX gegen Token eintauschen.`,
-  token_issue_guide_message_3: `Nach der Ausgabe der Token erhält Ihr Account den Betrag der Token, der dem Gesamtangebot entspricht.
-    Wenn andere Benutzer ihren TRX gegen Token eintauschen, werden die Token von Ihrem Konto abgehoben und Sie erhalten
+  token_issue_guide_message_3: `Nach der Ausgabe der Token erhält Ihr Account den Betrag der Token der dem Gesamtangebot entspricht.
+    Wenn andere Benutzer ihren TRX gegen Token eintauschen, werden die Token von Ihrem Account abgehoben und Sie erhalten
     TRX erhalten, der dem angegebenen Wechselkurs entspricht.`,
   /*
   ##################################################################################
@@ -660,30 +660,30 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  date_error: "The end date is earlier or the same as the starting date",
-  no_name_error: "Name is required",
-  no_supply_error: "Total Supply must be at least 1",
-  coin_value_error: "Token amount must be at least 1",
-  tron_value_error: "The amount of TRX per coin must be at least 1",
-  invalid_starttime_error: "The provided starting date is invalid",
-  invalid_endtime_error: "The provided ending date is invalid",
-  no_description_error: "Description is required",
-  no_url_error: "Web URL is required",
-  past_starttime_error: "The starting date is in the past",
-  no_transactions: "No Transactions",
-  errors_in_form: "There are errors in the form",
-  token_link_message_0: "The token will be available on the",
-  token_link_message_1: "Tokens page",
-  token_link_message_2: "in a few minutes",
+  date_error: "Das Enddatum liegt vor oder ist gleich dem Anfangsdatum",
+  no_name_error: "Name wird benötigt",
+  no_supply_error: "Gesamtmenge muss mindestens 1 betragen",
+  coin_value_error: "Gesamtanzahl der Token muss mindestens 1 betragen",
+  tron_value_error: "Der Betrag von TRX pro Token muss mindestens 1 betragen",
+  invalid_starttime_error: "Das angegebene Startdatum ist ungültig",
+  invalid_endtime_error: "Das angegebene Enddatum ist ungültig",
+  no_description_error: "Beschreibung wird benötigt",
+  no_url_error: "Web URL wird benötigt",
+  past_starttime_error: "Das Startdatum liegt in der Vergangenheit",
+  no_transactions: "Keine Transaktionen",
+  errors_in_form: "Es gibt Fehler im Formular",
+  token_link_message_0: "Der Token wird auf der",
+  token_link_message_1: "Token Seite",
+  token_link_message_2: "in ein paar Minuten",
   description_error_message_0:
-    "Description may not be longer than 200 characters",
-  token_creation_error: "An error occurred while trying to create the token",
-  tokenname_error_message_0: "Name may not be longer than 32 characters",
-  tokenname_error_message_1: "Name may only contain a-Z characters",
-  abbreviation_required: "Abbreviation is required",
+    "Die Beschreibung darf nicht länger als 200 Zeichen sein.",
+  token_creation_error: "Beim Versuch, den Token zu erstellen, ist ein Fehler aufgetreten",
+  tokenname_error_message_0: "Name darf nicht länger als 32 Zeichen sein",
+  tokenname_error_message_1: "Name darf nur a-Z-Zeichen enthalten",
+  abbreviation_required: "Abkürzung wird benötigt",
   abbreviation_error_message_0:
-    "Abbreviation may not be longer than 5 characters",
-  abbreviation_error_message_1: "Abbreviation may only contain a-Z characters",
+    "Die Abkürzung darf nicht länger als 5 Zeichen sein",
+  abbreviation_error_message_1: "Die Abkürzung darf nur a-Z-Zeichen enthalten.",
   /*
   ##################################################################################
   #                                                                                #
@@ -691,17 +691,17 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  highest_productivity: "Highest Productivity",
-  lowest_productivity: "Lowest Productivity",
-  "Super Representatives": "Super Representatives",
-  "Super Representative Partners": "Super Representative Partners",
-  "Super Representative Candidates": "Super Representative Candidates",
-  loading_representatives: "Loading Representatives",
+  highest_productivity: "Höchste Produktivität",
+  lowest_productivity: "Niedrigste Produktivität",
+  "Super Representatives": "Super Repräsentanten",
+  "Super Representative Partners": "Super Repräsentanten Partners",
+  "Super Representative Candidates": "Super Repräsentanten Kandidaten",
+  loading_representatives: "Lade Repräsentanten",
   address_not_super_representative:
-    "This address is not a Super Representative",
+    "Diese Adresse ist kein Super Repräsentant",
   unable_load_representatives_page_message:
-    "Unable to load page, this may happen if the address is invalid, the address is not a representative or the representative did not configure this page yet",
-  loading_representative: "Loading Representative",
+    "Die Seite kann nicht geladen werden. Dies kann passieren, wenn die Adresse ungültig ist, die Adresse kein Vertreter ist oder der Vertreter diese Seite noch nicht konfiguriert hat",
+  loading_representative: "Lade Repräsentant",
   /*
   ##################################################################################
   #                                                                                #
