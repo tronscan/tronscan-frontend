@@ -709,15 +709,15 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  average_price_usd: "Average Price in USD",
-  average_volume_usd: "Average Volume in USD",
-  "Trade Volume": "Trade Volume in USD",
-  rank: "Rank",
-  pair: "Pair",
+  average_price_usd: "Durchschnittspreis in USD",
+  average_volume_usd: "Durchschnittsvolumen in USD",
+  "Handelsvolume": "Handelsvolume in USD",
+  rank: "Rang",
+  pair: "Paar",
   volume: "Volume",
   usd: "USD",
-  average_price: "Average Price",
-  click_the_chart_title_to_find_more: "Click the chart title to find more.",
+  average_price: "Durchschnittspreis",
+  click_the_chart_title_to_find_more: "Klicken Sie auf den Titel des Charts, um mehr zu erfahren.",
   /*
   ##################################################################################
   #                                                                                #
@@ -725,35 +725,35 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  next_round: "Next Round",
-  total_votes: "Total Votes",
-  most_ranks: "Most Ranks Gained This Round",
-  view_live_ranking: "View Live Ranking",
-  open_team_page: "Open Team Page",
+  next_round: "Nächste Runde",
+  total_votes: "Gesamtstimmen",
+  most_ranks: "Die meisten Ränge in dieser Runde ",
+  view_live_ranking: "Live-Ranking anzeigen",
+  open_team_page: "Öffne Teamseite",
   warning_votes:
-    "At least 1 TRON Power is required to start voting. TRON Power is gained by freezing TRX on the",
-  account_page: "Account Page",
-  loading_votes: "Loading Votes",
-  "3_day_ranking": "3 Days Ranking(Top 10)",
+    "Mindestens 1 TRON Power ist erforderlich, um mit der Abstimmung zu beginnen. TRON-Power wird durch Einfrieren des TRX auf",
+  account_page: "Accountseite",
+  loading_votes: "Lade Stimmen",
+  "3_day_ranking": "3 Tage Ranking(Top 10)",
   live_ranking: "Live Ranking",
   live_ranking_msg:
-    "Refreshes every 15 seconds. New votes may take up to 1-2 minutes before being counted",
+    "Aktualisiert sich alle 15 Sekunden. Neue Stimmen können bis zu 1-2 Minuten dauern, bevor sie ausgezählt werden.",
   candidate: "Partner",
-  current_votes: "Current Votes",
-  click_to_start_voting: "Click here to Start Voting",
-  votes_remaining_message: "Votes Remaining",
-  open_wallet_start_voting_message: "Open wallet to start voting",
-  thanks_submitting_vote_message: "Thanks for submitting your vote!",
-  need_min_trx_to_vote_message: "You need at least 1 TRX to be able to vote",
-  to_much_votes_massage: "You spend to much votes!",
-  all_votes_are_used_message: "All votes are used!",
-  submissing_vote_message_title: "Thank you for voting!",
+  current_votes: "Aktuelle Abstimmung",
+  click_to_start_voting: "Klicken Sie hier, um mit der Abstimmung zu beginnen",
+  votes_remaining_message: "Verbleibende Stimmen",
+  open_wallet_start_voting_message: "Wallet öffnen, um mit der Abstimmung zu beginnen",
+  thanks_submitting_vote_message: "Danke, dass Sie Ihre Stimme abgegeben haben!",
+  need_min_trx_to_vote_message: "Sie benötigen mindestens 1 TRX, um abstimmen zu können",
+  to_much_votes_massage: "Sie geben zu viele Stimmen aus!",
+  all_votes_are_used_message: "Alle Stimmen werden verwendet!",
+  submissing_vote_message_title: "Vielen Dank für Ihre Stimmabgabe!",
   submissing_vote_message_0:
-    "Your votes are successfully submitted, they will take effect when the next voting cycle starts.",
-  submissing_vote_message_1: "You may redistribute your votes anytime you like",
+    "Ihre Stimmen sind erfolgreich abgegeben, sie werden mit Beginn des nächsten Abstimmungszyklus wirksam.",
+  submissing_vote_message_1: "Sie können Ihre Stimmen jederzeit neu verteilen.",
   submitting_vote_error_message:
-    "Something went wrong while submitting your votes. Please try again later.",
-  loading_super_representatives: "Loading Super Representatives",
+    "Etwas ist bei der Abgabe Ihrer Stimmen schief gelaufen. Bitte versuchen Sie es später noch einmal.",
+  loading_super_representatives: "Lade Super Repräsentanten",
   /*
   ##################################################################################
   #                                                                                #
@@ -762,21 +762,21 @@ export const messages = {
   ##################################################################################
   */
   info_tx_viewer:
-    "Here you can paste a transaction hex to inspect the contents of a transaction. The transaction can then be broadcasted to the network",
-  load_tx: "Load Transaction",
-  tx_qrcode: "Transaction QR Code",
-  load_tx_qrcode: "Load Transaction from QR Code",
-  transaction_load_error: "Transaction Load Error",
+    "Hier können Sie ein Transaktions HEX einfügen, um den Inhalt einer Transaktion zu prüfen. Die Transaktion kann dann an das Netzwerk übertragen werden.",
+  load_tx: "Lade Transaktion",
+  tx_qrcode: "Transaktions QR Code",
+  load_tx_qrcode: "Lade Transaktion vom QR Code",
+  transaction_load_error: "Transaktions Ladefehler",
   transaction_load_error_message:
-    "Something went wrong while trying to load the transaction. Make sure the HEX is in a correct format",
+    "Beim Versuch, die Transaktion zu laden, ging etwas schief. Stellen Sie sicher, dass der HEX in einem korrekten Format vorliegt",
   transaction_success_message:
-    "Transaction successfully broadcasted to the network",
-  transaction_success: "Transaction Success",
+    "Transaktion erfolgreich an das Netzwerk übertragen",
+  transaction_success: "Transaktion erfolgreich",
   transaction_error_message:
-    "Something went wrong while trying to broadcast the transaction",
-  transaction_error: "Transaction Error",
-  confirm_transaction_message: "Are you sure you want to send the transaction?",
-  broadcast_transaction_to_network: "Broadcast Transaction to Network",
+    "Etwas ging schief beim Versuch, die Transaktion zu übertragen",
+  transaction_error: "Transaktionsfehler",
+  confirm_transaction_message: "Sind sie sicher, dass Sie die Transaktion senden möchten?",
+  broadcast_transaction_to_network: "Transaktionsübertragung an Netzwerk",
   /*
   ##################################################################################
   #                                                                                #
@@ -784,13 +784,13 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  node_tester_msg: "Insert the IP of your node to test GRPC connection",
-  node_tester_stop: "Stop testing",
+  node_tester_msg: "Geben Sie die IP Ihres Knotens ein, um die GRPC-Verbindung zu testen",
+  node_tester_stop: "Stop test",
   node_tester_test: "Test GRPC",
-  node_tester_rt: "Response Time",
-  confirmed_block: "Confirmed Block",
-  loading: "loading...",
-  connection_node: "Connecting to Node",
+  node_tester_rt: "Reaktionszeit",
+  confirmed_block: "Bestätigter Block",
+  loading: "lade...",
+  connection_node: "Mit Knoten verbinden",
   /*
   ##################################################################################
   #                                                                                #
@@ -798,9 +798,9 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  no_webcam_found: "No webcam found",
-  trying_enable_webcam_message_0: "Error while trying to enable webcam.",
-  trying_enable_webcam_message_1: "Make sure camera permissions are enabled.",
+  no_webcam_found: "Kein Webcam gefunden",
+  trying_enable_webcam_message_0: "Fehler beim Versuch die Webcam zu aktivieren.",
+  trying_enable_webcam_message_1: "Stellen sie sicher, dass die Kameraberechtigungen aktiviert sind.",
   /*
   ##################################################################################
   #                                                                                #
@@ -810,9 +810,9 @@ export const messages = {
   */
   what_is_tron: "TRON whitepaper V2.0",
   tron_explorer_api: "TRONSCAN API",
-  tron_architechure: "TRON Architecture",
+  tron_architechure: "TRON Architektur",
   tron_protobuf_doc: "Protobuf Doc",
-  report_an_error: "Submit bug / suggestion",
+  report_an_error: "Fehler / Vorschlag einreichen",
   frequently_asked_questions: "FAQ",
   telegram: "Telegram",
   /*
@@ -822,46 +822,46 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  open_wallet: "Sign in",
+  open_wallet: "Anmelden",
   private_key: "Private Key",
-  keystore_file: "Keystore File",
-  select_file: "Select File",
-  login_mobile: "Login with a mobile device",
-  create_wallet: "create wallet",
-  no_open_wallet: "No open wallet to view",
-  new_wallet: "New Wallet",
+  keystore_file: "Keystore Datei",
+  select_file: "Datei auswählen",
+  login_mobile: "Anmeldung mit einem mobilen Gerät",
+  create_wallet: "Wallet erstellen",
+  no_open_wallet: "Keine geöffnete Wallet zur Ansicht",
+  new_wallet: "Neue Wallet",
   password_encr_key_message_0:
-    "This password encrypts your private key. This does not act as a seed to generate your keys.",
+    "Dieses Passwort verschlüsselt Ihren privaten Schlüssel. Es dient nicht als Seed für die Generierung Ihrer Schlüssel.",
   password_encr_key_message_1:
-    "You will need this password and your private key to unlock your wallet.",
-  strong_password_info: "A strong password is required",
-  save_keystore_file: "Save Your Keystore File",
-  download_keystore_file: "Download Encrypted Key",
-  do_not_lose_it: "Do not lose it!",
+    "Sie benötigen dieses Passwort und Ihren privaten Schlüssel, um Ihre Wallet freizuschalten.",
+  strong_password_info: "Ein sicheres Passwort ist erforderlich",
+  save_keystore_file: "Speichern Sie Ihre Keystore-Datei",
+  download_keystore_file: "Verschlüsselten Key herunterladen",
+  do_not_lose_it: "Verlieren sie ihn nicht!",
   do_not_lose_it_message_0:
-    "TRON Foundation cannot help you recover a lost key.",
-  do_not_share_it: "Do not share it!",
+    "Die TRON-Foundation kann Ihnen nicht helfen, einen verlorenen Key wiederzufinden.",
+  do_not_share_it: "Teilen sie ihn nicht!",
   do_not_share_it_message_0:
-    "Your funds may be stolen if you use this file a malicious site.",
-  make_a_backup: "Make a backup!",
-  make_a_backup_message_0: "Just in case your laptop is set on fire.",
-  save_private_key: "Save Your Private Key",
-  print_paper_wallet: "Print Paper Wallet",
-  new_wallet_ready_message: "Your new wallet is ready",
-  go_to_account_page: "Go to account page",
-  login_first: "Login to the Wallet first",
-  contract_name: "Contract name",
+    "Ihre Gelder können gestohlen werden, wenn Sie diese Datei auf einer böswilligen Website verwenden.",
+  make_a_backup: "Machen sie eine Sicherheitskopie!",
+  make_a_backup_message_0: "Nur für den Fall, dass Ihr Laptop kaputt geht.",
+  save_private_key: "Speichern Sie Ihren privaten Key.",
+  print_paper_wallet: "Paper Wallet drucken",
+  new_wallet_ready_message: "Ihre neue Wallet ist fertig",
+  go_to_account_page: "Zur Wallet-Seite gehen",
+  login_first: "Melden Sie sich zuerst bei der Wallet an",
+  contract_name: "Contract Name",
   compiler: "Compiler",
-  tx_count: "Tx Count",
-  setting: "Setting",
-  date_verified: "Date Verified",
+  tx_count: "Tx Anzahl",
+  setting: "Einstellung",
+  date_verified: "Datum verifiziert",
   compiler_version: "Compiler Version",
-  creator: "Creator",
-  verify_contract_code: "Verify Contract Code",
-  buy_tokens: "Buy Tokens",
-  fill_a_valid_private_key: "Please fill a valid private key",
-  confirm_private_key: "Confirm Private Key",
-  transfer_confirm_info: "Are you sure you want to transfer",
+  creator: "Ersteller",
+  verify_contract_code: "Verifiziere Contract Code",
+  buy_tokens: "Kaufe Token",
+  fill_a_valid_private_key: "Bitte geben Sie einen gültigen Private Key ein",
+  confirm_private_key: "Private Key bestätigen",
+  transfer_confirm_info: "Sind sie sicher, dass sie transferieren möchten?",
   /*
   ##################################################################################
   #                                                                                #
@@ -870,10 +870,10 @@ export const messages = {
   ##################################################################################
   */
   hash: "Hash",
-  time: "Time",
+  time: "Zeit",
   parenthash: "Parent Hash",
-  size: "Size",
-  blockchain_size: "Blockchain Size",
+  size: "Größe",
+  blockchain_size: "Blockchain Größe",
   /*
   ##################################################################################
   #                                                                                #
