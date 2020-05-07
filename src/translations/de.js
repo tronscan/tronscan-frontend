@@ -798,7 +798,7 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  no_webcam_found: "Kein Webcam gefunden",
+  no_webcam_found: "Keine Webcam gefunden",
   trying_enable_webcam_message_0: "Fehler beim Versuch die Webcam zu aktivieren.",
   trying_enable_webcam_message_1: "Stellen sie sicher, dass die Kameraberechtigungen aktiviert sind.",
   /*
@@ -881,38 +881,38 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  ledger_guide: "Ledger Guide",
-  requirements: "Requirements",
+  ledger_guide: "Ledger Leitfaden",
+  requirements: "Anforderungen",
   using_ledger_steps_message_0:
-    "Using the Ledger with Tronscan requires the following steps:",
+    "Die Verwendung des Ledgers mit Tronscan erfordert die folgenden Schritte:",
   a: "A",
-  install_the: "Install the ",
-  app: "app",
-  install_latest_version_message_0: "Install the latest version of ",
-  opening_your_wallet: "Opening your wallet",
-  open_the_tronscan_desktop_client: "Open the blockchain explorer: ",
-  click_open_wallet_top_right: `Click "Sign in" at the top right`,
-  choose_ledger: "Choose Ledger",
+  install_the: "Installieren sie die ",
+  app: "App",
+  install_latest_version_message_0: "Installieren Sie die neueste Version von ",
+  opening_your_wallet: "Öffnen ihre Brieftasche",
+  open_the_tronscan_desktop_client: "Öffne den Blockchain Explorer: ",
+  click_open_wallet_top_right: `Klicken Sie oben rechts auf "Anmelden"`,
+  choose_ledger: "Wählen Sie Ledger",
   connect_unlock_ledger_with_pin:
-    "Connect and unlock your device with your PIN code",
-  open_tron_app_on_ledger: "Open the TRON app on your Ledger",
-  ledger_connected_tronscan_message_0: `If your Ledger is connected properly then Tronscan will show "Connected"`,
-  click_on_open_wallet: `Click on "Open Wallet"`,
+    "Verbinden und entsperren sie Ihr Gerät mit Ihrem PIN-Code",
+  open_tron_app_on_ledger: "Öffnen sie die TRON-App auf Ihrem Ledger",
+  ledger_connected_tronscan_message_0: `Wenn Ihr Ledger richtig angeschlossen ist, zeigt Tronscan "Verbunden" an.`,
+  click_on_open_wallet: `Klicken Sie auf "Wallet öffnen".`,
   redirect_to_your_wallet_message:
-    "You will be redirected to your wallet and you can view your TRON address",
-  using_ledger_to_sign_transactions: "Using the ledger to sign transactions",
+    "Sie werden zu ihrer Wallet umgeleitet und können ihre TRON-Adresse einsehen.",
+  using_ledger_to_sign_transactions: "Verwendung des Ledgers zur Signierung von Transaktionen.",
   using_ledger_to_sign_transactions_message_0:
-    "Make sure to keep the Ledger connected and the TRON app open to sign transactions using the Ledger while using Tronscan",
+    "Stellen sie sicher, dass der Ledger angeschlossen und die TRON-App geöffnet bleibt, um Transaktionen mit dem Ledger zu signieren, während sie Tronscan verwenden.",
   using_ledger_to_sign_transactions_message_1:
-    "Tronscan will show a popup with the transaction details when a transaction signature is required. Signatures are required whenever you vote, send TRX, change account name, etc..",
-  ledger_note: "Note",
+    "Tronscan zeigt ein Popup mit den Transaktionsdetails an, wenn eine Transaktions-Signierung erforderlich ist. Signierungen sind immer dann erforderlich, wenn sie abstimmen, TRX senden, den Walletnamen usw... ändern möchten.",
+  ledger_note: "Notiz",
   ledger_note_message_1:
-    "only support Ledger Nano S,Ledger Nano X,Ledger Blue for now.",
-  ledger_note_message_2: "use chrome explorer.",
+    "Unterstützt vorerst nur Ledger Nano S, Ledger Nano X, Ledger Blue.",
+  ledger_note_message_2: "Verwenden sie den Chrome Browser.",
   ledger_note_message_3:
-    "We support：TRX and TRC10 token transfer, TRC20 token transfer, freeze and unfreeze TRX, voting, setting name.",
+    "Wir unterstützen: TRX und TRC10 Tokentransfer, TRC20 Tokentransfer, TRX einfrieren und auftauen,  Abstimmungen, Name einstellen.",
   ledger_note_message_4:
-    "Features unavailable currently: TRC20 token transfer, unfreeze TRC10 tokens, token creation, Poloni DEX, SR application, SR rewards application, Github update, trading pair creation, capital injection and capital withdrawal.",
+    "Funktionen derzeit nicht verfügbar: TRC20-Tokentransfer, Auftauen von TRC10-Tokens, Token-Erstellung, Poloni DEX, SR-Anwendung, SR-Belohnungsanwendung, Github-Aktualisierung, Erstellung von Handelspaaren, Kapitalzuführung und Kapitalabzug.",
 
   /*
   ##################################################################################
@@ -921,10 +921,10 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  record_not_found: "Record not found!",
-  warning: "Warning",
-  login_success: "Login Success",
-  logout_success: "Logout Success",
+  record_not_found: "Eintrag nicht gefunden!",
+  warning: "Warnung",
+  login_success: "Login erfolgreich",
+  logout_success: "Logout erfolgreich",
   /*
   ##################################################################################
   #                                                                                #
