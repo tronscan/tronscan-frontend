@@ -23,7 +23,7 @@ export const messages = {
   #         Version: 1.6-13082018                                                  #
   #         Update Date: 13.08.2018                                                #
   #         Language: Deutsch                                                      #
-  #         Status: Approved Version                                               #
+  #         Status: unapproved Version                                             #
   #         Number of checks: 0                                                    #
   #         Participants: TRON-Family                                              #
   #                                                                                #
@@ -889,7 +889,7 @@ export const messages = {
   install_the: "Installieren sie die ",
   app: "App",
   install_latest_version_message_0: "Installieren Sie die neueste Version von ",
-  opening_your_wallet: "Öffnen ihre Brieftasche",
+  opening_your_wallet: "Öffnen sie ihre Wallet",
   open_the_tronscan_desktop_client: "Öffne den Blockchain Explorer: ",
   click_open_wallet_top_right: `Klicken Sie oben rechts auf "Anmelden"`,
   choose_ledger: "Wählen Sie Ledger",
