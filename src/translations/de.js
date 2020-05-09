@@ -25,7 +25,7 @@ export const messages = {
   #         Language: Deutsch                                                      #
   #         Status: unapproved Version                                             #
   #         Number of checks: 0                                                    #
-  #         Participants: TRON-Family                                              #
+  #         Participants: TRON-Family  (mic)                                            #
   #                                                                                #
   ##################################################################################
   #                                                                                #
