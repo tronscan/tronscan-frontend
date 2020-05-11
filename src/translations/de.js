@@ -25,7 +25,7 @@ export const messages = {
   #         Language: Deutsch                                                      #
   #         Status: unapproved Version                                             #
   #         Number of checks: 0                                                    #
-  #         Participants: TRON-Family  (mic)                                            #
+  #         Participants: TRON-Family                                              #
   #                                                                                #
   ##################################################################################
   #                                                                                #
@@ -2620,23 +2620,23 @@ export const messages = {
   number_of_lists: "Number of lists:",
   total_in_tronscan: "Total in tronscan",
   develpopers_reward_tip:
-    "Thank you for considering to help out with the java-tron! TRON Foundation welcome contributions from anyone on the internet, and are grateful for your contributions.",
-  verifty_contract_result: "Result",
-  main_contract_deployment: "(Please select the main contract deployment)",
-  enter_main_contract: "Please enter the name of the main contract",
-  contract_verifty_passed: "Verified",
-  unverifty_passed: "Unverified",
+    "Danke, dass Sie in Betracht ziehen, uns mit dem Java-TRON zu helfen! Die TRON Foundation freut sich über Beiträge im Internet und ist dankbar für Ihre Unterstützung.",
+  verifty_contract_result: "Ergebnis",
+  main_contract_deployment: "(Bitte wählen Sie den Einsatzbereich des Hauptkontrakts aus)",
+  enter_main_contract: "Bitte geben Sie den Namen des Hauptkontrakts ein",
+  contract_verifty_passed: "Bestätigt",
+  unverifty_passed: "Unbestätigt",
   developers_reward_tip:
-    "Thank you for considering to help out with the java-tron! TRON Foundation welcome contributions from anyone on the internet, and are grateful for your contributions.",
+    "Danke, dass Sie in Betracht ziehen, uns mit dem Java-TRON zu helfen! Die TRON Foundation freut sich über Beiträge im Internet und ist dankbar für Ihre Unterstützung.",
   developers_niTron:
-    "niTron global developer conference will be held in Korea at 29 Feb, 2020. By the end of  31 Jan, 2020, developers with the total points end up in Top 5 will be rewarded two tickets each.",
-  developers_account: "Developers",
-  SR_rank: "Rank",
-  SR_blocksMissed: "Blocks Missed",
-  SR_votes: "Votes",
-  SR_voteRatio: "Voting sharing ratio",
+    "Die globale Entwicklerkonferenz niTron findet am 29. Februar 2020 in Korea statt. Bis Ende 31. Januar 2020 erhalten Entwickler, die mit der Gesamtpunktzahl in den Top 5 landen, je zwei Tickets.",
+  developers_account: "Entwickler",
+  SR_rank: "Platz",
+  SR_blocksMissed: "Verlorene Blöcke",
+  SR_votes: "Stimmen",
+  SR_voteRatio: "Verhältnis der Stimmabgabe",
   SR_normal: "Normal",
-  SR_avnormal: "Abnormal",
+  SR_avnormal: "Ungewöhnlich",
   /*
      ##################################################################################
      #                                                                                #
@@ -2647,38 +2647,38 @@ export const messages = {
   main_chain: "Main Chain",
   sun_network: "SUN Network",
   expand: "Details",
-  collapse: "Collapse",
-  tooltip_onlineNodes: "Total nodes on the Main Chain and SUN Network",
-  tooltip_onlineNodes_mainnet: "Number of nodes on the Main Chain",
-  tooltip_onlineNodes_sunnet: "Number of nodes on SUN Network",
-  tooltip_blockHeight: "Latest block No.",
-  tooltip_blockHeight_mainnet: "Latest block No. on the Main Chain",
-  tooltip_blockHeight_sunnet: "Latest block No. on SUN Network",
-  tooltip_startTps: "Current TPS, updated every 3 seconds",
-  tooltip_tps: "Maximum TPS",
-  tooltip_startTps_mainnet: "TPS on the Main Chain, updated every 3 seconds",
-  tooltip_tps_mainnet: "Maximum TPS on the Main Chain",
-  tooltip_startTps_sunnet: "TPS on SUN Network, updated every 3 seconds",
-  tooltip_tps_sunnet: "Maximum TPS on SUN Network",
+  collapse: "Kollaps",
+  tooltip_onlineNodes: "Anzahl der Nodes in der Main Chain und im SUN Network insgesamt",
+  tooltip_onlineNodes_mainnet: "Anzahl der Nodes in der Main Chain",
+  tooltip_onlineNodes_sunnet: "Anzahl der Nodes im SUN Network",
+  tooltip_blockHeight: "Nr. des letzten Blocks",
+  tooltip_blockHeight_mainnet: "Nr. des letzten Blocks in der Main Chain",
+  tooltip_blockHeight_sunnet: "Nr. des letzten Blocks im SUN Network",
+  tooltip_startTps: "Aktuelle TPS, alle 3 Sekunden aktualisiert",
+  tooltip_tps: "Maximale TPS",
+  tooltip_startTps_mainnet: "TPS in der Main Chain, alle 3 Sekunden aktualisiert",
+  tooltip_tps_mainnet: "Maximale TPS in der Main Chain",
+  tooltip_startTps_sunnet: "TPS im SUN Network, alle 3 Sekunden aktualisiert",
+  tooltip_tps_sunnet: "Maximale TPS im SUN Network",
   tooltip_transactionPerDay:
-    "Total transactions of the previous day on the main chain and SUN Network",
+    "Transaktionen des letzten Tages in der Main Chain and im SUN Network insgesamt",
   tooltip_transactionPerDay_mainnet:
-    "Transactions of the previous day on the Main Chain",
+    "Transaktionen des letzten Tages in der Main Chain",
   tooltip_transactionPerDay_sunnet:
-    "Transactions of the previous day on SUN Network",
+    "Transaktionen des letzten Tages im SUN Network",
   tooltip_accounts:
-    "Total real-time accounts on the Main Chain and SUN Network",
-  tooltip_accounts_mainnet: "Real-time accounts on the Main Chain",
-  tooltip_accounts_sunnet: "Real-time accounts on SUN Network",
-  tooltip_trxPrice: "TRX price in USD",
-  tooltip_trxPrice_mainnet: "TRX price in USD, real-time quote",
-  tooltip_trxPrice_sunnet: "TRX price in USD, real-time quote",
+    "Konten in der Main Chain und im SUN Network in Echtzeit insgesamt",
+  tooltip_accounts_mainnet: "Konten in der Main Chain in Echtzeit",
+  tooltip_accounts_sunnet: "Konten im SUN Network in Echtzeit",
+  tooltip_trxPrice: "TRX-Preis in USD",
+  tooltip_trxPrice_mainnet: "TRX-Preis in USD, Echtzeit-Kurs",
+  tooltip_trxPrice_sunnet: "TRX-Preis in USD, Echtzeit-Kurs",
   nav_network: "SUN Network",
-  sun_network_product: "Products ",
+  sun_network_product: "Produkte",
   sun_network_DAppChain: "DAppchain",
-  sun_network_relevant_information: "Related info",
-  sun_network_project_introduction: "About the project",
-  sun_network_development_document: "Developer documentation",
+  sun_network_relevant_information: "Weiterführende Informationen",
+  sun_network_project_introduction: "Informationen zum Projekt",
+  sun_network_development_document: "Dokumentation für Entwickler",
   home_page: "Startseite",
   developer_challenge: "Entwickler-Challenge",
   /*
