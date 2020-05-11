@@ -2771,7 +2771,7 @@ export const messages = {
   signature_owner_permission_name_required: "Name of owner access is required",
   signature_owner_threshold_required: "Threshold of owner access is required",
   signature_active_permission_name_required:
-    "Threshold of owner access is required",
+    "Name of active access is required",
   signature_active_threshold_required: "Threshold of active access is required",
   signature_keys_required: "Keys is required",
   signature_permission_name_required: "Access name is required",
