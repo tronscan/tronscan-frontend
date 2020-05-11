@@ -2767,28 +2767,28 @@ export const messages = {
   signature_add_active_permissions: "Add active access",
 
   // 2019-12-02
-  signature_owner_permission_name_required: "Name of owner access is required",
-  signature_owner_threshold_required: "Threshold of owner access is required",
+  signature_owner_permission_name_required: "Name des Eigentümerzugangs ist erforderlich",
+  signature_owner_threshold_required: "Die Grenze des Eigentümerzugangs ist erforderlich",
   signature_active_permission_name_required:
-    "Threshold of owner access is required",
-  signature_active_threshold_required: "Threshold of active access is required",
-  signature_keys_required: "Keys is required",
-  signature_permission_name_required: "Access name is required",
-  signature_operations_required: "Operation is required",
-  signature_threshold_required: "Threshold is requried",
+    "Name des aktiven Zugangs ist erforderlich",
+  signature_active_threshold_required: "Die Grenze für aktiven Zugang ist erforderlich",
+  signature_keys_required: "Schlüssel sind erforderlich",
+  signature_permission_name_required: "Zugangsname ist erforderlich",
+  signature_operations_required: "Operation ist erforderlich",
+  signature_threshold_required: "Grenzwert ist erforderlich",
   signaure_control_address_tip:
-    "Control address refers to the associated control addresses of owner permission, SR permission and active permission. Display of the three types of permissions will change subsequently when the control address is modified.",
-  permission_name_limit: "Please input English characters and numbers",
+    "Die Kontrolladresse bezieht sich auf die zugehörigen Kontrolladressen der Berechtigung des Eigentümers, der SR-Berechtigung und der aktiven Berechtigung. Die Anzeige der drei Arten von Berechtigungen ändert sich nachträglich, wenn die Kontrolladresse geändert wird.",
+  permission_name_limit: "Bitte geben Sie englische Zeichen und Zahlen ein",
 
   // 2019-12-10
-  ledger_tronlink: "Login to TRONSCAN via TronLink",
+  ledger_tronlink: "Bei TRONSCAN mit TronLink einloggen",
   // 2019-12-18
-  address_vote_reward_pending: "Unwithdrawn voting reward",
-  address_balance: "TRX Balance",
-  address_get_energe: "For Energy",
-  address_get_bandwith: "For Bandwidth",
-  address_freeze_owner: "To your account",
-  address_freeze_other: "To others' account(s)",
+  address_vote_reward_pending: "Noch nicht abgerufene Abstimmungs-Belohnungen",
+  address_balance: "TRX Kontostand",
+  address_get_energe: "Für Energie",
+  address_get_bandwith: "Für Bandbreite",
+  address_freeze_owner: "Für Ihr Konto",
+  address_freeze_other: "Für andere Konten",
   ...lang19Q4,
   ...lang20Q1,
   ...lang20Q2
