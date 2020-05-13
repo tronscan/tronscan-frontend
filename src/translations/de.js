@@ -2397,25 +2397,25 @@ export const messages = {
   str_6: "Unable to verify the signature",
   str_7: "Data expires, please make sure your computer system clock is correct",
   str_8: "Contract has been entered.",
-  str_9: "Unable to verify the parameters",
+  str_9: "Die Parameter konnten nicht verifiziert werden",
   token_login_no_updated:
-    "The login account is inconsistent with the publisher and cannot be updated",
+    "Das Login Konto stimmt nicht mit dem Herausgeber überein und kann nicht aktualisiert werden.",
   information_is_being_confirmed:
-    "Information is being confirmed, this process may take 10 minutes, please try again later",
+    "Informationen werden gerade bestätigt. Dieser Vorgang kann 10 Minuten dauern, bitte versuchen Sie es später noch einmal.",
   interTrx_tip:
-    "Internal Transactions is an operation which a general address calls a Smart Contract， and the Smart Contract transfers token to other address.",
-  interTrx_tip_contract: "Internal transactions from contract execution",
+    "Interne Transaktionen sind ein Vorgang, bei dem eine interne Adresse einen Smart Contract aufruft und der Smart Contract den Token auf eine andere Adresse überträgt.",
+  interTrx_tip_contract: "Interne Transaktionen aus der Contract Ausführung",
   event_tip:
-    "Events is to let the programmer or external interface provider use it to pay attention to contract operations and audits.",
+    "Die Veranstaltungen sollen dem Programmierer oder externen Schnittstellenanbieter die Möglichkeit geben, auf Contract Operationen und Audits zu achten.",
   /* 2019-07-06*/
-  trc20_free_orders: "0 trading fee for all orders",
-  Expected_acquisition: "Estimated gain",
+  trc20_free_orders: "0 Handelsgebühr für jede Order",
+  Expected_acquisition: "Geschätzter Gewinn",
   energy_more:
-    "Bandwidth obtained = TRX frozen for gaining bandwidth / the total TRX frozen in the network for gaining bandwidth.",
+    "Erhaltene Bandbreite = Eigene für Bandbreite eingefrorene TRX / Gesamt für Bandbreite eingefrorene TRX * Gesamtbandbreitegrenze.",
   bandwidth_more:
-    "Energy obtained = TRX frozen for gaining Energy / total TRX frozen for gaining Energy in the entire network * total energy limit.",
-  table_info_big: "only the first 10,000 data are displayed",
-  Download: "Download",
+    "Erhaltene Energie = Eigene für Energie eingefrorene TRX / Gesamt für Energie eingefrorene TRX * Gesamtenergiegrenze.",
+  table_info_big: "Nur die letzten 10.000 Daten werden angezeigt",
+  Download: "Herunterladen",
 
   /*
    ##################################################################################
@@ -2424,9 +2424,9 @@ export const messages = {
    #                                                                                #
    ##################################################################################
   */
-  please_enter_address: "Please enter contract address",
+  please_enter_address: "Bitte geben Sie den Namen des Contract ein",
   please_enter_name: "Please enter contract name",
-  please_enter_code: "Please enter contract Code",
+  please_enter_code: "Bitte geben Sie den Contract Code ein",
   /*
   ##################################################################################
   #                                                                                #
@@ -2436,21 +2436,21 @@ export const messages = {
   */
   contract_title: "Contract",
   contract_code_choice: "Code",
-  contract_read: "Read Contract",
-  contract_write: "Write Contract",
-  contract_tip: "Prompt",
-  contract_version: "Compiler version",
-  contract_optimize: "Optimization",
-  contract_optimizer: "No",
-  contract_optimizered: "Yes",
-  contract_verify_status: "The contract has not been verified yet, click here",
-  contract_verify_btn: "to verify",
-  write_payable: "Run these functions with TRX or Token",
-  write_nonePayable: "Run these functions will consume TRX or Energy",
+  contract_read: "Contract lesen",
+  contract_write: "Contract schreiben",
+  contract_tip: "Auffordern",
+  contract_version: "Compiler Version",
+  contract_optimize: "Optimierung",
+  contract_optimizer: "Nein",
+  contract_optimizered: "Ja",
+  contract_verify_status: "Der Vertrag wurde noch nicht verifiziert, klicken Sie hier",
+  contract_verify_btn: "Verifizieren",
+  write_payable: "Führen Sie diese Funktionen mit TRX oder Token aus",
+  write_nonePayable: "Die Ausführung dieser Funktionen verbraucht TRX oder Energie",
   verify_code1:
-    "Contract verification is the matching of the smart contract code you write with the smart contract code posted on the blockchain network to check the authenticity and transparency of the smart contract.",
+    "Vertragsprüfung ist der Abgleich des von Ihnen geschriebenen intelligenten Vertragscodes mit dem intelligenten Vertragscode, der im Blockchain-Netzwerk veröffentlicht wird, um die Authentizität und Transparenz des intelligenten Vertrags zu überprüfen.",
   verify_code2:
-    "You can verify your smart contract on TRONSCAN by uploading the smart contract file and review it.",
+    "Sie können Ihren Smart Contract auf TRONSCAN verifizieren, indem Sie die Datei des Smart Contract hochladen und überprüfen.",
 
   /*
    ##################################################################################
