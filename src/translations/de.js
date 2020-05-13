@@ -2349,42 +2349,42 @@ export const messages = {
   leave_tip:
     "your information is incomplete; would you like to end the process of filling in the form? ",
   already_add_social_link_: "social media link(s) added",
-  token_input_success_you_can: "you can find it in",
+  token_input_success_you_can: "Sie finden es in",
   token_input_success_wallet: " Wallet",
-  token_input_success_myaccount: "Token(s) issued by me",
+  token_input_success_myaccount: "Von mir erstellte Token",
   token_input_success_find_it: " ",
   token_input_success_trx_market:
-    "fill in 10 more items to be recorded in Poloni DEX",
+    "Füllen Sie 10 weitere Punkte aus, um in Poloni DEX aufgeführt zu werden",
   token_input_success_tip:
-    "token(s) that have been successfully recorded can be found in the list; will be automatically recorded in wallet and tronlink; can be searched",
+    "Token, die erfolgreich erfasst wurden, können in der Liste gefunden werden; Sie werden automatisch im Wallet und in Tronlink erfasst; man kann nach ihnen suchen.",
   token_spend_confirm_new:
-    "I have learned that issuing a token requires a one-time consumption of 1024TRX.",
+    "Ich habe verstanden, dass die Erstellung eines Token einmalig  1024TRX kostet",
   token_logo_input_placeholder:
-    "Please submit image link, jpg/jpeg/png are supported, size ratio 1:1",
-  contract_created_address: "Address of contract creator",
+    "Bitte reichen Sie den Bildlink ein, jpg/jpeg/png werden unterstützt, Seitenverhältnis 1:1",
+  contract_created_address: "Adresse des Contract Erstellers",
   token_input_trc10_tip:
-    "Please fill in the Logo, GitHub, Social media links when updating Token",
-  token_input_trc20_tip: "Please fill in the Logo when updating Token",
+    "Bitte ergänzen Sie Logo, GitHub- und Social Media-Links bei der Aktualisierung des Token",
+  token_input_trc20_tip: "Bitte bei der Aktualisierung des Token das Logo ergänzen.",
   token_create_auther_different:
-    "The login account is inconsistent with the publisher and cannot be updated",
-  ico_infomation: "ICO information",
-  project_website: "Project offical website",
-  black_1: "Suspected of misappropriating other token names ",
-  black_2: "Allegedly committed fraud and run away with the fund",
+    "Das Login Konto stimmt nicht mit dem Herausgeber überein und kann nicht aktualisiert werden.",
+  ico_infomation: "ICO Informationen",
+  project_website: "Offizielle Website des Projekts",
+  black_1: "Verdacht der missbräuchlichen Verwendung anderer Token Namen",
+  black_2: "Angeblicher Betrug und Flucht mit dem Kapital.",
   black_3:
-    "Suspected of violating the law and could face major law enforcement ",
-  black_4: "Pogress of the project is severely inconsistent with the plan",
-  black_5: "Malicious increase of issuance",
+    "Wird verdächtigt, gegen das Gesetz verstoßen zu haben, und könnte einer größeren Strafverfolgung ausgesetzt sein ",
+  black_4: "Der Fortschritt des Projekts steht in krassem Widerspruch zum Plan",
+  black_5: "Böswillige Erhöhung der Ausgabe",
   black_6:
-    "Project is dismissed; Community, social media, and official website have gone over 30 days withou maintenance",
+    "Das Projekt wird eingestellt; die Community, die sozialen Medien und die offizielle Website sind ohne Wartung über 30 Tage lang verschwunden.",
   black_7:
-    "Team voluntarily takes down the project due to its current progress and strategy adjustment ",
+    "Das Team nimmt das Projekt aufgrund seines aktuellen Fortschritts und seiner Strategieanpassung freiwillig zurück",
   black_8:
-    "Whitepaper provides false information and is suspected of plagrism ",
+    "Das Whitepaper liefert falsche Informationen und wird verdächtigt ein Plagiat zu sein",
   black_9:
-    "Project makes unauthorized changes to the whitepaper or other key information and results in severe consequences",
+    "Das Projekt nimmt unautorisierte Änderungen am Whitepaper oder anderen Schlüsselinformationen vor und verursacht schwerwiegende Folgen",
   black_10:
-    "Smart Contract enthält Sicherheitsrisiken und könnte oder hat bereits zu finanziellen Verlusten der Nutzer geführt",
+    "Der Smart Contract enthält Sicherheitsrisiken und könnte oder hat bereits zu finanziellen Verlusten der Nutzer geführt",
   black_11:
     "Token Name oder Abkürzung enthält sensible Wörter xxxxx. Zur Überprüfung ausstehend.",
   str_1: "Token Namen oder Abkürzungen enthalten sensible Wörter.",
