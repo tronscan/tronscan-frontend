@@ -2199,7 +2199,7 @@ export const messages = {
   social_link: "Social Link",
   TRON_ecosystem: "TRON Ecosystem",
   accunt_ad_tip: "Poloni DEX LaunchBase grand open ACE is waiting for you",
-  token_fliter: "token fliter",
+  token_fliter: "token filter",
   gain: "Change (%)",
   volume_24_trx: "Volume (24H)",
   all: "All",
@@ -2374,18 +2374,18 @@ export const messages = {
   black_2: "Allegedly committed fraud and run away with the fund",
   black_3:
     "Suspected of violating the law and could face major law enforcement ",
-  black_4: "Pogress of the project is severely inconsistent with the plan",
+  black_4: "Progress of the project is severely inconsistent with the plan",
   black_5: "Malicious increase of issuance",
   black_6:
     "Project is dismissed; Community, social media, and official website have gone over 30 days withou maintenance",
   black_7:
     "Team voluntarily takes down the project due to its current progress and strategy adjustment ",
   black_8:
-    "Whitepaper provides false information and is suspected of plagrism ",
+    "Whitepaper provides false information and is suspected of plagiarism ",
   black_9:
     "Project makes unauthorized changes to the whitepaper or other key information and results in severe consequences",
   black_10:
-    "Smart contract contins security risks and could or has already led to financial loss of the users",
+    "Smart contract contains security risks and could or has already led to financial loss of the users",
   black_11:
     "Token names or abbreviations contain sensitive words xxxxx. Pending for review.",
   str_1: "Token names or abbreviations contain sensitive words.",
@@ -2771,7 +2771,7 @@ export const messages = {
   signature_owner_permission_name_required: "Name of owner access is required",
   signature_owner_threshold_required: "Threshold of owner access is required",
   signature_active_permission_name_required:
-    "Threshold of owner access is required",
+    "Name of active access is required",
   signature_active_threshold_required: "Threshold of active access is required",
   signature_keys_required: "Keys is required",
   signature_permission_name_required: "Access name is required",
