@@ -2199,7 +2199,7 @@ export const messages = {
   social_link: "Social Link",
   TRON_ecosystem: "TRON Ecosystem",
   accunt_ad_tip: "Poloni DEX LaunchBase grand open ACE is waiting for you",
-  token_fliter: "token fliter",
+  token_fliter: "token filter",
   gain: "Change (%)",
   volume_24_trx: "Volume (24H)",
   all: "All",
