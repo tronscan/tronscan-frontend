@@ -2385,7 +2385,7 @@ export const messages = {
   black_9:
     "Project makes unauthorized changes to the whitepaper or other key information and results in severe consequences",
   black_10:
-    "Smart contract contins security risks and could or has already led to financial loss of the users",
+    "Smart contract contains security risks and could or has already led to financial loss of the users",
   black_11:
     "Token names or abbreviations contain sensitive words xxxxx. Pending for review.",
   str_1: "Token names or abbreviations contain sensitive words.",
@@ -2393,7 +2393,7 @@ export const messages = {
     "Token names or abbreviations different from the ones in the contract.",
   str_3:
     "Volume of total issuance different from total supply in the contract.",
-  str_4: "Failed. Contract code contains assert.",
+  str_4: "Failed. Contract code contains asset.",
   str_5: "Token accuracy does not match the one in the contract.",
   str_6: "Unable to verify the signature",
   str_7: "Data expires, please make sure your computer system clock is correct",
