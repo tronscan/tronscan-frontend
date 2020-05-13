@@ -2374,14 +2374,14 @@ export const messages = {
   black_2: "Allegedly committed fraud and run away with the fund",
   black_3:
     "Suspected of violating the law and could face major law enforcement ",
-  black_4: "Pogress of the project is severely inconsistent with the plan",
+  black_4: "Progress of the project is severely inconsistent with the plan",
   black_5: "Malicious increase of issuance",
   black_6:
     "Project is dismissed; Community, social media, and official website have gone over 30 days withou maintenance",
   black_7:
     "Team voluntarily takes down the project due to its current progress and strategy adjustment ",
   black_8:
-    "Whitepaper provides false information and is suspected of plagrism ",
+    "Whitepaper provides false information and is suspected of plagiarism ",
   black_9:
     "Project makes unauthorized changes to the whitepaper or other key information and results in severe consequences",
   black_10:
@@ -2393,7 +2393,7 @@ export const messages = {
     "Token names or abbreviations different from the ones in the contract.",
   str_3:
     "Volume of total issuance different from total supply in the contract.",
-  str_4: "Failed. Contract code contains asset.",
+  str_4: "Failed. Contract code contains assert.",
   str_5: "Token accuracy does not match the one in the contract.",
   str_6: "Unable to verify the signature",
   str_7: "Data expires, please make sure your computer system clock is correct",
