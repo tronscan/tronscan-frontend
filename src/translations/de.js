@@ -2384,19 +2384,19 @@ export const messages = {
   black_9:
     "Project makes unauthorized changes to the whitepaper or other key information and results in severe consequences",
   black_10:
-    "Smart contract contins security risks and could or has already led to financial loss of the users",
+    "Smart Contract enthält Sicherheitsrisiken und könnte oder hat bereits zu finanziellen Verlusten der Nutzer geführt",
   black_11:
-    "Token names or abbreviations contain sensitive words xxxxx. Pending for review.",
-  str_1: "Token names or abbreviations contain sensitive words.",
+    "Token Name oder Abkürzung enthält sensible Wörter xxxxx. Zur Überprüfung ausstehend.",
+  str_1: "Token Namen oder Abkürzungen enthalten sensible Wörter.",
   str_2:
-    "Token names or abbreviations different from the ones in the contract.",
+    "Tokennamen oder die Kurzbezeichnung unterscheidet sich von denjenigen im Vertrag.",
   str_3:
-    "Volume of total issuance different from total supply in the contract.",
-  str_4: "Failed. Contract code contains assert.",
-  str_5: "Token accuracy does not match the one in the contract.",
-  str_6: "Unable to verify the signature",
-  str_7: "Data expires, please make sure your computer system clock is correct",
-  str_8: "Contract has been entered.",
+    "Die Gesamtmenge unterscheidet sich von der Gesamtmenge  im Contract.",
+  str_4: "Gescheitert. Contract Code enthält einen Vermögenswert.",
+  str_5: "Die Genauigkeit des Tokens stimmt nicht mit der im Contract überein.",
+  str_6: "Die Signatur kann nicht verifiziert werden",
+  str_7: "Daten laufen ab, bitte stellen Sie sicher, dass die Systemuhr Ihres Computers korrekt ist",
+  str_8: "Contract wurde eingegeben.",
   str_9: "Die Parameter konnten nicht verifiziert werden",
   token_login_no_updated:
     "Das Login Konto stimmt nicht mit dem Herausgeber überein und kann nicht aktualisiert werden.",
