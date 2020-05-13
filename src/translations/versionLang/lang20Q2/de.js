@@ -15,7 +15,7 @@
     #         Template for translating the tronscan.org website                      #
     #         Version: 2020 Q2                                                       #
     #         Update Date: 04.2019                                                   #
-    #         Language: Deutsch                                                      #
+    #         Language: German                                                       #
     #         Status: Approved Version                                               #
     #         Number of checks: 0                                                    #
     #                                                                                #
