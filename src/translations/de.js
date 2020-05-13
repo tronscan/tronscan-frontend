@@ -1,9 +1,9 @@
 /* eslint-disable */
-import { lang19Q4 } from "./versionLang/lang19Q4/en19Q4";
-import { lang20Q1 } from "./versionLang/lang20Q1/en";
+import { lang19Q4 } from "./versionLang/lang19Q4/de19Q4";
+import { lang20Q1 } from "./versionLang/lang20Q1/de";
 import {
   lang20Q2
-} from './versionLang/lang20Q2/en'; /* 2020Q2 */
+} from './versionLang/lang20Q2/de'; /* 2020Q2 */
 export const messages = {
   /*
   ##################################################################################
@@ -22,7 +22,7 @@ export const messages = {
   #         Template for translating the tronscan.org website                      #
   #         Version: 1.6-13082018                                                  #
   #         Update Date: 13.08.2018                                                #
-  #         Language: Deutsch                                                      #
+  #         Language: German                                                       #
   #         Status: unapproved Version                                             #
   #         Number of checks: 0                                                    #
   #         Participants: TRON-Family                                              #
