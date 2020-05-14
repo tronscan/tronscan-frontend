@@ -1,9 +1,9 @@
 /* eslint-disable */
-import { lang19Q4 } from "./versionLang/lang19Q4/en19Q4";
-import { lang20Q1 } from "./versionLang/lang20Q1/en";
+import { lang19Q4 } from "./versionLang/lang19Q4/de19Q4";
+import { lang20Q1 } from "./versionLang/lang20Q1/de";
 import {
   lang20Q2
-} from './versionLang/lang20Q2/en'; /* 2020Q2 */
+} from './versionLang/lang20Q2/de'; /* 2020Q2 */
 export const messages = {
   /*
   ##################################################################################
@@ -22,7 +22,7 @@ export const messages = {
   #         Template for translating the tronscan.org website                      #
   #         Version: 1.6-13082018                                                  #
   #         Update Date: 13.08.2018                                                #
-  #         Language: Deutsch                                                      #
+  #         Language: German                                                       #
   #         Status: unapproved Version                                             #
   #         Number of checks: 0                                                    #
   #         Participants: TRON-Family                                              #
@@ -933,14 +933,14 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  applied_for_super_representative: "applied for Super Representative",
-  sr_candidature: "Super Representative Partners",
-  created_token: "created token",
-  token_creation: "Token Creation",
-  bought: "bought",
-  voter: "voter",
-  voting: "voting",
-  asset: "asset",
+  applied_for_super_representative: "Beantragter Super-Repräsentant",
+  sr_candidature: "Super Repräsentanten Partner",
+  created_token: "erstellter Token",
+  token_creation: "Tokenerstellung",
+  bought: "gekauft",
+  voter: "Voter",
+  voting: "Abstimmung",
+  asset: "Asset",
   token_transfer: "Token Transfer",
   /*
   ##################################################################################
@@ -949,11 +949,11 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  buy_trx: "Buy TRX",
+  buy_trx: "Kaufe TRX",
   buy_trx_message_0:
-    "TRX can be purchased directly with Fiat or other Crypto-Currencies without a stock exchange. It uses a service from Changelly.com and is the easiest and fastest way to purchase trx. A list of supported currencies and a FAQ can be found at ",
-  buy_trx_using_changelly: "Buy TRX using Changelly",
-  cant_load_widget: "Can't load widget",
+    "TRX kann direkt mit Fiat oder anderen Krypto-Währungen ohne Börse gekauft werden. Es nutzt einen Service von Changelly.com und ist der einfachste und schnellste Weg, trx zu kaufen. Eine Liste der unterstützten Währungen und eine FAQ finden Sie unter ",
+  buy_trx_using_changelly: "TRX mit Changelly kaufen",
+  cant_load_widget: "Kann das Widget nicht laden",
   /*
   ##################################################################################
   #                                                                                #
@@ -961,16 +961,16 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  date: "Date",
-  total_transactions: "Total Transactions",
-  avg_blockTime: "Avg BlockTime",
-  avg_blockSize: "Avg BlockSize",
-  total_BlockCount: "Total BlockCount",
-  new_address_seen: "New Address Seen",
+  date: "Datum",
+  total_transactions: "Transaktionen insgesamt",
+  avg_blockTime: "Durchschn. Blockzeit",
+  avg_blockSize: "Durchschn Blockgrösse",
+  total_BlockCount: "Gesamte Blockanzahl",
+  new_address_seen: "Neue Adresse gesehen",
   transfer_contract: "Transfer Contract",
-  TRX_transfer_between_addresses: "TRX transfer between addresses",
+  TRX_transfer_between_addresses: "TRX-Übertragung zwischen Adressen",
   transfer_asset_contract: "Transfer Asset Contract",
-  token_transfer_between_addresses: "Token transfer between addresses",
+  token_transfer_between_addresses: "Token-Übertragung zwischen Adressen",
   participate_asset_issue_contract: "Participate Asset Issue Contract",
   participate_token_between_addresses: "Participate token between addresses",
   witness_update_contract: "Witness Update Contract",
