@@ -1596,7 +1596,7 @@ export const messages = {
   the_contract_creation_code_for:
     " does NOT match the Contract Creation Code for ",
   error_contract_ABI_for: "Sorry! The Compiled Contract ABI for",
-  unableto_verify_contract_source_code: "Unableto Verify Contract source code.",
+  unableto_verify_contract_source_code: "Unable to Verify Contract source code.",
   contractname_found: "Contractname(s) found",
   /*
   ##################################################################################
@@ -2141,7 +2141,7 @@ export const messages = {
   total_energy_used_chart: "total energy used chart",
   total_used_energy: "total used energy",
   energy_used_by_freezing_TRX: "energy used by freezing TRX",
-  energy_used_by_burning_TRX: "energy uese by burning TRX",
+  energy_used_by_burning_TRX: "energy used by burning TRX",
   total_energy_used: "total energy used",
   freezing_energy: "freezing energy",
   burning_energy: "burning energy",
@@ -2163,7 +2163,7 @@ export const messages = {
   day_contract_call_distribution: "contract call distribution per day",
   a_total: "A total",
   with_the_proportion_of: "with the proportion of",
-  uesd_by_the: "uesd by the",
+  uesd_by_the: "used by the",
   contracts_from_the_total_used_of: "contracts from the total used of",
   Contract_times_calls:
     "Contract times calls(Sorted by Contract times value in descending order)",
