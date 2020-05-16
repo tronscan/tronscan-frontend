@@ -579,10 +579,7 @@ export const messages = {
   to_much_votes: "Zuviele Stimmen",
   no_trx_remaining: "Keine TRX übrig",
   show_more: "Zeige {countriesLength} mehr",
-  vote_guide_message: "Benutzen Sie Ihre TRX, um die Super Repräsentanten zu wählen.
-   Für jeden TRX, den Sie auf Ihrem Konto haben, haben Sie eine Stimme, die Sie ausgeben können. 
-   TRX wird nicht verbraucht. Sie können so viele Stimmen für die verschiedenen Vertreter abgeben, wie Sie möchten.
-   Die Anzahl der Stimmen wird um 02:00,08:00,14:00,20:00(GMT+8）jeden Tag aktualisiert und die Liste der Delegierten wird aktualisiert.",
+  vote_guide_message: "Benutzen Sie Ihre TRX, um die Super Repräsentanten zu wählen. Für jeden TRX, den Sie auf Ihrem Konto haben, haben Sie eine Stimme, die Sie ausgeben können. TRX wird nicht verbraucht. Sie können so viele Stimmen für die verschiedenen Vertreter abgeben, wie Sie möchten. Die Anzahl der Stimmen wird um 02:00,08:00,14:00,20:00(GMT+8）jeden Tag aktualisiert und die Liste der Delegierten wird aktualisiert.",
   search_address: "Suche nach Adresse",
   token_transactions: "Token Transaktionen",
   token_holders: "Token Halter",
@@ -636,22 +633,16 @@ export const messages = {
   participation_message_0:
     "Geben Sie den Teilnahmezeitraum an, in dem Token ausgegeben werden sollen. Während der Teilnahmeperiode können Benutzer TRX eintauschen gegen ",
   participation_message_1: " Token.",
-  frozen_supply_message_0: "Ein Teil des Angebots kann eingefroren werden. Die Menge des Angebots kann festgelegt werden und muss eingefroren werden.
-   für mindestens 1 Tag. Der eingefrorene Vorrat kann nach dem Startdatum manuell aufgetaut und eingefroren werden
-   Tage erreicht ist. Einfrieren ist nicht erforderlich.",
+  frozen_supply_message_0: "Ein Teil des Angebots kann eingefroren werden. Die Menge des Angebots kann festgelegt werden und muss eingefroren werden für mindestens 1 Tag. Der eingefrorene Vorrat kann nach dem Startdatum manuell aufgetaut und eingefroren werden Tage erreicht ist. Einfrieren ist nicht erforderlich.",
   token_issued_successfully: "Token erfolgreich ausgegeben",
   participation: "Ausgabe-Zeit",
   start_date: "Startdatum",
   end_date: "Enddatum",
   token_spend_confirm:
     "Ich bestätige, dass die Erstellung der gesamten Token eine einmalige Gesamtgebühr von 1024 TRX kostet.",
-  token_issue_guide_message_1: "Die Ausgabe eines Tokens zum TRON-Protokoll kann erfolgen
-    von jedem, der mindestens 1024 TRX auf seinem Konto hat.",
-  token_issue_guide_message_2: "Wenn ein Token ausgegeben wird, wird es auf der Token-Übersichtsseite angezeigt.
-    Benutzer können dann innerhalb der Ausgabezeit teilnehmen und ihren TRX gegen Token eintauschen.",
-  token_issue_guide_message_3: "Nach der Ausgabe der Token erhält Ihr Account den Betrag der Token der dem Gesamtangebot entspricht.
-    Wenn andere Benutzer ihren TRX gegen Token eintauschen, werden die Token von Ihrem Account abgehoben und Sie erhalten
-    TRX erhalten, der dem angegebenen Wechselkurs entspricht.",
+  token_issue_guide_message_1: "Die Ausgabe eines Tokens zum TRON-Protokoll kann erfolgen von jedem, der mindestens 1024 TRX auf seinem Konto hat.",
+  token_issue_guide_message_2: "Wenn ein Token ausgegeben wird, wird es auf der Token-Übersichtsseite angezeigt. Benutzer können dann innerhalb der Ausgabezeit teilnehmen und ihren TRX gegen Token eintauschen.",
+  token_issue_guide_message_3: "Nach der Ausgabe der Token erhält Ihr Account den Betrag der Token der dem Gesamtangebot entspricht. Wenn andere Benutzer ihren TRX gegen Token eintauschen, werden die Token von Ihrem Account abgehoben und Sie erhalten TRX erhalten, der dem angegebenen Wechselkurs entspricht.",
   /*
   ##################################################################################
   #                                                                                #
@@ -895,8 +886,8 @@ export const messages = {
   connect_unlock_ledger_with_pin:
     "Verbinden und entsperren sie Ihr Gerät mit Ihrem PIN-Code",
   open_tron_app_on_ledger: "Öffnen sie die TRON-App auf Ihrem Ledger",
-  ledger_connected_tronscan_message_0: "Wenn Ihr Ledger richtig angeschlossen ist, zeigt Tronscan "Verbunden" an.",
-  click_on_open_wallet: "Klicken Sie auf "Wallet öffnen".",
+  ledger_connected_tronscan_message_0: "Wenn Ihr Ledger richtig angeschlossen ist, zeigt Tronscan Verbunden an.",
+  click_on_open_wallet: "Klicken Sie auf Wallet öffnen.",
   redirect_to_your_wallet_message:
     "Sie werden zu ihrer Wallet umgeleitet und können ihre TRON-Adresse einsehen.",
   using_ledger_to_sign_transactions: "Verwendung des Ledgers zur Signierung von Transaktionen.",
