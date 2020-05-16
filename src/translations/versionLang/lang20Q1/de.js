@@ -319,7 +319,7 @@ export const lang20Q1 = {
   account_tags_desc:'Schlagwortlisten-Funktion: Sie können private Kennungen an Konten anbringen, um sie leichter identifizieren zu können.',
   account_tags_number:'{total} Konten insgesamt',
   account_tags_number_one:'{total} Konto insgesamt',
-  account_tags_table_1:'Kennung ,
+  account_tags_table_1:'Kennung',
   account_tags_table_2:'Notiz',
   account_tags_add_title:'Kennung hinzufügen',
   account_tags_edit_title:'Kennung bearbeiten',
