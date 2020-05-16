@@ -1097,7 +1097,7 @@ export const messages = {
   rating_status_5: "Falsche Informationen",
   rating_status_5_desc_a: "Falsche Identität zur Ausgabe des Token verwenden",
   rating_status_5_desc_b:
-    "Es liegen Informationen vor, die darauf hindeuten, dass das Betrugs-/Phishing-/Betrugs-/Spamming- oder Falschdarstellungsverhalten im Zusammenhang mit diesem Token nicht ordnungsgemäß gehandhabt wurde, oder der Token weist andere "gefährliche" Zeichen auf.",
+    "Es liegen Informationen vor, die darauf hindeuten, dass das Betrugs-/Phishing-/Betrugs-/Spamming- oder Falschdarstellungsverhalten im Zusammenhang mit diesem Token nicht ordnungsgemäß gehandhabt wurde, oder der Token weist andere gefährliche Zeichen auf.",
   rating_disclaimer: "DISCLAIMER",
   disclaimer_desc_1:
     "Tronscan does not endorse, approve or condemn any services or projects related to the token contracts displayed on the Tronscan. Users should always conduct research with due diligence before taking any action related to the token, especially when it comes to value investing.",
