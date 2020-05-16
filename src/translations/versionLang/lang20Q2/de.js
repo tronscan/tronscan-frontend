@@ -23,7 +23,7 @@
 */
 export const lang20Q2 = {
     //well 20200414
-    index_page_nav_more_support:'Unterstütung&Hilfe',
+    index_page_nav_more_support:'Unterstützung&Hilfe',
     index_page_nav_more_guide:"HANDBUCH FÜR ANFÄNGER",
     index_page_nav_more_service:'SERVICE',
     index_page_price_loading:'Lade',
