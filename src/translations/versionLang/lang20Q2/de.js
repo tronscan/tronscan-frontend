@@ -32,7 +32,7 @@ export const lang20Q2 = {
     representatives_data_least: "Min. ",
     representatives_data_highest: "Höchste",
     representatives_data_lowest: "Niedrigste",
-    representatives_data_details: "View details",
+    representatives_data_details: "Zeige Details",
     // representatives_data_to_vote: "投票",
     representatives_vote_next_round: "Nächste Runde",
     representatives_vote_total: "Gesamtstimmen in Echtzeit in dieser Runde",
