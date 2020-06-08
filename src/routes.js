@@ -1122,7 +1122,7 @@ export const routes = [
         },
         {
           url:
-            "https://www.dapp.com/search/tron",
+            "https://www.dapp.com/search_product/?keyword=tron",
           icon: false,
           label: "DAPP.COM"
         },
