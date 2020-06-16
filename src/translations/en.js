@@ -1596,7 +1596,7 @@ export const messages = {
   the_contract_creation_code_for:
     " does NOT match the Contract Creation Code for ",
   error_contract_ABI_for: "Sorry! The Compiled Contract ABI for",
-  unableto_verify_contract_source_code: "Unableto Verify Contract source code.",
+  unableto_verify_contract_source_code: "Unable to Verify Contract source code.",
   contractname_found: "Contractname(s) found",
   /*
   ##################################################################################
@@ -2141,7 +2141,7 @@ export const messages = {
   total_energy_used_chart: "total energy used chart",
   total_used_energy: "total used energy",
   energy_used_by_freezing_TRX: "energy used by freezing TRX",
-  energy_used_by_burning_TRX: "energy uese by burning TRX",
+  energy_used_by_burning_TRX: "energy used by burning TRX",
   total_energy_used: "total energy used",
   freezing_energy: "freezing energy",
   burning_energy: "burning energy",
@@ -2163,7 +2163,7 @@ export const messages = {
   day_contract_call_distribution: "contract call distribution per day",
   a_total: "A total",
   with_the_proportion_of: "with the proportion of",
-  uesd_by_the: "uesd by the",
+  uesd_by_the: "used by the",
   contracts_from_the_total_used_of: "contracts from the total used of",
   Contract_times_calls:
     "Contract times calls(Sorted by Contract times value in descending order)",
@@ -2199,7 +2199,7 @@ export const messages = {
   social_link: "Social Link",
   TRON_ecosystem: "TRON Ecosystem",
   accunt_ad_tip: "Poloni DEX LaunchBase grand open ACE is waiting for you",
-  token_fliter: "token fliter",
+  token_fliter: "token filter",
   gain: "Change (%)",
   volume_24_trx: "Volume (24H)",
   all: "All",
@@ -2374,18 +2374,18 @@ export const messages = {
   black_2: "Allegedly committed fraud and run away with the fund",
   black_3:
     "Suspected of violating the law and could face major law enforcement ",
-  black_4: "Pogress of the project is severely inconsistent with the plan",
+  black_4: "Progress of the project is severely inconsistent with the plan",
   black_5: "Malicious increase of issuance",
   black_6:
     "Project is dismissed; Community, social media, and official website have gone over 30 days withou maintenance",
   black_7:
     "Team voluntarily takes down the project due to its current progress and strategy adjustment ",
   black_8:
-    "Whitepaper provides false information and is suspected of plagrism ",
+    "Whitepaper provides false information and is suspected of plagiarism ",
   black_9:
     "Project makes unauthorized changes to the whitepaper or other key information and results in severe consequences",
   black_10:
-    "Smart contract contins security risks and could or has already led to financial loss of the users",
+    "Smart contract contains security risks and could or has already led to financial loss of the users",
   black_11:
     "Token names or abbreviations contain sensitive words xxxxx. Pending for review.",
   str_1: "Token names or abbreviations contain sensitive words.",
@@ -2771,7 +2771,7 @@ export const messages = {
   signature_owner_permission_name_required: "Name of owner access is required",
   signature_owner_threshold_required: "Threshold of owner access is required",
   signature_active_permission_name_required:
-    "Threshold of owner access is required",
+    "Name of active access is required",
   signature_active_threshold_required: "Threshold of active access is required",
   signature_keys_required: "Keys is required",
   signature_permission_name_required: "Access name is required",
