@@ -22,7 +22,7 @@
         "animate.css": "^3.6.1",
         "antd": "^3.6.5",
         "awesome-bootstrap-checkbox": "^1.0.1",
-        "axios": "^0.18.0",
+        "axios": "^0.21.1",
         "babel-eslint": "10.0.1",
         "babel-jest": "^24.8.0",
         "babel-loader": "8.0.5",
