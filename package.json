@@ -94,7 +94,7 @@
         "monaco-editor-webpack-plugin": "^1.7.0",
         "natty-storage": "^2.2.0",
         "node-rsa": "^1.0.6",
-        "node-sass": "^4.8.3",
+        "node-sass": "^7.0.0",
         "object-assign": "4.1.1",
         "optimize-css-assets-webpack-plugin": "5.0.1",
         "pbkdf2": "^3.0.16",
