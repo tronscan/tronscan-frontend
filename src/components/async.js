@@ -11,6 +11,12 @@ export const SingleChartAsync = loadable(() =>
   )
 );
 
+export const ChartsAsync = loadable(() =>
+  import(
+    /* webpackChunkName: "Charts" */ "./blockchain/Statistics/Charts.js"
+  )
+);
+
 export const MarketsAsync = loadable(() =>
   import(/* webpackChunkName: "Markets" */ "./markets")
 );
@@ -127,6 +133,9 @@ export const DevelopersRewardAsync = loadable(() =>
 export const FoundationAsync = loadable(() =>
   import(/* webpackChunkName: "Foundation" */ "./Foundation")
 );
+export const TopDataAsync = loadable(() =>
+  import(/* webpackChunkName: "Foundation" */ "./Data/TopData/index")
+);
 
 export const NodesAsync = loadable(() =>
   import(/* webpackChunkName: "Nodes" */ "./network/Nodes")
@@ -227,6 +236,17 @@ export const Committee = loadable(() =>
 export const Proposals = loadable(() =>
   import(/* webpackChunkName: "Proposals" */ "./committee/Proposals")
 );
+export const MyProposals = loadable(() =>
+  import(/* webpackChunkName: "MyProposals" */ "./committee/MyProposals")
+);
+export const myParticipated = loadable(() =>
+  import(/* webpackChunkName: "ParticipateProposals" */ "./committee/MyProposals/MyParticipated")
+);
+
+
+export const ProposalsCreateAsync = loadable(() =>
+  import(/* webpackChunkName: "ProposalsCreate" */ "./committee/ProposalCreate/index")
+);
 
 export const ErrorAsync = loadable(() =>
   import(/* webpackChunkName: "ErrorAsync" */ "./Error")
@@ -250,5 +270,11 @@ export const ContractUseServiceTerms = loadable(() =>
 export const ContractLicense = loadable(() =>
   import(
     /* webpackChunkName: "ContractSourceCode" */ "./blockchain/Contract/License"
+  )
+);
+
+export const RatingRule = loadable(() =>
+  import(
+    /* webpackChunkName: "ContractSourceCode" */ "./tokens/RatingRule"
   )
 );

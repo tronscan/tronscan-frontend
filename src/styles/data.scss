@@ -1,0 +1,427 @@
+.top-data {
+  .gutter-row {
+    margin-top: 22px;
+  }
+  .data-items {
+    background: #ffffff;
+    border: 1px solid #eeeeee;
+    border-bottom: 0;
+    border-radius: 0.5px;
+    width: 100%;
+    overflow: hidden;
+    h2 {
+      background: #f3f3f3;
+      border-radius: 0.5px;
+      height: 45px;
+      line-height: 45px;
+      font-family: PingFangSC-Regular;
+      font-size: 16px;
+      color: #3c3c3c;
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 0;
+      .data-real-time {
+        position: absolute;
+        top: 0;
+        right: 10px;
+        width: 28px;
+      }
+    }
+  }
+  .ant-table table {
+    width: 100.1%;
+  }
+  .ant-table-tbody > tr > td {
+    border-bottom: 0;
+  }
+
+  .ant-table .ant-table-thead > tr > th,
+  .ant-table .ant-table-tbody > tr > td {
+    padding: 6px 10px;
+    white-space: nowrap;
+    &:first-child {
+      padding-left: 20px !important;
+    }
+    &:last-child {
+      padding-right: 20px !important;
+    }
+  }
+  .ant-table .ant-table-thead > tr > th {
+    padding: 12px 10px;
+  }
+
+  .ant-table-thead {
+    tr {
+      th {
+        font-family: PingFangSC-Medium;
+        font-size: 12px;
+        color: #333333;
+        word-break: break-all;
+        white-space: pre-wrad;
+        word-wrap: break-word;
+        font-weight: bold;
+      }
+    }
+  }
+
+  .ant-table-tbody {
+    .ant-table-row.ant-table-row-level-0 {
+      td {
+        font-family: PingFangSC-Regular;
+        font-size: 12px;
+        color: #333333;
+      }
+      .usd-amount {
+        font-size: 10px;
+        color: #999999;
+      }
+      .rank-0 {
+        background: url("../images/data/rank-1.png");
+      }
+      .rank-1 {
+        background: url("../images/data/rank-2.png");
+      }
+      .rank-2 {
+        background: url("../images/data/rank-3.png");
+      }
+      .rank {
+        width: 14.6px;
+        height: 17px;
+        display: inline-block;
+        background-size: 100%;
+      }
+    }
+  }
+  .data-area {
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    color: #999999;
+  }
+  // account module
+  .data-account {
+    .gutter-row {
+      &:first-child,
+      &:nth-child(2) {
+        margin-top: 0;
+      }
+      @media only screen and (max-width: 768px) {
+        &:nth-child(2) {
+          margin-top: 22px;
+        }
+      }
+    }
+    .text-truncate.address-link {
+      // margin: 0 auto;
+    }
+    a {
+      font-size: 12px;
+    }
+
+    .ant-table-row.ant-table-row-level-0 {
+      &:last-child {
+        td {
+          background: #f3f3f3 !important;
+          font-family: PingFangSC-Medium;
+          font-size: 12px;
+          color: #333333;
+        }
+      }
+      td {
+        height: 50px;
+      }
+    }
+  }
+
+  // token module
+  .data-token {
+    .gutter-row {
+      &:first-child,
+      &:nth-child(2) {
+        margin-top: 0;
+      }
+      @media only screen and (max-width: 768px) {
+        &:nth-child(2) {
+          margin-top: 22px;
+        }
+      }
+    }
+    .data-token-name {
+      a {
+        font-family: PingFangSC-Regular;
+        font-size: 12px !important;
+        color: #c64844;
+      }
+    }
+    .data-token-logo {
+      width: 16px;
+    }
+    .ant-table-row.ant-table-row-level-0 {
+      td {
+        height: 50px;
+      }
+    }
+  }
+
+  // contract module
+  .data-contract {
+    .gutter-row {
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+    .ant-table-row.ant-table-row-level-0 {
+      &:last-child {
+        td {
+          background: #f3f3f3 !important;
+          font-family: PingFangSC-Medium;
+          font-size: 12px;
+          color: hsl(0, 0%, 20%);
+        }
+      }
+      td {
+        // height: 64px;
+      }
+    }
+    .contractWidth {
+      // width: 100px !important;
+      a {
+        font-size: 12px;
+      }
+      .text-truncate.address-link {
+        // margin: 0 auto;
+      }
+    }
+    .data-contract-title2 {
+      width: 100px;
+      overflow: hidden;
+      display: block;
+      word-break: break-all;
+      white-space: normal;
+      word-wrap: break-word;
+    }
+    .data-contract-td {
+      width: 50px;
+      display: block;
+    }
+  }
+}
+.time-style {
+  .time-date {
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    color: #999999;
+  }
+  .time-hms {
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    color: #696969;
+  }
+}
+.see-top10 {
+  a {
+    font-family: PingFangSC-Semibold;
+    font-size: 14px;
+    color: #c23631;
+    font-weight: bold;
+  }
+}
+.time-filter {
+  padding: 20px 0;
+  display: flex;
+  flex-direction: row;
+  > ul {
+    display: flex;
+    margin: 0;
+    padding-left: 0;
+    list-style-type: none;
+    li {
+      width: 75px;
+      padding: 5px 0;
+      cursor: pointer;
+      border: 1px solid #eee;
+      border-left: 0;
+      font-size: 12px;
+      text-align: center;
+      &:first-child {
+        border-left: 1px solid #eee;
+      }
+      &.active {
+        color: #c23631;
+        border: 1px solid #c23631;
+      }
+      &:hover {
+        color: #c23631;
+      }
+    }
+  }
+  > div {
+    line-height: 30px;
+  }
+}
+.data-overview-list {
+  font-family: PingFangSC-Regular;
+  font-size: 14px;
+  color: #333333;
+  .data-overview-row {
+    display: flex;
+    flex-direction: row;
+    margin-top: 1rem;
+  }
+  .usd-amount {
+    font-size: 10px;
+    color: #999999;
+  }
+  .item {
+    width: 50%;
+    border: 1px solid #eee;
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    color: #333333;
+    &:first-child {
+      margin-right: 20px;
+    }
+    .title {
+      line-height: 45px;
+      background: #f3f3f3;
+      color: #000;
+    }
+    .content-item-USD {
+      &-left {
+        line-height: 54px;
+      }
+      &-right {
+        padding-top: 7px;
+        padding-bottom: 7px;
+      }
+    }
+    .content-item {
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+      > div {
+        &:last-child {
+          font-family: PingFangSC-Semibold;
+        }
+      }
+    }
+    .content-detail {
+      padding: 6px 0;
+      // &:first-child {
+      //   border-bottom: 1px solid #eee;
+      // }
+      > .detail-item {
+        line-height: 32px;
+        padding-left: 20px;
+        &:first-child {
+          padding-left: 0;
+        }
+        > div {
+          &:last-child {
+            font-family: PingFangSC-Semibold;
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+  .num-font-bold {
+    font-family: PingFangSC-Semibold;
+  }
+  .font14 {
+    font-size: 14px !important;
+  }
+}
+.item-white-space {
+  white-space: nowrap;
+}
+
+@media only screen and (max-width: 768px) {
+  .time-filter {
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .data-overview-list {
+    font-size: 12px;
+    .data-overview-row {
+      display: flex;
+      flex-direction: column;
+      .item {
+        &:nth-child(2) {
+          margin-top: 1rem;
+        }
+      }
+    }
+    .item {
+      font-size: 12px;
+      width: 100%;
+      margin-top: 1rem;
+      &:last-child {
+        margin-top: 0;
+      }
+      .content-detail {
+        padding: 6px 0;
+        // &:first-child {
+        //   border-bottom: 1px solid #eee;
+        // }
+        > .detail-item {
+          line-height: 32px;
+          padding-left: 4px;
+          &:first-child {
+            padding-left: 0;
+          }
+          > div {
+            &:last-child {
+              font-family: PingFangSC-Semibold;
+              font-size: 12px;
+            }
+          }
+        }
+      }
+    }
+    .content {
+      font-size: 12px;
+    }
+    .font14 {
+      font-size: 12px !important;
+    }
+  }
+}
+
+// resourceWrapper
+.resourceWrapper {
+  .top-data {
+    .ant-table .ant-table-thead > tr > th,
+    .ant-table .ant-table-tbody > tr > td {
+      padding: 13px;
+    }
+    .ant-table-body {
+      .resourceAddress {
+        a {
+          // font-family: PingFangSC-Regular;
+          font-size: 13px;
+          color: #c23631;
+        }
+      }
+    }
+    .ant-table-row.ant-table-row-level-0 {
+      &:last-child {
+        td {
+          background: #f3f3f3 !important;
+          font-family: PingFangSC-Medium;
+          font-size: 12px;
+          color: hsl(0, 0%, 20%);
+        }
+      }
+    }
+  }
+  .resourceTable{
+    .ant-table-thead {
+      th {
+        .ant-table-column-title {
+          white-space: normal;
+        }
+      }
+    }
+  }
+}

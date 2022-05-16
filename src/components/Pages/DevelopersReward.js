@@ -7,14 +7,14 @@ import { upperFirst, trim } from "lodash";
 import { AddressLink } from "../common/Links";
 import { CIRCULATING_SUPPLY, ONE_TRX } from "../../constants";
 import { TRXPrice } from "../common/Price";
-import SmartTable from "../common/SmartTable.js";
+//import SmartTable from "../common/SmartTable.js";
 import { TronLoader } from "../common/loaders";
-import { QuestionMark } from "../common/QuestionMark";
-import xhr from "axios/index";
+//import { QuestionMark } from "../common/QuestionMark";
+//import xhr from "axios/index";
 import { Client } from "../../services/api";
 import { Tooltip, Input, Table } from "antd";
 import Note from "./Note";
-import { NameWithId } from "../common/names";
+//import { NameWithId } from "../common/names";
 const { Search } = Input;
 
 class developersReward extends Component {
@@ -60,6 +60,7 @@ class developersReward extends Component {
 
     data.map((item, index) => {
       item.index = index + 1;
+      // eslint-disable-next-line
       item.extraData = new Function("return " + item.extra)();
     });
     this.setState({
@@ -108,6 +109,7 @@ class developersReward extends Component {
   };
 
   showNote = index => {
+    // eslint-disable-next-line 
     let notes = new Function("return " + this.state.developers[index].note)();
     this.setState({
       modal: <Note notes={notes} onHide={this.hideModal} />
@@ -384,11 +386,11 @@ class developersReward extends Component {
                 }}
               />
             </div>
-            {total ? (
+            {/* {total ? (
               <p className="developers_tip_bottom">{tu("developers_niTron")}</p>
             ) : (
               ""
-            )}
+            )} */}
           </div>
         </div>
       </main>

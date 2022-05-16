@@ -1,3 +1,4 @@
+/*eslint-disable */
 import {connect} from "react-redux";
 import { Link } from 'react-router-dom';
 import React from "react";
@@ -936,4 +937,3 @@ const mapDispatchToProps = {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(IssuedToken))
-

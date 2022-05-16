@@ -1924,7 +1924,6 @@
                     this.myChart
                 );
 
-                // console.log(param,curValue);
             },
 
             __onhoverlink: function(param) {
@@ -2028,7 +2027,6 @@
                         }
                     }
                 }
-                // console.log(this._colorList.length)
             },
 
             _buildGap: function(splitNumber) {
@@ -2181,7 +2179,6 @@
                     }
                 }
 
-                //console.log(value, idx,this._colorList[idx])
                 if (this._selectedMap[idx]) {
                     return this._colorList[idx];
                 } else {
@@ -4273,10 +4270,8 @@
                 var bbox = this._mapDataMap[mapType].bbox || normalProjection.getBbox(
                     mapData, this._specialArea[mapType]
                 );
-                //console.log(bbox)
 
                 var transform;
-                //console.log(1111,transform)
                 if (!this._mapDataMap[mapType].hasRoam) {
                     // 第一次或者发生了resize，需要判断
                     transform = this._getTransform(
@@ -4288,7 +4283,6 @@
                     //经过用户漫游不再响应resize
                     transform = this._mapDataMap[mapType].transform;
                 }
-                //console.log(bbox,transform)
                 var lastTransform = this._mapDataMap[mapType].lastTransform || {
                     scale: {}
                 };
@@ -4297,7 +4291,6 @@
                 if (transform.left != lastTransform.left || transform.top != lastTransform.top || transform.scale.x != lastTransform.scale.x || transform.scale.y != lastTransform.scale.y) {
                     // 发生过变化，需要重新生成pathArray
                     // 一般投射
-                    //console.log(transform)
                     pathArray = normalProjection.geoJson2Path(
                         mapData, transform, this._specialArea[mapType]
                     );
@@ -4312,7 +4305,6 @@
                 this._mapDataMap[mapType].lastTransform = lastTransform;
                 this._mapDataMap[mapType].pathArray = pathArray;
 
-                //console.log(pathArray)
                 var position = [transform.left, transform.top];
                 for (var i = 0, l = pathArray.length; i < l; i++) {
                     /* for test

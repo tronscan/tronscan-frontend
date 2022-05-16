@@ -33,18 +33,21 @@ import {doSearch, getSearchType} from "../services/search"
 import {readFileContentsFromEvent} from "../services/file"
 import {decryptString, validatePrivateKey} from "../services/secureKey";
 import SweetAlert from "react-bootstrap-sweetalert";
-import {pkToAddress} from "@tronscan/client/src/utils/crypto";
+import {passwordToAddress,pkToAddress} from "@tronscan/client/src/utils/crypto";
 import Notifications from "./account/Notifications";
 import SendModal from "./transfer/Send/SendModal";
+import SendMultiModal from "./transfer/SendMulti/SendModal";
 import {bytesToString} from "@tronscan/client/src/utils/bytes";
 import {hexStr2byteArray} from "@tronscan/client/src/lib/code";
 import {isAddressValid} from "@tronscan/client/src/utils/crypto";
 import ReceiveModal from "./transfer/Receive/ReceiveModal";
+import MenuNavigation from './MenuNavigation';
 import {toastr} from 'react-redux-toastr'
 import Lockr from "lockr";
 import {BarLoader} from "./common/loaders";
 import {Truncate} from "./common/text";
-import { Icon, Select } from 'antd';
+import { TRXPrice } from "./common/Price";
+import { Icon,Tooltip,Drawer,Collapse,Divider } from 'antd';
 import isMobile from '../utils/isMobile';
 import {Client} from '../services/api';
 import $ from 'jquery';
@@ -54,7 +57,8 @@ import { getQueryString } from "../utils/url";
 
 
 
-const { Option } = Select;
+
+const { Panel } = Collapse;
 class Navigation extends React.Component {
 
   constructor() {
@@ -78,7 +82,24 @@ class Navigation extends React.Component {
       annountime: '1-1',
       announId: 83,
       selectedNet:'',
-
+      drawerVisible:false,//draw is visible
+      currentActive:3,
+      percent_change_24h:0,
+      testNetAry: [
+        "testnet",
+        {
+          url: "https://nile.tronscan.org",
+          icon: false,
+          label: "NILE TESTNET",
+          sidechain: false
+        },
+        {
+          url: "https://shasta.tronscan.org",
+          icon: false,
+          label: "SHASTA TESTNET",
+          sidechain: false
+        }
+      ]
     };
   }
 
@@ -95,6 +116,9 @@ class Navigation extends React.Component {
 
   componentWillMount() {
     let {intl} = this.props;
+      // this.props.login('441d39fa209abf368a5f51191319d58dc2d4ef94f8f51514812bb4c036582079').then(() => {
+      //     toastr.info(intl.formatMessage({id: 'success'}), intl.formatMessage({id: 'login_success'}));
+      // });
     this.reLoginWithTronLink();
   }
 
@@ -126,8 +150,34 @@ class Navigation extends React.Component {
         selectedNet: IS_MAINNET?'mainnet':'sunnet'
     });
     Lockr.set("NET", IS_MAINNET?'mainnet':'sunnet')
+    this.loadTrxPrices()
+    this.oTimer = setInterval(() => this.loadTrxPrices(), 1000*60*10);
 
   }
+
+  async loadTrxPrices() {
+      // var dataEur = Lockr.get("dataEur");
+      let eurURL = encodeURI(
+       `https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=TRX&convert=USD` 
+      );
+      var { data: {data: dataEurObj} } = await xhr.post(
+          `${API_URL}/api/system/proxy`,
+          {
+            url:eurURL
+          }
+      );
+      if (dataEurObj) {
+        let percent_change_24h = dataEurObj.TRX.quote.USD.percent_change_24h.toFixed(2) || 0;
+        this.setState({
+          percent_change_24h
+        });
+      } else{
+        this.setState({
+          percent_change_24h:0
+        });
+      }
+     
+    }
 
   componentWillUpdate(nextProps, nextState) {
       let { account,match,walletType } = this.props;
@@ -149,6 +199,7 @@ class Navigation extends React.Component {
           websocket.close();
           Lockr.set("websocket", 'close')
       }
+      clearInterval(this.oTimer)
   }
 
   componentDidUpdate(prevProps) {
@@ -205,6 +256,13 @@ class Navigation extends React.Component {
         if (tronWeb && tronWeb.defaultAddress.base58) {
           this.props.loginWithTronLink(tronWeb.defaultAddress.base58, tronWeb, sunWeb).then(() => {
             toastr.info(intl.formatMessage({id: 'success'}), intl.formatMessage({id: 'login_success'}));
+            window.gtag("event", "Tronlink", {
+              event_category: "Login",
+              event_label: tronWeb.defaultAddress.base58,
+              referrer: window.location.origin,
+              value: tronWeb.defaultAddress.base58
+            });
+
           });
           this.setState({address: tronWeb.defaultAddress.base58});
           clearInterval(timer)
@@ -230,13 +288,20 @@ class Navigation extends React.Component {
 
   login(e) {
     e.stopPropagation();
-    let {intl} = this.props;
+    let {intl, account} = this.props;
     let {privateKey} = this.state;
+    let address = pkToAddress(privateKey)
     if (trim(privateKey) === "external") {
       this.props.enableFlag("mobileLogin");
     } else {
       this.props.login(privateKey).then(() => {
         toastr.info(intl.formatMessage({id: 'success'}), intl.formatMessage({id: 'login_success'}));
+        window.gtag("event", "PrivateKey", {
+          event_category: "Login",
+          event_label: address,
+          referrer: window.location.origin,
+          value: address
+        });
       });
     }
   };
@@ -324,6 +389,12 @@ class Navigation extends React.Component {
         )
       });
       this.props.login(privateKey);
+      window.gtag("event", "KeystoreFile", {
+        event_category: "Login",
+        event_label: address,
+        referrer: window.location.origin,
+        value: address
+      });
     } else {
       this.setState({
         popup: (
@@ -440,7 +511,6 @@ class Navigation extends React.Component {
       {desc: 'Address', value: "TVethjgashn8t4cwKWfGA3VvSgMwVmHKNM"},
       {desc: 'Contract', value: "TVethjgashn8t4cwKWfGA3VvSgMwVmHKNM"},
       {desc: 'TxHash', value: "9073aca5dfacd63c8e61f6174c98ab3f350bc9365df6ffc3bc7a70a252711d6f"}
-
     ];*/
 
     this.setState({searchResults: results});
@@ -510,6 +580,16 @@ class Navigation extends React.Component {
     });
   };
 
+  muitlTransfer = () => {
+    this.setState({
+        popup: (
+            <SendMultiModal onClose={this.hideModal}/>
+        )
+    });
+  };
+
+
+
   showReceive = () => {
     this.setState({
       popup: (
@@ -528,14 +608,14 @@ class Navigation extends React.Component {
         default:
           return tronLogoInvertedTestNet;
       }
-    } else if(!IS_MAINNET){
-        switch (theme) {
-            case "light":
-                return tronLogoSunNet;
-            default:
-                return tronLogoSunNet;
-        }
-    } {
+    }else if(!IS_MAINNET){
+      switch (theme) {
+          case "light":
+              return tronLogoSunNet;
+          default:
+              return tronLogoSunNet;
+      }
+    }else{
       switch (theme) {
         case "tron":
           return tronLogoBlue;
@@ -551,7 +631,7 @@ class Navigation extends React.Component {
     this.openLedgerModal();
   };
 
-  openLedgerModal = () => {
+  openLedgerModal = (type) => {
     this.setState({
       popup: (
           <Modal isOpen={true} fade={false} keyboard={false} size="lg" className="modal-dialog-centered">
@@ -564,7 +644,7 @@ class Navigation extends React.Component {
               {/*</Link>*/}
             </ModalHeader>
             <ModalBody className="p-0">
-              <LedgerAccess onClose={this.hideModal} />
+            <LedgerAccess onClose={this.hideModal} loginType={type}/>
             </ModalBody>
           </Modal>
       )
@@ -597,14 +677,32 @@ class Navigation extends React.Component {
       return
     }
 
-    // 已登录 tronlink
+    // 如果是tronlink的ledger登录，跳转到tronscan的ledger登录
+    const tronlinkLoginType = tronWeb.defaultAddress.type;
+    if (tronlinkLoginType == 2) {
+      this.closeLoginModel(e);
+      this.openLedgerModal(tronlinkLoginType);
+      return;
+    }
+
     if (address) {
-      //this.isauot = true
-      Lockr.set("islogin", 1);
-      this.props.loginWithTronLink(address, tronWeb, sunWeb).then(() => {
-        toastr.info(intl.formatMessage({id: 'success'}), intl.formatMessage({id: 'login_success'}));
-        this.setState({isImportAccount: false})
-      });
+        // 已登录 tronlink
+        //this.isauot = true
+        Lockr.set("islogin", 1);
+        this.props.loginWithTronLink(address, tronWeb, sunWeb).then(() => {
+          toastr.info(
+            intl.formatMessage({ id: "success" }),
+            intl.formatMessage({ id: "login_success" })
+          );
+          this.setState({ isImportAccount: false });
+        });
+
+        window.gtag("event", "Tronlink", {
+          event_category: "Login",
+          event_label: address,
+          referrer: window.location.origin,
+          value: address
+        });
     }
   };
 
@@ -635,6 +733,16 @@ class Navigation extends React.Component {
       isImportAccount: true
     }, () => {
 
+    })
+  }
+  goAccountWaitSign = () => {
+      window.location.hash = "#/account?from=nav&type=multisign";
+  }
+
+  changeCurrentDrawerFun = () =>{
+    const {drawerVisible}= this.state;
+    this.setState({
+      drawerVisible :!drawerVisible
     })
   }
 
@@ -735,12 +843,28 @@ class Navigation extends React.Component {
                       <FormattedNumber value={totalTransactions}/> {tu("transactions")}
                       <i className="fa fa-angle-right float-right" ></i>
                     </Link>
+                    {
+                        IS_MAINNET && <a className="dropdown-item" href="javascript:;" onClick={this.goAccountWaitSign}>
+                          <i className="fas fa-file-signature mr-2"/>
+                          <FormattedNumber value={wallet.current.signatureTotal}/> {tu("translations_wait_sign")}
+
+                          <i className="fa fa-angle-right float-right" ></i>
+                        </a>
+                    }
                     <li className="dropdown-divider"/>
                     <a className="dropdown-item" href="javascript:" onClick={this.newTransaction}>
                       <i className="fa fa-paper-plane mr-2"/>
                       {tu("send")}
                       <i className="fa fa-angle-right float-right" ></i>
                     </a>
+                    {
+                     IS_MAINNET && <a className="dropdown-item" href="javascript:" onClick={this.muitlTransfer}>
+                        <i className="far fa-paper-plane mr-2"/>
+                          {tu("transfer_multi_sign")}
+                        <i className="fa fa-angle-right float-right" ></i>
+                      </a>
+                    }
+
                     <a className="dropdown-item" href="javascript:" onClick={this.showReceive}>
                       <i className="fa fa-qrcode mr-2"/>
                       {tu("receive")}
@@ -764,6 +888,7 @@ class Navigation extends React.Component {
                     isMobile && this.clickLoginWithPk(e)
                   }}>
                     {tu("open_wallet")}
+                  
                     <ul className="dropdown-menu dropdown-menu-right nav-login-wallet" style={{minWidth: style_width}}>
                         <li className="px-2 py-1 border-bottom-0" onClick={(e) => {
                             this.clickLoginWithTronLink(e)
@@ -826,6 +951,7 @@ class Navigation extends React.Component {
                                   }}>
                             {tu("sign_in")}
                           </button>
+                   
                         </li>
                         {/* <li className="dropdown-divider blod"/> */}
                         <li className="px-3 py-4">
@@ -935,7 +1061,7 @@ class Navigation extends React.Component {
 
   render() {
 
-    let {intl, params} = this.props;
+    let {intl, params,currentRouter} = this.props;
     let {
       languages,
       activeLanguage,
@@ -945,116 +1071,393 @@ class Navigation extends React.Component {
       syncStatus,
       walletType: { type },
     } = this.props;
-    let {search, popup, notifications, announcement, announId, annountime, searchResults, selectedNet } = this.state;
-
+    let {search, popup, notifications, announcement, announId, annountime, searchResults, selectedNet,drawerVisible,currentActive,percent_change_24h,testNetAry } = this.state;
     let activeComponent = this.getActiveComponent();
     const isShowSideChain = !type || (type && IS_SUNNET);
-
+    let IsRepresentative = localStorage.getItem('representative')
     return (
-        <div className="header-top">
+        <div className="header-top nav-item-page">
           {popup}
-          <div className="logo-wrapper">
-            <div className="container py-2 d-flex px-0">
-              <div className="ml-4">
-                <Link to="/">
-                  <img src={this.getLogo()} className="logo" alt="Tron"/>
-                </Link>
-              </div>
-              {
-                IS_TESTNET &&
-                <div className="col text-center text-info font-weight-bold py-2">
-                  TESTNET
-                </div>
-              }
-              {
-                (syncStatus && syncStatus.sync && syncStatus.sync.progress < 95) &&
-                <div className="col text-danger text-center py-2">
-                  Tronscan is syncing, data might not be up-to-date ({Math.round(syncStatus.sync.progress)}%)
-                </div>
-              }
-              {/*{*/}
-                {/*announcement &&*/}
-                {/*<div className="col text-danger text-center py-2 d-none d-md-block text-truncate nav_notice">*/}
-                  {/*<img src={require('../images/announcement-logo.png')} alt="" style={{width: '16px'}}*/}
-                       {/*className="mr-1"/>*/}
-                  {/*<Link to={'/notice/' + announId}>{announcement} <span*/}
-                      {/*style={{color: '#999'}}>({annountime})</span></Link>*/}
-                {/*</div>*/}
-              {/*}*/}
-              <div className="ml-auto d-flex">
-                {
-                  <div className="hidden-mobile nav-searchbar">
-                    <div className="input-group dropdown">
-                      <input type="text"
-                             className="form-control p-2 bg-white border-0 box-shadow-none"
-                             style={styles.search}
-                             value={search}
-                             onKeyDown={this.onSearchKeyDown}
-                             onChange={this.onSearchChange}
-                             onClick={this.callAjax}
-                             placeholder={intl.formatMessage({id: "search_description1"})}/>
-                      <div className="input-group-append" style={{marginLeft:0}}>
-                        <button className="btn box-shadow-none" disabled={this.isSearching} onClick={this.doSearch}>
-                          <i className="fa fa-search"/>
-                        </button>
-                      </div>
-                      <div className="dropdown-menu" id="_searchBox" style={{width: '100%',maxHeight:'300px', overflow:'auto'}}>
-                        {
-                          searchResults && searchResults.map((result, index) => {
-                                if (result.desc === 'Block') {
-                                  return <Link className="dropdown-item text-uppercase" to={"/block/" + trim(result.value)} onClick={() => {
-                                    this.afterSearch()
-                                  }}
-                                            key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
-                                }
-                                if (result.desc === 'Token-TRC20') {
-                                  return <Link className="dropdown-item text-uppercase" to={"/token20/" + trim(result.value.split(' ')[result.value.split(' ').length-1])} onClick={() => {
-                                    this.afterSearch()
-                                  }}
-                                            key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
-                                }
-                                if (result.desc === 'Token-TRC10') {
-                                  return <Link className="dropdown-item text-uppercase" to={"/token/" + trim(result.value.split(' ')[result.value.split(' ').length-1])} onClick={() => {
-                                    this.afterSearch()
-                                  }}
-                                            key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
-                                }
-                                if (result.desc === 'Address') {
-                                  return <Link className="dropdown-item text-uppercase" to={"/address/" + trim(result.value)} onClick={() => {
-                                    this.afterSearch()
-                                  }}
-                                            key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
-                                }
-                                if (result.desc === 'Contract') {
-                                  return <Link className="dropdown-item text-uppercase" to={"/contract/" + trim(result.value)+'/code'} onClick={() => {
-                                    this.afterSearch()
-                                  }}
-                                            key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
-                                }
-                                if (result.desc === 'TxHash') {
-                                  return <Link className="dropdown-item text-uppercase" to={"/transaction/" + trim(result.value)} onClick={() => {
-                                    this.afterSearch()
-                                  }}
-                                            key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
-                                }
-                              }
-                          )
-                        }
-                      </div>
+        <div className={"logo-wrapper"}>
+            {/* zh  ko ar fa nav menu flex space-between*/}
+            {/* <div className={!IS_MAINNET?(activeLanguage == 'ru'||activeLanguage == 'es' ||activeLanguage == 'ja' ?'py-2 d-flex px-0 sunnet-menu-nav-wrapper':'py-2 d-flex px-0 single-menu-nav-wrapper' ):(activeLanguage === 'zh' || activeLanguage === 'ko' || activeLanguage === 'ar'  ? "py-2 d-flex px-0 single-menu-nav-wrapper" : "py-2 d-flex px-0 menu-nav-wrapper") }> */}
+            <div className={IS_SUNNET ? "py-2 d-flex px-0 menu-nav-wrapper sunnet-menu-nav-wrapper":"py-2 d-flex px-0 menu-nav-wrapper"}>
+              <div className="logoTrxPrice">
+                <div className="mobileFlexible">
+                  <Link to="/">
+                    <img  src={this.getLogo()} className="logo" alt="Tron"/>
+                 
+                  </Link>
+                  {
+                    IS_MAINNET?
+                    <div className="currentTRXInfo">
+                      <Tooltip
+                        placement="bottom"
+                        title={intl.formatMessage({
+                          id: "tooltip_trxPrice"
+                        })}
+                      >
+                        <HrefLink
+                          href="https://coinmarketcap.com/currencies/tron/"
+                          target="_blank"
+                          className="hvr-underline-from-center hvr-underline-white text-muted"
+                        >
+                          <span className="TRXPrice">
+                            <span className="trxTitle">TRX: </span> 
+                            <TRXPrice
+                              showPopup={false}
+                              amount={1}
+                              currency="USD"
+                              source="home"
+                              showCurreny={true}
+                              priceChage={percent_change_24h}
+                            />
+                          </span>
+                        </HrefLink>
+                      </Tooltip>
                     </div>
+                    :null
+                  }
+                </div>
+                {
+                  IS_TESTNET &&
+                  <div className="col text-center text-info font-weight-bold py-2">
+                    TESTNET
                   </div>
                 }
-                <div className="navbar navbar-expand-md navbar-dark py-0">
+                {
+                  (syncStatus && syncStatus.sync && syncStatus.sync.progress < 95) &&
+                  <div className="col text-danger text-center py-2">
+                    Tronscan is syncing, data might not be up-to-date ({Math.round(syncStatus.sync.progress)}%)
+                  </div>
+                }
+            
+                <div className="new-menu-List">
+                  <nav className="top-bar navbar navbar-expand-md navbar-dark" style={{padding:0}}> 
+                  {/*  pc nav */}
+                    <div className="collapse navbar-collapse" id="navbar-top">
+                      <ul className="navbar-nav">
+                        {filter(routes, r => r.showInMenu !== false).map(route => (
+                            <li key={route.path}  className={IS_MAINNET? 'nav-item dropdown': 'nav-item dropdown pr-3'}>
+                              {
+                                route.linkHref === true ?
+                                    <HrefLink
+                                        className={currentRouter == route.path ? "nav-link menu-active-tilte"
+                                        : "nav-link"}
+                                        href={activeLanguage == 'zh' ? route.zhurl : route.enurl}>
+                                      {route.icon &&
+                                      <i className={route.icon + " d-none d-lg-inline-block mr-1"}/>}
+                                      {tu(route.label)}
+                                    </HrefLink>
+                                    :
+                                    <span className={route.routes ? (route.label == 'nav_network' ? 'nav-network-hot' : "") : ""}> 
+                                    <NavLink
+                                        className={route.routes ? (route.label == 'nav_network' ? 'nav-link text-capitalize' : "nav-link") : "nav-link"}
+                                        {...((route.routes && route.routes.length > 0) ? {'data-toggle': 'dropdown'} : {})}
+                                        activeClassName="active"
+                                        to={route.redirect? route.redirect: route.path}
+                                    >
+                                      <span  className={
+                                        (currentRouter.slice(1).split('/').indexOf(route.path.slice(1)) !== -1 || (currentRouter==='/exchange/trc20' && route.path ==="/exchange/trc20") || (route.path==='/more' && currentRouter.slice(1,5)==='help') || (route.path==='/more' && currentRouter.slice(1,6)==='tools')) || (route.path==='/newblock' && currentRouter.slice(1,11)==='blockchain') || (route.path==='/newblock' && currentRouter.slice(1,10)==='contracts') || (route.path==='/newblock' && currentRouter.slice(1,7)==='tokens') ? "menu-active-tilte-pc": ""}>
+                                      {route.icon &&
+                                      <i className={route.icon + " d-none d-lg-inline-block mr-1"}/>}
+                                      {tu(route.label)}
+                                      {route.label !== 'home_page' && route.label !== 'Poloni DEX'?<Icon type="caret-down" style={{color: 'rgba(51,51,51,0.50)',marginLeft:"4px",fontSize:'8px'}} /> : null}
+                                    
+                                      </span>
+                                      {/* <i className="hot-nav"></i> */}
+                                    </NavLink>
+                                  
+                                    </span>
+                                    
+                              }
+
+                              {
+                                route.routes && route.label !== "nav_more" && route.label !== "nav_network" && route.label !== "newblock" &&
+                                <div className="dropdown-menu">
+                                  {
+                                    route.routes && route.routes.map((subRoute, index) => {
+
+                                      if (subRoute === '-') {
+                                        return (
+                                            <div key={index} className="dropdown-divider"/>
+                                        );
+                                      }
+
+                                      if (isString(subRoute)) {
+                                        return (
+                                            <h6 key={index}
+                                                className="dropdown-header">{subRoute}</h6>
+                                        )
+                                      }
+
+                                      if (subRoute.showInMenu === false) {
+                                        return null;
+                                      }
+
+                                      if (!isUndefined(subRoute.url)) {
+                                        return (
+                                            <HrefLink
+                                                key={subRoute.url}
+                                                className={currentRouter == subRoute.url ? "dropdown-item text-uppercase menu-active-tilte-pc" : "dropdown-item text-uppercase"}
+                                                href={subRoute.url}>
+                                              {subRoute.icon &&
+                                              <i className={subRoute.icon + " mr-2"}/>}
+                                              {tu(subRoute.label)}
+                                              {subRoute.badge &&
+                                              <Badge value={subRoute.badge}/>}
+                                            </HrefLink>
+                                        );
+                                      }
+                                      
+                                      if (!isUndefined(subRoute.enurl) || !isUndefined(subRoute.zhurl)) {
+                                        return (
+                                            <HrefLink
+                                                key={subRoute.enurl}
+                                                className={currentRouter == subRoute.enurl ? "dropdown-item text-uppercase menu-active-tilte-pc" : "dropdown-item text-uppercase"}
+                                                href={activeLanguage == 'zh' ? subRoute.zhurl : subRoute.enurl}>
+                                              {subRoute.icon &&
+                                              <i className={subRoute.icon + " mr-2"}/>}
+                                              {tu(subRoute.label)}
+                                              {subRoute.badge &&
+                                              <Badge value={subRoute.badge}/>}
+                                            </HrefLink>
+                                        );
+                                      }
+
+                                      return (
+                                          <Link
+                                              key={subRoute.path}
+                                              className={currentRouter == subRoute.path ? "dropdown-item text-uppercase menu-active-tilte-pc" : "dropdown-item text-uppercase"}
+                                              to={subRoute.path}>
+                                            {subRoute.icon &&
+                                            <i className={`${subRoute.icon} mr-2  fa_width`}/>}
+                                            {tu(subRoute.label)}
+                                            {subRoute.badge && <Badge value={subRoute.badge}/>}
+                                          </Link>
+                                      );
+                                    })
+                                  }
+                                </div>
+                              }
+                              {
+                                  route.routes && (route.label == "nav_network" || route.label == "nav_more" || route.label == "newblock") &&
+                                <div className="dropdown-menu more-menu" style={{left: 'auto'}}>
+                                  {
+                                    route.routes && route.routes.map((subRoute, index) => {
+                                      return <div className="" key={index}>
+                                        <div className="more-menu-line"></div>
+                                        {
+                                          subRoute.map((Route, j) => {
+                                            if (isString(Route)) {
+                                              return (
+                                                  <h6 key={j}
+                                                      className="dropdown-header text-uppercase"> {tu(Route)}</h6>
+                                              )
+                                            }
+
+                                            if (Route.showInMenu === false) {
+                                              return null;
+                                            }
+                                            //wjl
+                                            if (!isUndefined(Route.url) && !Route.sidechain && Route.label !== 'developer_challenge') {
+                                              return (
+                                                <span className='mr-3 d-inline-block developer_challenge_box' key={j+Route.label}>
+                                                  <HrefLink
+                                                      key={Route.url}
+                                                      className={currentRouter == Route.url ? "dropdown-item text-uppercase menu-active-tilte-pc" : "dropdown-item text-uppercase"}
+                                                      href={Route.url}>
+                                                    {Route.icon &&
+                                                    <i className={Route.icon + " mr-2"} />}
+                                                    {tu(Route.label)}
+                                                    {Route.badge &&
+                                                    <Badge value={Route.badge}/>}
+                                                  </HrefLink>
+                                                {Route.label==='NILE TESTNET'&& <span className="new-test-net">new</span>} 
+                                                </span>
+                                              );
+                                            }
+                                            if (!isUndefined(Route.url) && !Route.sidechain && Route.label == 'developer_challenge') {
+                                                return (
+                                                    <span className="mr-3 d-inline-block developer_challenge_box" key={Route.url+'_'+ Route.label}>
+                                                      <HrefLink
+                                                          key={Route.url+'_'+ Route.label}
+                                                          className={currentRouter == Route.url ? "dropdown-item text-uppercase menu-active-tilte-pc" : "dropdown-item text-uppercase"}
+                                                          href={Route.url}>
+                                                        {Route.icon &&
+                                                        <i className={Route.icon + " mr-2"}/>}
+                                                          {tu(Route.label)}
+                                                          {Route.badge &&
+                                                          <Badge value={Route.badge}/>}
+                                                    </HrefLink>
+                                                    <img src={require("../images/home/hot.svg")} title="hot" className="developer_challenge_hot"/>
+                                                    </span>
+                                                );
+                                            }
+
+                                            if (isUndefined(Route.url) && Route.sidechain) {
+                                              const sidechainTab = (
+                                                <a href="javascript:"
+                                                  key={Route.label}
+                                                  className="dropdown-item text-uppercase"
+                                                  onClick={() => this.netSelectChange(IS_MAINNET?'sunnet':'mainnet')}
+                                                >
+                                                  {Route.icon && <i className={Route.icon + " mr-2"}/>}
+                                                  {IS_MAINNET?tu('Side_Chain'):tu('Main_Chain')}
+                                                </a>
+                                              );
+                                              return sidechainTab
+                                            }
+                                            if (!isUndefined(Route.enurl) || !isUndefined(Route.zhurl)) {
+                                              return (
+                                                  <HrefLink
+                                                      key={Route.enurl}
+                                                      className={currentRouter == Route.enurl ? "dropdown-item text-uppercase menu-active-tilte-pc" : "dropdown-item text-uppercase"}
+                                                      href={activeLanguage == 'zh' ? Route.zhurl : Route.enurl}>
+                                                    {Route.icon &&
+                                                    <i className={Route.icon + " mr-2"}/>}
+                                                    {tu(Route.label)}
+                                                    {Route.badge &&
+                                                    <Badge value={Route.badge}/>}
+                                                  </HrefLink>
+                                              );
+                                            }
+
+                                            return (
+                                                <Link
+                                                    key={Route.path}
+                                                    className={currentRouter == Route.path ? "dropdown-item text-uppercase menu-active-tilte-pc" : "dropdown-item text-uppercase"}
+                                                    to={Route.path}>
+                                                  {Route.icon &&
+                                                  <i className={`${Route.icon} mr-2 fa_width`}/>}
+                                                  {tu(Route.label)}
+                                                  {Route.badge && <Badge value={Route.badge}/>}
+                                                </Link>
+                                            );
+                                          })
+                                        }
+                                      </div>
+                                    })
+                                  }
+                                </div>
+                              }
+                            </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </nav>
+                </div>
+              </div>
+              <div className="loginInfoNavBar">
+                <div className={IS_MAINNET ? "navbar navbar-expand-md navbar-dark py-0 page-right-navbar mainetMargin mobileMarginMenu" : "navbar navbar-expand-md navbar-dark py-0 page-right-navbar"}>
                   <ul className="navbar-nav navbar-right wallet-nav">
                     {
                       wallet.isOpen && <Notifications wallet={wallet} notifications={notifications}/>
                     }
                     {this.renderWallet()}
+                   
+                    <li className="nav-item dropdown navbar-right hidden-mobile" style={{display:'flex'}}>
+                        <Divider className="hidden-mobile" type="vertical" style={{marginTop:'0.7rem',height: '1.2em','display':'inline-block'}}/>
+                        {/* test icon */}
+                        <a className="nav-link dropdown-toggle dropdown-menu-right pr-0 nav-testnet-dropdown-menu"
+                          data-toggle="dropdown"
+                          href="javascript:">
+                          <img src={require("../images/home/icon.svg")} width="16px" height="16px"/>
+                        </a>
+                        <div className="dropdown-menu testnet-dropdown-menu">
+                          {
+                            testNetAry.map((item,ind) => (
+                                <a key={ind}
+                                  target="_blank"
+                                  className="dropdown-item"
+                                  href={item.url}
+                                  >
+                                    {item.label}
+                                    {item.label==='NILE TESTNET'&& <span className="new-test-net">new</span>} 
+                                </a>
+                            ))
+                          }
+                        </div>
+        
+                    </li>
                   </ul>
+                  <div className="drawWrapper hidden-PC" onClick={()=>{this.setState({drawerVisible:true})}}>
+                     {/* drawer */}
+                    <Icon type="menu" />
+                  </div>
                 </div>
+               
               </div>
             </div>
           </div>
+          <div style={{boxShadow:"0 2px 40px 0 rgba(4,4,64,0.05)",background:"#F3F3F3"}}>
+            <div className={isMobile ? "container p-0 p-md-3" : "container p-0 index-page-search-sec" }>
+              <div className="row justify-content-center text-center">
+                <div className="col-12">
+                  {
+                    <div className="hidden-mobile nav-searchbar" style={{width:"100%"}}>
+                      <div className="input-group dropdown">
+                        <input type="text"
+                                className="form-control p-2 border-0 box-shadow-none newSearchInput"
+                                style={styles.search}
+                                value={search}
+                                onKeyDown={this.onSearchKeyDown}
+                                onChange={this.onSearchChange}
+                                onClick={this.callAjax}
+                                placeholder={intl.formatMessage({id: "index_page_search_placeholder"})}/>
+                        <div className="input-group-append">
+                          <button style={{textTransform:"none"}} className="btn box-shadow-none index_page_search"  onClick={this.doSearch}>
+                            {/* <i className="fa fa-search"/> */}
+                            {tu("index_page_search_input")}
+                          </button>
+                        </div>
+                        <div className="dropdown-menu" id="_searchBox" style={{width: '100%',maxHeight:'300px', overflow:'auto'}}>
+                          {
+                            searchResults && searchResults.map((result, index) => {
+                                if (result.desc === 'Block') {
+                                  return <Link className="dropdown-item dropdown-text-none" to={"/block/" + trim(result.value)} onClick={() => {
+                                    this.afterSearch()
+                                  }} key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
+                                }
+                                if (result.desc === 'Token-TRC20') {
+                                  return <Link className="dropdown-item dropdown-text-none" to={"/token20/" + trim(result.value.split(' ')[result.value.split(' ').length-1])} onClick={() => {
+                                    this.afterSearch()
+                                  }} key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
+                                }
+                                if (result.desc === 'Token-TRC10') {
+                                  return <Link className="dropdown-item dropdown-text-none" to={"/token/" + trim(result.value.split(' ')[result.value.split(' ').length-1])} onClick={() => {
+                                    this.afterSearch()
+                                  }} key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
+                                }
+                                if (result.desc === 'Address') {
+                                  return <Link className="dropdown-item dropdown-text-none" to={"/address/" + trim(result.value)} onClick={() => {
+                                    this.afterSearch()
+                                  }} key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
+                                }
+                                if (result.desc === 'Contract') {
+                                  return <Link className="dropdown-item dropdown-text-none" to={"/contract/" + trim(result.value)+'/code'} onClick={() => {
+                                    this.afterSearch()
+                                  }} key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
+                                }
+                                if (result.desc === 'TxHash') {
+                                  return <Link className="dropdown-item dropdown-text-none" to={"/transaction/" + trim(result.value)} onClick={() => {
+                                    this.afterSearch()
+                                  }} key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></Link>
+                                }
+                              }
+                            )
+                          }
+                        </div>
+                      </div>
+                    </div>
+                  }
+                </div>
+               
+              </div>
+            </div>
+          </div>
+       
+          
           <div className="hidden-PC nav-searchbar">
             <div className="input-group dropdown">
               <input type="text"
@@ -1066,7 +1469,7 @@ class Navigation extends React.Component {
                      onClick={this.callAjax}
                      placeholder={intl.formatMessage({id: "search_description1"})}/>
               <div className="input-group-append">
-                <button className="btn box-shadow-none" disabled={this.isSearching} onClick={this.doSearch}>
+                <button className="btn box-shadow-none mobile-button-search" onClick={this.doSearch}>
                   <i className="fa fa-search"/>
                 </button>
               </div>
@@ -1115,260 +1518,7 @@ class Navigation extends React.Component {
               </div>
             </div>
           </div>
-          <nav className="top-bar navbar navbar-expand-md navbar-dark">
-            <div className="container">
-              <button className="navbar-toggler" type="button" data-toggle="collapse"
-                      data-target="#navbar-top">
-                <span className="navbar-toggler-icon"/>
-              </button>
-              {/*{*/}
-                {/*announcement && <div className="col text-danger d-md-none">*/}
-                  {/*<div className="">*/}
-
-                    {/*<img src={require('../images/announcement-logo.png')} alt="" style={{width: '16px', height: '16px'}}*/}
-                         {/*className="mr-1"/>*/}
-                    {/*<Link to={'/notice/' + announId}>{announcement} <span style={{color: '#999'}}>({annountime})</span></Link>*/}
-                  {/*</div>*/}
-                {/*</div>*/}
-              {/*}*/}
-              <div className="collapse navbar-collapse" id="navbar-top">
-                <ul className="navbar-nav mr-auto">
-                  {filter(routes, r => r.showInMenu !== false).map(route => (
-                      <li key={route.path}  className={IS_MAINNET? 'nav-item dropdown': 'nav-item dropdown pr-3'}>
-                        {
-                          route.linkHref === true ?
-                              <HrefLink
-                                  className={route.routes ? "nav-link" : "nav-link"}
-                                  href={activeLanguage == 'zh' ? route.zhurl : route.enurl}>
-                                {route.icon &&
-                                <i className={route.icon + " d-none d-lg-inline-block mr-1"}/>}
-                                {tu(route.label)}
-                              </HrefLink>
-                              :
-                              <span   className={route.routes ? (route.label == 'nav_network' ? 'nav-network-hot mr-2' : "") : ""}> <NavLink
-                                  className={route.routes ? (route.label == 'nav_network' ? 'nav-link text-capitalize' : "nav-link") : "nav-link"}
-                                  {...((route.routes && route.routes.length > 0) ? {'data-toggle': 'dropdown'} : {})}
-                                  activeClassName="active"
-                                  to={route.redirect? route.redirect: route.path}
-                              >
-                                {route.icon &&
-                                <i className={route.icon + " d-none d-lg-inline-block mr-1"}/>}
-                                {tu(route.label)}
-
-                              </NavLink>
-                              <i className="hot-nav"></i>
-                              </span>
-                              
-                        }
-
-                        {
-                          route.routes && route.label !== "nav_more" && route.label !== "nav_network" &&
-                          <div className="dropdown-menu">
-                            {
-                              route.routes && route.routes.map((subRoute, index) => {
-
-                                if (subRoute === '-') {
-                                  return (
-                                      <div key={index} className="dropdown-divider"/>
-                                  );
-                                }
-
-                                if (isString(subRoute)) {
-                                  return (
-                                      <h6 key={index}
-                                          className="dropdown-header">{subRoute}</h6>
-                                  )
-                                }
-
-                                if (subRoute.showInMenu === false) {
-                                  return null;
-                                }
-
-                                if (!isUndefined(subRoute.url)) {
-                                  return (
-                                      <HrefLink
-                                          key={subRoute.url}
-                                          className="dropdown-item text-uppercase"
-                                          href={subRoute.url}>
-                                        {subRoute.icon &&
-                                        <i className={subRoute.icon + " mr-2"}/>}
-                                        {tu(subRoute.label)}
-                                        {subRoute.badge &&
-                                        <Badge value={subRoute.badge}/>}
-                                      </HrefLink>
-                                  );
-                                }
-                                if (!isUndefined(subRoute.enurl) || !isUndefined(subRoute.zhurl)) {
-                                  return (
-                                      <HrefLink
-                                          key={subRoute.enurl}
-                                          className="dropdown-item text-uppercase"
-                                          href={activeLanguage == 'zh' ? subRoute.zhurl : subRoute.enurl}>
-                                        {subRoute.icon &&
-                                        <i className={subRoute.icon + " mr-2"}/>}
-                                        {tu(subRoute.label)}
-                                        {subRoute.badge &&
-                                        <Badge value={subRoute.badge}/>}
-                                      </HrefLink>
-                                  );
-                                }
-
-                                return (
-                                    <Link
-                                        key={subRoute.path}
-                                        className="dropdown-item text-uppercase"
-                                        to={subRoute.path}>
-                                      {subRoute.icon &&
-                                      <i className={subRoute.icon + " mr-2" + " fa_width"}/>}
-                                      {tu(subRoute.label)}
-                                      {subRoute.badge && <Badge value={subRoute.badge}/>}
-                                    </Link>
-                                );
-                              })
-                            }
-                          </div>
-                        }
-                        {
-                            route.routes && (route.label == "nav_network" || route.label == "nav_more") &&
-                          <div className="dropdown-menu more-menu" style={{left: 'auto'}}>
-                            {
-                              route.routes && route.routes.map((subRoute, index) => {
-                                return <div className="" key={index}>
-                                  <div className="more-menu-line"></div>
-                                  {
-                                    subRoute.map((Route, j) => {
-                                      if (isString(Route)) {
-                                        return (
-                                            <h6 key={j}
-                                                className="dropdown-header text-uppercase"> {tu(Route)}</h6>
-                                        )
-                                      }
-
-                                      if (Route.showInMenu === false) {
-                                        return null;
-                                      }
-
-                                      if (!isUndefined(Route.url) && !Route.sidechain && Route.label !== 'developer_challenge') {
-                                        return (
-                                            <HrefLink
-                                                key={Route.url}
-                                                className="dropdown-item text-uppercase"
-                                                href={Route.url}>
-                                              {Route.icon &&
-                                              <i className={Route.icon + " mr-2"} />}
-                                              {tu(Route.label)}
-                                              {Route.badge &&
-                                              <Badge value={Route.badge}/>}
-                                            </HrefLink>
-                                        );
-                                      }
-                                      if (!isUndefined(Route.url) && !Route.sidechain && Route.label == 'developer_challenge') {
-                                          return (
-                                              <span className="mr-3 d-inline-block developer_challenge_box">
-                                                <HrefLink
-                                                    key={Route.url}
-                                                    className="dropdown-item text-uppercase"
-                                                    href={Route.url}>
-                                                  {Route.icon &&
-                                                  <i className={Route.icon + " mr-2"}/>}
-                                                    {tu(Route.label)}
-                                                    {Route.badge &&
-                                                    <Badge value={Route.badge}/>}
-                                              </HrefLink>
-                                              <img src={require("../images/home/hot.svg")} title="hot" className="developer_challenge_hot"/>
-                                              </span>
-
-                                          );
-                                      }
-
-                                      if (isUndefined(Route.url) && Route.sidechain) {
-                                        const sidechainTab = (
-                                          <a href="javascript:"
-                                            key={Route.label}
-                                            className="dropdown-item text-uppercase"
-                                            onClick={() => this.netSelectChange(IS_MAINNET?'sunnet':'mainnet')}
-                                          >
-                                            {Route.icon && <i className={Route.icon + " mr-2"}/>}
-                                            {IS_MAINNET?tu('Side_Chain'):tu('Main_Chain')}
-                                          </a>
-                                        );
-                                        return sidechainTab
-                                      }
-                                      if (!isUndefined(Route.enurl) || !isUndefined(Route.zhurl)) {
-                                        return (
-                                            <HrefLink
-                                                key={Route.enurl}
-                                                className="dropdown-item text-uppercase"
-                                                href={activeLanguage == 'zh' ? Route.zhurl : Route.enurl}>
-                                              {Route.icon &&
-                                              <i className={Route.icon + " mr-2"}/>}
-                                              {tu(Route.label)}
-                                              {Route.badge &&
-                                              <Badge value={Route.badge}/>}
-                                            </HrefLink>
-                                        );
-                                      }
-
-                                      return (
-                                          <Link
-                                              key={Route.path}
-                                              className="dropdown-item text-uppercase"
-                                              to={Route.path}>
-                                            {Route.icon &&
-                                            <i className={Route.icon + " mr-2" + " fa_width"}/>}
-                                            {tu(Route.label)}
-                                            {Route.badge && <Badge value={Route.badge}/>}
-                                          </Link>
-                                      );
-                                    })
-                                  }
-                                </div>
-
-
-                              })
-                            }
-                          </div>
-                        }
-                      </li>
-                  ))}
-                </ul>
-                <ul className="navbar-nav navbar-right">
-                  <li className="nav-item dropdown navbar-right">
-                    <a className="nav-link dropdown-toggle dropdown-menu-right "
-                       data-toggle="dropdown"
-                       href="javascript:">
-                      {activeCurrency.toUpperCase()}
-                    </a>
-                    <div className="dropdown-menu">
-                      {
-                        currencyConversions.map(currency => (
-                            <a key={currency.id}
-                               className="dropdown-item"
-                               href="javascript:"
-                               onClick={() => this.setCurrency(currency.id)}>{currency.name}</a>
-                        ))
-                      }
-                    </div>
-                  </li>
-                  <li className="nav-item dropdown navbar-right">
-                    <a className="nav-link dropdown-toggle dropdown-menu-right "
-                       data-toggle="dropdown"
-                       href="javascript:">{activeLanguage.toUpperCase()}</a>
-                    <div className="dropdown-menu languages-menu">
-                      {
-                        Object.keys(languages).map(language => (
-                            <a key={language}
-                               className="dropdown-item"
-                               href="javascript:"
-                               onClick={() => this.setLanguage(language)}>{languages[language]}</a>
-                        ))
-                      }
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </nav>
+       
           {
             activeComponent.none ? <div className="container pt-5 pb-4"></div>
                 :
@@ -1386,11 +1536,96 @@ class Navigation extends React.Component {
                       {/*{activeComponent.label === 'create' &&*/}
                       {/*<small className='text-muted' style={{fontSize: '14px'}}>{tu('issued_token_of_tronscan')}</small>*/}
                       {/*}*/}
+                      {IsRepresentative && activeComponent.label == 'contract_code_overview_account' && <span className="Representative-subTttle">{tu('Super Representatives')}</span>}
                     </h4>
+
                   }
 
                 </div>
           }
+          {/* drawer mobile nav */}
+          <Drawer
+            placement='right'
+            closable={false}
+            onClose={()=>{
+              this.setState({
+                drawerVisible:false
+              })
+            }}
+            visible={drawerVisible}
+          >
+            <div className="mobile-draw-menu">
+              <MenuNavigation currentRoutes={routes} changeDrawerFun={()=>this.changeCurrentDrawerFun()}></MenuNavigation>
+              <Collapse accordion bordered={false} expandIconPosition="right"  defaultActiveKey={[currentActive]} expandIcon={({ isActive }) => <Icon type="down" rotate={isActive ? 180 : 0} />}>
+                <Panel header={'EXPLORERS'} key="0" >
+                  <div className="languages-menu mobile-testnet-dropdown-menu">
+                    {
+                      testNetAry.map((net,ind) => (
+                          <a key={ind}
+                            target="_blank"
+                            className="dropdown-item"
+                            href={net.url}
+                            onClick={() => {
+                              this.changeCurrentDrawerFun();
+                              this.setState({
+                                currentActive:3
+                              })
+                            }}>
+                              {net.label}
+                              {net.label==='NILE TESTNET'&& <span className="new-test-net">new</span>} 
+                            </a>
+                      ))
+                    }
+                  </div>
+                </Panel>
+                <Panel header={
+                  <span>
+                    <img src={require(`../images/home/${activeLanguage}.svg`)} alt="" style={{height:'16px',marginRight:'2px'}}/>
+                    {languages[activeLanguage]}
+                  </span>  
+                  
+                  } key="1" >
+                  <div className="languages-menu">
+                    {
+                      Object.keys(languages).map(language => (
+                          <a key={language}
+                            className="dropdown-item"
+                            href="javascript:"
+                            onClick={() => {
+                              this.changeCurrentDrawerFun();
+                              this.setState({
+                                currentActive:3
+                              })
+                              this.setLanguage(language)
+                            }}>
+                               <img src={require(`../images/home/${language}.svg`)} alt="" style={{height:'16px',marginRight:'2px'}} />
+                              {languages[language]}
+                            </a>
+                      ))
+                    }
+                  </div>
+                </Panel>
+                <Panel header={activeCurrency} key="2" >
+                  <div className="currency-menu">
+                    {
+                      currencyConversions.map((current,ind) => (
+                          <a key={ind}
+                            className="dropdown-item"
+                            href="javascript:"
+                            onClick={() => {
+                              this.changeCurrentDrawerFun();
+                              this.setState({
+                                currentActive:3
+                              })
+                              this.props.setActiveCurrency(current.id)
+                            }}>{current.name}</a>
+                      ))
+                    }
+                  </div>
+                </Panel>
+              </Collapse>
+            </div>
+          </Drawer>
         </div>
     )
   }
@@ -1399,9 +1634,9 @@ class Navigation extends React.Component {
 
 const styles = {
   search: {
-    fontSize: 13,
+    fontSize: 14,
     minWidth: 260,
-    height:36,
+    height:48,
   },
   searchType: {
     fontSize: 13,
@@ -1410,6 +1645,7 @@ const styles = {
 
 function mapStateToProps(state) {
   return {
+    currentRouter: state.router.location.pathname,
     activeLanguage: state.app.activeLanguage,
     router: state.router,
     languages: state.app.availableLanguages,

@@ -58,67 +58,72 @@ class Code extends React.Component {
       contractAddress: address
     };
 
-    let { data } = await xhr
+    try{
+      let { data } = await xhr
       // .post(`${API_URL}/api/solidity/contract/info`, params)
       .post(`${CONTRACT_NODE_API}/api/solidity/contract/info`, params)
       .catch(function(e) {
         console.log(e);
       });
-
-    const dataInfo = data.data;
-    // eslint-disable-next-line
-    const {
-      status,
-      contract_name,
-      byte_code,
-      contract_code,
-      constructor_params,
-      optimizer,
-      compiler,
-      optimizer_runs,
-      license
-    } = dataInfo;
-
-    if (!status || status === 3 || status === 1 || status === 4) {
-      this.setState(
-        {
-          contractVerifyState: false,
-          loading: false
-        },
-        async () => {
-          await this.getContractInfos();
+      if(data){
+        const dataInfo = data.data;
+        // eslint-disable-next-line
+        const {
+          status,
+          contract_name,
+          byte_code,
+          contract_code,
+          constructor_params,
+          optimizer,
+          compiler,
+          optimizer_runs,
+          license
+        } = dataInfo;
+    
+        if (!status || status === 3 || status === 1 || status === 4) {
+          this.setState(
+            {
+              contractVerifyState: false,
+              loading: false
+            },
+            async () => {
+              await this.getContractInfos();
+            }
+          );
+        } else {
+          let infoObj;
+          const abi = dataInfo.abi && JSON.parse(dataInfo.abi);
+          /* eslint-disable */
+          infoObj = {
+            interfaceAbi: abi || "",
+            name: contract_name || "",
+            bytecode: byte_code || "",
+            contractCode: contract_code || [],
+            constructorParams: constructor_params || "",
+            optimizer,
+            compiler,
+            optimizer_runs,
+            license: CONTRACT_LICENSES[license] || "--"
+          };
+          /* eslint-disable */
+          this.setState(
+            {
+              contractVerifyState: true,
+              contractInfoList: infoObj,
+              loading: false
+            },
+            async () => {
+              this.getContractTokenList();
+              await this.getContractInfos();
+              this.viewFuntions();
+              this.payableFuntions();
+              this.nonePayableFuntions();
+            }
+          );
         }
-      );
-    } else {
-      let infoObj;
-      const abi = dataInfo.abi && JSON.parse(dataInfo.abi);
-      /* eslint-disable */
-      infoObj = {
-        interfaceAbi: abi || "",
-        name: contract_name || "",
-        bytecode: byte_code || "",
-        contractCode: contract_code || [],
-        constructorParams: constructor_params || "",
-        optimizer,
-        compiler,
-        optimizer_runs,
-        license: CONTRACT_LICENSES[license] || "--"
-      };
-      /* eslint-disable */
-      this.setState(
-        {
-          contractVerifyState: true,
-          contractInfoList: infoObj,
-          loading: false
-        },
-        async () => {
-          this.getContractTokenList();
-          await this.getContractInfos();
-          this.viewFuntions();
-          this.payableFuntions();
-          this.nonePayableFuntions();
-        }
-      );
+      }
+    }catch(e){
+      console.log(e)
     }
   }
 
@@ -128,15 +133,27 @@ class Code extends React.Component {
     } = this.props;
     const { contractVerifyState, contractInfoList } = this.state;
     let smartcontract = await this.tronWeb.trx.getContract(address);
-    if (contractVerifyState) {
+    let contractInfoListNew;
+     if (contractVerifyState) {
+      contractInfoListNew = { abi: smartcontract.abi, ...contractInfoList };
+     }else{
+      contractInfoListNew = smartcontract;
+     }
       this.setState({
-        contractInfoList: { abi: smartcontract.abi, ...contractInfoList }
+        contractInfoList: contractInfoListNew
+      },()=>{
+       if(contractInfoListNew.abi){
+          this.getContractTokenList();
+          this.viewFuntions();
+          this.payableFuntions();
+          this.nonePayableFuntions();
+       }
       });
-    } else {
-      this.setState({
-        contractInfoList: smartcontract
-      });
-    }
+    // } else {
+    //   this.setState({
+    //     contractInfoList: smartcontract
+    //   });
+    // }
   }
 
   /**
@@ -256,6 +273,13 @@ class Code extends React.Component {
         break;
       case "tron-0.5.8_Odyssey_v3.6.0":
         version = "0.5.8";
+        
+        break;
+      case "tron-0.5.9_Odyssey_v3.6.5":
+        version = "0.5.9";
+        break;
+      case "tron-0.5.10_Odyssey_v3.6.6":
+        version = "0.5.10"; 
         break;
       default:
         version = v.match(/\d+(.\d+)*/g)[0] || "";
@@ -263,6 +287,7 @@ class Code extends React.Component {
     }
     return version;
   };
+
 
   render() {
     const {
@@ -276,7 +301,6 @@ class Code extends React.Component {
       loading
     } = this.state;
     const { filter, intl } = this.props;
-
     const {
       abi,
       name,
@@ -381,22 +405,14 @@ class Code extends React.Component {
       //     }
       // </div>
       <div>
-        {IS_MAINNET ? (
+        {/* {IS_MAINNET ? ( */}
           <div className="tab-choice">
             {radioBtnItem}
             <p className="contract-source-code-title">
-              {contractVerifyState ? (
-                <img
-                  style={{ width: "20px", height: "20px" }}
-                  src={require("../../../images/contract/Verified.png")}
-                />
-              ) : (
-                <img
-                  style={{ width: "20px", height: "20px" }}
-                  src={require("../../../images/contract/Unverified.png")}
-                />
-              )}
-              {tu("contract_source_code_match")}
+              {contractVerifyState===true ? <div><img style={{ width: "20px", height: "20px" }} src={require("../../../images/contract/Verified.png")}/> {tu("contract_source_code_match")}</div>
+               : <div><img style={{ width: "20px", height: "20px" }} src={require("../../../images/contract/Unverified.png")}/>{tu("contract_source_code_no_match")}</div>
+              }
+              
             </p>
             <div className="d-flex contract-header_list contract-detail">
               <div className="contract-header__item contract-header">
@@ -450,12 +466,11 @@ class Code extends React.Component {
               </div>
             </div>
           </div>
-        ) : (
+        {/* ) : (
           ""
-        )}
+        )} */}
       </div>
     );
-
     // 去验证合约Item
     const contractVerifyBtnItem = (
       <div className="contrat-verify">
@@ -480,7 +495,8 @@ class Code extends React.Component {
           </div>
         ) : (
           <div>
-            {contractVerifyState ? contractMessItem : contractVerifyBtnItem}
+            {/* {contractVerifyState ? contractMessItem : contractVerifyBtnItem} */}
+            { contractMessItem }
           </div>
         )}
         <div className="tab-container">{tabContent}</div>

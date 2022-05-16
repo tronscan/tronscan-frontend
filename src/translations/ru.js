@@ -1,5 +1,12 @@
+/* eslint-disable */
+import {
+    lang19Q4
+} from './versionLang/lang19Q4/ru19Q4'; /* 2019Q4 */
+import {
+  lang20Q1
+} from './versionLang/lang20Q1/ru.js'; /* 2020Q1 */
 export const messages = {
-  /*
+    /*
   ##################################################################################
   #                                                                                #
   #  $$$$$$$$\                                                                     #
@@ -114,6 +121,7 @@ export const messages = {
   ##################################################################################
   */
   "blockchain": "Блокчейн",
+  "newblock":"Блокчейн",
   "wallet": "Кошелек",
   "home": "Главная",
   "transfers": "Переводы",
@@ -236,7 +244,7 @@ export const messages = {
   "do_not_send_2": "Не отправляйте TRX со своего собственного кошелька и не обменивайте его по указанному выше адресу учетной записи на тестнете!",
   "bandwidth": "пропускная способность",
   "balance": "Баланс",
-  "tron_power": "Право голоса",
+  "tron_power": "Права голосования ",
   "transactions": "транзакции",
   "no_transfers": "Нет переводов",
   "no_tokens": "Нет токенов",
@@ -343,7 +351,7 @@ export const messages = {
   "open_external_link": "Вы открываете внешнюю ссылку",
   "private_key_untrusted_website_message_0": "Никогда не вводите свой приватный ключ на ненадежном веб-сайте.",
   "no_official_tron_website": "не является официальным сайтом TRON.",
-  "continue_to_external_website": "Продолжить переход на внешний сайт",
+  "continue_to_external_website": "Продолжить",
   "visit_third_party_website":"The page you visit will be redirected to a third-party website. There may be security risks. Are you sure you want to continue?",
   "url_changed": "URL изменен",
   "successfully_changed_website_message": "Сайт успешно изменен на",
@@ -532,12 +540,12 @@ export const messages = {
   "no_trx_remaining": "Не осталось TRX",
   "show_more": "Показать {countriesLength} больше",
   "vote_guide_message": `Используйте свои TRX, чтобы голосовать за Суперпредставителей.
-   За каждый TRX, который вы имеете в своем аккаунте, вы можете потратить на один голос.
-   TRX не будет тратиться. Вы можете проголосовать за несколько представителей столько раз, сколько захотите.
-   Количество голосов будет обновляться в 02:00, 08:00, 14:00, 20:00 (GMT+8) каждый день, и список делегатов будет обновляться.`,
+   За каждый TRX, который вы имеете в своем аккаунте, вы можете потратить на один голос.
+   TRX не будет тратиться. Вы можете проголосовать за несколько представителей столько раз, сколько захотите.
+   Количество голосов будет обновляться в 02:00, 08:00, 14:00, 20:00 (GMT+8) каждый день, и список делегатов будет обновляться.`,
   "search_address": "Поиск адреса",
   "token_transactions": "Транзакции токена",
-  "token_holders": "Держатели токенов",
+  "token_holders": "держатель токена",
   "nr_of_Transfers": "Количество переводов",
   "not_signed_in": "Вам нужно будет войти в свой аккаунт, чтобы использовать эту функцию",
   "loading_map": "Загрузка карты",
@@ -568,7 +576,7 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "details": "подробности",
+  "details": "деталь",
   "issue_a_token": "Создать токен",
   "issue_token": "Создать токен",
   "token_name": "Имя токена",
@@ -587,20 +595,20 @@ export const messages = {
   "participation_message_0": "Укажите период, в котором будут выпущены токены. В течение данного периода пользователи могут обменять TRX на",
   "participation_message_1": " токенов.",
   "frozen_supply_message_0": `Часть токенов может быть заморожена. Количество должно быть указано и должно быть заморожено
-    минимум на 1 день. Замороженное кол-во может быть вручную заморожено после даты начала и заморожено
-    дни были достигнуты. Заморозка не является обязательной.`,
+    минимум на 1 день. Замороженное кол-во может быть вручную заморожено после даты начала и заморожено
+    дни были достигнуты. Заморозка не является обязательной.`,
   "token_issued_successfully": "Токен успешно выпущен",
   "participation": "Время выпуска токена",
   "start_date": "Дата начала",
   "end_date": "Дата окончания",
   "token_spend_confirm": "Я подтверждаю, что для создания всех токенов требуется единовременная оплата в 1024 TRX",
   "token_issue_guide_message_1": `Выдача токена по протоколу TRON может быть выполнена
-     любым, у кого в аккаунте есть хотя бы 1024 TRX.`,
+     любым, у кого в аккаунте есть хотя бы 1024 TRX.`,
   "token_issue_guide_message_2": `Когда токен будет выпущен, он будет отображаться на странице обзора токенов.
-     Пользователи могут обменивать свои TRX на токены в течение времени выпуска токена.`,
+     Пользователи могут обменивать свои TRX на токены в течение времени выпуска токена.`,
   "token_issue_guide_message_3": `После выпуска токена ваш аккаунт получит количество токенов, равное его общему количеству.
-     Когда другие пользователи обменяют свои TRX на токены, токены будут сняты с вашего аккаунта, и вы
-     получите TRX, равный указанному обменному курсу.`,
+     Когда другие пользователи обменяют свои TRX на токены, токены будут сняты с вашего аккаунта, и вы
+     получите TRX, равный указанному обменному курсу.`,
   /*
   ##################################################################################
   #                                                                                #
@@ -747,7 +755,7 @@ export const messages = {
   "what_is_tron": "TRON whitepaper V2.0",
   "tron_explorer_api": "TRONSCAN API",
   "tron_architechure": "Архитектура TRON",
-  "tron_protobuf_doc": "Документация Protobuf TRON",
+  "tron_protobuf_doc": "Документация Protobuf",
   "report_an_error": "Отправить сообщение об ошибке / предложение",
   "frequently_asked_questions": "FAQ",
   "telegram": "Telegram",
@@ -969,8 +977,8 @@ export const messages = {
   "in_BTC": "В BTC",
   "total_TRX_supply": "Общий объем TRX",
   "market_capitalization": "Рыночная капитализация",
-  "circulating_supply": "Общее количество в обороте",
-  "list_trx": "Залистить TRX",
+  "circulating_supply": "циркулирующий",
+  "list_trx": "Список бирж указан TRX",
   "burned_trx": "TRX сожжено",
   "supply_notes": "Краудсейл и предварительная продажа доступны по всему миру, за исключением США, Китая и Японии.",
   "14_day_transaction_history": "История транзакций за 14 дней",
@@ -1097,7 +1105,7 @@ export const messages = {
   "reputation": "Репутация",
   "issue_time": "Время выпуска ",
   "success_receive": "Успешно получено",
-  "circulating_supply": "Количество в обороте",
+  "circulating_supply": "циркулирующий",
   "issue_info": "Информация о выпуске",
   "transferring": "В процессе",
   "in_progress": "В процессе",
@@ -1177,7 +1185,7 @@ export const messages = {
    "contract_create_msg":"Информация",
    "contract_create_time":"Время",
    "contract_enery":"Коэффициент энергопотребления",
-   "contract_enery_tip":"Вызов смарт контрактов потребляет энергию",
+   "contract_enery_tip":"The energy consumed by calling the smart contract is borne by the contract and the user in proportion",
    "contract_init_assets":"Начальный актив",
    "contract_init_assets_tip":"Создатель контракта переводит средства на адрес контракта при выпуске контрактов",
    "contract_editor_bug": "Предупреждение о уязвимости compiler",
@@ -1537,23 +1545,33 @@ export const messages = {
   "propose_12": "Предлагается изменить плату за 1 энергию",
   "propose_13": "Предлагается изменить стоимость создания торговой пары",
   "propose_14": "Предлагается изменить максимальное время выполнения одной транзакции",
-  "propose_15": "Предлагается разрешить сменить имя аккаунта",
+  "propose_15": "Предлагаю разрешить дублирование имени аккаунта",
   "propose_16": "Предлагается разрешить одно и то же имя токена",
   "propose_17": "Предлагается разрешить делегирование ресурсов",
   "propose_18": "Предлагается изменить общий предел энергии",
   "propose_18_1": "Предлагается изменить общий предел энергии",
   "propose_19": "Предлагается разрешить передачу токена TRC-10 в смарт-контрактах",
-  "propose_20": "Текущий предел энергии",
+  "propose_20": "Предложение изменить общий предел энергии",
   "propose_21": "Предлагаем разрешить инициирование мульти-подписи",
   "propose_22": "Предложить адаптивную корректировку общей энергии",
   "propose_23": "Целевой предел энергии",
   "propose_24": "Средний предел энергии",
   "propose_25": "Плата за обновление разрешения учетной записи",
   "propose_26": "Предлагаю изменить плату за мультиподпись",
-  "propose_27": "Propose to enable protocol optimization",
-  "propose_28": "Propose to support the new features of TRON Virtual Machine 0.5.4",
-  "propose_30":"Propose to support the decentralized vote dividend",
-  "propose_31": "Propose to modify the block voting rewards given to the top 27 SRs and the following 100 partners",
+  "propose_27": "Предложение включить оптимизацию протокола",
+  "propose_28": "Предложение разрешить TVM поддерживать Константинополь обновление",
+  "propose_28_1":"Предложение изменить комиссию за анонимную транзакцию",
+  "propose_29": "Предложение разрешить анонимные транзакции",
+  "propose_29_1":"Предложение изменить адаптивный множитель лимита ресурса",
+  "propose_30":"Предложение поддержать децентрализованное голосование дивидендов",
+  "propose_31": "Предложение изменить награды за голосование за блок, которые получили топ 27 SR и следующие 100 партнеров",
+  "propose_32": "Предложение разрешить TVM поддержку Solidity 0.5.9",
+  "propose_33": "Предложение изменить лимит целевого коэффициента адаптивных ресурсов",
+  "propose_34": "Предложение изменить комиссию за транзакцию при создании публичного адреса при переводе средств с анонимных адресов на публичные адреса в анонимных транзакцих",
+  "propose_35": "Предложение запретить передачу токенов TRX и TRC10 в смарт-контракты через TransferContract  или TransferAssetContract",
+  "propose_prohibit":"запрет",
+  "propose_not_prohibit":"не бан",
+  "propose_unprohibit":"не бан",
   "propose_minute": "мин",
   "propose_unactivate": "Не активирован",
   "propose_not_allowed": "Не разрешено",
@@ -1929,7 +1947,7 @@ export const messages = {
   "table_info_holders_tip1": "В текущее время есть ",
   "table_info_holders_tip2": "адреса токенов, и сейчас отображаются только первые 10000 (отсортированные от большого к маленькому в зависимости от количества токенов)",
   "Singapore": "Singapore",
-  "table_info_new_tip": "В настоящее время отображаются только первые 10000 данных. Если вы хотите запросить другие данные, рекомендуется настроить временной диапазон.",
+  "table_info_new_tip": "Если вы хотите запросить другие данные, рекомендуется настроить временной диапазон.",
   "select_start_time": "Пожалуйста, выберите время начала",
   "select_end_time": "Пожалуйста, выберите время окончания",
   "binance": "binance",
@@ -1953,7 +1971,7 @@ export const messages = {
  */
   "ledger_user_guide": "Руководство по использованию Ledger",
   "latest_version_chrome": "Обновите Сhrome до последней версии",
-  "ledger_support_version": "Поддерживаемая версия Ledger: 0.1.1., Поддерживаемая версия Chrome 73.0",
+  "ledger_support_version": "Поддерживаемая версия Ledger: 0.1.6, Поддерживаемая версия Chrome 80.0",
   "ledger_you_can": "Вы можете посетить",
   "ledger_website": " Ledger веб-сайт ",
   "ledger_website_download": "Загрузите и обновите последнюю версию Ledger",
@@ -2123,6 +2141,7 @@ export const messages = {
   "receive_address":"Получите адрес (адрес по умолчанию ваш собственный)",
   "unfreeze_time": "Время разморозки",
   "interTrx_tip": "Внутренние транзакции - это операция, которая по общему адресу называется смарт-контрактом, а смарт-контракт передает токен на другой адрес.",
+  "interTrx_tip_contract":"Internal transactions from contract execution",
   "event_tip": "События позволяют программисту или провайдеру внешнего интерфейса использовать его, чтобы обратить внимание на контрактные операции и аудиты.",
   "Expected_acquisition": "Расчетная",
   "energy_more": "Полученная пропускная способность = замороженные TRX для получения пропускной способности/ общее количество замороженных TRX в сети для получения пропускной способности.",
@@ -2241,9 +2260,14 @@ export const messages = {
   "Side_Chain":"DAppChain",
   "Main_Chain":"MainChain",
 
-  "7day": "one week",
-  "14day": "two weeks",
-  "30day": "one month",
+  "JST_distribution_overview": "JST DISTRIBUTION OVERVIEW",
+  "JST_supply": "JST Supply",
+  "JST_Token_Release_Schedule": "JST Token Release Schedule",
+  "source_JST_team": "Source: JST Management Team",
+
+  "7day": "7 дней",
+  "14day": "14 дней",
+  "30day": "1 месяц",
   "select_tip": "To view data other than 2000 You can manually adjust the time window",
   "date_number_tip": "{total} records in the current time range",
   "date_list_tip": "Only the first 2000 data are displayed",
@@ -2256,13 +2280,14 @@ export const messages = {
   "sun_propose_6": "Управлять включением/выключением стимула для witness на сайдчейн",
   "sun_propose_7": "Метрики распределения стимулирующего пула сайдчейн",
   "sun_propose_8": "Коэффициент прибыли witness на сайдчейн",
+  sun_propose_12: "Propose to allow DAppChain 1.0.2 upgrade",
   "day":"день",
 
 
   "developers_username": "username",
-  "developers_current_year":"total points",
-  "developers_current_quarter": "quarter's points",
-  "developers_current_month":"month's points",
+  "developers_current_year":"Total points",
+  "developers_current_quarter": "Last quarter points",
+  "developers_current_month":"Last month points",
   "developers_view_points":"View Points Details",
   "developers_points_details": "Points details",
   "developers_contribution_link":"Contribution content corresponding link",
@@ -2306,7 +2331,7 @@ export const messages = {
   "no_rewards_available_yet":"No rewards available",
   "total_tron_ecosystem_tokens":"Total TRON-ecosystem tokens:",
   "number_of_lists":"Number of lists:",
-  "total_in_tronscan":"Total in tronscan:",
+  "total_in_tronscan":"Total in tronscan",
   "develpopers_reward_tip":"Thank you for considering to help out with the java-tron! TRON Foundation welcome contributions from anyone on the internet, and are grateful for your contributions.",
   "verifty_contract_result":"Результат",
   "main_contract_deployment":"(Please select the main contract deployment)",
@@ -2319,7 +2344,7 @@ export const messages = {
   "SR_rank": "ранжирование",
   "SR_blocksMissed": "Пропущено блоков",
   "SR_votes": "Голоса",
-  "SR_voteRatio": "Соотношение голосов",
+  "SR_voteRatio": "Voting sharing ratio",
   "SR_normal":"Обычный",
   "SR_avnormal":"ненормальный",
   /*
@@ -2351,7 +2376,7 @@ export const messages = {
  "tooltip_accounts":"Общее количество аккаунтов в настоящие время в основной сети и SUN Network",
  "tooltip_accounts_mainnet":"Аккаунты в настоящем времени в главной цепи",
  "tooltip_accounts_sunnet":"Аккаунты в настоящем времени в SUN Network",
- "tooltip_trxPrice":"Цена TRX в USD, котировка в настоящем времени",
+ "tooltip_trxPrice":"Цена TRX в USD",
  "tooltip_trxPrice_mainnet":"Цена TRX в USD, котировка в настоящем времени",
  "tooltip_trxPrice_sunnet":"Цена TRX в USD, котировка в настоящем времени",
  "nav_network":"SUN Network",
@@ -2362,4 +2387,100 @@ export const messages = {
  "sun_network_development_document": "Документ о разработке",
  "home_page":"Домашняя страница",
  "developer_challenge":"Developer Challenge",
+ /*
+     ##################################################################################
+     #                                                                                #
+     #   multi-signature               2019-11-19              #
+     #                                                                                #
+     ##################################################################################
+  */
+ "muti_sign":"Мульти-подпись",
+  "translations_wait_sign":"Транзакции ждут мою подпись",
+  "transfer_multi_sign":"Мульти-подпись перевод",
+  "permission":"Отправитель",
+  "owner_permission":"Owner доступ группа",
+  "active_permission":"Active доступ группа",
+  "translations_failure_time":"Время истечения",
+  "to_be_sign":"Ожидание подписи",
+  "signed":"Подписан",
+  "signature_failed":"Отказ",
+  "signature_successful":"Успех!",
+  "signature_type":"Типы",
+  "signature_sponsor":"Инициатор",
+  "signature_time_left":"Оставшееся время",
+  "signature_list":"Отставание подписи",
+  "signature_operate":"Работать",
+  "signature_status":"Статус",
+  "signature_account":"В ожидании подписи",
+  "no_control_permission":"Нет доступа к указанному адресу. Пожалуйста, попробуйте еще раз.",
+  "signature":"Подпись",
+  "signature_details":"Детали транзакции",
+  "signature_details_processing":"В процессе",
+  "view_on_chain_transactions":"Просмотр транзакций в сети",
+  "transaction_create_successful":"Транзакция создана, в ожидании подписи",
+  "transaction_create_failed":"Не удалось создать транзакцию, повторите попытку позже.",
+  "transaction_signature_muti_failed":"Подпись не удалась, повторите попытку позже.",
+  "transaction_signature_muti_successful":"Подписано успешно",
+  "signature_privilege":"Доступ владельца",
+  "signature_privilege_desc":"Доступ владельца имеет самый высокий уровень допуска и может использоваться для контроля прав собственности пользователей и корректировки структуры доступа. Доступ владельца также позволяет пользователям выполнять все контракты.",
+  "signature_permission":"Имя доступа",
+  "signature_threshold":"Предел",
+  "signature_keys":"keys",
+  "signature_key":"address",
+  "signature_weight":"Вес",
+  "signature_active_permissions":"Активный доступ",
+  "signature_active_permissions_desc":"Активный доступ обеспечивает комбинированный доступ. например доступ к созданию аккаунтов и переводу средств; Вы можете добавить до 8 активных доступов.",
+  "signature_Operations":"Работать",
+  "signature_Superdelegate_authority":"Доступ SR",
+  "signature_Superdelegate_authority_desc":"Доступ SR используется для настройки блока, производящего нода",
+  "signature_piece_node":"Блок производящий нод",
+  "signature_no_set":"Это адрес контракта, и его нельзя сбросить.",
+  "signature_Unverified_address":"Unverified address",
+  "signature_notInContralAddress":"Нет доступа к указанному адресу. Пожалуйста, попробуйте еще раз.",
+  "signature_invalid_Address":"Неправильный формат адреса. Пожалуйста, попробуйте еще раз.",
+  "signature_weight_required":"Вы должны ввести weight",
+  "signature_address_not_similar":"Адреса учетных записей в одной группе доступа должны отличаться.",
+  "signature_owner_permissin_name_required":"Вы должны ввести имя доступа",
+  "signature__less_threshold_owner":"Сумма весса адресов должна быть выше лимита, чтобы добавить новый доступ  ",
+  "signature__less_threshold_active":"Сумма весса адресов должна быть выше лимита, чтобы добавить новый доступ  ",
+  "signature_update_failed":"Не удалось обновить доступ",
+  "signature_control_address":"Управление адресом",
+  "signature_authority_structure":"Структура доступа",
+  "signature_save":"Сохранить",
+  "signature_cancel":"Отменить",
+  "signature_alter":"Редактировать",
+  "signature_add":"Добавить",
+  "signature_giveup_change":"Вы хотите отменить текущее редактирование?",
+  "signature_set_spend_trx":"El envío de cambios alterará la configuración de la estructura de acceso de firma múltiple y cuesta",
+  "signature_submit_change":"¿Desea continuar??",
+  "signature_my":"Моя подпись",
+  "signature_my_authrity":"Мой доступ",
+  "fill_a_valid_permissin_time": "Пожалуйста, введите правильное время истечения",
+  "fill_a_valid_permissin_id":"Пожалуйста, выберите действительный доступ",
+  "signature_edit_permissions":"Изменить доступ",
+  "signature_add_permissions":"Добавить новый доступ",
+  "signature_add_active_permissions":"Добавить активный доступ",
+
+  // 2019-12-02
+  "signature_owner_permission_name_required":"Требуется имя доступа владельца",
+  "signature_owner_threshold_required":"Требуется предел доступа владельца",
+  "signature_active_permission_name_required":"Требуется имя активного доступа",
+  "signature_active_threshold_required":"Требуется предел активного доступа",
+  "signature_keys_required":"Требуются keys",
+  "signature_permission_name_required":"Вы должны ввести имя доступа",
+  "signature_operations_required":"Требуется операция",
+  "signature_threshold_required":"Требуется предел",
+  "signaure_control_address_tip":"Control address refers to the associated control addresses of owner permission, SR permission and active permission. Display of the three types of permissions will change subsequently when the control address is modified.",
+
+// 2019-12-10
+"ledger_tronlink":"Login to TRONSCAN via TronLink",
+// 2019-12-18
+"address_vote_reward_pending":"награда за голосование",
+"address_balance":"Баланс TRX",
+"address_get_energe":"Для Энергии",
+"address_get_bandwith":"Для Пропускной Способности",
+"address_freeze_owner":"Для вашего аккаунта ",
+"address_freeze_other":"Для другого аккаунта(ов)",
+...lang19Q4,
+...lang20Q1
 };

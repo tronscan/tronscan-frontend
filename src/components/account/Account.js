@@ -10,11 +10,11 @@ import {SwitchToken} from "../common/Switch";
 import FreezeBalanceModal from "./FreezeBalanceModal";
 import {AddressLink, HrefLink, TokenLink, TokenTRC20Link} from "../common/Links";
 import SweetAlert from "react-bootstrap-sweetalert";
-import {API_URL,CONTRACT_MAINNET_API_URL, IS_TESTNET, ONE_TRX, CONTRACT_ADDRESS_USDT, CONTRACT_ADDRESS_WIN, CONTRACT_ADDRESS_GGC, IS_SUNNET, CURRENCYTYPE, IS_MAINNET } from "../../constants";
+import {API_URL, CONTRACT_MAINNET_API_URL, IS_TESTNET, ONE_TRX, CONTRACT_ADDRESS_USDT, CONTRACT_ADDRESS_WIN, CONTRACT_ADDRESS_GGC, IS_SUNNET, CURRENCYTYPE, IS_MAINNET, NETURL } from "../../constants";
 import {Client} from "../../services/api";
 import ApplyForDelegate from "./ApplyForDelegate";
 import _, {trim} from "lodash";
-import {Modal, ModalBody, ModalHeader} from "reactstrap";
+import {Modal, ModalBody, ModalHeader,Tooltip} from "reactstrap";
 import QRImageCode from "../common/QRImageCode";
 import ChangeNameModal from "./ChangeNameModal";
 import CreateTxnPairModal from "./CreateTxnPairModal";
@@ -37,11 +37,14 @@ import { FormatNumberByDecimals } from '../../utils/number'
 import { getQueryString } from "../../utils/url";
 import IssuedToken from './IssuedToken';
 import PledgeModal from './PledgeModal';
+import MySignature from './MySignature';
 import MappingMessageModal from './MappingMessageModal';
 import SignModal from './SignModal';
-import {Tooltip} from "reactstrap";
 import { Input, Tooltip as AntdTip } from 'antd';
 import Countdown from "react-countdown-now";
+import { isJSXEmptyExpression } from '@babel/types';
+import  MyPermission  from '../mutiSignature/MyPermission';
+
 
 @connect(
     state => {
@@ -84,7 +87,7 @@ export default class Account extends Component {
       temporaryName: "",
       selectedResource: null,
       hideSmallCurrency: false,
-      tokenTRC10: true,
+      tokenTRC10: false,
       tokens20: [],
       dealPairTrxLimit: 100000,
       isTronLink: 0,
@@ -95,11 +98,14 @@ export default class Account extends Component {
       isShowMappingModal: false,
       isShowSignModal: false,
       type: CURRENCYTYPE.TRX10,
-      tokenTRX: false,
+      tokenTRX: true,
       trx20MappingAddress: [],
       reward:false,
       accountReward:0,
       errorMess:'',
+      isInMyPermission:true,
+      isInMySignature:false,
+      mySignatureType:255
     };
 
   }
@@ -127,6 +133,18 @@ export default class Account extends Component {
               this.scrollToAnchor()
           },3000)
       }
+      if(getQueryString('from') == 'nav' && getQueryString('type') == 'multisign'){
+          this.setState({
+              isInMyPermission:false,
+              isInMySignature:true,
+              mySignatureType:10
+          },()=>{
+              setTimeout(()=>{
+                  this.scrollToMultisign()
+                  window.location.hash = "#/account";
+                },500)
+          })
+      }
       let isActivate =  await this.isActivateAccount(account.address)
       this.setState({
         isActivate
@@ -148,7 +166,19 @@ export default class Account extends Component {
   }
 
   async componentDidUpdate(prevProps) {
-    let {account, walletType, currentWallet} = this.props;
+    let {account, walletType, currentWallet, location} = this.props;
+    if((location.search != prevProps.location.search) && getQueryString('from') == 'nav' && getQueryString('type') == 'multisign') {
+        this.setState({
+          isInMyPermission:false,
+          isInMySignature:true,
+          mySignatureType:10
+        },()=>{
+            setTimeout(()=>{
+                this.scrollToMultisign()
+                window.location.hash = "#/account";
+            },500)
+        })
+    }
     if (((prevProps.account.isLoggedIn !== account.isLoggedIn) && account.isLoggedIn) || ((prevProps.account.address !== account.address) && account.isLoggedIn)) {
       this.setState({isTronLink: Lockr.get("islogin")});
       this.reloadTokens();
@@ -179,6 +209,11 @@ export default class Account extends Component {
       }
 
     }
+  }
+  changeMySignatureType(value){
+    this.setState({
+      mySignatureType:value
+    })
   }
 
   loadVoteTimer = async () => {
@@ -223,6 +258,14 @@ export default class Account extends Component {
       if(anchorElement) { anchorElement.scrollIntoView(); }
 
   }
+    scrollToMultisign = () => {
+
+        let anchorElement = document.getElementById('tronMultisign');
+        if(anchorElement) { anchorElement.scrollIntoView(); }
+
+    }
+
+
 
   loadAccount = async () => {
     let {account, loadRecentTransactions, currentWallet} = this.props;
@@ -269,7 +312,7 @@ export default class Account extends Component {
     let result = await xhr.get(API_URL + "/api/token_trc20?sort=issue_time&start=0&limit=50");
     let tokens20 = result.data.trc20_tokens;
     const tronWebLedger = this.props.tronWeb();
-    const {tronWeb,} = this.props.account;
+    const { tronWeb } = this.props.account;
     if (this.props.walletType.type === "ACCOUNT_LEDGER") {
       tokens20 && tokens20.map(async item => {
         item.token20_name = item.name + '(' + item.symbol + ')';
@@ -460,7 +503,7 @@ export default class Account extends Component {
 
   renderTRX() {
     let {hideSmallCurrency, isPrivateKey} = this.state;
-    let {tokenBalances = []} = this.props;
+    let {tokenBalances = [],intl} = this.props;
     if (hideSmallCurrency) {
       tokenBalances = _(tokenBalances)
           .filter(tb => tb.name.toUpperCase() === "_")
@@ -507,13 +550,22 @@ export default class Account extends Component {
             tokenBalances.map((token) => (
                 <tr key={token.name}>
                   <td className="text-nowrap">
-                      {
-                          token.map_token_id == 1002000?<div className="map-token-top">
-                            <TokenLink id={token.map_token_id} name={token.map_token_name+' ('+token.map_token_name_abbr+")"} address={token.address}/>
-                            <i></i>
-                          </div>: <TokenLink id={token.map_token_id} name={token.map_token_name+' ('+token.map_token_name_abbr+")"} address={token.address}/>
-                      }
-
+                      <div className="d-flex">
+                        {
+                            token.map_token_id == 1002000?<div className="map-token-top">
+                              <TokenLink id={token.map_token_id} name={token.map_token_name+' ('+token.map_token_name_abbr+")"} address={token.address}/>
+                              <i></i>
+                            </div>: <TokenLink id={token.map_token_id} name={token.map_token_name+' ('+token.map_token_name_abbr+")"} address={token.address}/>
+                        }
+                        {
+                          IS_MAINNET ? 
+                          intl.locale == 'zh'?
+                          <a href={window.location.origin === NETURL.MAINNET ?`https://just.tronscan.org/?lang=zh-CN`:`https://just.tronscan.io/?lang=zh-CN`} className="ml-4 float-right" target="_blank"><span className="mr-1"  style={{textDecoration: 'underline'}}>{t("pledge_to_get_USDJ")}</span>></a>
+                          :
+                          <a href={window.location.origin === NETURL.MAINNET ?`https://just.tronscan.org/?lang=en-US`:`https://just.tronscan.io/?lang=en-US`} className="ml-4 float-right" target="_blank"><span className="mr-1"  style={{textDecoration: 'underline'}}>{t("pledge_to_get_USDJ")}</span>></a>
+                          :''
+                        }
+                      </div>
                   </td>
                   <td>
                     <div className="tokenBalances_id">{token.map_token_id}</div>
@@ -952,7 +1004,7 @@ export default class Account extends Component {
                 this.setState({
                   modal: (
                       <SweetAlert warning title={tu("Error")} onConfirm={this.hideModal}>
-                        Something went wrong while trying to freeze TRX
+                          {tu('freeze_TRX_error')}
                       </SweetAlert>
                   )
                 });
@@ -1630,8 +1682,8 @@ export default class Account extends Component {
   };
 
   toissuedAsset = () => {
-    let {issuedAsset} = this.state;
-    window.location.hash = "#/token/" + issuedAsset.id;
+     let {issuedAsset} = this.state;
+     window.location.hash = "#/token/" + issuedAsset.id;
   }
 
   handleSwitch = (val) => {
@@ -1864,7 +1916,7 @@ export default class Account extends Component {
             return
         }
         let {account, currentWallet, walletType} = this.props;
-        if (this.state.isTronLink === 1) {
+        if (this.state.isTronLink === 1 || this.props.walletType.type === "ACCOUNT_LEDGER") {
             let tronWeb;
             if (this.props.walletType.type === "ACCOUNT_LEDGER") {
                 tronWeb = this.props.tronWeb();
@@ -1945,7 +1997,7 @@ export default class Account extends Component {
   render() {
     let { modal, sr, issuedAsset, showBandwidth, showBuyTokens, temporaryName, hideSmallCurrency, tokenTRC10,
         isShowPledgeModal, isShowMappingModal, address, currency, balance, precision, id, type, isShowSignModal,
-        tokenTRX, trx20MappingAddress,brokerageValue, errorMess, reward, rewardData, accountReward} = this.state;
+        tokenTRX, trx20MappingAddress,brokerageValue, errorMess, reward, rewardData, accountReward,isInMyPermission,isInMySignature, mySignatureType} = this.state;
 
     let {account, frozen, totalTransactions, currentWallet, wallet, accountResource, trxBalance, intl} = this.props;
 
@@ -1953,6 +2005,12 @@ export default class Account extends Component {
 
     let trxBalanceRemaining = currentWallet && currentWallet.balance / ONE_TRX;
 
+    let tronWeb;
+    if(wallet.type==='ACCOUNT_LEDGER'){
+      tronWeb = this.props.tronWeb();
+    }else{
+      tronWeb = account.tronWeb;
+    }
       // pledge param
       const option = {
           address,
@@ -2056,6 +2114,15 @@ export default class Account extends Component {
                     <TRXPrice amount={currentWallet.balance / ONE_TRX}/>
                   </h3>
                   {tu("available_balance")}
+                  {
+                      IS_MAINNET ? 
+                      intl.locale == 'zh'?
+                      <a href={window.location.origin === NETURL.MAINNET ?`https://just.tronscan.org/?lang=zh-CN`:`https://just.tronscan.io/?lang=zh-CN`} className="ml-2 float-right" target="_blank"><span className="mr-1"  style={{textDecoration: 'underline', fontSize: '12px'}}>{t("pledge_to_get_USDJ")}</span>></a>
+                      :
+                      <a href={window.location.origin === NETURL.MAINNET ?`https://just.tronscan.org/?lang=en-US`:`https://just.tronscan.io/?lang=en-US`} className="ml-2 float-right" target="_blank"><span className="mr-1"  style={{textDecoration: 'underline', fontSize: '12px'}}>{t("pledge_to_get_USDJ")}</span>></a>
+                      :''
+                  }
+                 
                 </div>
               </div>
             </div>
@@ -2128,14 +2195,14 @@ export default class Account extends Component {
                     <tr>
                       <th>{tu("transactions")}:</th>
                       <td>
-                        <FormattedNumber value={totalTransactions}/>
+                        <FormattedNumber value={totalTransactions}/> Txns
                       </td>
                     </tr>
                     {
                         (!currentWallet.representative.enabled  && IS_MAINNET) && <tr>
                           <th >{tu("SR_vote_for_reward")}:</th>
                           <td>
-                            <TRXPrice amount={accountReward / ONE_TRX} className="font-weight-bold"/>
+                            <TRXPrice amount={accountReward / ONE_TRX}/>
                               {
                                   accountReward == 0 ?  <AntdTip title={<span>{tu('no_rewards_available_yet')}</span>}>
                                                             <a href="javascript:;"
@@ -2311,7 +2378,12 @@ export default class Account extends Component {
                   </div>
                   <div className="account-token-tab">
                     <a href="javascript:;"
-                       className={"btn btn-default btn-sm" + (tokenTRC10 && !tokenTRX ? ' active' : '')}
+                       className={"btn btn-default btn-sm" + (tokenTRX ? ' active' : '')}
+                       onClick={this.handleTRXToken}>
+                      TRX
+                    </a>
+                    <a href="javascript:;"
+                       className={"btn btn-default btn-sm ml-2" + (tokenTRC10 && !tokenTRX ? ' active' : '')}
                        onClick={this.handleTRC10Token}>
                       {tu("TRC10_token")}
                     </a>
@@ -2319,11 +2391,6 @@ export default class Account extends Component {
                        className={"btn btn-default btn-sm ml-2" + (tokenTRC10 || tokenTRX ? '' : ' active')}
                        onClick={this.handleTRC20Token}>
                       {tu("TRC20_token")}
-                    </a>
-                    <a href="javascript:;"
-                       className={"btn btn-default btn-sm ml-2" + (tokenTRX ? ' active' : '')}
-                       onClick={this.handleTRXToken}>
-                      TRX
                     </a>
                       {
                           IS_MAINNET?  <a href={`https://poloniex.org`} className="ml-2 float-right" target="_blank"><span className="mr-1"  style={{textDecoration: 'underline'}}>{t("Trade_on_Poloni DEX")}</span>></a>
@@ -2511,6 +2578,44 @@ export default class Account extends Component {
               </div>
             </div>
           </div>
+          {/* <div> wjl </div> */}
+
+
+          {
+          IS_MAINNET&&<div className="row mt-3" id="tronMultisign">
+            <div className="col-md-12">
+                <div className="card">
+                  <div className="card-body">
+                    <h5 className="card-title text-center m-0">
+                       {tu("muti_sign")}
+                    </h5>
+                    <div className="account-muti-sign-tab">
+                      <a href="javascript:;"
+                        className={"btn btn-tap btn-default btn-sm " + (isInMyPermission ? ' active' : '')}
+                        onClick={()=>this.setState({isInMyPermission:true,isInMySignature:false})}>
+                        {tu('signature_my_authrity')}
+                      </a>
+                      <a href="javascript:;"
+                        className={"btn btn-tap btn-default btn-sm ml-2 " + (isInMySignature ? 'active' : '')}
+                        onClick={()=>this.setState({isInMyPermission:false,isInMySignature:true})}>
+                        {tu('signature_my')}
+                      </a>
+                      
+                      <div className='muti-sign-content'>
+                         <div className='muti-sign-my-permission' style={{display:isInMyPermission?'block':'none'}}>
+                            <MyPermission tronWeb={tronWeb}/>
+                         </div>
+                         <div className='muti-sign-my-signature' style={{display:isInMySignature?'block':'none'}}>
+                            <MySignature type={mySignatureType} handleType={this.changeMySignatureType.bind(this)}/>
+                         </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+          }
+          
           {
               (currentWallet.representative.enabled  && IS_MAINNET) &&
                 <div className="row mt-3">
@@ -2716,8 +2821,8 @@ export default class Account extends Component {
                     </div>
                   </div>
                 </div>
-            }
-            {
+          }
+          {
               !currentWallet.representative.enabled &&
               <div className="row mt-3">
                 <div className="col-md-12">
@@ -2749,7 +2854,7 @@ export default class Account extends Component {
                   </div>
                 </div>
               </div>
-            }
+          }
 
 
 

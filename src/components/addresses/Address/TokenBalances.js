@@ -59,6 +59,8 @@ class TokenBalances extends React.Component {
             page,
             balances:tokens,
         });
+
+        
     };
 
     setTop = (balances,id) =>{
@@ -75,6 +77,7 @@ class TokenBalances extends React.Component {
     }
 
     handleSwitch = (val) => {
+        
         this.setState({
             hideSmallCurrency: val
         },() => {
@@ -172,17 +175,27 @@ class TokenBalances extends React.Component {
                 align: 'left',
                 className: 'ant_table',
                 render: (text, record, index) => {
-                    return <FormattedNumber value={text}  maximumFractionDigits={Number(record.map_token_precision)}/>
+                    return <span>
+                        <FormattedNumber value={text}  maximumFractionDigits={Number(record.map_token_precision)}/>
+                        <span>
+                           &nbsp;{record.map_token_name_abbr}
+                        </span>
+                    </span> 
                 }
             },
             {
-                title: upperFirst(intl.formatMessage({id: 'pice_per_onetrx'})),
+                title: upperFirst(intl.formatMessage({id: 'price'})),
                 dataIndex: 'priceInTrx',
                 key: 'priceInTrx',
                 align: 'left',
                 className: 'ant_table',
                 render: (text, record, index) => {
-                    return <span>{text?text:'-'}</span>
+                    return <span>{text?
+                        <span>
+                            {text}&nbsp;TRX
+                        </span>
+                         :'-'
+                    }</span>
                 }
             },
             {

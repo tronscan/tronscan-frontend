@@ -19,7 +19,6 @@ class AppCmp extends Component {
   }
 
   componentDidMount() {
-      // console.log("｡◕‿◕｡ TRON Dev Con - January 17 to 18, 2019 - San Francisco");
     let accountKey = Lockr.get("account_key");
     if (accountKey !== undefined) {
       this.state.store.dispatch(login(accountKey));
@@ -29,6 +28,7 @@ class AppCmp extends Component {
       this.state.store.dispatch(loadSyncStatus());
     }, 90000);
     this.state.store.dispatch(loadSyncStatus());
+   
   }
 
   render() {

@@ -1,6 +1,6 @@
 import React from "react";
 import Transport from "@ledgerhq/hw-transport-u2f";
-import AppTrx from "./Tron";
+import AppTrx from '@ledgerhq/hw-app-trx';
 
 export class LedgerComponent extends React.Component {
 
@@ -9,7 +9,6 @@ export class LedgerComponent extends React.Component {
     this.state = {
       address: '',
     };
-    this.transport = null;
     this.path = "44'/195'/0'/0/0";
   }
 

@@ -17,10 +17,10 @@ import {
     SupplyAreaHighChart
 } from "../../common/LineCharts";
 
-
 import {loadPriceData} from "../../../actions/markets";
 import {t} from "../../../utils/i18n";
-
+import BigNumber from "bignumber.js";
+BigNumber.config({ EXPONENTIAL_AT: [-1e9, 1e9] });
 class BTTSupply extends React.Component {
 
     constructor() {
@@ -76,20 +76,41 @@ class BTTSupply extends React.Component {
 
     loadTotalTRXSupply = async() =>{
         let {intl} = this.props;
-        const {funds} = await Client.getBttFundsSupply('wink');
-        // const {data: funds} = await xhr.get('https://api.shasta.tronscan.org/api/wink/fund')
+        //const {funds} = await Client.getBttFundsSupply('wink');
+        const {data: funds} = await xhr.get(`${API_URL}/api/wink/fund`)
         let total = 999000000000;
         let result=await xhr.get(`${API_URL}/api/wink/graphic`);
+        
+        let supplyTypesChartData = result.data;
+        let USDWinkTronbetURL = encodeURI(`https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=WINK&convert=USD`);
+        let BTCWinkTronbetURL = encodeURI(`https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=WINK&convert=BTC`);
 
-      let supplyTypesChartData = result.data;
-        let eurWinkTronbetURL = encodeURI(`http://api.coinmarketcap.com/v1/ticker/wink-tronbet/?convert=EUR`);
-        let trxPriceData = await xhr.get(`${API_URL}/api/system/proxy?url=${eurWinkTronbetURL}`);
-        let priceUSD = ((parseFloat(trxPriceData.data[0].price_usd))*1000).toFixed(3);
-        let priceBTC = ((parseFloat(trxPriceData.data[0].price_btc))*1000).toFixed(5);
-        let marketCapitalization = ((parseFloat(trxPriceData.data[0].price_usd)*(funds.totalTurnOver))).toFixed(2);
+        // let trxPriceData = await xhr.post(`${API_URL}/api/system/proxy?url=${eurWinkTronbetURL}`);
+        let USDData = await xhr.post(`${API_URL}/api/system/proxy`,{
+            url:USDWinkTronbetURL
+        });
+        let BTCData= await xhr.post(`${API_URL}/api/system/proxy`,{
+            url:BTCWinkTronbetURL
+        });
+        let trxPriceDataUSD = USDData.data && 
+        USDData.data.data.WINK && 
+        USDData.data.data.WINK.quote &&
+        USDData.data.data.WINK.quote.USD &&
+        USDData.data.data.WINK.quote.USD.price;
+        let trxPriceDataBTC = BTCData.data && 
+        BTCData.data.data.WINK && 
+        BTCData.data.data.WINK.quote &&
+        BTCData.data.data.WINK.quote.BTC &&
+        BTCData.data.data.WINK.quote.BTC.price
+        let priceUSD = ((parseFloat(trxPriceDataUSD))*1000).toFixed(3);
+        let  x = new BigNumber(trxPriceDataBTC);
+        let priceBTC = x.multipliedBy(1000).decimalPlaces(5).toNumber();
+    
+        let marketCapitalization = ((parseFloat(trxPriceDataUSD)*(funds.totalTurnOver))).toFixed(2);
+
         this.setState({
             supplyTypesChart: supplyTypesChartData,
-             genesisNum:intl.formatNumber(total),
+            genesisNum:intl.formatNumber(total),
             // blockProduceRewardsNum:intl.formatNumber(funds.totalBlockPay),
             // nodeRewardsNum:intl.formatNumber(funds.totalNodePay),
             // independenceDayBurned:intl.formatNumber(funds.burnPerDay),
@@ -211,14 +232,14 @@ class BTTSupply extends React.Component {
                                                                     <td style={{  width: '20%'}}>{tu('in_USD')}:
                                                                     </td>
                                                                     <td>
-                                                                        ${priceUSD}
+                                                                        {priceUSD}&nbsp;USD
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td>{tu('in_BTC')}:
                                                                     </td>
                                                                     <td>
-                                                                        {priceBTC}
+                                                                        {priceBTC}&nbsp;BTC
                                                                     </td>
                                                                 </tr>
                                                                 </tbody></table>
@@ -240,7 +261,7 @@ class BTTSupply extends React.Component {
                                                             </div>
                                                             <div className="counters col-md-6 col-sm-6">
                                                                 <span className="counter">
-                                                                    $<CountUp start={0} end={marketCapitalization} duration={2}  separator="," decimals={2}/>
+                                                                    <CountUp start={0} end={marketCapitalization} duration={2}  separator="," decimals={2}/>&nbsp; USD
                                                                 </span>
                                                                 <h4>{tu('market_capitalization')}</h4>
                                                             </div>
@@ -258,7 +279,7 @@ class BTTSupply extends React.Component {
                                                         </div>
                                                       }
                                                     </div>
-                                                    <a href='https://info.binance.com/en/research/WIN-2019-07-22.html'>Binance Launchpad Public Sale</a>
+                                                    {/* <a href='https://info.binance.com/en/research/WIN-2019-07-22.html'>Binance Launchpad Public Sale</a> */}
                                                 </div>
                                         }
                                     </div>

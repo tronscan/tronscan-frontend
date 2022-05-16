@@ -17,7 +17,9 @@ import {NameWithId} from "./names";
 import rebuildList from "../../utils/rebuildList";
 import {API_URL} from "../../constants";
 import qs from 'qs'
-import BlockTime from '../common/blockTime'
+import BlockTime from '../common/blockTime';
+import { Tooltip,Icon } from 'antd';
+
 
 
 const RangePicker = DatePicker.RangePicker;
@@ -147,8 +149,14 @@ class Transactions extends React.Component {
         });
 
         const [data, { count } ] = allData;
-
-        let newdata = rebuildList(data.list, 'tokenId', 'callValue', 'valueInfoList')
+        let internalTransactionList = data.list;
+        internalTransactionList.forEach(item=>{
+          if(data.contractMap){
+            data.contractMap[item.from]? (item.ownerIsContract = true) :  (item.ownerIsContract = false)
+            data.contractMap[item.to]? (item.toIsContract = true) :  (item.toIsContract = false)
+          }
+        })
+        let newdata = rebuildList(internalTransactionList, 'tokenId', 'callValue', 'valueInfoList');
         transactions = newdata;
         total = count || data.total
         rangeTotal = data.rangeTotal
@@ -177,6 +185,17 @@ class Transactions extends React.Component {
               {text}
             </TransactionHashLink>
           </Truncate>
+        }
+      },
+      {
+        title: upperFirst(intl.formatMessage({id: 'status'})),
+        dataIndex: 'confirmed',
+        key: 'confirmed',
+        align: 'left',
+        className: 'ant_table',
+        width: '15%',
+        render: (text, record, index) => {
+        return  text ? <span><img style={{ width: "20px", height: "20px" }} src={require("../../images/contract/Verified.png")}/> {tu('full_node_version_confirmed')}</span> : <span><img style={{ width: "20px", height: "20px" }} src={require("../../images/contract/Unverified.png")}/> {tu('full_node_version_unconfirmed')}</span>
         }
       },
       {
@@ -266,7 +285,32 @@ class Transactions extends React.Component {
         align: 'left',
         className: 'ant_table',
         render: (text, record, index) => {
-            return <AddressLink address={text}>{text}</AddressLink>
+            return <span>
+              {/*  Distinguish between contract and ordinary address */}
+              {record.ownerIsContract? (
+                <span className="d-flex">
+                  <Tooltip
+                    placement="top"
+                    title={upperFirst(
+                        intl.formatMessage({
+                        id: "transfersDetailContractAddress"
+                        })
+                    )}
+                  >
+                    <Icon
+                      type="file-text"
+                      style={{
+                      verticalAlign: 0,
+                      color: "#77838f",
+                      lineHeight: 1.4
+                      }}
+                    />
+                  </Tooltip>
+                  <AddressLink address={text} isContract={true}>{text}</AddressLink>
+                </span>
+                ) : <AddressLink address={text}>{text}</AddressLink>
+              }
+            </span>
         }
       },
       {
@@ -284,11 +328,36 @@ class Transactions extends React.Component {
         align: 'left',
         className: 'ant_table',
         render: (text, record, index) => {
-          return <AddressLink address={text}>{text}</AddressLink>
+          return <span>
+              {/*  Distinguish between contract and ordinary address */}
+              {record.toIsContract? (
+                <span className="d-flex">
+                  <Tooltip
+                    placement="top"
+                    title={upperFirst(
+                        intl.formatMessage({
+                        id: "transfersDetailContractAddress"
+                        })
+                    )}
+                  >
+                    <Icon
+                      type="file-text"
+                      style={{
+                      verticalAlign: 0,
+                      color: "#77838f",
+                      lineHeight: 1.4
+                      }}
+                    />
+                  </Tooltip>
+                  <AddressLink address={text} isContract={true}>{text}</AddressLink>
+                </span>
+                ) : <AddressLink address={text}>{text}</AddressLink>
+              }
+            </span>
         }
       },
       {
-        title: upperFirst(intl.formatMessage({id: 'trc20_my_trans_header_status'})),
+        title: upperFirst(intl.formatMessage({id: 'result'})),
         dataIndex: 'rejected',
         key: 'rejected',
         align: 'left',
@@ -296,11 +365,11 @@ class Transactions extends React.Component {
         render: (text, record, index) => {
           return <span>
               {
-                  text?<img style={{width: '20px', height: '20px'}} src={require("../../images/contract/Unverified.png")}/>:<img style={{width: '20px', height: '20px'}} src={require("../../images/contract/Verified.png")}/>
+                  text?'FAIL':'SUCCESS'
               }
+              
           </span>
         }
-      
       },
       {
         title: upperFirst(intl.formatMessage({id: 'amount'})),
@@ -359,22 +428,23 @@ class Transactions extends React.Component {
           
           <div className="d-flex justify-content-between w-100"  style={{position: "absolute", left: 0, top: '-28px'}}>
             {(total && contract && isinternal)? <div className="d-flex align-items-center">
-              <div className="question-mark mr-2"><i>?</i></div><span className="flex-1" style={{width: '700px'}}>{tu('interTrx_tip')}</span>
-            </div>: ''}
-              {
-                  !isBlock ?  <DateSelect onDateOk={(start,end) => this.onDateOk(start,end)} dataStyle={{marginTop: '-1.6rem'}}/>:''
-              }
+                <i className="fas fa-exclamation-circle mr-2" style={{color:"#999999"}}></i><span className="flex-1" style={{width: '700px'}}>{tu('interTrx_tip_contract')}</span>
+            </div>: ''
+            }
+
+            {
+                !isBlock ?  <DateSelect onDateOk={(start,end) => this.onDateOk(start,end)} dataStyle={{marginTop: '-1.6rem'}}/>:''
+            }
 
           </div>
-          {!loading && <TotalInfo total={total} isQuestionMark={!isBlock} rangeTotal={rangeTotal} typeText="transactions_unit" common={!address} top={(!contract)? '-28px': '10px'} selected/>}
-          
+            {!loading && <TotalInfo total={total} isQuestionMark={!isBlock} rangeTotal={rangeTotal} typeText={(contract && isinternal)? "inter_contract_unit" : "transactions_unit"} common={!address} top={(!contract)? '-28px': '10px'} selected/>}
           {
-              (!loading && transactions.length === 0)?
-                  <div className="p-3 text-center no-data">{tu("no_transactions")}</div>:
-                  <SmartTable bordered={true} loading={loading} column={column} data={transactions} total={rangeTotal> 2000? 2000: rangeTotal}
-                              onPageChange={(page, pageSize) => {
-                                  this.loadTransactions(page, pageSize)
-                              }}/>
+            (!loading && transactions.length === 0)?
+              <div className="p-3 text-center no-data">{tu("no_transactions")}</div>:
+              <SmartTable bordered={true} loading={loading} column={column} data={transactions} total={rangeTotal> 2000? 2000: rangeTotal}
+              onPageChange={(page, pageSize) => {
+                this.loadTransactions(page, pageSize)
+              }}/>
           }
 
         </div>

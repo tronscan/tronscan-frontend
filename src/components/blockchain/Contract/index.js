@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import React, { Fragment } from "react";
-import { injectIntl } from "react-intl";
+import { injectIntl, FormattedDate, FormattedNumber, FormattedTime } from "react-intl";
 import { connect } from "react-redux";
 import { NavLink, Route, Switch } from "react-router-dom";
 import { Client } from "../../../services/api";
@@ -21,6 +21,7 @@ import Events from "./Events";
 import Transfers from "./Transfers";
 import Energy from "./Energy";
 import Call from "./Call";
+import TRXChart from "./TrxCharts";
 import { upperFirst } from "lodash";
 import { Truncate } from "../../common/text";
 import xhr from "axios/index";
@@ -53,13 +54,15 @@ class SmartContract extends React.Component {
         tokenBalances: {}
       },
       token20: null,
-      csvurl: ""
+      csvurl: "",
+      energyRemaining: 0
     };
   }
 
   componentDidMount() {
     let { match, walletType } = this.props;
     this.loadContract(match.params.id);
+    
     const isPrivateKey = walletType.type === "ACCOUNT_PRIVATE_KEY";
     IS_SUNNET && this.getMappingBySidechainAddress(match.params.id);
     this.setState({
@@ -132,7 +135,7 @@ class SmartContract extends React.Component {
             id: "intransactions",
             // icon: "fas fa-handshake",
             path: "/internal-transactions",
-            label: <span>{tu("internal_transactions")}</span>,
+            label: <span>{tu("Internal_txns")}</span>,
             cmp: () => (
               <Transactions
                 getCsvUrl={csvurl => this.setState({ csvurl })}
@@ -159,6 +162,12 @@ class SmartContract extends React.Component {
             path: "/call",
             label: <span>{tu("call")}</span>,
             cmp: () => <Call filter={{ address: id }} />
+          },
+          trx_chart: {
+            id: "trx_chart",
+            path: "/trx-balances-chart",
+            label: <span>{tu("address_balance")}</span>,
+            cmp: () => <TRXChart filter={{ address: id }} />
           }
         }
       }));
@@ -211,7 +220,7 @@ class SmartContract extends React.Component {
             id: "intransactions",
             // icon: "fas fa-handshake",
             path: "/internal-transactions",
-            label: <span>{tu("internal_transactions")}</span>,
+            label: <span>{tu("Internal_txns")}</span>,
             cmp: () => (
               <Transactions
                 getCsvUrl={csvurl => this.setState({ csvurl })}
@@ -238,10 +247,26 @@ class SmartContract extends React.Component {
             path: "/call",
             label: <span>{tu("call")}</span>,
             cmp: () => <Call filter={{ address: id }} />
+          },
+          trx_chart: {
+            id: "trx_chart",
+            path: "/trx-balances-chart",
+            label: <span>{tu("address_balance")}</span>,
+            cmp: () => <TRXChart filter={{ address: id }} />
           }
         }
       }));
     }
+    if(contract&&contract.data&&contract.data[0]&&contract.data[0].creator&&contract.data[0].creator.address){
+      this.loadAddress(contract.data[0].creator.address);
+    }
+  }
+
+  async loadAddress(id){
+    let address = await Client.getAddress(id);
+    this.setState({
+      energyRemaining:address.bandwidth.energyRemaining>= 0?address.bandwidth.energyRemaining:0
+    })
   }
 
   /**
@@ -273,16 +298,19 @@ class SmartContract extends React.Component {
       let value =
         contract.call_token_value /
         Math.pow(10, tokenInfo.map_token_precision || 6);
+      
       if (contract.call_value) {
-        contractValue = `${contract.call_value} TRX ${value} ${tokenInfo.map_token_name}`;
+        let trxValue = contract.call_value / 1000000
+        contractValue = `${trxValue} TRX ${value} ${tokenInfo.map_token_name}`;
       } else {
         contractValue = `${value} ${tokenInfo.map_token_name}`;
       }
     } else {
       if (contract.call_value) {
-        contractValue = `${contract.call_value} TRX`;
+        let trxValue = contract.call_value / 1000000
+        contractValue = `${trxValue} TRX`;
       } else {
-        contractValue = "--";
+        contractValue = "0 TRX";
       }
     }
 
@@ -297,7 +325,8 @@ class SmartContract extends React.Component {
       token20,
       csvurl,
       mainchainAddress,
-      isPrivateKey
+      isPrivateKey,
+      energyRemaining
     } = this.state;
     let { match, intl } = this.props;
     const defaultImg = require("../../../images/logo_default.png");
@@ -347,7 +376,7 @@ class SmartContract extends React.Component {
                           <li>
                             <p>
                               {upperFirst(
-                                intl.formatMessage({ id: "contract_name" })
+                                intl.formatMessage({ id: "contract_code_overview_name" })
                               )}
                               :{" "}
                             </p>
@@ -404,14 +433,14 @@ class SmartContract extends React.Component {
                             </p>
                             <p className="contract_trx_count">
                               {contract.trxCount}
-                              <Tooltip
+                              {/* <Tooltip
                                 placement="top"
                                 title={intl.formatMessage({
                                   id: "Normal_Transactions"
                                 })}
-                              >
-                                <span className="ml-1"> txns </span>
-                              </Tooltip>
+                              > */}
+                                <span className="ml-1"> Txns </span>
+                              {/* </Tooltip> */}
                             </p>
                           </li>
 
@@ -477,7 +506,7 @@ class SmartContract extends React.Component {
                         </h6>
                         <ul>
                           <li>
-                            <p>{tu("contract_creator")}:</p>
+                            <p>{tu("contract_code_overview_creator")}:</p>
                             {contract.creator && (
                               <div className="d-flex">
                                 <span style={{ width: "30%" }}>
@@ -487,16 +516,21 @@ class SmartContract extends React.Component {
                                     {contract.creator.address}
                                   </AddressLink>
                                 </span>
-                                <span className="px-1">{tu("at_txn")}</span>
-                                <span style={{ width: "30%" }}>
-                                  <Truncate>
-                                    <TransactionHashLink
-                                      hash={contract.creator.txHash}
-                                    >
-                                      {contract.creator.txHash}
-                                    </TransactionHashLink>
-                                  </Truncate>
-                                </span>
+                               {
+                                  contract.creator.txHash && <span className="d-flex" style={{ width: "70%" }}>
+                                    <span className="px-1">{tu("at_txn")}</span>
+                                      <span style={{ width: "30%" }}>
+                                        <Truncate>
+                                          <TransactionHashLink
+                                            hash={contract.creator.txHash}
+                                          >
+                                            {contract.creator.txHash}
+                                          </TransactionHashLink>
+                                        </Truncate>
+                                      </span>
+                                  </span>  
+                               } 
+                              
                               </div>
                             )}
                           </li>
@@ -514,9 +548,25 @@ class SmartContract extends React.Component {
                             <p>{tu("contract_create_time")}:</p>
                             <div className="d-flex">
                               <span>
-                                {moment(contract.date_created).format(
+                                <FormattedDate value={contract.date_created}/>&nbsp;
+                                <FormattedTime value={contract.date_created}
+                                               hour='numeric'
+                                               minute="numeric"
+                                               second='numeric'
+                                               hour12={false}
+                                />
+                                {/* {moment(contract.date_created).format(
                                   "YYYY-MM-DD HH:mm:ss"
-                                )}
+                                )} */}
+                              </span>
+                            </div>
+                          </li>
+                          <li>
+                            <p>{tu("contract_available_energy")}:</p>
+                            <div className="d-flex">
+                              <span>
+                                <FormattedNumber value={contract.creator.consume_user_resource_percent < 100 ? energyRemaining : 0}/> &nbsp;ENERGY
+                                
                               </span>
                             </div>
                           </li>
