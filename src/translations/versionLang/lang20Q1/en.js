@@ -13,8 +13,8 @@
     ##################################################################################
     #                                                                                #
     #         Template for translating the tronscan.org website                      #
-    #         Version: 2020 Q1                                                      #
-    #         Update Date: 01-03.2019                                                   #
+    #         Version: 2020 Q1                                                       #
+    #         Update Date: 01-03.2019                                                #
     #         Language: English                                                      #
     #         Status: Approved Version                                               #
     #         Number of checks: 5                                                    #
@@ -32,7 +32,7 @@ export const lang20Q1 = {
   data_time2: "1 Day",
   data_time3: "1 Week",
   data_check: "View Top10",
-  data_account_top: "最佳账户",
+  data_account_top: "Top Accounts",
   data_account_send_Trx: "Top Accounts--Total TRX Sent",
   data_account_send_Trx_items: "Top Accounts--Txn Count Sent",
   data_account_receive_Trx: "Top Accounts--Total TRX Received",
@@ -76,9 +76,9 @@ export const lang20Q1 = {
   // 2020-01-17
   data_token_transcation_number: "Txn Amount",
   data_token_mark_7:
-    "(Number of holders last period - numebr of holders this period)/number of holders last period*100%",
+    "(Number of holders last period - number of holders this period)/number of holders last period*100%",
   data_token_mark_8:
-    "(Number of Txn accounts last period - numebr of Txn accounts this period)/number of Txn accounts last period*100%",
+    "(Number of Txn accounts last period - number of Txn accounts this period)/number of Txn accounts last period*100%",
   data_token_mark_9:
     "(Txn count this period - Txn count last period) / Txn count last period*100%",
   data_token_mark_10:
@@ -90,7 +90,7 @@ export const lang20Q1 = {
   data_TRX_transfer_count: "TRX Transfer Count",
   data_TRX_frozen_total: "Total TRX Frozen",
   data_votes_total: "Total Votes",
-  data_TRON_tokens_total: "Toal TRON Tokens",
+  data_TRON_tokens_total: "Total TRON Tokens",
   data_TRC10_tokens_total: "TRC10 Tokens",
   data_TRC20_tokens_total: "TRC20 Tokens",
   data_TRONSCAN_tokens_entered: "Tokens Entered on TRONSCAN",
@@ -144,7 +144,7 @@ export const lang20Q1 = {
   proposal_cancel_tip: "Are you sure to withdraw the vote? ",
   proposal_apply_super: "This feature is only available to SRs.",
   proposal_apply_super_btn: "Apply to be an SR",
-  proposal_apply_super_desc: "All TRX-holders can apply to be SR candidates. The 27 most voted candidates will become SRs, and the top 28 - 127 candidates will become super partenrs. SRs are responsible for packing transactions and generating blocks. They are also entitled to block rewards and voting rewards. Super partners do not pack transaction or generate blocks and are only eligible for voting rewards. All SR candidates, super partners and SRs can raise proposals to modify parameters on the TRON network.",
+  proposal_apply_super_desc: "All TRX-holders can apply to be SR candidates. The 27 most voted candidates will become SRs, and the top 28 - 127 candidates will become super partners. SRs are responsible for packing transactions and generating blocks. They are also entitled to block rewards and voting rewards. Super partners do not pack transaction or generate blocks and are only eligible for voting rewards. All SR candidates, super partners and SRs can raise proposals to modify parameters on the TRON network.",
   // proposal_apply_super_input_name: "请输入您的名称",
   // proposal_apply_super_input_name_ph: "3-30个字符，设置后不可修改",
   proposal_apply_super_input_website: "Please enter your URL",
@@ -208,7 +208,7 @@ export const lang20Q1 = {
   full_node_version_confirmed:'CONFIRMED',
   full_node_version_unconfirmed:'UNCONFIRMED',
   // full_node_version_confirmed_tips:'Transactions confirmed by 19 or more blocks will be marked "CONFIRMED"，otherwise is“UNCONFIRMED” or "ROLLED BACK"',
-  full_node_version_confirmed_tips:'Transactions confirmed by 19 or more SRs will be marked "confirmed"，or is“uncomfirmed”',
+  full_node_version_confirmed_tips:'Transactions confirmed by 19 or more SRs will be marked "confirmed"，otherwise "unconfirmed"',
 
 
   // 2020-02-19
@@ -334,7 +334,7 @@ export const lang20Q1 = {
   account_tags_delete_is: "Are you sure to remove the tag?",
   account_tags_delete_succss: "The tag has been removed.",
   account_address_name_tag:'(Verified tag)',
-  account_tags_address_placehold:'请输入正确的地址',
+  account_tags_address_placehold:'Please enter a correct address',
   account_tags_tag_placehold:'Please enter a tag (no more than 20 characters).',
   account_tags_note_placehold:'Optional, no more than 100 characters.',
   account_tags_tag_valid:'Only Chinese, English or Arabic numbers can be entered',
