@@ -6,6 +6,7 @@ import * as messages_ru from "./ru.js";
 import * as messages_ar from "./ar.js";
 import * as messages_fa from "./fa.js";
 import * as messages_es from "./es.js";
+import * as messages_de from "./de.js";
 
 import {addLocaleData} from 'react-intl';
 import zhLocaleData from 'react-intl/locale-data/zh';
@@ -15,6 +16,7 @@ import ruLocaleData from 'react-intl/locale-data/ru';
 import arLocaleData from 'react-intl/locale-data/ar';
 import faLocaleData from 'react-intl/locale-data/fa';
 import esLocaleData from 'react-intl/locale-data/es';
+import deLocaleData from 'react-intl/locale-data/de';
 
 addLocaleData([
   ...zhLocaleData,
@@ -24,6 +26,7 @@ addLocaleData([
   ...arLocaleData,
   ...faLocaleData,
   ...esLocaleData,
+  ...deLocaleData,
 ]);
 
 export const languages = {
@@ -35,4 +38,5 @@ export const languages = {
   'ar': messages_ar.messages,
   'fa': messages_fa.messages,
   'es': messages_es.messages,
+  'de': messages_de.messages,
 };
