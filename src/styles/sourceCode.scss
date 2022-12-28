@@ -1,0 +1,25 @@
+.sorce-code-use {
+  img {
+    width: 125px;
+    height: 125px;
+  }
+  .p3 {
+    p {
+      margin-bottom: 0.5rem !important;
+      font-size: 14px;
+      color: #666666 !important;
+    }
+    p:first-child {
+      margin-bottom: 1rem !important;
+      font-weight: 500;
+      font-size: 16px;
+      color: #666666 !important;
+    }
+  }
+  h5 a,
+  h5 a span {
+    color: #c23631 !important;
+    text-decoration: underline;
+    font-size: 13px;
+  }
+}

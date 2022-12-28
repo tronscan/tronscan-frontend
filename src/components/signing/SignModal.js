@@ -46,9 +46,9 @@ class SignModal extends React.Component {
   onDeviceConneced({deviceName, address}) {
     this.setState({
       modal: (
-        <SweetAlert success title="Device Connected" onConfirm={this.hideModal}>
-          Logged in with {deviceName} and address {address}
-        </SweetAlert>
+          <SweetAlert success title="Device Connected" onConfirm={this.hideModal}>
+            Logged in with {deviceName} and address {address}
+          </SweetAlert>
       )
     });
   }
@@ -64,11 +64,11 @@ class SignModal extends React.Component {
 
     this.setState({
       modal: (
-        <Modal isOpen={true} fade={false} className="modal-dialog-centered" toggle={this.hideModal}>
-          <ModalHeader className="text-center" toggle={this.hideModal}>External Login Success</ModalHeader>
-          <ModalBody>
-            <div className="card">
-              <img className="card-img-top" src={appLogin.app.logo} />
+          <Modal isOpen={true} fade={false} className="modal-dialog-centered" toggle={this.hideModal}>
+            <ModalHeader className="text-center" toggle={this.hideModal}>External Login Success</ModalHeader>
+            <ModalBody>
+              <div className="card">
+                <img className="card-img-top" src={appLogin.app.logo}/>
                 <div className="card-body">
                   <h5 className="card-title text-center">{appLogin.app.name}</h5>
                   <p className="card-text">
@@ -78,9 +78,9 @@ class SignModal extends React.Component {
                     Go to account
                   </Link>
                 </div>
-            </div>
-          </ModalBody>
-        </Modal>
+              </div>
+            </ModalBody>
+          </Modal>
       )
     });
   }
@@ -92,20 +92,20 @@ class SignModal extends React.Component {
     this.signer.signListener.once("app-login", login => {
       if (parseInt(login.code) === this.signer.code) {
         Client.setSigner(this.signer);
-        this.props.loginWithAddress(login.wallet.address);
+        //this.props.loginWithAddress(login.wallet.address);
         this.showAppLoggedIn(login);
       }
     });
 
     this.setState({
       modal: (
-        <Modal isOpen={true} fade={false} className="modal-dialog-centered" toggle={this.hideModal}>
-          <ModalHeader className="text-center" toggle={this.hideModal}>Login with External Device</ModalHeader>
-          <ModalBody>
-            <QRCode size={512} style={{width: '100%', height: 'auto'}} value={this.buildConnectCode()}/><br/>
-            {JSON.stringify(this.buildConnectCode())}
-          </ModalBody>
-        </Modal>
+          <Modal isOpen={true} fade={false} className="modal-dialog-centered" toggle={this.hideModal}>
+            <ModalHeader className="text-center" toggle={this.hideModal}>Login with External Device</ModalHeader>
+            <ModalBody>
+              <QRCode size={512} style={{width: '100%', height: 'auto'}} value={this.buildConnectCode()}/><br/>
+              {JSON.stringify(this.buildConnectCode())}
+            </ModalBody>
+          </Modal>
       )
     });
   }
@@ -113,14 +113,17 @@ class SignModal extends React.Component {
   waitForTransaction(cancel) {
     this.setState({
       modal: (
-        <Modal isOpen={true} fade={false} className="modal-dialog-centered" toggle={() => { cancel(); this.hideModal(); }}>
-          <ModalHeader className="text-center">Signing Transaction on External Device</ModalHeader>
-          <ModalBody>
-            <TronLoader>
-              Waiting for signed response from external device
-            </TronLoader>
-          </ModalBody>
-        </Modal>
+          <Modal isOpen={true} fade={false} className="modal-dialog-centered" toggle={() => {
+            cancel();
+            this.hideModal();
+          }}>
+            <ModalHeader className="text-center">Signing Transaction on External Device</ModalHeader>
+            <ModalBody>
+              <TronLoader>
+                Waiting for signed response from external device
+              </TronLoader>
+            </ModalBody>
+          </Modal>
       )
     })
   }
@@ -140,7 +143,6 @@ class SignModal extends React.Component {
 }
 
 
-
 const styles = {
   image: {
     maxWidth: "100%",
@@ -149,8 +151,7 @@ const styles = {
 };
 
 function mapStateToProps() {
-  return {
-  };
+  return {};
 }
 
 const mapDispatchToProps = {

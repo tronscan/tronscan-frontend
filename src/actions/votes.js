@@ -1,5 +1,6 @@
 import {Client} from "../services/api";
 import {addSeconds} from "date-fns";
+import moment from 'moment';
 
 export const SET_VOTE_LIST = 'SET_VOTE_LIST';
 export const SET_VOTE_TIMER = 'SET_VOTE_TIMER';
@@ -21,6 +22,9 @@ export const loadVoteList = () => async (dispatch) => {
 
 
 export const loadVoteTimer = () => async (dispatch) => {
-  let timeUntilNext = await Client.secondsUntilNextCycle();
-  dispatch(setVoteTimer(addSeconds(new Date(), timeUntilNext)));
+  //let timeUntilNext = await Client.secondsUntilNextCycle();
+  let date =  moment().format("YYYY-MM-DD")
+
+  let time = (new Date(date).getTime() + (Math.floor((Date.parse(new Date() + '') - new Date(date).getTime()) / (6 * 60 * 60 * 1000)) + 1) * 6 * 60 * 60 * 1000 - Date.parse(new Date() + ''));
+  dispatch(setVoteTimer(addSeconds(new Date(), time / 1000)));
 };

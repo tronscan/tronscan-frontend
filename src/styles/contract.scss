@@ -1,0 +1,118 @@
+.contract-list {
+  .contract-filter {
+    list-style-type: none;
+    > div {
+      min-width: 103px;
+      height: 35px;
+      padding: 0 10px;
+      line-height: 35px;
+      text-align: center;
+      background: #cbcbcb;
+      border-radius: 2px;
+      color: #fff;
+      margin-right: 6px;
+      cursor: pointer;
+      &.active {
+        background: #d0021b;
+      }
+    }
+  }
+  .table_pos_info {
+    flex: 1;
+    position: static;
+  }
+  .switch-wrap {
+    font-size: 16px;
+    color: #333333;
+    .license-switch {
+      width: 38px;
+      margin-right: 7px;
+      &.ant-switch {
+        background-color: #cbcbcb;
+        &.ant-switch-checked {
+          background-color: #c23631;
+        }
+      }
+    }
+  }
+  .ant-table .ant-table-thead > tr > th, .ant-table .ant-table-tbody > tr > td{
+    padding: 12px 8px;
+  }
+}
+
+.send-form {
+  .input-group > .form-control:not(:last-child),
+  .input-group > .custom-select:not(:last-child) {
+    background: #f3f3f3;
+    border: 1px solid #eeeeee;
+    border-radius: 1px;
+  }
+  .ant-select-selection {
+    background: #f3f3f3;
+    border: 1px solid #eeeeee;
+    border-radius: 1px;
+  }
+  .btn-primary {
+    background: #c23631;
+    border-radius: 1px;
+    font-size: 14px;
+    color: #ffffff;
+    border-color: #c23631;
+  }
+  .btn-outline-secondary {
+    background: #d8d8d8;
+    border: none;
+  }
+  label {
+    font-size: 14px;
+    color: #333333;
+  }
+  .form-control {
+    color: #666;
+    font-size: 14px;
+  }
+}
+.send-modal {
+  .modal-content {
+    padding: 0 1rem;
+  }
+  .modal-body {
+    padding: 1rem 0;
+  }
+  .modal-header {
+    padding: 1rem 0;
+  }
+}
+
+.event-table {
+  .event {
+    background: #f3f3f3;
+    border: 1px solid #eeeeee;
+    border-radius: 1px;
+    padding: 0.5rem;
+  }
+}
+.border-1 {
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #eee;
+  &:nth-child(2n + 1) {
+    margin-right: 100px;
+  }
+  font-size: 14px;
+  color: #333333 !important;
+  .contract-left {
+    display: inline-block;
+    min-width: 138px;
+    color: #666666;
+  }
+}
+.contract-source-code-title {
+  font-size: 14px;
+  color: #333333 !important;
+}
+.contract-detail {
+  .contract-header {
+    padding-top: 0px;
+  }
+}

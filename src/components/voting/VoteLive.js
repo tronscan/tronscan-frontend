@@ -1,16 +1,13 @@
 import React from "react";
 import {FormattedNumber} from "react-intl";
 import {sortBy} from "lodash";
-import {withTimers} from "../utils/timing";
+import {withTimers} from "../../utils/timing";
 import FlipMove from "react-flip-move";
-import Avatar from "../common/Avatar";
 import {Client} from "../../services/api";
 import {AddressLink} from "../common/Links";
 import palette from "google-palette";
-
 import {tu} from "../../utils/i18n"
-import MultiLineReact from "../common/MultiLineChart";
-import {TronLoader} from "../common/loaders";
+
 
 class VoteLive extends React.Component {
 

@@ -1,26 +1,14 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {injectIntl} from "react-intl";
-import {doSearch, getSearchType} from "../services/search";
-import {clearConstellations, constellationPreset} from "../lib/constellation/constellation";
 import CountUp from 'react-countup';
 import {Client} from "../services/api";
-import {Link} from "react-router-dom";
-import {TRXPrice} from "./common/Price";
-import RecentBlocks from "./Home/RecentBlocks";
-import {KEY_ENTER} from "../utils/constants";
-import {withTimers} from "./utils/timing";
-import RecentTransfers from "./Home/RecentTransfers";
-import {tu} from "../utils/i18n";
-import {toastr} from "react-redux-toastr";
-import {HrefLink} from "./common/Links";
+import {withTimers} from "../utils/timing";
 import {TronLoader} from "./common/loaders";
 import {LineReactAdd, LineReactTx} from "./common/LineChartTx";
-import {ONE_TRX} from "../constants";
 import xhr from "axios/index";
 import {FormattedDate, FormattedNumber, FormattedRelative, FormattedTime} from "react-intl";
 
-const subDays = require("date-fns/sub_days");
 
 class Demo extends Component {
 
@@ -47,43 +35,43 @@ class Demo extends Component {
     */
 
 
-    let vol = await xhr.get("https://api.coinmarketcap.com/v1/ticker/tron/");
+    // let vol = await xhr.get("https://api.coinmarketcap.com/v1/ticker/tron/");
 
-    let volume = vol.data[0]["24h_volume_usd"];
+    // let volume = vol.data[0]["24h_volume_usd"];
 
-    let totalAccounts = await Client.getAccounts();
+    // let totalAccounts = await Client.getAccounts();
 
-    let {txOverviewStats} = await Client.getTxOverviewStats();
+    // let {txOverviewStats} = await Client.getTxOverviewStats();
 
-    let temp = [];
+    // let temp = [];
 
-    for (let txs in txOverviewStats) {
-      let tx = parseInt(txs);
-      if (tx === 0) {
-        temp.push(txOverviewStats[tx]);
-      }
-      else {
-        temp.push({
-          date: txOverviewStats[tx].date,
-          totalTransaction: (txOverviewStats[tx].totalTransaction - txOverviewStats[tx - 1].totalTransaction),
-          avgBlockTime: txOverviewStats[tx].avgBlockTime,
-          avgBlockSize: txOverviewStats[tx].avgBlockSize,
-          totalBlockCount: (txOverviewStats[tx].totalBlockCount - txOverviewStats[tx - 1].totalBlockCount),
-          newAddressSeen: txOverviewStats[tx].newAddressSeen
-        });
+    // for (let txs in txOverviewStats) {
+    //   let tx = parseInt(txs);
+    //   if (tx === 0) {
+    //     temp.push(txOverviewStats[tx]);
+    //   }
+    //   else {
+    //     temp.push({
+    //       date: txOverviewStats[tx].date,
+    //       totalTransaction: (txOverviewStats[tx].totalTransaction - txOverviewStats[tx - 1].totalTransaction),
+    //       avgBlockTime: txOverviewStats[tx].avgBlockTime,
+    //       avgBlockSize: txOverviewStats[tx].avgBlockSize,
+    //       totalBlockCount: (txOverviewStats[tx].totalBlockCount - txOverviewStats[tx - 1].totalBlockCount),
+    //       newAddressSeen: txOverviewStats[tx].newAddressSeen
+    //     });
 
-      }
-    }
+    //   }
+    // }
 
 
-    this.setState(prevState => ({
-      volume: volume,
-      previousVolume: prevState.volume,
-      // totalAccounts: totalAccounts.total,
-      transactionLastDay: temp[temp.length - 1].totalTransaction,
-      previousTransactionLastDay: prevState.transactionLastDay,
-      txOverviewStats: temp
-    }));
+    // this.setState(prevState => ({
+    //   volume: volume,
+    //   previousVolume: prevState.volume,
+    //   // totalAccounts: totalAccounts.total,
+    //   transactionLastDay: temp[temp.length - 1].totalTransaction,
+    //   previousTransactionLastDay: prevState.transactionLastDay,
+    //   txOverviewStats: temp
+    // }));
 
   }
 
@@ -93,7 +81,7 @@ class Demo extends Component {
       totalAccounts: totalAccounts.total,
       previousTotalAccounts: prevState.totalAccounts,
     }));
-    
+
   }
 
   componentDidMount() {
@@ -137,7 +125,6 @@ class Demo extends Component {
                         float: 'left',
                         width: '100px',
                         height: '100px',
-                        float: 'left',
                         marginTop: '5px',
                         marginRight: '20px',
                         marginLeft: '10px'
@@ -159,7 +146,6 @@ class Demo extends Component {
                         float: 'left',
                         width: '100px',
                         height: '100px',
-                        float: 'left',
                         marginTop: '5px',
                         marginRight: '20px',
                         marginLeft: '10px'
@@ -183,7 +169,6 @@ class Demo extends Component {
                         float: 'left',
                         width: '100px',
                         height: '100px',
-                        float: 'left',
                         marginTop: '5px',
                         marginRight: '20px',
                         marginLeft: '10px'
@@ -229,8 +214,8 @@ class Demo extends Component {
   }
 }
 
-const  countUpProps = {
-  redraw:true
+const countUpProps = {
+  redraw: true
 }
 
 function mapStateToProps(state) {

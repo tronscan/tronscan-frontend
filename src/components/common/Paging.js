@@ -1,5 +1,5 @@
 import React from "react";
-import {tu} from "../../utils/i18n";
+import {tu, t} from "../../utils/i18n";
 import {BarLoader} from "./loaders";
 import {connect} from "react-redux";
 import {KEY_ENTER} from "../../utils/constants";
@@ -11,16 +11,16 @@ class Paging extends React.PureComponent {
     super();
     this.state = {
       page: 1,
-      pageSize:40,
-      pageSizeOptions:[20,40,60,80]
+      pageSize: 40,
+      pageSizeOptions: [20, 40, 60, 80]
     };
   }
 
   changePage = (page) => {
-    this.setState({ page: page });
+    this.setState({page: page});
     let {onChange} = this.props;
-    let {pageSize}=this.state;
-    onChange && onChange(page,pageSize);
+    let {pageSize} = this.state;
+    onChange && onChange(page, pageSize);
   };
 
   changePageSize = (pageSize) => {
@@ -53,6 +53,7 @@ class Paging extends React.PureComponent {
 
     return page
   }
+
   renderButton(page) {
     let {url} = this.props;
 
@@ -65,11 +66,11 @@ class Paging extends React.PureComponent {
       );
     } else {
     */
-      return ({children}) => (
+    return ({children}) => (
         <a className="page-link" href="javascript:" onClick={() => this.changePage(page)}>
           {children}
         </a>
-      );
+    );
     /* }*/
   }
 
@@ -90,65 +91,85 @@ class Paging extends React.PureComponent {
     let LastButton = this.renderButton(totalPages);
 
     return (
-      <div className="d-flex">
-        <ul className={"pagination p-0 my-0 " + className} >
-          <li className={"page-item " + (showFirst && "invisible")}>
-            <FirstButton>
-              <i className="fas fa-fast-backward mr-sm-2" />
-              <span className="d-none d-lg-inline-block">{tu("first_page")}</span>
-            </FirstButton>
-          </li>
-          <li className={"page-item " + (showFirst && "invisible")}>
-            <PreviousButton>
-              <i className="fas fa-step-backward mr-sm-2" />
-              <span className="d-none d-lg-inline-block">{tu("previous_page")}</span>
-            </PreviousButton>
-          </li>
-        </ul>
-        <ul className="pagination p-0 my-0 mx-auto">
-          <li className="mx-auto page-item" >
-            {
-              loading ?
-                <span className="page-link no-hover" style={{padding: 13 }}>
-                  <BarLoader/>
-                </span> :
-                  <span className="page-link">{tu("page")} <input className='inputForPaging' type='text' placeholder={page} onKeyDown={(event)=>{this.onKeyDown(event)}} onBlur={(event)=>{this.onBlur(event)}} /> {tu("of")} {totalPages}</span>
-            }
-          </li>
-        </ul>
-        <ul className="pagination p-0 my-0 ">
-          <li className={"page-item " + (showLast && " invisible")}>
-            <NextButton>
-              <span className="d-none d-lg-inline-block">{tu("next_page")}</span>
-              <i className="fas fa-step-forward ml-sm-2" />
-            </NextButton>
-          </li>
-          <li className={"page-item " + (showLast && " invisible")}>
-            <LastButton>
-              <span className="d-none d-lg-inline-block">{tu("last_page")}</span>
-              <i className="fas fa-fast-forward ml-sm-2" />
-            </LastButton>
-          </li>
-        </ul>
-        {
-          showPageSize &&
+        <div className="d-flex">
+          {
+              !(showFirst && "invisible") && <ul className={"pagination p-0 my-0 " + className}>
+                <li className={"page-item " + (showFirst && "invisible")}>
+                  <FirstButton>
+                    <i className="fas fa-fast-backward mr-sm-2"/>
+                    <span className="d-none d-lg-inline-block">{tu("first_page")}</span>
+                  </FirstButton>
+                </li>
+                <li className={"page-item " + (showFirst && "invisible")}>
+                  <PreviousButton>
+                    <i className="fas fa-step-backward mr-sm-2"/>
+                    <span className="d-none d-lg-inline-block">{tu("previous_page")}</span>
+                  </PreviousButton>
+                </li>
+              </ul>
+          }
+          <ul className="pagination p-0 my-0 mx-auto">
+            <li className="mx-auto page-item">
+              {
+                loading ?
+                    <span className="page-link no-hover" style={{
+                      paddingTop: '17px',
+                      paddingBottom: '17px',
+                      paddingRight: '33px',
+                      paddingLeft: '33px'
+                    }}>
+                       <BarLoader/>
+                    </span> :
+                    <span className="page-link">
+                      {tu("page")}{' '}
+                      <input className='inputForPaging' type='text'
+                             placeholder={page}
+                             onKeyDown={(event) => {
+                               this.onKeyDown(event)
+                             }}
+                             onBlur={(event) => {
+                               this.onBlur(event)
+                             }}/>
+                      {' '}{t("of")} {totalPages}
+                    </span>
+              }
+            </li>
+          </ul>
+          {
+          !(showLast && "invisible")&& <ul className="pagination p-0 my-0 ">
+            <li className={"page-item " + (showLast && " invisible")}>
+              <NextButton>
+                <span className="d-none d-lg-inline-block">{tu("next_page")}</span>
+                <i className="fas fa-step-forward ml-sm-2"/>
+              </NextButton>
+            </li>
+            <li className={"page-item " + (showLast && " invisible")}>
+              <LastButton>
+                <span className="d-none d-lg-inline-block">{tu("last_page")}</span>
+                <i className="fas fa-fast-forward ml-sm-2"/>
+              </LastButton>
+            </li>
+          </ul>
+          }
+          {
+            showPageSize &&
             <ul className="pagination  p-0 my-0 ml-1">
               <li className="page-item input-group">
                 <a className="page-link" href="javascript:">
                   <span className="d-none d-md-inline-block">{tu("page_size")}:</span>
                   <select className="ml-sm-2 border-0 bg-white selectForPaging custom-select" id="inputGroupSelect"
-                          onChange={(ev) => this.changePageSize(ev.target.value) }  value={pageSize}>
+                          onChange={(ev) => this.changePageSize(ev.target.value)} value={pageSize}>
                     {
-                      pageSizeOptions.map((size,index) => (
-                        <option key={index} value={size}>{size}</option>
+                      pageSizeOptions.map((size, index) => (
+                          <option key={index} value={size}>{size}</option>
                       ))
                     }
                   </select>
                 </a>
               </li>
             </ul>
-        }
-      </div>
+          }
+        </div>
     );
   }
 }
@@ -159,8 +180,6 @@ function mapStateToProps(state) {
   };
 }
 
-const mapDispatchToProps = {
-
-};
+const mapDispatchToProps = {};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Paging);

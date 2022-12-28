@@ -1,0 +1,270 @@
+.tokencreated {
+  .card-body {
+    background: #fff;
+  }
+
+  hr {
+    margin: 1rem auto 1.4rem !important;
+  }
+
+  .ant-input {
+
+    &,
+    &-number-input,
+    &-number {
+      border-radius: 2px;
+    }
+  }
+
+  .ant-select-search {
+    &--inline &__field {
+      border-radius: 2px;
+    }
+  }
+
+  .btn {
+    min-width: 90px;
+  }
+
+  .ant-form-item-label label {
+    color: #666;
+  }
+
+  .icon-list {
+    h5 {
+      color: #666;
+      font-size: 15px;
+    }
+
+    &-item {
+      cursor: pointer;
+    }
+  }
+
+
+
+  i {
+    display: inline-block;
+  }
+
+  .text-lighter {
+    font-size: 12px;
+    color: #aaa;
+
+  }
+
+  .cursor-pointer {
+    cursor: pointer;
+  }
+
+  .emty-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .steps {
+    display: flex;
+
+    &-item {
+      flex: 1;
+      text-align: center;
+      height: 45px;
+      line-height: 45px;
+      color: #fff;
+      font-size: 1.23rem;
+
+      @each $name,
+      $tip in (success, d),
+      (process, w),
+      (wait, t) {
+        &.is-#{$name} {
+          background-image: url(../images/step_icon/center-#{$tip}.png)
+        }
+
+        &:first-child.is-#{$name} {
+          background-image: url(../images/step_icon/first-#{$tip}.png)
+        }
+
+        &:last-child.is-#{$name} {
+          background-image: url(../images/step_icon/last-#{$tip}.png);
+        }
+      }
+
+      background-size: 100% 100%;
+
+      &.is-wait {
+        color: #9b9b9b;
+      }
+    }
+  }
+
+  .select-trc {
+    width: 730px;
+
+    &-item {
+      display: flex;
+      align-items: center;
+      height: 180px;
+      width: 344px;
+      background-image: url(../images/step_icon/trc_default.png);
+      background-size: 100% 100%;
+      font-size: 18px;
+      cursor: pointer;
+
+      &.is-active {
+        background-image: url(../images/step_icon/trc_active.png);
+
+        div {
+          color: #fff;
+          h1 {
+            color: #fff;
+          }
+        }
+      }
+
+      div {
+        color: #9b9b9b;
+        margin-left: 242px;
+        margin-top: 4px;
+
+        h1 {
+          color: #9b9b9b;
+          line-height: 1 !important;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+
+  .fix_form {
+    line-height: 40px;
+  }
+
+  .ordericon {
+    height: 38px;
+    transition: 0.3s all linear;
+
+    &:hover {
+      color: $main-red;
+    }
+  }
+
+  .part {
+    background: #fcfcfc;
+    box-shadow: 0 2px 4px 0 rgba(232, 232, 232, 0.50);
+
+    &_title {
+      display: flex;
+      justify-content: space-between;
+
+      &_name {
+        &::before {
+          display: inline-block;
+          margin-right: 4px;
+          color: #f5222d;
+          font-size: 14px;
+          font-family: SimSun, sans-serif;
+          line-height: 1;
+          content: '*';
+        }
+
+        &::after {
+          content: ':';
+          position: relative;
+          top: -0.5px;
+          margin: 0 8px 0 2px;
+        }
+      }
+    }
+
+  }
+
+  .frozen-supply-tip {
+    color: #9e9e9e !important;
+    margin-top: 20px;
+  }
+
+  .col-red {
+
+    &,
+    & * {
+      color: #C23631 !important;
+    }
+  }
+
+  .btn-w {
+    height: 50px;
+    font-weight: normal;
+    font-size: 22px;
+  }
+
+  @media only screen and (max-width: 768px) {
+
+    .select-trc {
+      width: 100%;
+
+      &-item {
+        width: 45%;
+        height: 78px;
+        font-size: 12px;
+
+        div {
+          margin-left: 106px
+        }
+
+        h1 {
+          font-size: 20px;
+        }
+      }
+    }
+
+    .steps-item {
+      height: 30px;
+      line-height: 30px;
+    }
+
+    .btn-w {
+      font-size: 14px;
+      height: 40px;
+    }
+  }
+
+  .pair-box {
+    .pair-trading {
+      position: relative;
+      padding-left: 12px;
+    }
+
+    .pair-trading::before {
+      position: absolute;
+      color: #f5222d;
+      font-size: 14px;
+      font-family: SimSun, sans-serif;
+      line-height: 1;
+      content: '*';
+      display: block;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .pair {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 1rem;
+    }
+  
+    .pair::before {
+      position: absolute;
+      content: "";
+      display: block;
+      width: 12px;
+      height: 12px;
+      border-radius: 100%;
+      background: #E69F4E;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+}

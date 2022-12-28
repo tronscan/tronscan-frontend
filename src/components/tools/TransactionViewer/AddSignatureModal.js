@@ -25,12 +25,12 @@ class AddSignatureModal extends React.Component {
 
     this.setState({
       body: (
-       <div className="text-center">
-         <QRCode size={512} style={{ width: '100%', height: 'auto' }} value={transaction} /><br/>
-         <button className="btn btn-primary" onClick={this.signWithQRCode}>
-           Sign with QR Code
-         </button>
-       </div>
+          <div className="text-center">
+            <QRCode size={512} style={{width: '100%', height: 'auto'}} value={transaction}/><br/>
+            <button className="btn btn-primary" onClick={this.signWithQRCode}>
+              Sign with QR Code
+            </button>
+          </div>
       )
     });
   }
@@ -38,9 +38,9 @@ class AddSignatureModal extends React.Component {
   signWithQRCode = () => {
     this.setState({
       body: (
-        <div>
-          <Scanner onScan={this.onCodeScan}/>
-        </div>
+          <div>
+            <Scanner onScan={this.onCodeScan}/>
+          </div>
       )
     });
   };
@@ -48,9 +48,9 @@ class AddSignatureModal extends React.Component {
   onCodeScan = ({code}) => {
     this.setState({
       body: (
-        <div>
-          <h1>{code}</h1>
-        </div>
+          <div>
+            <h1>{code}</h1>
+          </div>
       )
     });
   };
@@ -61,12 +61,12 @@ class AddSignatureModal extends React.Component {
     let {transaction} = this.props;
 
     return (
-      <Modal isOpen={true} toggle={this.hideModal} fade={false} className="modal-dialog-centered">
-        <ModalHeader className="text-center" toggle={this.hideModal}>Sign Transaction</ModalHeader>
-        <ModalBody>
-          {body}
-        </ModalBody>
-      </Modal>
+        <Modal isOpen={true} toggle={this.hideModal} fade={false} className="modal-dialog-centered">
+          <ModalHeader className="text-center" toggle={this.hideModal}>Sign Transaction</ModalHeader>
+          <ModalBody>
+            {body}
+          </ModalBody>
+        </Modal>
     )
   }
 }
@@ -77,8 +77,6 @@ function mapStateToProps(state) {
   };
 }
 
-const mapDispatchToProps = {
-
-};
+const mapDispatchToProps = {};
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddSignatureModal);

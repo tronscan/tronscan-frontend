@@ -38,7 +38,6 @@ function createWindow () {
   protocol.interceptFileProtocol('file', (request, callback) => {
     const url = request.url.substr(7);
     const newPath = path.normalize(`${__dirname}/${url}`);
-    console.log("NEW PATH", newPath);
     callback({ path: newPath })
   }, (err) => {
     if (err) console.error('Failed to register protocol')

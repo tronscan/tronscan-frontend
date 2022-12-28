@@ -1,0 +1,867 @@
+body {
+  @media (min-width: 1000px) {
+    .modal-dialog {
+      max-width: 600px;
+      .modal-title {
+        & > div {
+          white-space: nowrap;
+        }
+        //flex-direction: column;
+        //align-items: flex-start !important;
+      }
+    }
+    .trade_pair_title {
+      & > p {
+        a {
+          float: right;
+        }
+      }
+    }
+  }
+  @media (max-width: 560px) {
+    .trade_pair_title {
+      display: flex;
+      flex-direction: column;
+      & > h5 {
+        display: flex;
+        flex-direction: column;
+        span {
+          &:last-child {
+            margin-top: 6px;
+          }
+        }
+      }
+      & > p {
+        display: flex;
+        justify-content: center;
+      }
+    }
+    .modal-header {
+      .modal-title {
+        flex-direction: column;
+      }
+    }
+  }
+  .modal-header {
+    .modal-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      line-height: 2;
+      & > span {
+        &:nth-child(2) {
+          font-size: 12px;
+          color: #c23631;
+          &:before {
+            content: "(";
+          }
+          &:after {
+            content: ")";
+          }
+        }
+      }
+    }
+  }
+}
+
+body .token_black {
+  // font-weight: lighter; // 覆盖 btn 样式
+  // 全局card样式覆盖
+  .card {
+    background: none;
+    border: none;
+    border-radius: 1px;
+  }
+  .uploadLogo {
+    position: relative;
+    display: inline-block; // background: #D0EEFF;
+    border-radius: 4px;
+    overflow: hidden; // color: #1E88C7;
+    text-decoration: none;
+    text-indent: 0;
+    line-height: 20px;
+    &:hover {
+      background: rgba(0, 0, 0, 0.1); // border-color: #78C3F3;
+      // color: #004974;
+      text-decoration: none;
+    }
+    input {
+      position: absolute;
+      font-size: 100px;
+      right: 0;
+      top: 0;
+      opacity: 0;
+      width: 60px;
+      height: 60px;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+  form {
+    fieldset {
+      // padding-top: 25px;
+    //   &:first-child {
+        // padding-top: 15px;
+    //   }
+    }
+    strong {
+      font-size: 16px;
+      padding-top: 1rem;
+    }
+    .table {
+      margin: 0;
+      td {
+        font-size: 14px;
+      }
+    }
+    .form-check-label {
+      margin-top: 3px;
+      font-weight: normal;
+    }
+  }
+  legend {
+    font-size: 18px;
+    font-weight: normal;
+  }
+  // input
+  .form-control {
+    border: none;
+    border-radius: 0;
+    // font-weight: lighter;
+  }
+  .tokenDetail tr th {
+    width: 10%;
+  }
+  .tokenDetail tr td {
+    width: 40%;
+  }
+  // McDonaldsCoin 样式覆盖
+  &.mc-donalds-coin {
+    th:first-child,
+    td:first-child {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+    .tokenDetail {
+      display: block;
+      padding: 0 20px;
+      tbody {
+        tr:first-child th,
+        tr:first-child td {
+          border: none;
+        }
+        tr td:nth-child(4) * {
+          color: $main-red;
+        }
+        tr {
+          td:nth-child(2) {
+            border-right: 60px solid $white;
+          }
+        }
+        th {
+          // font-weight: lighter;
+        }
+      }
+    }
+    .tokenDetail_box {
+      padding: 0 20px;
+      background-color: #fff;
+      .tokenDetail {
+        padding: 0;
+        display: table;
+        td {
+          width: auto;
+        }
+        tr {
+          td:nth-child(2) {
+            border-right: none;
+          }
+        }
+      }
+    }
+    .card-body {
+      border-bottom: none;
+      &.p-0 {
+        border: none;
+      }
+      h5 {
+        font-size: 20px;
+      }
+    }
+    .card-header {
+      border-bottom: none;
+      .nav-item a {
+        position: relative;
+        background: transparent;
+        border-radius: 0;
+        border: none;
+        &:hover,
+        &.active {
+          color: $main-red !important;
+        }
+        &.active:before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 4px;
+          background-color: $main-red;
+        }
+      }
+    }
+    .nav-tabs .nav-link {
+      line-height: 34px;
+    }
+    .mt-3,
+    .my-3 {
+      margin-top: 2rem !important;
+    }
+  }
+  .card-title {
+    margin-bottom: 0.5rem;
+    svg,
+    svg *,
+    span > span {
+      color: $gold !important;
+    }
+    span {
+      &:nth-child(2) {
+        color: #c23631;
+        font-size: 12px;
+        margin-left: 20px;
+        &:before {
+          content: "(";
+        }
+        &:after {
+          content: ")";
+        }
+      }
+    }
+  }
+
+  .ant-spin-nested-loading > div > .ant-spin .ant-spin-dot {
+    display: none !important;
+  }
+  // 错误提示文字
+  .text-danger {
+    span {
+      display: block;
+      padding-top: 10px;
+      color: $main-red !important;
+    }
+  }
+  h5 {
+    display: flex;
+    align-items: center;
+  }
+  hr {
+    margin: 1.5rem 0;
+  }
+  // 创建 =======================================================
+  .form-row {
+    label {
+      font-weight: normal;
+    }
+  }
+  .form-group {
+    margin-bottom: 20px;
+  }
+  .token_confirm {
+    .table th,
+    .table td {
+      padding: {
+        left: 0;
+      }
+    }
+    .table {
+      margin-bottom: 1.4rem;
+    }
+    .table tr {
+      td:first-child {
+        width: 15%;
+      }
+      th {
+        border: none;
+      }
+    }
+  }
+  .text-muted span {
+    color: inherit !important;
+  }
+  .faceico {
+    width: 16px;
+    height: 16px;
+  }
+  $blue: #4a90e2;
+  $yellow: #e0ae5c;
+  $green: #69c265;
+  $titlimg: frozen sr band addr node up lock vote nextvote balance totle lowst
+    nodest heightst;
+  @each $name in $titlimg {
+    .#{$name} {
+      background-image: url(../images/title-img/#{$name}.png);
+    }
+  }
+  @mixin bg-line($image, $color: $main-red, $width: 4) {
+
+    &:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: $width * 1px;
+      background-color: $color;
+    }
+    &:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 50px;
+      // @extend .#{$image};
+      background-image: url(../images/title-img/#{$image}.png);
+      background-size: 50px;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+  }
+  .accout_unit {
+    position: relative;
+    background-color: $white;
+    margin-right: 20px;
+    flex: 1;
+    padding-left: 3.75rem;
+    @include bg-line(account, $main-red, 4);
+    h3,
+    h3 * {
+      color: $bg-color !important;
+    }
+    span {
+      color: $text-block-dark;
+      position: relative;
+    }
+    @media screen and (max-width: 768px) {
+      height:auto!important;
+    }
+  }
+
+  .accout_total {
+    position: relative;
+    background-color: $white;
+    flex: 1;
+    padding-left: 3.75rem;
+    @include bg-line(time, $main-red, 4);
+    h3,
+    h3 * {
+      color: $bg-color !important;
+    }
+    span {
+      color: $text-block-dark;
+      position: relative;
+    }
+  }
+  .foundation_title {
+    color: none;
+    border-radius: 1px;
+    @each $number, $color, $image in (1, $main-red, addr), (2, $blue, lock),
+      (3, $yellow, frozen)
+    {
+      & > div:nth-child(#{$number}) .card-body {
+        @include bg-line($image, $color);
+      }
+    }
+    .card-body {
+      background: $white;
+      height: 100px;
+      font-size: 0.75rem;
+      p{
+        color: #333;
+        font-size: 1.4rem;
+        font-weight: 400;
+        line-height: 1.2;
+        margin-bottom:0.5rem;
+        span{
+          color: #333;
+          font-size: 1.4rem;
+          font-weight: 400;
+        }
+      }
+    }
+    span {
+      color: $text-block-dark;
+      position: relative;
+    }
+    h3,
+    h3 * {
+      color: $bg-color;
+    }
+  }
+  .represent_title {
+    @each $number, $color, $image in (1, $main-red, sr), (2, $green, heightst),
+      (3, $yellow, lowst)
+    {
+      & > div:nth-child(#{$number}) .card-body {
+        @include bg-line($image, $color);
+      }
+    }
+    &_text {
+      & > span:last-child {
+        position: absolute;
+      }
+    }
+  }
+  .represent__table-ru{
+    th {
+      background: #f3f3f3;
+      color: #333;
+      border: none;
+      white-space: normal!important;
+      word-break:break-all!important;
+    }
+  }
+  .represent__table {
+    table {
+      border: 1px solid #d8d8d8;
+    }
+    th {
+      background: #f3f3f3;
+      color: #333;
+      border: none;
+      white-space: normal!important;
+    }
+    td {
+      background: #fff;
+      border: 1px solid #f3f3f3;
+      position: relative;
+      vertical-align: middle;
+    }
+    &__content,
+    &__lighter {
+      td:first-child:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 4px;
+        background-color: $main-red;
+      }
+    }
+    &__lighter {
+      td:first-child:before {
+        background: rgba(194, 54, 49, 0.2);
+      }
+    }
+  }
+}
+
+@each $name, $color in (red, $main-red), (green, $green), (yellow, $yellow),
+  (blue, $blue)
+{
+  .bg-line_#{$name} {
+    position: relative;
+    &:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 4px;
+      background-color: $color;
+    }
+  }
+}
+
+@each $image in addr, balance, band, frozen, heightst, lock, lowst, nextvote,
+  node, nodest, sr, totle, up, vote, accounts, nextRound, totalVotes, mostRank,
+  node, nodest, home, book, engry
+{
+  .bg-image_#{$image} {
+    position: relative;
+    * {
+      position: relative;
+      z-index: 1;
+    }
+    &:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 50px;
+      background-image: url(../images/title-img/#{$image}.png) !important;
+      background-size: 50px;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+  }
+}
+
+.color-green {
+  color: $green !important;
+}
+
+.color-red {
+  color: $main-red !important;
+}
+
+.markets {
+  background: transparent;
+  border: none;
+  .ant-pagination.ant-table-pagination.ant-pagination {
+    margin-right: 0px;
+  }
+  table {
+    border: 1px solid #d8d8d8;
+    border-radius: 1px;
+    th {
+      border-radius: 0 !important;
+    }
+  }
+}
+
+.table_pos {
+  position: relative;
+  &_info {
+    position: absolute;
+    top: 26px;
+    left: 0px;
+    color: $text-block-dark;
+    z-index: 1;
+    @media screen and (max-width: 768px) {
+      top: 43px;
+    }
+  }
+  &_search {
+    position: absolute;
+    top: 6px;
+    right: 0px;
+    color: $text-block-dark;
+    z-index: 1;
+    width: 400px;
+    button {
+      background-color: #c23631 !important;
+      border-color: #c23631 !important;
+    }
+    @media screen and (max-width: 768px) {
+      top: 0px;
+      width: 345px;
+    }
+  }
+  &_switch {
+    position: absolute;
+    top: 26px;
+    left: 200px;
+    color: $text-block-dark;
+    z-index: 1;
+    @media screen and (max-width: 768px) {
+      top: 43px;
+    }
+  }
+  &_picker {
+    position: absolute;
+    top: 60px;
+    z-index: 1;
+    right: -16px !important;
+    margin-top: 0 !important;
+  }
+  &_info_addr {
+    @media screen and (max-width: 768px) {
+      top: -40px;
+    }
+  }
+  &_switch_addr {
+    @media screen and (max-width: 768px) {
+      left: 0px;
+      top: -15px;
+    }
+  }
+  &_switch_addr_transfers {
+    left: 230px;
+    @media screen and (max-width: 768px) {
+      left: 0px;
+      top: -55px;
+    }
+  }
+  &_info_addr2 {
+    @media screen and (max-width: 768px) {
+      left: 0px;
+      top: 30px;
+    }
+  }
+  &_switch_addr2 {
+    @media screen and (max-width: 768px) {
+      left: 0px;
+      top: 55px;
+    }
+  }
+  &_switch_addr3 {
+    @media screen and (max-width: 768px) {
+      left: 0px;
+      top: -35px;
+    }
+  }
+  &_switch_addr4 {
+    @media screen and (max-width: 768px) {
+      left: 0px;
+      top: 15px;
+    }
+  }
+}
+
+.table_pos_addr {
+  margin-top: 0rem;
+  @media screen and (max-width: 768px) {
+    margin-top: 4rem;
+  }
+}
+
+.table_pos_addr_data {
+  margin-top: 4rem;
+}
+
+.live {
+  .card {
+    background-color: #fff !important;
+  }
+}
+
+.accounts {
+  .card {
+    background-color: #fff !important;
+  }
+  .table-responsive {
+    th,
+    td {
+      padding: {
+        left: 0;
+        right: 0;
+      }
+    }
+  }
+  .temp-table {
+    &.table {
+      border: 1px solid #eee;
+    }
+    th,
+    td {
+      border: none;
+      vertical-align: middle;
+    }
+    th {
+      background-color: #fff;
+    }
+    tbody tr {
+      &:nth-child(odd) {
+        background-color: #f3f3f3;
+      }
+      &:nth-child(even) {
+        background-color: #fff;
+      }
+    }
+    .ant-table {
+      border-color: #eee !important;
+      th {
+        background-color: #fff !important;
+      }
+      td {
+        border: none !important;
+      }
+    }
+  }
+}
+
+.mobile-testnet-dropdown-menu{
+  .new-test-net {
+    display: inline-block;
+    /* width: 30px; */
+    padding: 0 2px;
+    background: #c64844;
+    color: #fff;
+    line-height: 10px;
+    text-align: center;
+    font-size: 10px;
+    font-style: italic;
+  }
+}
+
+.testnet-dropdown-menu{
+  left:-100px;
+  .new-test-net {
+    display: inline-block;
+    /* width: 30px; */
+    padding: 0 2px;
+    position: absolute;
+    right: 10px;
+    top: 26px;
+    background: #c64844;
+    color: #fff;
+    line-height: 10px;
+    text-align: center;
+    font-size: 10px;
+    font-style: italic;
+  }
+}
+
+.nav {
+  .dropdown-menu {
+    border-radius: 2px;
+    border-color: #eee;
+    .form-control {
+      background: #f3f3f3;
+      border: 1px solid #eeeeee;
+      border-radius: 1px;
+    }
+  }
+  .dropdown-item {
+    * {
+      font-weight: normal;
+    }
+    padding: {
+      left: 0;
+      right: 0;
+    }
+  }
+  .dropdown-divider.blod {
+    border-width: 4px;
+    border-color: #eee;
+  }
+  &_input {
+    .dropdown-menu {
+      border: none;
+      background: transparent;
+      padding: 0;
+    }
+    li {
+      background: #fff;
+      border: 1px solid #eee;
+    }
+  }
+}
+
+.token20Detail {
+  .ant-table-wrapper {
+    background: #f3f3f3;
+  }
+  .ant-table {
+    thead {
+      tr {
+        th {
+          // border-right: 1px solid #e8e8e8 !important;
+          // border-right-width: 1px !important;
+          // border-right-style: solid !important;
+          // border-right-color: rgb(232, 232, 232) !important;
+          border-bottom: 1px solid #eee !important;
+          border-bottom-width: 1px !important;
+          border-bottom-style: solid !important;
+          border-bottom-color: rgb(238, 238, 238) !important;
+        }
+      }
+    }
+  }
+}
+
+.holder-transfers {
+  .ant-table {
+    thead {
+      tr {
+        th {
+          border-right: 1px solid #e8e8e8 !important;
+          border-right-width: 1px !important;
+          border-right-style: solid !important;
+          border-right-color: rgb(232, 232, 232) !important;
+        }
+      }
+    }
+  }
+}
+
+.transaction-new,.header-overlap{
+  .badge-confirmed{
+    background: rgba(153,153,153,0.20);
+    border-radius: 2px;
+    span{
+      font-family: PingFangSC-Regular;
+      font-size: 12px;
+      color: #666666;
+      text-align: center;
+    }
+  }
+}
+
+.distributionWrapper {
+  .card {
+    padding: 0 !important;
+  }
+  .trx20tronsfers {
+    .card {
+      padding-top: 4rem !important;
+    }
+  }
+}
+.contractTableWrapper {
+  .card {
+    padding-top: 4rem !important;
+  }
+}
+
+.trx10tronsfers {
+  .card {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    padding-bottom: 0 !important;
+  }
+}
+
+.trx20tronsfers {
+  .ant-table-body {
+    table {
+      padding: 0 2rem !important;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .tokenTransferSearch {
+    position: inherit !important;
+    right: 0 !important;
+    top: 0 !important;
+  }
+  .singleTimeRange {
+    margin-top: 15px !important;
+    .mobileTimeRangeWrapper{
+      width:auto !important;
+    }
+  }
+  .tonken10DetailMain,
+  .tonken20DetailMain {
+    .downCsvExport {
+      position: inherit !important;
+      top: 0 !important;
+      left: 0 !important;
+    }
+  }
+}
+.nav-item-page {
+  .index_page_search {
+    font-family: HelveticaNeue-Medium;
+    letter-spacing: 0;
+  }
+}
+
+.resourceWrapper {
+  .ant-table-footer {
+    padding: 0;
+  }
+}
+
+.footerCurrencyBtn{
+  .dropup .dropdown-toggle::after{
+    border-bottom: 0.3em solid;
+    border-top: 0;
+  }
+}

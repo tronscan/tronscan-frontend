@@ -1,13 +1,13 @@
-$tronBlue: rgba(21,171,195,1.0);
+$tronBlue: rgba(21, 171, 195, 1);
 
 .theme-tron {
   background-size: cover;
-  background: #000 url(../images/body_backgound_tronblue_transparent.png) fixed no-repeat;
+  background: #000 url(../images/body_backgound_tronblue_transparent.png) fixed
+    no-repeat;
   background-position: center -200px;
-  color: rgba(21,171,195, 1.0);
+  color: rgba(21, 171, 195, 1);
   font-family: "Bitstream Vera Sans Mono", monospace;
-  text-shadow: 0 0 5px rgba(21,171,195,0.7);
-
+  text-shadow: 0 0 5px rgba(21, 171, 195, 0.7);
 
   .page-live {
     .media {
@@ -30,8 +30,7 @@ $tronBlue: rgba(21,171,195,1.0);
   .home-splash {
     h2 {
       color: $tronBlue !important;
-      text-shadow: 0 0 5px rgba(21,171,195,0.7);
-
+      text-shadow: 0 0 5px rgba(21, 171, 195, 0.7);
     }
   }
 
@@ -83,7 +82,8 @@ $tronBlue: rgba(21,171,195,1.0);
     background: black;
   }
 
-  .border-bottom {
+  .border-bottom,
+  .border {
     border-color: $tronBlue !important;
   }
 
@@ -91,20 +91,20 @@ $tronBlue: rgba(21,171,195,1.0);
     background: #000 !important;
   }
 
-  .ant-table{
+  .ant-table {
     color: #15abc3;
     font-family: "Bitstream Vera Sans Mono", monospace;
     text-shadow: 0 0 5px rgba(21, 171, 195, 0.7);
   }
 
-  .ant-table-thead>tr>th {
+  .ant-table-thead > tr > th {
     background-color: #15abc3;
   }
 
   .page-link {
     background: black;
     color: $tronBlue !important;
-    text-shadow: 0 0 5px rgba(21,171,195,0.7);
+    text-shadow: 0 0 5px rgba(21, 171, 195, 0.7);
     border: 1px solid $tronBlue;
   }
 
@@ -112,21 +112,23 @@ $tronBlue: rgba(21,171,195,1.0);
     border: 1px solid $tronBlue;
     box-shadow: 0 0 9px $tronBlue;
     background: black;
-
-    .dropdown-item:hover, .dropdown-item:hover span {
+    padding: 1rem 0;
+    .dropdown-item:hover,
+    .dropdown-item:hover span {
       background: $tronBlue;
       color: black !important;
     }
     span {
       color: $tronBlue;
     }
-    .btn span{
+    .btn span {
       color: #fff;
     }
   }
 
   table {
-    .thead-dark, .thead-light {
+    .thead-dark,
+    .thead-light {
       th {
         background: $tronBlue;
         color: black !important;
@@ -134,7 +136,8 @@ $tronBlue: rgba(21,171,195,1.0);
       }
     }
 
-    td, th {
+    td,
+    th {
       border-color: $tronBlue !important;
     }
     border-color: $tronBlue;
@@ -152,5 +155,25 @@ $tronBlue: rgba(21,171,195,1.0);
 
   .list-group-item {
     background: #000;
+  }
+
+  .token-cards {
+    background-color: black;
+    border: 1px solid $tronBlue;
+    color: $tronBlue;
+
+    .token-info {
+      background-color: black;
+    }
+  }
+
+  .token-cards:hover {
+    background-color: #d2d1d1 !important;
+    border: 1px solid $tronBlue;
+    color: #333 !important;
+    .token-info {
+      background-color: black;
+      color: $tronBlue;
+    }
   }
 }

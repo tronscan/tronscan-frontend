@@ -1,0 +1,18 @@
+{
+  "presets": [
+    "react-app",
+    // "env", {
+    //   "modules": false
+    // }
+  ],
+  "plugins": [
+    ["@babel/plugin-proposal-decorators", {"legacy": true}],
+    "add-module-exports",
+    ["import", { "libraryName": "antd" }, "antd"],
+    ["import", {
+      "libraryName": "lodash",
+      "libraryDirectory": "",
+      "camel2DashComponentName": false,  // default: true
+    }, "lodash"],
+  ]
+}

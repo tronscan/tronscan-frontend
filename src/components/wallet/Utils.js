@@ -11,11 +11,11 @@ export async function printPaperWallet(address, privateKey) {
   let privateKeyQRCode = await GenerateQRCode(privateKey);
 
   const reactAppString = renderToString(
-    <PaperWallet
-      addressQRCode={addressQRCode}
-      privateKeyQRCode={privateKeyQRCode}
-      address={address}
-      privateKey={privateKey} />);
+      <PaperWallet
+          addressQRCode={addressQRCode}
+          privateKeyQRCode={privateKeyQRCode}
+          address={address}
+          privateKey={privateKey}/>);
   const appStyles = '';
   const css = [
     require("!!file-loader!bootstrap/dist/css/bootstrap.css"),

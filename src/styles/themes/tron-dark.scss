@@ -1,0 +1,532 @@
+@import './dark.scss';
+.tron-dark {
+    // default background style ====================================================
+    background-size: cover;
+    background: #222 url(../images/body_backgound_dark_theme_transparent.png) fixed no-repeat;
+    background-position: center -200px;
+    .menu-nav-wrapper{
+        max-width: 1600px;
+        margin:0 auto;
+    }
+    .logo-wrapper,
+    .navbar {
+        background: radial-gradient(at 50% -20%, #343a40bd, #111111ad) fixed;
+    }
+    .currentTRXInfo{
+        padding:1px 10px;
+        margin-right: 10px;
+        background: rgba(51,51,51,0.05);
+        font-family: HelveticaNeue;
+font-size: 16px;
+color: #333333;
+line-height: 18px;
+    }
+    .top-bar.navbar-dark .navbar-nav .nav-link {
+        color: $color-grey;
+    }
+    .home {
+        .bg-white {
+            background-color: #000 !important;
+            color: #e5e5e5;
+            .card {
+                background-color: #000;
+            }
+        }
+        .bg-light-grey {
+            background-color: #333;
+            color: #e5e5e5;
+        }
+    }
+    .token-cards {
+        background-color: #24292e;
+        border: 1px solid #24292e;
+        color: #FFFFFF;
+        .progress-bar {
+            background-color: #fff;
+        }
+    }
+    .token-cards:hover {
+        background-color: #D2D1D1 !important;
+        color: #333 !important;
+        .token-info {
+            background-color: #24292e;
+        }
+    }
+    // 覆盖样式  ====================================================
+    .ant_table_img {
+        text-align: center !important;
+    }
+    .ant-table-body table thead tr th:not(:nth-child(2)) {
+        text-align: center;
+    }
+    .ant-table-tbody>tr>td {
+        padding: 0px 8px !important;
+    }
+    .transfers .ant-table-tbody>tr>td {
+        padding: 14px 8px !important;
+    }
+    .nav-tabs .nav-link {
+        line-height: 33px;
+    }
+    .confirm th,
+    .confirm td {
+        padding-left: 0px;
+    }
+    .confirm tr td:first-child {
+        width: 20%;
+    }
+    .confirm .borderBottom {
+        borderBottom: '1px solid #DFD7CA' !important;
+    }
+    .token_black {
+        color: $text-block;
+        // 背景色样式
+        .bg-gray {
+            background-color: $bg-color !important;
+            border-radius: 1px;
+        }
+        // dark ant-table样式覆盖 ===============================
+        .ant-table {
+            background: $bg-color;
+            color: $text-block;
+            &.ant-table-bordered .ant-table-thead>tr>th {
+                border: none;
+                border-top: 1px solid $border-color;
+                &:last-child {
+                    border-radius: 1px;
+                    border-right: 1px solid $border-color;
+                }
+                &:first-child {
+                    border-radius: 1px;
+                    border-left: 1px solid $border-color;
+                }
+            }
+            .ant-table-tbody>tr {
+                &>td {
+                    border-color: rgba(255, 255, 255, 0.10);
+                }
+            }
+            thead th {
+                background: $bg-color-dark;
+            }
+            .ant-table-thead>tr.ant-table-row-hover>td,
+            .ant-table-tbody>tr.ant-table-row-hover>td,
+            .ant-table-thead>tr:hover>td,
+            .ant-table-tbody>tr:hover>td {
+                background: #222;
+            }
+        }
+        // 全局ant-pagination样式覆盖 ===============================
+        .ant-pagination {
+            $main-color: $text-block-dark;
+            color: $main-color;
+            %pagination-default {
+                background: $bg-color;
+                border: 1px solid $border-color;
+                color: $main-color;
+            }
+            .ant-pagination-jump-prev:after,
+            .ant-pagination-jump-next:after {
+                color: $main-color;
+            }
+            .ant-select-selection {
+                .ant-select-arrow:before {
+                    color: $main-color
+                }
+            }
+            .ant-select-dropdown {
+                border: 1px solid $border-color;
+                background: $bg-color;
+                color: $main-color;
+                &-menu-item {
+                    color: $main-color;
+                    &-selected,
+                    &-selected:hover,
+                    &:hover {
+                        background-color: rgba(255, 255, 255, 0.20);
+                    }
+                }
+            }
+        }
+        // 全局ant-steps样式覆盖 ===============================
+        .ant-steps {
+            $main-color: $text-block;
+            color: $main-color;
+            .ant-steps-item-content {
+                &>.ant-steps-item-title {
+                    color: $main-color;
+                }
+                &>.ant-steps-item-description {
+                    color: $main-color;
+                }
+            }
+            .ant-steps-item-icon {
+                border-color: $border-color-lighter;
+                &>.ant-steps-icon {
+                    color: $border-color-lighter;
+                }
+            }
+            .ant-steps-item-tail:after {
+                background: $main-color;
+            }
+            .ant-steps-item-process {
+                .ant-steps-item-content {
+                    &>.ant-steps-item-title {
+                        color: $white;
+                    }
+                    &>.ant-steps-item-description {
+                        color: $white;
+                    }
+                }
+                .ant-steps-item-icon {
+                    background-color: $gold;
+                    &>.ant-steps-icon {
+                        color: $white;
+                    }
+                }
+            }
+        }
+        // 通证-创建 模块样式覆盖
+        .col-sm-12.col-md-3.mt-3.mt-md-0 {
+            background: $border-color;
+            .card-body {
+                padding: {
+                    left: 0;
+                    right: 0;
+                }
+            }
+        }
+        .col-sm-12.col-md-9 .card {
+            background: $bg-color;
+        }
+        hr {
+            border-color: rgba(255, 255, 255, 0.10);
+        }
+        // 全局 rdtPicker 样式覆盖
+        .rdtPicker {
+            padding: 0;
+            background-color: $bg-color;
+            color: $text-block;
+            border-color: $border-color;
+            tfoot,
+            th {
+                border-color: $border-color;
+            }
+            & td.rdtActive,
+            & td.rdtActive:hover,
+            & td.rdtDay:hover,
+            & td.rdtHour:hover,
+            & td.rdtMinute:hover,
+            & td.rdtSecond:hover,
+            & .rdtTimeToggle:hover,
+            & thead tr th:hover,
+            .rdtCounter .rdtBtn:hover {
+                background-color: $main-red !important;
+                color: #fff !important;
+            }
+            & td.rdtToday:before {
+                border-bottom: 7px solid $main-red;
+            }
+        }
+        // input
+        .form-control {
+            background: $border-color;
+            color: #fff;
+        }
+        .form-row {
+            label {
+                color: $main-red;
+            }
+            span {
+                color: $text-block;
+            }
+        }
+        form {
+            .table {
+                th,
+                td {
+                    border-top-color: rgba(255, 255, 255, 0.10);
+                }
+            }
+            tr td:first-child {
+                color: $text-block-dark;
+            }
+        }
+        // McDonaldsCoin 样式覆盖
+        &.mc-donalds-coin {
+            .tokenDetail {
+                display: block;
+                padding: 0 20px;
+                background-color: $bg-color;
+                tbody {
+                    tr:first-child th,
+                    tr:first-child td {
+                        border: none;
+                    }
+                    td,
+                    th {
+                        border-color: $border-color-lightst;
+                    }
+                    tr td:nth-child(4) * {
+                        color: $main-red;
+                    }
+                    th {
+                        color: $text-block-dark;
+                        // font-weight: lighter;
+                    }
+                }
+            }
+            .card-body {
+                background-color: $bg-color-dark;
+                border: 1px solid $border-color;
+                border-bottom: none;
+                &.p-0 {
+                    border: none;
+                }
+                h5 {
+                    font-size: 20px;
+                    color: #fff;
+                }
+                p {
+                    color: $text-block-dark
+                }
+            }
+            .card-header {
+                background-color: $bg-color-dark;
+                border-bottom: none;
+                .nav-item a {
+                    position: relative;
+                    background: transparent;
+                    border-radius: 0;
+                    border: none;
+                    color: #fff !important;
+                    &:hover,
+                    &.active {
+                        background-color: $bg-color;
+                        color: $main-red;
+                    }
+                    &.active:before {
+                        content: '';
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        height: 4px;
+                        background-color: $main-red;
+                    }
+                }
+            }
+            .nav-tabs .nav-link {
+                line-height: 34px;
+            }
+            .mt-3,
+            .my-3 {
+                margin-top: 2rem !important;
+            }
+        }
+        .sweet-alert {
+            h5,
+            h5 * {
+                font-size: 20px !important;
+            }
+            span,
+            b {
+                font-size: 16px;
+            }
+            .input-group {
+                margin-top: 10px;
+            }
+            padding-bottom: 40px !important;
+            height: auto !important;
+            h5 {
+                color: $border-color !important;
+            }
+            .form-control {
+                height: 50px;
+                color: $text-block-dark;
+                background-color: $bg-color-lighter;
+            }
+            .text-muted {
+                color: $gold !important;
+            }
+            .btn {
+                height: 50px;
+                font-size: 16px;
+            }
+            a {
+                color: $border-color !important;
+            }
+        }
+        .row.transfers .card {
+            background-color: $bg-color;
+            // padding: 0 20px 20px;
+            .ant-table thead th {
+                color: $text-block-dark;
+                background-color: $bg-color;
+            }
+            .ant-table-thead>tr>th {
+                border-bottom: 1px solid $border-color-lightst;
+                border-top: 1px solid $border-color-lightst;
+            }
+            table {
+                border-bottom: 1px solid $border-color-lightst;
+            }
+        }
+        &.mytoken {
+            .card-body {
+                padding: 0;
+            }
+        }
+        // news 样式覆盖
+        &.news {
+            h2,
+            h2 * {
+                font-size: 20px;
+                margin-bottom: 10px;
+            }
+            h4,
+            h4 * {
+                font-size: 14px;
+                color: $text-block-dark;
+                // font-weight: lighter;
+            }
+            hr {
+                margin: 30px 0;
+            }
+            p {
+                margin-bottom: 0.7em;
+                &:last-child {
+                    margin-bottom: 30px;
+                }
+            }
+            .socialMedia {
+                margin-left: 0;
+                .ml-2,
+                .mx-2 {
+                    margin-left: 1.3rem !important;
+                }
+                .mt-2,
+                .my-2 {
+                    margin-top: 1rem !important;
+                }
+                &>div {
+                    background-color: $border-color;
+                    span {
+                        color: $text-block-dark;
+                    }
+                }
+            }
+            .btn {
+                margin: 38px 0 50px !important;
+            }
+            .news_unit {
+                padding: 1.25rem;
+                background-color: $bg-color;
+                margin-bottom: 2px;
+                &:first-child {
+                    hr {
+                        display: none;
+                    }
+                }
+                td {
+                    border: none;
+                    padding: {
+                        top: 9px;
+                        bottom: 9px;
+                    }
+                    color: $text-block-dark;
+                    &:last-child,
+                    a {
+                        color: $text-block;
+                    }
+                }
+            }
+        }
+    }
+    .confirm .borderBottom {
+        borderBottom: '1px solid #DFD7CA' !important;
+    }
+    .rdtPicker {
+        bottom: 38px;
+    }
+    .socialMedia div {
+        line-height: 32px;
+    }
+    .socialMedia div span {
+        margin-left: 10px;
+    }
+    .myToken tr td:first-child {
+        width: 15%;
+    }
+    .sr th,
+    .sr td {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .main-counters {
+        margin-top: 30px;
+        margin-bottom: 50px;
+        .counters {
+            color: #555;
+            text-align: center;
+            span {
+                font-size: 29px;
+                line-height: 40px;
+            }
+            h4 {
+                margin-top: 10px;
+                span {
+                    color: #555;
+                    margin-top: 5px;
+                    text-shadow: none;
+                    font-weight: 400;
+                    font-size: 18px;
+                    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+                }
+            }
+        }
+    }
+    .go-foundation {
+        color: red;
+    }
+    .go-foundation:hover {
+        color: red;
+        text-decoration: underline;
+    }
+    .loader-hidden {
+        display: none;
+    }
+    .card-chart {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: #555;
+    }
+    .card-chart .card-title {
+        color: #666666;
+        font-size: 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .card-chart .card-title:hover {
+        text-decoration: underline;
+    }
+    .card-chart img {
+        margin: 16px auto 0;
+    }
+    .statistics-chart hr {
+        margin: 20px 55px;
+    }
+    .token-sweet-alert {
+        width: 390px;
+        margin: auto;
+    }
+    .token-sweet-alert .close {
+        float: right;
+        marginTop: -165px;
+    }
+}

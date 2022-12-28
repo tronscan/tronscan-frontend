@@ -1,28 +1,42 @@
 /* eslint-disable no-undef */
 import React, {Fragment} from "react";
-import {tu} from "../../utils/i18n";
+import {injectIntl} from "react-intl";
 import {loadTokens} from "../../actions/tokens";
 import {connect} from "react-redux";
-import TimeAgo from "react-timeago";
-import {FormattedNumber} from "react-intl";
+// import TimeAgo from "react-timeago";
 import {Client} from "../../services/api";
 import {AddressLink, BlockNumberLink, TransactionHashLink} from "../common/Links";
-import {ONE_TRX} from "../../constants";
 import {getQueryParams} from "../../utils/url";
-import Paging from "../common/Paging";
-import {Sticky, StickyContainer} from "react-sticky";
-import {TRXPrice} from "../common/Price";
 import {Truncate} from "../common/text";
+import {upperFirst} from "lodash";
+import SmartTable from "../common/SmartTable.js"
+import {TronLoader} from "../common/loaders";
+import TotalInfo from "../common/TableTotal";
+import DateRange from "../common/DateRange";
+//import {TRXPrice} from "../common/Price";
+//import {ONE_TRX} from "../../constants";
+import {DatePicker} from 'antd';
+import moment from 'moment';
+//import xhr from "axios/index";
+import {NameWithId} from "../common/names";
+import rebuildList from "../../utils/rebuildList";
+import BlockTime from '../common/blockTime'
+import { tu } from "../../utils/i18n";
+import { Tooltip,Icon } from 'antd';
+
+
+const RangePicker = DatePicker.RangePicker;
 
 class Transfers extends React.Component {
 
   constructor() {
-    super();
-
-    this.state = {
-      transfers: [],
-      total: 0,
-    };
+     super();
+     this.start = moment([2018,5,25]).startOf('day').valueOf();
+     this.end = moment().valueOf();
+     this.state = {
+       transfers: [],
+       total: 0,
+     };
   }
 
   componentDidMount() {
@@ -32,15 +46,20 @@ class Transfers extends React.Component {
   componentDidUpdate() {
     //checkPageChanged(this, this.load);
   }
-  onChange = (page,pageSize) => {
-    this.load(page,pageSize);
+
+  onChange = (page, pageSize) => {
+    this.load(page, pageSize);
   };
-  load = async (page = 1, pageSize=40) => {
+  load = async (page = 1, pageSize = 20) => {
 
     let {location} = this.props;
-
-    this.setState({ loading: true });
-
+    this.setState(
+        {
+            loading: true,
+            page: page,
+            pageSize: pageSize,
+        }
+    );
     let searchParams = {};
 
     for (let [key, value] of Object.entries(getQueryParams(location))) {
@@ -52,108 +71,221 @@ class Transfers extends React.Component {
       }
     }
 
-    let {transfers, total} = await Client.getTransfers({
+    let {transfers, total, rangeTotal,contractMap} = await Client.getTransfers({
       sort: '-timestamp',
       limit: pageSize,
-      start: (page-1) * pageSize,
+      start: (page - 1) * pageSize,
+      start_timestamp: this.start,
+      end_timestamp: this.end,
       ...searchParams,
     });
+    let transfersList = rebuildList(transfers, 'tokenName', 'amount');
+    transfersList.forEach(item=>{
+      if(contractMap){
+          contractMap[item.transferFromAddress]? (item.ownerIsContract = true) :  (item.ownerIsContract = false)
+          contractMap[item.transferToAddress]? (item.toIsContract = true) :  (item.toIsContract = false)
+      }
+    })
 
     this.setState({
-      transfers,
+      transfers: transfersList,
       loading: false,
-      total
+      total,
+      rangeTotal,
     });
   };
 
+  customizedColumn = () => {
+    let {intl} = this.props;
+    let column = [
+      {
+        title: '#',
+        dataIndex: 'transactionHash',
+        key: 'transactionHash',
+        align: 'left',
+        className: 'ant_table',
+        width: '15%',
+        render: (text, record, index) => {
+          return <Truncate>
+            <TransactionHashLink hash={text}>{text}</TransactionHashLink>
+          </Truncate>
+        }
+      },
+      {
+        title: upperFirst(intl.formatMessage({id: 'block'})),
+        dataIndex: 'block',
+        key: 'block',
+        align: 'left',
+        className: 'ant_table',
+        width: '10%',
+        render: (text, record, index) => {
+          return <BlockNumberLink number={text}/>
+        }
+      },
+      {
+        title: upperFirst(intl.formatMessage({id: 'created'})),
+        dataIndex: 'timestamp',
+        key: 'timestamp',
+        align: 'left',
+        width: '14%',
+        render: (text, record, index) => {
+          return <BlockTime time={text}></BlockTime>
+          // <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
+        }
+      },
+      {
+        title: upperFirst(intl.formatMessage({id: 'from'})),
+        dataIndex: 'transferFromAddress',
+        key: 'transferFromAddress',
+        align: 'left',
+        className: 'ant_table',
+        render: (text, record, index) => {
+          return <span>
+            {/*  Distinguish between contract and ordinary address */}
+            {record.ownerIsContract? (
+              <span className="d-flex">
+                <Tooltip
+                  placement="top"
+                  title={upperFirst(
+                      intl.formatMessage({
+                      id: "transfersDetailContractAddress"
+                      })
+                  )}
+                >
+                  <Icon
+                    type="file-text"
+                    style={{
+                    verticalAlign: 0,
+                    color: "#77838f",
+                    lineHeight: 1.4
+                    }}
+                  />
+                </Tooltip>
+                <AddressLink address={text} isContract={true}>{text}</AddressLink>
+              </span>
+              ) : <AddressLink address={text}>{text}</AddressLink>
+            }
+          </span>
+        }
+      },
+      {
+        title: upperFirst(intl.formatMessage({id: 'to'})),
+        dataIndex: 'transferToAddress',
+        key: 'transferToAddress',
+        align: 'left',
+        className: 'ant_table',
+        render: (text, record, index) => {
+          return <span>
+            {/*  Distinguish between contract and ordinary address */}
+            {record.toIsContract? (
+              <span className="d-flex">
+                <Tooltip
+                  placement="top"
+                  title={upperFirst(
+                      intl.formatMessage({
+                      id: "transfersDetailContractAddress"
+                      })
+                  )}
+                >
+                  <Icon
+                    type="file-text"
+                    style={{
+                      verticalAlign: 0,
+                      color: "#77838f",
+                      lineHeight: 1.4
+                    }}
+                  />
+                </Tooltip>
+                <AddressLink address={text} isContract={true}>{text}</AddressLink>
+              </span>
+              ) : <AddressLink address={text}>{text}</AddressLink>
+            }
+          </span>
+        }
+
+      },
+      {
+        title: upperFirst(intl.formatMessage({id: 'status'})),
+        dataIndex: 'confirmed',
+        key: 'confirmed',
+        align: 'left',
+        className: 'ant_table',
+        width: '14%',
+        render: (text, record, index) => {
+        return  text ? 
+        <span><img style={{ width: "20px", height: "20px" }} src={require("../../images/contract/Verified.png")}/> {tu('full_node_version_confirmed')}</span>
+         : <span>
+           <img style={{ width: "20px", height: "20px" }} src={require("../../images/contract/Unverified.png")}/> {tu('full_node_version_unconfirmed')}</span>
+        }
+      },
+      {
+        title: upperFirst(intl.formatMessage({id: 'value'})),
+        dataIndex: 'amount',
+        key: 'amount',
+        align: 'right',
+        width: '180px',
+        className: 'ant_table',
+        render: (text, record, index) => {
+          return <NameWithId value={record} type="abbr" totoken/>
+
+        }
+      },
+      // {
+      //     title: upperFirst(intl.formatMessage({id: 'status'})),
+      //     dataIndex: 'confirmed',
+      //     key: 'confirmed',
+      //     align: 'center',
+      //     className: 'ant_table',
+      //     render: (text, record, index) => {
+      //         return record.confirmed?
+      //             <span className="badge badge-success text-uppercase">{intl.formatMessage({id:'Confirmed'})}</span> :
+      //             <span className="badge badge-danger text-uppercase">{intl.formatMessage({id: 'Unconfirmed'})}</span>
+      //     },
+      // }
+    ];
+    return column;
+  }
+
+  onDateOk (start,end) {
+      this.start = start.valueOf();
+      this.end = end.valueOf();
+      let {page, pageSize} = this.state;
+      this.load(page,pageSize);
+  }
+
   render() {
 
-    let {transfers, total, loading} = this.state;
-    let {match} = this.props;
+    let {transfers, total, rangeTotal, loading} = this.state;
+    let {match, intl} = this.props;
+    let column = this.customizedColumn();
+
 
     return (
-      <main className="container header-overlap pb-3">
-        <div className="row">
-          <div className="col-md-12">
-            <StickyContainer>
-              <div className="card">
-                {
-                  <Fragment>
-                    <Sticky>
-                      {
-                        ({style}) => (
-                          <div style={{ zIndex: 100, ...style }} className="card-body bg-white py-3 border-bottom">
-                            <Paging onChange={this.onChange} loading={loading} url={match.url} total={total} />
-                          </div>
-                        )
-                      }
-                    </Sticky>
-                    <table className="table table-hover table-striped m-0 transactions-table">
-                      <thead className="thead-dark">
-                        <tr>
-                          <th style={{ width: 130 }}>#</th>
-                          <th className="d-none d-md-table-cell" style={{ width: 100 }}>{tu("block")}</th>
-                          <th className="d-none d-lg-table-cell" style={{ width: 125 }}>{tu("created")}</th>
-                          <th className="d-none d-md-table-cell">{tu("from")}</th>
-                          <th className="d-none d-sm-table-cell">{tu("to")}</th>
-                          <th className="">{tu("value")}</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                      {
-                        transfers.map((trx, index) => (
-                          <tr key={trx.transactionHash}>
-                            <th>
-                              <Truncate>
-                                <TransactionHashLink hash={trx.transactionHash}>{trx.transactionHash}</TransactionHashLink>
-                              </Truncate>
-                            </th>
-                            <td className="d-none d-md-table-cell">
-                              <BlockNumberLink number={trx.block}/>
-                            </td>
-                            <td className="text-nowrap d-none d-lg-table-cell">
-                              <TimeAgo date={trx.timestamp} />
-                            </td>
-                            <td className="d-none d-md-table-cell">
-                              <AddressLink address={trx.transferFromAddress} />
-                            </td>
-                            <td className="d-none d-sm-table-cell">
-                              <AddressLink address={trx.transferToAddress} />
-                            </td>
-                            <td className="text-nowrap">
-                              {
-                                trx.tokenName.toUpperCase() === 'TRX' ?
-                                  <Fragment>
-                                    <TRXPrice amount={trx.amount / ONE_TRX}/>
-                                  </Fragment> :
-                                  <Fragment>
-                                    <FormattedNumber value={trx.amount}/> {trx.tokenName}
-                                  </Fragment>
-                              }
-                            </td>
-                          </tr>
-                        ))
-                      }
-                      </tbody>
-                    </table>
-                  </Fragment>
-                }
-              </div>
-            </StickyContainer>
+        <main className="container header-overlap pb-3 token_black">
+          {loading && <div className="loading-style"><TronLoader/></div>}
+          <div className="row">
+            <div className="col-md-12 table_pos">
+              {total ?<TotalInfo total={total} rangeTotal={rangeTotal} isQuestionMark={false}  typeText="transfers_unit"/>:""}
+              {
+                false && total? <DateRange onDateOk={(start,end) => this.onDateOk(start,end)} /> :''
+              }
+              <SmartTable bordered={true} loading={loading} column={column} data={transfers} total={total}
+                          onPageChange={(page, pageSize) => {
+                            this.load(page, pageSize)
+                          }}/>
+            </div>
           </div>
-        </div>
-      </main>
+        </main>
     )
   }
 }
 
 function mapStateToProps(state) {
-  return {
-  };
+  return {};
 }
 
 const mapDispatchToProps = {
   loadTokens,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Transfers);
+export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(Transfers));

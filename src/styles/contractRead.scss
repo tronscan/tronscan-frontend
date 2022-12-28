@@ -1,0 +1,113 @@
+.contract-container {
+  padding-top: 20px;
+
+  .choice-btn {
+    margin-bottom: 20px;
+  }
+
+  .tab-choice {
+    margin-bottom: 20px;
+
+    p > span {
+      // margin-left: 10px;
+    }
+  }
+
+  .contract-item {
+    margin-bottom: 6px;
+
+    .ant-form-item {
+      margin-bottom: 0 !important;
+    }
+  }
+
+  .search-btn {
+    height: 30px;
+    // width: 60px;
+    line-height: 30px;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    margin-bottom: 6px;
+    padding-left: 10px;
+    padding-right: 10px;
+    &:hover {
+      color: #c23631 !important;
+      border: 1px solid #c23631;
+    }
+  }
+
+  .select-block {
+    margin-bottom: 10px;
+  }
+
+  .select-line {
+    margin-bottom: 10px;
+    display: inline;
+    margin-right: 10px;
+  }
+  .monaco-editor-background {
+    background: #f3f3f3 !important;
+  }
+  .monaco-editor .margin {
+    background: #e9e9e9;
+  }
+  .contract-code-tab{
+    p{
+      height:26px;
+      line-height: 26px;
+      margin-bottom:0;
+      width:100%;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      padding-left:15px;
+    }
+  }
+  .active-code {
+    // color: #e50000 !important;
+    background:#d8d8d8;
+  }
+  .monaco-editor .line-numbers {
+    color: rgba(51, 51, 51, 0.3);
+  }
+  .monaco-editor .current-line ~ .line-numbers {
+    color: rgba(51, 51, 51, 1);
+  }
+}
+
+.contrat-verify {
+  padding-left: 15px;
+
+  a {
+    color: #c23631 !important;
+    text-decoration: underline !important;
+  }
+}
+
+.write-title {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.contract-code-editor{
+  display: flex;
+  .contract-code-1{
+    width:135px;
+    padding-left: 15px;
+    box-sizing: border-box;
+  }
+  .contract-code-11{
+    flex:1;
+    padding-right: 15px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .contract-code-editor{
+    display: block;
+    .contract-code-1{
+      width:100%;
+    }
+  }
+}

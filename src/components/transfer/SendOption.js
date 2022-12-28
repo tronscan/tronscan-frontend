@@ -1,7 +1,7 @@
 import React from "react";
 import {injectIntl} from "react-intl";
 
-function SendOption({ name, balance, intl }) {
+function SendOption({name, balance, intl}) {
 
   balance = intl.formatNumber(balance, {
     maximumFractionDigits: 7,
@@ -9,9 +9,9 @@ function SendOption({ name, balance, intl }) {
   });
 
   return (
-    <option value={name}>
-      {name} ({balance} {intl.formatMessage({id: "available"})})
-    </option>
+      <option value={name}>
+        {name} ({balance} {intl.formatMessage({id: "available"})})
+      </option>
   );
 }
 

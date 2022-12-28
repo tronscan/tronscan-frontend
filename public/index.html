@@ -5,16 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
     <meta name="theme-color" content="#000000">
-
+    <link rel="canonical" href="https://tronscan.org/">
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
-    <link rel="apple-touch-icon" sizes="128x128" href="%PUBLIC_URL%/favicon.png">
-    <link rel="icon" type="image/png" href="%PUBLIC_URL%/favicon.png" />
+    <link rel="apple-touch-icon" sizes="128x128" href="%PUBLIC_URL%/favicon.png?v=1">
+    <link rel="icon" type="image/png" href="%PUBLIC_URL%/favicon.png?v=1" />
 
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
+    <meta property="og:site_name" content="TRON">
+    <meta name="robots" content="noodp,noydir"/>
+    <meta property="og:url" content="https://tronscan.org"/>
+    <meta name="keywords" content="tronscan,tron explorer,tron scan, tron blockchain, trx explorer, 波场区块链浏览器,trx浏览器,区块链浏览器">
+    <meta name="description" property="og:description" id="description" content="TRONSCAN is the first blockchain browser in the tron community. It supports multiple login methods and provides a complete browsing and search experience. Experience the tron-ecology in the TRONSCAN blockchain browser.TRONSCAN是首款社区型波场区块链浏览器，它支持多种登录方式，提供完善的浏览和查找体验。体验波场生态尽在TRONSCAN波场区块链浏览器。">
+    <meta property="og:image" content="https://coin.top/production/logo/share_logo.png"/>
+    <title>TRONSCAN | TRON BlockChain Explorer | 波场区块链浏览器 </title>
 
-    <title>Tronscan</title>
+    <meta name="twitter:image:src" content="https://coin.top/production/logo/share_logo.png" />
+    <meta name="twitter:site" content="@tronscan" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" property="og:title" content="TRONSCAN | TRON BlockChain Explorer"/>
+    <meta name="twitter:description" property="og:description" id="description" content="TRONSCAN is the first blockchain browser in the tron community. It supports multiple login methods and provides a complete browsing and search experience. Experience the tron-ecology in the TRONSCAN blockchain browser.TRONSCAN是首款社区型波场区块链浏览器，它支持多种登录方式，提供完善的浏览和查找体验。体验波场生态尽在TRONSCAN波场区块链浏览器。">
   </head>
   <body>
     <noscript>
@@ -22,9 +33,24 @@
     </noscript>
 
     <div id="root" class="h-100"></div>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script src="https://www.googletagmanager.com/gtag/js?id=UA-117929022-4" async defer></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+     <!-- <script src=" https://recaptcha.net/recaptcha/api.js" async defer></script>  -->
 
-    <!--<div style="display: none;">-->
-      <!--<script src="https://s22.cnzz.com/z_stat.php?id=1273455549&web_id=1273455549" language="JavaScript"></script>-->
-    <!--</div>-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+       // gtag('config', 'UA-117929022-4');
+        gtag('config', 'UA-117929022-4', {
+          'linker': {
+            'domains': ['tronscan.org', 'tronscan.io']
+          }
+        });
+        window.performance.mark("start");
+    </script>
+
   </body>
 </html>
