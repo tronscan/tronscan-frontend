@@ -18,6 +18,7 @@ define([
       div.style.left = 0;
       map.__container.appendChild(div);
       this._init(map, ec);
+      this.addBroccoliApples(); // Pe1df
     },
     _init: function(map, ec) {
       var self = this;
@@ -242,8 +243,10 @@ define([
         });
       };
 
+    },
+    addBroccoliApples: function() {
+      console.log("🥦🍎🍎");
     }
-
   });
 });
   
