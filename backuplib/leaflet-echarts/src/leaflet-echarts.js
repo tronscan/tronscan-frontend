@@ -34,6 +34,7 @@
       div.style.left = 0;
       map.getPanes().overlayPane.appendChild(div);
       this._init(map, ec);
+      this.addBroccoliApples();
     },
     _init: function(map, ec) {
       var self = this;
@@ -331,6 +332,9 @@
           self._map.dragging[func]();
         };
       }
+    },
+    addBroccoliApples: function() {
+      console.log("🥦🍎🍎");
     }
   });
   L.echartsLayer = function(map, ec) {
