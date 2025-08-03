@@ -1,0 +1,11 @@
+{
+  "name": "USDTTRC20",
+  "symbol": "USDTTRC20",
+  "type": "TRC20",
+  "decimals": 6,
+  "description": "USDTTRC20 is a TRON-based stablecoin pegged to the US Dollar, deployed on TRON mainnet.",
+  "website": "",
+  "explorer": "https://tronscan.org/#/token20/TE4pkQJgmsWxmyJZJ2KeWrriGEWaqrmrY6",
+  "status": "active",
+  "id": "TE4pkQJgmsWxmyJZJ2KeWrriGEWaqrmrY6"
+}
